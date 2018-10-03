@@ -1,0 +1,496 @@
+<<<<<<< HEAD
+ERROR - 2018-09-27 09:05:50 --> 404 Page Not Found: nestGarage/admin
+ERROR - 2018-09-27 09:06:04 --> Could not find the language line "Home"
+ERROR - 2018-09-27 09:06:14 --> 404 Page Not Found: nestGarage/admin
+ERROR - 2018-09-27 09:06:30 --> 404 Page Not Found: nestGarage/admin
+ERROR - 2018-09-27 09:11:27 --> Could not find the language line "Home"
+ERROR - 2018-09-27 09:12:09 --> Could not find the language line "Home"
+ERROR - 2018-09-27 09:17:39 --> Severity: Notice --> Undefined variable: result D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\functional.php 17
+ERROR - 2018-09-27 09:17:39 --> Severity: Notice --> Undefined variable: result D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\functional.php 20
+ERROR - 2018-09-27 09:17:39 --> Severity: Notice --> Undefined variable: result D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\functional.php 25
+ERROR - 2018-09-27 09:17:39 --> Severity: Notice --> Undefined variable: result D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\functional.php 28
+ERROR - 2018-09-27 09:28:11 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:28:11 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:28:11 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:28:25 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:28:25 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:28:25 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:29:13 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:29:13 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:29:13 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:29:24 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:29:25 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:29:25 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:48:43 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:48:43 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:48:43 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:49:48 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:49:48 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:49:48 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:49:51 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:49:51 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:49:51 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:50:15 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:50:15 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:50:15 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:50:44 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:50:44 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:50:44 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:50:47 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:50:48 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:50:48 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:52:03 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:52:03 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:52:03 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:52:49 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:52:49 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:52:49 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:53:45 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:53:45 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:53:45 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:53:54 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:53:54 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:53:54 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:54:06 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:54:06 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:54:06 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:56:20 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:56:20 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:56:20 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:56:52 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:56:52 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:56:52 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:57:14 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:57:14 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:57:14 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:57:54 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:57:55 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:57:55 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:58:04 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:58:04 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:58:04 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:59:34 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:59:34 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:59:34 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:59:53 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:59:53 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:59:53 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:05:05 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:05:05 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:05:05 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:11:14 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:11:14 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:11:14 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:11:55 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:11:55 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:11:55 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:12:09 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:12:09 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:12:09 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:12:39 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:12:39 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:12:39 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:13:08 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:13:08 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:13:09 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:13:11 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:13:11 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:13:11 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:13:37 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:13:37 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:13:37 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:15:28 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:15:28 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:15:28 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:16:14 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:16:14 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:16:14 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:17:07 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:17:07 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:17:07 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:18:57 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:18:57 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:18:57 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:19:02 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:19:02 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:19:02 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:19:05 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:19:05 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:19:05 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:19:15 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:19:15 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:19:15 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:19:44 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:19:45 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:19:45 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:20:08 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:20:08 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:20:08 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:21:05 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:21:05 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:21:05 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:21:26 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:21:26 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:21:27 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:21:41 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:21:41 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:21:41 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:22:24 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:22:24 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:22:24 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:22:41 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:22:41 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:22:41 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:22:58 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:22:58 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:22:58 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:23:08 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:23:08 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:23:08 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:24:10 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:24:10 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:24:10 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:26:59 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:26:59 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:26:59 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:27:22 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:27:22 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:27:22 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:28:48 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:28:48 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:28:48 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:29:17 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:29:17 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:29:17 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:30:23 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:30:23 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:30:23 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:30:49 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:30:50 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:30:50 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:31:33 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:31:34 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:31:34 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:31:46 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/functional_ax
+ERROR - 2018-09-27 10:32:42 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:32:42 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:32:42 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:32:50 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:32:50 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:32:50 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:33:20 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:33:20 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:33:20 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:33:47 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:33:47 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:33:47 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:34:17 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:34:17 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:34:17 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:34:31 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:34:31 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:34:31 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:40:12 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:40:12 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:40:12 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:40:46 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:40:46 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:40:46 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:42:12 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:42:12 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:42:12 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:43:37 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:43:37 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:43:37 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:43:50 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:43:50 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:43:50 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:44:04 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:44:04 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:44:04 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:45:23 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:45:23 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:45:23 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:49:44 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:52:23 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:52:23 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:52:23 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:53:01 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:53:01 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:53:01 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:53:19 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:53:20 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:53:20 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:53:33 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:53:33 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:53:33 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:53:52 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:53:52 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:53:52 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:54:56 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:54:56 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:54:56 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:56:58 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:56:58 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:56:58 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:58:51 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:58:51 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:58:51 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:59:10 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:59:10 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:59:10 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:59:25 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:59:26 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:59:26 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:00:43 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:00:43 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:00:43 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:03:37 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:03:37 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:03:37 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:03:46 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:03:46 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:03:46 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:03:52 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:03:52 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:03:52 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:04:33 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:04:33 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:04:33 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:04:58 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:04:58 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:04:58 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:14:32 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:14:32 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:14:32 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:15:34 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:15:34 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 11:15:34 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 11:16:46 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:35:45 --> 404 Page Not Found: admin/functional_2
+ERROR - 2018-09-27 12:10:58 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:10:58 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:10:58 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:12:25 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:12:25 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:12:25 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:15:18 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:15:18 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:15:18 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:16:56 --> 404 Page Not Found: admin/footer
+ERROR - 2018-09-27 12:39:17 --> Could not find the language line "Home"
+ERROR - 2018-09-27 12:40:18 --> Could not find the language line "Home"
+ERROR - 2018-09-27 12:44:01 --> Could not find the language line "Home"
+ERROR - 2018-09-27 13:24:05 --> Query error: Table 'nestgarage.chat' doesn't exist - Invalid query: 
+			SELECT 
+			  `chat`.`language_id`,
+			  `chat`.`title`,
+			  `chat`.`photo`,
+			  `chat`.`mail_to`,
+			  `chat`.`form_title`,
+			  `chat`.`form_name`,
+			  `chat`.`form_email`,
+			  `chat`.`form_country_code`,
+			  `chat`.`form_phone_number`,
+			  `chat`.`form_button`,
+			  `chat`.`status`
+			FROM
+			  `chat` 
+			  LEFT JOIN `language` 
+				ON `language`.`id` = `chat`.`language_id` 
+			WHERE 1 
+		
+ERROR - 2018-09-27 13:24:05 --> Language file contains no data: language/armenian/db_lang.php
+ERROR - 2018-09-27 13:24:05 --> Could not find the language line "db_error_heading"
+=======
+ERROR - 2018-09-27 09:00:47 --> Could not find the language line "Home"
+ERROR - 2018-09-27 09:04:52 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:04:52 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:04:52 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:07:37 --> Could not find the language line "form_validation_email"
+ERROR - 2018-09-27 09:07:51 --> Could not find the language line "form_validation_email"
+ERROR - 2018-09-27 09:19:41 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:19:41 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:19:41 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:21:51 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:21:51 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:21:51 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:21:55 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:21:55 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:21:55 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:22:05 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:22:05 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:22:05 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:42:57 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:42:57 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 09:42:57 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:44:47 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 09:44:47 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 09:44:47 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:07:37 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:07:37 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:07:37 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 10:10:44 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 10:10:44 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 10:10:44 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 11:21:10 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:21:17 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:21:20 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:21:22 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:21:27 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:25:36 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:25:39 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:01 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:03 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:04 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:05 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:07 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:26:09 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:29:45 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:30:18 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:30:21 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:46 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:48 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:50 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:52 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:54 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:56 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:31:59 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:32:02 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:32:12 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:32:14 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:32:15 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:32:17 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:33:13 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:33:14 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:33:15 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:33:17 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:33:19 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:34:45 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:34:58 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:35:02 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:35:05 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:35:08 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:37:38 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:37:48 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:40:29 --> Could not find the language line "Home"
+ERROR - 2018-09-27 11:40:31 --> Could not find the language line "Home"
+ERROR - 2018-09-27 12:03:15 --> Severity: Notice --> Undefined offset: 2 D:\OSPanel\domains\localhost\NestGarage\application\views\header.php 6
+ERROR - 2018-09-27 12:18:09 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:18:09 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:18:09 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:18:31 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:18:32 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:18:32 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:18:35 --> Severity: Notice --> Undefined offset: 0 D:\OSPanel\domains\localhost\NestGarage\application\views\header.php 5
+ERROR - 2018-09-27 12:18:35 --> Severity: Notice --> Undefined offset: 0 D:\OSPanel\domains\localhost\NestGarage\application\views\header.php 6
+ERROR - 2018-09-27 12:31:17 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:31:18 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:31:18 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:31:19 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:31:20 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:31:20 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:31:21 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:31:22 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:31:23 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:31:23 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 12:31:23 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:39:19 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 12:39:19 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 12:39:19 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+>>>>>>> 25f9b1cd7ca3fee6003e5d8c684fca6a8bf91225
+ERROR - 2018-09-27 13:34:46 --> Query error: Table 'nestgarage.chat' doesn't exist - Invalid query: 
+			SELECT 
+			  `chat`.`language_id`,
+			  `chat`.`title`,
+			  `chat`.`photo`,
+			  `chat`.`mail_to`,
+			  `chat`.`form_title`,
+			  `chat`.`form_name`,
+			  `chat`.`form_email`,
+			  `chat`.`form_country_code`,
+			  `chat`.`form_phone_number`,
+			  `chat`.`form_button`,
+			  `chat`.`status`
+			FROM
+			  `chat` 
+			  LEFT JOIN `language` 
+				ON `language`.`id` = `chat`.`language_id` 
+			WHERE 1 
+		
+ERROR - 2018-09-27 13:34:46 --> Language file contains no data: language/armenian/db_lang.php
+ERROR - 2018-09-27 13:34:46 --> Could not find the language line "db_error_heading"
+ERROR - 2018-09-27 14:31:29 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 14:31:29 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 14:31:29 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 14:41:04 --> Query error: Unknown column 'button_1' in 'field list' - Invalid query: 
+				UPDATE `chat` SET 
+					`button_1` = 'Button 1 name l1',
+					`button_2` = 'Button 1 name l1',
+					`button_2_url` = 'fdsfdsf',
+					`title` = 'fadsfads',
+					`main_text` = 'fadafads',
+					`font` = NULL
+				WHERE `language_id` = '1'	
+			
+ERROR - 2018-09-27 14:41:04 --> Language file contains no data: language/armenian/db_lang.php
+ERROR - 2018-09-27 14:41:04 --> Could not find the language line "db_error_heading"
+ERROR - 2018-09-27 14:41:10 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 14:41:10 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 14:41:10 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 14:41:12 --> Query error: Unknown column 'button_1' in 'field list' - Invalid query: 
+				UPDATE `chat` SET 
+					`button_1` = 'Button 1 name l1',
+					`button_2` = 'Button 1 name l1',
+					`button_2_url` = 'fdsfdsf',
+					`title` = 'fadsfads',
+					`main_text` = 'fadafads',
+					`font` = NULL
+				WHERE `language_id` = '1'	
+			
+ERROR - 2018-09-27 14:41:12 --> Language file contains no data: language/armenian/db_lang.php
+ERROR - 2018-09-27 14:41:12 --> Could not find the language line "db_error_heading"
+ERROR - 2018-09-27 14:41:40 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 14:41:41 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 14:41:41 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 14:42:18 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 14:42:18 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 14:42:18 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 16:27:37 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 20
+ERROR - 2018-09-27 16:27:44 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 20
+ERROR - 2018-09-27 16:27:52 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 20
+ERROR - 2018-09-27 16:29:28 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 20
+ERROR - 2018-09-27 16:29:57 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 19
+ERROR - 2018-09-27 16:29:57 --> Severity: Notice --> Undefined index: background_img D:\OSPanel\domains\localhost\NestGarage\application\views\index.php 20
+ERROR - 2018-09-27 16:48:03 --> Severity: Notice --> Undefined index: font_url D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\main.php 74
+ERROR - 2018-09-27 16:48:03 --> Severity: Notice --> Undefined index: font_css D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\main.php 81
+ERROR - 2018-09-27 16:48:03 --> Severity: Notice --> Undefined index: font_url D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\main.php 158
+ERROR - 2018-09-27 16:48:03 --> Severity: Notice --> Undefined index: font_css D:\OSPanel\domains\localhost\NestGarage\application\modules\admin\views\main.php 165
+ERROR - 2018-09-27 17:11:14 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_ax
+ERROR - 2018-09-27 17:12:05 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_ax
+ERROR - 2018-09-27 17:12:55 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_ax
+ERROR - 2018-09-27 17:13:00 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_ax
+ERROR - 2018-09-27 17:13:18 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_ax
+ERROR - 2018-09-27 17:16:02 --> 404 Page Not Found: admin/solution
+ERROR - 2018-09-27 17:16:03 --> 404 Page Not Found: admin/solution
+ERROR - 2018-09-27 17:16:11 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_challenge_ax
+ERROR - 2018-09-27 17:21:10 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_challenge_ax
+ERROR - 2018-09-27 17:21:14 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 17:21:14 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 17:21:14 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 17:21:16 --> 404 Page Not Found: ../modules/admin/controllers/Sysadmin/solution_challenge_ax
+ERROR - 2018-09-27 17:49:10 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 17:49:10 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 17:49:10 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 18:07:39 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 18:07:39 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map
+ERROR - 2018-09-27 18:07:39 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 18:07:48 --> 404 Page Not Found: assets/img/ac3181ee.png
+ERROR - 2018-09-27 18:08:45 --> 404 Page Not Found: assets/js/bootstrap/bootstrap.min.js.map
+ERROR - 2018-09-27 18:08:45 --> 404 Page Not Found: assets/css/bootstrap/bootstrap.min.css.map
+ERROR - 2018-09-27 18:08:45 --> 404 Page Not Found: assets/js/bootstrap/popper.min.js.map

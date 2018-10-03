@@ -1,0 +1,15 @@
+.my_jumbotron {
+    background: #fff;
+}
+
+@media all and (max-width: 500px) {
+    .lead{
+        font-size: 1rem;
+    }
+    .jumbotron{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+
+}

@@ -29,17 +29,24 @@
 <!-- Sign In With FACEBOOK  -->
 
 <script>
-	window.fbAsyncInit = function () {
+
+	window.fbAsyncInit = function() {
 		FB.init({
-			appId: '494657070944267',
-			cookie: true,
-			xfbml: true,
-			version: 'v3.1'
+			appId      : '494657070944267',
+			xfbml      : true,
+			version    : 'v3.1'
 		});
-
 		FB.AppEvents.logPageView();
-
 	};
+
+	(function(d, s, id){
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {return;}
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
 
 	(function (d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
@@ -176,7 +183,7 @@
 
 					<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-						<div class="jumbotron pt-3 pb-3 my_jumbotron">
+						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff;">
 							<h1 class="text-left text-success" style="font-size: 1.5em;">Wellcome to F6S</h1>
 							<p class="lead">F6S is where help eachother grow with deals, programs, founding and
 								jobs.</p>
@@ -200,7 +207,7 @@
 
 
 					<div class="col-md-6 mt-md-3 mt-3">
-						<div class="jumbotron pt-3 pb-3 my_jumbotron">
+						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
 
 
 							<form>

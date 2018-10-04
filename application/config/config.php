@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/NestGarage2/';
+$config['base_url'] = 'http://localhost/NestGarageSystem/';
 
 
 //The Modules::$locations array may be set in the application/config.php file. ie:

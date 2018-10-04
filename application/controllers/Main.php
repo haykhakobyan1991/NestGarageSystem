@@ -256,7 +256,7 @@ class Main extends MX_Controller {
 	}
 
 
-	public function signin() {
+	public function create_company() {
 
 		$this->load->helper('url');
 		
@@ -266,7 +266,7 @@ class Main extends MX_Controller {
 			$language_id = 0;
 		}
 
-		$this->load->view('signin');
+		$this->load->view('create_company');
 	}
 
 

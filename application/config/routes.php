@@ -99,10 +99,7 @@ $route['default_controller'] = 'Main';
 
 $route['/'] = 'Main/index/$1/$1';
 
-$route['signin'] = 'Main/signin';
-
-
-
+$route['create_company'] = 'Main/create_company';
 
 
 

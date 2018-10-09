@@ -10,21 +10,26 @@
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-		  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 
 
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/main.js"></script>
+	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
+	<script src="<?= base_url() ?>assets/js/main.js"></script>
+
 
 	<script>
 		$(document).ready(function () {
 			$('#example').DataTable();
+		});
+
+		$(document).ready(function () {
+			$('#example2').DataTable();
 		});
 	</script>
 
@@ -78,7 +83,6 @@
 	</style>
 </head>
 <body>
-
 
 
 <nav class="navbar navbar-light bg-light fixed-top"
@@ -512,10 +516,11 @@
 
 												</div>
 												<div class="modal-footer">
-													<button type="button" class="btn btn-danger" data-dismiss="modal">
+													<button type="button" class="btn btn-secondary"
+															data-dismiss="modal">
 														Close
 													</button>
-													<button type="button" class="btn btn-success">Save</button>
+													<button type="button" class="btn btn-secondary">Save</button>
 												</div>
 											</div>
 
@@ -545,6 +550,476 @@
 							<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 								<div class="container">
 									<p class="display-5 font-weight-bold mb-0">Section: Staff</p>
+								</div>
+							</div>
+
+							<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-12 col-md-2 col-2">
+											<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
+												class="ml-2 mt-1 badge badge-secondary badge-pill">6</span>
+										</div>
+
+										<div class="col-sm-12 col-md-2 col-2">
+											<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
+												class="ml-2 mt-1 badge badge-success badge-pill">4</span>
+										</div>
+
+										<div class="col-sm-12 col-md-2 col2">
+											<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
+												class="ml-2 mt-1 badge badge-warning badge-pill">2</span>
+										</div>
+
+										<div class="col-sm-12 col-md-4 col-4"></div>
+
+										<div class="col-sm-12 col-md-2 col-2">
+											<button class="btn btn-secondary" data-toggle="modal"
+													data-target=".add_staff_modal">Add User
+											</button>
+										</div>
+
+
+										<!-- Add User Modal Start  -->
+
+										<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
+											 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+											<div class="modal-dialog modal-lg">
+												<div class="modal-content">
+													<div class="modal-header bg-dark">
+														<h5 class="text-white modal-title dar">New Staff</h5>
+														<button type="button" class="text-white close"
+																data-dismiss="modal"
+																aria-label="Close">
+															<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<div class="row">
+															<div class="col-sm-12 col-md-6 col-6">
+																<h2>Staff Infprmation</h2>
+																<p>Fill in the following fields</p>
+															</div>
+
+															<div class="col-sm-12 col-md-6 col-6">
+																<div class="media">
+																	<img class="align-self-start mr-3"
+																		 id='img-upload2'
+																		 style="width: 100px;" alt="company logo"
+																		 src="<?= base_url() ?>assets/img/logo_default.png">
+																	<div class="media-body">
+																		<div class="input-group ml-2 ml-md-2">
+																		<span class="input-group-btn">
+																			<span
+																				class="btn btn-secondary btn-file mr-1">
+																				Browse… <input type="file" id="imgInp2">
+																			</span>
+																		</span>
+																			<input type="text" class="form-control"
+																				   readonly
+																				   style="display: none;">
+
+																		</div>
+																	</div>
+																</div>
+
+
+															</div>
+
+
+														</div>
+
+														<div class="row">
+															<form
+																class="col-sm-12 col-md-12 col-12  mt-md-5 mt-5 pl-md-4 pl-4 pr-md-4 pr-4">
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">First
+																		Name</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+																			   placeholder="First Name">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">Last
+																		Name</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+																			   placeholder="Last Name">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">Contact Number
+																		1</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+																			   placeholder="Contact Number 1">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">Contact Number
+																		2</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+
+																			   placeholder="Contact Number 2">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">Address
+																		Leave</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+																			   placeholder="Address Leave">
+																	</div>
+																</div>
+																<div class="form-group row">
+																	<label
+																		class="col-sm-2 col-form-label">Post
+																		Code</label>
+																	<div class="col-sm-10">
+																		<input type="text" class="form-control"
+																			   placeholder="Post Code">
+																	</div>
+																</div>
+																<div class="form-group row mb-0">
+
+																	<label
+																		class="col-sm-3 col-form-label">Department</label>
+																	<select value=""
+																			class="department form-control form-control-sm col-sm-8">
+																		<option>Department 1</option>
+																		<option>Department 2</option>
+																	</select>
+
+																</div>
+																<div class="form-group row mb-0">
+
+																	<label class="col-sm-3 col-form-label">Position
+																		Type</label>
+																	<select value=""
+																			class="position_type form-control form-control-sm col-sm-8">
+																		<option>Position Type 1</option>
+																		<option>Position Type 2</option>
+																	</select>
+
+																</div>
+
+
+																<div class="form-group mt-md-2 mt-2">
+																	<label
+																		for="exampleFormControlTextarea1">Other</label>
+																	<textarea placeholder="Other" class="form-control"
+																			  id="exampleFormControlTextarea1"
+																			  rows="3"></textarea>
+																</div>
+
+																<div class="form-group row">
+																	<label
+																		class="col-sm-10 col-form-label">Status make a
+																		Passive?</label>
+																	<div class="col-sm-2">
+																		<input checked type="checkbox"
+																			   class="form-control">
+																	</div>
+																</div>
+																<div class="add_new_items">
+
+
+																	<div class="row">
+																		<div class="col-md-3">
+																			<div>
+																				<div class="media">
+																					<img mr-1
+																						 class="align-self-start mr-3 mt-3 mt-md-3"
+																						 id='img-upload3'
+																						 style="width: 64px; height: 64px;"
+																						 alt="company logo"
+																						 src="<?= base_url() ?>assets/img/logo_default.png">
+																					<div class="media-body">
+																						<div
+																							class="input-group ml-2 ml-md-2">
+																		<span class="input-group-btn">
+																			<span
+																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
+																				Browse… <input type="file" id="imgInp3">
+																			</span>
+																		</span>
+																							<input type="text"
+																								   class="form-control"
+																								   readonly
+																								   style="display: none;">
+
+																						</div>
+																					</div>
+																				</div>
+
+
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Number</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Number">
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<label>Epired Date</label>
+																			<input type="date" name="bday"
+																				   max="3000-12-31"
+																				   min="1000-01-01"
+																				   class="form-control">
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Issued</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Issued">
+																			</div>
+																		</div>
+																	</div>
+
+
+																	<div class="row">
+																		<div class="col-md-3">
+																			<div>
+																				<div class="media">
+																					<img
+																						class="align-self-start mr-3 mt-3 mt-md-3"
+																						id='img-upload4'
+																						style="width: 64px;height: 64px;"
+																						alt="company logo"
+																						src="<?= base_url() ?>assets/img/logo_default.png">
+																					<div class="media-body">
+																						<div
+																							class="input-group ml-2 ml-md-2">
+																		<span class="input-group-btn">
+																			<span
+																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
+																				Browse… <input type="file" id="imgInp4">
+																			</span>
+																		</span>
+																							<input type="text"
+																								   class="form-control"
+																								   readonly
+																								   style="display: none;">
+
+																						</div>
+																					</div>
+																				</div>
+
+
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Number</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Number">
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<label>Epired Date</label>
+																			<input type="date" name="bday"
+																				   max="3000-12-31"
+																				   min="1000-01-01"
+																				   class="form-control">
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Issued</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Issued">
+																			</div>
+																		</div>
+																	</div>
+
+
+																	<div class="row">
+																		<div class="col-md-3">
+																			<div>
+																				<div class="media">
+																					<img
+																						class="align-self-start mr-3 mt-3 mt-md-3"
+																						id='img-upload5'
+																						style="width: 64px;height: 64px;"
+																						alt="company logo"
+																						src="<?= base_url() ?>assets/img/logo_default.png">
+																					<div class="media-body">
+																						<div
+																							class="input-group ml-2 ml-md-2">
+																		<span class="input-group-btn">
+																			<span
+																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
+																				Browse… <input type="file" id="imgInp5">
+																			</span>
+																		</span>
+																							<input type="text"
+																								   class="form-control"
+																								   readonly
+																								   style="display: none;">
+
+																						</div>
+																					</div>
+																				</div>
+
+
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Number</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Number">
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<label>Epired Date</label>
+																			<input type="date" name="bday"
+																				   max="3000-12-31"
+																				   min="1000-01-01"
+																				   class="form-control">
+																		</div>
+																		<div class="col-md-3">
+																			<div class="form-group">
+																				<label>Issued</label>
+																				<input type="text" class="form-control"
+																					   placeholder="Issued">
+																			</div>
+																		</div>
+																	</div>
+
+																</div>
+
+															</form>
+
+															<div style="width: 100%;">
+																<button type="button" style="border: none;"
+																		class="mr-md-3 mr-3 float-right btn btn-outline-secondary float-right add_new_row">
+																	<i class="fa fa-plus"></i>
+																</button>
+															</div>
+
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+										<!-- Add User Modal End -->
+
+									</div>
+									<hr class="my-4">
+
+									<div class="row col-sm-12 col-md-12" style="background: #fff; padding: 10px;">
+
+
+										<table id="example2" class="table table-bordered"
+											   style="width:100%">
+											<thead style="background: #545b62;
+    color: #fff;">
+											<tr>
+												<th style="font-size: 12px !important;">Name Lastname</th>
+												<th style="font-size: 12px !important;">Status</th>
+												<th style="font-size: 12px !important;">Պաշտոն</th>
+												<th style="font-size: 12px !important;">Բաժին</th>
+												<th style="font-size: 12px !important;">ղեկավար</th>
+												<th style="font-size: 12px !important;">Created date</th>
+												<th style="font-size: 12px !important;">Ում կողմից</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td>
+													<div class="media">
+														<img
+															style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
+															class="mr-3" src="<?= base_url() ?>assets/img/user_img.jpg"
+															alt="Generic placeholder image">
+														<div class="media-body">
+															Daniel Smith
+															<small class="phone_number form-text text-muted">+375
+																556690
+															</small>
+														</div>
+													</div>
+												</td>
+												<td class="text-center">
+													<div class="bg-success"
+														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>
+													<div class="media">
+														<img
+															style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
+															class="mr-3" src="<?= base_url() ?>assets/img/b.jpg"
+															alt="Generic placeholder image">
+														<div class="media-body">
+															Daniel Smith
+															<small class="phone_number form-text text-muted">+375
+																556690
+															</small>
+														</div>
+													</div>
+												</td>
+												<td class="text-center">
+													<div class="bg-success"
+														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>
+													<div class="media">
+														<img
+															style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
+															class="mr-3" src="<?= base_url() ?>assets/img/user_img.jpg"
+															alt="Generic placeholder image">
+														<div class="media-body">
+															Kaylee Rodgers
+															<small class="phone_number form-text text-muted">+375
+																556690
+															</small>
+														</div>
+													</div>
+												</td>
+												<td class="text-center">
+													<div class="bg-danger"
+														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+
+											</tr>
+
+
+										</table>
+
+
+									</div>
+
+
 								</div>
 							</div>
 
@@ -589,6 +1064,7 @@
 <script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
 <script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 
+
 <script>
 	$(document).ready(function () {
 		$(document).on('change', '.btn-file :file', function () {
@@ -610,6 +1086,8 @@
 
 		});
 
+		/* Company logo uploade start */
+
 		function readURL(input) {
 			if (input.files && input.files[0]) {
 				var reader = new FileReader();
@@ -625,6 +1103,81 @@
 		$("#imgInp").change(function () {
 			readURL(this);
 		});
+		/* Company logo uploade end */
+
+		/* Staff image Uploade Start*/
+		function readURL2(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload2').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp2").change(function () {
+			readURL2(this);
+		});
+
+		/*Staff img uploade end*/
+
+		/* Staff Passport Image Uploade Start*/
+		function readURL3(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload3').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp3").change(function () {
+			readURL3(this);
+		});
+
+
+		function readURL4(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload4').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp4").change(function () {
+			readURL4(this);
+		});
+
+
+		function readURL5(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#img-upload5').attr('src', e.target.result);
+				}
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$("#imgInp5").change(function () {
+			readURL5(this);
+		});
+
+		/*Staff Password image uploade end*/
+
+
 	});
 
 	var i = 1;
@@ -687,6 +1240,69 @@
 	$(document).on('click', '.remove_banck_account', function () {
 		$(this).parent('h5').parent('div').parent('div').remove();
 	});
+
+	$(document).ready(function () {
+
+		var k = 6;
+
+		$(document).on('click', '.add_new_row', function () {
+			$('.add_new_items').append('<div class="row">\n' +
+				'<div class="col-md-3">\n' +
+				'<div>\n' +
+				'<div class="media">\n' +
+				'<img class="align-self-start mr-3 mt-3 mt-md-3" id="img-upload' + k + '" style="width: 64px;height: 64px;" alt="company logo" src="assets/img/logo_default.png">\n' +
+				'<div class="media-body">\n' +
+				'<div class="input-group ml-2 ml-md-2">\n' +
+				'<span class="input-group-btn">\n' +
+				'<span class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">\n' +
+				'Browse… <input type="file" id="imgInp' + k + '">\n' +
+				'</span>\n' +
+				'</span>\n' +
+				'<input type="text" class="form-control" readonly style="display: none;">\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'<div class="col-md-3">\n' +
+				'<div class="form-group">\n' +
+				'<label>Number</label>\n' +
+				'<input type="text" class="form-control" placeholder="Number">\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'<div class="col-md-3">\n' +
+				'<label>Epired Date</label>\n' +
+				'<input type="date" name="bday" max="3000-12-31"  min="1000-01-01" class="form-control">\n' +
+				'</div>\n' +
+				'<div class="col-md-3">\n' +
+				'<div class="form-group">\n' +
+				'<label>Issued</label>\n' +
+				'<input type="text" class="form-control"  placeholder="Issued">\n' +
+				'</div>\n' +
+				'</div>\n' +
+				'</div>');
+
+			$('.brows_image_dynamicle').append('$(document).ready(function() {function readURL' + k + '(input) {\n' +
+				'\t\t\tif (input.files && input.files[0]) {\n' +
+				'\t\t\t\tvar reader = new FileReader();\n' +
+				'\n' +
+				'\t\t\t\treader.onload = function (e) {\n' +
+				'\t\t\t\t\t$("#img-upload' + k + '").attr("src", e.target.result);\n' +
+				'\t\t\t\t}\n' +
+				'\n' +
+				'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
+				'\t\t\t}\n' +
+				'\t\t}\n' +
+				'\n' +
+				'\t\t$("#imgInp' + k + '").change(function () {\n' +
+				'\t\t\treadURL' + k + '(this);\n' +
+				'\t\t})});');
+
+			k++
+		})
+	})
 </script>
+
+<script class="brows_image_dynamicle"></script>
 </body>
 </html>

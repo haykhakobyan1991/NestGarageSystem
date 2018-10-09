@@ -14,12 +14,12 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
-
-
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
+
+
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
 
 
@@ -747,7 +747,7 @@
 																		<span class="input-group-btn">
 																			<span
 																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input type="file" id="imgInp3">
+																				Browse… <input type="file" onchange="readURL3(this);" id="imgInp3">
 																			</span>
 																		</span>
 																							<input type="text"
@@ -802,7 +802,7 @@
 																		<span class="input-group-btn">
 																			<span
 																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input type="file" id="imgInp4">
+																				Browse… <input type="file" onchange="readURL4(this);" id="imgInp4">
 																			</span>
 																		</span>
 																							<input type="text"
@@ -857,7 +857,7 @@
 																		<span class="input-group-btn">
 																			<span
 																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input type="file" id="imgInp5">
+																				Browse… <input onchange="readURL5(this);" type="file" id="imgInp5">
 																			</span>
 																		</span>
 																							<input type="text"
@@ -1065,7 +1065,7 @@
 <script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 
 
-<script>
+<script class="">
 	$(document).ready(function () {
 		$(document).on('change', '.btn-file :file', function () {
 			var input = $(this),
@@ -1118,12 +1118,8 @@
 			}
 		}
 
-		$("#imgInp2").change(function () {
-			readURL2(this);
-		});
-
 		/*Staff img uploade end*/
-
+	});
 		/* Staff Passport Image Uploade Start*/
 		function readURL3(input) {
 			if (input.files && input.files[0]) {
@@ -1137,9 +1133,7 @@
 			}
 		}
 
-		$("#imgInp3").change(function () {
-			readURL3(this);
-		});
+
 
 
 		function readURL4(input) {
@@ -1154,9 +1148,7 @@
 			}
 		}
 
-		$("#imgInp4").change(function () {
-			readURL4(this);
-		});
+
 
 
 		function readURL5(input) {
@@ -1171,14 +1163,11 @@
 			}
 		}
 
-		$("#imgInp5").change(function () {
-			readURL5(this);
-		});
 
 		/*Staff Password image uploade end*/
 
 
-	});
+
 
 	var i = 1;
 
@@ -1246,16 +1235,18 @@
 		var k = 6;
 
 		$(document).on('click', '.add_new_row', function () {
+
+
 			$('.add_new_items').append('<div class="row">\n' +
 				'<div class="col-md-3">\n' +
 				'<div>\n' +
 				'<div class="media">\n' +
-				'<img class="align-self-start mr-3 mt-3 mt-md-3" id="img-upload' + k + '" style="width: 64px;height: 64px;" alt="company logo" src="assets/img/logo_default.png">\n' +
+				'<img class="align-self-start mr-3 mt-3 mt-md-3" id="img-upload'+k+'" style="width: 64px;height: 64px;" alt="company logo" src="assets/img/logo_default.png">\n' +
 				'<div class="media-body">\n' +
 				'<div class="input-group ml-2 ml-md-2">\n' +
 				'<span class="input-group-btn">\n' +
 				'<span class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">\n' +
-				'Browse… <input type="file" id="imgInp' + k + '">\n' +
+				'Browse… <input type="file" onchange="readURL'+k+'(this);" id="imgInp'+k+'">\n' +
 				'</span>\n' +
 				'</span>\n' +
 				'<input type="text" class="form-control" readonly style="display: none;">\n' +
@@ -1282,27 +1273,40 @@
 				'</div>\n' +
 				'</div>');
 
-			$('.brows_image_dynamicle').append('$(document).ready(function() {function readURL' + k + '(input) {\n' +
-				'\t\t\tif (input.files && input.files[0]) {\n' +
-				'\t\t\t\tvar reader = new FileReader();\n' +
-				'\n' +
-				'\t\t\t\treader.onload = function (e) {\n' +
-				'\t\t\t\t\t$("#img-upload' + k + '").attr("src", e.target.result);\n' +
-				'\t\t\t\t}\n' +
-				'\n' +
-				'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
-				'\t\t\t}\n' +
-				'\t\t}\n' +
-				'\n' +
-				'\t\t$("#imgInp' + k + '").change(function () {\n' +
-				'\t\t\treadURL' + k + '(this);\n' +
-				'\t\t})});');
+
+
+
+
+				$('.brows_image_dynamicle').append('<script>' +
+					'function readURL'+k+ '(input) {\n' +
+					'\t\t\tif (input.files && input.files[0]) {\n' +
+					'\t\t\t\tvar reader = new FileReader();\n' +
+					'\n' +
+					'\t\t\t\treader.onload = function (e) {\n' +
+					'\t\t\t\t\t$("#img-upload'+k+'").attr("src", e.target.result);\n' +
+					'\t\t\t\t}\n' +
+					'\n' +
+					'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
+					'\t\t\t}\n' +
+					'}<' +
+					'/script>');
 
 			k++
+
+			//$('.brows_image_dynamicle').html($('.brows_image_dynamicle').text());
+
 		})
+
+
+
 	})
 </script>
 
-<script class="brows_image_dynamicle"></script>
+
+<div class="brows_image_dynamicle"></div>
+
 </body>
 </html>
+
+
+

@@ -5,22 +5,35 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="google-site-verification" content="Mkn03uHs8mUwOONukPy8p_CkkddQG5hgj9HTsHf2mKs"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-	<script src="https://apis.google.com/js/api:client.js"></script>
+
 	<meta name="description" content="<?= $result_web[$lng]['meta_desc'] ?>"/>
 	<meta name="keywords" content="<?= $result_web[$lng]['key_word'] ?>"/>
+
 	<meta name="google-signin-client_id"
-		  content="82081657311-g280saltmlb2khrnlijd8pj95cp8kbj0.apps.googleusercontent.com">
+		  content="910091284932-5pijqpe8si37k424m4h2e1teqdkucthe.apps.googleusercontent.com">
+
+
 	<title><?= $result_web[$lng]['website_name'] ?></title>
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/<?= $result_web[$lng]['favicon'] ?>" type="image/png">
+
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 		  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
-	<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+
+
+
+
+
+
+
 
 </head>
 <body>
@@ -29,56 +42,96 @@
 <!-- Sign In With FACEBOOK  -->
 
 <script>
-
 	window.fbAsyncInit = function() {
+		// FB JavaScript SDK configuration and setup
 		FB.init({
-			appId      : '494657070944267',
-			xfbml      : true,
-			version    : 'v3.1'
+			appId      : '246213099402735', // FB App ID
+			cookie     : true,  // enable cookies to allow the server to access the session
+			xfbml      : true,  // parse social plugins on this page
+			version    : 'v2.8' // use graph api version 2.8
 		});
-		FB.AppEvents.logPageView();
+
+		// Check whether the user already logged in
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				//display user data
+				getFbUserData();
+			}
+		});
 	};
 
-	(function(d, s, id){
+	// Load the JavaScript SDK asynchronously
+	(function(d, s, id) {
 		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
+		if (d.getElementById(id)) return;
 		js = d.createElement(s); js.id = id;
-		js.src = "https://connect.facebook.net/en_US/sdk.js";
+		js.src = "//connect.facebook.net/en_US/sdk.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 
+	// Facebook login with JavaScript SDK
+	function fbLogin() {
+		FB.login(function (response) {
+			if (response.authResponse) {
+				// Get and display the user profile data
+				getFbUserData();
+			} else {
+				document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+			}
+		}, {scope: 'email'});
+	}
 
-	(function (d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {
-			return;
-		}
-		js = d.createElement(s);
-		js.id = id;
-		js.src = "https://connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
+	// Fetch the user profile data from facebook
+	function getFbUserData(){
+		FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+			function (response) {
 
 
-	FB.getLoginStatus(function (response) {
-		statusChangeCallback(response);
-	});
+				console.log(response);
 
+				document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
+				document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
+				document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
+				document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p>';
+			});
+	}
 
-	function checkLoginState() {
-		FB.getLoginStatus(function (response) {
-			statusChangeCallback(response);
+	// Logout from facebook
+	function fbLogout() {
+		FB.logout(function() {
+			document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
+			document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
+			document.getElementById('userData').innerHTML = '';
+			document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
 		});
 	}
+</script>
+
+<!-- Sign In with Google -->
+<script>
+
 
 	function onSuccess(googleUser) {
-		console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+		var profile = googleUser.getBasicProfile();
+		gapi.client.load('plus', 'v1', function () {
+			var request = gapi.client.plus.people.get({
+				'userId': 'me'
+			});
+			//Display the user details
+			request.execute(function (resp) {
+				var profileHTML = '<div class="profile"><div class="head">Welcome '+resp.name.givenName+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
+				profileHTML += '<img src="'+resp.image.url+'"/><div class="proDetails"><p>'+resp.displayName+'</p><p>'+resp.emails[0].value+'</p><p>'+resp.gender+'</p><p>'+resp.id+'</p><p><a href="'+resp.url+'">View Google+ Profile</a></p></div></div>';
+				$('.userContent').html(profileHTML);
+				$('#gSignIn').slideUp('slow');
+			});
+		});
 	}
 	function onFailure(error) {
+		//alert(error);
 		console.log(error);
 	}
 	function renderButton() {
-		gapi.signin2.render('my-signin2', {
+		gapi.signin2.render('gSignIn', {
 			'scope': 'profile email',
 			'width': 240,
 			'height': 50,
@@ -88,35 +141,36 @@
 			'onfailure': onFailure
 		});
 	}
-</script>
-
-<!-- Sign In with Google -->
-<script>
-	var googleUser = {};
-	var startApp = function() {
-		gapi.load('auth2', function(){
-			// Retrieve the singleton for the GoogleAuth library and set up the client.
-			auth2 = gapi.auth2.init({
-				client_id: 'YOUR_CLIENT_ID.apps.googleusercontent.com',
-				cookiepolicy: 'single_host_origin',
-				// Request scopes in addition to 'profile' and 'email'
-				//scope: 'additional_scope'
-			});
-			attachSignin(document.getElementById('customBtn'));
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+			$('.userContent').html('');
+			$('#gSignIn').slideDown('slow');
 		});
-	};
-
-	function attachSignin(element) {
-		console.log(element.id);
-		auth2.attachClickHandler(element, {},
-			function(googleUser) {
-				document.getElementById('name').innerText = "Signed in: " +
-					googleUser.getBasicProfile().getName();
-			}, function(error) {
-				alert(JSON.stringify(error, undefined, 2));
-			});
 	}
+
+
 </script>
+
+<!-- Display login status -->
+<div id="status"></div>
+
+<!-- Facebook login or logout button -->
+<a href="javascript:void(0);" onclick="fbLogin()" id="fbLink"><img src="fblogin.png"/></a>
+
+<!-- Display user profile data -->
+<div id="userData"></div>
+
+
+
+
+<!--gooogllle-->
+
+<!-- HTML for render Google Sign-In button -->
+<div id="gSignIn"></div>
+<!-- HTML for displaying user details -->
+<div class="userContent"></div>
+
 
 <div class="container">
 	<div class="row">
@@ -323,14 +377,9 @@
 
 
 					<div class="text-center">
-						<div style=" box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
-							 class="mb-2 mb-md-2 fb-login-button fb-login-button" data-width="200" data-max-rows="1"
-							 data-size="large" data-button-type="continue_with" data-show-faces="false"
-							 data-auto-logout-link="false" data-use-continue-as="false"></div>
 
-						<div class="mt-2 mt-md-2 g-signin2" data-width="240"
-							 style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
-							 data-onsuccess="onSignIn"></div>
+
+						<div class="g-signin2" data-onsuccess="onSignIn"></div>
 					</div>
 
 

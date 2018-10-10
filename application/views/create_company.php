@@ -10,29 +10,32 @@
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
+
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
-
-
+	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
+	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
 
-
+	<!-- Tables Start -->
 	<script>
 		$(document).ready(function () {
 			$('#example').DataTable();
-		});
-
-		$(document).ready(function () {
 			$('#example2').DataTable();
+			$('#example3').DataTable();
 		});
 	</script>
+	<!-- Tables End -->
 
+	<!-- Some CSS Start-->
 	<style>
 		.btn-file {
 			position: relative;
@@ -55,7 +58,7 @@
 			display: block;
 		}
 
-		#example_wrapper {
+		#example_wrapper, #example2_wrapper, #example3_wrapper {
 			width: 100%;
 		}
 
@@ -81,10 +84,13 @@
 
 
 	</style>
+	<!-- Some CSS end -->
 </head>
 <body>
-
-
+<?php
+	$i = '';
+?>
+<!-- Navbar Start -->
 <nav class="navbar navbar-light bg-light fixed-top"
 	 style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
@@ -92,10 +98,12 @@
 		<i class="fas fa-sign-out-alt"></i>
 	</button>
 </nav>
+<!-- Navbar End -->
 
 
 <div class="container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
+	<!-- Horizontal Tabs Start -->
 	<ul class="nav nav-tabs">
 		<li class="nav-item">
 			<a class="nav-link active" data-toggle="tab" href="#organization">Organization</a>
@@ -113,6 +121,7 @@
 			<a class="nav-link" data-toggle="tab" href="#menu3">Menu 2</a>
 		</li>
 	</ul>
+	<!-- Horizontal Tabs End -->
 
 	<!-- Tab panes -->
 	<div class="tab-content">
@@ -144,7 +153,7 @@
 				</div>
 				<!-- Vertical Tabs End-->
 
-				<!-- Content Start -->
+
 				<div class="col-sm-12 col-md-9">
 
 					<!--  Company  Start-->
@@ -196,17 +205,17 @@
 
 											<div class="media">
 												<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
-													 style="width: 100px;" alt="company logo"
-													 src="<?= base_url() ?>assets/img/logo_default.png">
+													 style="width: 100px;" alt=""
+													 src="">
 												<div class="media-body">
 													<h5 class="mt-0">LOGO</h5>
 													<p>Upload your company LOGO</p>
 													<div class="input-group ml-2 ml-md-2">
-											<span class="input-group-btn">
-												<span class="btn btn-secondary btn-file mr-1">
-													Browse… <input type="file" id="imgInp">
-												</span>
-											</span>
+							<span class="input-group-btn">
+								<span class="btn btn-secondary btn-file mr-1">
+									Browse… <input type="file" id="imgInp">
+								</span>
+							</span>
 														<input type="text" class="form-control" readonly
 															   style="display: none;">
 
@@ -224,7 +233,7 @@
 									<div class="row">
 
 
-										<form class="col-sm-12 col-md-6">
+										<form class="col-md-12 col-md-6">
 
 											<p class="font-weight-bold display-5 mt-3">Հիմնական տվյալներ</p>
 											<hr class="my-4">
@@ -280,7 +289,7 @@
 											</div>
 										</form>
 
-										<div class="tab-content col-sm-6 col-12" id="nav-tabContent">
+										<div class="col-sm-12 tab-content col-sm-6 col-12" id="nav-tabContent">
 											<div class="tab-pane fade show active" id="list-home" role="tabpanel"
 												 aria-labelledby="list-home-list">
 
@@ -394,17 +403,18 @@
 								<div class="container">
 									<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p> <span
 										class="ml-2 mt-1 badge badge-secondary badge-pill">4</span>
-									<button class="btn btn-secondary float-right" data-toggle="modal"
+									<button class="btn btn-secondary btn-sm float-right" data-toggle="modal"
 											data-target=".bd-example-modal-lg">Ստեղծել Ստորաբաժանում
 									</button>
 									<hr class="my-4">
-									<div class="row col-sm-12 col-md-12" style="background: #fff; padding: 10px;">
+									<div class="row col-sm-12 col-md-12"
+										 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
 
 
 										<table id="example" class="table table-striped table-bordered"
 											   style="width:100%">
 											<thead style="background: #545b62;
-    color: #fff;">
+color: #fff;">
 											<tr>
 												<th style="font-size: 12px !important;">Ստորաբաժանում</th>
 												<th style="font-size: 12px !important;">Մանրամասն</th>
@@ -541,7 +551,7 @@
 					</div>
 					<!-- Department End -->
 
-
+					<!-- Staff Start -->
 					<div class="tab-pane fade" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
 
 						<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
@@ -605,16 +615,17 @@
 																<div class="media">
 																	<img class="align-self-start mr-3"
 																		 id='img-upload2'
-																		 style="width: 100px;" alt="company logo"
-																		 src="<?= base_url() ?>assets/img/logo_default.png">
+																		 style="width: 100px;" alt=""
+																		 src="">
 																	<div class="media-body">
 																		<div class="input-group ml-2 ml-md-2">
-																		<span class="input-group-btn">
-																			<span
-																				class="btn btn-secondary btn-file mr-1">
-																				Browse… <input type="file" id="imgInp2">
-																			</span>
-																		</span>
+														<span class="input-group-btn">
+															<span
+																class="btn btn-secondary btn-file mr-1">
+																Browse… <input type="file" id="imgInp2"
+																			   onchange="readURL2(this);">
+															</span>
+														</span>
 																			<input type="text" class="form-control"
 																				   readonly
 																				   style="display: none;">
@@ -732,24 +743,30 @@
 
 
 																	<div class="row">
-																		<div class="col-md-3">
+																		<div class="col-md-2">
 																			<div>
-																				<div class="media">
+																				<div class="media"
+																					 style="position: relative;">
 																					<img mr-1
-																						 class="align-self-start mr-3 mt-3 mt-md-3"
+																						 class="align-self-start"
 																						 id='img-upload3'
-																						 style="width: 64px; height: 64px;"
-																						 alt="company logo"
-																						 src="<?= base_url() ?>assets/img/logo_default.png">
-																					<div class="media-body">
+																						 style="width: 100%; height: 100px;margin-right: 0 !important;;margin-top: 0px; !important;"
+																						 alt=""
+																						 src="">
+																					<div class="media-body"
+																						 style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">
 																						<div
-																							class="input-group ml-2 ml-md-2">
-																		<span class="input-group-btn">
-																			<span
-																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input type="file" onchange="readURL3(this);" id="imgInp3">
-																			</span>
-																		</span>
+																							class="input-group"
+																							style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
+														<span class="input-group-btn"
+															  style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">
+															<span
+																class="btn btn-secondary btn-file btn-sm"
+																style="    position: absolute;left: 0;top: 0;border: none;padding-top: 38px;width: 100%;height: 100%;background: #0000001f;">
+																Browse… <input type="file" onchange="readURL3(this);"
+																			   id="imgInp3">
+															</span>
+														</span>
 																							<input type="text"
 																								   class="form-control"
 																								   readonly
@@ -785,115 +802,6 @@
 																		</div>
 																	</div>
 
-
-																	<div class="row">
-																		<div class="col-md-3">
-																			<div>
-																				<div class="media">
-																					<img
-																						class="align-self-start mr-3 mt-3 mt-md-3"
-																						id='img-upload4'
-																						style="width: 64px;height: 64px;"
-																						alt="company logo"
-																						src="<?= base_url() ?>assets/img/logo_default.png">
-																					<div class="media-body">
-																						<div
-																							class="input-group ml-2 ml-md-2">
-																		<span class="input-group-btn">
-																			<span
-																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input type="file" onchange="readURL4(this);" id="imgInp4">
-																			</span>
-																		</span>
-																							<input type="text"
-																								   class="form-control"
-																								   readonly
-																								   style="display: none;">
-
-																						</div>
-																					</div>
-																				</div>
-
-
-																			</div>
-																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
-																				<label>Number</label>
-																				<input type="text" class="form-control"
-																					   placeholder="Number">
-																			</div>
-																		</div>
-																		<div class="col-md-3">
-																			<label>Epired Date</label>
-																			<input type="date" name="bday"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-																				   class="form-control">
-																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
-																				<label>Issued</label>
-																				<input type="text" class="form-control"
-																					   placeholder="Issued">
-																			</div>
-																		</div>
-																	</div>
-
-
-																	<div class="row">
-																		<div class="col-md-3">
-																			<div>
-																				<div class="media">
-																					<img
-																						class="align-self-start mr-3 mt-3 mt-md-3"
-																						id='img-upload5'
-																						style="width: 64px;height: 64px;"
-																						alt="company logo"
-																						src="<?= base_url() ?>assets/img/logo_default.png">
-																					<div class="media-body">
-																						<div
-																							class="input-group ml-2 ml-md-2">
-																		<span class="input-group-btn">
-																			<span
-																				class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">
-																				Browse… <input onchange="readURL5(this);" type="file" id="imgInp5">
-																			</span>
-																		</span>
-																							<input type="text"
-																								   class="form-control"
-																								   readonly
-																								   style="display: none;">
-
-																						</div>
-																					</div>
-																				</div>
-
-
-																			</div>
-																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
-																				<label>Number</label>
-																				<input type="text" class="form-control"
-																					   placeholder="Number">
-																			</div>
-																		</div>
-																		<div class="col-md-3">
-																			<label>Epired Date</label>
-																			<input type="date" name="bday"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-																				   class="form-control">
-																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
-																				<label>Issued</label>
-																				<input type="text" class="form-control"
-																					   placeholder="Issued">
-																			</div>
-																		</div>
-																	</div>
 
 																</div>
 
@@ -908,7 +816,14 @@
 
 														</div>
 													</div>
-
+													<div class="modal-footer">
+														<div class="text-right mt-4 pb-2">
+															<button class="btn btn-secondary">Save</button>
+															<button class="btn btn-secondary ml-2" data-dismiss="modal">
+																Cancel
+															</button>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -918,13 +833,14 @@
 									</div>
 									<hr class="my-4">
 
-									<div class="row col-sm-12 col-md-12" style="background: #fff; padding: 10px;">
+									<div class="row col-sm-12 col-md-12"
+										 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: scroll;">
 
 
 										<table id="example2" class="table table-bordered"
 											   style="width:100%">
 											<thead style="background: #545b62;
-    color: #fff;">
+color: #fff;">
 											<tr>
 												<th style="font-size: 12px !important;">Name Lastname</th>
 												<th style="font-size: 12px !important;">Status</th>
@@ -951,9 +867,9 @@
 														</div>
 													</div>
 												</td>
-												<td class="text-center">
+												<td class="text-center" style="vertical-align: middle;">
 													<div class="bg-success"
-														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+														 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 												</td>
 												<td></td>
 												<td></td>
@@ -976,9 +892,9 @@
 														</div>
 													</div>
 												</td>
-												<td class="text-center">
+												<td class="text-center" style="vertical-align:middle;">
 													<div class="bg-success"
-														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+														 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 												</td>
 												<td></td>
 												<td></td>
@@ -1001,9 +917,116 @@
 														</div>
 													</div>
 												</td>
-												<td class="text-center">
+												<td class="text-center" style="vertical-align: middle;">
 													<div class="bg-danger"
-														 style="margin-top: 44%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+														 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Staff End -->
+
+					<!-- Veichls Start -->
+					<div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+
+						<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
+							 aria-labelledby="list-staff-list">
+
+							<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+								<div class="container">
+									<p class="display-5 font-weight-bold mb-0">Section: Veichls</p>
+								</div>
+							</div>
+
+							<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-12 col-md-2 col-2">
+											<p class="display-5 font-weight-bold float-left">Toatl Vehicle</p> <span
+												class="ml-2 mt-1 badge badge-secondary badge-pill">6</span>
+										</div>
+
+										<div class="col-sm-12 col-md-2 col-2">
+											<p class="display-5 font-weight-bold float-left">Active Vehicle</p> <span
+												class="ml-2 mt-1 badge badge-success badge-pill">4</span>
+										</div>
+
+										<div class="col-sm-12 col-md-2 col2">
+											<p class="display-5 font-weight-bold float-left">Passive Vehicle</p> <span
+												class="ml-2 mt-1 badge badge-warning badge-pill">2</span>
+										</div>
+
+										<div class="col-sm-12 col-md-4 col-4"></div>
+
+										<div class="col-sm-12 col-md-2 col-2">
+											<button class="btn btn-secondary" data-toggle="modal"
+													data-target=".add_veichls_modal">Add Vehicle
+											</button>
+										</div>
+
+									</div>
+
+
+									<hr class="my-4">
+
+									<div class="row col-sm-12 col-md-12"
+										 style="background: #fff; padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
+
+
+										<table id="example3" class="table table-bordered"
+											   style="width:100%">
+											<thead style="background: #545b62;
+color: #fff;">
+											<tr>
+												<th style="font-size: 12px !important;">Name Lastname</th>
+												<th style="font-size: 12px !important;">Status</th>
+												<th style="font-size: 12px !important;">Պաշտոն</th>
+												<th style="font-size: 12px !important;">Բաժին</th>
+												<th style="font-size: 12px !important;">ղեկավար</th>
+												<th style="font-size: 12px !important;">Created date</th>
+												<th style="font-size: 12px !important;">Ում կողմից</th>
+											</tr>
+											</thead>
+											<tbody>
+											<tr>
+												<td>Veichls 1</td>
+												<td style="text-align: center; vertical-align: middle;">
+													<div class="bg-success"
+														 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Veichls 2</td>
+												<td style="text-align: center;vertical-align: middle;">
+													<div class="bg-success"
+														 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+												</td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>Veichls 3</td>
+												<td style="text-align: center;vertical-align: middle;">
+													<div class="bg-danger"
+														 style="margin-top: 12%; display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 												</td>
 												<td></td>
 												<td></td>
@@ -1018,31 +1041,159 @@
 
 
 									</div>
-
-
 								</div>
 							</div>
-
-
 						</div>
 
-					</div>
+
+						<!-- Add Veichls Modal Start -->
+
+						<div class="modal fade add_veichls_modal" tabindex="-1" role="dialog"
+							 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header bg-dark">
+										<h5 class="text-white modal-title dar">New Staff</h5>
+										<button type="button" class="text-white close"
+												data-dismiss="modal"
+												aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-sm-12 col-md-6 col-6">
+												<h2>Vehicle Information</h2>
+												<p>Fill in the following fields</p>
+											</div>
+										</div>
+
+										<nav>
+											<div class="nav nav-tabs" id="nav-tab" role="tablist">
+												<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+												   href="#nav-home" role="tab" aria-controls="nav-home"
+												   aria-selected="true">MAIN</a>
+												<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+												   href="#nav-profile" role="tab" aria-controls="nav-profile"
+												   aria-selected="false">INFO</a>
+											</div>
+										</nav>
+										<div class="tab-content" id="nav-tabContent">
+
+											<!-- Tab MAIN Start -->
+											<div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+												 aria-labelledby="nav-home-tab">
+
+												<form class="mt-3 mt-md-3">
+
+													<div class="first_row">
+														<div class="form-group row" style="position: relative;">
+															<label
+																class="col-sm-2 col-form-label">Կցված</label>
+															<div class="col-sm-9">
+																<select value=""
+																		class="currency form-control form-control-sm">
+																	<option>opton 1</option>
+																	<option>option 2</option>
+																</select>
+															</div>
+															<div class="col-1">
+																<button type="button" style="border:none;"
+																		class="add_new_row btn btn-outline-secondary float-right">
+																	<i class="fas fa-plus"></i></i></button>
+															</div>
+
+														</div>
+													</div>
 
 
-					<div class="tab-pane fade" id="list-settings" role="tabpanel"
-						 aria-labelledby="list-settings-list">Vehicles
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">Տ/մ տեսակ</label>
+															<div class="col-sm-10">
+																<select value=""
+																		class="currency form-control form-control-sm">
+																	<option>opton 1</option>
+																	<option>option 2</option>
+																</select>
+															</div>
+														</div>
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">Մակնիշ</label>
+															<div class="col-sm-10">
+																<select value=""
+																		class="currency form-control form-control-sm">
+																	<option>opton 1</option>
+																	<option>option 2</option>
+																</select>
+															</div>
+														</div>
+													<div class="form-group row">
+														<label
+															class="col-sm-2 col-form-label">Տիպար</label>
+														<div class="col-sm-10">
+															<select value=""
+																	class="currency form-control form-control-sm">
+																<option>opton 1</option>
+																<option>option 2</option>
+															</select>
+														</div>
+													</div>
+
+													<div class="form-group row">
+														<label
+															class="col-sm-2 col-form-label">Թողարկման տարեթիվ</label>
+														<div class="col-sm-10">
+															<select value=""
+																	class="currency form-control form-control-sm">
+															<option>Choose...</option>
+															<?php for ($i = 1900; $i <= 2050 ; $i++) { ?>
+																<option value="<?=$i?>"><?=$i?></option>
+															<?php } ?>
+
+															</select>
+														</div>
+													</div>
+
+
+
+												</form>
+
+											</div>
+
+											<!-- Tab MAIN End -->
+
+											<!-- Tab INFO Start -->
+											<div class="tab-pane fade" id="nav-profile" role="tabpanel"
+												 aria-labelledby="nav-profile-tab">Info Section
+											</div>
+											<!-- Tab INFO End -->
+
+										</div>
+
+									</div>
+									<div class="modal-footer">
+										<div class="text-right mt-4 pb-2">
+											<button class="btn btn-secondary">Save</button>
+											<button class="btn btn-secondary ml-2" data-dismiss="modal">
+												Cancel
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Add Veichls Modal End -->
+
 					</div>
+					<!-- Veichls End -->
 
 
 				</div>
-
-
 			</div>
-
-			<!-- Content End -->
 		</div>
-
-
 	</div>
 
 
@@ -1058,11 +1209,6 @@
 	<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu3">Lorem ipsum dolor sit amet.</div>
 </div>
 </div>
-
-
-<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
-<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
-<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 
 
 <script class="">
@@ -1105,68 +1251,38 @@
 		});
 		/* Company logo uploade end */
 
-		/* Staff image Uploade Start*/
-		function readURL2(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function (e) {
-					$('#img-upload2').attr('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
 
 		/*Staff img uploade end*/
 	});
-		/* Staff Passport Image Uploade Start*/
-		function readURL3(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
 
-				reader.onload = function (e) {
-					$('#img-upload3').attr('src', e.target.result);
-				}
+	/* Staff image Uploade Start*/
+	function readURL2(input) {
 
-				reader.readAsDataURL(input.files[0]);
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#img-upload2').attr('src', e.target.result);
 			}
+
+			reader.readAsDataURL(input.files[0]);
 		}
+	}
 
+	/* Staff Passport Image Uploade Start*/
+	function readURL3(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
 
-
-
-		function readURL4(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function (e) {
-					$('#img-upload4').attr('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
+			reader.onload = function (e) {
+				$('#img-upload3').attr('src', e.target.result);
 			}
+
+			reader.readAsDataURL(input.files[0]);
 		}
+	}
 
-
-
-
-		function readURL5(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-
-				reader.onload = function (e) {
-					$('#img-upload5').attr('src', e.target.result);
-				}
-
-				reader.readAsDataURL(input.files[0]);
-			}
-		}
-
-
-		/*Staff Password image uploade end*/
-
-
+	/*Staff Password image uploade end*/
 
 
 	var i = 1;
@@ -1232,24 +1348,35 @@
 
 	$(document).ready(function () {
 
-		var k = 6;
+		var k = 4;
 
 		$(document).on('click', '.add_new_row', function () {
 
 
 			$('.add_new_items').append('<div class="row">\n' +
-				'<div class="col-md-3">\n' +
+				'<div class="col-md-2">\n' +
 				'<div>\n' +
-				'<div class="media">\n' +
-				'<img class="align-self-start mr-3 mt-3 mt-md-3" id="img-upload'+k+'" style="width: 64px;height: 64px;" alt="company logo" src="assets/img/logo_default.png">\n' +
-				'<div class="media-body">\n' +
-				'<div class="input-group ml-2 ml-md-2">\n' +
-				'<span class="input-group-btn">\n' +
-				'<span class="btn btn-secondary btn-file btn-sm mt-2 mt-md-4">\n' +
-				'Browse… <input type="file" onchange="readURL'+k+'(this);" id="imgInp'+k+'">\n' +
+				'<div class="media" style="position: relative;margin-top: 5px;">\n' +
+				'<img mr-1\n' +
+				'class="align-self-start mt-3 mt-md-3"\n' +
+				' id="img-upload' + k + '"\n' +
+				' style="width: 100%;height:100px;margin-right:0 !important;margin-top:0 !important;"\n' +
+				' alt=""\n' +
+				' src="">\n' +
+				'<div class="media-body" style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">\n' +
+				'<div\n' +
+				'class="input-group" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">\n' +
+				'<span class="input-group-btn" style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">\n' +
+				'<span\n' +
+				'class="btn btn-secondary btn-file btn-sm" style="    position: absolute;left: 0;top: 0;border: none;padding-top: 38px;width: 100%;height: 100%;background: #0000001f;">\n' +
+				'Browse… <input type="file" onchange="readURL' + k + '(this);"\n' +
+				'   id="imgInp' + k + '">\n' +
 				'</span>\n' +
 				'</span>\n' +
-				'<input type="text" class="form-control" readonly style="display: none;">\n' +
+				'<input type="text"\n' +
+				'  class="form-control"\n' +
+				'   readonly\n' +
+				'  style="display: none;">\n' +
 				'</div>\n' +
 				'</div>\n' +
 				'</div>\n' +
@@ -1258,38 +1385,45 @@
 				'<div class="col-md-3">\n' +
 				'<div class="form-group">\n' +
 				'<label>Number</label>\n' +
-				'<input type="text" class="form-control" placeholder="Number">\n' +
+				'<input type="text" class="form-control"\n' +
+				'   placeholder="Number">\n' +
 				'</div>\n' +
 				'</div>\n' +
 				'<div class="col-md-3">\n' +
 				'<label>Epired Date</label>\n' +
-				'<input type="date" name="bday" max="3000-12-31"  min="1000-01-01" class="form-control">\n' +
+				'<input type="date" name="bday"\n' +
+				'   max="3000-12-31"\n' +
+				'   min="1000-01-01"\n' +
+				'   class="form-control">\n' +
 				'</div>\n' +
 				'<div class="col-md-3">\n' +
 				'<div class="form-group">\n' +
 				'<label>Issued</label>\n' +
-				'<input type="text" class="form-control"  placeholder="Issued">\n' +
+				'<input type="text" class="form-control"\n' +
+				'   placeholder="Issued">\n' +
 				'</div>\n' +
+				'</div>\n' +
+				'<div class="col-md-1 mt-4 mt-md-4">\n' +
+				'<button type="button" style="border:none;" class="remove_document btn btn-outline-secondary mt-3 mt-md-3">\n' +
+				'<i class="fa fa-trash"></i>\n' +
+				'</button>\n' +
 				'</div>\n' +
 				'</div>');
 
 
-
-
-
-				$('.brows_image_dynamicle').append('<script>' +
-					'function readURL'+k+ '(input) {\n' +
-					'\t\t\tif (input.files && input.files[0]) {\n' +
-					'\t\t\t\tvar reader = new FileReader();\n' +
-					'\n' +
-					'\t\t\t\treader.onload = function (e) {\n' +
-					'\t\t\t\t\t$("#img-upload'+k+'").attr("src", e.target.result);\n' +
-					'\t\t\t\t}\n' +
-					'\n' +
-					'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
-					'\t\t\t}\n' +
-					'}<' +
-					'/script>');
+			$('.brows_image_dynamicle').append('<script>' +
+				'function readURL' + k + '(input) {\n' +
+				'\t\t\tif (input.files && input.files[0]) {\n' +
+				'\t\t\t\tvar reader = new FileReader();\n' +
+				'\n' +
+				'\t\t\t\treader.onload = function (e) {\n' +
+				'\t\t\t\t\t$("#img-upload' + k + '").attr("src", e.target.result);\n' +
+				'\t\t\t\t}\n' +
+				'\n' +
+				'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
+				'\t\t\t}\n' +
+				'}<' +
+				'/script>');
 
 			k++
 
@@ -1298,8 +1432,36 @@
 		})
 
 
-
 	})
+
+
+	$(document).on('click', '.remove_document', function () {
+		$(this).parent('div').parent('div').remove();
+	})
+
+	$('.add_new_row').click(function () {
+		var l = 2;
+		$('.first_row').append('<div class="form-group row" style="position: relative;">\n' +
+			'<label\n' +
+			'class="col-sm-2 col-form-label"></label>\n' +
+			'<div class="col-sm-9">\n' +
+			'<select value="" class="currency form-control form-control-sm">\n'+
+			'<option>opton 1</option>\n'+
+			'<option>option 2</option>\n'+
+			'</select>\n'+
+			'</div>\n' +
+			'<div class="col-1">\n' +
+			'<button type="button" style="border:none;"\n' +
+			'class="remove_new_row btn btn-outline-secondary float-right">\n' +
+			'<i class="fas fa-trash"></i></i></button>\n' +
+			'</div>\n' +
+			'</div>');
+		l++;
+	});
+
+	$(document).on('click', '.remove_new_row', function() {
+		$(this).parent('div').parent('div').remove();
+	});
 </script>
 
 

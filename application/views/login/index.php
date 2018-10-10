@@ -147,8 +147,8 @@
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm firstname"
 										   placeholder="First Name" name="firstname" value="">
-									<small id="firstNameHelp" class="form-text text-muted d-none"><p
-											class="text-danger">Field must be filled in</p></small>
+									<small id="firstname" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
@@ -473,6 +473,37 @@
 				} else {
 					// Handle errors here
 					console.log(data.error.elements);
+
+
+					if ($.isArray(data.error.elements)) {
+
+
+
+						// scroll_top();
+
+						$.each(data.error.elements, function( index ) {
+
+							$.each(data.error.elements[index], function( index, value  ) {
+
+								if(value != '') {
+
+									$('#'+index+' > p').text(value);
+									$('#'+index).removeClass('d-none');
+
+								}
+
+							});
+
+
+
+						});
+
+					}
+
+
+
+
+
 				}
 			},
 			error: function (jqXHR, textStatus, errorThrown) {

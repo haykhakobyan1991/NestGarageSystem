@@ -64,8 +64,6 @@ $(document).ready(function () {
 
 				$('.conf_pass').removeClass('d-none');
 
-			} else {
-				alert('ajax');
 			}
 
 		}

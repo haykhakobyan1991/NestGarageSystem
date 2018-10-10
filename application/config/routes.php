@@ -88,13 +88,13 @@ $route['switchLanguage/(:any)'] = 'Main/switchLanguage/$1';
 
 
 
-$route['admin/login'] = 'admin/User/login';
+$route['login'] = 'User/login';
 
 
-$route['admin/logout'] = 'admin/User/logout';
+$route['logout'] = 'User/logout';
 
 
-$route['default_controller'] = 'Main';
+$route['default_controller'] = 'User';
 
 
 $route['/'] = 'Main/index/$1/$1';

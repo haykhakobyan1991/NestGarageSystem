@@ -6,16 +6,16 @@
 	<meta name="google-site-verification" content="Mkn03uHs8mUwOONukPy8p_CkkddQG5hgj9HTsHf2mKs"/>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 
-	<meta name="description" content="<?= $result_web[$lng]['meta_desc'] ?>"/>
-	<meta name="keywords" content="<?= $result_web[$lng]['key_word'] ?>"/>
+	<meta name="description" content=""/>
+	<meta name="keywords" content=""/>
 
 	<meta name="google-signin-client_id"
 		  content="910091284932-5pijqpe8si37k424m4h2e1teqdkucthe.apps.googleusercontent.com">
 
 
-	<title><?= $result_web[$lng]['website_name'] ?></title>
+	<title></title>
 	<!--// Stylesheets //-->
-	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/<?= $result_web[$lng]['favicon'] ?>" type="image/png">
+	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
@@ -25,132 +25,14 @@
 
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
+	<script src="<?= base_url() ?>assets/js/base.js"></script>
 
 	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
-
-
-
-
-
-
 
 
 </head>
 <body>
 
-
-<!-- Sign In With FACEBOOK  -->
-
-<script>
-	window.fbAsyncInit = function() {
-		// FB JavaScript SDK configuration and setup
-		FB.init({
-			appId      : '246213099402735', // FB App ID
-			cookie     : true,  // enable cookies to allow the server to access the session
-			xfbml      : true,  // parse social plugins on this page
-			version    : 'v2.8' // use graph api version 2.8
-		});
-
-		// Check whether the user already logged in
-		FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				//display user data
-				getFbUserData();
-			}
-		});
-	};
-
-	// Load the JavaScript SDK asynchronously
-	(function(d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) return;
-		js = d.createElement(s); js.id = id;
-		js.src = "//connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));
-
-	// Facebook login with JavaScript SDK
-	function fbLogin() {
-		FB.login(function (response) {
-			if (response.authResponse) {
-				// Get and display the user profile data
-				getFbUserData();
-			} else {
-				document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
-			}
-		}, {scope: 'email'});
-	}
-
-	// Fetch the user profile data from facebook
-	function getFbUserData(){
-		FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
-			function (response) {
-
-
-				console.log(response);
-
-				document.getElementById('fbLink').setAttribute("onclick","fbLogout()");
-				document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
-				document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
-				document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> '+response.id+'</p><p><b>Name:</b> '+response.first_name+' '+response.last_name+'</p><p><b>Email:</b> '+response.email+'</p><p><b>Picture:</b> <img src="'+response.picture.data.url+'"/></p>';
-			});
-	}
-
-	// Logout from facebook
-	function fbLogout() {
-		FB.logout(function() {
-			document.getElementById('fbLink').setAttribute("onclick","fbLogin()");
-			document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
-			document.getElementById('userData').innerHTML = '';
-			document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
-		});
-	}
-</script>
-
-<!-- Sign In with Google -->
-<script>
-
-
-	function onSuccess(googleUser) {
-		var profile = googleUser.getBasicProfile();
-		gapi.client.load('plus', 'v1', function () {
-			var request = gapi.client.plus.people.get({
-				'userId': 'me'
-			});
-			//Display the user details
-			request.execute(function (resp) {
-				var profileHTML = '<div class="profile"><div class="head">Welcome '+resp.name.givenName+'! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
-				profileHTML += '<img src="'+resp.image.url+'"/><div class="proDetails"><p>'+resp.displayName+'</p><p>'+resp.emails[0].value+'</p><p>'+resp.gender+'</p><p>'+resp.id+'</p><p><a href="'+resp.url+'">View Google+ Profile</a></p></div></div>';
-				$('.userContent').html(profileHTML);
-				$('#gSignIn').slideUp('slow');
-			});
-		});
-	}
-	function onFailure(error) {
-		//alert(error);
-		console.log(error);
-	}
-	function renderButton() {
-		gapi.signin2.render('gSignIn', {
-			'scope': 'profile email',
-			'width': 240,
-			'height': 50,
-			'longtitle': true,
-			'theme': 'dark',
-			'onsuccess': onSuccess,
-			'onfailure': onFailure
-		});
-	}
-	function signOut() {
-		var auth2 = gapi.auth2.getAuthInstance();
-		auth2.signOut().then(function () {
-			$('.userContent').html('');
-			$('#gSignIn').slideDown('slow');
-		});
-	}
-
-
-</script>
 
 <!-- Display login status -->
 <div id="status"></div>
@@ -160,8 +42,6 @@
 
 <!-- Display user profile data -->
 <div id="userData"></div>
-
-
 
 
 <!--gooogllle-->
@@ -218,7 +98,7 @@
 
 	</div>
 
-
+	<!--Sign up modal-->
 	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 		 aria-hidden="true">
 		<div class="modal-dialog modal-lg">
@@ -234,7 +114,6 @@
 
 				<div class="row">
 
-
 					<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff;">
@@ -245,7 +124,7 @@
 							<p>For new users, your public profile/basic information will be used to create a profile.
 								we will never post without your permission.</p>
 
-							<hr clss="my-4">
+							<hr class="my-4">
 
 							<p style="font-size: 1em;" class="lead">By Joining F6S and providing your personal
 								information, you
@@ -281,7 +160,7 @@
 
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
-										   placeholder="Email Address" name="email" value="">
+										   placeholder="Email Address" name="up_email" value="">
 									<small id="emailHelp" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
@@ -302,7 +181,7 @@
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
-										   placeholder="Password" name="password" value="">
+										   placeholder="Password" name="up_password" value="">
 									<small id="PasswordHelp" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
@@ -317,21 +196,27 @@
 											class="text-danger">Password dont match</p></small>
 								</div>
 
-								<div class="form-group">
-									<label for="exampleFormControlSelect1">Select Region</label>
-									<select class="form-control form-control-sm region" id="exampleFormControlSelect1">
-										<option value="1">Yerevan, AM</option>
-										<option value="2">Vanadzor, AM</option>
-										<option value="3">Tavush, AM</option>
+								<div id="country" class="form-group getChild" data-url="<?=base_url()?>System_main/get_marz" data-result="marz">
+
+									<select class="form-control form-control-sm sel"  name="country">
+										<option value="">Select Country ... </option>
+										<? foreach ($country as $row) : ?>
+											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+										<? endforeach; ?>
 									</select>
 									<small id="RegionHelp" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 
 								</div>
 
+								<div class="form-group getChild Child d-none" id="marz" data-url="<?=base_url()?>System_main/get_region"  data-result="region" ></div>
+
+								<div class="form-group d-none lastChild" id="region" ></div>
+
+
 							</form>
 
-							<button type="submit" class="btn btn-outline-success btn-block signUp">Join</button>
+							<button id="sign_up" type="submit" class="btn btn-outline-success btn-block signUp">Join</button>
 
 						</div>
 					</div>
@@ -345,9 +230,8 @@
 		</div>
 	</div>
 </div>
+
 <!-- Sign In Modal -->
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog" role="document">
@@ -430,8 +314,181 @@
 <script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
 <script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 <script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
+
+
+<!-- Sign In With FACEBOOK  -->
+
 <script>
+	window.fbAsyncInit = function () {
+		// FB JavaScript SDK configuration and setup
+		FB.init({
+			appId: '246213099402735', // FB App ID
+			cookie: true,  // enable cookies to allow the server to access the session
+			xfbml: true,  // parse social plugins on this page
+			version: 'v2.8' // use graph api version 2.8
+		});
+
+		// Check whether the user already logged in
+		FB.getLoginStatus(function (response) {
+			if (response.status === 'connected') {
+				//display user data
+				getFbUserData();
+			}
+		});
+	};
+
+	// Load the JavaScript SDK asynchronously
+	(function (d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "//connect.facebook.net/en_US/sdk.js";
+		fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+	// Facebook login with JavaScript SDK
+	function fbLogin() {
+		FB.login(function (response) {
+			if (response.authResponse) {
+				// Get and display the user profile data
+				getFbUserData();
+			} else {
+				document.getElementById('status').innerHTML = 'User cancelled login or did not fully authorize.';
+			}
+		}, {scope: 'email'});
+	}
+
+	// Fetch the user profile data from facebook
+	function getFbUserData() {
+		FB.api('/me', {locale: 'en_US', fields: 'id,first_name,last_name,email,link,gender,locale,picture'},
+			function (response) {
+
+
+				console.log(response);
+
+				document.getElementById('fbLink').setAttribute("onclick", "fbLogout()");
+				document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
+				document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.first_name + '!';
+				document.getElementById('userData').innerHTML = '<p><b>FB ID:</b> ' + response.id + '</p><p><b>Name:</b> ' + response.first_name + ' ' + response.last_name + '</p><p><b>Email:</b> ' + response.email + '</p><p><b>Picture:</b> <img src="' + response.picture.data.url + '"/></p>';
+			});
+	}
+
+	// Logout from facebook
+	function fbLogout() {
+		FB.logout(function () {
+			document.getElementById('fbLink').setAttribute("onclick", "fbLogin()");
+			document.getElementById('fbLink').innerHTML = '<img src="fblogin.png"/>';
+			document.getElementById('userData').innerHTML = '';
+			document.getElementById('status').innerHTML = 'You have successfully logout from Facebook.';
+		});
+	}
 </script>
+
+<!-- Sign In with Google -->
+<script>
+
+
+	function onSuccess(googleUser) {
+		var profile = googleUser.getBasicProfile();
+		gapi.client.load('plus', 'v1', function () {
+			var request = gapi.client.plus.people.get({
+				'userId': 'me'
+			});
+			//Display the user details
+			request.execute(function (resp) {
+				var profileHTML = '<div class="profile"><div class="head">Welcome ' + resp.name.givenName + '! <a href="javascript:void(0);" onclick="signOut();">Sign out</a></div>';
+				profileHTML += '<img src="' + resp.image.url + '"/><div class="proDetails"><p>' + resp.displayName + '</p><p>' + resp.emails[0].value + '</p><p>' + resp.gender + '</p><p>' + resp.id + '</p><p><a href="' + resp.url + '">View Google+ Profile</a></p></div></div>';
+				$('.userContent').html(profileHTML);
+				$('#gSignIn').slideUp('slow');
+			});
+		});
+	}
+
+	function onFailure(error) {
+		//alert(error);
+		console.log(error);
+	}
+
+	function renderButton() {
+		gapi.signin2.render('gSignIn', {
+			'scope': 'profile email',
+			'width': 240,
+			'height': 50,
+			'longtitle': true,
+			'theme': 'dark',
+			'onsuccess': onSuccess,
+			'onfailure': onFailure
+		});
+	}
+
+	function signOut() {
+		var auth2 = gapi.auth2.getAuthInstance();
+		auth2.signOut().then(function () {
+			$('.userContent').html('');
+			$('#gSignIn').slideDown('slow');
+		});
+	}
+
+
+</script>
+
+
+<script>
+	// sign up
+	$(document).on('click', '#sign_up', function () {
+
+		var firstname = $('input[name="firstname"]').val();
+		var lastname = $('input[name="lastname"]').val();
+		var up_email = $('input[name="up_email"]').val();
+		var country_code = $('input[name="country_code"]').val();
+		var phone_number = $('input[name="phone_number"]').val();
+		var up_password = $('input[name="up_password"]').val();
+		var confirm_password = $('input[name="confirm_password"]').val();
+		var country = $('input[name="country"]').val();
+		var marz = $('input[name="marz"]').val();
+		var region = $('input[name="region"]').val();
+
+		$.ajax({
+			url: '<?=base_url() . 'User/signUp_ax'?>',
+			type: 'POST',
+			data: {
+				firstname: firstname,
+				lastname: lastname,
+				email: up_email,
+				country_code: country_code,
+				phone_number: phone_number,
+				password: up_password,
+				confirm_password: confirm_password,
+				country: country,
+				marz: marz,
+				region: region
+			},
+			cache: false,
+			dataType: 'json',
+			success: function (data, textStatus, jqXHR) {
+				if (typeof data.error === 'undefined') {
+					// Success so call function to process the form
+					console.log('SUCCESS: ' + data.success);
+				} else {
+					// Handle errors here
+					console.log(data.error.elements);
+				}
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				// Handle errors here
+				console.log('ERRORS-: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+
+</script>
+
 </body>
 </html>
 

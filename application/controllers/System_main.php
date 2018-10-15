@@ -121,7 +121,7 @@ class System_main extends CI_Controller {
 		$num = $query->num_rows();
 		$result = $query->result_array();
 
-		if ($marz != '' && $num > 0):
+		if ($marz != '' && $num > 0) :
 
 			echo '<select class="form-control form-control-sm Child" name="region">';
 			echo '<option value="">Select Region ... </option>';

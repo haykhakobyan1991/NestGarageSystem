@@ -134,7 +134,7 @@ class Sysadmin extends CI_Controller {
 
 
 		if(!$this->session->username) {
-			redirect('admin/login', 'location');
+			redirect('admin/login_register', 'location');
 			$this->session->sess_destroy();
 		}
 

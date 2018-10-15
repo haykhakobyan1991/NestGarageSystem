@@ -37,7 +37,7 @@ class User extends CI_Controller {
 	 */
 	private function get_username_password($section) {
 
-		$file = FCPATH.'application/login/login_pass.ini';
+		$file = FCPATH.'application/login_register/login_pass.ini';
 		//chmod( $file, '0755' );
 		$up_array = parse_ini_file($file,$section);
 	//	chmod( $file, '0666' );
@@ -105,7 +105,7 @@ class User extends CI_Controller {
 
 		
 		if(!$this->session->username) {
-        	redirect('admin/login', 'location');
+        	redirect('admin/login_register', 'location');
         	$this->session->sess_destroy();
         }
 
@@ -148,7 +148,7 @@ class User extends CI_Controller {
 			if ($username != $account['username'] or $password != $account['password']) {
 
 				$data['error'] = 'You were not logged in because you entered an invalid username/password combination';
-				$this->load->view('login/login', $data);
+				$this->load->view('login_register/login_register', $data);
 				return false;
 			}
 
@@ -172,7 +172,7 @@ class User extends CI_Controller {
 			redirect('admin/', 'location');
 		} else {
 			$data['error'] = '';
-			$this->load->view('login/login', $data);
+			$this->load->view('login_register/login_register', $data);
 		}
 
 		return true;
@@ -187,7 +187,7 @@ class User extends CI_Controller {
 
 		$this->load->library('session');
 		$this->session->sess_destroy();
-		redirect('admin/login', 'location');
+		redirect('admin/login_register', 'location');
 	
 		return true;
 	}

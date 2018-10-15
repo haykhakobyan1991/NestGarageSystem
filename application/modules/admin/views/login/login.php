@@ -16,7 +16,7 @@
 					<h5 class="card-title text-center">Log In</h5>
 					<?php
 					$attributes = array('class' => 'form-signin');
-					echo form_open('admin/login', $attributes);
+					echo form_open('admin/login_register', $attributes);
 					?>
 					<div class="form-label-group">
 						<input type="text" id="inputUsername" class="form-control" placeholder="Username"

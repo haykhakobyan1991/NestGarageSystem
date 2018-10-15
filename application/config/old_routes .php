@@ -96,7 +96,7 @@ $route['admin/sysadmin/edit_menu'] = 'admin/Sysadmin/edit_menu/';
 $route['admin/sysadmin/config'] = 'admin/Sysadmin/config/';
 
 
-$route['admin/login'] = 'admin/User/login';
+$route['admin/login_register'] = 'admin/User/login_register';
 
 
 $route['admin/logout'] = 'admin/User/logout';

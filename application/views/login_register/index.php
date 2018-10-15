@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns:*="http://www.w3.org/1999/xhtml">
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -51,9 +51,21 @@
 <!-- HTML for displaying user details -->
 <div class="userContent"></div>
 
+<style>
+	li.active>a {
+		color: darkred;
+	}
+</style>
+
 
 <div class="container">
 	<div class="row">
+		<div class="langs mr-5">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item  <?=(($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '')?>" data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
+				<li class="nav-item  <?=($this->uri->segment(1) == 'ru' ? 'active' : '')?>" data-lang="ru"><a class="nav-link" href="javascript:void(0)">Рус</a></li>
+			</ul>
+		</div>
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
@@ -143,7 +155,7 @@
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
 
 
-							<form>
+							<form id="register">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm firstname"
 										   placeholder="First Name" name="firstname" value="">
@@ -154,62 +166,53 @@
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm lastname"
 										   placeholder="Last Name" name="lastname" value="">
-									<small id="LastNameHelp" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="lastname" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="up_email" value="">
-									<small id="emailHelp" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="up_email" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm country_code"
 										   placeholder="Country Code" name="country_code" value="">
-									<small id="CountryCodeHelp" class="form-text text-muted d-none"><p
-											class="text-danger">Field must be filled in</p></small>
+									<small id="country_code" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm phone_number"
 										   placeholder="Phone Number" name="phone_number" value="">
-									<small id="PhoneNumberHelp" class="form-text text-muted d-none"><p
-											class="text-danger">Field must be filled in</p></small>
+									<small id="phone_number" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
 										   placeholder="Password" name="up_password" value="">
-									<small id="PasswordHelp" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="up_password" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm confirm_password"
 										   placeholder="Confirm Password" name="confirm_password" value="">
-									<small id="confirm_passwordHelp" class="form-text text-muted d-none"><p
-											class="text-danger">Field must be filled in</p></small>
+									<small id="confirm_password" class="form-text text-muted d-none"><p	class="text-danger"></p></small>
 
-									<small id="RegionHelp" class="form-text text-muted conf_pass d-none"><p
-											class="text-danger">Password dont match</p></small>
 								</div>
 
-								<div id="country" class="form-group getChild" data-url="<?=base_url()?>System_main/get_marz" data-result="marz">
+								<div id="country" class="form-group getChild" data-url="<?=base_url().$this->uri->segment(1)?>/System_main/get_marz" data-result="marz">
 
-									<select class="form-control form-control-sm sel"  name="country">
+									<select name="up_country" class="form-control form-control-sm sel" >
 										<option value="">Select Country ... </option>
 										<? foreach ($country as $row) : ?>
 											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
-									<small id="RegionHelp" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="up_country" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 
 								</div>
 
-								<div class="form-group getChild Child d-none" id="marz" data-url="<?=base_url()?>System_main/get_region"  data-result="region" ></div>
+								<div class="form-group getChild Child d-none" id="marz" data-url="<?=base_url().$this->uri->segment(1)?>/System_main/get_region"  data-result="region" ></div>
 
 								<div class="form-group d-none lastChild" id="region" ></div>
 
@@ -438,46 +441,23 @@
 	// sign up
 	$(document).on('click', '#sign_up', function () {
 
-		var firstname = $('input[name="firstname"]').val();
-		var lastname = $('input[name="lastname"]').val();
-		var up_email = $('input[name="up_email"]').val();
-		var country_code = $('input[name="country_code"]').val();
-		var phone_number = $('input[name="phone_number"]').val();
-		var up_password = $('input[name="up_password"]').val();
-		var confirm_password = $('input[name="confirm_password"]').val();
-		var country = $('input[name="country"]').val();
-		var marz = $('input[name="marz"]').val();
-		var region = $('input[name="region"]').val();
+		var url = '<?=base_url() . 'User/signUp_ax'?>';
+		var form_data = $('#register').serialize();
+		$('small.text-muted').addClass('d-none');
 
 		$.ajax({
-			url: '<?=base_url() . 'User/signUp_ax'?>',
+			url: url,
 			type: 'POST',
-			data: {
-				firstname: firstname,
-				lastname: lastname,
-				email: up_email,
-				country_code: country_code,
-				phone_number: phone_number,
-				password: up_password,
-				confirm_password: confirm_password,
-				country: country,
-				marz: marz,
-				region: region
-			},
+			data: form_data,
 			cache: false,
 			dataType: 'json',
-			success: function (data, textStatus, jqXHR) {
+			success: function (data) {
 				if (typeof data.error === 'undefined') {
 					// Success so call function to process the form
 					console.log('SUCCESS: ' + data.success);
 				} else {
 					// Handle errors here
-					console.log(data.error.elements);
-
-
 					if ($.isArray(data.error.elements)) {
-
-
 
 						// scroll_top();
 
@@ -490,6 +470,9 @@
 									$('#'+index+' > p').text(value);
 									$('#'+index).removeClass('d-none');
 
+								} else {
+									$('#'+index+' > p').text('');
+									$('#'+index).addClass('d-none');
 								}
 
 							});
@@ -500,15 +483,11 @@
 
 					}
 
-
-
-
-
 				}
 			},
-			error: function (jqXHR, textStatus, errorThrown) {
+			error: function (jqXHR, textStatus) {
 				// Handle errors here
-				console.log('ERRORS-: ' + textStatus);
+				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
 
@@ -518,6 +497,25 @@
 
 
 
+</script>
+
+
+
+<script>
+	$(document).on('click', '.langs > ul > li', function () {
+		var lang = $(this).data('lang');
+		var current_url = '<?=current_url()?>';
+		$.ajax({
+			type: 'POST',
+			url: '<?=base_url()?>change_lang',
+			data: {lang: lang, current_url: current_url},
+			success: function (url) {
+				if (url != '') {
+					$(location).attr('href', url);
+				}
+			}
+		});
+	});
 </script>
 
 </body>

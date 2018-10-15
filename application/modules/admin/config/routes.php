@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['admin'] = 'admin/user/index';
 $route['admin/dashboard'] = "admin/user/dashboard";
-$route['admin/login'] = "admin/user/login";
+$route['admin/login_register'] = "admin/user/login_register";
 $route['admin/logout'] = "admin/user/logout";
 
 

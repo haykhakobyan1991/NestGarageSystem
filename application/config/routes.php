@@ -49,62 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
 //start
-
-
-//index
-$route['admin'] = 'admin/User/index';
-$route['admin/dashboard'] = 'admin/User/dashboard';
-
-
-//web
-$route['admin/web'] = 'admin/Sysadmin/web/';
-
-//main
-$route['admin/main'] = 'admin/Sysadmin/main/';
-
-
-//solution challenge
-$route['admin/solution_challenge'] = 'admin/Sysadmin/solution_challenge/';
-
-//functional
-$route['admin/functional'] = 'admin/Sysadmin/functional/';
-
-//functional_2
-$route['admin/functional_2'] = 'admin/Sysadmin/functional_2/';
-
-//faq
-$route['admin/faq'] = 'admin/Sysadmin/faq/';
-
-//footer
-$route['admin/footer_section'] = 'admin/Sysadmin/footer_section/';
-
-//subscribe
-$route['admin/subscribe'] = 'admin/Sysadmin/subscribe/';
-
-
-
-$route['switchLanguage/(:any)'] = 'Main/switchLanguage/$1';
-
-
-
-$route['login'] = 'User/login';
-
-
-$route['logout'] = 'User/logout';
-
-
 $route['default_controller'] = 'User';
 
+//First
+$route['^(ru|hy)/create_company$'] = "Main/create_company";
+$route['change_lang'] = "System_main/change_lang";
 
-$route['/'] = 'Main/index/$1/$1';
-
-$route['create_company'] = 'Main/create_company';
-
-
-
-
-
-
-
+//Second
+$route['^(ru|hy)/(.+)$'] = "$2";
+$route['^(ru|hy)$'] = $route['default_controller'];
 //end

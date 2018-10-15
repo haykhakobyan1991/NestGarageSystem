@@ -28,7 +28,7 @@ $config['base_url'] = 'http://localhost/NestGarageSystem/';
 
 //The Modules::$locations array may be set in the application/config.php file. ie:
 // $config['modules_locations'] = array(
-        // APPPATH.'modules/' => '../modules/',
+// APPPATH.'modules/' => '../modules/',
 // );
 
 /*
@@ -72,7 +72,6 @@ $config['uri_protocol']	= 'REQUEST_URI';
 */
 $config['url_suffix'] = '';
 
-
 /*
 |--------------------------------------------------------------------------
 | Default Language
@@ -83,17 +82,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language'] = 'armenian';
-
-// /* default language abbreviation */
-$config['language_abbr'] = 'am';
-
-// /* set available language abbreviations */
-$config['lang_uri_abbr'] = array('am' => 'armenian', 'ru' => 'russian');
-
-// /* hide the language segment (use cookie) */
- $config['lang_ignore'] = TRUE;
-
+$config['language']	= 'armenian';
 
 /*
 |--------------------------------------------------------------------------
@@ -152,7 +141,7 @@ $config['subclass_prefix'] = 'MY_';
 |
 | Note: This will NOT disable or override the CodeIgniter-specific
 |	autoloading (application/config/autoload.php)
-*/   
+*/
 $config['composer_autoload'] = FALSE;
 
 /*

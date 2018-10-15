@@ -12,10 +12,9 @@ class MY_Loader extends MX_Loader {
      * @param string $type
      * @return bool
 	 * @passive mode $type = '1' for links // return bool
-	 * @pctive mode $type = '2'
-
-	*/
-    public function authorisation($controller = NULL, $page = NULL, $type = '2') {
+	 * @active mode $type = '2'
+	 */
+   public function authorisation($controller = NULL, $page = NULL, $type = '2') {
 		
 		$this->load->library('session');
 		$this->load->helper('url');
@@ -34,7 +33,7 @@ class MY_Loader extends MX_Loader {
 		
 		
 		if(!$this->session->username) {
-        	redirect('admin/login', 'location');
+        	redirect('admin/login_register', 'location');
         	$this->session->sess_destroy();
         }
 		
@@ -69,27 +68,68 @@ class MY_Loader extends MX_Loader {
 		return true;
 	}
 
-    /**
-     * @param $video_id
-     * @return bool|string
-     */
-    public function show_video($video_id = NULL, $iframe_link = NULL,  $width = '670px', $height = '350px') {
-            
-        // $width = '670px';
-        // $height = '350px';
 
-        if ($video_id != NULL) {
 
-            if (!$width OR !$height) {
-               return false;
-            }
+	/**
+	 * @param $data
+	 * @return string
+	 */
+	public function escape($data) {
+		return mysqli_escape_string($this->db->db_connect(), $data);
+	}
 
-            return '<iframe width="'.$width.'" height="'.$height.'" src="https://www.youtube.com/embed/'.$video_id.'" frameborder="0" allowfullscreen></iframe>';
-        } elseif ($iframe_link != NULL){
-        	return '<iframe width="'.$width.'" height="'.$height.'" src="'.$iframe_link.'" frameborder="0" allowfullscreen></iframe>';
-           
-        } else {
-        	 return false;
-        }
-    }
+
+	/**
+	 * @param null $value
+	 * @return string
+	 */
+	public function db_value($value = NULL) {
+
+		$this->load->helper('form');
+
+		if(is_null($value)){
+			return "NULL";
+		}
+
+		if($value != ''){
+			return "'".$this->escape($value)."'";
+		} else {
+			return "NULL";
+		}
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function lng() {
+		if($this->uri->segment(1) != '') {
+			return $this->uri->segment(1);
+		} else {
+			return 'hy';
+		}
+	}
+
+
+	/**
+	 * @param $file
+	 * @param $lang
+	 * @return mixed
+	 */
+	public function load_lang($file, $lang) {
+
+		if ($lang == 'hy') {
+			return $this->lang->load($file, 'armenian');
+		} elseif ($lang == 'ru') {
+			return $this->lang->load($file, 'russian');
+		} elseif ($lang == 'en') {
+			return $this->lang->load($file, 'english');
+		} else {
+			return $this->lang->load($file, 'armenian');
+		}
+
+	}
+
+
+
 }

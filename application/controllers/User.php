@@ -417,6 +417,10 @@ class User extends CI_Controller {
 
 		}
 
+		// set last activity
+		$this->db->query($sql_last_activity = "UPDATE `user` SET `last_activity` = NOW() WHERE `id` = '".$account['id']."'");
+
+
 		if ($tmp) {
 			$messages['success'] = 1;
 			$messages['message'] = 'Success';

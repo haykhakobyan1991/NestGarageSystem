@@ -63,7 +63,7 @@
 <div class="container">
 	<div class="row">
 		<div class="langs mr-5">
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav mr-auto" data-url="<?=base_url('change_lang')?>">
 				<li class="nav-item  <?=(($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '')?>" data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
 				<li class="nav-item  <?=($this->uri->segment(1) == 'ru' ? 'active' : '')?>" data-lang="ru"><a class="nav-link" href="javascript:void(0)">Рус</a></li>
 			</ul>
@@ -377,7 +377,7 @@
 			function (response) {
 
 
-				console.log(response);
+				console.log(response.locale);
 
 				document.getElementById('fbLink').setAttribute("onclick", "fbLogout()");
 				document.getElementById('fbLink').innerHTML = 'Logout from Facebook';
@@ -521,7 +521,7 @@
 
 
 <script>
-	// sign up
+	// Sign In
 	$(document).on('click', '#signIn', function () {
 
 		var url = '<?=base_url('User/signIn_ax') ?>';
@@ -537,13 +537,12 @@
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url($this->uri->segment(1).'/create_company')?>"; //todo
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
 					$(location).attr('href',url);
 
 				} else {
 
 					if ($.isArray(data.error.elements)) {
-
 
 						// scroll_top();
 
@@ -588,14 +587,15 @@
 </script>
 
 
-
+<!--todo add to main.js-->
 <script>
 	$(document).on('click', '.langs > ul > li', function () {
 		var lang = $(this).data('lang');
-		var current_url = '<?=current_url()?>';
+		var url = $(this).parent('ul').data('url');
+		var current_url = window.location.href;  //todo if firefox document.URL;
 		$.ajax({
 			type: 'POST',
-			url: '<?=base_url()?>change_lang',
+			url: url,
 			data: {lang: lang, current_url: current_url},
 			success: function (url) {
 				if (url != '') {

@@ -131,5 +131,13 @@ class MY_Loader extends MX_Loader {
 	}
 
 
+	/**
+	 * @return mixed
+	 */
+	public function default_lang() {
+		return $this->config->item('default_lang');
+	}
+
+
 
 }

@@ -8,10 +8,8 @@
  */
 class LanguageLoader
 {
-    /**
-     *
-     */
-    public function initialize()
+
+	public function initialize()
     {
         $ci =& get_instance();
         $ci->load->helper('language');
@@ -19,9 +17,9 @@ class LanguageLoader
         $site_lang = $ci->session->userdata('site_lang');
 
        if ($site_lang) {
-            $ci->lang->load('index', $ci->session->userdata('site_lang'));
+            $ci->lang->load('translate', $ci->session->userdata('site_lang'));
         } else {
-            $ci->lang->load('index', 'armenian');
+            $ci->lang->load('translate', 'armenian');
         }
     }
 }

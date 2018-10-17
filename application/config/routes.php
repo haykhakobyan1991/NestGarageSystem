@@ -56,6 +56,7 @@ $route['default_controller'] = 'User';
 //First
 $route['^(ru|hy)/create_company$'] = "Main/create_company";
 $route['change_lang'] = "System_main/change_lang";
+$route['access_denied'] = "User/access_denied";
 
 //Second
 $route['^(ru|hy)/(.+)$'] = "$2";

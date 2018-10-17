@@ -15,17 +15,19 @@
 
 	<title></title>
 	<!--// Stylesheets //-->
-	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
+	<link rel="shortcut icon" href="<?= base_url('assets/img/') ?>" type="image/png">
 
-	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
+	<link href="<?= base_url('assets/css/reset.css') ?>" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 		  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
-	<link href="<?= base_url() ?>assets/css/style.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap.min.css') ?>"/>
+	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
+	<link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css"/>
 
-	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/main.js"></script>
-	<script src="<?= base_url() ?>assets/js/base.js"></script>
+
+	<script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
+	<script src="<?= base_url('assets/js/main.js') ?>"></script>
+	<script src="<?= base_url('assets/js/base.js') ?>"></script>
 
 	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 
@@ -53,7 +55,7 @@
 
 <style>
 	li.active>a {
-		color: darkred;
+		color: #5e1017;
 	}
 </style>
 
@@ -69,10 +71,10 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-			<p class="lead text-success text-center ">Have an Account? <span style="cursor:pointer;"
+			<p class="lead text-success text-center ">Have an Account? <a href="#signIn"><span style="cursor:pointer;"
 																			 class="text-warning" data-toggle="modal"
 																			 data-target="#exampleModal"
-																			 data-whatever="@mdo">Sign In</span></p>
+																			 data-whatever="@mdo">Sign In</span></p></a>
 
 			<div class="jumbotron pt-3 pb-3 my_jumbotron">
 				<p class="lead">Join 2,776,007 Founders & Startups Always free - connect now</p>
@@ -117,7 +119,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+					<h5 class="modal-title" id="exampleModalLabel"><?=lang('register')?></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -154,7 +156,7 @@
 					<div class="col-md-6 mt-md-3 mt-3">
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
 
-
+							<p id="success" class="text-success d-none"></p>
 							<form id="register">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm firstname"
@@ -200,21 +202,17 @@
 
 								</div>
 
-								<div id="country" class="form-group getChild" data-url="<?=base_url().$this->uri->segment(1)?>/System_main/get_marz" data-result="marz">
+								<div class="form-group" >
 
-									<select name="up_country" class="form-control form-control-sm sel" >
-										<option value="">Select Country ... </option>
+									<select  name="up_country" class="selectpicker form-control form-control-sm" id="country" data-container="body" data-live-search="true" title="Select a country"  >
+										<option value="">Select Country ...</option>
 										<? foreach ($country as $row) : ?>
-											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+											<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
 										<? endforeach; ?>
 									</select>
 									<small id="up_country" class="form-text text-muted d-none"><p class="text-danger"></p></small>
 
 								</div>
-
-								<div class="form-group getChild Child d-none" id="marz" data-url="<?=base_url().$this->uri->segment(1)?>/System_main/get_region"  data-result="region" ></div>
-
-								<div class="form-group d-none lastChild" id="region" ></div>
 
 
 							</form>
@@ -240,7 +238,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+				<h5 class="modal-title" id="exampleModalLabel"><?=lang('sign_in')?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -253,7 +251,7 @@
 					<div class="jumbotron pt-3 pb-3 my_jumbotron" style="margin-bottom: 0;">
 						<h1 class="text-left text-success" style="font-size: 1.25em;">Wellcome to F6S</h1>
 						<p class="lead">F6S is where help eachother grow with deals, programs, founding and
-							jobs.</p>
+							jobs. </p>
 						<hr class="my-4">
 						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used
 							to create a profile.
@@ -277,22 +275,22 @@
 
 					<div class="collapse" id="collapseExample">
 						<div class="card card-body">
-							<form>
+							<form id="login">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="email" value="">
-									<small id="emailHelp" class="form-text text-muted d-none"><p class="text-danger">
+									<small id="email" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
 										   placeholder="Password" name="password" value="">
-									<small id="PasswordHelp" class="form-text text-muted d-none"><p class="text-danger">
+									<small id="password" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
 							</form>
-							<button type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
+							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
 						</div>
 					</div>
 
@@ -314,13 +312,24 @@
 		</div>
 	</div>
 </div>
-<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
-<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
-<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
+<script src="<?= base_url('assets/js/bootstrap/popper.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/bootstrap/bootstrap.min.js') ?>"></script>
+<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
+
+
+
+<script type="text/javascript">
+	// var url = window.location.href;
+	// if(url.indexOf('#signIn') != -1) {
+	// 	$('#collapseExample').addClass('show');
+	// 	$('#exampleModal').modal('show');
+	// }
+</script>
+
 
 
 <!-- Sign In With FACEBOOK  -->
-
 <script>
 	window.fbAsyncInit = function () {
 		// FB JavaScript SDK configuration and setup
@@ -441,7 +450,7 @@
 	// sign up
 	$(document).on('click', '#sign_up', function () {
 
-		var url = '<?=base_url() . 'User/signUp_ax'?>';
+		var url = '<?=base_url('User/signUp_ax')?>';
 		var form_data = $('#register').serialize();
 		$('small.text-muted').addClass('d-none');
 
@@ -452,15 +461,24 @@
 			cache: false,
 			dataType: 'json',
 			success: function (data) {
-				if (typeof data.error === 'undefined') {
-					// Success so call function to process the form
-					console.log('SUCCESS: ' + data.success);
+				if (data.success == '1') {
+				
+					$('p#success').html(data.message);
+					$('p#success').removeClass('d-none');
+					$('input, select').val('');
+
+					setTimeout(function() {
+						$('button[aria-label="Close"]').trigger('click');
+					}, 4000);
+
 				} else {
-					// Handle errors here
+
 					if ($.isArray(data.error.elements)) {
 
-						// scroll_top();
 
+						// scroll_top();
+						
+						$('p#success').addClass('d-none');
 						$.each(data.error.elements, function( index ) {
 
 							$.each(data.error.elements[index], function( index, value  ) {
@@ -487,6 +505,76 @@
 			},
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+
+</script>
+
+
+
+<script>
+	// sign up
+	$(document).on('click', '#signIn', function () {
+
+		var url = '<?=base_url('User/signIn_ax') ?>';
+		var form_data = $('#login').serialize();
+		$('small.text-muted').addClass('d-none');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: form_data,
+			cache: false,
+			dataType: 'json',
+			success: function (data) {
+				if (data.success == '1') {
+
+					var url = "<?=base_url($this->uri->segment(1).'/create_company')?>"; //todo
+					$(location).attr('href',url);
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+
+
+						// scroll_top();
+
+						$('p#success').addClass('d-none');
+						$.each(data.error.elements, function( index ) {
+
+							$.each(data.error.elements[index], function( index, value  ) {
+
+								if(value != '') {
+
+									$('#'+index+' > p').text(value);
+									$('#'+index).removeClass('d-none');
+
+								} else {
+									$('#'+index+' > p').text('');
+									$('#'+index).addClass('d-none');
+								}
+
+							});
+
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {

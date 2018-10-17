@@ -33,7 +33,7 @@ class MY_Loader extends MX_Loader {
 		
 		
 		if(!$this->session->username) {
-        	redirect('admin/login_register', 'location');
+        	redirect($this->lng().'/', 'location');
         	$this->session->sess_destroy();
         }
 		
@@ -59,7 +59,7 @@ class MY_Loader extends MX_Loader {
 			if ($type == '1') {
 				return false;
 			} elseif ($type == '2') {
-				redirect('admin/access_denied', 'location');
+				redirect('access_denied', 'location');
 				return false;
 			}
 		}

@@ -67,6 +67,7 @@ class Main extends MX_Controller {
 
 	public function create_company() {
 
+		$this->load->authorisation();
 		$this->load->helper('url');
 
 		$language_id = $this->session->language_id;

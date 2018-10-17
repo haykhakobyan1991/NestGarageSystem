@@ -73,7 +73,7 @@ class User extends CI_Controller {
     private function generate_username($email) {
 
         $email_arr = explode('@', $email);
-        $username = $email_arr[0].'_'.$this->uname();
+        $username = $email_arr[0].'_'.$this->uname(3,3);
         $username = str_replace(".","",$username);
 
         return $username;
@@ -155,8 +155,7 @@ class User extends CI_Controller {
         $password = $this->input->post('up_password');
         $confirm_password = $this->input->post('confirm_password');
         $country = $this->input->post('up_country');
-        $marz = $this->input->post('marz');
-        $region = $this->input->post('region');
+
 
 
         $fb_id = $this->input->post('fb_id');
@@ -232,8 +231,6 @@ class User extends CI_Controller {
               `country_code`,
               `phone_number`,
               `country_id`,
-              `marz_id`,
-              `region_id`,
               `username`,
               `password`,
               `creation_date`,
@@ -250,8 +247,6 @@ class User extends CI_Controller {
                 ".$this->load->db_value($country_code).",
                 ".$this->load->db_value($phone_number).",
                 ".$this->load->db_value($country).",
-                ".$this->load->db_value($marz).",
-                ".$this->load->db_value($region).",
                 ".$this->load->db_value($username).",
                 ".$this->load->db_value($password).",
                 NOW(),
@@ -264,17 +259,186 @@ class User extends CI_Controller {
 
         $query = $this->db->query($sql);
 
-        if($query) {
-            return true;
-        } else {
-            return false;
-        }
+		if ($query) {
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
 
 
         // Return success or error message
         echo json_encode($messages);
         return true;
 	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function signIn_ax()
+	{
+
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$this->access_denied();
+			return false;
+		}
+
+
+		$n = 0;
+		$messages['error'] = array();
+		$this->load->library('session');
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+		$password = $this->hash($password);
+		$tmp = true;
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+
+		if ($this->form_validation->run() == false) {
+			//validation errors
+			$n = 1;
+			$validation_errors = array(
+
+				'password' => form_error('password'),
+				'email' => form_error('email')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$sql = "SELECT 
+					`user`.`id`,
+					`user`.`username`,
+					`user`.`email`,
+					`user`.`password`,
+					`user`.`role_id`,
+					`user`.`status`
+				FROM 
+					`user`				
+				WHERE (`username` = '" . $email . "' 
+					OR `email` = '" . $email . "')
+				LIMIT 1
+				";
+
+		$query = $this->db->query($sql);
+
+		$account = $query->row_array();
+		$num = $query->num_rows();
+
+
+		$sql_per = "SELECT 
+					`permission`.`id`,
+					`permission`.`controller`,
+					`permission`.`page`,
+					`permission`.`status`
+				FROM 
+					`role_permission`
+				LEFT JOIN `role` ON  `role_permission`.`role_id` = `role`.`id` 			
+				LEFT JOIN `permission` ON  `role_permission`.`permission_id` = `permission`.`id` 			
+				WHERE `role`.`id` = '" . $account['role_id'] . "'
+		";
+		$query_per = $this->db->query($sql_per);
+
+		$permission = $query_per->result_array();
+		$per = array();
+		foreach ($permission as $row_per) {
+			$per['controller'][] = $row_per['controller'];
+			$per['page'][] = $row_per['page'];
+		}
+
+
+		if ($email != $account['email'] && $email != $account['username']) {
+			$validation_errors = array('email' => "You were not logged in because you entered an invalid email");
+			$messages['error']['elements'][] = $validation_errors;
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		if ($password != $account['password']) {
+			$validation_errors = array('password' => "You were not logged in because you entered an invalid password");
+			$messages['error']['elements'][] = $validation_errors;
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		if ($num == 1) {
+
+
+			if ($account['status'] == -2) {
+				$validation_errors = array('password' => 'Your account suspended');
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+
+			}
+
+			if ($account['status'] == -1) {
+				$validation_errors = array('password' => 'Your account is not active');
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sess = array(
+				'user_id' => $account['id'],
+				'username' => $account['username'],
+				'password' => $account['password']
+			);
+
+
+			$session = array_merge($sess, $per);
+
+
+			$this->session->set_userdata($session);
+
+
+		}
+
+		if ($tmp) {
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+	}
+
+
+
+
+
+
+
+
 
 }
 //end of class

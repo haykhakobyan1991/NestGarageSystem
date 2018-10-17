@@ -96,9 +96,11 @@
 <nav class="navbar navbar-light bg-light fixed-top"
 	 style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
-	<button class="btn btn-outline-dark">
-		<i class="fas fa-sign-out-alt"></i>
-	</button>
+	<a href="<?=base_url('User/logout')?>">
+		<button class="btn btn-outline-dark">
+			<i class="fas fa-sign-out-alt"></i>
+		</button>
+	</a>
 </nav>
 <!-- Navbar End -->
 
@@ -221,7 +223,7 @@
 								</span>
 							</span>
 														<input type="text" class="form-control" readonly
-															   style="display: none;" />
+															   style="display: none;"  title=""/>
 
 													</div>
 												</div>
@@ -302,8 +304,7 @@
 
 
 													<hr class="my-4 mt-4">
-													<div class="card bg-light mb-3"
-													">
+													<div class="card bg-light mb-3">
 													<div class="card-header">Բանկային տվյալներ
 														<button style="border:none;"
 																class="add_new_banck_account btn btn-outline-secondary float-right">
@@ -315,10 +316,11 @@
 
 																<label class="col-sm-4 col-form-label">Հաշվի
 																	տեսակը</label>
-																<select value=""
+																<select id="currency" value=""
 																		class="currency form-control form-control-sm col-sm-8">
-																	<option>Դրամական Հաշիվ</option>
-																	<option>Դոլարային Հաշիվ</option>
+																	<option value="">Հաշվի տեսակը․․․</option>
+																	<option value="1">Դրամական Հաշիվ</option>
+																	<option value="2">Դոլարային Հաշիվ</option>
 																</select>
 
 															</div>
@@ -1292,7 +1294,13 @@ color: #fff;">
 	var i = 1;
 
 	$('.add_new_banck_account').click(function () {
-		var currency = $('.currency').val();
+
+		var cur_val = $('select#currency option:selected').val();
+		var currency = '';
+		if(cur_val != '') {
+			currency = $('select#currency option:selected').text();
+		}
+
 		var account_number = $('.account_number').val();
 		var correspondent_bank = $('.correspondent_bank').val();
 		var swift_code = $('.swift_code').val();

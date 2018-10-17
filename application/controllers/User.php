@@ -81,8 +81,6 @@ class User extends CI_Controller {
     }
 
 
-    
-
 
 	public function index() {
 
@@ -106,10 +104,7 @@ class User extends CI_Controller {
 		";
 
         $query_country = $this->db->query($sql_country);
-
-        $result_country = $query_country->result_array();
-
-        $data['country'] = $result_country;
+		$data['country'] = $query_country->result_array();
 
         $this->load->view('login_register/index', $data);
 

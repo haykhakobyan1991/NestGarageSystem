@@ -11,13 +11,15 @@
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
+<!--	<link rel="stylesheet" href="--><?//= base_url() ?><!--assets/css/all.css">-->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
+<!--	<script rel="stylesheet" src="--><?//= base_url() ?><!--assets/js/all.js"></script>-->
+	<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js" integrity="sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7" crossorigin="anonymous"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
@@ -185,9 +187,11 @@
 											</tr>
 											<tr>
 												<td>Ֆիզիկական Անձ</td>
-												<td><input style="width: 20px;height: 20px;" type="radio" name="type"
-														   aria-label="Checkbox for following text input"
-														   class="btn btn-primary">
+												<td><label>
+														<input style="width: 20px;height: 20px;" type="radio" name="type"
+																   aria-label="Checkbox for following text input"
+																   class="btn btn-primary">
+													</label>
 												</td>
 											</tr>
 											<tr>
@@ -217,7 +221,7 @@
 								</span>
 							</span>
 														<input type="text" class="form-control" readonly
-															   style="display: none;">
+															   style="display: none;" />
 
 													</div>
 												</div>
@@ -1148,7 +1152,7 @@ color: #fff;">
 															<select value=""
 																	class="currency form-control form-control-sm">
 															<option>Choose...</option>
-															<?php for ($i = 1900; $i <= 2050 ; $i++) { ?>
+															<?php for ($i = 1900; $i <= date('Y') ; $i++) { ?>
 																<option value="<?=$i?>"><?=$i?></option>
 															<?php } ?>
 

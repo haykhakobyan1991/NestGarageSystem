@@ -11,18 +11,13 @@
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-	<!--	<link rel="stylesheet" href="--><? //= base_url() ?><!--assets/css/all.css">-->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-		  integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<!--	<script rel="stylesheet" src="--><? //= base_url() ?><!--assets/js/all.js"></script>-->
-	<script defer src="https://use.fontawesome.com/releases/v5.4.1/js/all.js"
-			integrity="sha384-L469/ELG4Bg9sDQbl0hvjMq8pOcqFgkSpwhwnslzvVVGpDjYJ6wJJyYjvG3u8XW7"
-			crossorigin="anonymous"></script>
+	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
@@ -306,9 +301,9 @@ $i = '';
 														<hr class="my-4 mt-4">
 														<div class="card bg-light mb-3">
 															<div class="card-header">Բանկային տվյալներ
-																<button style="border:none;"
+																<span style="border:none;"
 																		class="add_new_banck_account btn btn-outline-secondary float-right">
-																	<i class="fas fa-plus"></i></i></button>
+																	<i class="fas fa-plus"></i></i></span>
 															</div>
 															<div class="card-body">
 																<form class="banck_account">
@@ -383,8 +378,7 @@ $i = '';
 
 										</div>
 										<div class="text-right pb-2">
-											<button class="btn btn-secondary">Save</button>
-											<button class="btn btn-secondary ml-2">Cancel</button>
+											<span class="btn btn-secondary">Save</span>
 										</div>
 
 									</div>

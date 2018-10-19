@@ -71,10 +71,10 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-			<p class="lead text-success text-center ">Have an Account? <a href="#signIn"><span style="cursor:pointer;"
+			<p class="lead text-success text-center ">Have an Account? <span style="cursor:pointer;"
 																			 class="text-warning" data-toggle="modal"
 																			 data-target="#exampleModal"
-																			 data-whatever="@mdo">Sign In</span></p></a>
+																			 data-whatever="@mdo">Sign In</span></p>
 
 			<div class="jumbotron pt-3 pb-3 my_jumbotron">
 				<p class="lead">Join 2,776,007 Founders & Startups Always free - connect now</p>
@@ -537,7 +537,7 @@
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/create_company')?>";
 					$(location).attr('href',url);
 
 				} else {

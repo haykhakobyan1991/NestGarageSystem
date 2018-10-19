@@ -118,6 +118,9 @@ class MY_Loader extends MX_Loader {
 	 */
 	public function load_lang($file, $lang) {
 
+		// load the helper
+		$this->load->helper('language');
+
 		if ($lang == 'hy') {
 			return $this->lang->load($file, 'armenian');
 		} elseif ($lang == 'ru') {

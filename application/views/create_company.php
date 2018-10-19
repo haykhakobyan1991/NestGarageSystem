@@ -37,6 +37,7 @@
 
 	<!-- Some CSS Start-->
 	<style>
+
 		.btn-file {
 			position: relative;
 			overflow: hidden;
@@ -93,6 +94,7 @@
 </head>
 <body>
 <?php
+$user_id = $this->session->user_id;
 $i = '';
 ?>
 <!-- Navbar Start -->
@@ -183,10 +185,10 @@ $i = '';
 								</div>
 							</div>
 
-							<form id="company">
+							<form id="company" >
 								<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 									<div class="container">
-										<p class="display-5 font-weight-bold">Կարգավիճակ</p>
+										<p class="display-5 font-weight-bold"><?=lang('status')?></p>
 										<hr class="my-4">
 										<div class="row">
 											<table class="table table-hover table-secondary col-sm-12 col-md-5">
@@ -197,6 +199,7 @@ $i = '';
 														<td><input style="width: 20px;height: 20px;"
 																   type="radio"
 																   value="<?= $item['id'] ?>"
+																   <?=($company->company_type_id == $item['id'] ? 'checked' : '')?>
 																   name="company_type"
 																   aria-label="Checkbox for following text input"
 																   class="btn btn-primary">
@@ -210,8 +213,9 @@ $i = '';
 
 												<div class="media">
 													<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
-														 style="width: 100px;" alt=""
-														 src="">
+														 style="width: 100px;"
+														 alt=""
+														 src="<?=base_url('uploads/user_'.$user_id.'/company/'.$company->logo)?>">
 													<div class="media-body">
 														<h5 class="mt-0">LOGO</h5>
 														<p>Upload your company LOGO</p>
@@ -233,62 +237,66 @@ $i = '';
 										</div>
 
 
+
+
+
+
+
 										<div class="row">
 											<div class="col-md-12 col-md-6">
 
-												<p class="font-weight-bold display-5 mt-3">Հիմնական տվյալներ</p>
+												<p class="font-weight-bold display-5 mt-3"><?=lang('general_information')?></p>
 												<hr class="my-4">
 
 												<div class="form-group row">
 
 
-													<label class="col-sm-4 col-form-label">Անվանում</label>
+													<label class="col-sm-4 col-form-label"><?=lang('company_name')?></label>
 													<div class="col-sm-8">
-														<input name="company_name" type="text" class="form-control" placeholder="Անվանում">
+														<input value="<?=$company->name?>" name="company_name" type="text" class="form-control" placeholder="Անվանում">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">Գործունեության հասցե</label>
+													<label class="col-sm-4 col-form-label"><?=lang('activity_address')?></label>
 													<div class="col-sm-8">
-														<input name="activity_address" type="text" class="form-control"
-															   placeholder="Գործունեության հասցե">
+														<input value="<?=$company->activity_address?>" name="activity_address" type="text" class="form-control"
+															   placeholder="<?=lang('activity_address')?>">
 													</div>
 												</div>
 
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">Իրավաբանական հասցե</label>
+													<label class="col-sm-4 col-form-label"><?=lang('legal_address')?></label>
 													<div class="col-sm-8">
-														<input name="legal_address" type="text" class="form-control"
-															   placeholder="Իրավաբանական հասցե">
+														<input value="<?=$company->legal_address?>" name="legal_address" type="text" class="form-control"
+															   placeholder="<?=lang('legal_address')?>">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">ՀՎՀՀ</label>
+													<label class="col-sm-4 col-form-label"><?=lang('tin')?></label>
 													<div class="col-sm-8">
-														<input name="tin" type="text" class="form-control" placeholder="ՀՎՀՀ">
+														<input value="<?=$company->tin?>" name="tin" type="text" class="form-control" placeholder="<?=lang('tin')?>">
 													</div>
 												</div>
 
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">Հեռախոսահամար</label>
+													<label class="col-sm-4 col-form-label"><?=lang('phone_number')?></label>
 													<div class="col-sm-8">
-														<input name="phone_number" type="text" class="form-control" placeholder="Հեռախոսահամար">
+														<input value="<?=$company->phone_number?>" name="phone_number" type="text" class="form-control" placeholder="<?=lang('phone_number')?>">
 													</div>
 												</div>
 
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">Էլ․ Հասցե</label>
+													<label class="col-sm-4 col-form-label"><?=lang('email')?></label>
 													<div class="col-sm-8">
-														<input name="email" type="text" class="form-control" placeholder="Էլ․ Հասցե">
+														<input value="<?=$company->email?>" name="email" type="text" class="form-control" placeholder="<?=lang('email')?>">
 													</div>
 												</div>
 												<div class="form-group row">
-													<label class="col-sm-4 col-form-label">Առցանց Հասցե</label>
+													<label class="col-sm-4 col-form-label"><?=lang('web_address')?></label>
 													<div class="col-sm-8">
-														<input name="web_address" type="text" class="form-control" placeholder="Առցանց Հասցե">
+														<input value="<?=$company->web_address?>" name="web_address" type="text" class="form-control" placeholder="<?=lang('web_address')?>">
 													</div>
 												</div>
-
 											</div>
 											<div class="col-sm-12 tab-content col-sm-6 col-12" id="nav-tabContent">
 												<div class="tab-pane fade show active" id="list-home" role="tabpanel"
@@ -378,7 +386,7 @@ $i = '';
 
 										</div>
 										<div class="text-right pb-2">
-											<span class="btn btn-secondary">Save</span>
+											<span id="create_company" class="btn btn-secondary">Save</span>
 										</div>
 
 									</div>
@@ -1502,6 +1510,78 @@ color: #fff;">
 			}
 		});
 	});
+</script>
+
+
+
+
+<script>
+	// create company
+	$(document).on('click', '#create_company', function (e) {
+
+		var url = '<?=base_url('Main/create_company_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#company')[0]);
+		$('small.text-muted').addClass('d-none');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData:false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
+					$(location).attr('href',url);
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+
+						// scroll_top();
+
+						$('p#success').addClass('d-none');
+						$.each(data.error.elements, function( index ) {
+
+							$.each(data.error.elements[index], function( index, value  ) {
+
+								if(value != '') {
+
+									$('#'+index+' > p').text(value);
+									$('#'+index).removeClass('d-none');
+
+								} else {
+									$('#'+index+' > p').text('');
+									$('#'+index).addClass('d-none');
+								}
+
+							});
+
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+
 </script>
 
 

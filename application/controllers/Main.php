@@ -132,7 +132,7 @@ class Main extends MX_Controller {
 		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
 
-		$this->load->view('create_company', $data);
+		$this->layout->view('create_company', $data);
 	}
 
 

@@ -130,7 +130,10 @@
 		var url = '<?=base_url('Main/create_company_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#company')[0]);
-		$('small.text-muted').addClass('d-none');
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
 
 		$.ajax({
 			url: url,
@@ -152,19 +155,21 @@
 
 						// scroll_top();
 
-						$('p#success').addClass('d-none');
+
 						$.each(data.error.elements, function( index ) {
 
 							$.each(data.error.elements[index], function( index, value  ) {
 
 								if(value != '') {
 
-									$('#'+index+' > p').text(value);
-									$('#'+index).removeClass('d-none');
+									$('input[name="'+index+'"]').addClass('border border-danger');
+									$('select[name="'+index+'"]').addClass('border border-danger');
+									$('input[name="'+index+'"]').parent('td').addClass('border border-danger');
 
 								} else {
-									$('#'+index+' > p').text('');
-									$('#'+index).addClass('d-none');
+									$('input[name="'+index+'"]').removeClass('border border-danger');
+									$('select[name="'+index+'"]').removeClass('border border-danger');
+									$('input[name="'+index+'"]').parent('td').removeClass('border border-danger');
 								}
 
 							});
@@ -189,11 +194,136 @@
 	});
 
 
+</script>
+
+
+<script>
+	// create company
+	$(document).on('click', '#add_staff', function (e) {
+
+		var url = '<?=base_url('Main/add_staff_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#staff')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData:false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
+					$(location).attr('href',url);
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+
+						// scroll_top();
+
+
+						$.each(data.error.elements, function( index ) {
+
+							$.each(data.error.elements[index], function( index, value  ) {
+
+								if(value != '') {
+
+									$('input[name="'+index+'"]').addClass('border border-danger');
+									$('select[name="'+index+'"]').addClass('border border-danger');
+									$('input[name="'+index+'"]').parent('td').addClass('border border-danger');
+
+								} else {
+									$('input[name="'+index+'"]').removeClass('border border-danger');
+									$('select[name="'+index+'"]').removeClass('border border-danger');
+									$('input[name="'+index+'"]').parent('td').removeClass('border border-danger');
+								}
+
+							});
+
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+</script>
+
+
+<script type="text/javascript">
+
 	$(window).on('load', function () {
 		$('button.dropdown-toggle.bs-placeholder').removeClass('btn-light');
+		var count = 0;
+		$('form#company input,select').each(function(){
+			if($(this).val() == ''){
+				count++;
+			}
+		});
 
+		console.log(count);
 	})
 
+	var c_url = '<?=current_url()?>';
+
+	var url = window.location.href;
+
+	$('#list-department-list').click(function() {
+		$(location).attr('href',c_url+'#department');
+	});
+
+	$('#list-staff-list').click(function() {
+		$(location).attr('href',c_url+'#staff');
+	});
+
+	$('#list-company-list').click(function() {
+		$(location).attr('href',c_url+'#company');
+	});
+
+	$('#list-settings-list').click(function() {
+		$(location).attr('href',c_url+'#settings');
+	});
+
+	if(url.indexOf('#staff') != -1) {
+
+		$('#list-staff-list').trigger('click');
+	}
+
+	if(url.indexOf('#department') != -1) {
+
+		$('#list-department-list').trigger('click');
+	}
+
+	if(url.indexOf('#company') != -1) {
+
+		$('#list-company-list').trigger('click');
+	}
+
+	if(url.indexOf('#settings') != -1) {
+
+		$('#list-company-list').trigger('click');
+	}
 
 
 </script>

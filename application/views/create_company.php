@@ -131,39 +131,37 @@ $i = '';
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Firstname</label>
 													<div class="col-sm-8">
-														<input value="" name="owner_firstname" type="text" class="form-control" placeholder="Owner Firstname">
+														<input value="<?=$company['owner_firstname']?>" name="owner_firstname" type="text" class="form-control" placeholder="Owner Firstname">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Lastname</label>
 													<div class="col-sm-8">
-														<input value="" name="owner_lastname" type="text" class="form-control" placeholder="Owner Lastname">
+														<input value="<?=$company['owner_lastname']?>" name="owner_lastname" type="text" class="form-control" placeholder="Owner Lastname">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Position</label>
 													<div class="col-sm-8">
-														<input value="" name="owner_position" type="text" class="form-control" placeholder="Owner Position">
+														<input value="<?=$company['owner_position']?>" name="owner_position" type="text" class="form-control" placeholder="Owner Position">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Contact Number</label>
 													<div class="col-sm-8">
-														<input value="" name="owner_contact_number" type="text" class="form-control" placeholder="Owner Contact Number">
+														<input value="<?=$company['owner_contact_number']?>" name="owner_contact_number" type="text" class="form-control" placeholder="Owner Contact Number">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Email</label>
 													<div class="col-sm-8">
-														<input value="" name="owner_email" type="email" class="form-control" placeholder="Owner Email">
+														<input value="<?=$company['owner_email']?>" name="owner_email" type="email" class="form-control" placeholder="Owner Email">
 													</div>
 												</div>
-
-
 
 
 
@@ -171,36 +169,36 @@ $i = '';
 
 													<label class="col-sm-4 col-form-label"><?=lang('company_name')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company['name']?>" name="company_name" type="text" class="form-control" placeholder="Անվանում">
+														<input value="<?=$company['name']?>" name="company_name" type="text" class="form-control" placeholder="<?=lang('company_name')?>">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('activity_address')?></label>
 													<div class="col-sm-8" style="background: #ababab;padding-top: 10px;">
 														<div class="form-row">
-															<select  name="up_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
+															<select  name="activity_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
 																<option value="">Select Activity Country ...</option>
 																<? foreach ($country as $row) : ?>
-																	<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
+																	<option <?=($company['activity_country_id'] == $row['id'] ? 'selected' : '')?> value="<?= $row['id'] ?>"><?=$row['title']?></option>
 																<? endforeach; ?>
 															</select>
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Activity Region">
+																<input name="activity_state_region" value="<?=$company['activity_state_region']?>" type="text" class="form-control" placeholder="Activity State Region">
 															</div>
 														</div>
 
 														<div class="form-row mt-md-2 mt-2">
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Activity Sity">
+																<input name="activity_city" value="<?=$company['activity_city']?>"  type="text" class="form-control" placeholder="Activity City">
 															</div>
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Zip Code">
+																<input  name="activity_zip_code"  value="<?=$company['activity_zip_code']?>" type="text" class="form-control" placeholder="Zip Code">
 															</div>
 														</div>
 
 														<div class="form-group mt-md-2 mt-2">
 															<div class="col" style="padding-left: 0;padding-right: 0;">
-																<input type="text" class="form-control" placeholder="Activity Address">
+																<input name="activity_address" value="<?=$company['activity_address']?>" type="text" class="form-control" placeholder="Activity Address">
 															</div>
 														</div>
 
@@ -213,29 +211,29 @@ $i = '';
 													<label class="col-sm-4 col-form-label"><?=lang('legal_address')?></label>
 													<div class="col-sm-8" style="background: #ababab;padding-top: 10px;">
 														<div class="form-row">
-															<select  name="up_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
+															<select  name="legal_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
 																<option value="">Select Legal Country ...</option>
 																<? foreach ($country as $row) : ?>
-																	<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
+																	<option <?=($company['legal_country_id'] == $row['id'] ? 'selected' : '')?> value="<?= $row['id'] ?>"><?=$row['title']?></option>
 																<? endforeach; ?>
 															</select>
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Legal Region">
+																<input name="legal_state_region" value="<?=$company['legal_state_region']?>" type="text" class="form-control" placeholder="Legal Region">
 															</div>
 														</div>
 
 														<div class="form-row mt-md-2 mt-2">
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Legal Sity">
+																<input  name="legal_city" value="<?=$company['legal_city']?>" type="text" class="form-control" placeholder="Legal City">
 															</div>
 															<div class="col">
-																<input type="text" class="form-control" placeholder="Zip Code">
+																<input name="legal_zip_code" value="<?=$company['legal_zip_code']?>" type="text" class="form-control" placeholder="Zip Code">
 															</div>
 														</div>
 
 														<div class="form-group mt-md-2 mt-2">
 															<div class="col" style="padding-left: 0;padding-right: 0;">
-																<input type="text" class="form-control" placeholder="Legal Address">
+																<input name="legal_address"  value="<?=$company['legal_address']?>" type="text" class="form-control" placeholder="Legal Address">
 															</div>
 														</div>
 													</div>
@@ -281,7 +279,7 @@ $i = '';
 													<div class="card-header" id="headingOne">
 														<h5 class="mb-0">
 															<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-																N/D
+																<?=($company['account_name_1'] != '' ? $company['account_name_1'] : 'N/D')?>
 															</button>
 														</h5>
 													</div>
@@ -292,7 +290,9 @@ $i = '';
 																<div class="form-group row mb-0">
 																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_name_1']?>"
+																			   name="account_name_1"
+																			   type="text"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="<?=lang('account_type')?>">
 																	</div>
@@ -303,7 +303,9 @@ $i = '';
 																	<label class="col-sm-4 col-form-label">Account
 																		Number</label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_number_1']?>"
+																			   name="account_number_1"
+																			   type="text"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="Account Number">
 																	</div>
@@ -314,8 +316,9 @@ $i = '';
 																		Bank</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="correspondent_bank_1"
 																			   class="form-control form-control-sm correspondent_bank"
-																			   value=""
+																			   value="<?=$company['correspondent_bank_1']?>"
 																			   placeholder="Correspondent Bank">
 																	</div>
 																</div>
@@ -325,8 +328,9 @@ $i = '';
 																		Code</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="swift_code_1"
 																			   class="form-control form-control-sm swift_code"
-																			   value=""
+																			   value="<?=$company['swift_code_1']?>"
 																			   placeholder="Swift Code">
 																	</div>
 																</div>
@@ -336,8 +340,9 @@ $i = '';
 																		class="col-sm-4 col-form-label">Account</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   value="<?=$company['account_1']?>"
+																			   name="account_1"
 																			   class="form-control form-control-sm account"
-																			   value=""
 																			   placeholder="Account">
 																	</div>
 																</div>
@@ -349,7 +354,7 @@ $i = '';
 													<div class="card-header" id="headingTwo">
 														<h5 class="mb-0">
 															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-																N/D
+																<?=($company['account_name_2'] != '' ? $company['account_name_2'] : 'N/D')?>
 															</button>
 														</h5>
 													</div>
@@ -359,7 +364,9 @@ $i = '';
 																<div class="form-group row mb-0">
 																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_name_2']?>"
+																			   name="account_name_2"
+																			   type="text"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="<?=lang('account_type')?>">
 																	</div>
@@ -370,7 +377,9 @@ $i = '';
 																	<label class="col-sm-4 col-form-label">Account
 																		Number</label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_number_2']?>"
+																			   name="account_number_2"
+																			   type="text"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="Account Number">
 																	</div>
@@ -381,8 +390,9 @@ $i = '';
 																		Bank</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="correspondent_bank_2"
 																			   class="form-control form-control-sm correspondent_bank"
-																			   value=""
+																			   value="<?=$company['correspondent_bank_2']?>"
 																			   placeholder="Correspondent Bank">
 																	</div>
 																</div>
@@ -392,8 +402,9 @@ $i = '';
 																		Code</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="swift_code_2"
 																			   class="form-control form-control-sm swift_code"
-																			   value=""
+																			   value="<?=$company['swift_code_2']?>"
 																			   placeholder="Swift Code">
 																	</div>
 																</div>
@@ -403,8 +414,9 @@ $i = '';
 																		class="col-sm-4 col-form-label">Account</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="account_2"
 																			   class="form-control form-control-sm account"
-																			   value=""
+																			   value="<?=$company['account_2']?>"
 																			   placeholder="Account">
 																	</div>
 																</div>
@@ -416,7 +428,7 @@ $i = '';
 													<div class="card-header" id="headingThree">
 														<h5 class="mb-0">
 															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-																N/D
+																<?=($company['account_name_3'] != '' ? $company['account_name_3'] : 'N/D')?>
 															</button>
 														</h5>
 													</div>
@@ -426,7 +438,8 @@ $i = '';
 																<div class="form-group row mb-0">
 																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_name_3']?>" type="text"
+																			   name="account_name_3"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="<?=lang('account_type')?>">
 																	</div>
@@ -437,7 +450,8 @@ $i = '';
 																	<label class="col-sm-4 col-form-label">Account
 																		Number</label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_number_3']?>" type="text"
+																			   name="account_number_3"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="Account Number">
 																	</div>
@@ -448,8 +462,9 @@ $i = '';
 																		Bank</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="correspondent_bank_3"
 																			   class="form-control form-control-sm correspondent_bank"
-																			   value=""
+																			   value="<?=$company['correspondent_bank_3']?>"
 																			   placeholder="Correspondent Bank">
 																	</div>
 																</div>
@@ -459,8 +474,9 @@ $i = '';
 																		Code</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="swift_code_3"
 																			   class="form-control form-control-sm swift_code"
-																			   value=""
+																			   value="<?=$company['swift_code_3']?>"
 																			   placeholder="Swift Code">
 																	</div>
 																</div>
@@ -470,8 +486,9 @@ $i = '';
 																		class="col-sm-4 col-form-label">Account</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="account_3"
 																			   class="form-control form-control-sm account"
-																			   value=""
+																			   value="<?=$company['account_3']?>"
 																			   placeholder="Account">
 																	</div>
 																</div>
@@ -484,7 +501,7 @@ $i = '';
 													<div class="card-header" id="headingFour">
 														<h5 class="mb-0">
 															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-																N/D
+																<?=($company['account_name_4'] != '' ? $company['account_name_4'] : 'N/D')?>
 															</button>
 														</h5>
 													</div>
@@ -495,7 +512,8 @@ $i = '';
 																<div class="form-group row mb-0">
 																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_name_4']?>" type="text"
+																			   name="account_name_4"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="<?=lang('account_type')?>">
 																	</div>
@@ -505,7 +523,8 @@ $i = '';
 																	<label class="col-sm-4 col-form-label">Account
 																		Number</label>
 																	<div class="col-sm-8">
-																		<input value="" type="text"
+																		<input value="<?=$company['account_number_4']?>" type="text"
+																			   name="account_number_4"
 																			   class="account_number form-control form-control-sm"
 																			   placeholder="Account Number">
 																	</div>
@@ -516,8 +535,9 @@ $i = '';
 																		Bank</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="correspondent_bank_4"
 																			   class="form-control form-control-sm correspondent_bank"
-																			   value=""
+																			   value="<?=$company['correspondent_bank_4']?>"
 																			   placeholder="Correspondent Bank">
 																	</div>
 																</div>
@@ -527,8 +547,9 @@ $i = '';
 																		Code</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="swift_code_4"
 																			   class="form-control form-control-sm swift_code"
-																			   value=""
+																			   value="<?=$company['swift_code_4']?>"
 																			   placeholder="Swift Code">
 																	</div>
 																</div>
@@ -538,8 +559,9 @@ $i = '';
 																		class="col-sm-4 col-form-label">Account</label>
 																	<div class="col-sm-8">
 																		<input type="text"
+																			   name="account_4"
 																			   class="form-control form-control-sm account"
-																			   value=""
+																			   value="<?=$company['account_4']?>"
 																			   placeholder="Account">
 																	</div>
 																</div>

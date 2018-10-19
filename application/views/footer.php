@@ -72,98 +72,6 @@
 	/*Staff Password image uploade end*/
 
 
-	var i = 1;
-
-
-
-
-
-	$(document).ready(function () {
-
-		var k = 4;
-
-		$(document).on('click', '.add_new_row', function () {
-
-
-			$('.add_new_items').append('<div class="row">\n' +
-				'<div class="col-md-2">\n' +
-				'<div>\n' +
-				'<div class="media" style="position: relative;margin-top: 5px;">\n' +
-				'<img mr-1\n' +
-				'class="align-self-start mt-3 mt-md-3"\n' +
-				' id="img-upload' + k + '"\n' +
-				' style="width: 100%;height:100px;margin-right:0 !important;margin-top:0 !important;"\n' +
-				' alt=""\n' +
-				' src="">\n' +
-				'<div class="media-body" style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">\n' +
-				'<div\n' +
-				'class="input-group" style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">\n' +
-				'<span class="input-group-btn" style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">\n' +
-				'<span\n' +
-				'class="btn btn-secondary btn-file btn-sm" style="    position: absolute;left: 0;top: 0;border: none;padding-top: 38px;width: 100%;height: 100%;background: #0000001f;">\n' +
-				'Browse… <input type="file" onchange="readURL' + k + '(this);"\n' +
-				'   id="imgInp' + k + '">\n' +
-				'</span>\n' +
-				'</span>\n' +
-				'<input type="text"\n' +
-				'  class="form-control"\n' +
-				'   readonly\n' +
-				'  style="display: none;">\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'<div class="col-md-3">\n' +
-				'<div class="form-group">\n' +
-				'<label>Number</label>\n' +
-				'<input type="text" class="form-control"\n' +
-				'   placeholder="Number">\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'<div class="col-md-3">\n' +
-				'<label>Epired Date</label>\n' +
-				'<input type="date" name="bday"\n' +
-				'   max="3000-12-31"\n' +
-				'   min="1000-01-01"\n' +
-				'   class="form-control">\n' +
-				'</div>\n' +
-				'<div class="col-md-3">\n' +
-				'<div class="form-group">\n' +
-				'<label>Issued</label>\n' +
-				'<input type="text" class="form-control"\n' +
-				'   placeholder="Issued">\n' +
-				'</div>\n' +
-				'</div>\n' +
-				'<div class="col-md-1 mt-4 mt-md-4">\n' +
-				'<button type="button" style="border:none;" class="remove_document btn btn-outline-secondary mt-3 mt-md-3">\n' +
-				'<i class="fa fa-trash"></i>\n' +
-				'</button>\n' +
-				'</div>\n' +
-				'</div>');
-
-
-			$('.brows_image_dynamicle').append('<script>' +
-				'function readURL' + k + '(input) {\n' +
-				'\t\t\tif (input.files && input.files[0]) {\n' +
-				'\t\t\t\tvar reader = new FileReader();\n' +
-				'\n' +
-				'\t\t\t\treader.onload = function (e) {\n' +
-				'\t\t\t\t\t$("#img-upload' + k + '").attr("src", e.target.result);\n' +
-				'\t\t\t\t}\n' +
-				'\n' +
-				'\t\t\t\treader.readAsDataURL(input.files[0]);\n' +
-				'\t\t\t}\n' +
-				'}<' +
-				'/script>');
-
-			k++
-
-		})
-
-	})
-
-
 	$(document).on('click', '.remove_document', function () {
 		$(this).parent('div').parent('div').remove();
 	});
@@ -281,12 +189,18 @@
 	});
 
 
+	$(window).on('load', function () {
+		$('button.dropdown-toggle.bs-placeholder').removeClass('btn-light');
+
+	})
+
+
 
 </script>
 
 
 
-<div class="brows_image_dynamicle"></div>
-
+<!--<div class="brows_image_dynamicle"></div>-->
+<!---->
 </body>
 

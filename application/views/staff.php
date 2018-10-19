@@ -63,7 +63,7 @@
 												<img class="align-self-start mr-3"
 													 id='img-upload2'
 													 style="width: 100px;" alt=""
-													 src="">
+													 src="<?= base_url('assets/images/no_choose_image.svg') ?>">
 												<div class="media-body">
 													<div class="input-group ml-2 ml-md-2">
 														<span class="input-group-btn">
@@ -129,15 +129,36 @@
 														   placeholder="Contact Number 2">
 												</div>
 											</div>
+
+											<div class="form-group row">
+												<label
+													class="col-sm-2 col-form-label">Email</label>
+												<div class="col-sm-10">
+													<input type="email" class="form-control"
+
+														   placeholder="Email">
+												</div>
+											</div>
+
 											<div class="form-group row">
 												<label
 													class="col-sm-2 col-form-label">Address
 													Leave</label>
 												<div class="col-sm-10">
-													<input type="text" class="form-control"
-														   placeholder="Address Leave">
+													<select name="up_country"
+															class="col selectpicker form-control form-control-sm"
+															data-size="5" id="country" data-live-search="true"
+															title="Select a country">
+														<option value="">Select Activity Country ...</option>
+														<? foreach ($country as $row) : ?>
+															<option
+																value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+														<? endforeach; ?>
+													</select>
 												</div>
 											</div>
+
+
 											<div class="form-group row">
 												<label
 													class="col-sm-2 col-form-label">Post
@@ -190,83 +211,228 @@
 														   class="form-control">
 												</div>
 											</div>
-											<div class="add_new_items">
 
 
-												<div class="row">
-													<div class="col-md-2">
-														<div>
-															<div class="media"
-																 style="position: relative;">
-																<img mr-1
-																	 class="align-self-start"
-																	 id='img-upload3'
-																	 style="width: 100%; height: 100px;margin-right: 0 !important;;margin-top: 0px; !important;"
-																	 alt=""
-																	 src="">
-																<div class="media-body"
-																	 style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">
-																	<div
-																		class="input-group"
-																		style="position: absolute;left: 0;top: 0;width: 100%;height: 100%;">
-														<span class="input-group-btn"
-															  style="position: absolute;left: 0;top: 0;height: 100%;width: 100%;">
-															<span
-																class="btn btn-secondary btn-file btn-sm"
-																style="    position: absolute;left: 0;top: 0;border: none;padding-top: 38px;width: 100%;height: 100%;background: #0000001f;">
-																Browse… <input type="file" onchange="readURL3(this);"
-																			   id="imgInp3">
-															</span>
-														</span>
-																		<input type="text"
-																			   class="form-control"
-																			   readonly
-																			   style="display: none;">
+											<div class="accordion" id="accordionExample1">
+												<div class="card">
+													<div class="card-header" id="headingOne">
+														<h5 class="mb-0">
+															<button class="btn btn-link" type="button"
+																	data-toggle="collapse" data-target="#collapseOne"
+																	aria-expanded="true" aria-controls="collapseOne">
+																N/D
+															</button>
+														</h5>
+													</div>
 
+													<div id="collapseOne" class="collapse show"
+														 aria-labelledby="headingOne" data-parent="#accordionExample1">
+														<div class="card-body">
+															<div class="add_new_items">
+																<div class="row">
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label for="exampleFormControlFile1">Example
+																				file input</label>
+																			<input type="file" class="form-control-file"
+																				   id="exampleFormControlFile1">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Number</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Number">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<label>Epired Date</label>
+																		<input type="date" name="bday"
+																			   max="3000-12-31"
+																			   min="1000-01-01"
+																			   class="form-control">
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Issued</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Issued">
+																		</div>
 																	</div>
 																</div>
+
+
 															</div>
-
-
 														</div>
 													</div>
-													<div class="col-md-3">
-														<div class="form-group">
-															<label>Number</label>
-															<input type="text"
-																   class="form-control"
-																   placeholder="Number">
+												</div>
+												<div class="card">
+													<div class="card-header" id="headingTwo">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button"
+																	data-toggle="collapse" data-target="#collapseTwo"
+																	aria-expanded="false" aria-controls="collapseTwo">
+																N/D
+															</button>
+														</h5>
+													</div>
+													<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+														 data-parent="#accordionExample1">
+														<div class="card-body">
+															<div class="add_new_items">
+																<div class="row">
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label for="exampleFormControlFile1">Example
+																				file input</label>
+																			<input type="file" class="form-control-file"
+																				   id="exampleFormControlFile1">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Number</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Number">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<label>Epired Date</label>
+																		<input type="date" name="bday"
+																			   max="3000-12-31"
+																			   min="1000-01-01"
+																			   class="form-control">
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Issued</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Issued">
+																		</div>
+																	</div>
+																</div>
+
+
+															</div>
 														</div>
 													</div>
-													<div class="col-md-3">
-														<label>Epired Date</label>
-														<input type="date" name="bday"
-															   max="3000-12-31"
-															   min="1000-01-01"
-															   class="form-control">
+												</div>
+												<div class="card">
+													<div class="card-header" id="headingThree">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button"
+																	data-toggle="collapse" data-target="#collapseThree"
+																	aria-expanded="false" aria-controls="collapseThree">
+																N/D
+															</button>
+														</h5>
 													</div>
-													<div class="col-md-3">
-														<div class="form-group">
-															<label>Issued</label>
-															<input type="text"
-																   class="form-control"
-																   placeholder="Issued">
+													<div id="collapseThree" class="collapse"
+														 aria-labelledby="headingThree"
+														 data-parent="#accordionExample1">
+														<div class="card-body">
+															<div class="add_new_items">
+																<div class="row">
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label for="exampleFormControlFile1">Example
+																				file input</label>
+																			<input type="file" class="form-control-file"
+																				   id="exampleFormControlFile1">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Number</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Number">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<label>Epired Date</label>
+																		<input type="date" name="bday"
+																			   max="3000-12-31"
+																			   min="1000-01-01"
+																			   class="form-control">
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Issued</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Issued">
+																		</div>
+																	</div>
+																</div>
+
+
+															</div>
 														</div>
 													</div>
 												</div>
 
+												<div class="card">
+													<div class="card-header" id="headingFour">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button"
+																	data-toggle="collapse" data-target="#collapseFour"
+																	aria-expanded="false" aria-controls="collapseThree">
+																N/D
+															</button>
+														</h5>
+													</div>
+													<div id="collapseFour" class="collapse"
+														 aria-labelledby="headingFour" data-parent="#accordionExample1">
+														<div class="card-body">
+															<div class="add_new_items">
+																<div class="row">
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label for="exampleFormControlFile1">Example
+																				file input</label>
+																			<input type="file" class="form-control-file"
+																				   id="exampleFormControlFile1">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Number</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Number">
+																		</div>
+																	</div>
+																	<div class="col-md-3">
+																		<label>Epired Date</label>
+																		<input type="date" name="bday"
+																			   max="3000-12-31"
+																			   min="1000-01-01"
+																			   class="form-control">
+																	</div>
+																	<div class="col-md-3">
+																		<div class="form-group">
+																			<label>Issued</label>
+																			<input type="text"
+																				   class="form-control"
+																				   placeholder="Issued">
+																		</div>
+																	</div>
+																</div>
 
+
+															</div>
+														</div>
+													</div>
+												</div>
 											</div>
 
+
 										</form>
-
-										<div style="width: 100%;">
-											<button type="button" style="border: none;"
-													class="mr-md-3 mr-3 float-right btn btn-outline-secondary float-right add_new_row">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-
 									</div>
 								</div>
 								<div class="modal-footer">

@@ -100,10 +100,10 @@ class Main extends MX_Controller {
 		$lng = $this->load->lng();
 
 
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row();
-		$company_id = $row->company_id;
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
 
-		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row();
+		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
 
 
 		$sql_company_type = "

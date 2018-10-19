@@ -199,7 +199,7 @@ $i = '';
 														<td><input style="width: 20px;height: 20px;"
 																   type="radio"
 																   value="<?= $item['id'] ?>"
-																   <?=($company->company_type_id == $item['id'] ? 'checked' : '')?>
+																   <?=($company['company_type_id'] == $item['id'] ? 'checked' : '')?>
 																   name="company_type"
 																   aria-label="Checkbox for following text input"
 																   class="btn btn-primary">
@@ -215,7 +215,7 @@ $i = '';
 													<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
 														 style="width: 100px;"
 														 alt=""
-														 src="<?=base_url('uploads/user_'.$user_id.'/company/'.$company->logo)?>">
+														 src="<?=base_url('uploads/user_'.$user_id.'/company/'.$company['logo'])?>">
 													<div class="media-body">
 														<h5 class="mt-0">LOGO</h5>
 														<p>Upload your company LOGO</p>
@@ -253,13 +253,13 @@ $i = '';
 
 													<label class="col-sm-4 col-form-label"><?=lang('company_name')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->name?>" name="company_name" type="text" class="form-control" placeholder="Անվանում">
+														<input value="<?=$company['name']?>" name="company_name" type="text" class="form-control" placeholder="Անվանում">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('activity_address')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->activity_address?>" name="activity_address" type="text" class="form-control"
+														<input value="<?=$company['activity_address']?>" name="activity_address" type="text" class="form-control"
 															   placeholder="<?=lang('activity_address')?>">
 													</div>
 												</div>
@@ -267,34 +267,34 @@ $i = '';
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('legal_address')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->legal_address?>" name="legal_address" type="text" class="form-control"
+														<input value="<?=$company['legal_address']?>" name="legal_address" type="text" class="form-control"
 															   placeholder="<?=lang('legal_address')?>">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('tin')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->tin?>" name="tin" type="text" class="form-control" placeholder="<?=lang('tin')?>">
+														<input value="<?=$company['tin']?>" name="tin" type="text" class="form-control" placeholder="<?=lang('tin')?>">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('phone_number')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->phone_number?>" name="phone_number" type="text" class="form-control" placeholder="<?=lang('phone_number')?>">
+														<input value="<?=$company['phone_number']?>" name="phone_number" type="text" class="form-control" placeholder="<?=lang('phone_number')?>">
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('email')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->email?>" name="email" type="text" class="form-control" placeholder="<?=lang('email')?>">
+														<input value="<?=$company['email']?>" name="email" type="text" class="form-control" placeholder="<?=lang('email')?>">
 													</div>
 												</div>
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('web_address')?></label>
 													<div class="col-sm-8">
-														<input value="<?=$company->web_address?>" name="web_address" type="text" class="form-control" placeholder="<?=lang('web_address')?>">
+														<input value="<?=$company['web_address']?>" name="web_address" type="text" class="form-control" placeholder="<?=lang('web_address')?>">
 													</div>
 												</div>
 											</div>

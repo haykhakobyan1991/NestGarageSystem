@@ -564,7 +564,9 @@ $i = '';
 						<!-- Company End -->
 
 
-						<?$this->load->view('staff');?>
+						<?
+						$this->load->view('staff');
+						?>
 
 
 						<!-- Staff Start -->

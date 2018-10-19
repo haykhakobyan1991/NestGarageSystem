@@ -30,3 +30,4 @@ $lang['email'] = 'Эл. адрес';
 $lang['web_address'] = 'Интернет-адрес';
 $lang['general_information'] = 'Основная информация';
 $lang['status'] = 'Статус';
+$lang['account_type'] = 'Հաշվի Տեսակը';

@@ -118,6 +118,20 @@ class Main extends MX_Controller {
 		$query_company_type = $this->db->query($sql_company_type);
 		$data['company_type'] = $query_company_type->result_array();
 
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
 		$this->load->view('create_company', $data);
 	}
 

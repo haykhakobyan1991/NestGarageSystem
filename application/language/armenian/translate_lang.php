@@ -29,4 +29,5 @@ $lang['email'] = 'Էլ․ հասցե';
 $lang['web_address'] = 'Առցանց Հասցե';
 $lang['general_information'] = 'Հիմնական տվյալներ';
 $lang['status'] = 'Կարգավիճակ';
+$lang['account_type'] = 'Հաշվի Տեսակը';
 

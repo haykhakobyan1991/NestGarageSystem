@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
+	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 
@@ -22,6 +23,7 @@
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
+	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
 
@@ -215,7 +217,7 @@ $i = '';
 													<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
 														 style="width: 100px;"
 														 alt=""
-														 src="<?=base_url('uploads/user_'.$user_id.'/company/'.$company['logo'])?>">
+														 src="<?=($company['logo']  != '' ?  base_url('uploads/user_'.$user_id.'/company/'.$company['logo']) : base_url('assets/images'))?>/no_choose_image.svg">
 													<div class="media-body">
 														<h5 class="mt-0">LOGO</h5>
 														<p>Upload your company LOGO</p>
@@ -236,20 +238,52 @@ $i = '';
 
 										</div>
 
-
-
-
-
-
-
 										<div class="row">
-											<div class="col-md-12 col-md-6">
+											<div class="col-md-12 col-md-6 ddddd">
 
 												<p class="font-weight-bold display-5 mt-3"><?=lang('general_information')?></p>
 												<hr class="my-4">
 
 												<div class="form-group row">
+													<label class="col-sm-4 col-form-label">Owner Firstname</label>
+													<div class="col-sm-8">
+														<input value="" name="owner_firstname" type="text" class="form-control" placeholder="Owner Firstname">
+													</div>
+												</div>
 
+												<div class="form-group row">
+													<label class="col-sm-4 col-form-label">Owner Lastname</label>
+													<div class="col-sm-8">
+														<input value="" name="owner_lastname" type="text" class="form-control" placeholder="Owner Lastname">
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-sm-4 col-form-label">Owner Position</label>
+													<div class="col-sm-8">
+														<input value="" name="owner_position" type="text" class="form-control" placeholder="Owner Position">
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-sm-4 col-form-label">Owner Contact Number</label>
+													<div class="col-sm-8">
+														<input value="" name="owner_contact_number" type="text" class="form-control" placeholder="Owner Contact Number">
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label class="col-sm-4 col-form-label">Owner Email</label>
+													<div class="col-sm-8">
+														<input value="" name="owner_email" type="email" class="form-control" placeholder="Owner Email">
+													</div>
+												</div>
+
+
+
+
+
+												<div class="form-group row">
 
 													<label class="col-sm-4 col-form-label"><?=lang('company_name')?></label>
 													<div class="col-sm-8">
@@ -258,17 +292,68 @@ $i = '';
 												</div>
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('activity_address')?></label>
-													<div class="col-sm-8">
-														<input value="<?=$company['activity_address']?>" name="activity_address" type="text" class="form-control"
-															   placeholder="<?=lang('activity_address')?>">
+													<div class="col-sm-8" style="background: #ababab;padding-top: 10px;">
+														<div class="form-row">
+															<select  name="up_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
+																<option value="">Select Activity Country ...</option>
+																<? foreach ($country as $row) : ?>
+																	<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
+																<? endforeach; ?>
+															</select>
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Activity Region">
+															</div>
+														</div>
+
+														<div class="form-row mt-md-2 mt-2">
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Activity Sity">
+															</div>
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Zip Code">
+															</div>
+														</div>
+
+														<div class="form-group mt-md-2 mt-2">
+															<div class="col" style="padding-left: 0;padding-right: 0;">
+																<input type="text" class="form-control" placeholder="Activity Address">
+															</div>
+														</div>
+
+
+
 													</div>
 												</div>
 
 												<div class="form-group row">
 													<label class="col-sm-4 col-form-label"><?=lang('legal_address')?></label>
-													<div class="col-sm-8">
-														<input value="<?=$company['legal_address']?>" name="legal_address" type="text" class="form-control"
-															   placeholder="<?=lang('legal_address')?>">
+													<div class="col-sm-8" style="background: #ababab;padding-top: 10px;">
+														<div class="form-row">
+															<select  name="up_country" class="col selectpicker form-control form-control-sm" data-size="5"  id="country" data-live-search="true" title="Select a country">
+																<option value="">Select Legal Country ...</option>
+																<? foreach ($country as $row) : ?>
+																	<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
+																<? endforeach; ?>
+															</select>
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Legal Region">
+															</div>
+														</div>
+
+														<div class="form-row mt-md-2 mt-2">
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Legal Sity">
+															</div>
+															<div class="col">
+																<input type="text" class="form-control" placeholder="Zip Code">
+															</div>
+														</div>
+
+														<div class="form-group mt-md-2 mt-2">
+															<div class="col" style="padding-left: 0;padding-right: 0;">
+																<input type="text" class="form-control" placeholder="Legal Address">
+															</div>
+														</div>
 													</div>
 												</div>
 												<div class="form-group row">
@@ -298,94 +383,293 @@ $i = '';
 													</div>
 												</div>
 											</div>
+
+
+
+
+
+
+
 											<div class="col-sm-12 tab-content col-sm-6 col-12" id="nav-tabContent">
-												<div class="tab-pane fade show active" id="list-home" role="tabpanel"
-													 aria-labelledby="list-home-list">
 
-													<div class="jumbotron jumbotron-fluid pb-2 pt-2"
-														 style="margin-top: 30px;">
+											<div class="accordion" id="accordionExample">
+												<div class="card">
+													<div class="card-header" id="headingOne">
+														<h5 class="mb-0">
+															<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+																N/D
+															</button>
+														</h5>
+													</div>
 
-
-														<hr class="my-4 mt-4">
-														<div class="card bg-light mb-3">
-															<div class="card-header">Բանկային տվյալներ
-																<span style="border:none;"
-																		class="add_new_banck_account btn btn-outline-secondary float-right">
-																	<i class="fas fa-plus"></i></i></span>
-															</div>
-															<div class="card-body">
-																<form class="banck_account">
-																	<div class="form-group row mb-0">
-
-																		<label class="col-sm-4 col-form-label">Հաշվի
-																			տեսակը</label>
-																		<select id="currency" value=""
-																				class="currency form-control form-control-sm col-sm-8">
-																			<option value="">Հաշվի տեսակը․․․</option>
-																			<option value="1">Դրամական Հաշիվ</option>
-																			<option value="2">Դոլարային Հաշիվ</option>
-																		</select>
-
+													<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+														<div class="card-body">
+															<form class="banck_account">
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="<?=lang('account_type')?>">
 																	</div>
+																</div>
 
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Account
-																			Number</label>
-																		<div class="col-sm-8">
-																			<input value="" type="text"
-																				   class="account_number form-control form-control-sm"
-																				   placeholder="Account Number">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="Account Number">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Correspondent
-																			Bank</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   class="form-control form-control-sm correspondent_bank"
-																				   value=""
-																				   placeholder="Correspondent Bank">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value=""
+																			   placeholder="Correspondent Bank">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Swift
-																			Code</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   class="form-control form-control-sm swift_code"
-																				   value=""
-																				   placeholder="Swift Code">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm swift_code"
+																			   value=""
+																			   placeholder="Swift Code">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label">Account</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   class="form-control form-control-sm account"
-																				   value=""
-																				   placeholder="Account">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm account"
+																			   value=""
+																			   placeholder="Account">
 																	</div>
-																</form>
-															</div>
+																</div>
+															</form>
 														</div>
+													</div>
+												</div>
+												<div class="card">
+													<div class="card-header" id="headingTwo">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+																N/D
+															</button>
+														</h5>
+													</div>
+													<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+														<div class="card-body">
+															<form class="banck_account">
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="<?=lang('account_type')?>">
+																	</div>
+																</div>
 
-														<div class="accordion" id="accordionExample">
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="Account Number">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value=""
+																			   placeholder="Correspondent Bank">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm swift_code"
+																			   value=""
+																			   placeholder="Swift Code">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm account"
+																			   value=""
+																			   placeholder="Account">
+																	</div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+												<div class="card">
+													<div class="card-header" id="headingThree">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+																N/D
+															</button>
+														</h5>
+													</div>
+													<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+														<div class="card-body">
+															<form class="banck_account">
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="<?=lang('account_type')?>">
+																	</div>
+																</div>
+
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="Account Number">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value=""
+																			   placeholder="Correspondent Bank">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm swift_code"
+																			   value=""
+																			   placeholder="Swift Code">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm account"
+																			   value=""
+																			   placeholder="Account">
+																	</div>
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
+
+												<div class="card">
+													<div class="card-header" id="headingFour">
+														<h5 class="mb-0">
+															<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+																N/D
+															</button>
+														</h5>
+													</div>
+													<div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+														<div class="card-body">
+
+															<form class="banck_account">
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label"><?=lang('account_type')?></label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="<?=lang('account_type')?>">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input value="" type="text"
+																			   class="account_number form-control form-control-sm"
+																			   placeholder="Account Number">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value=""
+																			   placeholder="Correspondent Bank">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm swift_code"
+																			   value=""
+																			   placeholder="Swift Code">
+																	</div>
+																</div>
+
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   class="form-control form-control-sm account"
+																			   value=""
+																			   placeholder="Account">
+																	</div>
+																</div>
+															</form>
+
 
 														</div>
-
-
 													</div>
 												</div>
 											</div>
+											</div>
 
 										</div>
-										<div class="text-right pb-2">
+										<div class="text-right pb-2 mt-md-2 mt-2">
 											<span id="create_company" class="btn btn-secondary">Save</span>
 										</div>
 
@@ -1313,70 +1597,9 @@ color: #fff;">
 
 	var i = 1;
 
-	$('.add_new_banck_account').click(function () {
-
-		var cur_val = $('select#currency option:selected').val();
-		var currency = '';
-		if (cur_val != '') {
-			currency = $('select#currency option:selected').text();
-		}
-
-		var account_number = $('.account_number').val();
-		var correspondent_bank = $('.correspondent_bank').val();
-		var swift_code = $('.swift_code').val();
-		var account = $('.account').val();
 
 
-		$('#accordionExample').append('<div class="card">\n' +
-			'<div class="card-header" style="background: #dee2e6;" id="heading' + i + '">\n' +
-			'<h5 class="mb-0">\n' +
-			'<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse' + i + '" aria-expanded="true" aria-controls="collapse' + i + '">' +
-			'<input readonly style="box-shadow: none;border: none;outline: none; padding-left:5px;cursor: pointer;"  name="' + currency + '" value="' + currency + '" />' +
-			'</button>\n' +
-			'<button style="border:none;" class="remove_banck_account btn btn-outline-secondary float-right"><i class="fas fa-trash"></i></button>\n' +
-			'</h5>\n' +
-			'</div>\n' +
-			'<div id="collapse' + i + '" class="collapse show" aria-labelledby="heading' + i + '" data-parent="#accordionExample">\n' +
-			'<div class="card-body">\n' +
-			'<form class="banck_account">\n' +
-			'<div class="form-group row mb-0">\n' +
-			'<label class="col-sm-4 col-form-label">Account Number</label>\n' +
-			'<div class="col-sm-8">\n' +
-			'<input type="text" class="form-control form-control-sm" readonly style="box-shadow: none;border: none;outline: none;" name="account_number' + i + '" value="' + account_number + '">\n' +
-			'</div>\n' +
-			'</div>\n' +
-			'<div class="form-group row mb-0">\n' +
-			'<label class="col-sm-4 col-form-label">Correspondent Bank</label>\n' +
-			'<div class="col-sm-8">\n' +
-			'<input type="text" class="form-control form-control-sm" readonly style="box-shadow: none;border: none;outline: none;" name="Correspondent' + i + '" value="' + correspondent_bank + '">\n' +
-			'</div>\n' +
-			'</div>\n' +
-			'<div class="form-group row mb-0">\n' +
-			'<label class="col-sm-4 col-form-label">Swift\n' +
-			'Code</label>\n' +
-			'<div class="col-sm-8">\n' +
-			'<input type="text" class="form-control form-control-sm" readonly style="box-shadow: none;border: none;outline: none;" name="swift_code' + i + '" value="' + swift_code + '">\n' +
-			'</div>\n' +
-			'</div>\n' +
-			'<div class="form-group row mb-0">\n' +
-			'<label\n' +
-			'class="col-sm-4 col-form-label">Account</label>\n' +
-			'<div class="col-sm-8">\n' +
-			'<input type="text" class="form-control form-control-sm" readonly style="box-shadow: none;border: none;outline: none;" name="account' + i + '" value="' + account + '">\n' +
-			'</div>\n' +
-			'</div>\n' +
-			'</form>\n' +
-			'</div>\n' +
-			'</div>\n' +
-			'</div>');
 
-		i++;
-
-	});
-
-	$(document).on('click', '.remove_banck_account', function () {
-		$(this).parent('h5').parent('div').parent('div').remove();
-	});
 
 	$(document).ready(function () {
 

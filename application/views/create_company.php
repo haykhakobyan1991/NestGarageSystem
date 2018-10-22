@@ -355,68 +355,68 @@ $i = '';
 															 data-parent="#accordionExample">
 															<div class="card-body">
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_name_1'] ?>"
-																				name="account_name_1"
-																				type="text"
-																				class="account_number form-control form-control-sm"
-																				placeholder="<?= lang('account_type') ?>">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
+																	<div class="col-sm-8">
+																		<input
+																			value="<?= $company['account_name_1'] ?>"
+																			name="account_name_1"
+																			type="text"
+																			class="account_number form-control form-control-sm"
+																			placeholder="<?= lang('account_type') ?>">
 																	</div>
+																</div>
 
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Account
-																			Number</label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_number_1'] ?>"
-																				name="account_number_1"
-																				type="text"
-																				class="account_number form-control form-control-sm"
-																				placeholder="Account Number">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input
+																			value="<?= $company['account_number_1'] ?>"
+																			name="account_number_1"
+																			type="text"
+																			class="account_number form-control form-control-sm"
+																			placeholder="Account Number">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Correspondent
-																			Bank</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="correspondent_bank_1"
-																				   class="form-control form-control-sm correspondent_bank"
-																				   value="<?= $company['correspondent_bank_1'] ?>"
-																				   placeholder="Correspondent Bank">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   name="correspondent_bank_1"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value="<?= $company['correspondent_bank_1'] ?>"
+																			   placeholder="Correspondent Bank">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Swift
-																			Code</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="swift_code_1"
-																				   class="form-control form-control-sm swift_code"
-																				   value="<?= $company['swift_code_1'] ?>"
-																				   placeholder="Swift Code">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   name="swift_code_1"
+																			   class="form-control form-control-sm swift_code"
+																			   value="<?= $company['swift_code_1'] ?>"
+																			   placeholder="Swift Code">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label">Account</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   value="<?= $company['account_1'] ?>"
-																				   name="account_1"
-																				   class="form-control form-control-sm account"
-																				   placeholder="Account">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   value="<?= $company['account_1'] ?>"
+																			   name="account_1"
+																			   class="form-control form-control-sm account"
+																			   placeholder="Account">
 																	</div>
+																</div>
 
 															</div>
 														</div>
@@ -437,462 +437,463 @@ $i = '';
 															 data-parent="#accordionExample">
 															<div class="card-body">
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_name_2'] ?>"
-																				name="account_name_2"
-																				type="text"
-																				class="account_number form-control form-control-sm"
-																				placeholder="<?= lang('account_type') ?>">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
+																	<div class="col-sm-8">
+																		<input
+																			value="<?= $company['account_name_2'] ?>"
+																			name="account_name_2"
+																			type="text"
+																			class="account_number form-control form-control-sm"
+																			placeholder="<?= lang('account_type') ?>">
 																	</div>
+																</div>
 
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Account
-																			Number</label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_number_2'] ?>"
-																				name="account_number_2"
-																				type="text"
-																				class="account_number form-control form-control-sm"
-																				placeholder="Account Number">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Account
+																		Number</label>
+																	<div class="col-sm-8">
+																		<input
+																			value="<?= $company['account_number_2'] ?>"
+																			name="account_number_2"
+																			type="text"
+																			class="account_number form-control form-control-sm"
+																			placeholder="Account Number">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Correspondent
-																			Bank</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="correspondent_bank_2"
-																				   class="form-control form-control-sm correspondent_bank"
-																				   value="<?= $company['correspondent_bank_2'] ?>"
-																				   placeholder="Correspondent Bank">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Correspondent
+																		Bank</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   name="correspondent_bank_2"
+																			   class="form-control form-control-sm correspondent_bank"
+																			   value="<?= $company['correspondent_bank_2'] ?>"
+																			   placeholder="Correspondent Bank">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Swift
-																			Code</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="swift_code_2"
-																				   class="form-control form-control-sm swift_code"
-																				   value="<?= $company['swift_code_2'] ?>"
-																				   placeholder="Swift Code">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label class="col-sm-4 col-form-label">Swift
+																		Code</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   name="swift_code_2"
+																			   class="form-control form-control-sm swift_code"
+																			   value="<?= $company['swift_code_2'] ?>"
+																			   placeholder="Swift Code">
 																	</div>
+																</div>
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label">Account</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="account_2"
-																				   class="form-control form-control-sm account"
-																				   value="<?= $company['account_2'] ?>"
-																				   placeholder="Account">
-																		</div>
+																<div class="form-group row mb-0">
+																	<label
+																		class="col-sm-4 col-form-label">Account</label>
+																	<div class="col-sm-8">
+																		<input type="text"
+																			   name="account_2"
+																			   class="form-control form-control-sm account"
+																			   value="<?= $company['account_2'] ?>"
+																			   placeholder="Account">
 																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-													<div class="card">
-														<div class="card-header" id="headingThree">
-															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
-																		data-toggle="collapse"
-																		data-target="#collapseThree"
-																		aria-expanded="false"
-																		aria-controls="collapseThree">
-																	<?= ($company['account_name_3'] != '' ? $company['account_name_3'] : 'N/D') ?>
-																</button>
-															</h5>
-														</div>
-														<div id="collapseThree" class="collapse"
-															 aria-labelledby="headingThree"
-															 data-parent="#accordionExample">
-															<div class="card-body">
-																<form class="banck_account">
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_name_3'] ?>"
-																				type="text"
-																				name="account_name_3"
-																				class="account_number form-control form-control-sm"
-																				placeholder="<?= lang('account_type') ?>">
-																		</div>
-																	</div>
+																</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-header" id="headingThree">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button"
+									data-toggle="collapse"
+									data-target="#collapseThree"
+									aria-expanded="false"
+									aria-controls="collapseThree">
+								<?= ($company['account_name_3'] != '' ? $company['account_name_3'] : 'N/D') ?>
+							</button>
+						</h5>
+					</div>
+					<div id="collapseThree" class="collapse"
+						 aria-labelledby="headingThree"
+						 data-parent="#accordionExample">
+						<div class="card-body">
+							<form class="banck_account">
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
+									<div class="col-sm-8">
+										<input
+											value="<?= $company['account_name_3'] ?>"
+											type="text"
+											name="account_name_3"
+											class="account_number form-control form-control-sm"
+											placeholder="<?= lang('account_type') ?>">
+									</div>
+								</div>
 
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Account
-																			Number</label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_number_3'] ?>"
-																				type="text"
-																				name="account_number_3"
-																				class="account_number form-control form-control-sm"
-																				placeholder="Account Number">
-																		</div>
-																	</div>
+								<div class="form-group row mb-0">
+									<label class="col-sm-4 col-form-label">Account
+										Number</label>
+									<div class="col-sm-8">
+										<input
+											value="<?= $company['account_number_3'] ?>"
+											type="text"
+											name="account_number_3"
+											class="account_number form-control form-control-sm"
+											placeholder="Account Number">
+									</div>
+								</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Correspondent
-																			Bank</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="correspondent_bank_3"
-																				   class="form-control form-control-sm correspondent_bank"
-																				   value="<?= $company['correspondent_bank_3'] ?>"
-																				   placeholder="Correspondent Bank">
-																		</div>
-																	</div>
+								<div class="form-group row mb-0">
+									<label class="col-sm-4 col-form-label">Correspondent
+										Bank</label>
+									<div class="col-sm-8">
+										<input type="text"
+											   name="correspondent_bank_3"
+											   class="form-control form-control-sm correspondent_bank"
+											   value="<?= $company['correspondent_bank_3'] ?>"
+											   placeholder="Correspondent Bank">
+									</div>
+								</div>
 
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Swift
-																			Code</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="swift_code_3"
-																				   class="form-control form-control-sm swift_code"
-																				   value="<?= $company['swift_code_3'] ?>"
-																				   placeholder="Swift Code">
-																		</div>
-																	</div>
+								<div class="form-group row mb-0">
+									<label class="col-sm-4 col-form-label">Swift
+										Code</label>
+									<div class="col-sm-8">
+										<input type="text"
+											   name="swift_code_3"
+											   class="form-control form-control-sm swift_code"
+											   value="<?= $company['swift_code_3'] ?>"
+											   placeholder="Swift Code">
+									</div>
+								</div>
 
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label">Account</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="account_3"
-																				   class="form-control form-control-sm account"
-																				   value="<?= $company['account_3'] ?>"
-																				   placeholder="Account">
-																		</div>
-																	</div>
-																</form>
-															</div>
-														</div>
-													</div>
-
-													<div class="card">
-														<div class="card-header" id="headingFour">
-															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
-																		data-toggle="collapse"
-																		data-target="#collapseFour"
-																		aria-expanded="false"
-																		aria-controls="collapseFour">
-																	<?= ($company['account_name_4'] != '' ? $company['account_name_4'] : 'N/D') ?>
-																</button>
-															</h5>
-														</div>
-														<div id="collapseFour" class="collapse"
-															 aria-labelledby="headingThree"
-															 data-parent="#accordionExample">
-															<div class="card-body">
-
-
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_name_4'] ?>"
-																				type="text"
-																				name="account_name_4"
-																				class="account_number form-control form-control-sm"
-																				placeholder="<?= lang('account_type') ?>">
-																		</div>
-																	</div>
-
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Account
-																			Number</label>
-																		<div class="col-sm-8">
-																			<input
-																				value="<?= $company['account_number_4'] ?>"
-																				type="text"
-																				name="account_number_4"
-																				class="account_number form-control form-control-sm"
-																				placeholder="Account Number">
-																		</div>
-																	</div>
-
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Correspondent
-																			Bank</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="correspondent_bank_4"
-																				   class="form-control form-control-sm correspondent_bank"
-																				   value="<?= $company['correspondent_bank_4'] ?>"
-																				   placeholder="Correspondent Bank">
-																		</div>
-																	</div>
-
-																	<div class="form-group row mb-0">
-																		<label class="col-sm-4 col-form-label">Swift
-																			Code</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="swift_code_4"
-																				   class="form-control form-control-sm swift_code"
-																				   value="<?= $company['swift_code_4'] ?>"
-																				   placeholder="Swift Code">
-																		</div>
-																	</div>
-
-																	<div class="form-group row mb-0">
-																		<label
-																			class="col-sm-4 col-form-label">Account</label>
-																		<div class="col-sm-8">
-																			<input type="text"
-																				   name="account_4"
-																				   class="form-control form-control-sm account"
-																				   value="<?= $company['account_4'] ?>"
-																				   placeholder="Account">
-																		</div>
-																	</div>
-																</form>
-
-
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="text-right pb-2 mt-md-2 mt-2">
-											<span id="create_company" class="btn btn-secondary">Save</span>
-										</div>
-
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-4 col-form-label">Account</label>
+									<div class="col-sm-8">
+										<input type="text"
+											   name="account_3"
+											   class="form-control form-control-sm account"
+											   value="<?= $company['account_3'] ?>"
+											   placeholder="Account">
 									</div>
 								</div>
 							</form>
 						</div>
-						<!-- Company End -->
+					</div>
+				</div>
 
-						<!-- Department Start -->
-						<div class="tab-pane fade" id="list-department" role="tabpanel"
-							 aria-labelledby="list-department-list">
-
-							<div class="tab-pane fade show active" id="list-department" role="tabpanel"
-								 aria-labelledby="list-department-list">
-
-
-
-								<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-									<div class="container">
-										<p class="display-5 font-weight-bold mb-0">Section: Departments</p>
-									</div>
-								</div>
-
-								<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-									<div class="container">
-										<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
-										<span
-											class="ml-2 mt-1 badge badge-secondary badge-pill">4</span>
-										<button class="btn btn-secondary btn-sm float-right" data-toggle="modal"
-												data-target=".bd-example-modal-lg">Ստեղծել Ստորաբաժանում
-										</button>
-										<hr class="my-4">
-										<div class="row col-sm-12 col-md-12"
-											 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
+				<div class="card">
+					<div class="card-header" id="headingFour">
+						<h5 class="mb-0">
+							<button class="btn btn-link collapsed" type="button"
+									data-toggle="collapse"
+									data-target="#collapseFour"
+									aria-expanded="false"
+									aria-controls="collapseFour">
+								<?= ($company['account_name_4'] != '' ? $company['account_name_4'] : 'N/D') ?>
+							</button>
+						</h5>
+					</div>
+					<div id="collapseFour" class="collapse"
+						 aria-labelledby="headingThree"
+						 data-parent="#accordionExample">
+						<div class="card-body">
 
 
-											<table id="example" class="table table-striped table-bordered"
-												   style="width:100%">
-												<thead style="background: #545b62;
-color: #fff;">
-												<tr>
-													<th style="font-size: 12px !important;">Ստորաբաժանում</th>
-													<th style="font-size: 12px !important;">Մանրամասն</th>
-													<th style="font-size: 12px !important;">Անուն</th>
-													<th style="font-size: 12px !important;">Ազգանուն</th>
-													<th style="font-size: 12px !important;">Հեռ․</th>
-													<th style="font-size: 12px !important;">Էլ․ հասցե</th>
-													<th style="font-size: 12px !important;">Ստեղծվել է</th>
-													<th style="font-size: 12px !important;">Ում կողմից</th>
-												</tr>
-												</thead>
-												<tbody>
-												<tr>
-													<td>Tiger Nixon</td>
-													<td>System Architect</td>
-													<td>Edinburgh</td>
-													<td>61</td>
-													<td>2011/04/25</td>
-													<td>$320,800</td>
-													<td>$320,800</td>
-													<td>$320,800</td>
-												</tr>
-												<tr>
-													<td>Garrett Winters</td>
-													<td>Accountant</td>
-													<td>Tokyo</td>
-													<td>63</td>
-													<td>2011/07/25</td>
-													<td>$170,750</td>
-													<td>$170,750</td>
-													<td>$170,750</td>
-												</tr>
-												<tr>
-													<td>Ashton Cox</td>
-													<td>Junior Technical Author</td>
-													<td>San Francisco</td>
-													<td>66</td>
-													<td>2009/01/12</td>
-													<td>$86,000</td>
-													<td>$86,000</td>
-													<td>$86,000</td>
-												</tr>
-												<tr>
-													<td>Cedric Kelly</td>
-													<td>Senior Javascript Developer</td>
-													<td>Edinburgh</td>
-													<td>22</td>
-													<td>2012/03/29</td>
-													<td>$433,060</td>
-													<td>$433,060</td>
-													<td>$433,060</td>
-												</tr>
-
-											</table>
-
-
-										</div>
-
-										<!--  Department Modal Start -->
-										<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-											 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-											<div class="modal-dialog modal-lg">
-												<div class="modal-content">
-													<div class="modal-header bg-dark">
-														<h5 class="text-white modal-title dar">New Department</h5>
-														<button type="button" class="text-white close"
-																data-dismiss="modal"
-																aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-													</div>
-													<div class="modal-body">
-														<!-- Error Message -->
-
-														<div class="for_message">
-															<div class="alert alert-success" role="alert">
-																A simple success alert—check it out!
-															</div>
-															<div class="alert alert-danger" role="alert">
-																A simple success alert—check it out!
-															</div>
-														</div>
-
-														<p>Fill in the following fields</p>
-
-														<form class="new_department">
-
-															<div class="form-group row">
-
-																<label class="col-sm-4 col-form-label">Անվանում</label>
-																<div class="col-sm-8">
-																	<select value=""
-																			class="currency form-control">
-																		<option>Անվանում 1</option>
-																		<option>Անվանում 2</option>
-																	</select>
-																</div>
-															</div>
-
-
-															<div class="form-group row">
-																<label class="col-sm-4 col-form-label">Մանրամասն</label>
-																<div class="col-sm-8">
-																	<input value="" type="text"
-																		   class=" form-control"
-																		   placeholder="Մանրամասն">
-																</div>
-															</div>
-
-															<div class="form-group row">
-																<label class="col-sm-4 col-form-label">Ղեկավար
-																	Bank</label>
-																<div class="col-sm-8">
-																	<input type="text"
-																		   class=" form-control"
-																		   value=""
-																		   placeholder="Ղեկավար">
-																</div>
-															</div>
-														</form>
-
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-secondary"
-																data-dismiss="modal">
-															Close
-														</button>
-														<button type="button" class="btn btn-secondary">Save</button>
-													</div>
-												</div>
-
-											</div>
-										</div>
-
-
-										<div class="text-right mt-4 pb-2">
-											<button class="btn btn-secondary">Save</button>
-											<button class="btn btn-secondary ml-2">Cancel</button>
-										</div>
-
-
-									</div>
+							<div class="form-group row mb-0">
+								<label
+									class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
+								<div class="col-sm-8">
+									<input
+										value="<?= $company['account_name_4'] ?>"
+										type="text"
+										name="account_name_4"
+										class="account_number form-control form-control-sm"
+										placeholder="<?= lang('account_type') ?>">
 								</div>
 							</div>
 
+							<div class="form-group row mb-0">
+								<label class="col-sm-4 col-form-label">Account
+									Number</label>
+								<div class="col-sm-8">
+									<input
+										value="<?= $company['account_number_4'] ?>"
+										type="text"
+										name="account_number_4"
+										class="account_number form-control form-control-sm"
+										placeholder="Account Number">
+								</div>
+							</div>
+
+							<div class="form-group row mb-0">
+								<label class="col-sm-4 col-form-label">Correspondent
+									Bank</label>
+								<div class="col-sm-8">
+									<input type="text"
+										   name="correspondent_bank_4"
+										   class="form-control form-control-sm correspondent_bank"
+										   value="<?= $company['correspondent_bank_4'] ?>"
+										   placeholder="Correspondent Bank">
+								</div>
+							</div>
+
+							<div class="form-group row mb-0">
+								<label class="col-sm-4 col-form-label">Swift
+									Code</label>
+								<div class="col-sm-8">
+									<input type="text"
+										   name="swift_code_4"
+										   class="form-control form-control-sm swift_code"
+										   value="<?= $company['swift_code_4'] ?>"
+										   placeholder="Swift Code">
+								</div>
+							</div>
+
+							<div class="form-group row mb-0">
+								<label
+									class="col-sm-4 col-form-label">Account</label>
+								<div class="col-sm-8">
+									<input type="text"
+										   name="account_4"
+										   class="form-control form-control-sm account"
+										   value="<?= $company['account_4'] ?>"
+										   placeholder="Account">
+								</div>
+							</div>
+							</form>
+
+
 						</div>
-						<!-- Department End -->
-
-
-						<?
-						$this->load->view('staff');
-						?>
-
-						<?
-						$this->load->view('vehicles');
-						?>
-
-
 					</div>
 				</div>
 			</div>
 		</div>
 
-
-		<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="structure">
-			Structure
-		</div>
-		<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu1">Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Minus, veniam?
-		</div>
-		<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu2">Lorem ipsum dolor sit amet, consectetur
-			adipisicing elit. Dolor neque nostrum rerum? Dolores enim expedita non quaerat totam! Dignissimos, in?
-		</div>
-		<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu3">Lorem ipsum dolor sit amet.</div>
 	</div>
+	<div class="text-right pb-2 mt-md-2 mt-2">
+		<span id="create_company" class="btn btn-secondary">Save</span>
+	</div>
+
+</div>
+</div>
+</form>
+</div>
+<!-- Company End -->
+
+<!-- Department Start -->
+<div class="tab-pane fade" id="list-department" role="tabpanel"
+	 aria-labelledby="list-department-list">
+
+	<div class="tab-pane fade show active" id="list-department" role="tabpanel"
+		 aria-labelledby="list-department-list">
+
+
+		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+			<div class="container">
+				<p class="display-5 font-weight-bold mb-0">Section: Departments</p>
+			</div>
+		</div>
+
+		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+			<div class="container">
+				<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
+				<span
+					class="ml-2 mt-1 badge badge-secondary badge-pill">4</span>
+				<button class="btn btn-secondary btn-sm float-right" data-toggle="modal"
+						data-target=".bd-example-modal-lg">Ստեղծել Ստորաբաժանում
+				</button>
+				<hr class="my-4">
+				<div class="row col-sm-12 col-md-12"
+					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
+
+
+					<table id="example" class="table table-striped table-bordered"
+						   style="width:100%">
+						<thead style="background: #545b62;
+color: #fff;">
+						<tr>
+							<th style="font-size: 12px !important;">Ստորաբաժանում</th>
+							<th style="font-size: 12px !important;">Մանրամասն</th>
+							<th style="font-size: 12px !important;">Անուն</th>
+							<th style="font-size: 12px !important;">Ազգանուն</th>
+							<th style="font-size: 12px !important;">Հեռ․</th>
+							<th style="font-size: 12px !important;">Էլ․ հասցե</th>
+							<th style="font-size: 12px !important;">Ստեղծվել է</th>
+							<th style="font-size: 12px !important;">Ում կողմից</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>Tiger Nixon</td>
+							<td>System Architect</td>
+							<td>Edinburgh</td>
+							<td>61</td>
+							<td>2011/04/25</td>
+							<td>$320,800</td>
+							<td>$320,800</td>
+							<td>$320,800</td>
+						</tr>
+						<tr>
+							<td>Garrett Winters</td>
+							<td>Accountant</td>
+							<td>Tokyo</td>
+							<td>63</td>
+							<td>2011/07/25</td>
+							<td>$170,750</td>
+							<td>$170,750</td>
+							<td>$170,750</td>
+						</tr>
+						<tr>
+							<td>Ashton Cox</td>
+							<td>Junior Technical Author</td>
+							<td>San Francisco</td>
+							<td>66</td>
+							<td>2009/01/12</td>
+							<td>$86,000</td>
+							<td>$86,000</td>
+							<td>$86,000</td>
+						</tr>
+						<tr>
+							<td>Cedric Kelly</td>
+							<td>Senior Javascript Developer</td>
+							<td>Edinburgh</td>
+							<td>22</td>
+							<td>2012/03/29</td>
+							<td>$433,060</td>
+							<td>$433,060</td>
+							<td>$433,060</td>
+						</tr>
+
+					</table>
+
+
+				</div>
+
+				<!--  Department Modal Start -->
+				<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header bg-dark">
+								<h5 class="text-white modal-title dar">New Department</h5>
+								<button type="button" class="text-white close"
+										data-dismiss="modal"
+										aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<!-- Error Message -->
+
+								<div class="for_message">
+									<div class="alert alert-success" role="alert">
+										A simple success alert—check it out!
+									</div>
+									<div class="alert alert-danger" role="alert">
+										A simple success alert—check it out!
+									</div>
+								</div>
+
+								<p>Fill in the following fields</p>
+
+								<form class="new_department">
+
+									<div class="form-group row">
+
+										<label class="col-sm-4 col-form-label">Անվանում</label>
+										<div class="col-sm-8">
+											<select value=""
+													class="currency form-control">
+												<option>Անվանում 1</option>
+												<option>Անվանում 2</option>
+											</select>
+										</div>
+									</div>
+
+
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label">Ղեկավար</label>
+										<div class="col-sm-8">
+											<select value=""
+													class="currency form-control">
+												<option>Ղեկավար 1</option>
+												<option>Ղեկավար 2</option>
+											</select>
+										</div>
+									</div>
+
+									<div class="form-group row">
+										<label class="col-sm-4 col-form-label">Մանրամասն</label>
+										<div class="col-sm-8">
+																	<textarea rows="4" value="" type="text"
+																			  class=" form-control"
+																			  placeholder="Մանրամասն"></textarea>
+										</div>
+									</div>
+
+
+								</form>
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">
+									Close
+								</button>
+								<button type="button" class="btn btn-secondary">Save</button>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<div class="text-right mt-4 pb-2">
+					<button class="btn btn-secondary">Save</button>
+					<button class="btn btn-secondary ml-2">Cancel</button>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- Department End -->
+
+
+<?
+$this->load->view('staff');
+?>
+
+<?
+$this->load->view('vehicles');
+?>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="structure">
+	Structure
+</div>
+<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu1">Lorem ipsum dolor sit amet, consectetur
+	adipisicing elit. Minus, veniam?
+</div>
+<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu2">Lorem ipsum dolor sit amet, consectetur
+	adipisicing elit. Dolor neque nostrum rerum? Dolores enim expedita non quaerat totam! Dignissimos, in?
+</div>
+<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu3">Lorem ipsum dolor sit amet.</div>
+</div>
 </div>
 
 

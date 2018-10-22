@@ -307,7 +307,7 @@
 
 <script type="text/javascript">
 
-
+	<!-- Colors -->
 	$('.color_check_btn').on('click', function () {
 		var sel_color = $(this).data('value');
 
@@ -377,6 +377,28 @@
 		$('#list-company-list').trigger('click');
 	}
 
+
+	$('.add_new_item').click(function(){
+		$('.new_items_tbody').append('<tr>\n' +
+			'<td>\n' +
+			'<input class="form-control form-control-sm" type="text" placeholder="Item" value="">\n' +
+			'</td>\n' +
+			'<td>\n' +
+			'<input class="form-control form-control-sm" type="text" placeholder="Minimum (time)" value=""/>\n' +
+			'</td>\n' +
+			'<td>\n' +
+			'<input class="form-control form-control-sm" type="text" placeholder="Remind Me  days before" value=""/>\n' +
+			'</td>\n' +
+			'<td>\n' +
+			'<input class="form-control form-control-sm" type="date" value="" />\n' +
+			'</td>\n' +
+			'</tr>');
+	});
+
+
+	$('.dif_meter').on('change', function(){
+		$('.dif_meter_text').text($(this).val());
+	})
 
 </script>
 

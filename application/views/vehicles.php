@@ -244,23 +244,33 @@ color: #fff;">
 										<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
 
 											<div class="btn-group mr-2" role="group" aria-label="First group">
-												<button type="button" class="btn color_check_btn" data-value="#ffffff" style="background: #ffffff;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#c0c0c0" style="background: #c0c0c0;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#000000" style="background: #000000;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#696969" style="background: #696969;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#0000ff" style="background: #0000ff;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#ff0000" style="background: #ff0000;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#d2b48c" style="background: #d2b48c;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#008000" style="background: #008000;"></button>
-												<button type="button" class="btn color_check_btn" data-value="#ffd0d0" style="background: #ffd0d0;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#ffffff"
+														style="background: #ffffff;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#c0c0c0"
+														style="background: #c0c0c0;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#000000"
+														style="background: #000000;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#696969"
+														style="background: #696969;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#0000ff"
+														style="background: #0000ff;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#ff0000"
+														style="background: #ff0000;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#d2b48c"
+														style="background: #d2b48c;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#008000"
+														style="background: #008000;"></button>
+												<button type="button" class="btn color_check_btn" data-value="#ffd0d0"
+														style="background: #ffd0d0;"></button>
 											</div>
 										</div>
-										<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...</p>
-										<input type="color" class="btn color_check_btn more_color" value="" />
+										<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...
+										</p>
+										<input type="color" class="btn color_check_btn more_color" value=""/>
 									</div>
 									<div class="col-sm-4">
 										<p style="margin-bottom: 0;">Selected Color</p>
-										<input type="hidden" value="#ffffff" class="selected_color_value" />
+										<input type="hidden" value="#ffffff" class="selected_color_value"/>
 										<div class="selected-color" style="background: #ffffff;"></div>
 									</div>
 								</div>
@@ -270,7 +280,8 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Հաշվառման համարանիշ</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control" placeholder="Հաշվառման համարանիշ">
+										<input value="" name="" type="text" class="form-control"
+											   placeholder="Հաշվառման համարանիշ">
 									</div>
 								</div>
 
@@ -286,7 +297,8 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control mt-2" placeholder="Շարժիչի հզորություն">
+										<input value="" name="" type="text" class="form-control mt-2"
+											   placeholder="Շարժիչի հզորություն">
 									</div>
 								</div>
 
@@ -317,7 +329,8 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control mt-2" placeholder="Հոդոգռաֆ">
+										<input value="" name="" type="text" class="form-control mt-2"
+											   placeholder="Հոդոգռաֆ">
 									</div>
 								</div>
 
@@ -339,7 +352,8 @@ color: #fff;">
 								</div>
 
 								<div class="form-group row">
-									<label class="col-sm-10 col-form-label">Send a notification mail to the drivers</label>
+									<label class="col-sm-10 col-form-label">Send a notification mail to the
+										drivers</label>
 									<div class="col-sm-2">
 										<input checked="" type="checkbox" class="form-control">
 									</div>
@@ -359,21 +373,26 @@ color: #fff;">
 									<div class="card">
 										<div class="card-header" id="heading_info1">
 											<h5 class="mb-0">
-												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_info1" aria-expanded="true" aria-controls="collapse_info1">
+												<button class="btn btn-link" type="button" data-toggle="collapse"
+														data-target="#collapse_info1" aria-expanded="true"
+														aria-controls="collapse_info1">
 													Հաշվառման Համարանիշ
 												</button>
 											</h5>
 										</div>
 
-										<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1" data-parent="#accordionExample_info">
+										<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
+											 data-parent="#accordionExample_info">
 											<div class="card-body">
-												<div class="form-group row">
+												<div class="form-group row mb-0">
 													<label
-														class="col-sm-2 col-form-label">Սեփականատեր</label>
-													<div class="col-sm-7">
-														<input value="" name="" type="text" class="form-control" placeholder="Սեփականատեր">
+														class="col-sm-2 col-form-label" style="font-size: 12px;">Սեփականատեր</label>
+													<div class="col-sm-6">
+														<input style="" value="" name="" type="text"
+															   class="form-control form-control-sm"
+															   placeholder="Սեփականատեր">
 													</div>
-													<div class="col-sm-3">
+													<div class="col-sm-4">
 														<div class="form-group">
 															<label for="exampleFormControlFile1"></label>
 															<input type="file"
@@ -383,19 +402,24 @@ color: #fff;">
 													</div>
 												</div>
 
-												<div class="form-group row">
+												<div class="form-group row mb-0">
 													<label
-														class="col-sm-2 col-form-label">Հաշվառման հասցե</label>
-													<div class="col-sm-7">
-														<input value="" name="" type="text" class="form-control mt-2" placeholder="Հաշվառման հասցե">
+														class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+														հասցե</label>
+													<div class="col-sm-6">
+														<input value="" name="" type="text"
+															   class="form-control form-control-sm mt-2"
+															   placeholder="Հաշվառման հասցե">
 													</div>
 												</div>
 
-												<div class="form-group row">
-													<label
-														class="col-sm-2 col-form-label">Հաշվառման համար</label>
-													<div class="col-sm-7">
-														<input value="" name="" type="text" class="form-control mt-2" placeholder="Հաշվառման համար">
+												<div class="form-group row mb-0">
+													<label style="font-size: 12px;"
+														   class="col-sm-2 col-form-label">Հաշվառման համար</label>
+													<div class="col-sm-6">
+														<input value="" name="" type="text"
+															   class="form-control form-control-sm mt-2"
+															   placeholder="Հաշվառման համար">
 													</div>
 												</div>
 											</div>
@@ -404,19 +428,160 @@ color: #fff;">
 									<div class="card">
 										<div class="card-header" id="heading_info2">
 											<h5 class="mb-0">
-												<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_info2" aria-expanded="false" aria-controls="collapse_info2">
-													Collapsible Group Item #2
+												<button class="btn btn-link collapsed" type="button"
+														data-toggle="collapse" data-target="#collapse_info2"
+														aria-expanded="false" aria-controls="collapse_info2">
+													Ապահովագրություն
 												</button>
 											</h5>
 										</div>
-										<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2" data-parent="#accordionExample_info">
+										<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2"
+											 data-parent="#accordionExample_info">
 											<div class="card-body">
-												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+												<div class="form-group row mb-0">
+													<label
+														class="col-sm-2 col-form-label" style="font-size: 12px;">Կազմակերպություն</label>
+													<div class="col-sm-6">
+														<input style="" value="" name="" type="text"
+															   class="form-control form-control-sm"
+															   placeholder="Կազմակերպություն">
+													</div>
+													<div class="col-sm-4">
+														<div class="form-group">
+															<label for="exampleFormControlFile1"></label>
+															<input type="file"
+																   class="form-control-file"
+																   id="exampleFormControlFile1">
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group row mb-0">
+													<label
+														class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+														համար</label>
+													<div class="col-sm-6">
+														<input value="" name="" type="text"
+															   class="form-control form-control-sm mt-2"
+															   placeholder="Հաշվառման համար">
+													</div>
+												</div>
+
+												<div class="form-group row mb-0">
+													<label style="font-size: 12px;"
+														   class="col-sm-2 col-form-label">Տեսակ</label>
+													<div class="col-sm-6">
+														<select value=""
+																class=" form-control form-control-sm">
+															<option> Ընտրել տեսակը․․․</option>
+															<option>տեսակը 1</option>
+															<option>տեսակը 2</option>
+														</select>
+
+													</div>
+												</div>
+
+												<div class="form-group row mb-0">
+													<label
+														class="col-sm-2 col-form-label"
+														style="font-size: 12px;">Վավեր</label>
+													<div class="col-sm-6">
+														<input value="" name="" type="date"
+															   class="form-control form-control-sm mt-2" placeholder="">
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
 
 								</div>
+
+								<h5 class="mt-2 mb-1">Այլ տվյալներ</h5>
+
+
+								<table class="table table-striped table-hover">
+									<thead>
+									<tr>
+										<th scope="col">Item Name</th>
+										<th scope="col">Minimum (time)</th>
+										<th scope="col">Remind Me days before</th>
+										<th scope="col">Next Alarm Date</th>
+									</tr>
+									</thead>
+									<tbody class="new_items_tbody">
+
+									<tr>
+										<td>
+											<input class="form-control form-control-sm" type="text" placeholder="Item"
+												   value="">
+										</td>
+										<td>
+											<input class="form-control form-control-sm" type="text"
+												   placeholder="Minimum (time)" value=""/>
+										</td>
+										<td>
+											<input class="form-control form-control-sm" type="text"
+												   placeholder="Remind Me  days before" value=""/>
+										</td>
+										<td>
+											<input class="form-control form-control-sm" type="date" value=""/>
+										</td>
+									</tr>
+
+
+									</tbody>
+
+
+								</table>
+								<button type="button" class="btn btn-secondary btn-sm add_new_item"><i
+										class="fa fa-plus"></i></button>
+								<hr class="my-4">
+
+								<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
+
+								<div class="form-group row mb-0 mt-4" >
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Type of meter</label>
+									<div class="col-sm-6">
+										<select value=""
+												class=" form-control form-control-sm dif_meter">
+											<option>km</option>
+											<option>mile</option>
+										</select>
+									</div>
+								</div>
+								<div class="container mt-md-3 mt-3">
+									<div class="row">
+
+										<div class="form-group form-check mt-md-3 mt-3 col-sm-4">
+											<input type="checkbox" class="form-check-input" id="exampleCheck1">
+											<label class="form-check-label" for="exampleCheck1">auto increment?</label>
+										</div>
+										<div class="col-sm-3 mt-3">
+											<input type="text" class="orm-control form-control-sm" placeholder=""/>
+										</div>
+										<div class="col-sm-3 mt-3"><p><span class="dif_meter_text">km</span>/day</p></div>
+									</div>
+								</div>
+
+								<div class="card">
+									<h5 class="card-header">Secondary meter</h5>
+									<div class="card-body">
+										<div class="form-group row mb-0">
+											<label
+												class="col-sm-2 col-form-label"
+												style="font-size: 12px;">Type of meter</label>
+											<div class="col-sm-6">
+												<select value="" class=" form-control form-control-sm">
+													<option>km</option>
+													<option>mile</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+
 							</form>
 
 						</div>

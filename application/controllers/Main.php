@@ -553,7 +553,7 @@ class Main extends MX_Controller {
 
 
 
-		$status = '1';
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
 
 
 		$add_sql_image = '';

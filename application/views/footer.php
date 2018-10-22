@@ -218,7 +218,14 @@
 				if (data.success == '1') {
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
-					$(location).attr('href', url);
+
+
+
+
+
+					$(location).attr('href', url + '#staff');
+
+					$(location).reload();
 
 				} else {
 

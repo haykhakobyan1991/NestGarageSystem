@@ -228,7 +228,9 @@
 														a
 														Passive?</label>
 													<div class="col-sm-2">
-														<input checked type="checkbox"
+														<input name="status"
+															   value="-1"
+																type="checkbox"
 															   class="form-control">
 													</div>
 												</div>
@@ -522,8 +524,13 @@ color: #fff;">
 										</div>
 									</td>
 									<td class="text-center" style="vertical-align: middle;">
-										<div class="bg-success"
-											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<? if ($row['status'] == 1) { ?>
+											<div class="bg-success"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<? } else { ?>
+											<div class="bg-danger"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<? } ?>
 									</td>
 									<td><?=$row['position']?></td>
 									<td><?=$row['department_id']?></td>
@@ -532,34 +539,6 @@ color: #fff;">
 									<td><?=$row['user_name']?></td>
 								</tr>
 							<? endforeach; ?>
-
-							<tr>
-								<td>
-									<div class="media">
-										<img
-											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
-											class="mr-3"
-											src="<?= base_url() ?>assets/img/user_img.jpg"
-											alt="Generic placeholder image">
-										<div class="media-body">
-											Kaylee Rodgers
-											<small class="phone_number form-text text-muted">+375
-												556690
-											</small>
-										</div>
-									</div>
-								</td>
-								<td class="text-center" style="vertical-align: middle;">
-									<div class="bg-danger"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-								</td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-
-							</tr>
 						</table>
 					</div>
 				</div>

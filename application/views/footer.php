@@ -297,6 +297,8 @@
 		console.log(count);
 	})
 
+
+	// sidebar
 	var c_url = '<?=current_url()?>';
 
 	var url = window.location.href;

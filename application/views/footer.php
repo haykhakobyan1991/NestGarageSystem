@@ -122,11 +122,13 @@
 
 <script>
 	function scroll_top() {
-		$('.modal, body').animate({ scrollTop: $('.modal, body').offset().top }, 700);
+		$('.modal, body').animate({scrollTop: $('.modal, body').offset().top}, 700);
 	}
 
 	function close_message() {
-		setTimeout(function(){ $('.alert-success, .alert-danger').addClass('d-none'); }, 3000);
+		setTimeout(function () {
+			$('.alert-success, .alert-danger').addClass('d-none');
+		}, 3000);
 	}
 </script>
 
@@ -468,7 +470,7 @@
 	}
 
 
-	$('.add_new_item').click(function(){
+	$('.add_new_item').click(function () {
 		$('.new_items_tbody').append('<tr>\n' +
 			'<td>\n' +
 			'<input class="form-control form-control-sm" type="text" placeholder="Item" value="">\n' +
@@ -486,12 +488,12 @@
 	});
 
 
-	$('.dif_meter').on('change', function(){
+	$('.dif_meter').on('change', function () {
 		$('.dif_meter_text').text($(this).val());
 	});
 
 
-	$('.copy_btn').click(function () {
+	$(document).on('click', '.copy_btn', function () {
 		var activity_state_region = $('input[name="activity_state_region"]').val();
 		var activity_city = $('input[name="activity_city"]').val();
 		var activity_zip_code = $('input[name="activity_zip_code"]').val();
@@ -501,6 +503,17 @@
 		$('input[name="legal_city"]').val(activity_city);
 		$('input[name="legal_zip_code"]').val(activity_zip_code);
 		$('input[name="legal_address"]').val(activity_address);
+
+
+		var sel_county_name = $('.selectpicker_1').parent('div').children('button').text();
+		$('.selectpicker_2').parent('div').children('button').children('div').children('div').text(sel_county_name);
+
+		var aa = $('#country').find('option[text="' + sel_county_name + '"]').val();
+		alert(aa);
+
+		var value = $("#country option:selected").val();
+
+		$("#country option[value='" + value + "']").attr('selected', 'selected');
 
 	});
 

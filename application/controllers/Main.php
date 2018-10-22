@@ -522,16 +522,16 @@ class Main extends MX_Controller {
 		$expiration_1 = $this->input->post('expiration_1');
 		$note_1 = $this->input->post('note_1');
 
-		$file_1 = $this->input->post('file_1');
-		$ext_1 = $this->input->post('ext_1');
+		$file_1 = '';
+		$ext_1 = '';
 
 		$document_2 = $this->input->post('document_2');
 		$reference_2 = $this->input->post('reference_2');
 		$expiration_2 = $this->input->post('expiration_2');
 		$note_2 = $this->input->post('note_2');
 
-		$file_2 = $this->input->post('file_2');
-		$ext_2 = $this->input->post('ext_2');
+		$file_2 = '';
+		$ext_2 = '';
 
 		$document_3 = $this->input->post('document_3');
 		$reference_3 = $this->input->post('reference_3');
@@ -591,31 +591,112 @@ class Main extends MX_Controller {
 
 		}
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+		if(isset($image) && $image != '') {
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+			}
+
+
+			$config_r = array(
+				'image_library' => 'gd2',
+				'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
+				'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
+				'maintain_ratio' => TRUE,
+				'create_thumb' => TRUE,
+				'thumb_marker' => '',
+				'height' => 50
+			);
+
+			$this->image_lib->initialize($config_r);
+			$this->image_lib->resize();
+
+			// end resize
+
+			if (!$this->image_lib->resize()) {
+				$validation_errors = array('photo' => $this->image_lib->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
 		}
 
 
-		$config_r = array(
-			'image_library' => 'gd2',
-			'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
-			'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
-			'maintain_ratio' => TRUE,
-			'create_thumb' => TRUE,
-			'thumb_marker' => '',
-			'height' => 50
-		);
+		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
-		$this->image_lib->initialize($config_r);
-		$this->image_lib->resize();
 
-		// end resize
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+			}
 
-		if (!$this->image_lib->resize()) {
-			$validation_errors = array('photo' => $this->image_lib->display_errors());
-			$messages['error']['elements'][] = $validation_errors;
-			echo json_encode($messages);
-			return false;
+			//file config
+			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+			$config_f['max_size'] = '4097152'; //4 MB
+			$config_f['file_name'] = $this->uname(3, 8);
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_1')) {
+				$validation_errors = array('file_1' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_1_arr = $this->upload->data();
+
+			$file_1 = $file_1_arr['file_name'];
+
+			 $file_1_array = explode('.', $file_1);
+
+			$file_1 = $file_1_array[0];
+			$ext_1 = $file_1_array[1];
+
+
+
+		}
+
+
+
+		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+			}
+
+			//file config
+			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+			$config_f['max_size'] = '4097152'; //4 MB
+			$config_f['file_name'] = $this->uname(3, 8);
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_2')) {
+				$validation_errors = array('file_2' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_2_arr = $this->upload->data();
+
+			$file_2 = $file_2_arr['file_name'];
+
+			$file_2_array = explode('.', $file_2);
+
+			$file_2 = $file_2_array[0];
+			$ext_2 = $file_2_array[1];
+
+
+
 		}
 
 			$sql = "

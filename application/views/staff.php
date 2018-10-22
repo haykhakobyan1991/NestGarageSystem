@@ -1,5 +1,20 @@
-<!-- Staff Start -->
+<?
+$total = 0;
+$active = 0;
+$passive = 0;
+foreach ($staff as $row) :
 
+	$total++;
+
+	if ($row['status'] == 1) {
+		$active++;
+	} elseif ($row['status'] == -1) {
+		$passive++;
+	}
+
+endforeach;
+?>
+<!-- Staff Start -->
 	<div class="tab-pane fade" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
 		<form id="staff">
 		<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
@@ -12,22 +27,25 @@
 				</div>
 			</div>
 
+
+
+
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
-								class="ml-2 mt-1 badge badge-secondary badge-pill">5</span>
+								class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$total?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
-								class="ml-2 mt-1 badge badge-success badge-pill">4</span>
+								class="ml-2 mt-1 badge badge-success badge-pill"><?=$active?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-2 col2">
 							<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
-								class="ml-2 mt-1 badge badge-warning badge-pill">1</span>
+								class="ml-2 mt-1 badge badge-warning badge-pill"><?=$passive?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-4 col-4"></div>
@@ -272,6 +290,7 @@
 																				<label for="exampleFormControlFile1">Example
 																					file input</label>
 																				<input type="file"
+																					   name="file_1"
 																					   class="form-control-file"
 																					   id="exampleFormControlFile1">
 																			</div>
@@ -280,21 +299,24 @@
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
+																					   name="number_1"
 																					   class="form-control"
 																					   placeholder="Number">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label>Epired Date</label>
-																			<input type="date" name="bday"
+																			<input type="date" name="date_1"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
+
 																				   class="form-control">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label>Issued</label>
 																				<input type="text"
+																					   name="issued_1"
 																					   class="form-control"
 																					   placeholder="Issued">
 																			</div>

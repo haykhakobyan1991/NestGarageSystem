@@ -354,7 +354,7 @@ $i = '';
 															 aria-labelledby="headingOne"
 															 data-parent="#accordionExample">
 															<div class="card-body">
-																<form class="banck_account">
+
 																	<div class="form-group row mb-0">
 																		<label
 																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
@@ -417,7 +417,7 @@ $i = '';
 																				   placeholder="Account">
 																		</div>
 																	</div>
-																</form>
+
 															</div>
 														</div>
 													</div>
@@ -436,7 +436,7 @@ $i = '';
 															 aria-labelledby="headingTwo"
 															 data-parent="#accordionExample">
 															<div class="card-body">
-																<form class="banck_account">
+
 																	<div class="form-group row mb-0">
 																		<label
 																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>
@@ -604,7 +604,7 @@ $i = '';
 															 data-parent="#accordionExample">
 															<div class="card-body">
 
-																<form class="banck_account">
+
 																	<div class="form-group row mb-0">
 																		<label
 																			class="col-sm-4 col-form-label"><?= lang('account_type') ?></label>

@@ -122,7 +122,7 @@
 
 <script>
 	function scroll_top() {
-		$('.modal, body').animate({ scrollTop: $('.modal, body').offset().top }, 500);
+		$('.modal, body').animate({ scrollTop: $('.modal, body').offset().top }, 700);
 	}
 
 	function close_message() {

@@ -506,25 +506,33 @@ color: #fff;">
 										<th scope="col">Minimum (time)</th>
 										<th scope="col">Remind Me days before</th>
 										<th scope="col">Next Alarm Date</th>
+										<th scope="col">Delete</th>
 									</tr>
 									</thead>
 									<tbody class="new_items_tbody">
 
 									<tr>
 										<td>
-											<input class="form-control form-control-sm" type="text" placeholder="Item"
+											<input name="item_1" class="form-control form-control-sm" type="text"
+												   placeholder="Item"
 												   value="">
 										</td>
 										<td>
-											<input class="form-control form-control-sm" type="text"
+											<input name="minimum_1" class="form-control form-control-sm" type="text"
 												   placeholder="Minimum (time)" value=""/>
 										</td>
 										<td>
-											<input class="form-control form-control-sm" type="text"
+											<input name="remind_before_1" class="form-control form-control-sm"
+												   type="text"
 												   placeholder="Remind Me  days before" value=""/>
 										</td>
 										<td>
-											<input class="form-control form-control-sm" type="date" value=""/>
+											<input name="date_1" class="form-control form-control-sm" type="date"
+												   value=""/>
+										</td>
+										<td>
+											<button type="button" class="btn btn-sm btn-light del_items_from_table"><i
+													class="fa fa-trash"></i></button>
 										</td>
 									</tr>
 
@@ -535,11 +543,12 @@ color: #fff;">
 								</table>
 								<button type="button" class="btn btn-secondary btn-sm add_new_item"><i
 										class="fa fa-plus"></i></button>
+
 								<hr class="my-4">
 
 								<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
 
-								<div class="form-group row mb-0 mt-4" >
+								<div class="form-group row mb-0 mt-4">
 									<label
 										class="col-sm-2 col-form-label"
 										style="font-size: 12px;">Type of meter</label>
@@ -553,7 +562,6 @@ color: #fff;">
 								</div>
 								<div class="container mt-md-3 mt-3">
 									<div class="row">
-
 										<div class="form-group form-check mt-md-3 mt-3 col-sm-4">
 											<input type="checkbox" class="form-check-input" id="exampleCheck1">
 											<label class="form-check-label" for="exampleCheck1">auto increment?</label>
@@ -561,12 +569,17 @@ color: #fff;">
 										<div class="col-sm-3 mt-3">
 											<input type="text" class="orm-control form-control-sm" placeholder=""/>
 										</div>
-										<div class="col-sm-3 mt-3"><p><span class="dif_meter_text">km</span>/day</p></div>
+										<div class="col-sm-3 mt-3"><p><span class="dif_meter_text">km</span>/day</p>
+										</div>
 									</div>
 								</div>
 
 								<div class="card">
 									<h5 class="card-header">Secondary meter</h5>
+									<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
+										<input type="checkbox" class="form-check-input" id="exampleCheck11">
+										<label class="form-check-label" for="exampleCheck11">Use of secondary meter</label>
+									</div>
 									<div class="card-body">
 										<div class="form-group row mb-0">
 											<label

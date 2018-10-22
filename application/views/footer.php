@@ -469,22 +469,31 @@
 		$('#list-company-list').trigger('click');
 	}
 
-
+	var n = 2;
 	$('.add_new_item').click(function () {
 		$('.new_items_tbody').append('<tr>\n' +
 			'<td>\n' +
-			'<input class="form-control form-control-sm" type="text" placeholder="Item" value="">\n' +
+			'<input name="item_' + n + '" class="form-control form-control-sm" type="text" placeholder="Item" value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input class="form-control form-control-sm" type="text" placeholder="Minimum (time)" value=""/>\n' +
+			'<input name="minimum_' + n + '" class="form-control form-control-sm" type="text" placeholder="Minimum (time)" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input class="form-control form-control-sm" type="text" placeholder="Remind Me  days before" value=""/>\n' +
+			'<input name="remind_before_' + n + '" class="form-control form-control-sm" type="text" placeholder="Remind Me  days before" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input class="form-control form-control-sm" type="date" value="" />\n' +
+			'<input name="date_' + n + '" class="form-control form-control-sm" type="date" value="" />\n' +
+			'</td>\n' +
+			'<td>\n' +
+			'<button type="button" class="btn btn-sm btn-light del_items_from_table"><i class="fa fa-trash"></i></button>\n' +
 			'</td>\n' +
 			'</tr>');
+
+		n++;
+	});
+
+	$(document).on('click', '.del_items_from_table', function () {
+		$(this).parent('td').parent('tr').remove();
 	});
 
 

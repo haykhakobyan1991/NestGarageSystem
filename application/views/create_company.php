@@ -206,7 +206,7 @@ $i = '';
 														 style="background: #ababab;padding-top: 10px;">
 														<div class="form-row">
 															<select name="activity_country"
-																	class="col selectpicker form-control form-control-sm"
+																	class="col selectpicker form-control form-control-sm selectpicker_1"
 																	data-size="5" id="country" data-live-search="true"
 																	title="Select a country">
 																<option value="">Select Activity Country ...</option>
@@ -258,7 +258,7 @@ $i = '';
 														 style="background: #ababab;padding-top: 10px;">
 														<div class="form-row">
 															<select name="legal_country"
-																	class="col selectpicker form-control form-control-sm"
+																	class="col selectpicker form-control form-control-sm selectpicker_2"
 																	data-size="5" id="country" data-live-search="true"
 																	title="Select a country">
 																<option value="">Select Legal Country ...</option>

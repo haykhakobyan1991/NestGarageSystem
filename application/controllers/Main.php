@@ -89,6 +89,9 @@ class Main extends MX_Controller {
 	}
 
 
+	/**
+	 *
+	 */
 	public function create_company() {
 
 		$this->load->authorisation();
@@ -277,6 +280,8 @@ class Main extends MX_Controller {
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/company'))) {
 			mkdir(set_realpath('uploads/user_'.$user_id.'/company'), '0777', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/company/index.html'));
 		}
 
 		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/company');
@@ -566,6 +571,7 @@ class Main extends MX_Controller {
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
 			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0777', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
 		}
 
 		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/original');
@@ -596,6 +602,7 @@ class Main extends MX_Controller {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
 				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
 			}
 
 
@@ -629,6 +636,7 @@ class Main extends MX_Controller {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
 				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
 			//file config
@@ -668,6 +676,7 @@ class Main extends MX_Controller {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
 				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
 			//file config
@@ -706,6 +715,7 @@ class Main extends MX_Controller {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
 				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
 			//file config
@@ -744,6 +754,7 @@ class Main extends MX_Controller {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
 				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
 			//file config
@@ -891,6 +902,10 @@ class Main extends MX_Controller {
 		}
 
 
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
 
 
 		$title = $this->input->post('title');
@@ -903,12 +918,15 @@ class Main extends MX_Controller {
 
 		$sql = "
 				INSERT INTO 
-				  `department` 
+				  `department`
 				SET
 				  `title` = ".$this->load->db_value($title).",
+				  `registrar_user_id` = ".$this->load->db_value($user_id).",
+				  `registration_date` = NOW(),
+				  `company_id` = ".$this->load->db_value($company_id).",
 				  `head_staff_id` = ".$this->load->db_value($head_staff).",
 				  `description` = ".$this->load->db_value($description).",
-				  `status` = ".$this->load->db_value($status)."	 
+				  `status` = ".$this->load->db_value($status)."
 			";
 
 

@@ -508,11 +508,7 @@
 		var sel_county_name = $('.selectpicker_1').parent('div').children('button').text();
 		$('.selectpicker_2').parent('div').children('button').children('div').children('div').text(sel_county_name);
 
-		var aa = $('#country').find('option[text="' + sel_county_name + '"]').val();
-		alert(aa);
-
 		var value = $("#country option:selected").val();
-
 		$("#country option[value='" + value + "']").attr('selected', 'selected');
 
 	});

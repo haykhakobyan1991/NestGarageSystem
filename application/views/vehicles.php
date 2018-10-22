@@ -5,6 +5,16 @@
 	<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
 		 aria-labelledby="list-staff-list">
 
+		<!-- Error Message -->
+
+		<div class="for_message">
+			<div class="alert alert-success" role="alert">
+				A simple success alert—check it out!
+			</div>
+			<div class="alert alert-danger" role="alert">
+				A simple success alert—check it out!
+			</div>
+		</div>
 		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 			<div class="container">
 				<p class="display-5 font-weight-bold mb-0">Section: Veichls</p>
@@ -292,6 +302,46 @@ color: #fff;">
 									</div>
 								</div>
 
+								<div class="form-group row">
+									<label
+										class="col-sm-2 col-form-label">Վազք</label>
+									<div class="col-sm-10">
+										<input value="" name="vin" type="text" class="form-control" placeholder="Վազք">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label
+										class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
+									<div class="col-sm-10">
+										<input value="" name="" type="text" class="form-control mt-2" placeholder="Հոդոգռաֆ">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label
+										class="col-sm-2 col-form-label">Այլ</label>
+									<div class="col-sm-10">
+										<input value="" name="" type="text" class="form-control mt-2" placeholder="Այլ">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-sm-10 col-form-label">Status make
+										a
+										Passive?</label>
+									<div class="col-sm-2">
+										<input checked="" type="checkbox" class="form-control">
+									</div>
+								</div>
+
+								<div class="form-group row">
+									<label class="col-sm-10 col-form-label">Send a notification mail to the drivers</label>
+									<div class="col-sm-2">
+										<input checked="" type="checkbox" class="form-control">
+									</div>
+								</div>
+
 							</form>
 
 						</div>
@@ -299,8 +349,73 @@ color: #fff;">
 						<!-- Tab MAIN End -->
 
 						<!-- Tab INFO Start -->
-						<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-							 aria-labelledby="nav-profile-tab">Info Section
+						<div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+							<form class="mt-3 mt-md-3">
+								<div class="accordion" id="accordionExample_info">
+									<div class="card">
+										<div class="card-header" id="heading_info1">
+											<h5 class="mb-0">
+												<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_info1" aria-expanded="true" aria-controls="collapse_info1">
+													Հաշվառման Համարանիշ
+												</button>
+											</h5>
+										</div>
+
+										<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1" data-parent="#accordionExample_info">
+											<div class="card-body">
+												<div class="form-group row">
+													<label
+														class="col-sm-2 col-form-label">Սեփականատեր</label>
+													<div class="col-sm-7">
+														<input value="" name="" type="text" class="form-control" placeholder="Սեփականատեր">
+													</div>
+													<div class="col-sm-3">
+														<div class="form-group">
+															<label for="exampleFormControlFile1"></label>
+															<input type="file"
+																   class="form-control-file"
+																   id="exampleFormControlFile1">
+														</div>
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label
+														class="col-sm-2 col-form-label">Հաշվառման հասցե</label>
+													<div class="col-sm-7">
+														<input value="" name="" type="text" class="form-control mt-2" placeholder="Հաշվառման հասցե">
+													</div>
+												</div>
+
+												<div class="form-group row">
+													<label
+														class="col-sm-2 col-form-label">Հաշվառման համար</label>
+													<div class="col-sm-7">
+														<input value="" name="" type="text" class="form-control mt-2" placeholder="Հաշվառման համար">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header" id="heading_info2">
+											<h5 class="mb-0">
+												<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse_info2" aria-expanded="false" aria-controls="collapse_info2">
+													Collapsible Group Item #2
+												</button>
+											</h5>
+										</div>
+										<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2" data-parent="#accordionExample_info">
+											<div class="card-body">
+												Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</form>
+
 						</div>
 						<!-- Tab INFO End -->
 

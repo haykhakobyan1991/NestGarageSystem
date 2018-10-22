@@ -121,8 +121,6 @@
 </script>
 
 
-
-
 <script>
 	// create company
 	$(document).on('click', '#create_company', function (e) {
@@ -142,12 +140,12 @@
 			data: form_data,
 			contentType: false,
 			cache: false,
-			processData:false,
+			processData: false,
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
-					$(location).attr('href',url);
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+					$(location).attr('href', url);
 
 				} else {
 
@@ -156,24 +154,23 @@
 						// scroll_top();
 
 
-						$.each(data.error.elements, function( index ) {
+						$.each(data.error.elements, function (index) {
 
-							$.each(data.error.elements[index], function( index, value  ) {
+							$.each(data.error.elements[index], function (index, value) {
 
-								if(value != '') {
+								if (value != '') {
 
-									$('input[name="'+index+'"]').addClass('border border-danger');
-									$('select[name="'+index+'"]').addClass('border border-danger');
-									$('input[name="'+index+'"]').parent('td').addClass('border border-danger');
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
 
 								} else {
-									$('input[name="'+index+'"]').removeClass('border border-danger');
-									$('select[name="'+index+'"]').removeClass('border border-danger');
-									$('input[name="'+index+'"]').parent('td').removeClass('border border-danger');
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
 								}
 
 							});
-
 
 
 						});
@@ -216,12 +213,12 @@
 			data: form_data,
 			contentType: false,
 			cache: false,
-			processData:false,
+			processData: false,
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/create_company')?>"; //todo
-					$(location).attr('href',url);
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+					$(location).attr('href', url);
 
 				} else {
 
@@ -230,24 +227,23 @@
 						// scroll_top();
 
 
-						$.each(data.error.elements, function( index ) {
+						$.each(data.error.elements, function (index) {
 
-							$.each(data.error.elements[index], function( index, value  ) {
+							$.each(data.error.elements[index], function (index, value) {
 
-								if(value != '') {
+								if (value != '') {
 
-									$('input[name="'+index+'"]').addClass('border border-danger');
-									$('select[name="'+index+'"]').addClass('border border-danger');
-									$('input[name="'+index+'"]').parent('td').addClass('border border-danger');
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
 
 								} else {
-									$('input[name="'+index+'"]').removeClass('border border-danger');
-									$('select[name="'+index+'"]').removeClass('border border-danger');
-									$('input[name="'+index+'"]').parent('td').removeClass('border border-danger');
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
 								}
 
 							});
-
 
 
 						});
@@ -273,11 +269,27 @@
 
 <script type="text/javascript">
 
+
+	$('.color_check_btn').on('click', function () {
+		var sel_color = $(this).data('value');
+
+		$('.selected_color_value').val(sel_color);
+		$('.selected-color').attr('style', 'background: ' + sel_color + ';');
+
+		$('.more_color').on('change', function () {
+			var sel_color = $(this).val();
+
+			$('.selected_color_value').val(sel_color);
+			$('.selected-color').attr('style', 'background: ' + sel_color + ';');
+		});
+
+	});
+
 	$(window).on('load', function () {
 		$('button.dropdown-toggle.bs-placeholder').removeClass('btn-light');
 		var count = 0;
-		$('form#company input,select').each(function(){
-			if($(this).val() == ''){
+		$('form#company input,select').each(function () {
+			if ($(this).val() == '') {
 				count++;
 			}
 		});
@@ -289,45 +301,44 @@
 
 	var url = window.location.href;
 
-	$('#list-department-list').click(function() {
-		$(location).attr('href',c_url+'#department');
+	$('#list-department-list').click(function () {
+		$(location).attr('href', c_url + '#department');
 	});
 
-	$('#list-staff-list').click(function() {
-		$(location).attr('href',c_url+'#staff');
+	$('#list-staff-list').click(function () {
+		$(location).attr('href', c_url + '#staff');
 	});
 
-	$('#list-company-list').click(function() {
-		$(location).attr('href',c_url+'#company');
+	$('#list-company-list').click(function () {
+		$(location).attr('href', c_url + '#company');
 	});
 
-	$('#list-settings-list').click(function() {
-		$(location).attr('href',c_url+'#settings');
+	$('#list-settings-list').click(function () {
+		$(location).attr('href', c_url + '#settings');
 	});
 
-	if(url.indexOf('#staff') != -1) {
+	if (url.indexOf('#staff') != -1) {
 
 		$('#list-staff-list').trigger('click');
 	}
 
-	if(url.indexOf('#department') != -1) {
+	if (url.indexOf('#department') != -1) {
 
 		$('#list-department-list').trigger('click');
 	}
 
-	if(url.indexOf('#company') != -1) {
+	if (url.indexOf('#company') != -1) {
 
 		$('#list-company-list').trigger('click');
 	}
 
-	if(url.indexOf('#settings') != -1) {
+	if (url.indexOf('#settings') != -1) {
 
 		$('#list-company-list').trigger('click');
 	}
 
 
 </script>
-
 
 
 <!--<div class="brows_image_dynamicle"></div>-->

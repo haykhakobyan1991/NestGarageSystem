@@ -871,7 +871,7 @@ color: #fff;">
 							</div>
 
 
-							<!-- Add Veichls Modal Start -->
+							<!-- Add Vehicle Modal Start -->
 
 							<div class="modal fade add_veichls_modal" tabindex="-1" role="dialog"
 								 aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -975,6 +975,7 @@ color: #fff;">
 																<select value=""
 																		class="currency form-control form-control-sm">
 																	<option>Choose...</option>
+
 																	<?php for ($i = 1900; $i <= date('Y'); $i++) { ?>
 																		<option value="<?= $i ?>"><?= $i ?></option>
 																	<?php } ?>
@@ -983,6 +984,73 @@ color: #fff;">
 															</div>
 														</div>
 
+														<div class="form-group row">
+															<label class="col-sm-2 col-form-label">Գույն</label>
+															<div class="col-sm-6">
+																<p style="margin-bottom: 0;">Standart Colors</p>
+																<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+																	<div class="btn-group mr-2" role="group" aria-label="First group">
+																		<button type="button" class="btn color_check_btn" data-value="#ffffff" style="background: #ffffff;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#c0c0c0" style="background: #c0c0c0;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#000000" style="background: #000000;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#696969" style="background: #696969;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#0000ff" style="background: #0000ff;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#ff0000" style="background: #ff0000;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#d2b48c" style="background: #d2b48c;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#008000" style="background: #008000;"></button>
+																		<button type="button" class="btn color_check_btn" data-value="#ffd0d0" style="background: #ffd0d0;"></button>
+																	</div>
+																</div>
+																<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...</p>
+																<input type="color" class="btn color_check_btn more_color" value="" />
+															</div>
+															<div class="col-sm-4">
+																<p style="margin-bottom: 0;">Selected Color</p>
+																<input type="hidden" value="#ffffff" class="selected_color_value" />
+																<div class="selected-color" style="background: #ffffff;"></div>
+															</div>
+														</div>
+
+
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">Հաշվառման համարանիշ</label>
+															<div class="col-sm-10">
+																<input value="" name="" type="text" class="form-control" placeholder="Հաշվառման համարանիշ">
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">VIN</label>
+															<div class="col-sm-10">
+																<input value="" name="vin" type="text" class="form-control" placeholder="VIN">
+															</div>
+														</div>
+
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
+															<div class="col-sm-10">
+																<input value="" name="" type="text" class="form-control mt-2" placeholder="Շարժիչի հզորություն">
+															</div>
+														</div>
+
+
+														<div class="form-group row">
+															<label
+																class="col-sm-2 col-form-label">Վառելիք</label>
+															<div class="col-sm-10">
+																<select value=""
+																		class="form-control form-control-sm">
+																	<option>Վառելիքի տեսակը</option>
+																	<option>GAS</option>
+																	<option>DIESEL</option>
+																	<option>PETROL</option>
+																</select>
+															</div>
+														</div>
 
 													</form>
 

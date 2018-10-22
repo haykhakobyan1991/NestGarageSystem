@@ -697,16 +697,7 @@ $i = '';
 							<div class="tab-pane fade show active" id="list-department" role="tabpanel"
 								 aria-labelledby="list-department-list">
 
-								<!-- Error Message -->
 
-								<div class="for_message">
-									<div class="alert alert-success" role="alert">
-										A simple success alert—check it out!
-									</div>
-									<div class="alert alert-danger" role="alert">
-										A simple success alert—check it out!
-									</div>
-								</div>
 
 								<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 									<div class="container">
@@ -789,7 +780,7 @@ color: #fff;">
 
 										</div>
 
-
+										<!--  Department Modal Start -->
 										<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
 											 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-lg">
@@ -803,6 +794,17 @@ color: #fff;">
 														</button>
 													</div>
 													<div class="modal-body">
+														<!-- Error Message -->
+
+														<div class="for_message">
+															<div class="alert alert-success" role="alert">
+																A simple success alert—check it out!
+															</div>
+															<div class="alert alert-danger" role="alert">
+																A simple success alert—check it out!
+															</div>
+														</div>
+
 														<p>Fill in the following fields</p>
 
 														<form class="new_department">

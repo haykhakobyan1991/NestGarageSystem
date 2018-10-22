@@ -134,6 +134,7 @@ class Main extends MX_Controller {
 
 		$data['staff'] = $this->db->select('staff.*, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')->from('staff')->join('user', 'staff.registrar_user_id = user.id', 'left')->where('registrar_user_id', $user_id)->get()->result_array(); //todo select where users is one company
 
+		$data['staff_for_select'] = $this->db->select('id, CONCAT_WS(" ", first_name, last_name) AS name, status')->from('staff')->where('registrar_user_id', $user_id)->where('status', 1)->get()->result_array(); //todo select where users is one company
 
 		$this->layout->view('create_company', $data);
 	}
@@ -538,8 +539,8 @@ class Main extends MX_Controller {
 		$expiration_3 = $this->input->post('expiration_3');
 		$note_3 = $this->input->post('note_3');
 
-		$file_3 = $this->input->post('file_3');
-		$ext_3 = $this->input->post('ext_3');
+		$file_3 = '';
+		$ext_3 = '';
 
 
 		$document_4 = $this->input->post('document_4');
@@ -547,8 +548,8 @@ class Main extends MX_Controller {
 		$expiration_4 = $this->input->post('expiration_4');
 		$note_4 = $this->input->post('note_4');
 
-		$file_4 = $this->input->post('file_4');
-		$ext_4 = $this->input->post('ext_4');
+		$file_4 = '';
+		$ext_4 = '';
 
 
 
@@ -699,6 +700,82 @@ class Main extends MX_Controller {
 
 		}
 
+
+		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+			}
+
+			//file config
+			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+			$config_f['max_size'] = '4097152'; //4 MB
+			$config_f['file_name'] = $this->uname(3, 8);
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_3')) {
+				$validation_errors = array('file_3' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_3_arr = $this->upload->data();
+
+			$file_3 = $file_3_arr['file_name'];
+
+			$file_3_array = explode('.', $file_3);
+
+			$file_3 = $file_3_array[0];
+			$ext_3 = $file_3_array[1];
+
+
+
+		}
+
+
+		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+			}
+
+			//file config
+			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+			$config_f['max_size'] = '4097152'; //4 MB
+			$config_f['file_name'] = $this->uname(3, 8);
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_4')) {
+				$validation_errors = array('file_4' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_4_arr = $this->upload->data();
+
+			$file_4 = $file_4_arr['file_name'];
+
+			$file_4_array = explode('.', $file_4);
+
+			$file_4 = $file_4_array[0];
+			$ext_4 = $file_4_array[1];
+
+
+
+		}
+
 			$sql = "
 				INSERT INTO 
 				  `staff` 
@@ -748,6 +825,94 @@ class Main extends MX_Controller {
 
 
 			$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+	public function add_department_ax() {
+
+		$this->load->authorisation('Main', 'create_company');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' => form_error('title'),
+				'head_staff' => form_error('head_staff'),
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$title = $this->input->post('title');
+		$head_staff = $this->input->post('head_staff');
+		$description = $this->input->post('description');
+		$status = 1;
+
+
+
+
+		$sql = "
+				INSERT INTO 
+				  `department` 
+				SET
+				  `title` = ".$this->load->db_value($title).",
+				  `head_staff_id` = ".$this->load->db_value($head_staff).",
+				  `description` = ".$this->load->db_value($description).",
+				  `status` = ".$this->load->db_value($status)."	 
+			";
+
+
+		$result = $this->db->query($sql);
 
 
 

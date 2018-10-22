@@ -488,7 +488,21 @@
 
 	$('.dif_meter').on('change', function(){
 		$('.dif_meter_text').text($(this).val());
-	})
+	});
+
+
+	$('.copy_btn').click(function () {
+		var activity_state_region = $('input[name="activity_state_region"]').val();
+		var activity_city = $('input[name="activity_city"]').val();
+		var activity_zip_code = $('input[name="activity_zip_code"]').val();
+		var activity_address = $('input[name="activity_address"]').val();
+
+		$('input[name="legal_state_region"]').val(activity_state_region);
+		$('input[name="legal_city"]').val(activity_city);
+		$('input[name="legal_zip_code"]').val(activity_zip_code);
+		$('input[name="legal_address"]').val(activity_address);
+
+	});
 
 </script>
 

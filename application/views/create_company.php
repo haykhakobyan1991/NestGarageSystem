@@ -38,7 +38,6 @@ $i = '';
 						<a class="list-group-item list-group-item-action active" id="list-company-list"
 						   data-toggle="list"
 						   href="#list-company" role="tab" aria-controls="company">Company
-							<span class="badge badge-secondary badge-pill float-right">14</span>
 						</a>
 						<a class="list-group-item list-group-item-action" id="list-department-list" data-toggle="list"
 						   href="#list-department" role="tab" aria-controls="department">Department
@@ -143,6 +142,17 @@ $i = '';
 												<hr class="my-4">
 
 												<div class="form-group row">
+
+													<label
+														class="col-sm-4 col-form-label"><?= lang('company_name') ?></label>
+													<div class="col-sm-8">
+														<input value="<?= $company['name'] ?>" name="company_name"
+															   type="text" class="form-control"
+															   placeholder="<?= lang('company_name') ?>">
+													</div>
+												</div>
+
+												<div class="form-group row">
 													<label class="col-sm-4 col-form-label">Owner Firstname</label>
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_firstname'] ?>"
@@ -188,16 +198,7 @@ $i = '';
 												</div>
 
 
-												<div class="form-group row">
 
-													<label
-														class="col-sm-4 col-form-label"><?= lang('company_name') ?></label>
-													<div class="col-sm-8">
-														<input value="<?= $company['name'] ?>" name="company_name"
-															   type="text" class="form-control"
-															   placeholder="<?= lang('company_name') ?>">
-													</div>
-												</div>
 												<div class="form-group row">
 													<label
 														class="col-sm-4 col-form-label"><?= lang('activity_address') ?></label>
@@ -245,7 +246,7 @@ $i = '';
 																	   placeholder="Activity Address">
 															</div>
 														</div>
-
+														<button type="button" class="btn btn-secondary float-right mb-md-2 mb-2 copy_btn">copy</button>
 
 													</div>
 												</div>

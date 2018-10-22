@@ -563,11 +563,11 @@ class Main extends MX_Controller {
 		$config = $this->upload_config();
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff'), '0777', true);
+		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
+			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0777', true);
 		}
 
-		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff');
+		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/original');
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
@@ -589,6 +589,33 @@ class Main extends MX_Controller {
 
 			$add_sql_image = "`photo` =  '".$image."',";
 
+		}
+
+		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
+			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+		}
+
+
+		$config_r = array(
+			'image_library' => 'gd2',
+			'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
+			'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
+			'maintain_ratio' => TRUE,
+			'create_thumb' => TRUE,
+			'thumb_marker' => '',
+			'height' => 50
+		);
+
+		$this->image_lib->initialize($config_r);
+		$this->image_lib->resize();
+
+		// end resize
+
+		if (!$this->image_lib->resize()) {
+			$validation_errors = array('photo' => $this->image_lib->display_errors());
+			$messages['error']['elements'][] = $validation_errors;
+			echo json_encode($messages);
+			return false;
 		}
 
 			$sql = "

@@ -120,6 +120,15 @@
 	});
 </script>
 
+<script>
+	function scroll_top() {
+		$('.modal, body').animate({ scrollTop: $('.modal, body').offset().top }, 500);
+	}
+
+	function close_message() {
+		setTimeout(function(){ $('.alert-success, .alert-danger').addClass('d-none'); }, 3000);
+	}
+</script>
 
 <script>
 	// create company
@@ -144,14 +153,21 @@
 			success: function (data) {
 				if (data.success == '1') {
 
+					scroll_top();
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+
+					close_message();
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+
 					$(location).attr('href', url);
 
 				} else {
 
 					if ($.isArray(data.error.elements)) {
-
-						// scroll_top();
+						scroll_top();
 
 
 						$.each(data.error.elements, function (index) {
@@ -163,6 +179,9 @@
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').addClass('border border-danger');
 									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+
+									$('.alert-danger').removeClass('d-none');
+									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
@@ -181,7 +200,7 @@
 			},
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
-				$('p#success').addClass('d-none');
+				close_message();
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
@@ -217,22 +236,28 @@
 			success: function (data) {
 				if (data.success == '1') {
 
+					scroll_top();
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+
+					close_message();
+
+
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
 
-
-
-
+					$(location).attr('href', url);
 
 					$(location).attr('href', url + '#staff');
-
-					$(location).reload();
 
 				} else {
 
 					if ($.isArray(data.error.elements)) {
+						scroll_top();
 
-						// scroll_top();
-
+						$('.alert-danger').addClass('d-none');
+						$('.alert-success').addClass('d-none');
 
 						$.each(data.error.elements, function (index) {
 
@@ -244,10 +269,16 @@
 									$('select[name="' + index + '"]').addClass('border border-danger');
 									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
 
+
+									$('.alert-danger').removeClass('d-none');
+									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').removeClass('border border-danger');
 									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+
+
 								}
 
 							});

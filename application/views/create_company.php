@@ -68,12 +68,8 @@ $i = '';
 							<!-- Error Message -->
 
 							<div class="for_message">
-								<div class="alert alert-success" role="alert">
-									A simple success alert—check it out!
-								</div>
-								<div class="alert alert-danger" role="alert">
-									A simple success alert—check it out!
-								</div>
+								<div class="alert alert-success d-none" role="alert"></div>
+								<div class="alert alert-danger d-none" role="alert"></div>
 							</div>
 
 

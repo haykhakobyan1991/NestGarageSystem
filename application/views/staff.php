@@ -60,12 +60,8 @@
 										<!-- Error Message -->
 
 										<div class="for_message">
-											<div class="alert alert-success" role="alert">
-												A simple success alert—check it out!
-											</div>
-											<div class="alert alert-danger" role="alert">
-												A simple success alert—check it out!
-											</div>
+											<div class="alert alert-success d-none" role="alert"></div>
+											<div class="alert alert-danger  d-none" role="alert"></div>
 										</div>
 
 										<div class="row">
@@ -111,7 +107,7 @@
 												<div class="form-group row">
 													<label
 														class="col-sm-2 col-form-label">First
-														Name</label>
+														Name *</label>
 													<div class="col-sm-10">
 														<input type="text" class="form-control"
 															   name="firstname"
@@ -121,7 +117,7 @@
 												<div class="form-group row">
 													<label
 														class="col-sm-2 col-form-label">Last
-														Name</label>
+														Name *</label>
 													<div class="col-sm-10">
 														<input type="text" class="form-control"
 															   name="lastname"
@@ -528,7 +524,7 @@ color: #fff;">
 											<img
 												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 												class="mr-3"
-												src="<?=($row['photo'] != '' ? base_url('uploads/user_'.$row['registrar_user_id'].'/staff/'.$row['photo']) :  base_url('assets/img/b.jpg'))?>"
+												src="<?=($row['photo'] != '' ? base_url('uploads/user_'.$row['registrar_user_id'].'/staff/thumbs/'.$row['photo']) :  base_url('assets/img/b.jpg'))?>"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<?=$row['first_name']. ' ' .$row['last_name']?>

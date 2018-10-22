@@ -5,16 +5,7 @@
 		<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
 			 aria-labelledby="list-staff-list">
 
-			<!-- Error Message -->
 
-			<div class="for_message">
-				<div class="alert alert-success" role="alert">
-					A simple success alert—check it out!
-				</div>
-				<div class="alert alert-danger" role="alert">
-					A simple success alert—check it out!
-				</div>
-			</div>
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 				<div class="container">
 					<p class="display-5 font-weight-bold mb-0">Section: Staff</p>
@@ -55,7 +46,10 @@
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header bg-dark">
+
 										<h5 class="text-white modal-title dar">New Staff</h5>
+
+
 										<button type="button" class="text-white close"
 												data-dismiss="modal"
 												aria-label="Close">
@@ -63,6 +57,17 @@
 										</button>
 									</div>
 									<div class="modal-body">
+										<!-- Error Message -->
+
+										<div class="for_message">
+											<div class="alert alert-success" role="alert">
+												A simple success alert—check it out!
+											</div>
+											<div class="alert alert-danger" role="alert">
+												A simple success alert—check it out!
+											</div>
+										</div>
+
 										<div class="row">
 											<div class="col-sm-12 col-md-6 col-6">
 												<h2>Staff Infprmation</h2>

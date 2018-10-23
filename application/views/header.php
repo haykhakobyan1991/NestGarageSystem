@@ -10,6 +10,7 @@
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.animate.min.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
@@ -86,7 +87,7 @@
 			color: #333;
 		}
 
-		li.active>a {
+		li.active > a {
 			color: #8e8f90;
 			font-weight: 700;
 		}
@@ -103,9 +104,11 @@
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="langs ml-auto mr-5">
-		<ul class="mr-auto" data-url="<?=base_url('change_lang')?>">
-			<li class="float-left  <?=(($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '')?>" data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
-			<li class="float-left   <?=($this->uri->segment(1) == 'ru' ? 'active' : '')?>" data-lang="ru"><a class="nav-link" href="javascript:void(0)">Рус</a></li>
+		<ul class="mr-auto" data-url="<?= base_url('change_lang') ?>">
+			<li class="float-left  <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
+				data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
+			<li class="float-left   <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>" data-lang="ru"><a
+					class="nav-link" href="javascript:void(0)">Рус</a></li>
 		</ul>
 	</div>
 
@@ -153,22 +156,27 @@
 				<!-- Vertical Tabs Start-->
 				<div class="col-sm-12 col-md-3">
 					<div class="list-group" id="list-tab" role="tablist">
-						<a class="list-group-item list-group-item-action <?=($page == 'company' ? 'active' : '')?>"
-						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>" role="tab" aria-controls="company">Company
+						<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
+						   role="tab" aria-controls="company">Company
 						</a>
-						<a class="list-group-item list-group-item-action <?=($page == 'department' ? 'active' : '')?>"
-						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>" role="tab" aria-controls="department">Department
+						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
+						   role="tab" aria-controls="department">Department
 							<span class="badge badge-secondary badge-pill float-right">4</span>
 						</a>
-						<a class="list-group-item list-group-item-action <?=($page == 'staff' ? 'active' : '')?>"
-						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>" role="tab" aria-controls="staff">Staff
+						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
+						   role="tab" aria-controls="staff">Staff
 							<span class="badge badge-secondary badge-pill float-right">2</span></a>
-						<a class="list-group-item list-group-item-action <?=($page == 'vehicles' ? 'active' : '')?>"
-						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles')?>" role="tab" aria-controls="settings">Vehicles
+						<a class="list-group-item list-group-item-action <?= ($page == 'vehicles' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
+						   role="tab" aria-controls="settings">Vehicles
 							<span class="badge badge-secondary badge-pill float-right"></span>
 						</a>
-						<a class="list-group-item list-group-item-action <?=($page == 'user' ? 'active' : '')?>"
-						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>" role="tab" aria-controls="user">User
+						<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
+						   role="tab" aria-controls="user">User
 							<span class="badge badge-secondary badge-pill float-right"></span>
 						</a>
 					</div>
@@ -179,4 +187,7 @@
 				<div class="col-sm-12 col-md-9">
 
 
-					<div class="tab-content" id="nav-tabContent">
+					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
+
+						<div class="loader""></div>
+						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>

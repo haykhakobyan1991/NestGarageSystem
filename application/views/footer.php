@@ -484,6 +484,11 @@
 
 	});
 
+	$(window).on('load', function(){
+		$('.loader_svg').fadeOut('slow');
+		$('.loader').fadeOut('slow');
+	})
+
 </script>
 
 

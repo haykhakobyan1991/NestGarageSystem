@@ -537,7 +537,7 @@
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/create_company')?>";
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/company')?>";
 					$(location).attr('href',url);
 
 				} else {

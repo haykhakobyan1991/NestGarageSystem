@@ -25,6 +25,7 @@
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
+	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
 	<script src="<?= base_url() ?>assets/js/main.js"></script>
 
 	<!-- Tables Start -->
@@ -33,6 +34,7 @@
 			$('#example').DataTable();
 			$('#example2').DataTable();
 			$('#example3').DataTable();
+			$('#example4').DataTable();
 		});
 	</script>
 	<!-- Tables End -->

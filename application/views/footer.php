@@ -449,6 +449,10 @@
 		$(location).attr('href', c_url + '#settings');
 	});
 
+	$('#list-users-list').click(function () {
+		$(location).attr('href', c_url + '#users');
+	});
+
 	if (url.indexOf('#staff') != -1) {
 
 		$('#list-staff-list').trigger('click');
@@ -467,6 +471,11 @@
 	if (url.indexOf('#settings') != -1) {
 
 		$('#list-company-list').trigger('click');
+	}
+
+	if (url.indexOf('#users') != -1) {
+
+		$('#list-users-list').trigger('click');
 	}
 
 	var n = 2;
@@ -503,6 +512,7 @@
 
 
 	$(document).on('click', '.copy_btn', function () {
+
 		var activity_state_region = $('input[name="activity_state_region"]').val();
 		var activity_city = $('input[name="activity_city"]').val();
 		var activity_zip_code = $('input[name="activity_zip_code"]').val();
@@ -519,6 +529,18 @@
 
 		var value = $("#country option:selected").val();
 		$("#country option[value='" + value + "']").attr('selected', 'selected');
+
+	});
+
+
+	$('.hide_password').click(function () {
+		if ($(this).hasClass('hidden')) {
+			$('#password-input').attr('type', 'text');
+			$(this).removeClass('hidden');
+		} else {
+			$('#password-input').attr('type', 'password');
+			$(this).addClass('hidden');
+		}
 
 	});
 

@@ -531,8 +531,9 @@ color: #fff;">
 												   value=""/>
 										</td>
 										<td>
-											<button type="button" class="btn btn-sm btn-light del_items_from_table"><i
-													class="fa fa-trash"></i></button>
+											<button type="button" class="btn btn-sm btn-light del_items_from_table">
+												<i class="fa fa-trash"></i>
+											</button>
 										</td>
 									</tr>
 

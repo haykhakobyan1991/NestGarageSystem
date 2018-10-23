@@ -16,5 +16,11 @@
 	border: 1px solid #000;
 }
 
+td{
+	vertical-align: middle !important;
+}
+
+
+
 
 

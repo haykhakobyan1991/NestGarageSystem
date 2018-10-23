@@ -556,7 +556,7 @@ color: #fff;">
 											</div>
 										</div>
 									</td>
-									<td class="text-center" style="vertical-align: middle;">
+									<td class="text-center">
 										<? if ($row['status'] == 1) { ?>
 											<div class="bg-success"
 												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>

@@ -136,7 +136,7 @@
 	// create company
 	$(document).on('click', '#create_company', function (e) {
 
-		var url = '<?=base_url('Main/create_company_ax') ?>';
+		var url = '<?=base_url('Organization/company_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#company')[0]);
 
@@ -162,7 +162,7 @@
 					$('.alert-success').text(data.message);
 
 					close_message();
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>";
 
 					$(location).attr('href', url);
 
@@ -219,7 +219,7 @@
 	// create company
 	$(document).on('click', '#add_staff', function (e) {
 
-		var url = '<?=base_url('Main/add_staff_ax') ?>';
+		var url = '<?=base_url('Organization/add_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff')[0]);
 
@@ -247,7 +247,7 @@
 					close_message();
 
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
 
 					$(location).attr('href', url);
 
@@ -310,7 +310,7 @@
 	// create department
 	$(document).on('click', '#add_department', function (e) {
 
-		var url = '<?=base_url('Main/add_department_ax') ?>';
+		var url = '<?=base_url('Organization/add_department_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#department')[0]);
 
@@ -338,7 +338,7 @@
 					close_message();
 
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/create_company')?>"; //todo
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>";
 
 					$(location).attr('href', url);
 
@@ -415,68 +415,8 @@
 
 	});
 
-	$(window).on('load', function () {
-		$('button.dropdown-toggle.bs-placeholder').removeClass('btn-light');
-		var count = 0;
-		$('form#company input,select').each(function () {
-			if ($(this).val() == '') {
-				count++;
-			}
-		});
-
-		console.log(count);
-	})
 
 
-	// sidebar
-	var c_url = '<?=current_url()?>';
-
-	var url = window.location.href;
-
-	$('#list-department-list').click(function () {
-		$(location).attr('href', c_url + '#department');
-	});
-
-	$('#list-staff-list').click(function () {
-		$(location).attr('href', c_url + '#staff');
-	});
-
-	$('#list-company-list').click(function () {
-		$(location).attr('href', c_url + '#company');
-	});
-
-	$('#list-settings-list').click(function () {
-		$(location).attr('href', c_url + '#settings');
-	});
-
-	$('#list-users-list').click(function () {
-		$(location).attr('href', c_url + '#users');
-	});
-
-	if (url.indexOf('#staff') != -1) {
-
-		$('#list-staff-list').trigger('click');
-	}
-
-	if (url.indexOf('#department') != -1) {
-
-		$('#list-department-list').trigger('click');
-	}
-
-	if (url.indexOf('#company') != -1) {
-
-		$('#list-company-list').trigger('click');
-	}
-
-	if (url.indexOf('#settings') != -1) {
-
-		$('#list-company-list').trigger('click');
-	}
-
-	if (url.indexOf('#users') != -1) {
-
-		$('#list-users-list').trigger('click');
-	}
 
 	var n = 2;
 	$('.add_new_item').click(function () {

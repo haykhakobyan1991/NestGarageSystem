@@ -15,7 +15,7 @@ foreach ($staff as $row) :
 endforeach;
 ?>
 <!-- Staff Start -->
-	<div class="tab-pane fade" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
+	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
 		<form id="staff">
 		<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
 			 aria-labelledby="list-staff-list">

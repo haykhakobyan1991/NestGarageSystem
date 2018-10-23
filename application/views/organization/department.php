@@ -1,6 +1,6 @@
 <!-- Department Start -->
 
-<div class="tab-pane fade" id="list-department" role="tabpanel"
+<div class="tab-pane fade show active" id="list-department" role="tabpanel"
 	 aria-labelledby="list-department-list">
 	<form id="department">
 
@@ -18,7 +18,7 @@
 				<div class="container">
 					<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
 					<span
-						class="ml-2 mt-1 badge badge-secondary badge-pill">4</span>
+						class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$department_num_rows?></span>
 					<span class="btn btn-secondary btn-sm float-right" data-toggle="modal"
 							data-target=".bd-example-modal-lg">Ստեղծել Ստորաբաժանում
 					</span>
@@ -43,47 +43,20 @@ color: #fff;">
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>Tiger Nixon</td>
-								<td>System Architect</td>
-								<td>Edinburgh</td>
-								<td>61</td>
-								<td>2011/04/25</td>
-								<td>$320,800</td>
-								<td>$320,800</td>
-								<td>$320,800</td>
-							</tr>
-							<tr>
-								<td>Garrett Winters</td>
-								<td>Accountant</td>
-								<td>Tokyo</td>
-								<td>63</td>
-								<td>2011/07/25</td>
-								<td>$170,750</td>
-								<td>$170,750</td>
-								<td>$170,750</td>
-							</tr>
-							<tr>
-								<td>Ashton Cox</td>
-								<td>Junior Technical Author</td>
-								<td>San Francisco</td>
-								<td>66</td>
-								<td>2009/01/12</td>
-								<td>$86,000</td>
-								<td>$86,000</td>
-								<td>$86,000</td>
-							</tr>
-							<tr>
-								<td>Cedric Kelly</td>
-								<td>Senior Javascript Developer</td>
-								<td>Edinburgh</td>
-								<td>22</td>
-								<td>2012/03/29</td>
-								<td>$433,060</td>
-								<td>$433,060</td>
-								<td>$433,060</td>
-							</tr>
+							<? foreach ($department as $item) : ?>
+								<tr>
+									<td><?= $item['title'] ?></td>
+									<td><?= $item['description'] ?></td>
+									<td><?= $item['first_name'] ?></td>
+									<td><?= $item['last_name'] ?></td>
+									<td><?= $item['phone'] ?></td>
+									<td><?= $item['email'] ?></td>
+									<td><?= $item['registration_date'] ?></td>
+									<td><?= $item['user_name'] ?></td>
 
+								</tr>
+
+							<? endforeach; ?>
 						</table>
 
 
@@ -157,14 +130,6 @@ color: #fff;">
 
 						</div>
 					</div>
-
-
-					<div class="text-right mt-4 pb-2">
-						<button class="btn btn-secondary">Save</button>
-						<button class="btn btn-secondary ml-2">Cancel</button>
-					</div>
-
-
 				</div>
 			</div>
 		</div>

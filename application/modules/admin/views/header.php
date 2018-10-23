@@ -20,7 +20,7 @@ $page = $this->router->fetch_method();
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<div class="navbar-nav">
 					<a class="nav-item nav-link <?= ($page == 'web' ? 'active' : '') ?>" href="<?= base_url() ?>admin/web">Web</a>
-					<a class="nav-item nav-link <?= ($page == 'main' ? 'active' : '') ?>" href="<?= base_url() ?>admin/main">Main</a>
+					<a class="nav-item nav-link <?= ($page == 'Organization' ? 'active' : '') ?>" href="<?= base_url() ?>admin/main">Main</a>
 					<a class="nav-item nav-link <?= ($page == 'solution_challenge' ? 'active' : '') ?>" href="<?= base_url() ?>admin/solution_challenge">Solution Challenge</a>
 					<a class="nav-item nav-link <?= ($page == 'functional' ? 'active' : '') ?>" href="<?= base_url() ?>admin/functional">Functional 1</a>
 					<a class="nav-item nav-link <?= ($page == 'functional_2' ? 'active' : '') ?>" href="<?= base_url() ?>admin/functional_2">Functional 2</a>

@@ -2,10 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Main extends MX_Controller {
+class Organization extends MX_Controller {
 
 	/**
-	 * Main constructor.
+	 * Organization constructor.
 	 */
 	public function __construct() {
 
@@ -89,11 +89,9 @@ class Main extends MX_Controller {
 	}
 
 
-	/**
-	 *
-	 */
-	public function create_company() {
+	public function company() {
 
+		// for all
 		$this->load->authorisation();
 		$this->load->helper('url');
 		$this->load->library('session');
@@ -105,21 +103,6 @@ class Main extends MX_Controller {
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
-
-		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
-
-
-		$sql_company_type = "
-		    SELECT 
-              `id`,
-              `title_".$lng."` AS `title`
-            FROM
-              `company_type` 
-            WHERE `status` = '1'
-		";
-
-		$query_company_type = $this->db->query($sql_company_type);
-		$data['company_type'] = $query_company_type->result_array();
 
 		$sql_country = "
 		    SELECT 
@@ -135,17 +118,209 @@ class Main extends MX_Controller {
 		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
 
-		$data['staff'] = $this->db->select('staff.*, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')->from('staff')->join('user', 'staff.registrar_user_id = user.id', 'left')->where('registrar_user_id', $user_id)->get()->result_array(); //todo select where users is one company
+		// end
 
-		$data['staff_for_select'] = $this->db->select('id, CONCAT_WS(" ", first_name, last_name) AS name, status')->from('staff')->where('registrar_user_id', $user_id)->where('status', 1)->get()->result_array(); //todo select where users is one company
+		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
 
-		$this->layout->view('create_company', $data);
+
+		$sql_company_type = "
+				SELECT 
+				  `id`,
+				  `title_" . $lng . "` AS `title`
+				FROM
+				  `company_type` 
+				WHERE `status` = '1'
+			";
+
+		$query_company_type = $this->db->query($sql_company_type);
+		$data['company_type'] = $query_company_type->result_array();
+
+		$this->layout->view('organization/company', $data);
+
 	}
 
 
-	public function create_company_ax() {
 
-		$this->load->authorisation('Main', 'create_company');
+	public function department() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
+
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $company_id)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$query = $this->db->select('
+									department.title, 
+									department.description, 
+									staff.first_name, 
+									staff.last_name, 
+									CONCAT_WS("<br>", staff.contact_1, staff.contact_2) AS phone, 
+									staff.email, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name, 
+									DATE_FORMAT(department.registration_date, "%d-%m-%y %H:%i") AS registration_date
+								')
+			->from('department')
+			->join('staff', 'staff.id = department.head_staff_id', 'left')
+			->join('user', 'department.registrar_user_id = user.id', 'left')
+			->where('department.status', 1)
+			->where('department.company_id', $company_id)
+			->get();
+
+		$data['department'] = $query->result_array();
+		$data['department_num_rows'] = $query->num_rows();
+
+
+		$this->layout->view('organization/department', $data);
+
+	}
+
+
+	public function  staff() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		$data['staff'] = $this->db->select('staff.*, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $company_id)
+			->get()
+			->result_array();
+
+
+		$this->layout->view('organization/staff', $data);
+
+	}
+
+
+	public function vehicles() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+		$this->layout->view('organization/vehicles', $data);
+
+
+	}
+
+
+	public function user() {
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+		$this->layout->view('organization/user', $data);
+	}
+
+
+
+
+
+
+	public function company_ax() {
+
+		$this->load->authorisation('Organization', 'company');
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -457,7 +632,7 @@ class Main extends MX_Controller {
 
 	public function add_staff_ax() {
 
-		$this->load->authorisation('Main', 'create_company');
+		$this->load->authorisation('Organization', 'staff');
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -857,7 +1032,7 @@ class Main extends MX_Controller {
 
 	public function add_department_ax() {
 
-		$this->load->authorisation('Main', 'create_company');
+		$this->load->authorisation('Organization', 'department');
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');

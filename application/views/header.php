@@ -1,4 +1,3 @@
-
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -117,3 +116,67 @@
 	</a>
 </nav>
 <!-- Navbar End -->
+
+<div class="container-fluid" style="margin-top: 5rem;">
+	<!-- Nav tabs -->
+	<!-- Horizontal Tabs Start -->
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active" data-toggle="tab" href="#organization">Organization</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#structure">Structure</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" data-toggle="tab" href="#menu3">Menu 2</a>
+		</li>
+	</ul>
+	<!-- Horizontal Tabs End -->
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+
+		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
+
+			<div class="row">
+
+				<?
+				$page = $this->router->fetch_method();
+				?>
+
+				<!-- Vertical Tabs Start-->
+				<div class="col-sm-12 col-md-3">
+					<div class="list-group" id="list-tab" role="tablist">
+						<a class="list-group-item list-group-item-action <?=($page == 'company' ? 'active' : '')?>"
+						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>" role="tab" aria-controls="company">Company
+						</a>
+						<a class="list-group-item list-group-item-action <?=($page == 'department' ? 'active' : '')?>"
+						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>" role="tab" aria-controls="department">Department
+							<span class="badge badge-secondary badge-pill float-right">4</span>
+						</a>
+						<a class="list-group-item list-group-item-action <?=($page == 'staff' ? 'active' : '')?>"
+						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>" role="tab" aria-controls="staff">Staff
+							<span class="badge badge-secondary badge-pill float-right">2</span></a>
+						<a class="list-group-item list-group-item-action <?=($page == 'vehicles' ? 'active' : '')?>"
+						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles')?>" role="tab" aria-controls="settings">Vehicles
+							<span class="badge badge-secondary badge-pill float-right"></span>
+						</a>
+						<a class="list-group-item list-group-item-action <?=($page == 'user' ? 'active' : '')?>"
+						   href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>" role="tab" aria-controls="user">User
+							<span class="badge badge-secondary badge-pill float-right"></span>
+						</a>
+					</div>
+				</div>
+				<!-- Vertical Tabs End-->
+
+
+				<div class="col-sm-12 col-md-9">
+
+
+					<div class="tab-content" id="nav-tabContent">

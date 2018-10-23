@@ -54,7 +54,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'User';
 
 //First
-$route['^(ru|hy)/create_company$'] = "Main/create_company";
+$route['^(ru|hy)/company$'] = "Organization/company";
+$route['^(ru|hy)/department$'] = "Organization/department";
+$route['^(ru|hy)/staff$'] = "Organization/staff";
+$route['^(ru|hy)/vehicles$'] = "Organization/vehicles";
+$route['^(ru|hy)/user$'] = "Organization/user";
+
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";
 

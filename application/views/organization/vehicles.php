@@ -1,5 +1,5 @@
 <!-- Veichls Start -->
-<div class="tab-pane fade" id="list-settings" role="tabpanel"
+<div class="tab-pane fade show active" id="list-settings" role="tabpanel"
 	 aria-labelledby="list-settings-list">
 
 	<div class="tab-pane fade show active" id="list-staff" role="tabpanel"

@@ -809,7 +809,7 @@ class Sysadmin extends CI_Controller {
 
 		$data['result'] = $result;
 
-		$this->layout->view('main', $data, 'edit');
+		$this->layout->view('Organization', $data, 'edit');
 
 	}
 
@@ -841,7 +841,7 @@ class Sysadmin extends CI_Controller {
 		$this->form_validation->set_rules('button_2_1', 'Button 2 lang 1', 'required');
 		$this->form_validation->set_rules('button_2_link_1', 'Button 2 URL lang 1', 'required|valid_url');
 		$this->form_validation->set_rules('title_1', 'Title lang 1', 'required');
-		$this->form_validation->set_rules('main_text_1', 'Main text lang 1', 'required');
+		$this->form_validation->set_rules('main_text_1', 'Organization text lang 1', 'required');
 
 		// 2 Լեզվի ստուգում
 		$sql_lng = "SELECT status FROM `language` WHERE `id` = '2'";
@@ -858,7 +858,7 @@ class Sysadmin extends CI_Controller {
 			$this->form_validation->set_rules('button_2_2', 'Button 2 lang 2', 'required');
 			$this->form_validation->set_rules('button_2_link_2', 'Button 2 URL lang 2', 'required|valid_url');
 			$this->form_validation->set_rules('title_2', 'Title lang 2', 'required');
-			$this->form_validation->set_rules('main_text_2', 'Main text lang 2', 'required');
+			$this->form_validation->set_rules('main_text_2', 'Organization text lang 2', 'required');
 		}
 
 

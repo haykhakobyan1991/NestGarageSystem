@@ -29,7 +29,7 @@ class MY_Loader extends MX_Loader {
 		if (is_null($page)) {
 			$page = $this->router->fetch_method();
 		}
-		
+
 		
 		
 		if(!$this->session->username) {

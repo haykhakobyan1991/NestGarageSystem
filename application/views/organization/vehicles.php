@@ -602,9 +602,6 @@ color: #fff;">
 						<!-- Tab INFO End -->
 
 					</div>
-
-				</div>
-				<div class="modal-footer">
 					<div class="text-right mt-4 pb-2">
 						<button class="btn btn-secondary">Save</button>
 						<button class="btn btn-secondary ml-2" data-dismiss="modal">
@@ -612,6 +609,7 @@ color: #fff;">
 						</button>
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>

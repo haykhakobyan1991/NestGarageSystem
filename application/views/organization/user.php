@@ -172,14 +172,12 @@
 								</div>
 							</div>
 
-
-						</div>
-
-						<div class="modal-footer">
 							<div class="text-right mt-4 pb-2">
 								<span id="add_user" class="btn btn-secondary">Save</span>
 							</div>
 						</div>
+
+
 					</div>
 				</div>
 			</div>

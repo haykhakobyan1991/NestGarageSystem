@@ -394,9 +394,9 @@
 	});
 
 
-
-
 	$(document).on('click', 'span#edit_department', function (e) {
+
+		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 
 		var url = '<?=base_url('Organization/edit_department_ax') ?>';
 		e.preventDefault();
@@ -504,8 +504,6 @@
 	});
 
 
-
-
 	var n = 2;
 	$('.add_new_item').click(function () {
 		$('.new_items_tbody').append('<tr>\n' +
@@ -572,7 +570,7 @@
 
 	});
 
-	$(window).on('load', function(){
+	$(window).on('load', function () {
 		$('.loader_svg').fadeOut('slow');
 		$('.loader').fadeOut('slow');
 	})
@@ -583,9 +581,9 @@
 
 <script>
 
-	$(document).on('click','#edit_department_modal', function () {
-		var url = '<?=base_url('Organization/edit_department_modal_ax/')?>'+$(this).data('id');
-		$.get(url, function(result){
+	$(document).on('click', '#edit_department_modal', function () {
+		var url = '<?=base_url('Organization/edit_department_modal_ax/')?>' + $(this).data('id');
+		$.get(url, function (result) {
 
 			// update modal content
 			$('.modal-body').html(result);
@@ -602,7 +600,6 @@
 			location.reload();
 		});
 	});
-
 </script>
 
 

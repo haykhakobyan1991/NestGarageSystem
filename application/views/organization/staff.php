@@ -15,8 +15,8 @@ foreach ($staff as $row) :
 endforeach;
 ?>
 <!-- Staff Start -->
-	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
-		<form id="staff">
+<div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
+	<form id="staff">
 		<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
 			 aria-labelledby="list-staff-list">
 
@@ -28,31 +28,29 @@ endforeach;
 			</div>
 
 
-
-
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
-								class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$total?></span>
+								class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
-								class="ml-2 mt-1 badge badge-success badge-pill"><?=$active?></span>
+								class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-2 col2">
 							<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
-								class="ml-2 mt-1 badge badge-warning badge-pill"><?=$passive?></span>
+								class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
 						</div>
 
 						<div class="col-sm-12 col-md-4 col-4"></div>
 
 						<div class="col-sm-12 col-md-2 col-2">
 							<span class="btn btn-secondary" data-toggle="modal"
-									data-target=".add_staff_modal">Add User
+								  data-target=".add_staff_modal">Add User
 							</span>
 						</div>
 
@@ -259,7 +257,7 @@ endforeach;
 													<div class="col-sm-2">
 														<input name="status"
 															   value="-1"
-																type="checkbox"
+															   type="checkbox"
 															   class="form-control">
 													</div>
 												</div>
@@ -285,17 +283,33 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label for="exampleFormControlFile1">Example
-																					file input</label>
-																				<input type="file"
-																					   name="file_1"
-																					   class="form-control-file"
-																					   id="exampleFormControlFile1">
+																				<label>Name</label>
+																				<input type="text"
+																					   name="number_1"
+																					   class="form-control"
+																					   placeholder="Name">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
+																			<div class="form-group">
+																				<label
+																					style="position: absolute;left: 30px;">File</label>
+																				<label class="btn btn-default ">
+
+																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
+																					   class="fas fa-file-upload text-warning"></i>
+																					<input name="file_1" type="file"
+																						   hidden style="display: none;"
+																						   value="">
+																				</label>
+																			</div>
+																		</div>
+
+																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
@@ -346,16 +360,32 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label for="exampleFormControlFile1">Example
-																					file input</label>
-																				<input type="file"
-																					   class="form-control-file"
-																					   id="exampleFormControlFile1">
+																				<label>Name</label>
+																				<input type="text"
+																					   name="number_1"
+																					   class="form-control"
+																					   placeholder="Name">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
+																			<div class="form-group">
+																				<label
+																					style="position: absolute;left: 30px;">File</label>
+																				<label class="btn btn-default">
+
+																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
+																					   class="fas fa-file-upload text-warning"></i>
+																					<input name="file_2" type="file"
+																						   hidden style="display: none;"
+																						   value="">
+																				</label>
+																			</div>
+																		</div>
+																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
@@ -403,16 +433,31 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<div class="col-md-3">
+																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label for="exampleFormControlFile1">Example
-																					file input</label>
-																				<input type="file"
-																					   class="form-control-file"
-																					   id="exampleFormControlFile1">
+																				<label>Name</label>
+																				<input type="text"
+																					   name="number_1"
+																					   class="form-control"
+																					   placeholder="Name">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
+																			<div class="form-group">
+																				<label
+																					style="position: absolute;left: 30px;">File</label>
+																				<label class="btn btn-default">
+
+																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
+																					   class="fas fa-file-upload text-warning"></i>
+																					<input name="file_3" type="file"
+																						   hidden style="display: none;"
+																						   value="">
+																				</label>
+																			</div>
+																		</div>
+																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
@@ -461,16 +506,31 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<div class="col-md-3">
+																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label for="exampleFormControlFile1">Example
-																					file input</label>
-																				<input type="file"
-																					   class="form-control-file"
-																					   id="exampleFormControlFile1">
+																				<label>Name</label>
+																				<input type="text"
+																					   name="number_1"
+																					   class="form-control"
+																					   placeholder="Name">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+
+																		<div class="col-md-2">
+																			<div class="form-group">
+																				<label
+																					style="position: absolute;left: 30px;">File</label>
+																				<label class="btn btn-default">
+
+																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
+																					   class="fas fa-file-upload text-warning"></i>
+																					<input name="file_4" type="file"
+																						   hidden style="display: none;"
+																						   value="">
+																				</label>
+																			</div>
+																		</div>
+																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
@@ -535,7 +595,7 @@ color: #fff;">
 								<th style="font-size: 12px !important;">ղեկավար</th>
 								<th style="font-size: 12px !important;">Created date</th>
 								<th style="font-size: 12px !important;">Ում կողմից</th>
-								<th style="font-size: 12px !important;"></th>
+								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -546,12 +606,12 @@ color: #fff;">
 											<img
 												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 												class="mr-3"
-												src="<?=($row['photo'] != '' ? base_url('uploads/user_'.$row['registrar_user_id'].'/staff/thumbs/'.$row['photo']) :  base_url('assets/img/b.jpg'))?>"
+												src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . $row['registrar_user_id'] . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
 												alt="Generic placeholder image">
 											<div class="media-body">
-												<?=$row['first_name']. ' ' .$row['last_name']?>
+												<?= $row['first_name'] . ' ' . $row['last_name'] ?>
 												<small class="phone_number form-text text-muted">
-													<?=$row['contact_1']?>
+													<?= $row['contact_1'] ?>
 												</small>
 											</div>
 										</div>
@@ -565,18 +625,21 @@ color: #fff;">
 												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 										<? } ?>
 									</td>
-									<td><?=$row['position']?></td>
-									<td><?=$row['department_id']?></td>
+									<td><?= $row['position'] ?></td>
+									<td><?= $row['department_id'] ?></td>
 									<td></td>
-									<td><?=$row['registration_date']?></td>
-									<td><?=$row['user_name']?></td>
+									<td><?= $row['registration_date'] ?></td>
+									<td><?= $row['user_name'] ?></td>
 
 									<td colspan="2">
-										<span style="border: none;padding-top: 5px;cursor: pointer;"  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+										<span style="border: none;padding-top: 5px;cursor: pointer;"
+											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
 											  data-toggle="modal" class="float-left "
 											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
 
-										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>" id="delet_staff_modal" class="btn "><i class="fas fa-trash"></i></span></td>
+										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>"
+											  id="delet_staff_modal" class="btn "><i class="fas fa-trash"></i></span>
+									</td>
 								</tr>
 							<? endforeach; ?>
 						</table>
@@ -584,7 +647,7 @@ color: #fff;">
 				</div>
 			</div>
 		</div>
-		</form>
-	</div>
+	</form>
+</div>
 
 <!-- Staff End -->

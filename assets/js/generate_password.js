@@ -1,5 +1,5 @@
-var passwordGenerator = (function() {
-	var generateRandomNum = function(max) {
+var passwordGenerator = (function () {
+	var generateRandomNum = function (max) {
 		var crypto = window.crypto || window.msCrypto;
 		if (!crypto) {
 			throw new Error('Unsupported browser.');
@@ -13,7 +13,7 @@ var passwordGenerator = (function() {
 			return generateRandomNum(max);
 		return (array[0] % range);
 	};
-	var generatePassword = function(options) {
+	var generatePassword = function (options) {
 		var uppercase = "ABCDEFGHJKMNPQRSTUVWXYZ";
 		var lowercase = "abcdefghjkmnpqrstuvwxyz";
 		var numbers = "23456789";
@@ -36,8 +36,9 @@ var passwordGenerator = (function() {
 		generatePassword: generatePassword
 	};
 })();
-(function() {
+(function () {
 	'use strict';
+
 	function getOptions() {
 		return {
 			passwordLength: '6',
@@ -47,6 +48,7 @@ var passwordGenerator = (function() {
 			includeSpecialChars: true,
 		};
 	}
+
 	function outputGeneratedPassword() {
 		var password;
 		try {
@@ -57,7 +59,8 @@ var passwordGenerator = (function() {
 		}
 		$("#password-input").val(password);
 	}
-	$(function() {
+
+	$(function () {
 		outputGeneratedPassword();
 		$("#generate-password-button").click(outputGeneratedPassword);
 	});

@@ -1,5 +1,5 @@
 <!-- USERS START -->
-<div class="tab-pane fade show active" id="list-users" >
+<div class="tab-pane fade show active" id="list-users">
 	<form id="users">
 		<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list">
 
@@ -79,7 +79,7 @@
 
 									<div class="form-group row">
 										<label
-											class="col-sm-2 col-form-label">E-main *</label>
+											class="col-sm-2 col-form-label">E-mail *</label>
 										<div class="col-sm-10">
 											<input type="email" class="form-control"
 												   name="email"
@@ -109,17 +109,6 @@
 
 									<div class="form-group row">
 										<label
-											class="col-sm-2 col-form-label">User Name *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control"
-												   name="username"
-												   placeholder="User Name">
-										</div>
-									</div>
-
-
-									<div class="form-group row">
-										<label
 											class="col-sm-2 col-form-label">Password *</label>
 										<div class="col-sm-10">
 											<input type="text" class="form-control col-sm-8 float-left"
@@ -143,12 +132,14 @@
 									<div class="form-group row mb-0">
 										<label class="col-sm-2 col-form-label">Type</label>
 										<div class="col-sm-6">
-											<select value="" class=" form-control">
-												<option> choose type․․․</option>
-												<option>Admin</option>
-												<option>User</option>
+											<select name="country"
+													class="col selectpicker form-control form-control-sm"
+													data-size="5" id="country" data-live-search="true"
+													title="Select a Country">
+												<option value="">Select a Country ...</option>
+												<option value="admin">admin</option>
+												<option value="user">user</option>
 											</select>
-
 										</div>
 									</div>
 
@@ -231,9 +222,10 @@ color: #fff;">
 								<th style="font-size: 12px !important;">Created Date</th>
 								<th style="font-size: 12px !important;">By Whom</th>
 								<th style="font-size: 12px !important;">Last Access Date/Time</th>
+								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
-							<tbody>
+							</tbody>
 							<tr>
 								<td>
 
@@ -268,6 +260,15 @@ color: #fff;">
 								<td>10.10.2017</td>
 								<td>Daniel Smith</td>
 								<td>22.10.2018/20:42</td>
+								<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											  id="edit_user_modal"
+											  data-toggle="modal" class="float-left "
+											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
+
+									<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
+										  class="btn "><i class="fas fa-trash"></i></span></td>
+							</tr>
 							</tr>
 							<tr>
 								<td>
@@ -303,6 +304,15 @@ color: #fff;">
 								<td>12.09.2018</td>
 								<td>Daniel Smith</td>
 								<td>20.10.2018/19:23</td>
+								<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											  id="edit_user_modal"
+											  data-toggle="modal" class="float-left "
+											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
+
+									<span style="border: none;cursor: pointer;" data-id="" id="delet_user_modal"
+										  class="btn "><i class="fas fa-trash"></i></span></td>
+							</tr>
 							</tr>
 
 						</table>

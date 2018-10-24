@@ -188,5 +188,7 @@
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
 
-						<div class="loader""></div>
-						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
+						<div class="loader"
+						">
+					</div>
+					<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>

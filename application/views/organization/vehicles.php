@@ -61,9 +61,10 @@ color: #fff;">
 							<th style="font-size: 12px !important;">ղեկավար</th>
 							<th style="font-size: 12px !important;">Created date</th>
 							<th style="font-size: 12px !important;">Ում կողմից</th>
+							<th style="font-size: 12px !important;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
-						<tbody>
+						</tbody>
 						<tr>
 							<td>Veichls 1</td>
 							<td style="text-align: center; vertical-align: middle;">
@@ -75,6 +76,15 @@ color: #fff;">
 							<td></td>
 							<td></td>
 							<td></td>
+							<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											  id="edit_vehicles_modal"
+											  data-toggle="modal" class="float-left "
+											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+
+								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
+									  class="btn "><i class="fas fa-trash"></i></span></td>
+						</tr>
 						</tr>
 						<tr>
 							<td>Veichls 2</td>
@@ -87,6 +97,15 @@ color: #fff;">
 							<td></td>
 							<td></td>
 							<td></td>
+							<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											  id="edit_vehicles_modal"
+											  data-toggle="modal" class="float-left "
+											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+
+								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
+									  class="btn "><i class="fas fa-trash"></i></span></td>
+						</tr>
 						</tr>
 						<tr>
 							<td>Veichls 3</td>
@@ -99,6 +118,15 @@ color: #fff;">
 							<td></td>
 							<td></td>
 							<td></td>
+							<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											  id="edit_vehicles_modal"
+											  data-toggle="modal" class="float-left "
+											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+
+								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
+									  class="btn "><i class="fas fa-trash"></i></span></td>
+						</tr>
 
 						</tr>
 
@@ -579,7 +607,8 @@ color: #fff;">
 									<h5 class="card-header">Secondary meter</h5>
 									<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
 										<input type="checkbox" class="form-check-input" id="exampleCheck11">
-										<label class="form-check-label" for="exampleCheck11">Use of secondary meter</label>
+										<label class="form-check-label" for="exampleCheck11">Use of secondary
+											meter</label>
 									</div>
 									<div class="card-body">
 										<div class="form-group row mb-0">

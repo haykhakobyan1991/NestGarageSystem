@@ -4,95 +4,100 @@
 	 aria-labelledby="list-department-list">
 
 
-		<div class="tab-pane fade show active" id="list-department" role="tabpanel"
-			 aria-labelledby="list-department-list">
+	<div class="tab-pane fade show active" id="list-department" role="tabpanel"
+		 aria-labelledby="list-department-list">
 
 
-			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-				<div class="container">
-					<p class="display-5 font-weight-bold mb-0">Section: Departments</p>
-				</div>
+		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+			<div class="container">
+				<p class="display-5 font-weight-bold mb-0">Section: Departments</p>
 			</div>
+		</div>
 
-			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-				<div class="container">
-					<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
-					<span
-						class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$department_num_rows?></span>
-					<span class="btn btn-secondary btn-sm float-right" data-toggle="modal"
-						  data-target="#add_department">Ստեղծել Ստորաբաժանում
+		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+			<div class="container">
+				<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
+				<span
+					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span>
+				<span class="btn btn-secondary btn-sm float-right" data-toggle="modal"
+					  data-target="#add_department">Ստեղծել Ստորաբաժանում
 					</span>
-					<hr class="my-4">
-					<div class="row col-sm-12 col-md-12"
-						 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
+				<hr class="my-4">
+				<div class="row col-sm-12 col-md-12"
+					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
 
 
-						<table id="example" class="table table-striped table-bordered"
-							   style="width:100%">
-							<thead style="background: #545b62;
+					<table id="example" class="table table-striped table-bordered"
+						   style="width:100%">
+						<thead style="background: #545b62;
 color: #fff;">
+						<tr>
+							<th style="font-size: 12px !important;">Ստորաբաժանում</th>
+							<th style="font-size: 12px !important;">Մանրամասն</th>
+							<th style="font-size: 12px !important;">Անուն</th>
+							<th style="font-size: 12px !important;">Ազգանուն</th>
+							<th style="font-size: 12px !important;">Հեռ․</th>
+							<th style="font-size: 12px !important;">Էլ․ հասցե</th>
+							<th style="font-size: 12px !important;">Ստեղծվել է</th>
+							<th style="font-size: 12px !important;">Ում կողմից</th>
+							<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+						</tr>
+						</thead>
+						<tbody>
+						<? foreach ($department as $item) : ?>
 							<tr>
-								<th style="font-size: 12px !important;">Ստորաբաժանում</th>
-								<th style="font-size: 12px !important;">Մանրամասն</th>
-								<th style="font-size: 12px !important;">Անուն</th>
-								<th style="font-size: 12px !important;">Ազգանուն</th>
-								<th style="font-size: 12px !important;">Հեռ․</th>
-								<th style="font-size: 12px !important;">Էլ․ հասցե</th>
-								<th style="font-size: 12px !important;">Ստեղծվել է</th>
-								<th style="font-size: 12px !important;">Ում կողմից</th>
-								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+								<td><?= $item['title'] ?></td>
+								<td><?= $item['description'] ?></td>
+								<td><?= $item['first_name'] ?></td>
+								<td><?= $item['last_name'] ?></td>
+								<td><?= $item['phone'] ?></td>
+								<td><?= $item['email'] ?></td>
+								<td><?= $item['registration_date'] ?></td>
+								<td><?= $item['user_name'] ?></td>
+								<td colspan="2">
+
+										<span
+											style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
+											data-id="<?= $item['id'] ?>" id="edit_department_modal"
+											data-toggle="modal" class="float-left "
+											data-target="#edit_department"><i class="fas fa-edit"></i></span>
+
+									<span style="border: none; cursor:pointer;" data-toggle="modal"
+										  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
+										  id="delete_department_modal" class=""><i class="fas fa-trash"></i></span></td>
+
 							</tr>
-							</thead>
-							<tbody>
-							<? foreach ($department as $item) : ?>
-								<tr>
-									<td><?= $item['title'] ?></td>
-									<td><?= $item['description'] ?></td>
-									<td><?= $item['first_name'] ?></td>
-									<td><?= $item['last_name'] ?></td>
-									<td><?= $item['phone'] ?></td>
-									<td><?= $item['email'] ?></td>
-									<td><?= $item['registration_date'] ?></td>
-									<td><?= $item['user_name'] ?></td>
-									<td colspan="2">
 
-										<span style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"  data-id="<?= $item['id'] ?>" id="edit_department_modal"
-											  data-toggle="modal" class="float-left "
-											  data-target="#edit_department"><i class="fas fa-edit"></i></span>
-
-									<span style="border: none; cursor:pointer;" data-toggle="modal" data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>" id="delete_department_modal" class=""><i class="fas fa-trash"></i></span></td>
-
-								</tr>
-
-							<? endforeach; ?>
-						</table>
+						<? endforeach; ?>
+					</table>
 
 
-					</div>
+				</div>
 
 
-					<div class="modal fade bd-example-modal-lg " id="edit_department" tabindex="-1" role="dialog"
-						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="modal-header bg-dark">
-									<h5 class="text-white modal-title dar">New Department</h5>
-									<button type="button" class="text-white close"
-											data-dismiss="modal"
-											aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								<div class="modal-body">
-								</div>
+				<div class="modal fade bd-example-modal-lg " id="edit_department" tabindex="-1" role="dialog"
+					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header bg-dark">
+								<h5 class="text-white modal-title dar">New Department</h5>
+								<button type="button" class="text-white close"
+										data-dismiss="modal"
+										aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+									 src="<?= base_url() ?>assets/images/bars.svg"/>
 							</div>
 						</div>
 					</div>
+				</div>
 
-
-					<!--  Department Modal Start -->
-					<form id="department">
-						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="add_department"
+				<!--  Department Modal Start -->
+				<form id="department">
+					<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="add_department"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
@@ -159,17 +164,18 @@ color: #fff;">
 
 						</div>
 					</div>
-					</form>
-				</div>
+				</form>
 			</div>
 		</div>
+	</div>
 </div>
 
 <!-- Department End -->
 
 
 <!-- Delete Modal Start -->
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -200,7 +206,7 @@ color: #fff;">
 		var id = $('input[name="department_id"]').val();
 		var url = '<?=base_url('Organization/delete_department/')?>';
 
-		$.post(url, {department_id, id}, function(result){
+		$.post(url, {department_id, id}, function (result) {
 			location.reload();
 		});
 	});

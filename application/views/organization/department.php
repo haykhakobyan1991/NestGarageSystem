@@ -60,7 +60,7 @@ color: #fff;">
 											  data-toggle="modal" class="float-left "
 											  data-target="#edit_department"><i class="fas fa-edit"></i></span>
 
-									<span style="border: none;cursor:pointer;" data-toggle="modal" data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>" id="delet_department_modal" class=""><i class="fas fa-trash"></i></span></td>
+									<span style="border: none; cursor:pointer;" data-toggle="modal" data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>" id="delete_department_modal" class=""><i class="fas fa-trash"></i></span></td>
 
 								</tr>
 
@@ -180,13 +180,31 @@ color: #fff;">
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-success">Delete</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+					<button type="button" id="delete_department" class="btn btn-success">Yes</button>
+					<input type="hidden" name="department_id">
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- Delete Modal End -->
+
+<script>
+	$(document).on('click', '#delete_department_modal', function () {
+		department_id = $(this).data('id');
+		$('input[name="department_id"]').val(department_id);
+	});
+
+	$(document).on('click', '#delete_department', function () {
+		var id = $('input[name="department_id"]').val();
+		var url = '<?=base_url('Organization/delete_department/')?>';
+
+		$.post(url, {department_id, id}, function(result){
+			location.reload();
+		});
+	});
+
+</script>
 
 

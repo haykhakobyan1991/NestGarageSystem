@@ -1273,6 +1273,26 @@ class Organization extends MX_Controller {
 		return true;
 	}
 
+	public function delete_department() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('department_id');
+
+
+		$this->db->delete('department', array('id' => $id));
+
+		return true;
+
+	}
+
 
 }
 //end of class

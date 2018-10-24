@@ -2,7 +2,7 @@
 
 <div class="tab-pane fade show active" id="list-department" role="tabpanel"
 	 aria-labelledby="list-department-list">
-	<form id="department">
+
 
 		<div class="tab-pane fade show active" id="list-department" role="tabpanel"
 			 aria-labelledby="list-department-list">
@@ -20,7 +20,7 @@
 					<span
 						class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$department_num_rows?></span>
 					<span class="btn btn-secondary btn-sm float-right" data-toggle="modal"
-							data-target=".bd-example-modal-lg">Ստեղծել Ստորաբաժանում
+						  data-target="#add_department">Ստեղծել Ստորաբաժանում
 					</span>
 					<hr class="my-4">
 					<div class="row col-sm-12 col-md-12"
@@ -54,7 +54,9 @@ color: #fff;">
 									<td><?= $item['email'] ?></td>
 									<td><?= $item['registration_date'] ?></td>
 									<td><?= $item['user_name'] ?></td>
-									<td><a href="#"><span  class="btn btn-sm btn-outline-secondary" data-toggle="modal" data-target="#edit_department"><i class="fas fa-edit"></i></span></a></td>
+									<td><span data-id="<?= $item['id'] ?>" id="edit_department_modal"
+											  data-toggle="modal" class="btn btn-sm btn-outline-secondary"
+											  data-target="#edit_department"><i class="fas fa-edit"></i></span></td>
 
 								</tr>
 
@@ -64,8 +66,29 @@ color: #fff;">
 
 					</div>
 
+
+					<div class="modal fade bd-example-modal-lg " id="edit_department" tabindex="-1" role="dialog"
+						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header bg-dark">
+									<h5 class="text-white modal-title dar">New Department</h5>
+									<button type="button" class="text-white close"
+											data-dismiss="modal"
+											aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 					<!--  Department Modal Start -->
-					<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+					<form id="department">
+						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="add_department"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
@@ -132,11 +155,10 @@ color: #fff;">
 
 						</div>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
-
-	</form>
 </div>
 
 <!-- Department End -->

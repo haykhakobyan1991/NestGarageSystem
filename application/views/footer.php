@@ -308,7 +308,7 @@
 
 <script>
 	// create department
-	$(document).on('click', '#add_department', function (e) {
+	$(document).on('click', 'span#add_department', function (e) {
 
 		var url = '<?=base_url('Organization/add_department_ax') ?>';
 		e.preventDefault();
@@ -394,12 +394,100 @@
 	});
 
 
+
+
+	$(document).on('click', 'span#edit_department', function (e) {
+
+		var url = '<?=base_url('Organization/edit_department_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#department_edit')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					scroll_top();
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+
+					close_message();
+
+
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>";
+
+					$(location).attr('href', url);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+
+						$('.alert-danger').addClass('d-none');
+						$('.alert-success').addClass('d-none');
+
+						$.each(data.error.elements, function (index) {
+
+							$.each(data.error.elements[index], function (index, value) {
+
+								if (value != '') {
+
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+
+
+									$('.alert-danger').removeClass('d-none');
+									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+
+
+								}
+
+							});
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
 </script>
 
 
+<!-- Colors -->
 <script type="text/javascript">
 
-	<!-- Colors -->
 	$('.color_check_btn').on('click', function () {
 		var sel_color = $(this).data('value');
 
@@ -489,6 +577,31 @@
 		$('.loader').fadeOut('slow');
 	})
 
+
+</script>
+
+
+<script>
+
+	$(document).on('click','#edit_department_modal', function () {
+		var url = '<?=base_url('Organization/edit_department_modal_ax/')?>'+$(this).data('id');
+		$.get(url, function(result){
+
+			// update modal content
+			$('.modal-body').html(result);
+
+			// show modal
+			$('#myModal').modal('show');
+		});
+
+	})
+
+	$(document).ready(function () {
+
+		$(".modal").on('hidden.bs.modal', function () {
+			location.reload();
+		});
+	});
 
 </script>
 

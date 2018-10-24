@@ -10,7 +10,7 @@
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.animate.min.css">
+	<link rel="stylesheet" href="<?= base_url() ?>assets/css/animate.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>

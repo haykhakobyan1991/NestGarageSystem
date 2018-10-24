@@ -183,6 +183,7 @@ class Organization extends MX_Controller {
 
 
 		$query = $this->db->select('
+									department.id, 
 									department.title, 
 									department.description, 
 									staff.first_name, 
@@ -1102,6 +1103,155 @@ class Organization extends MX_Controller {
 				  `head_staff_id` = ".$this->load->db_value($head_staff).",
 				  `description` = ".$this->load->db_value($description).",
 				  `status` = ".$this->load->db_value($status)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function edit_department_modal_ax() {
+
+		$id = $this->uri->segment(3);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+
+		$sql = "SELECT
+                  `id`,
+				  `company_id`,
+				  `title`,
+				  `description`,
+				  `registration_date`,
+				  `registrar_user_id`,
+				  `head_staff_id`,
+				  `status`
+                FROM 
+                   `department`
+                WHERE `id` =  ".$this->load->db_value($id)."
+                LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $row['company_id'])
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+
+		$data['id'] = $row['id'];
+		$data['company_id'] = $row['company_id'];
+		$data['title'] = $row['title'];
+		$data['description'] = $row['description'];
+		$data['head_staff_id'] = $row['head_staff_id'];
+
+
+
+		$this->load->view('organization/edit_department', $data);
+
+	}
+
+
+
+	public function edit_department_ax() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' => form_error('title'),
+				'head_staff' => form_error('head_staff'),
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+//		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+//		$company_id = $row['company_id'];
+
+
+
+
+		$id = $this->input->post('department_id');
+		$title = $this->input->post('title');
+		$head_staff = $this->input->post('head_staff');
+		$description = $this->input->post('description');
+		$status = 1;
+
+
+
+
+		$sql = "
+				UPDATE 
+				  `department`
+				SET
+				  `title` = ".$this->load->db_value($title).",
+				  `head_staff_id` = ".$this->load->db_value($head_staff).",
+				  `description` = ".$this->load->db_value($description).",
+				  `status` = ".$this->load->db_value($status)."
+				WHERE `id` =   ".$this->load->db_value($id)."
 			";
 
 

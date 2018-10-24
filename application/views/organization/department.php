@@ -60,7 +60,7 @@ color: #fff;">
 											  data-toggle="modal" class="float-left "
 											  data-target="#edit_department"><i class="fas fa-edit"></i></span>
 
-									<span style="border: none;cursor:pointer;" data-id="<?= $item['id'] ?>" id="delet_department_modal" class=""><i class="fas fa-trash"></i></span></td>
+									<span style="border: none;cursor:pointer;" data-toggle="modal" data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>" id="delet_department_modal" class=""><i class="fas fa-trash"></i></span></td>
 
 								</tr>
 
@@ -166,3 +166,27 @@ color: #fff;">
 </div>
 
 <!-- Department End -->
+
+
+<!-- Delete Modal Start -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-danger" id="exampleModalLabel">are you sure you want to delete ? </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-success">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal End -->
+
+

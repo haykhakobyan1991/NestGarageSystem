@@ -571,12 +571,12 @@ color: #fff;">
 									<td><?=$row['registration_date']?></td>
 									<td><?=$row['user_name']?></td>
 
-									<td>
-										<span style="border: none;padding-top: 3px;" class="float-left" data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-											  data-toggle="modal" class="btn btn-sm btn-outline-secondary"
+									<td colspan="2">
+										<span style="border: none;padding-top: 5px;cursor: pointer;"  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+											  data-toggle="modal" class="float-left "
 											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
 
-										<span style="border: none;" data-id="<?= $row['id'] ?>" id="delet_staff_modal" class="btn btn-sm btn-outline-secondary"><i class="fas fa-trash"></i></span></td>
+										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>" id="delet_staff_modal" class="btn "><i class="fas fa-trash"></i></span></td>
 								</tr>
 							<? endforeach; ?>
 						</table>

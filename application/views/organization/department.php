@@ -40,7 +40,7 @@ color: #fff;">
 								<th style="font-size: 12px !important;">Էլ․ հասցե</th>
 								<th style="font-size: 12px !important;">Ստեղծվել է</th>
 								<th style="font-size: 12px !important;">Ում կողմից</th>
-								<th style="font-size: 12px !important;"></th>
+								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -54,12 +54,13 @@ color: #fff;">
 									<td><?= $item['email'] ?></td>
 									<td><?= $item['registration_date'] ?></td>
 									<td><?= $item['user_name'] ?></td>
-									<td>
-										<span style="border: none;padding-top: 3px;" class="float-left" data-id="<?= $item['id'] ?>" id="edit_department_modal"
-											  data-toggle="modal" class="btn btn-sm btn-outline-secondary"
+									<td colspan="2">
+
+										<span style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"  data-id="<?= $item['id'] ?>" id="edit_department_modal"
+											  data-toggle="modal" class="float-left "
 											  data-target="#edit_department"><i class="fas fa-edit"></i></span>
 
-									<span style="border: none;" data-id="<?= $item['id'] ?>" id="delet_department_modal" class="btn btn-sm btn-outline-secondary"><i class="fas fa-trash"></i></span></td>
+									<span style="border: none;cursor:pointer;" data-id="<?= $item['id'] ?>" id="delet_department_modal" class=""><i class="fas fa-trash"></i></span></td>
 
 								</tr>
 

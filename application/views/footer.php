@@ -600,6 +600,40 @@
 			location.reload();
 		});
 	});
+
+	// Input type File Staff
+	$('.btn_input').on('change', function () {
+
+		var upload_file = $(this).val();
+		var upload_file = upload_file.split("\\");
+		var upload_file = upload_file[upload_file.length - 1];
+
+		text_truncate = function (str, length, ending) {
+			if (length == null) {
+				length = 100;
+			}
+			if (ending == null) {
+				ending = '...';
+			}
+			if (str.length > length) {
+				return str.substring(0, length - ending.length) + ending;
+			} else {
+				return str;
+			}
+		};
+
+		if (upload_file == '') {
+			$(this).parent('label').children('span').text('Brows file');
+		} else {
+			if (upload_file.length > 10) {
+				short_text = text_truncate(upload_file, 7, ' ...')
+				$(this).parent('label').children('span').text(short_text);
+			} else {
+				$(this).parent('label').children('span').text(upload_file);
+			}
+		}
+
+	})
 </script>
 
 

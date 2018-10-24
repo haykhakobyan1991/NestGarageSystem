@@ -296,13 +296,9 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label
-																					style="position: absolute;left: 30px;">File</label>
-																				<label class="btn btn-default ">
-
-																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
-																					   class="fas fa-file-upload text-warning"></i>
-																					<input name="file_1" type="file"
+																				<label style="margin-top: 30px;" class="btn btn-outline-primary ">
+																					<span>Brows file</span>
+																					<input class="btn_input" name="file_1" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -373,13 +369,9 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label
-																					style="position: absolute;left: 30px;">File</label>
-																				<label class="btn btn-default">
-
-																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
-																					   class="fas fa-file-upload text-warning"></i>
-																					<input name="file_2" type="file"
+																				<label style="margin-top: 30px;" class="btn btn-outline-primary">
+																					<span>Brows file</span>
+																					<input class="btn_input" name="file_2" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -445,13 +437,10 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label
-																					style="position: absolute;left: 30px;">File</label>
-																				<label class="btn btn-default">
+																				<label style="margin-top: 30px;" class="btn btn-outline-primary">
 
-																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
-																					   class="fas fa-file-upload text-warning"></i>
-																					<input name="file_3" type="file"
+																					<span>Brows file</span>
+																					<input class="btn_input" name="file_3" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -518,13 +507,10 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label
-																					style="position: absolute;left: 30px;">File</label>
-																				<label class="btn btn-default">
-
-																					<i style="font-size: 24px;margin-top: 30px;margin-left: 7px;"
-																					   class="fas fa-file-upload text-warning"></i>
-																					<input name="file_4" type="file"
+																				<label style="margin-top: 30px;"
+																					   class="btn btn-outline-primary">
+																					<span>Brows file</span>
+																					<input class="btn_input" name="file_4" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>

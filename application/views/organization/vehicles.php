@@ -1,3 +1,13 @@
+<style>
+	table#example3 thead tr th:last-child:after {
+		content: '';
+	}
+
+	table#example3 thead tr th:last-child:before {
+		content: '';
+	}
+</style>
+
 <!-- Veichls Start -->
 <div class="tab-pane fade show active" id="list-settings" role="tabpanel"
 	 aria-labelledby="list-settings-list">

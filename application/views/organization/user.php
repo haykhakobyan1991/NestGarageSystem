@@ -1,3 +1,13 @@
+<style>
+	table#example4 thead tr th:last-child:after {
+		content: '';
+	}
+
+	table#example4 thead tr th:last-child:before {
+		content: '';
+	}
+</style>
+
 <!-- USERS START -->
 <div class="tab-pane fade show active" id="list-users">
 	<form id="users">

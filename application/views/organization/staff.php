@@ -14,6 +14,17 @@ foreach ($staff as $row) :
 
 endforeach;
 ?>
+
+<style>
+	table#example2 thead tr th:last-child:after {
+		content: '';
+	}
+
+	table#example2 thead tr th:last-child:before {
+		content: '';
+	}
+</style>
+
 <!-- Staff Start -->
 <div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
 	<form id="staff">
@@ -296,9 +307,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label style="margin-top: 30px;" class="btn btn-outline-primary ">
+																				<label style="margin-top: 30px;"
+																					   class="btn btn-outline-primary ">
 																					<span>Brows file</span>
-																					<input class="btn_input" name="file_1" type="file"
+																					<input class="btn_input"
+																						   name="file_1" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -369,9 +382,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label style="margin-top: 30px;" class="btn btn-outline-primary">
+																				<label style="margin-top: 30px;"
+																					   class="btn btn-outline-primary">
 																					<span>Brows file</span>
-																					<input class="btn_input" name="file_2" type="file"
+																					<input class="btn_input"
+																						   name="file_2" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -437,10 +452,12 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label style="margin-top: 30px;" class="btn btn-outline-primary">
+																				<label style="margin-top: 30px;"
+																					   class="btn btn-outline-primary">
 
 																					<span>Brows file</span>
-																					<input class="btn_input" name="file_3" type="file"
+																					<input class="btn_input"
+																						   name="file_3" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>
@@ -510,7 +527,8 @@ endforeach;
 																				<label style="margin-top: 30px;"
 																					   class="btn btn-outline-primary">
 																					<span>Brows file</span>
-																					<input class="btn_input" name="file_4" type="file"
+																					<input class="btn_input"
+																						   name="file_4" type="file"
 																						   hidden style="display: none;"
 																						   value="">
 																				</label>

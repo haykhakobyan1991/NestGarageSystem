@@ -9,28 +9,22 @@
 	<meta name="description" content=""/>
 	<meta name="keywords" content=""/>
 
-	<meta name="google-signin-client_id"
-		  content="910091284932-5pijqpe8si37k424m4h2e1teqdkucthe.apps.googleusercontent.com">
+	<meta name="google-signin-client_id" content="910091284932-5pijqpe8si37k424m4h2e1teqdkucthe.apps.googleusercontent.com">
 
 
 	<title></title>
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url('assets/img/') ?>" type="image/png">
-
 	<link href="<?= base_url('assets/css/reset.css') ?>" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 		  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap.min.css') ?>"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css"/>
-
-
 	<script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
 	<script src="<?= base_url('assets/js/main.js') ?>"></script>
 	<script src="<?= base_url('assets/js/base.js') ?>"></script>
-
 	<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
-
 
 </head>
 <body>
@@ -54,7 +48,7 @@
 <div class="userContent"></div>
 
 <style>
-	li.active>a {
+	li.active > a {
 		color: #5e1017;
 	}
 </style>
@@ -62,19 +56,28 @@
 
 <div class="container">
 	<div class="row">
-		<div class="langs mr-5">
-			<ul class="navbar-nav mr-auto" data-url="<?=base_url('change_lang')?>">
-				<li class="nav-item  <?=(($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '')?>" data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
-				<li class="nav-item  <?=($this->uri->segment(1) == 'ru' ? 'active' : '')?>" data-lang="ru"><a class="nav-link" href="javascript:void(0)">Рус</a></li>
-			</ul>
-		</div>
+
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-			<p class="lead text-success text-center ">Have an Account? <span style="cursor:pointer;"
-																			 class="text-warning" data-toggle="modal"
-																			 data-target="#exampleModal"
-																			 data-whatever="@mdo">Sign In</span></p>
+			<p class="lead text-success left">Have an Account? <span style="cursor:pointer;"
+																	 class="text-warning" data-toggle="modal"
+																	 data-target="#exampleModal"
+																	 data-whatever="@mdo">Sign In</span>
+
+			<div class="langs mr-5" style="margin-top: -52px;text-align: right;">
+				<ul class="" data-url="<?= base_url('change_lang') ?>">
+					<li style="display: inline-block;margin-right: -25px;"
+						class=" <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
+						data-lang="hy"><a style="font-weight: 600;" class="nav-link" href="javascript:void(0)">Հայ</a>
+					</li>
+					<li style="display: inline-block;margin-right: -60px;"
+						class="  <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>" data-lang="ru"><a
+							class="nav-link" style="font-weight: 600;" href="javascript:void(0)">Рус</a></li>
+				</ul>
+			</div>
+
+			</p>
 
 			<div class="jumbotron pt-3 pb-3 my_jumbotron">
 				<p class="lead">Join 2,776,007 Founders & Startups Always free - connect now</p>
@@ -119,7 +122,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"><?=lang('register')?></h5>
+					<h5 class="modal-title" id="exampleModalLabel"><?= lang('register') ?></h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -168,56 +171,66 @@
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm lastname"
 										   placeholder="Last Name" name="lastname" value="">
-									<small id="lastname" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="lastname" class="form-text text-muted d-none"><p class="text-danger"></p>
+									</small>
 								</div>
 
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="up_email" value="">
-									<small id="up_email" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="up_email" class="form-text text-muted d-none"><p class="text-danger"></p>
+									</small>
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm country_code"
 										   placeholder="Country Code" name="country_code" value="">
-									<small id="country_code" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="country_code" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm phone_number"
 										   placeholder="Phone Number" name="phone_number" value="">
-									<small id="phone_number" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="phone_number" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
 										   placeholder="Password" name="up_password" value="">
-									<small id="up_password" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="up_password" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm confirm_password"
 										   placeholder="Confirm Password" name="confirm_password" value="">
-									<small id="confirm_password" class="form-text text-muted d-none"><p	class="text-danger"></p></small>
+									<small id="confirm_password" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 
 								</div>
 
-								<div class="form-group" >
+								<div class="form-group">
 
-									<select  name="up_country" class="selectpicker form-control form-control-sm" id="country" data-container="body" data-live-search="true" title="Select a country"  >
+									<select name="up_country" class="selectpicker form-control form-control-sm"
+											id="country" data-container="body" data-live-search="true"
+											title="Select a country">
 										<option value="">Select Country ...</option>
 										<? foreach ($country as $row) : ?>
-											<option value="<?= $row['id'] ?>"><?=$row['title']?></option>
+											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
-									<small id="up_country" class="form-text text-muted d-none"><p class="text-danger"></p></small>
+									<small id="up_country" class="form-text text-muted d-none"><p
+											class="text-danger"></p></small>
 
 								</div>
 
 
 							</form>
 
-							<button id="sign_up" type="submit" class="btn btn-outline-success btn-block signUp">Join</button>
+							<button id="sign_up" type="submit" class="btn btn-outline-success btn-block signUp">Join
+							</button>
 
 						</div>
 					</div>
@@ -238,7 +251,7 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"><?=lang('sign_in')?></h5>
+				<h5 class="modal-title" id="exampleModalLabel"><?= lang('sign_in') ?></h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -290,7 +303,8 @@
 											Field must be filled in</p></small>
 								</div>
 							</form>
-							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
+							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In
+							</button>
 						</div>
 					</div>
 
@@ -318,7 +332,6 @@
 <script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 
 
-
 <script type="text/javascript">
 	// var url = window.location.href;
 	// if(url.indexOf('#signIn') != -1) {
@@ -326,7 +339,6 @@
 	// 	$('#exampleModal').modal('show');
 	// }
 </script>
-
 
 
 <!-- Sign In With FACEBOOK  -->
@@ -462,12 +474,12 @@
 			dataType: 'json',
 			success: function (data) {
 				if (data.success == '1') {
-				
+
 					$('p#success').html(data.message);
 					$('p#success').removeClass('d-none');
 					$('input, select').val('');
 
-					setTimeout(function() {
+					setTimeout(function () {
 						$('button[aria-label="Close"]').trigger('click');
 					}, 4000);
 
@@ -477,24 +489,23 @@
 
 
 						// scroll_top();
-						
+
 						$('p#success').addClass('d-none');
-						$.each(data.error.elements, function( index ) {
+						$.each(data.error.elements, function (index) {
 
-							$.each(data.error.elements[index], function( index, value  ) {
+							$.each(data.error.elements[index], function (index, value) {
 
-								if(value != '') {
+								if (value != '') {
 
-									$('#'+index+' > p').text(value);
-									$('#'+index).removeClass('d-none');
+									$('#' + index + ' > p').text(value);
+									$('#' + index).removeClass('d-none');
 
 								} else {
-									$('#'+index+' > p').text('');
-									$('#'+index).addClass('d-none');
+									$('#' + index + ' > p').text('');
+									$('#' + index).addClass('d-none');
 								}
 
 							});
-
 
 
 						});
@@ -515,9 +526,7 @@
 	});
 
 
-
 </script>
-
 
 
 <script>
@@ -537,8 +546,8 @@
 			success: function (data) {
 				if (data.success == '1') {
 
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/company')?>";
-					$(location).attr('href',url);
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/company')?>";
+					$(location).attr('href', url);
 
 				} else {
 
@@ -547,22 +556,21 @@
 						// scroll_top();
 
 						$('p#success').addClass('d-none');
-						$.each(data.error.elements, function( index ) {
+						$.each(data.error.elements, function (index) {
 
-							$.each(data.error.elements[index], function( index, value  ) {
+							$.each(data.error.elements[index], function (index, value) {
 
-								if(value != '') {
+								if (value != '') {
 
-									$('#'+index+' > p').text(value);
-									$('#'+index).removeClass('d-none');
+									$('#' + index + ' > p').text(value);
+									$('#' + index).removeClass('d-none');
 
 								} else {
-									$('#'+index+' > p').text('');
-									$('#'+index).addClass('d-none');
+									$('#' + index + ' > p').text('');
+									$('#' + index).addClass('d-none');
 								}
 
 							});
-
 
 
 						});
@@ -581,7 +589,6 @@
 			}
 		});
 	});
-
 
 
 </script>

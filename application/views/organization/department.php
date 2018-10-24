@@ -40,7 +40,7 @@ color: #fff;">
 								<th style="font-size: 12px !important;">Էլ․ հասցե</th>
 								<th style="font-size: 12px !important;">Ստեղծվել է</th>
 								<th style="font-size: 12px !important;">Ում կողմից</th>
-								<th style="font-size: 12px !important;">Edit</th>
+								<th style="font-size: 12px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -54,9 +54,12 @@ color: #fff;">
 									<td><?= $item['email'] ?></td>
 									<td><?= $item['registration_date'] ?></td>
 									<td><?= $item['user_name'] ?></td>
-									<td><span data-id="<?= $item['id'] ?>" id="edit_department_modal"
+									<td>
+										<span style="border: none;padding-top: 3px;" class="float-left" data-id="<?= $item['id'] ?>" id="edit_department_modal"
 											  data-toggle="modal" class="btn btn-sm btn-outline-secondary"
-											  data-target="#edit_department"><i class="fas fa-edit"></i></span></td>
+											  data-target="#edit_department"><i class="fas fa-edit"></i></span>
+
+									<span style="border: none;" data-id="<?= $item['id'] ?>" id="delet_department_modal" class="btn btn-sm btn-outline-secondary"><i class="fas fa-trash"></i></span></td>
 
 								</tr>
 

@@ -535,6 +535,7 @@ color: #fff;">
 								<th style="font-size: 12px !important;">ղեկավար</th>
 								<th style="font-size: 12px !important;">Created date</th>
 								<th style="font-size: 12px !important;">Ում կողմից</th>
+								<th style="font-size: 12px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>
@@ -569,6 +570,13 @@ color: #fff;">
 									<td></td>
 									<td><?=$row['registration_date']?></td>
 									<td><?=$row['user_name']?></td>
+
+									<td>
+										<span style="border: none;padding-top: 3px;" class="float-left" data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+											  data-toggle="modal" class="btn btn-sm btn-outline-secondary"
+											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
+
+										<span style="border: none;" data-id="<?= $row['id'] ?>" id="delet_staff_modal" class="btn btn-sm btn-outline-secondary"><i class="fas fa-trash"></i></span></td>
 								</tr>
 							<? endforeach; ?>
 						</table>

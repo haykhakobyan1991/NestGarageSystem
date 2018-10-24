@@ -16,7 +16,6 @@
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
-
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
 	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>

@@ -89,7 +89,7 @@ color: #fff;">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header bg-dark">
-								<h5 class="text-white modal-title dar">New Department</h5>
+								<h5 class="text-white modal-title dar">Edit Department</h5>
 								<button type="button" class="text-white close"
 										data-dismiss="modal"
 										aria-label="Close">

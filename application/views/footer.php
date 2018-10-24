@@ -592,7 +592,7 @@
 			$('#myModal').modal('show');
 		});
 
-	})
+	});
 
 	$(document).ready(function () {
 
@@ -626,7 +626,7 @@
 			$(this).parent('label').children('span').text('Brows file');
 		} else {
 			if (upload_file.length > 10) {
-				short_text = text_truncate(upload_file, 7, ' ...')
+				var short_text = text_truncate(upload_file, 7, ' ...')
 				$(this).parent('label').children('span').text(short_text);
 			} else {
 				$(this).parent('label').children('span').text(upload_file);

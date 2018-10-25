@@ -407,9 +407,7 @@ class User extends CI_Controller {
 
 			$session = array_merge($sess, $per);
 
-
 			$this->session->set_userdata($session);
-
 
 		}
 

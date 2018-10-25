@@ -91,7 +91,7 @@
 			font-weight: 700;
 		}
 
-
+		null@mail.ru
 	</style>
 	<!-- Some CSS end -->
 </head>
@@ -102,7 +102,11 @@
 	 style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
-	<div class="langs ml-auto mr-5">
+	<div class="ml-auto mr-5">
+		<strong>Welcome</strong> / <span class="username_login"><a href="#" class="text-success">Hayk Hakobyan</a></span>
+	</div>
+
+	<div class="langs mr-5">
 		<ul class="mr-auto" data-url="<?= base_url('change_lang') ?>">
 			<li class="float-left  <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
 				data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>

@@ -67,7 +67,7 @@ $i = '';
 																	Browse… <input type="file" id="imgInp" name="photo">
 																</span>
 															</span>
-															<input type="text" class="form-control" readonly
+															<input type="text" class="form-control form-control-sm" readonly
 																   style="display: none;" title=""/>
 
 														</div>
@@ -99,7 +99,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label">Owner Firstname</label>
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_firstname'] ?>"
-															   name="owner_firstname" type="text" class="form-control"
+															   name="owner_firstname" type="text" class="form-control form-control-sm"
 															   placeholder="Owner Firstname">
 													</div>
 												</div>
@@ -108,7 +108,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label">Owner Lastname</label>
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_lastname'] ?>"
-															   name="owner_lastname" type="text" class="form-control"
+															   name="owner_lastname" type="text" class="form-control form-control-sm"
 															   placeholder="Owner Lastname">
 													</div>
 												</div>
@@ -117,7 +117,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label">Owner Position</label>
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_position'] ?>"
-															   name="owner_position" type="text" class="form-control"
+															   name="owner_position" type="text" class="form-control form-control-sm"
 															   placeholder="Owner Position">
 													</div>
 												</div>
@@ -127,7 +127,7 @@ $i = '';
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_contact_number'] ?>"
 															   name="owner_contact_number" type="text"
-															   class="form-control" placeholder="Owner Contact Number">
+															   class="form-control form-control-sm" placeholder="Owner Contact Number">
 													</div>
 												</div>
 
@@ -135,7 +135,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label">Owner Email</label>
 													<div class="col-sm-8">
 														<input value="<?= $company['owner_email'] ?>" name="owner_email"
-															   type="email" class="form-control"
+															   type="email" class="form-control form-control-sm"
 															   placeholder="Owner Email">
 													</div>
 												</div>
@@ -160,7 +160,7 @@ $i = '';
 															<div class="col">
 																<input name="activity_state_region"
 																	   value="<?= $company['activity_state_region'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Activity State Region">
 															</div>
 														</div>
@@ -169,13 +169,13 @@ $i = '';
 															<div class="col">
 																<input name="activity_city"
 																	   value="<?= $company['activity_city'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Activity City">
 															</div>
 															<div class="col">
 																<input name="activity_zip_code"
 																	   value="<?= $company['activity_zip_code'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Zip Code">
 															</div>
 														</div>
@@ -184,12 +184,12 @@ $i = '';
 															<div class="col" style="padding-left: 0;padding-right: 0;">
 																<input name="activity_address"
 																	   value="<?= $company['activity_address'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Activity Address">
 															</div>
 														</div>
 														<button type="button"
-																class="btn btn-secondary float-right mb-md-2 mb-2 copy_btn">
+																class="btn btn-sm btn-secondary float-right mb-md-2 mb-2 copy_btn">
 															copy
 														</button>
 
@@ -215,7 +215,7 @@ $i = '';
 															<div class="col">
 																<input name="legal_state_region"
 																	   value="<?= $company['legal_state_region'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Legal Region">
 															</div>
 														</div>
@@ -224,12 +224,12 @@ $i = '';
 															<div class="col">
 																<input name="legal_city"
 																	   value="<?= $company['legal_city'] ?>" type="text"
-																	   class="form-control" placeholder="Legal City">
+																	   class="form-control form-control-sm" placeholder="Legal City">
 															</div>
 															<div class="col">
 																<input name="legal_zip_code"
 																	   value="<?= $company['legal_zip_code'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Zip Code">
 															</div>
 														</div>
@@ -238,7 +238,7 @@ $i = '';
 															<div class="col" style="padding-left: 0;padding-right: 0;">
 																<input name="legal_address"
 																	   value="<?= $company['legal_address'] ?>"
-																	   type="text" class="form-control"
+																	   type="text" class="form-control form-control-sm"
 																	   placeholder="Legal Address">
 															</div>
 														</div>
@@ -248,7 +248,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label"><?= lang('tin') ?></label>
 													<div class="col-sm-8">
 														<input value="<?= $company['tin'] ?>" name="tin" type="text"
-															   class="form-control" placeholder="<?= lang('tin') ?>">
+															   class="form-control form-control-sm" placeholder="<?= lang('tin') ?>">
 													</div>
 												</div>
 
@@ -257,7 +257,7 @@ $i = '';
 														class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
 													<div class="col-sm-8">
 														<input value="<?= $company['phone_number'] ?>"
-															   name="phone_number" type="text" class="form-control"
+															   name="phone_number" type="text" class="form-control form-control-sm"
 															   placeholder="<?= lang('phone_number') ?>">
 													</div>
 												</div>
@@ -266,7 +266,7 @@ $i = '';
 													<label class="col-sm-4 col-form-label"><?= lang('email') ?></label>
 													<div class="col-sm-8">
 														<input value="<?= $company['email'] ?>" name="email" type="text"
-															   class="form-control" placeholder="<?= lang('email') ?>">
+															   class="form-control form-control-sm" placeholder="<?= lang('email') ?>">
 													</div>
 												</div>
 												<div class="form-group row">
@@ -274,7 +274,7 @@ $i = '';
 														class="col-sm-4 col-form-label"><?= lang('web_address') ?></label>
 													<div class="col-sm-8">
 														<input value="<?= $company['web_address'] ?>" name="web_address"
-															   type="text" class="form-control"
+															   type="text" class="form-control form-control-sm"
 															   placeholder="<?= lang('web_address') ?>">
 													</div>
 												</div>
@@ -287,7 +287,7 @@ $i = '';
 													<div class="card">
 														<div class="card-header" id="headingOne">
 															<h5 class="mb-0">
-																<button class="btn btn-link" type="button"
+																<button class="btn btn-sm btn-link" type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseOne" aria-expanded="true"
 																		aria-controls="collapseOne">
@@ -370,7 +370,7 @@ $i = '';
 													<div class="card">
 														<div class="card-header" id="headingTwo">
 															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
+																<button class="btn btn-sm btn-link collapsed" type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseTwo" aria-expanded="false"
 																		aria-controls="collapseTwo">
@@ -452,7 +452,7 @@ $i = '';
 				<div class="card">
 					<div class="card-header" id="headingThree">
 						<h5 class="mb-0">
-							<button class="btn btn-link collapsed" type="button"
+							<button class="btn btn-sm btn-link collapsed" type="button"
 									data-toggle="collapse"
 									data-target="#collapseThree"
 									aria-expanded="false"
@@ -536,7 +536,7 @@ $i = '';
 				<div class="card">
 					<div class="card-header" id="headingFour">
 						<h5 class="mb-0">
-							<button class="btn btn-link collapsed" type="button"
+							<button class="btn btn-sm btn-link collapsed" type="button"
 									data-toggle="collapse"
 									data-target="#collapseFour"
 									aria-expanded="false"
@@ -622,7 +622,7 @@ $i = '';
 
 	</div>
 	<div class="text-right pb-2 mt-md-2 mt-2">
-		<span id="create_company" class="btn btn-secondary">Save</span>
+		<span id="create_company" class="btn btn-sm btn-secondary">Save</span>
 	</div>
 
 </div>

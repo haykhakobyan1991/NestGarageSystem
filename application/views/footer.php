@@ -553,10 +553,14 @@
 		var sel_county_name = $('.selectpicker_1').parent('div').children('button').text();
 		$('.selectpicker_2').parent('div').children('button').children('div').children('div').text(sel_county_name);
 
+
+
 		var value = $("#country option:selected").val();
 		$("#country option[value='" + value + "']").attr('selected', 'selected');
 
 	});
+
+
 
 
 	$('.hide_password').click(function () {
@@ -573,6 +577,9 @@
 	$(window).on('load', function () {
 		$('.loader_svg').fadeOut('slow');
 		$('.loader').fadeOut('slow');
+
+		$('.selectpicker_1').parent('div').children('button').addClass('btn-sm');
+		$('.selectpicker_2').parent('div').children('button').addClass('btn-sm');
 	})
 
 

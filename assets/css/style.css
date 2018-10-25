@@ -40,5 +40,9 @@ td{
 	margin-top: -10em;
 }
 
+.username_login a:hover {
+	text-decoration: none;
+}
+
 
 

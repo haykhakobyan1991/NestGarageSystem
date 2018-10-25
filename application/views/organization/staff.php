@@ -28,7 +28,7 @@ endforeach;
 
 <!-- Staff Start -->
 <div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
-	<form id="staff" enctype="multipart/form-data">
+
 		<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
 			 aria-labelledby="list-staff-list">
 
@@ -67,10 +67,36 @@ endforeach;
 						</div>
 
 
+						<!-- EDIT staff modal-->
+
+						<div class="modal fade bd-example-modal-lg " id="edit_staff" tabindex="-1" role="dialog"
+							 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<div class="modal-header bg-dark">
+										<h5 class="text-white modal-title dar">Edit Staff</h5>
+										<button type="button" class="text-white close"
+												data-dismiss="modal"
+												aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+											 src="<?= base_url('assets/images/bars.svg') ?>"/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Edit staff modal end -->
+
+
 						<!-- Add User Modal Start  -->
 
 						<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
 							 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+							<form id="staff" enctype="multipart/form-data">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header bg-dark">
@@ -593,6 +619,7 @@ endforeach;
 
 								</div>
 							</div>
+							</form>
 						</div>
 
 						<!-- Add User Modal End -->
@@ -658,40 +685,64 @@ color: #545b62;">
 											<tbody>
 
 													<? if ($row['document_1'] != '') { ?>
-													<tr>
-														<td><?= $row['document_1'] ?></td>
-														<td><?= $row['reference_1'] ?></td>
-														<td><?= $row['expiration_1'] ?></td>
-														<td><?= $row['note_1'] ?></td>
-														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_1']); ?></a></td>
-													</tr>
+														<tr>
+															<td><?= $row['document_1'] ?></td>
+															<td><?= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?></td>
+															<td><?= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?></td>
+															<td><?= ($row['note_1'] != '' ? $row['note_1'] : '-') ?></td>
+															<td>
+																<a style="font-size: 25px;color: #333;"
+																   target="_blank"
+																   href="<?= ($row['ext_1'] != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1'] : 'javascript:void(0)' )  ?>">
+																	<?= $this->select_ext($row['ext_1']); ?>
+																</a>
+															</td>
+														</tr>
 													<? }
 													if ($row['document_2'] != '') { ?>
-													<tr>
-														<td><?= $row['document_2'] ?></td>
-														<td><?= $row['reference_2'] ?></td>
-														<td><?= $row['expiration_2'] ?></td>
-														<td><?= $row['note_2'] ?></td>
-														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_2']. '.' . $row['ext_2']  ?>"><?= $this->select_ext($row['ext_2']); ?></a></td>
-													</tr>
+														<tr>
+															<td><?= $row['document_2'] ?></td>
+															<td><?= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?></td>
+															<td><?= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?></td>
+															<td><?= ($row['note_2'] != '' ? $row['note_2'] : '-') ?></td>
+															<td>
+																<a style="font-size: 25px;color: #333;"
+																   target="_blank"
+																   href="<?= ($row['ext_2'] != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_2']. '.' . $row['ext_2'] : 'javascript:void(0)' )  ?>">
+																	<?= $this->select_ext($row['ext_2']); ?>
+																</a>
+															</td>
+														</tr>
 													<? }
 													if ($row['document_3'] != '') { ?>
-													<tr>
-														<td><?= $row['document_3'] ?></td>
-														<td><?= $row['reference_3'] ?></td>
-														<td><?= $row['expiration_3'] ?></td>
-														<td><?= $row['note_3'] ?></td>
-														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_3']); ?></a></td>
-													</tr>
+														<tr>
+															<td><?= $row['document_3'] ?></td>
+															<td><?= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?></td>
+															<td><?= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?></td>
+															<td><?= ($row['note_3'] != '' ? $row['note_3'] : '-') ?></td>
+															<td>
+																<a style="font-size: 25px;color: #333;"
+																   target="_blank"
+																   href="<?= ($row['ext_3'] != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_3']. '.' . $row['ext_3'] : 'javascript:void(0)' )  ?>">
+																	<?= $this->select_ext($row['ext_3']); ?>
+																</a>
+															</td>
+														</tr>
 													<? }
 													if ($row['document_4'] != '') { ?>
-													<tr>
-														<td><?= $row['document_4'] ?></td>
-														<td><?= $row['reference_4'] ?></td>
-														<td><?= $row['expiration_4'] ?></td>
-														<td><?= $row['note_4'] ?></td>
-														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_4']); ?></a></td>
-													</tr>
+														<tr>
+															<td><?= $row['document_4'] ?></td>
+															<td><?= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?></td>
+															<td><?= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?></td>
+															<td><?= ($row['note_4'] != '' ? $row['note_4'] : '-') ?></td>
+															<td>
+																<a style="font-size: 25px;color: #333;"
+																   target="_blank"
+																   href="<?= ($row['ext_4'] != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_4']. '.' . $row['ext_4'] : 'javascript:void(0)' )  ?>">
+																	<?= $this->select_ext($row['ext_4']); ?>
+																</a>
+															</td>
+														</tr>
 													<? } ?>
 
 
@@ -708,12 +759,12 @@ color: #545b62;">
 											  data-placement="top"
 											  title="edit"><i class="fas fa-edit"></i></span>
 
-										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>"
-											  id="delet_staff_modal"
-											  class="btn text-danger"
+										<span style="border: none; cursor:pointer;" data-toggle="modal"
+											  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
+											  id="delete_staff_modal" class="text-danger btn"
 											  data-toggle2="tooltip"
 											  data-placement="top"
-											  title="delete"><i class="fas fa-trash"></i></span>
+											  title="delete"><i class="fas fa-trash"></i></span></td>
 									</td>
 								</tr>
 							<? endforeach; ?>
@@ -722,7 +773,49 @@ color: #545b62;">
 				</div>
 			</div>
 		</div>
-	</form>
+
 </div>
 
 <!-- Staff End -->
+
+
+<!-- Delete Modal Start -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-secondary" id="exampleModalLabel">are you sure you want to delete ? </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button type="button" class="btn btn-outline-danger text-danger" data-dismiss="modal">No</button>
+					<button type="button" id="delete_staff" class="btn btn-outline-success text-success">Yes</button>
+					<input type="hidden" name="staff_id">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal End -->
+
+
+<script>
+	$(document).on('click', '#delete_staff_modal', function () {
+		staff_id = $(this).data('id');
+		$('input[name="staff_id"]').val(staff_id);
+	});
+
+	$(document).on('click', '#delete_staff', function () {
+		var id = $('input[name="staff_id"]').val();
+		var url = '<?=base_url('Organization/delete_staff/')?>';
+
+		$.post(url, {staff_id: id}, function (result) {
+			location.reload();
+		});
+	});
+
+</script>

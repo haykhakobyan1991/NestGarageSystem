@@ -208,7 +208,7 @@ class Organization extends MX_Controller {
 	}
 
 
-	public function  staff() {
+	public function staff() {
 
 		$this->load->authorisation();
 		$this->load->helper('url');
@@ -1280,6 +1280,554 @@ class Organization extends MX_Controller {
 
 
 		$this->db->delete('department', array('id' => $id));
+
+		return true;
+
+	}
+
+
+
+
+	public function edit_staff_modal_ax() {
+
+		$id = $this->uri->segment(4);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+		$data = array();
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		$sql = "SELECT
+                  `id`,
+				  `photo`,
+				  `first_name`,
+				  `last_name`,
+				  `contact_1`,
+				  `contact_2`,
+				  `email`,
+				  `country_id`,
+				  `address`,
+				  `post_code`,
+				  `department_id`,
+				  `position`,
+				  `nest_card_id`,
+				  `other`,
+				  `registrar_user_id`,
+				  `registration_date`,
+				  `status`,
+				  `document_1`,
+				  `reference_1`,
+				  `expiration_1`,
+				  `note_1`,
+				  `file_1`,
+				  `ext_1`,
+				  `document_2`,
+				  `reference_2`,
+				  `expiration_2`,
+				  `note_2`,
+				  `file_2`,
+				  `ext_2`,
+				  `document_3`,
+				  `reference_3`,
+				  `expiration_3`,
+				  `note_3`,
+				  `file_3`,
+				  `ext_3`,
+				  `document_4`,
+				  `reference_4`,
+				  `expiration_4`,
+				  `note_4`,
+				  `file_4`,
+				  `ext_4`
+                FROM 
+                   `staff`
+                WHERE `id` =  ".$this->load->db_value($id)."
+                LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+		$data['id'] = $row['id'];
+		$data['photo'] = $row['photo'];
+		$data['first_name'] = $row['first_name'];
+		$data['last_name'] = $row['last_name'];
+		$data['contact_1'] = $row['contact_1'];
+		$data['contact_2'] = $row['contact_2'];
+		$data['email'] = $row['email'];
+		$data['country_id'] = $row['country_id'];
+		$data['address'] = $row['address'];
+		$data['post_code'] = $row['post_code'];
+		$data['department_id'] = $row['department_id'];
+		$data['position'] = $row['position'];
+		$data['nest_card_id'] = $row['nest_card_id'];
+		$data['other'] = $row['other'];
+		$data['registrar_user_id'] = $row['registrar_user_id'];
+		$data['registration_date'] = $row['registration_date'];
+		$data['status'] = $row['status'];
+		$data['document_1'] = $row['document_1'];
+		$data['reference_1'] = $row['reference_1'];
+		$data['expiration_1'] = $row['expiration_1'];
+		$data['note_1'] = $row['note_1'];
+		$data['file_1'] = $row['file_1'];
+		$data['ext_1'] = $row['ext_1'];
+		$data['document_2'] = $row['document_2'];
+		$data['reference_2'] = $row['reference_2'];
+		$data['expiration_2'] = $row['expiration_2'];
+		$data['note_2'] = $row['note_2'];
+		$data['file_2'] = $row['file_2'];
+		$data['ext_2'] = $row['ext_2'];
+		$data['document_3'] = $row['document_3'];
+		$data['reference_3'] = $row['reference_3'];
+		$data['expiration_3'] = $row['expiration_3'];
+		$data['note_3'] = $row['note_3'];
+		$data['file_3'] = $row['file_3'];
+		$data['ext_3'] = $row['ext_3'];
+		$data['document_4'] = $row['document_4'];
+		$data['reference_4'] = $row['reference_4'];
+		$data['expiration_4'] = $row['expiration_4'];
+		$data['note_4'] = $row['note_4'];
+		$data['file_4'] = $row['file_4'];
+		$data['ext_4'] = $row['ext_4'];
+
+
+
+		$this->load->view('organization/edit_staff', $data);
+
+	}
+
+
+
+	public function edit_staff_ax() {
+
+		$this->load->authorisation('Organization', 'staff');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('firstname', 'firstname', 'required');
+		$this->form_validation->set_rules('lastname', 'lastname', 'required');
+		$this->form_validation->set_rules('email', 'email', 'valid_email');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'firstname' => form_error('firstname'),
+				'lastname' => form_error('lastname'),
+				'email' => form_error('email'),
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$id = $this->input->post('staff_id');
+
+		$firstname = $this->input->post('firstname');
+		$lastname = $this->input->post('lastname');
+		$contact_1 = $this->input->post('contact_1');
+		$contact_2 = $this->input->post('contact_2');
+		$email = $this->input->post('email');
+		$country = $this->input->post('country');
+		$address = $this->input->post('address');
+		$post_code = $this->input->post('post_code');
+		$department = $this->input->post('department');
+		$position = $this->input->post('position');
+		$other = $this->input->post('other');
+
+		$nest_card_id = $this->input->post('nest_card_id');
+
+		$document_1 = $this->input->post('document_1');
+		$reference_1 = $this->input->post('reference_1');
+		$expiration_1 = $this->input->post('expiration_1');
+		$note_1 = $this->input->post('note_1');
+
+		$file_1 = '';
+		$ext_1 = '';
+
+		$document_2 = $this->input->post('document_2');
+		$reference_2 = $this->input->post('reference_2');
+		$expiration_2 = $this->input->post('expiration_2');
+		$note_2 = $this->input->post('note_2');
+
+		$file_2 = '';
+		$ext_2 = '';
+
+		$document_3 = $this->input->post('document_3');
+		$reference_3 = $this->input->post('reference_3');
+		$expiration_3 = $this->input->post('expiration_3');
+		$note_3 = $this->input->post('note_3');
+
+		$file_3 = '';
+		$ext_3 = '';
+
+
+		$document_4 = $this->input->post('document_4');
+		$reference_4 = $this->input->post('reference_4');
+		$expiration_4 = $this->input->post('expiration_4');
+		$note_4 = $this->input->post('note_4');
+
+		$file_4 = '';
+		$ext_4 = '';
+
+
+
+
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
+
+
+		$add_sql_image = '';
+
+
+		//upload config
+		$config = $this->upload_config();
+
+
+		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
+			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0777', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
+		}
+
+		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/original');
+
+
+		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
+
+			$this->load->library('upload', $config);
+			$this->upload->initialize($config);
+
+
+			if (!$this->upload->do_upload('photo')) {
+				$validation_errors = array('photo' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$photo_arr = $this->upload->data();
+
+			$image = $photo_arr['file_name'];
+
+			$add_sql_image = "`photo` =  '".$image."',";
+
+		}
+
+		if(isset($image) && $image != '') {
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
+			}
+
+
+			$config_r = array(
+				'image_library' => 'gd2',
+				'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
+				'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
+				'maintain_ratio' => TRUE,
+				'create_thumb' => TRUE,
+				'thumb_marker' => '',
+				'height' => 50
+			);
+
+			$this->load->library('image_lib');
+			$this->image_lib->initialize($config_r);
+			$this->image_lib->resize();
+
+			// end resize
+
+			if (!$this->image_lib->resize()) {
+				$validation_errors = array('photo' => $this->image_lib->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+		}
+
+
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
+		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_1')) {
+				$validation_errors = array('file_1' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_1_arr = $this->upload->data();
+
+			$file_1 = $file_1_arr['file_name'];
+
+			$file_1_array = explode('.', $file_1);
+
+			$file_1 = "`file_1` = ".$this->load->db_value($file_1_array[0]).",";
+			$ext_1 = "`ext_1` = ".$this->load->db_value($file_1_array[1]).",";
+
+
+
+
+
+		}
+
+
+
+		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+
+
+			if (!$this->upload->do_upload('file_2')) {
+				$validation_errors = array('file_2' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_2_arr = $this->upload->data();
+
+			$file_2 = $file_2_arr['file_name'];
+
+			$file_2_array = explode('.', $file_2);
+
+
+
+			$file_2 = "`file_2` = ".$this->load->db_value($file_2_array[0]).",";
+			$ext_2 = "`ext_2` = ".$this->load->db_value($file_2_array[1]).",";
+
+
+
+
+
+
+
+		}
+
+
+		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_3')) {
+				$validation_errors = array('file_3' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_3_arr = $this->upload->data();
+
+			$file_3 = $file_3_arr['file_name'];
+
+			$file_3_array = explode('.', $file_3);
+
+			$file_3 = "`file_3` = ".$this->load->db_value($file_3_array[0]).",";
+			$ext_3 = "`ext_3` = ".$this->load->db_value($file_3_array[1]).",";
+
+
+
+		}
+
+
+		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('file_4')) {
+				$validation_errors = array('file_4' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_4_arr = $this->upload->data();
+
+			$file_4 = $file_4_arr['file_name'];
+
+			$file_4_array = explode('.', $file_4);
+
+			$file_4 = "`file_4` = ".$this->load->db_value($file_4_array[0]).",";
+			$ext_4 = "`ext_4` = ".$this->load->db_value($file_4_array[1]).",";
+
+
+
+		}
+
+		$sql = "
+				UPDATE 
+				  `staff` 
+				SET
+				  ".$add_sql_image."
+				  `first_name` = ".$this->load->db_value($firstname).",
+				  `last_name` = ".$this->load->db_value($lastname).",
+				  `contact_1` = ".$this->load->db_value($contact_1).",
+				  `contact_2` = ".$this->load->db_value($contact_2).",
+				  `email` = ".$this->load->db_value($email).",
+				  `country_id` = ".$this->load->db_value($country).",
+				  `address` = ".$this->load->db_value($address).",
+				  `post_code` = ".$this->load->db_value($post_code).",
+				  `department_id` = ".$this->load->db_value($department).",
+				  `position` = ".$this->load->db_value($position).",
+				  `nest_card_id` = ".$this->load->db_value($nest_card_id).",
+				  `other` = ".$this->load->db_value($other).",
+				  `status` = ".$this->load->db_value($status).",
+				  `document_1` = ".$this->load->db_value($document_1).",
+				  `reference_1` = ".$this->load->db_value($reference_1).",
+				  `expiration_1` = ".$this->load->db_value($expiration_1).",
+				  `note_1` = ".$this->load->db_value($note_1).",
+				  ".$file_1."
+				  ".$ext_1."
+				  `document_2` = ".$this->load->db_value($document_2).",
+				  `reference_2` = ".$this->load->db_value($reference_2).",
+				  `expiration_2` = ".$this->load->db_value($expiration_2).",
+				  `note_2` = ".$this->load->db_value($note_2).",
+				   ".$file_2."
+				   ".$ext_2."
+				  `document_3` = ".$this->load->db_value($document_3).",
+				  `reference_3` = ".$this->load->db_value($reference_3).",
+				  `expiration_3` = ".$this->load->db_value($expiration_3).",
+				  `note_3` = ".$this->load->db_value($note_3).",
+				   ".$file_3."
+				   ".$ext_3."
+				  `document_4` = ".$this->load->db_value($document_4).",
+				  `reference_4` = ".$this->load->db_value($reference_4).",
+				  `expiration_4` = ".$this->load->db_value($expiration_4).",
+				  ".$file_4."
+				  ".$ext_4."
+				  `note_4` = ".$this->load->db_value($note_4)."
+				WHERE `id` = ".$this->load->db_value($id)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+	public function delete_staff() {
+
+		$this->load->authorisation('Organization', 'staff');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('staff_id');
+
+
+		$this->db->delete('staff', array('id' => $id));
 
 		return true;
 

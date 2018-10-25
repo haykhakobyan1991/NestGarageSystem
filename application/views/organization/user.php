@@ -247,7 +247,42 @@
 								<td>User Name</td>
 								<td>dfdf/?ff</td>
 								<td>10.10.2017</td>
-								<td>Daniel Smith</td>
+								<td>
+
+									<table>
+										<tbody>
+										<tr>
+											<td>fff</td>
+											<td>fff</td>
+											<td>fff</td>
+											<td>fff</td>
+											<td>fff</td>
+										</tr>
+										<tr>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+										</tr>
+										<tr>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+											<td>dfdf</td>
+										</tr>
+										<tr>
+											<td>dfdfd</td>
+											<td>dfdfd</td>
+											<td>dfdfd</td>
+											<td>dfdfd</td>
+											<td>dfdfd</td>
+										</tr>
+										</tbody>
+									</table>
+
+								</td>
 								<td>22.10.2018/20:42</td>
 								<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""

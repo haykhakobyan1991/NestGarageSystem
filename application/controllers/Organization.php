@@ -753,6 +753,7 @@ class Organization extends MX_Controller {
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
+
 			$this->load->library('upload', $config);
 			$this->upload->initialize($config);
 
@@ -806,6 +807,12 @@ class Organization extends MX_Controller {
 		}
 
 
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
 		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
 
@@ -814,11 +821,7 @@ class Organization extends MX_Controller {
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
-			//file config
-			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
-			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
-			$config_f['max_size'] = '4097152'; //4 MB
-			$config_f['file_name'] = $this->uname(3, 8);
+
 
 			$this->load->library('upload', $config_f);
 			$this->upload->initialize($config_f);
@@ -835,7 +838,7 @@ class Organization extends MX_Controller {
 
 			$file_1 = $file_1_arr['file_name'];
 
-			 $file_1_array = explode('.', $file_1);
+			$file_1_array = explode('.', $file_1);
 
 			$file_1 = $file_1_array[0];
 			$ext_1 = $file_1_array[1];
@@ -854,14 +857,12 @@ class Organization extends MX_Controller {
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
-			//file config
-			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
-			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
-			$config_f['max_size'] = '4097152'; //4 MB
-			$config_f['file_name'] = $this->uname(3, 8);
+
 
 			$this->load->library('upload', $config_f);
 			$this->upload->initialize($config_f);
+
+
 
 			if (!$this->upload->do_upload('file_2')) {
 				$validation_errors = array('file_2' => $this->upload->display_errors());
@@ -893,11 +894,7 @@ class Organization extends MX_Controller {
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
-			//file config
-			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
-			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
-			$config_f['max_size'] = '4097152'; //4 MB
-			$config_f['file_name'] = $this->uname(3, 8);
+
 
 			$this->load->library('upload', $config_f);
 			$this->upload->initialize($config_f);
@@ -932,11 +929,7 @@ class Organization extends MX_Controller {
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
-			//file config
-			$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
-			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
-			$config_f['max_size'] = '4097152'; //4 MB
-			$config_f['file_name'] = $this->uname(3, 8);
+
 
 			$this->load->library('upload', $config_f);
 			$this->upload->initialize($config_f);

@@ -4,7 +4,7 @@ $i = '';
 ?>
 
 <!--  Company  Start-->
-<div class="tab-pane fade show active" id="list-company" role="tabpanel"
+<div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;"
 	 aria-labelledby="list-company-list">
 
 	<!-- Error Message -->

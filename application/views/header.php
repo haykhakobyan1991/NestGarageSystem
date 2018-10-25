@@ -99,7 +99,7 @@
 
 <!-- Navbar Start -->
 <nav class="navbar navbar-light bg-light fixed-top"
-	 style="box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
+	 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="ml-auto mr-5">
@@ -126,7 +126,7 @@
 <div class="container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
 	<!-- Horizontal Tabs Start -->
-	<ul class="nav nav-tabs" style="border: none !important;">
+	<ul class="nav nav-tabs" style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
 		<li class="nav-item">
 			<a class="nav-link active  btn btn-sm btn-outline-success" data-toggle="tab" href="#organization">Organization</a>
 		</li>
@@ -157,8 +157,8 @@
 				?>
 
 				<!-- Vertical Tabs Start-->
-				<div class="col-sm-12 col-md-3">
-					<div class="list-group" id="list-tab" role="tablist">
+				<div class="col-sm-12 col-md-3" >
+					<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
 						<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
 						   role="tab" aria-controls="company">Company
@@ -187,7 +187,7 @@
 				<!-- Vertical Tabs End-->
 
 
-				<div class="col-sm-12 col-md-9">
+				<div class="col-sm-12 col-md-9" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">

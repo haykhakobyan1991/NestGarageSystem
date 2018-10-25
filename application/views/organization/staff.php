@@ -28,7 +28,7 @@ endforeach;
 <!-- Staff Start -->
 <div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
 	<form id="staff">
-		<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
+		<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
 			 aria-labelledby="list-staff-list">
 
 

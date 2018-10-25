@@ -12,7 +12,7 @@
 <div class="tab-pane fade show active" id="list-settings" role="tabpanel"
 	 aria-labelledby="list-settings-list">
 
-	<div class="tab-pane fade show active" id="list-staff" role="tabpanel"
+	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
 		 aria-labelledby="list-staff-list">
 
 

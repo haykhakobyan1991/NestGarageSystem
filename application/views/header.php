@@ -91,11 +91,20 @@
 			font-weight: 700;
 		}
 
-		null@mail.ru
 	</style>
 	<!-- Some CSS end -->
 </head>
 <body>
+
+
+<?
+$user_id = $this->session->user_id;
+$row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS name')
+	->from('user')
+	->where('id', $user_id)
+	->get()
+	->row_array();
+?>
 
 <!-- Navbar Start -->
 <nav class="navbar navbar-light bg-light fixed-top"
@@ -103,7 +112,7 @@
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="ml-auto mr-5">
-		<strong>Welcome</strong> / <span class="username_login"><a href="#" class="text-success">Hayk Hakobyan</a></span>
+		<strong>Welcome</strong> / <span class="username_login"><a href="#" class="text-success"><?=$row['name']?></a></span>
 	</div>
 
 	<div class="langs mr-5">

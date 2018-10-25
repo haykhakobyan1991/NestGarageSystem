@@ -126,21 +126,21 @@
 <div class="container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
 	<!-- Horizontal Tabs Start -->
-	<ul class="nav nav-tabs">
+	<ul class="nav nav-tabs" style="border: none !important;">
 		<li class="nav-item">
-			<a class="nav-link active" data-toggle="tab" href="#organization">Organization</a>
+			<a class="nav-link active  btn btn-sm btn-outline-success" data-toggle="tab" href="#organization">Organization</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#structure">Structure</a>
+			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#structure">Structure</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#menu1">Menu 1</a>
+			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu1">Menu 1</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#menu2">Menu 2</a>
+			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu2">Menu 2</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" data-toggle="tab" href="#menu3">Menu 2</a>
+			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu3">Menu 2</a>
 		</li>
 	</ul>
 	<!-- Horizontal Tabs End -->

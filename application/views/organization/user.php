@@ -70,7 +70,7 @@
 											class="col-sm-2 col-form-label">First
 											Name *</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control form-control-sm"
 												   name="firstname"
 												   placeholder="First Name">
 										</div>
@@ -81,7 +81,7 @@
 											class="col-sm-2 col-form-label">Last
 											Name *</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control form-control-sm"
 												   name="lastname"
 												   placeholder="Last Name">
 										</div>
@@ -91,7 +91,7 @@
 										<label
 											class="col-sm-2 col-form-label">E-mail *</label>
 										<div class="col-sm-10">
-											<input type="email" class="form-control"
+											<input type="email" class="form-control form-control-sm"
 												   name="email"
 												   placeholder="E-mail">
 										</div>
@@ -101,7 +101,7 @@
 										<label
 											class="col-sm-2 col-form-label">Contact Number *</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control form-control-sm"
 												   name="contactnumber"
 												   placeholder="Contact Number">
 										</div>
@@ -111,7 +111,7 @@
 										<label
 											class="col-sm-2 col-form-label">User Name *</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control"
+											<input type="text" class="form-control form-control-sm"
 												   name="username"
 												   placeholder="User Name">
 										</div>
@@ -121,7 +121,7 @@
 										<label
 											class="col-sm-2 col-form-label">Password *</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control col-sm-8 float-left"
+											<input type="text" class="form-control form-control-sm col-sm-8 float-left"
 												   name="password"
 												   placeholder="User Name"
 												   id="password-input"
@@ -143,7 +143,7 @@
 										<label class="col-sm-2 col-form-label">Type</label>
 										<div class="col-sm-6">
 											<select name="country"
-													class="col selectpicker form-control form-control-sm"
+													class="col selectpicker form-control form-control-sm form-control-sm"
 													data-size="5" id="country" data-live-search="true"
 													title="Select a Country">
 												<option value="">Select a Country ...</option>
@@ -157,7 +157,7 @@
 									<div class="form-group row mt-2">
 										<label class="ml-1 col-form-label">Status make a Passive?</label>
 										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox" class="form-control">
+											<input name="status" value="-1" type="checkbox" class="form-control form-control-sm">
 										</div>
 									</div>
 
@@ -165,7 +165,7 @@
 										<label class="ml-1 col-form-label">Send a notification mail to the new created
 											user?</label>
 										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox" class="form-control">
+											<input name="status" value="-1" type="checkbox" class="form-control form-control-sm">
 										</div>
 									</div>
 
@@ -174,7 +174,7 @@
 							</div>
 
 							<div class="text-right mt-4 pb-2">
-								<span id="add_user" class="btn btn-secondary">Save</span>
+								<span id="add_user" class="btn btn-sm btn-outline-success">Save</span>
 							</div>
 						</div>
 
@@ -185,8 +185,8 @@
 			<!-- Add User Modal End -->
 
 
-			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-				<div class="container">
+			<div class="pb-2 pt-2">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
@@ -206,7 +206,7 @@
 						<div class="col-sm-12 col-md-4 col-4"></div>
 
 						<div class="col-sm-12 col-md-2 col-2">
-							<span class="btn btn-secondary" data-toggle="modal"
+							<span class="btn btn-sm btn-outline-success" data-toggle="modal"
 								  data-target=".add_user_modal">Add User
 							</span>
 						</div>
@@ -273,11 +273,11 @@ color: #fff;">
 								<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_user_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
 
 									<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
-										  class="btn "><i class="fas fa-trash"></i></span></td>
+										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 							</tr>
 							</tr>
 							<tr>
@@ -317,11 +317,11 @@ color: #fff;">
 								<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_user_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
 
 									<span style="border: none;cursor: pointer;" data-id="" id="delet_user_modal"
-										  class="btn "><i class="fas fa-trash"></i></span></td>
+										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 							</tr>
 							</tr>
 

@@ -23,12 +23,12 @@
 			</div>
 		</div>
 
-		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-			<div class="container">
+		<div class=" pb-2 pt-2">
+			<div class="">
 				<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
 				<span
 					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span>
-				<span class="btn btn-secondary btn-sm float-right" data-toggle="modal"
+				<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
 					  data-target="#add_department">Ստեղծել Ստորաբաժանում
 					</span>
 				<hr class="my-4">
@@ -68,12 +68,12 @@ color: #fff;">
 										<span
 											style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
 											data-id="<?= $item['id'] ?>" id="edit_department_modal"
-											data-toggle="modal" class="float-left "
+											data-toggle="modal" class="float-left text-success"
 											data-target="#edit_department"><i class="fas fa-edit"></i></span>
 
 									<span style="border: none; cursor:pointer;" data-toggle="modal"
 										  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
-										  id="delete_department_modal" class=""><i class="fas fa-trash"></i></span></td>
+										  id="delete_department_modal" class="text-danger"><i class="fas fa-trash"></i></span></td>
 
 							</tr>
 
@@ -163,14 +163,12 @@ color: #fff;">
 									</div>
 
 									<div class="modal-footer">
-										<span id="add_department" type="button" class="btn btn-secondary">Save</span>
+										<span id="add_department" type="button" class="btn btn-outline-success">Save</span>
 									</div>
 
 
 								</div>
-
 							</div>
-
 						</div>
 					</div>
 				</form>
@@ -178,9 +176,7 @@ color: #fff;">
 		</div>
 	</div>
 </div>
-
 <!-- Department End -->
-
 
 <!-- Delete Modal Start -->
 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -188,15 +184,15 @@ color: #fff;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-danger" id="exampleModalLabel">are you sure you want to delete ? </h5>
+				<h5 class="modal-title text-secondary" id="exampleModalLabel">are you sure you want to delete ? </h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-					<button type="button" id="delete_department" class="btn btn-success">Yes</button>
+					<button type="button" class="btn btn-outline-danger text-danger" data-dismiss="modal">No</button>
+					<button type="button" id="delete_department" class="btn btn-outline-success text-success">Yes</button>
 					<input type="hidden" name="department_id">
 				</div>
 			</div>

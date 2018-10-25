@@ -39,8 +39,8 @@ endforeach;
 			</div>
 
 
-			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-				<div class="container">
+			<div class="pb-2 pt-2">
+				<div class="">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
@@ -60,7 +60,7 @@ endforeach;
 						<div class="col-sm-12 col-md-4 col-4"></div>
 
 						<div class="col-sm-12 col-md-2 col-2">
-							<span class="btn btn-secondary" data-toggle="modal"
+							<span class="btn btn-outline-success" data-toggle="modal"
 								  data-target=".add_staff_modal">Add User
 							</span>
 						</div>
@@ -108,13 +108,13 @@ endforeach;
 														<div class="input-group ml-2 ml-md-2">
 														<span class="input-group-btn">
 															<span
-																class="btn btn-secondary btn-file mr-1">
+																class="btn btn-outline-success btn-file mr-1">
 																Browse… <input type="file" id="imgInp2"
 																			   name="photo"
 																			   onchange="readURL2(this);">
 															</span>
 														</span>
-															<input type="text" class="form-control"
+															<input type="text" class="form-control form-control-sm"
 																   readonly
 																   style="display: none;">
 
@@ -136,7 +136,7 @@ endforeach;
 														class="col-sm-2 col-form-label">First
 														Name *</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="firstname"
 															   placeholder="First Name">
 													</div>
@@ -146,7 +146,7 @@ endforeach;
 														class="col-sm-2 col-form-label">Last
 														Name *</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="lastname"
 															   placeholder="Last Name">
 													</div>
@@ -157,7 +157,7 @@ endforeach;
 														Number
 														1</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="contact_1"
 															   placeholder="Contact Number 1">
 													</div>
@@ -168,7 +168,7 @@ endforeach;
 														Number
 														2</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="contact_2"
 															   placeholder="Contact Number 2">
 													</div>
@@ -178,7 +178,7 @@ endforeach;
 													<label
 														class="col-sm-2 col-form-label">Email</label>
 													<div class="col-sm-10">
-														<input type="email" class="form-control"
+														<input type="email" class="form-control form-control-sm"
 															   name="email"
 															   placeholder="Email">
 													</div>
@@ -206,7 +206,7 @@ endforeach;
 														class="col-sm-2 col-form-label">Address
 														Leave</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="address"
 															   placeholder="Address">
 													</div>
@@ -218,7 +218,7 @@ endforeach;
 														class="col-sm-2 col-form-label">Post
 														Code</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="post_code"
 															   placeholder="Post Code">
 													</div>
@@ -243,7 +243,7 @@ endforeach;
 												<div class="form-group row">
 													<label class="col-sm-2 col-form-label">Position</label>
 													<div class="col-sm-10">
-														<input type="text" class="form-control"
+														<input type="text" class="form-control form-control-sm"
 															   name="position"
 															   placeholder="Position">
 													</div>
@@ -269,7 +269,7 @@ endforeach;
 														<input name="status"
 															   value="-1"
 															   type="checkbox"
-															   class="form-control">
+															   class="form-control form-control-sm">
 													</div>
 												</div>
 
@@ -278,7 +278,7 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingOne">
 															<h5 class="mb-0">
-																<button class="btn btn-link" type="button"
+																<button class="btn btn-sm btn-link" type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseOne"
 																		aria-expanded="true"
@@ -300,7 +300,7 @@ endforeach;
 																				<label>Name</label>
 																				<input type="text"
 																					   name="number_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Name">
 																			</div>
 																		</div>
@@ -308,7 +308,7 @@ endforeach;
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label style="margin-top: 30px;"
-																					   class="btn btn-outline-primary ">
+																					   class="btn btn-sm btn-outline-success">
 																					<span>Brows file</span>
 																					<input class="btn_input"
 																						   name="file_1" type="file"
@@ -323,7 +323,7 @@ endforeach;
 																				<label>Number</label>
 																				<input type="text"
 																					   name="number_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Number">
 																			</div>
 																		</div>
@@ -333,14 +333,14 @@ endforeach;
 																				   max="3000-12-31"
 																				   min="1000-01-01"
 
-																				   class="form-control">
+																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label>Issued</label>
 																				<input type="text"
 																					   name="issued_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Issued">
 																			</div>
 																		</div>
@@ -354,7 +354,8 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingTwo">
 															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
+																<button class="btn btn-sm btn-link collapsed"
+																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseTwo"
 																		aria-expanded="false"
@@ -375,7 +376,7 @@ endforeach;
 																				<label>Name</label>
 																				<input type="text"
 																					   name="number_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Name">
 																			</div>
 																		</div>
@@ -383,7 +384,7 @@ endforeach;
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label style="margin-top: 30px;"
-																					   class="btn btn-outline-primary">
+																					   class="btn btn-sm btn-outline-success">
 																					<span>Brows file</span>
 																					<input class="btn_input"
 																						   name="file_2" type="file"
@@ -396,7 +397,7 @@ endforeach;
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Number">
 																			</div>
 																		</div>
@@ -405,13 +406,13 @@ endforeach;
 																			<input type="date" name="bday"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
-																				   class="form-control">
+																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label>Issued</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Issued">
 																			</div>
 																		</div>
@@ -425,7 +426,8 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingThree">
 															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
+																<button class="btn btn-sm btn-link collapsed"
+																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseThree"
 																		aria-expanded="false"
@@ -445,7 +447,7 @@ endforeach;
 																				<label>Name</label>
 																				<input type="text"
 																					   name="number_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Name">
 																			</div>
 																		</div>
@@ -453,7 +455,7 @@ endforeach;
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label style="margin-top: 30px;"
-																					   class="btn btn-outline-primary">
+																					   class="btn btn-sm btn-outline-success">
 
 																					<span>Brows file</span>
 																					<input class="btn_input"
@@ -467,7 +469,7 @@ endforeach;
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Number">
 																			</div>
 																		</div>
@@ -476,13 +478,13 @@ endforeach;
 																			<input type="date" name="bday"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
-																				   class="form-control">
+																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label>Issued</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Issued">
 																			</div>
 																		</div>
@@ -497,7 +499,8 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingFour">
 															<h5 class="mb-0">
-																<button class="btn btn-link collapsed" type="button"
+																<button class="btn btn-sm btn-link collapsed"
+																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseFour"
 																		aria-expanded="false"
@@ -517,7 +520,7 @@ endforeach;
 																				<label>Name</label>
 																				<input type="text"
 																					   name="number_1"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Name">
 																			</div>
 																		</div>
@@ -525,7 +528,7 @@ endforeach;
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label style="margin-top: 30px;"
-																					   class="btn btn-outline-primary">
+																					   class="btn btn-sm btn-outline-success">
 																					<span>Brows file</span>
 																					<input class="btn_input"
 																						   name="file_4" type="file"
@@ -538,7 +541,7 @@ endforeach;
 																			<div class="form-group">
 																				<label>Number</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Number">
 																			</div>
 																		</div>
@@ -547,13 +550,13 @@ endforeach;
 																			<input type="date" name="bday"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
-																				   class="form-control">
+																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label>Issued</label>
 																				<input type="text"
-																					   class="form-control"
+																					   class="form-control form-control-sm"
 																					   placeholder="Issued">
 																			</div>
 																		</div>
@@ -570,7 +573,7 @@ endforeach;
 											</div>
 										</div>
 										<div class="text-right mt-4 pb-2">
-											<span id="add_staff" class="btn btn-secondary">Save</span>
+											<span id="add_staff" class="btn btn-outline-success">Save</span>
 										</div>
 									</div>
 
@@ -638,11 +641,11 @@ color: #fff;">
 									<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;"
 											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
 
 										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>"
-											  id="delet_staff_modal" class="btn "><i class="fas fa-trash"></i></span>
+											  id="delet_staff_modal" class="btn text-danger"><i class="fas fa-trash"></i></span>
 									</td>
 								</tr>
 							<? endforeach; ?>

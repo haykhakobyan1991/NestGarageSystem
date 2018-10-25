@@ -22,8 +22,8 @@
 			</div>
 		</div>
 
-		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-			<div class="container">
+		<div class=" pb-2 pt-2">
+			<div class="">
 				<div class="row">
 					<div class="col-sm-12 col-md-2 col-2">
 						<p class="display-5 font-weight-bold float-left">Toatl Vehicle</p> <span
@@ -45,7 +45,7 @@
 					<div class="col-sm-12 col-md-4 col-4"></div>
 
 					<div class="col-sm-12 col-md-2 col-2">
-						<button class="btn btn-secondary" data-toggle="modal"
+						<button class="btn btn-outline-success" data-toggle="modal"
 								data-target=".add_veichls_modal">Add Vehicle
 						</button>
 					</div>
@@ -89,11 +89,11 @@ color: #fff;">
 							<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn "><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 						</tr>
 						</tr>
 						<tr>
@@ -110,11 +110,11 @@ color: #fff;">
 							<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn "><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 						</tr>
 						</tr>
 						<tr>
@@ -131,11 +131,11 @@ color: #fff;">
 							<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
-											  data-toggle="modal" class="float-left "
+											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn "><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 						</tr>
 
 						</tr>
@@ -318,7 +318,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Հաշվառման համարանիշ</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control"
+										<input value="" name="" type="text" class="form-control form-control-sm"
 											   placeholder="Հաշվառման համարանիշ">
 									</div>
 								</div>
@@ -327,7 +327,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">VIN</label>
 									<div class="col-sm-10">
-										<input value="" name="vin" type="text" class="form-control" placeholder="VIN">
+										<input value="" name="vin" type="text" class="form-control form-control-sm" placeholder="VIN">
 									</div>
 								</div>
 
@@ -335,7 +335,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control mt-2"
+										<input value="" name="" type="text" class="form-control form-control-sm mt-2"
 											   placeholder="Շարժիչի հզորություն">
 									</div>
 								</div>
@@ -359,7 +359,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Վազք</label>
 									<div class="col-sm-10">
-										<input value="" name="vin" type="text" class="form-control" placeholder="Վազք">
+										<input value="" name="vin" type="text" class="form-control form-control-sm" placeholder="Վազք">
 									</div>
 								</div>
 
@@ -367,7 +367,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control mt-2"
+										<input value="" name="" type="text" class="form-control form-control-sm mt-2"
 											   placeholder="Հոդոգռաֆ">
 									</div>
 								</div>
@@ -376,7 +376,7 @@ color: #fff;">
 									<label
 										class="col-sm-2 col-form-label">Այլ</label>
 									<div class="col-sm-10">
-										<input value="" name="" type="text" class="form-control mt-2" placeholder="Այլ">
+										<input value="" name="" type="text" class="form-control form-control-sm mt-2" placeholder="Այլ">
 									</div>
 								</div>
 
@@ -385,7 +385,7 @@ color: #fff;">
 										a
 										Passive?</label>
 									<div class="col-sm-2">
-										<input checked="" type="checkbox" class="form-control">
+										<input checked="" type="checkbox" class="form-control form-control-sm">
 									</div>
 								</div>
 
@@ -393,7 +393,7 @@ color: #fff;">
 									<label class="col-sm-10 col-form-label">Send a notification mail to the
 										drivers</label>
 									<div class="col-sm-2">
-										<input checked="" type="checkbox" class="form-control">
+										<input checked="" type="checkbox" class="form-control form-control-sm">
 									</div>
 								</div>
 
@@ -580,7 +580,7 @@ color: #fff;">
 
 
 								</table>
-								<button type="button" class="btn btn-secondary btn-sm add_new_item"><i
+								<button type="button" class="btn btn-outline-success btn-sm add_new_item"><i
 										class="fa fa-plus"></i></button>
 
 								<hr class="my-4">
@@ -642,8 +642,8 @@ color: #fff;">
 
 					</div>
 					<div class="text-right mt-4 pb-2">
-						<button class="btn btn-secondary">Save</button>
-						<button class="btn btn-secondary ml-2" data-dismiss="modal">
+						<button class="btn btn-outline-success">Save</button>
+						<button class="btn btn-outline-success ml-2" data-dismiss="modal">
 							Cancel
 						</button>
 					</div>

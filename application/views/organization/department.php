@@ -33,7 +33,7 @@
 					</span>
 				<hr class="my-4">
 				<div class="row col-sm-12 col-md-12"
-					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: scroll;">
+					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 
 
 					<table id="example" class="table table-striped table-bordered"

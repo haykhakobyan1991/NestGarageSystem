@@ -696,9 +696,8 @@ class Organization extends MX_Controller {
 		$position = $this->input->post('position');
 		$other = $this->input->post('other');
 
-
-
 		$nest_card_id = $this->input->post('nest_card_id');
+
 		$document_1 = $this->input->post('document_1');
 		$reference_1 = $this->input->post('reference_1');
 		$expiration_1 = $this->input->post('expiration_1');

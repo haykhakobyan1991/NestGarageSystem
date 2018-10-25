@@ -1,4 +1,5 @@
 <?
+$user_id = $this->session->user_id;
 $total = 0;
 $active = 0;
 $passive = 0;
@@ -297,11 +298,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Name</label>
+																				<label>Document</label>
 																				<input type="text"
-																					   name="number_1"
+																					   name="document_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Name">
+																					   placeholder="Document">
 																			</div>
 																		</div>
 
@@ -320,16 +321,16 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Number</label>
+																				<label>Reference</label>
 																				<input type="text"
-																					   name="number_1"
+																					   name="reference_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Number">
+																					   placeholder="Reference">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label>Epired Date</label>
-																			<input type="date" name="date_1"
+																			<input type="date" name="expiration_1"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
 
@@ -337,13 +338,14 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Issued</label>
+																				<label>Note</label>
 																				<input type="text"
-																					   name="issued_1"
+																					   name="note_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Issued">
+																					   placeholder="Note">
 																			</div>
 																		</div>
+
 																	</div>
 
 
@@ -373,11 +375,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Name</label>
+																				<label>Document</label>
 																				<input type="text"
-																					   name="number_1"
+																					   name="document_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Name">
+																					   placeholder="Document">
 																			</div>
 																		</div>
 
@@ -393,29 +395,34 @@ endforeach;
 																				</label>
 																			</div>
 																		</div>
+
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Number</label>
+																				<label>Reference</label>
 																				<input type="text"
+																					   name="reference_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Number">
+																					   placeholder="Reference">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label>Epired Date</label>
-																			<input type="date" name="bday"
+																			<input type="date" name="expiration_2"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
+
 																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Issued</label>
+																				<label>Note</label>
 																				<input type="text"
+																					   name="note_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Issued">
+																					   placeholder="Note">
 																			</div>
 																		</div>
+
 																	</div>
 
 
@@ -442,13 +449,14 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
+
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Name</label>
+																				<label>Document</label>
 																				<input type="text"
-																					   name="number_1"
+																					   name="document_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Name">
+																					   placeholder="Document">
 																			</div>
 																		</div>
 
@@ -456,7 +464,6 @@ endforeach;
 																			<div class="form-group">
 																				<label style="margin-top: 30px;"
 																					   class="btn btn-sm btn-outline-success">
-
 																					<span>Brows file</span>
 																					<input class="btn_input"
 																						   name="file_3" type="file"
@@ -465,32 +472,35 @@ endforeach;
 																				</label>
 																			</div>
 																		</div>
+
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Number</label>
+																				<label>Reference</label>
 																				<input type="text"
+																					   name="reference_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Number">
+																					   placeholder="Reference">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label>Epired Date</label>
-																			<input type="date" name="bday"
+																			<input type="date" name="expiration_3"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
+
 																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Issued</label>
+																				<label>Note</label>
 																				<input type="text"
+																					   name="note_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Issued">
+																					   placeholder="Note">
 																			</div>
 																		</div>
+
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -515,13 +525,14 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
+
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Name</label>
+																				<label>Document</label>
 																				<input type="text"
-																					   name="number_1"
+																					   name="document_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Name">
+																					   placeholder="Document">
 																			</div>
 																		</div>
 
@@ -537,32 +548,35 @@ endforeach;
 																				</label>
 																			</div>
 																		</div>
+
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Number</label>
+																				<label>Reference</label>
 																				<input type="text"
+																					   name="reference_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Number">
+																					   placeholder="Reference">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label>Epired Date</label>
-																			<input type="date" name="bday"
+																			<input type="date" name="expiration_4"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
+
 																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Issued</label>
+																				<label>Note</label>
 																				<input type="text"
+																					   name="note_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Issued">
+																					   placeholder="Note">
 																			</div>
 																		</div>
+
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -602,6 +616,7 @@ color: #545b62;">
 								<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
 								<th style="font-size: 12px !important;font-weight:500;">Created date</th>
 								<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
+								<th style="font-size: 12px !important;font-weight:500;">Փաստաթուղթ</th>
 								<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
@@ -637,6 +652,41 @@ color: #545b62;">
 									<td></td>
 									<td><?= $row['registration_date'] ?></td>
 									<td><?= $row['user_name'] ?></td>
+
+									<td>
+										<table>
+											<tbody>
+												<tr>
+													<? if ($row['document_1'] != '') { ?>
+														<td><?= $row['document_1'] ?></td>
+														<td><?= $row['reference_1'] ?></td>
+														<td><?= $row['expiration_1'] ?></td>
+														<td><?= $row['note_1'] ?></td>
+														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_1']. '.' . $row['ext_1']?></a></td>
+													<? } elseif ($row['document_2'] != '') { ?>
+														<td><?= $row['document_2'] ?></td>
+														<td><?= $row['reference_2'] ?></td>
+														<td><?= $row['expiration_2'] ?></td>
+														<td><?= $row['note_2'] ?></td>
+														<td><?= $row['file_2']. '.' . $row['ext_2']  ?></td>
+													<? } elseif ($row['document_3'] != '') { ?>
+														<td><?= $row['document_3'] ?></td>
+														<td><?= $row['reference_3'] ?></td>
+														<td><?= $row['expiration_3'] ?></td>
+														<td><?= $row['note_3'] ?></td>
+														<td><?= $row['file_3']. '.' . $row['ext_3']  ?></td>
+													<? } elseif ($row['document_4'] != '') { ?>
+														<td><?= $row['document_4'] ?></td>
+														<td><?= $row['reference_4'] ?></td>
+														<td><?= $row['expiration_4'] ?></td>
+														<td><?= $row['note_4'] ?></td>
+														<td><?= $row['file_4']. '.' . $row['ext_4']  ?></td>
+													<? } ?>
+												</tr>
+
+											</tbody>
+										</table>
+									</td>
 
 									<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;"

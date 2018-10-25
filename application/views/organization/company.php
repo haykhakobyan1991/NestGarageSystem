@@ -26,19 +26,19 @@ $i = '';
 	</div>
 
 	<form id="company">
-		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+		<div class="jumbotron jumbotron-fluid pb-2 pt-2" style="background: #fff">
 			<div class="container">
 
 				<p class="display-5 font-weight-bold"><?= lang('status') ?></p>
 
 				<hr class="my-4">
 				<div class="row">
-					<table class="table table-hover table-secondary col-sm-12 col-md-5">
+					<table class="table table-hover table-secondary col-sm-12 col-md-5" style="background: #fff;">
 						<tbody>
 						<? foreach ($company_type as $item) : ?>
 							<tr>
-								<td><?= $item['title'] ?></td>
-								<td><input style="width: 20px;height: 20px;"
+								<td style="border: none;"><?= $item['title'] ?></td>
+								<td style="border: none;"><input style="width: 20px;height: 20px;"
 										   type="radio"
 										   value="<?= $item['id'] ?>"
 										<?= ($company['company_type_id'] == $item['id'] ? 'checked' : '') ?>
@@ -145,7 +145,7 @@ $i = '';
 							<label
 								class="col-sm-4 col-form-label"><?= lang('activity_address') ?></label>
 							<div class="col-sm-8"
-								 style="background: #ababab;padding-top: 10px;">
+								 style="border:1px solid #ced4da;padding-top: 10px;">
 								<div class="form-row">
 									<select name="activity_country"
 											class="col selectpicker form-control form-control-sm selectpicker_1"
@@ -200,7 +200,7 @@ $i = '';
 							<label
 								class="col-sm-4 col-form-label"><?= lang('legal_address') ?></label>
 							<div class="col-sm-8"
-								 style="background: #ababab;padding-top: 10px;">
+								 style="border:1px solid #ced4da;padding-top: 10px;">
 								<div class="form-row">
 									<select name="legal_country"
 											class="col selectpicker form-control form-control-sm selectpicker_2"
@@ -287,7 +287,7 @@ $i = '';
 							<div class="card">
 								<div class="card-header" id="headingOne">
 									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link" type="button"
+										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse"
 												data-target="#collapseOne" aria-expanded="true"
 												aria-controls="collapseOne">
@@ -370,7 +370,7 @@ $i = '';
 							<div class="card">
 								<div class="card-header" id="headingTwo">
 									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link collapsed" type="button"
+										<button class="btn btn-sm btn-link collapsed text-success" type="button"
 												data-toggle="collapse"
 												data-target="#collapseTwo" aria-expanded="false"
 												aria-controls="collapseTwo">
@@ -452,7 +452,7 @@ $i = '';
 <div class="card">
 	<div class="card-header" id="headingThree">
 		<h5 class="mb-0">
-			<button class="btn btn-sm btn-link collapsed" type="button"
+			<button class="btn btn-sm btn-link collapsed text-success" type="button"
 					data-toggle="collapse"
 					data-target="#collapseThree"
 					aria-expanded="false"
@@ -536,7 +536,7 @@ $i = '';
 <div class="card">
 	<div class="card-header" id="headingFour">
 		<h5 class="mb-0">
-			<button class="btn btn-sm btn-link collapsed" type="button"
+			<button class="btn btn-sm btn-link collapsed text-success" type="button"
 					data-toggle="collapse"
 					data-target="#collapseFour"
 					aria-expanded="false"

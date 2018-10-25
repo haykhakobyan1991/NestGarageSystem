@@ -278,7 +278,7 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingOne">
 															<h5 class="mb-0">
-																<button class="btn btn-sm btn-link" type="button"
+																<button class="btn btn-sm btn-link text-success" type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseOne"
 																		aria-expanded="true"
@@ -354,7 +354,7 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingTwo">
 															<h5 class="mb-0">
-																<button class="btn btn-sm btn-link collapsed"
+																<button class="btn btn-sm btn-link collapsed text-success"
 																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseTwo"
@@ -426,7 +426,7 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingThree">
 															<h5 class="mb-0">
-																<button class="btn btn-sm btn-link collapsed"
+																<button class="btn btn-sm btn-link collapsed text-success"
 																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseThree"
@@ -499,7 +499,7 @@ endforeach;
 													<div class="card">
 														<div class="card-header" id="headingFour">
 															<h5 class="mb-0">
-																<button class="btn btn-sm btn-link collapsed"
+																<button class="btn btn-sm btn-link collapsed text-success"
 																		type="button"
 																		data-toggle="collapse"
 																		data-target="#collapseFour"
@@ -590,19 +590,19 @@ endforeach;
 						 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
 
 
-						<table id="example2" class="table table-bordered"
+						<table id="example2" class="table table-striped table-borderless"
 							   style="width:100%">
-							<thead style="background: #545b62;
-color: #fff;">
+							<thead style="background: #fff;
+color: #545b62;">
 							<tr>
-								<th style="font-size: 12px !important;">Name Lastname</th>
-								<th style="font-size: 12px !important;">Status</th>
-								<th style="font-size: 12px !important;">Պաշտոն</th>
-								<th style="font-size: 12px !important;">Բաժին</th>
-								<th style="font-size: 12px !important;">ղեկավար</th>
-								<th style="font-size: 12px !important;">Created date</th>
-								<th style="font-size: 12px !important;">Ում կողմից</th>
-								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+								<th style="font-size: 12px !important;font-weight:500;">Name Lastname</th>
+								<th style="font-size: 12px !important;font-weight:500;">Status</th>
+								<th style="font-size: 12px !important;font-weight:500;">Պաշտոն</th>
+								<th style="font-size: 12px !important;font-weight:500;">Բաժին</th>
+								<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
+								<th style="font-size: 12px !important;font-weight:500;">Created date</th>
+								<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
+								<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>

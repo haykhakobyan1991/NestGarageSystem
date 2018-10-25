@@ -7,9 +7,10 @@
 		content: '';
 	}
 
-	div#example4_wrapper{
+	div#example4_wrapper {
 		width: 100%;
 	}
+
 </style>
 
 <!-- USERS START -->
@@ -40,10 +41,7 @@
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header bg-dark">
-
 							<h5 class="text-white modal-title dar">New User</h5>
-
-
 							<button type="button" class="text-white close"
 									data-dismiss="modal"
 									aria-label="Close">
@@ -64,8 +62,6 @@
 									<p>Fill in the following fields</p>
 								</div>
 							</div>
-
-
 							<div class="row">
 								<div
 									class="col-sm-12 col-md-12 col-12  mt-md-5 mt-5 pl-md-4 pl-4 pr-md-4 pr-4">
@@ -79,7 +75,6 @@
 												   placeholder="First Name">
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label
 											class="col-sm-2 col-form-label">Last
@@ -90,7 +85,6 @@
 												   placeholder="Last Name">
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label
 											class="col-sm-2 col-form-label">E-mail *</label>
@@ -100,7 +94,6 @@
 												   placeholder="E-mail">
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label
 											class="col-sm-2 col-form-label">Contact Number *</label>
@@ -110,7 +103,6 @@
 												   placeholder="Contact Number">
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label
 											class="col-sm-2 col-form-label">User Name *</label>
@@ -120,7 +112,6 @@
 												   placeholder="User Name">
 										</div>
 									</div>
-
 									<div class="form-group row">
 										<label
 											class="col-sm-2 col-form-label">Password *</label>
@@ -141,8 +132,6 @@
 											</button>
 										</div>
 									</div>
-
-
 									<div class="form-group row mb-0">
 										<label class="col-sm-2 col-form-label">Type</label>
 										<div class="col-sm-6">
@@ -156,12 +145,11 @@
 											</select>
 										</div>
 									</div>
-
-
 									<div class="form-group row mt-2">
 										<label class="ml-1 col-form-label">Status make a Passive?</label>
 										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox" class="form-control form-control-sm">
+											<input name="status" value="-1" type="checkbox"
+												   class="form-control form-control-sm">
 										</div>
 									</div>
 
@@ -169,20 +157,16 @@
 										<label class="ml-1 col-form-label">Send a notification mail to the new created
 											user?</label>
 										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox" class="form-control form-control-sm">
+											<input name="status" value="-1" type="checkbox"
+												   class="form-control form-control-sm">
 										</div>
 									</div>
-
-
 								</div>
 							</div>
-
 							<div class="text-right mt-4 pb-2">
 								<span id="add_user" class="btn btn-sm btn-outline-success">Save</span>
 							</div>
 						</div>
-
-
 					</div>
 				</div>
 			</div>
@@ -196,19 +180,15 @@
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
 								class="ml-2 mt-1 badge badge-secondary badge-pill">3</span>
 						</div>
-
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
 								class="ml-2 mt-1 badge badge-success badge-pill">4</span>
 						</div>
-
 						<div class="col-sm-12 col-md-2 col2">
 							<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
 								class="ml-2 mt-1 badge badge-warning badge-pill">0</span>
 						</div>
-
 						<div class="col-sm-12 col-md-4 col-4"></div>
-
 						<div class="col-sm-12 col-md-2 col-2">
 							<span class="btn btn-sm btn-outline-success" data-toggle="modal"
 								  data-target=".add_user_modal">Add User
@@ -220,29 +200,25 @@
 					<hr class="my-4">
 					<div class="row col-sm-12 col-md-12"
 						 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
-
-
-						<table id="example4" class="table table-striped table-bordered"
+						<table id="example4" class="table table-striped table-borderless"
 							   style="width:100%">
-							<thead style="background: #545b62;
-color: #fff;">
+							<thead style="background: #fff;color: #545b62;">
 							<tr>
-								<th style="font-size: 12px !important;">Name/Email</th>
-								<th style="font-size: 12px !important;">Status</th>
-								<th style="font-size: 12px !important;">Activity</th>
-								<th style="font-size: 12px !important;">User Type</th>
-								<th style="font-size: 12px !important;">User Name․</th>
-								<th style="font-size: 12px !important;">Passwprd</th>
-								<th style="font-size: 12px !important;">Created Date</th>
-								<th style="font-size: 12px !important;">By Whom</th>
-								<th style="font-size: 12px !important;">Last Access Date/Time</th>
-								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+								<th style="font-size: 12px !important;font-weight: 500;">Name/Email</th>
+								<th style="font-size: 12px !important;font-weight: 500;">Status</th>
+								<th style="font-size: 12px !important;font-weight: 500;">Activity</th>
+								<th style="font-size: 12px !important;font-weight: 500;">User Type</th>
+								<th style="font-size: 12px !important;font-weight: 500;">User Name․</th>
+								<th style="font-size: 12px !important;font-weight: 500;">Passwprd</th>
+								<th style="font-size: 12px !important;font-weight: 500;">Created Date</th>
+								<th style="font-size: 12px !important;font-weight: 500;">By Whom</th>
+								<th style="font-size: 12px !important;font-weight: 500;">Last Access Date/Time</th>
+								<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
 							<tbody>
 							<tr>
 								<td>
-
 									<div class="media">
 										<img
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
@@ -256,7 +232,6 @@ color: #fff;">
 											</small>
 										</div>
 									</div>
-
 								</td>
 								<td class="text-center">
 									<div class="bg-success"
@@ -286,7 +261,6 @@ color: #fff;">
 
 							<tr>
 								<td>
-
 									<div class="media">
 										<img
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
@@ -300,7 +274,6 @@ color: #fff;">
 											</small>
 										</div>
 									</div>
-
 								</td>
 								<td class="text-center">
 									<div class="bg-danger"
@@ -319,26 +292,26 @@ color: #fff;">
 								<td>Daniel Smith</td>
 								<td>20.10.2018/19:23</td>
 								<td colspan="2">
-										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
-											  id="edit_user_modal"
-											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
-
-									<span style="border: none;cursor: pointer;" data-id="" id="delet_user_modal"
-										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
+									<span style="border: none;padding-top: 5px;cursor: pointer;"
+										  data-id=""
+										  id="edit_user_modal"
+										  data-toggle="modal" class="float-left text-success"
+										  data-target="#edit_users">
+										<i class="fas fa-edit"></i>
+									</span>
+									<span style="border: none;cursor: pointer;" data-id=""
+										  id="delet_user_modal"
+										  class="btn text-danger">
+										<i class="fas fa-trash"></i>
+									</span>
+								</td>
 							</tr>
 							</tr>
-						</tbody>
+							</tbody>
 						</table>
-
-
 					</div>
-
-
 				</div>
 			</div>
-
-
 		</div>
 	</form>
 </div>

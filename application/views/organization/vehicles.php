@@ -59,19 +59,19 @@
 					 style="background: #fff; padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 
 
-					<table id="example3" class="table table-bordered"
+					<table id="example3" class="table table-striped table-borderless"
 						   style="width:100%">
-						<thead style="background: #545b62;
-color: #fff;">
+						<thead style="background: #fff;
+color: #545b62;">
 						<tr>
-							<th style="font-size: 12px !important;">Name Lastname</th>
-							<th style="font-size: 12px !important;">Status</th>
-							<th style="font-size: 12px !important;">Պաշտոն</th>
-							<th style="font-size: 12px !important;">Բաժին</th>
-							<th style="font-size: 12px !important;">ղեկավար</th>
-							<th style="font-size: 12px !important;">Created date</th>
-							<th style="font-size: 12px !important;">Ում կողմից</th>
-							<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+							<th style="font-size: 12px !important;font-weight: 500;">Name Lastname</th>
+							<th style="font-size: 12px !important;font-weight: 500;">Status</th>
+							<th style="font-size: 12px !important;font-weight: 500;">Պաշտոն</th>
+							<th style="font-size: 12px !important;font-weight: 500;">Բաժին</th>
+							<th style="font-size: 12px !important;font-weight: 500;">ղեկավար</th>
+							<th style="font-size: 12px !important;font-weight: 500;">Created date</th>
+							<th style="font-size: 12px !important;font-weight: 500;">Ում կողմից</th>
+							<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
 						</tbody>
@@ -189,10 +189,12 @@ color: #fff;">
 							<a class="nav-item nav-link active" id="nav-home-tab"
 							   data-toggle="tab"
 							   href="#nav-home" role="tab" aria-controls="nav-home"
-							   aria-selected="true">MAIN</a>
+							   aria-selected="true"
+							   style="border: 1px solid #dee2e6 !important;">MAIN</a>
 							<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
 							   href="#nav-profile" role="tab" aria-controls="nav-profile"
-							   aria-selected="false">INFO</a>
+							   aria-selected="false"
+							   style="border: 1px solid #dee2e6 !important;">INFO</a>
 						</div>
 					</nav>
 					<div class="tab-content" id="nav-tabContent">

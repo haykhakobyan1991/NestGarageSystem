@@ -36,20 +36,20 @@
 					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 
 
-					<table id="example" class="table table-striped table-bordered"
+					<table id="example" class="table table-striped table-borderless"
 						   style="width:100%">
-						<thead style="background: #545b62;
-color: #fff;">
+						<thead style="background: #fff;
+color: #545b62;">
 						<tr>
-							<th style="font-size: 12px !important;">Ստորաբաժանում</th>
-							<th style="font-size: 12px !important;">Մանրամասն</th>
-							<th style="font-size: 12px !important;">Անուն</th>
-							<th style="font-size: 12px !important;">Ազգանուն</th>
-							<th style="font-size: 12px !important;">Հեռ․</th>
-							<th style="font-size: 12px !important;">Էլ․ հասցե</th>
-							<th style="font-size: 12px !important;">Ստեղծվել է</th>
-							<th style="font-size: 12px !important;">Ում կողմից</th>
-							<th style="font-size: 12px !important;min-width: 50px !important;"></th>
+							<th style="font-size: 12px !important;font-weight:500;">Ստորաբաժանում</th>
+							<th style="font-size: 12px !important;font-weight:500;">Մանրամասն</th>
+							<th style="font-size: 12px !important;font-weight:500;">Անուն</th>
+							<th style="font-size: 12px !important;font-weight:500;">Ազգանուն</th>
+							<th style="font-size: 12px !important;font-weight:500;">Հեռ․</th>
+							<th style="font-size: 12px !important;font-weight:500;">Էլ․ հասցե</th>
+							<th style="font-size: 12px !important;font-weight:500;">Ստեղծվել է</th>
+							<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
+							<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
 						<tbody>

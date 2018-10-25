@@ -656,33 +656,44 @@ color: #545b62;">
 									<td>
 										<table>
 											<tbody>
-												<tr>
+
 													<? if ($row['document_1'] != '') { ?>
+													<tr>
 														<td><?= $row['document_1'] ?></td>
 														<td><?= $row['reference_1'] ?></td>
 														<td><?= $row['expiration_1'] ?></td>
 														<td><?= $row['note_1'] ?></td>
 														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_1']. '.' . $row['ext_1']?></a></td>
-													<? } elseif ($row['document_2'] != '') { ?>
+													</tr>
+													<? }
+													if ($row['document_2'] != '') { ?>
+													<tr>
 														<td><?= $row['document_2'] ?></td>
 														<td><?= $row['reference_2'] ?></td>
 														<td><?= $row['expiration_2'] ?></td>
 														<td><?= $row['note_2'] ?></td>
 														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_2']. '.' . $row['ext_2']  ?>"><?=$row['file_2']. '.' . $row['ext_2']?></a></td>
-													<? } elseif ($row['document_3'] != '') { ?>
+													</tr>
+													<? }
+													if ($row['document_3'] != '') { ?>
+													<tr>
 														<td><?= $row['document_3'] ?></td>
 														<td><?= $row['reference_3'] ?></td>
 														<td><?= $row['expiration_3'] ?></td>
 														<td><?= $row['note_3'] ?></td>
 														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_3']. '.' . $row['ext_3']?></a></td>
-													<? } elseif ($row['document_4'] != '') { ?>
+													</tr>
+													<? }
+													if ($row['document_4'] != '') { ?>
+													<tr>
 														<td><?= $row['document_4'] ?></td>
 														<td><?= $row['reference_4'] ?></td>
 														<td><?= $row['expiration_4'] ?></td>
 														<td><?= $row['note_4'] ?></td>
 														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_4']. '.' . $row['ext_4']?></a></td>
+													</tr>
 													<? } ?>
-												</tr>
+
 
 											</tbody>
 										</table>

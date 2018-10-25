@@ -7,6 +7,11 @@
 		content: '';
 	}
 </style>
+
+<script>
+
+
+</script>
 <!-- Department Start -->
 
 <div class="tab-pane fade show active" id="list-department" role="tabpanel"
@@ -69,13 +74,20 @@ color: #545b62;">
 											style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
 											data-id="<?= $item['id'] ?>" id="edit_department_modal"
 											data-toggle="modal" class="float-left text-success"
-											data-target="#edit_department"><i class="fas fa-edit"></i></span>
+											data-target="#edit_department"
+											data-toggle2="tooltip"
+											data-placement="top"
+											title="edit"><i class="fas fa-edit"></i></span>
 
 									<span style="border: none; cursor:pointer;" data-toggle="modal"
 										  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
-										  id="delete_department_modal" class="text-danger"><i class="fas fa-trash"></i></span></td>
+										  id="delete_department_modal" class="text-danger"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="delete"><i class="fas fa-trash"></i></span></td>
 
 							</tr>
+
 
 						<? endforeach; ?>
 					</table>

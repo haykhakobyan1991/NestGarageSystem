@@ -663,7 +663,7 @@ color: #545b62;">
 														<td><?= $row['reference_1'] ?></td>
 														<td><?= $row['expiration_1'] ?></td>
 														<td><?= $row['note_1'] ?></td>
-														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_1']. '.' . $row['ext_1']?></a></td>
+														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_1']); ?></a></td>
 													</tr>
 													<? }
 													if ($row['document_2'] != '') { ?>
@@ -672,7 +672,7 @@ color: #545b62;">
 														<td><?= $row['reference_2'] ?></td>
 														<td><?= $row['expiration_2'] ?></td>
 														<td><?= $row['note_2'] ?></td>
-														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_2']. '.' . $row['ext_2']  ?>"><?=$row['file_2']. '.' . $row['ext_2']?></a></td>
+														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_2']. '.' . $row['ext_2']  ?>"><?= $this->select_ext($row['ext_2']); ?></a></td>
 													</tr>
 													<? }
 													if ($row['document_3'] != '') { ?>
@@ -681,7 +681,7 @@ color: #545b62;">
 														<td><?= $row['reference_3'] ?></td>
 														<td><?= $row['expiration_3'] ?></td>
 														<td><?= $row['note_3'] ?></td>
-														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_3']. '.' . $row['ext_3']?></a></td>
+														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_3']); ?></a></td>
 													</tr>
 													<? }
 													if ($row['document_4'] != '') { ?>
@@ -690,7 +690,7 @@ color: #545b62;">
 														<td><?= $row['reference_4'] ?></td>
 														<td><?= $row['expiration_4'] ?></td>
 														<td><?= $row['note_4'] ?></td>
-														<td><a target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?=$row['file_4']. '.' . $row['ext_4']?></a></td>
+														<td><a style="font-size: 25px;color: #333;" target="_blank" href="<?= base_url('uploads/user_'.$user_id.'/staff/files/'). $row['file_1']. '.' . $row['ext_1']  ?>"><?= $this->select_ext($row['ext_4']); ?></a></td>
 													</tr>
 													<? } ?>
 
@@ -703,10 +703,17 @@ color: #545b62;">
 										<span style="border: none;padding-top: 5px;cursor: pointer;"
 											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
+											  data-target="#edit_staff"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="edit"><i class="fas fa-edit"></i></span>
 
 										<span style="border: none;cursor: pointer;" data-id="<?= $row['id'] ?>"
-											  id="delet_staff_modal" class="btn text-danger"><i class="fas fa-trash"></i></span>
+											  id="delet_staff_modal"
+											  class="btn text-danger"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="delete"><i class="fas fa-trash"></i></span>
 									</td>
 								</tr>
 							<? endforeach; ?>

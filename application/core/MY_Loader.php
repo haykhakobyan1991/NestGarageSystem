@@ -142,5 +142,31 @@ class MY_Loader extends MX_Loader {
 	}
 
 
+	/**
+	 * @param $ext
+	 * @return string
+	 */
+	public function select_ext($ext) {
+		$extension  = array('pdf','png','jpg','doc','docx','csv','xlsx','zip');
+
+		if(in_array($ext, $extension)) {
+
+			if($ext == 'xlsx' || $ext == 'csv') {
+				return '<i class="fas fa-file-excel"></i>';
+			}elseif ($ext == 'doc' || $ext == 'docx'){
+				return '<i class="fas fa-file-word"></i>';
+			}elseif($ext == 'jpg' || $ext == 'png'){
+				return '<i class="fas fa-file-image"></i>';
+			}elseif ($ext == 'zip'){
+				return '<i class="fas fa-file-archive"></i>';
+			}
+
+			return '<i class="fas fa-file-'.$ext.'"></i>';
+		}
+
+		return '<i class="fas fa-exclamation-circle"></i>';
+	}
+
+
 
 }

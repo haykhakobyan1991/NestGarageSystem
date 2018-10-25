@@ -112,7 +112,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="ml-auto mr-5">
-		<strong>Welcome</strong> / <span class="username_login"><a href="#" class="text-success"><?=$row['name']?></a></span>
+		<strong>Welcome</strong> / <span class="username_login"><a href="#" style="color: #333;"><?=$row['name']?></a></span>
 	</div>
 
 	<div class="langs mr-5">
@@ -137,19 +137,19 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	<!-- Horizontal Tabs Start -->
 	<ul class="nav nav-tabs" style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
 		<li class="nav-item">
-			<a class="nav-link active  btn btn-sm btn-outline-success" data-toggle="tab" href="#organization">Organization</a>
+			<a class="nav-link active  btn btn-sm btn-outline-success2" data-toggle="tab" href="#organization">Organization</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#structure">Structure</a>
+			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#structure">Structure</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu1">Menu 1</a>
+			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu1">Menu 1</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu2">Menu 2</a>
+			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu2">Menu 2</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success" data-toggle="tab" href="#menu3">Menu 2</a>
+			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu3">Menu 2</a>
 		</li>
 	</ul>
 	<!-- Horizontal Tabs End -->

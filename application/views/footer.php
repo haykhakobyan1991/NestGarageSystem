@@ -642,6 +642,9 @@
 
 	})
 
+	$(function () {
+		$('[data-toggle2="tooltip"]').tooltip()
+	})
 
 </script>
 

@@ -90,10 +90,16 @@ color: #545b62;">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+											  data-target="#edit_vehicles"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="edit"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"
+									  data-toggle2="tooltip"
+									  data-placement="top"
+									  title="delete"><i class="fas fa-trash"></i></span></td>
 						</tr>
 						</tr>
 						<tr>
@@ -111,10 +117,16 @@ color: #545b62;">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+											  data-target="#edit_vehicles"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="edit"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"
+									  data-toggle2="tooltip"
+									  data-placement="top"
+									  title="delete"><i class="fas fa-trash"></i></span></td>
 						</tr>
 						</tr>
 						<tr>
@@ -132,10 +144,16 @@ color: #545b62;">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_vehicles_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_vehicles"><i class="fas fa-edit"></i></span>
+											  data-target="#edit_vehicles"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="edit"><i class="fas fa-edit"></i></span>
 
 								<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-									  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
+									  class="btn text-danger"
+									  data-toggle2="tooltip"
+									  data-placement="top"
+									  title="delete"><i class="fas fa-trash"></i></span></td>
 						</tr>
 
 						</tr>

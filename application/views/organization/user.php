@@ -16,7 +16,8 @@
 <!-- USERS START -->
 <div class="tab-pane fade show active" id="list-users">
 	<form id="users">
-		<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list" style="padding-top: 10px;">
+		<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list"
+			 style="padding-top: 10px;">
 
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 				<div class="container">
@@ -238,7 +239,7 @@
 										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 								</td>
 								<td class="text-center">
-									<div class="bg-success"
+									<div class="bg-success2"
 										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 									<span class="font-weight-light pl-1"
 										  style="font-size: 13px;display: block;">Strong</span>
@@ -288,10 +289,16 @@
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_user_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_users"><i class="fas fa-edit"></i></span>
+											  data-target="#edit_users"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="edit"><i class="fas fa-edit"></i></span>
 
 									<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
-										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
+										  class="btn text-danger"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="delete"><i class="fas fa-trash"></i></span></td>
 							</tr>
 
 							<tr>
@@ -331,12 +338,18 @@
 										  data-id=""
 										  id="edit_user_modal"
 										  data-toggle="modal" class="float-left text-success"
-										  data-target="#edit_users">
+										  data-target="#edit_users"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="edit">
 										<i class="fas fa-edit"></i>
 									</span>
 									<span style="border: none;cursor: pointer;" data-id=""
 										  id="delet_user_modal"
-										  class="btn text-danger">
+										  class="btn text-danger"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="delete">
 										<i class="fas fa-trash"></i>
 									</span>
 								</td>

@@ -1286,5 +1286,6 @@ class Organization extends MX_Controller {
 	}
 
 
+
 }
 //end of class

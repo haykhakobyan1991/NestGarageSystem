@@ -39,12 +39,12 @@ $i = '';
 							<tr>
 								<td style="border: none;"><?= $item['title'] ?></td>
 								<td style="border: none;"><input style="width: 20px;height: 20px;"
-										   type="radio"
-										   value="<?= $item['id'] ?>"
+																 type="radio"
+																 value="<?= $item['id'] ?>"
 										<?= ($company['company_type_id'] == $item['id'] ? 'checked' : '') ?>
-										   name="company_type"
-										   aria-label="Checkbox for following text input"
-										   class="btn btn-primary">
+																 name="company_type"
+																 aria-label="Checkbox for following text input"
+																 class="btn btn-primary">
 								</td>
 							</tr>
 						<? endforeach; ?>

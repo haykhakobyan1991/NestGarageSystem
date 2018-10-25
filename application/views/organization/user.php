@@ -6,6 +6,10 @@
 	table#example4 thead tr th:last-child:before {
 		content: '';
 	}
+
+	div#example4_wrapper{
+		width: 100%;
+	}
 </style>
 
 <!-- USERS START -->
@@ -235,7 +239,7 @@ color: #fff;">
 								<th style="font-size: 12px !important;min-width: 50px !important;"></th>
 							</tr>
 							</thead>
-							</tbody>
+							<tbody>
 							<tr>
 								<td>
 
@@ -279,7 +283,7 @@ color: #fff;">
 									<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
 										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 							</tr>
-							</tr>
+
 							<tr>
 								<td>
 
@@ -324,7 +328,7 @@ color: #fff;">
 										  class="btn text-danger"><i class="fas fa-trash"></i></span></td>
 							</tr>
 							</tr>
-
+						</tbody>
 						</table>
 
 

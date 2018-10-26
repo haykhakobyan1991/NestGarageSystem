@@ -45,9 +45,8 @@
 					<div class="col-sm-12 col-md-4 col-4"></div>
 
 					<div class="col-sm-12 col-md-2 col-2">
-						<button class="btn btn-outline-success" data-toggle="modal"
-								data-target=".add_veichls_modal">Add Vehicle
-						</button>
+						<a href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/add_vehicles')?>" class="btn btn-outline-success">Add Vehicle
+						</a>
 					</div>
 
 				</div>
@@ -440,7 +439,7 @@ color: #545b62;">
 										</div>
 
 										<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
-											 data-parent="#accordionExample_info">
+											 da.add_veichls_modalta-parent="#accordionExample_info">
 											<div class="card-body">
 												<div class="form-group row mb-0">
 													<label

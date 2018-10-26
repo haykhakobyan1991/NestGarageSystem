@@ -1,3 +1,9 @@
+</div>
+</div>
+
+
+
+
 <script class="">
 	$(document).ready(function () {
 		$(document).on('change', '.btn-file :file', function () {
@@ -738,22 +744,19 @@
 			$(this).parent('label').children('span').text('Brows file');
 		} else {
 			if (upload_file.length > 13) {
-				var short_text = text_truncate(upload_file, 13, ' ...')
+				var short_text = text_truncate(upload_file, 13, ' ...');
 				$(this).parent('label').children('span').text(short_text);
 			} else {
 				$(this).parent('label').children('span').text(upload_file);
 			}
 		}
 
-	})
+	});
 
 	$(function () {
 		$('[data-toggle2="tooltip"]').tooltip()
-	})
+	});
 
 </script>
-
-<!--<div class="brows_image_dynamicle"></div>-->
-<!---->
 </body>
 

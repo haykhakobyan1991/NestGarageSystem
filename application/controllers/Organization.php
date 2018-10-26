@@ -1834,6 +1834,19 @@ class Organization extends MX_Controller {
 	}
 
 
+	public function add_vehicles(){
+		$data = array();
+		$this->layout->view('organization/add_vehicles', $data);
+
+	}
+
+	public function edit_vehicles(){
+		$data = array();
+		$this->layout->view('organization/edit_vehicles', $data);
+
+	}
+
+
 
 }
 //end of class

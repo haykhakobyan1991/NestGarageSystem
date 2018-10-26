@@ -172,8 +172,6 @@
 				</div>
 			</div>
 			<!-- Add User Modal End -->
-
-
 			<div class="pb-2 pt-2">
 				<div class="">
 					<div class="row">
@@ -196,8 +194,6 @@
 							</span>
 						</div>
 					</div>
-
-
 					<hr class="my-4">
 					<div class="row col-sm-12 col-md-12"
 						 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">

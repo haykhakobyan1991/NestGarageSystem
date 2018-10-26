@@ -59,6 +59,8 @@ $route['^(ru|hy)/department$'] = "Organization/department";
 $route['^(ru|hy)/staff$'] = "Organization/staff";
 $route['^(ru|hy)/vehicles$'] = "Organization/vehicles";
 $route['^(ru|hy)/user$'] = "Organization/user";
+$route['^(ru|hy)/add_vehicles$'] = "Organization/add_vehicles";
+$route['^(ru|hy)/edit_vehicles/(:num)$'] = "Organization/edit_vehicles/$1";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

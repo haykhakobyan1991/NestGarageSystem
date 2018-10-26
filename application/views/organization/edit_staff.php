@@ -153,12 +153,16 @@ $user_id = $this->session->user_id;
 				<label
 					class="col-sm-2 col-form-label">Department</label>
 				<div class="col-sm-10">
-					<select name="department"
+					<select name="department[]"
 
-							class="col selectpicker form-control form-control-sm"
-							data-size="5" id="department" data-live-search="true"
+							class="col  selectpicker form-control form-control-sm"
+							id="department"
+							multiple data-live-search="true"
 							title="Select a Department">
-						<option value="">Select Department ...</option>
+						<? foreach ($department as $row) : ?>
+							<option <?=(in_array( $row['id'], $department_id) ? 'selected' : '')?>
+								value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+						<? endforeach; ?>
 
 					</select>
 				</div>

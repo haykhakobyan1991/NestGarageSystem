@@ -257,12 +257,15 @@ endforeach;
 													<label
 														class="col-sm-2 col-form-label">Department</label>
 													<div class="col-sm-10">
-														<select name="department"
+														<select name="department[]"
 																class="col selectpicker form-control form-control-sm"
-																data-size="5" id="department" data-live-search="true"
+																multiple data-size="5" id="department" data-live-search="true"
 																title="Select a Department">
 															<option value="">Select Department ...</option>
-
+															<? foreach ($department as $row) : ?>
+																<option
+																	value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+															<? endforeach; ?>
 														</select>
 													</div>
 
@@ -675,8 +678,8 @@ color: #545b62;">
 										<? } ?>
 									</td>
 									<td><?= $row['position'] ?></td>
-									<td><?= $row['department_id'] ?></td>
-									<td></td>
+									<td><?= $row['department'] ?></td>
+									<td><?= $row['head_staff'] ?></td>
 									<td><?= $row['registration_date'] ?></td>
 									<td><?= $row['user_name'] ?></td>
 

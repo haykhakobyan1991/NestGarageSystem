@@ -89,6 +89,25 @@ class Organization extends MX_Controller {
 	}
 
 
+	/**
+	 * @param $text
+	 * @return string
+	 */
+	public function get_first_character($text) {
+		return mb_substr($text,0,1, 'utf-8');
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function rand_color() {
+		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
+	}
+
+
+
+
 	public function company() {
 
 		// for all
@@ -236,11 +255,29 @@ class Organization extends MX_Controller {
 		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
 
+		$sql_department = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `department` 
+            WHERE `status` = '1' 
+             AND `company_id` = '".$company_id."'
+             ORDER BY `title` 
+		";
 
-		$data['staff'] = $this->db->select('staff.*, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
+		$query_department = $this->db->query($sql_department);
+		$data['department'] = $query_department->result_array();
+
+
+		$data['staff'] = $this->db->select('staff.*, GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
+			->join('staff AS head_staff', 'department.head_staff_id = head_staff.id', 'left')
 			->where('user.company_id', $company_id)
+			->group_by('staff.id')
 			->get()
 			->result_array();
 
@@ -297,6 +334,41 @@ class Organization extends MX_Controller {
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
 
+
+		 $sql = "
+			SELECT
+			  `user`.`id`,
+			  `user`.`photo`,
+			  `user`.`parent_user_id`,
+			  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+			  `user`.`email`,
+			  CONCAT_WS(' ', `parent_user`.`first_name`, `parent_user`.`last_name`) AS `parent_user_name`,
+			  `company`.`name` AS `company_name`,
+			  `role`.`title` AS `role`,
+			  `user`.`address`,
+			  `user`.`country_id`,
+			  `user`.`country_code`,
+			  `user`.`phone_number`,
+			  `user`.`username`,
+			  DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
+			  DATE_FORMAT(`user`.`last_activity`, '%d-%m-%Y/%H:%i') AS `last_activity`,
+			  `user`.`status`
+			FROM 
+			  `user`
+			LEFT JOIN `user` AS `parent_user`
+				ON `user`.`parent_user_id` = `parent_user`.`id`
+			LEFT JOIN `company`	
+				ON `user`.`company_id` = `company`.`id`
+			LEFT JOIN `role`	
+				ON `user`.`role_id` = `role`.`id`
+			WHERE `user`.`company_id` = '".$company_id."'
+				
+		";
+
+		$query = $this->db->query($sql);
+		$data['user'] = $query->result_array();
+
+
 		$sql_country = "
 		    SELECT 
               `id`,
@@ -310,6 +382,21 @@ class Organization extends MX_Controller {
 
 		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
+
+
+		 $sql_role = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `role` 
+            WHERE `status` = '1' 
+             AND `id` <> '1' #not administrator
+		";
+
+		$query_role = $this->db->query($sql_role);
+		$data['role'] = $query_role->result_array();
 
 		$this->layout->view('organization/user', $data);
 	}
@@ -968,7 +1055,7 @@ class Organization extends MX_Controller {
 				  `country_id` = ".$this->load->db_value($country).",
 				  `address` = ".$this->load->db_value($address).",
 				  `post_code` = ".$this->load->db_value($post_code).",
-				  `department_id` = ".$this->load->db_value($department).",
+				  `department_ids` = ".$this->load->db_value($department).",
 				  `position` = ".$this->load->db_value($position).",
 				  `nest_card_id` = ".$this->load->db_value($nest_card_id).",
 				  `other` = ".$this->load->db_value($other).",
@@ -1099,6 +1186,16 @@ class Organization extends MX_Controller {
 
 
 		$result = $this->db->query($sql);
+
+		$department_id = $this->db->insert_id();
+
+
+		$sql_head_staff = "
+		 	UPDATE `staff` SET `department_ids` = '".$department_id."' WHERE `id` = '".$head_staff."'
+		";
+
+		$result_head_staff  = $this->db->query($sql_head_staff);
+
 
 
 
@@ -1250,6 +1347,14 @@ class Organization extends MX_Controller {
 		$result = $this->db->query($sql);
 
 
+		$sql_head_staff = "
+		 	UPDATE `staff` SET `department_ids` = '".$id."' WHERE `id` = '".$head_staff."'
+		";
+
+		$result_head_staff  = $this->db->query($sql_head_staff);
+
+
+
 
 
 		if ($result){
@@ -1295,12 +1400,19 @@ class Organization extends MX_Controller {
 		$this->load->helper('form');
 		$lng = $this->load->lng();
 		$data = array();
+		$user_id = $this->session->user_id;
 
 		if($id == NULL) {
 			$message = 'Undifined ID';
 			show_error($message, '404', $heading = '404 Page Not Found');
 			return false;
 		}
+
+
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
 
 		$sql_country = "
 		    SELECT 
@@ -1317,6 +1429,22 @@ class Organization extends MX_Controller {
 		$data['country'] = $query_country->result_array();
 
 
+		$sql_department = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `department` 
+            WHERE `status` = '1' 
+             AND `company_id` = '".$company_id."'
+             ORDER BY `title` 
+		";
+
+		$query_department = $this->db->query($sql_department);
+		$data['department'] = $query_department->result_array();
+
+
 		$sql = "SELECT
                   `id`,
 				  `photo`,
@@ -1328,7 +1456,7 @@ class Organization extends MX_Controller {
 				  `country_id`,
 				  `address`,
 				  `post_code`,
-				  `department_id`,
+				  `department_ids`,
 				  `position`,
 				  `nest_card_id`,
 				  `other`,
@@ -1377,7 +1505,7 @@ class Organization extends MX_Controller {
 		$data['country_id'] = $row['country_id'];
 		$data['address'] = $row['address'];
 		$data['post_code'] = $row['post_code'];
-		$data['department_id'] = $row['department_id'];
+		$data['department_id'] = explode(',', $row['department_ids']);
 		$data['position'] = $row['position'];
 		$data['nest_card_id'] = $row['nest_card_id'];
 		$data['other'] = $row['other'];
@@ -1524,6 +1652,9 @@ class Organization extends MX_Controller {
 
 
 		$add_sql_image = '';
+
+
+		 $department = implode(',', $department);
 
 
 		//upload config
@@ -1763,7 +1894,7 @@ class Organization extends MX_Controller {
 				  `country_id` = ".$this->load->db_value($country).",
 				  `address` = ".$this->load->db_value($address).",
 				  `post_code` = ".$this->load->db_value($post_code).",
-				  `department_id` = ".$this->load->db_value($department).",
+				  `department_ids` = ".$this->load->db_value($department).",
 				  `position` = ".$this->load->db_value($position).",
 				  `nest_card_id` = ".$this->load->db_value($nest_card_id).",
 				  `other` = ".$this->load->db_value($other).",
@@ -1845,6 +1976,193 @@ class Organization extends MX_Controller {
 		$this->layout->view('organization/edit_vehicles', $data);
 
 	}
+
+
+
+	public function add_user_ax() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('first_name', 'first_name', 'required');
+		$this->form_validation->set_rules('last_name', 'last_name', 'required');
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
+		$this->form_validation->set_rules('contact_number', 'contact_number', 'required');
+		$this->form_validation->set_rules('username', 'username', 'required');
+		$this->form_validation->set_rules('password', 'password', 'required');
+		$this->form_validation->set_rules('role', 'role', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'first_name' => form_error('first_name'),
+				'last_name' => form_error('last_name'),
+				'email' => form_error('email'),
+				'contact_number' => form_error('contact_number'),
+				'username' => form_error('username'),
+				'password' => form_error('password'),
+				'role' => form_error('role'),
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		$email = $this->input->post('email');
+		$address = $this->input->post('address');
+		$country_id = $this->input->post('country_id');
+		$country_code = $this->input->post('country_code');
+		$contact_number = $this->input->post('contact_number');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$hash_password = $this->hash($password);
+		$role = $this->input->post('role');
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
+
+
+
+		$sql_email_unique = "
+            SELECT `id` FROM `user` WHERE `email` = ".$this->load->db_value($email)." #todo if suspended and one company
+        ";
+
+		$query_email_unique = $this->db->query($sql_email_unique);
+		$num_rows = $query_email_unique->num_rows();
+
+		if($num_rows >= 1) {
+			$n = 1;
+			$validation_errors = array('email_unique' => "Email is not unique");
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		$sql_username_unique = "
+            SELECT `id` FROM `user` WHERE `username` = ".$this->load->db_value($username)." #todo if suspended and one company
+        ";
+
+		$query_username_unique = $this->db->query($sql_username_unique);
+		$num_rows_u = $query_username_unique->num_rows();
+
+		if($num_rows_u >= 1) {
+			$n = 1;
+			$validation_errors = array('username_unique' => "Username is not unique");
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0777', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
+		}
+
+
+		// watermark
+		$config_wm['image_library'] = 'gd'; //default value
+		$config_wm['source_image'] = set_realpath('assets/img/circle.png'); //get image
+		$config_wm['new_image'] = set_realpath('uploads/user_'.$user_id.'/user/photo/'.$username.'.png');
+		$config_wm['wm_text'] = $this->get_first_character($first_name);
+		$config_wm['wm_type'] = 'text';
+		$config_wm['wm_font_path'] = set_realpath('system/fonts/GHEAGrpalatReg.ttf');
+		$config_wm['wm_font_size'] = '48';
+		$config_wm['wm_hor_alignment'] = 'center';
+		$config_wm['wm_font_color'] = $this->rand_color(); //random
+		$config_wm['wm_padding'] = '-3';
+
+		$this->load->library('image_lib', $config_wm);
+		$this->image_lib->initialize($config_wm);
+
+		$photo = $username.'.png';
+		// end watermark
+
+		if (!$this->image_lib->watermark()) {
+			$validation_errors = array('watermark' => $this->image_lib->display_errors());
+			$messages['error']['elements'][] = $validation_errors;
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		//todo mail ---
+
+
+		$sql = "
+				INSERT INTO `user` SET 
+					`photo` = ".$this->load->db_value($photo).",
+					`first_name` = ".$this->load->db_value($first_name).",
+					`last_name` = ".$this->load->db_value($last_name).",
+					`email` = ".$this->load->db_value($email).",
+					`parent_user_id` = ".$this->load->db_value($user_id).",
+					`company_id` = ".$this->load->db_value($company_id).",
+					`role_id` = ".$this->load->db_value($role).",
+					`address` = ".$this->load->db_value($address).",
+					`country_id` = ".$this->load->db_value($country_id).",
+					`country_code` =  ".$this->load->db_value($country_code).",
+					`phone_number` = ".$this->load->db_value($contact_number).",
+					`username` = ".$this->load->db_value($username).",
+					`password` = ".$this->load->db_value($hash_password).",
+					`creation_date` = NOW(),
+					`status` = ".$this->load->db_value($status)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+
+
+
 
 
 

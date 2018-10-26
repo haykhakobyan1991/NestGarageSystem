@@ -13,10 +13,36 @@
 
 </style>
 
+
+<?
+
+$total = 0;
+$active = 0;
+$passive = 0;
+$admin_name = '';
+$role_name = '';
+foreach ($user as $row) :
+
+	$total++;
+
+	if ($row['status'] == 1) {
+		$active++;
+	} elseif ($row['status'] == -1) {
+		$passive++;
+	}
+
+	if($row['parent_user_id'] == '') {
+		$admin_name = $row['user_name'];
+		$role_name = $row['role'];
+	}
+
+endforeach;
+?>
+
 <!-- USERS START -->
 <div class="tab-pane fade show active" id="list-users">
-	<form id="users">
-		<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list"
+
+	<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list"
 			 style="padding-top: 10px;">
 
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
@@ -26,9 +52,9 @@
 							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
 								 class="float-left mr-2" src="<?= base_url() ?>assets/img/user_img.jpg" alt="">
 							<p style="font-size: 18px;font-weight: 500;" class="mt-1">
-								<span class="users_name">Daniel Smith</span>
+								<span class="users_name"><?=$admin_name?></span>
 								<span class="ml-2 mr-2">|</span>
-								<span class="users_position font-weight-light">Super Admin</span>
+								<span class="users_position font-weight-light"><?=$role_name?></span>
 							</p>
 						</div>
 					</div>
@@ -36,7 +62,7 @@
 			</div>
 
 
-			<!-- Add User Modal Start  -->
+		<!-- Add User Modal Start  -->
 			<div class="modal fade add_user_modal" tabindex="-1" role="dialog"
 				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-lg">
@@ -49,143 +75,149 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body">
-							<!-- Error Message -->
+						<form id="user">
+							<div class="modal-body">
+								<!-- Error Message -->
 
-							<div class="for_message">
-								<div class="alert alert-success d-none" role="alert"></div>
-								<div class="alert alert-danger  d-none" role="alert"></div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12 col-md-6 col-6">
-									<h2>Users Infprmation</h2>
-									<p>Fill in the following fields</p>
+								<div class="for_message">
+									<div class="alert alert-success d-none" role="alert"></div>
+									<div class="alert alert-danger  d-none" role="alert"></div>
 								</div>
-							</div>
-							<div class="row">
-								<div
-									class="col-sm-12 col-md-12 col-12  mt-md-5 mt-5 pl-md-4 pl-4 pr-md-4 pr-4">
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">First
-											Name *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control form-control-sm"
-												   name="firstname"
-												   placeholder="First Name">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">Last
-											Name *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control form-control-sm"
-												   name="lastname"
-												   placeholder="Last Name">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">E-mail *</label>
-										<div class="col-sm-10">
-											<input type="email" class="form-control form-control-sm"
-												   name="email"
-												   placeholder="E-mail">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">Contact Number *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control form-control-sm"
-												   name="contactnumber"
-												   placeholder="Contact Number">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">User Name *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control form-control-sm"
-												   name="username"
-												   placeholder="User Name">
-										</div>
-									</div>
-									<div class="form-group row">
-										<label
-											class="col-sm-2 col-form-label">Password *</label>
-										<div class="col-sm-10">
-											<input type="text" class="form-control form-control-sm col-sm-8 float-left"
-												   name="password"
-												   placeholder="User Name"
-												   id="password-input"
-												   onclick="this.focus();this.select()"
-												   readonly/>
-											<button type="button"
-													class="btn btn-sm btn-outline-secondary ml-1 hide_password"
-													style="border: none;outline: none;"><i class="fa fa-eye"></i>
-											</button>
-											<button id="generate-password-button" type="button"
-													class="btn btn-sm btn-outline-secondary ml-2 mt-1"><i
-													class="fas fa-sync-alt"></i> generate
-											</button>
-										</div>
-									</div>
-									<div class="form-group row mb-0">
-										<label class="col-sm-2 col-form-label">Type</label>
-										<div class="col-sm-6">
-											<select name="country"
-													class="col selectpicker form-control form-control-sm form-control-sm"
-													data-size="5" id="country" data-live-search="true"
-													title="Select a Country">
-												<option value="">Select a Country ...</option>
-												<option value="admin">admin</option>
-												<option value="user">user</option>
-											</select>
-										</div>
-									</div>
-									<div class="form-group row mt-2">
-										<label class="ml-1 col-form-label">Status make a Passive?</label>
-										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox"
-												   class="form-control form-control-sm">
-										</div>
-									</div>
 
-									<div class="form-group row">
-										<label class="ml-1 col-form-label">Send a notification mail to the new created
-											user?</label>
-										<div class="col-sm-1">
-											<input name="status" value="-1" type="checkbox"
-												   class="form-control form-control-sm">
-										</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-6 col-6">
+										<h2>Users Infprmation</h2>
+										<p>Fill in the following fields</p>
 									</div>
 								</div>
+								<div class="row">
+									<div
+										class="col-sm-12 col-md-12 col-12  mt-md-5 mt-5 pl-md-4 pl-4 pr-md-4 pr-4">
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">First
+												Name *</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control form-control-sm"
+													   name="first_name"
+													   placeholder="First Name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">Last
+												Name *</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control form-control-sm"
+													   name="last_name"
+													   placeholder="Last Name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">E-mail *</label>
+											<div class="col-sm-10">
+												<input type="email" class="form-control form-control-sm"
+													   name="email"
+													   placeholder="E-mail">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">Contact Number *</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control form-control-sm"
+													   name="contact_number"
+													   placeholder="Contact Number">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">User Name *</label>
+											<div class="col-sm-10">
+												<input type="text" class="form-control form-control-sm"
+													   name="username"
+													   placeholder="User Name">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label
+												class="col-sm-2 col-form-label">Password *</label>
+											<div class="col-sm-10">
+												<input type="text"
+													   class="form-control form-control-sm col-sm-8 float-left"
+													   name="password"
+													   placeholder="User Name"
+													   id="password-input"
+													   onclick="this.focus();this.select()"
+													   readonly/>
+												<button type="button"
+														class="btn btn-sm btn-outline-secondary ml-1 hide_password"
+														style="border: none;outline: none;"><i class="fa fa-eye"></i>
+												</button>
+												<button id="generate-password-button" type="button"
+														class="btn btn-sm btn-outline-secondary ml-2 mt-1"><i
+														class="fas fa-sync-alt"></i> generate
+												</button>
+											</div>
+										</div>
+										<div class="form-group row mb-0">
+											<label class="col-sm-2 col-form-label">Type</label>
+											<div class="col-sm-6">
+												<select name="role"
+														class="col selectpicker form-control form-control-sm form-control-sm"
+														data-size="5" id="country" data-live-search="true"
+														title="Select a Type">
+													<? foreach ($role as $row_role) : ?>
+														<option value="<?= $row_role['id'] ?>"><?= $row_role['title'] ?></option>
+													<? endforeach; ?>
+												</select>
+											</div>
+										</div>
+										<div class="form-group row mt-2">
+											<label class="ml-1 col-form-label">Status make a Passive?</label>
+											<div class="col-sm-1">
+												<input name="status" value="-1" type="checkbox"
+													   class="form-control form-control-sm">
+											</div>
+										</div>
+
+										<div class="form-group row">
+											<label class="ml-1 col-form-label">Send a notification mail to the new
+												created
+												user?</label>
+											<div class="col-sm-1">
+												<input name="send_mail" value="yes" type="checkbox"
+													   class="form-control form-control-sm">
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-right mt-4 pb-2">
+									<span id="add_user" class="btn btn-sm btn-outline-success">Save</span>
+								</div>
 							</div>
-							<div class="text-right mt-4 pb-2">
-								<span id="add_user" class="btn btn-sm btn-outline-success">Save</span>
-							</div>
-						</div>
+						</form>
 					</div>
 				</div>
 			</div>
 			<!-- Add User Modal End -->
-			<div class="pb-2 pt-2">
+
+
+		<div class="pb-2 pt-2">
 				<div class="">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
-								class="ml-2 mt-1 badge badge-secondary badge-pill">3</span>
+								class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$total?></span>
 						</div>
 						<div class="col-sm-12 col-md-2 col-2">
 							<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
-								class="ml-2 mt-1 badge badge-success badge-pill">4</span>
+								class="ml-2 mt-1 badge badge-success badge-pill"><?=$active?></span>
 						</div>
 						<div class="col-sm-12 col-md-2 col2">
 							<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
-								class="ml-2 mt-1 badge badge-warning badge-pill">0</span>
+								class="ml-2 mt-1 badge badge-warning badge-pill"><?=$passive?></span>
 						</div>
 						<div class="col-sm-12 col-md-4 col-4"></div>
 						<div class="col-sm-12 col-md-2 col-2">
@@ -206,7 +238,6 @@
 								<th style="font-size: 12px !important;font-weight: 500;">Activity</th>
 								<th style="font-size: 12px !important;font-weight: 500;">User Type</th>
 								<th style="font-size: 12px !important;font-weight: 500;">User Name․</th>
-								<th style="font-size: 12px !important;font-weight: 500;">Passwprd</th>
 								<th style="font-size: 12px !important;font-weight: 500;">Created Date</th>
 								<th style="font-size: 12px !important;font-weight: 500;">By Whom</th>
 								<th style="font-size: 12px !important;font-weight: 500;">Last Access Date/Time</th>
@@ -214,39 +245,44 @@
 							</tr>
 							</thead>
 							<tbody>
-							<tr>
-								<td>
-									<div class="media">
-										<img
-											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
-											class="mr-3"
-											src="<?= base_url() ?>assets/img/user_img.jpg"
-											alt="Generic placeholder image">
-										<div class="media-body">
-											Daniel Smith
-											<small class="email_addres form-text text-muted">
-												haikhakobyan2@gmail.com
-											</small>
+							<? foreach ($user as $row) : ?>
+								<tr>
+									<td>
+										<div class="media">
+											<img
+												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
+												class="mr-3"
+												src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . $row['parent_user_id'] . '/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
+												alt="Generic placeholder image">
+											<div class="media-body">
+												<?= $row['user_name'] ?>
+												<small class="email_addres form-text text-muted">
+													<?= $row['email'] ?>
+												</small>
+											</div>
 										</div>
-									</div>
-								</td>
-								<td class="text-center">
-									<div class="bg-success"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-								</td>
-								<td class="text-center">
-									<div class="bg-success2"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-									<span class="font-weight-light pl-1"
-										  style="font-size: 13px;display: block;">Strong</span>
-								</td>
-								<td>Admin</td>
-								<td>User Name</td>
-								<td>dfdf/?ff</td>
-								<td>10.10.2017</td>
-								<td>dfdf</td>
-								<td>22.10.2018/20:42</td>
-								<td colspan="2">
+									</td>
+									<td class="text-center">
+										<? if ($row['status'] == '1') { ?>
+											<div class="bg-success"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<? } else { ?>
+											<div class="bg-danger"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<? } ?>
+									</td>
+									<td class="text-center">
+										<div class="bg-success2"
+											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+										<span class="font-weight-light pl-1"
+											  style="font-size: 13px;display: block;">Strong</span>
+									</td>
+									<td><?=$row['role']?></td>
+									<td><?=$row['username']?></td>
+									<td><?=$row['creation_date']?></td>
+									<td><?=$row['parent_user_name']?></td>
+									<td><?=$row['last_activity']?></td>
+									<td colspan="2">
 										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											  id="edit_user_modal"
 											  data-toggle="modal" class="float-left text-success"
@@ -255,73 +291,141 @@
 											  data-placement="top"
 											  title="edit"><i class="fas fa-edit"></i></span>
 
-									<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
-										  class="btn text-danger"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete"><i class="fas fa-trash"></i></span></td>
-							</tr>
+										<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
+											  class="btn text-danger"
+											  data-toggle2="tooltip"
+											  data-placement="top"
+											  title="delete"><i class="fas fa-trash"></i></span></td>
+								</tr>
+							<? endforeach; ?>
 
-							<tr>
-								<td>
-									<div class="media">
-										<img
-											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
-											class="mr-3"
-											src="<?= base_url() ?>assets/img/user_img.jpg"
-											alt="Generic placeholder image">
-										<div class="media-body">
-											Daniel Smith
-											<small class="email_addres form-text text-muted">
-												haikhakobyan2@gmail.com
-											</small>
-										</div>
-									</div>
-								</td>
-								<td class="text-center">
-									<div class="bg-danger"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-								</td>
-								<td class="text-center">
-									<div class="bg-warning"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-									<span class="font-weight-light pl-1"
-										  style="font-size: 13px;display: block;">Average</span>
-								</td>
-								<td>User</td>
-								<td>User Name</td>
-								<td>!d@eefg</td>
-								<td>12.09.2018</td>
-								<td>Daniel Smith</td>
-								<td>20.10.2018/19:23</td>
-								<td colspan="2">
-									<span style="border: none;padding-top: 5px;cursor: pointer;"
-										  data-id=""
-										  id="edit_user_modal"
-										  data-toggle="modal" class="float-left text-success"
-										  data-target="#edit_users"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="edit">
-										<i class="fas fa-edit"></i>
-									</span>
-									<span style="border: none;cursor: pointer;" data-id=""
-										  id="delet_user_modal"
-										  class="btn text-danger"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete">
-										<i class="fas fa-trash"></i>
-									</span>
-								</td>
-							</tr>
-							</tr>
 							</tbody>
 						</table>
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+
 </div>
 <!--USERS END-->
+
+
+<script>
+	$(document).on('click', '#add_user', function (e) {
+
+		var url = '<?=base_url('Organization/add_user_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#user')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+		$('select').parent('div').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					scroll_top();
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+
+					close_message();
+
+
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>";
+
+					$(location).attr('href', url);
+
+					$(location).attr('href', url + '#staff');
+
+				} else {
+
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+
+						var error = '';
+						var i = 0;
+
+						$('.alert-danger').addClass('d-none');
+						$('.alert-success').addClass('d-none');
+
+
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+
+								if (value != '') {
+
+									i++;
+									if (i == 1) {
+										error += '* - ով դաշտերը պարտադիր են <br> ';
+									}
+
+									if (index == 'username_unique') {
+										error += value + ' <br> ';
+									}
+
+									if (index == 'email_unique') {
+										error += value + ' <br> ';
+									}
+
+									if (index == 'username_unique') {
+										index = 'username';
+									}
+
+									if (index == 'email_unique') {
+										index = 'email';
+									}
+
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+
+
+									$('.alert-danger').removeClass('d-none');
+
+
+									$('.alert-danger').html(error);
+
+
+								} else {
+
+
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+
+
+								}
+
+							});
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+</script>

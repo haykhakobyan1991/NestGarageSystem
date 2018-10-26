@@ -404,6 +404,20 @@ color: #545b62;">
 	});
 
 
+	$(document).on('click', '#edit_department_modal', function () {
+		var url = '<?=base_url('Organization/edit_department_modal_ax/')?>' + $(this).data('id');
+		$.get(url, function (result) {
+
+			// update modal content
+			$('.modal-body').html(result);
+
+			// show modal
+			$('#myModal').modal('show');
+		});
+
+	});
+
+
 </script>
 
 

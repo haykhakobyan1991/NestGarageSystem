@@ -25,7 +25,7 @@
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
-	<script src="<?= base_url() ?>assets/js/main.js"></script>
+
 
 	<!-- Tables Start -->
 	<script>

@@ -732,6 +732,50 @@ $i = '';
 	});
 
 
+	$(document).on('click', '.copy_btn', function () {
+
+		var activity_state_region = $('input[name="activity_state_region"]').val();
+		var activity_city = $('input[name="activity_city"]').val();
+		var activity_zip_code = $('input[name="activity_zip_code"]').val();
+		var activity_address = $('input[name="activity_address"]').val();
+
+		$('input[name="legal_state_region"]').val(activity_state_region);
+		$('input[name="legal_city"]').val(activity_city);
+		$('input[name="legal_zip_code"]').val(activity_zip_code);
+		$('input[name="legal_address"]').val(activity_address);
+
+
+		var sel_county_name = $('.selectpicker_1').parent('div').children('button').text();
+		$('.selectpicker_2').parent('div').children('button').children('div').children('div').text(sel_county_name);
+
+
+
+		var value = $("#country option:selected").val();
+		$("#country option[value='" + value + "']").attr('selected', 'selected');
+
+	});
+
+
+	/* Company logo uploade start */
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#img-upload').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$("#imgInp").change(function () {
+		readURL(this);
+	});
+	/* Company logo uploade end */
+
+
 </script>
 
 

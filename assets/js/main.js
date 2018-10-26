@@ -134,5 +134,58 @@ $(document).ready(function () {
 		html: true
 	});
 
+	$(".modal").on('hidden.bs.modal', function () {
+		location.reload();
+	});
+
+	$(function () {
+		$('[data-toggle2="tooltip"]').tooltip()
+	});
+
+	$('.hide_password').click(function () {
+		if ($(this).hasClass('hidden')) {
+			$('#password-input').attr('type', 'text');
+			$(this).removeClass('hidden');
+		} else {
+			$('#password-input').attr('type', 'password');
+			$(this).addClass('hidden');
+		}
+
+	});
+
 });
 
+$(window).on('load', function () {
+	$('.loader_svg').fadeOut('slow');
+	$('.loader').fadeOut('slow');
+
+	$('.selectpicker_1').parent('div').children('button').addClass('btn-sm');
+	$('.selectpicker_2').parent('div').children('button').addClass('btn-sm');
+});
+
+$(document).on('click', '.langs > ul > li', function () {
+	var lang = $(this).data('lang');
+	var url = $(this).parent('ul').data('url');
+	var current_url = window.location.href;  //todo if firefox document.URL;
+	$.ajax({
+		type: 'POST',
+		url: url,
+		data: {lang: lang, current_url: current_url},
+		success: function (url) {
+			if (url != '') {
+				$(location).attr('href', url);
+			}
+		}
+	});
+});
+
+
+function scroll_top() {
+	$('.modal, body').animate({scrollTop: $('.modal, body').offset().top}, 700);
+}
+
+function close_message() {
+	setTimeout(function () {
+		$('.alert-success, .alert-danger').addClass('d-none');
+	}, 3000);
+}

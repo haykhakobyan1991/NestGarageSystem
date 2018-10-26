@@ -93,10 +93,10 @@ endforeach;
 
 
 						<!-- Add User Modal Start  -->
-
+						<form id="staff" enctype="multipart/form-data">
 						<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
 							 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-							<form id="staff" enctype="multipart/form-data">
+
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
 									<div class="modal-header bg-dark">
@@ -619,9 +619,9 @@ endforeach;
 
 								</div>
 							</div>
-							</form>
-						</div>
 
+						</div>
+						</form>
 						<!-- Add User Modal End -->
 
 					</div>
@@ -1005,6 +1005,54 @@ color: #545b62;">
 			// show modal
 			$('#myModal').modal('show');
 		});
+
+	});
+
+	/* Staff image Uploade Start*/
+	function readURL2(input) {
+
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('#img-upload2').attr('src', e.target.result);
+			}
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	// Input type File Staff
+	$(document).on('change', '.btn_input', function () {
+
+		var upload_file = $(this).val();
+		var upload_file = upload_file.split("\\");
+		var upload_file = upload_file[upload_file.length - 1];
+
+		var text_truncate = function (str, length, ending) {
+			if (length == null) {
+				length = 100;
+			}
+			if (ending == null) {
+				ending = '...';
+			}
+			if (str.length > length) {
+				return str.substring(0, length - ending.length) + ending;
+			} else {
+				return str;
+			}
+		};
+
+		if (upload_file == '') {
+			$(this).parent('label').children('span').text('Brows file');
+		} else {
+			if (upload_file.length > 13) {
+				var short_text = text_truncate(upload_file, 13, ' ...');
+				$(this).parent('label').children('span').text(short_text);
+			} else {
+				$(this).parent('label').children('span').text(upload_file);
+			}
+		}
 
 	});
 

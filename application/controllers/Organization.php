@@ -271,7 +271,11 @@ class Organization extends MX_Controller {
 		$data['department'] = $query_department->result_array();
 
 
-		$data['staff'] = $this->db->select('staff.*, GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
+		$data['staff'] = $this->db->select('
+			staff.*, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
+			CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
 			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
@@ -352,6 +356,7 @@ class Organization extends MX_Controller {
 			  `user`.`username`,
 			  DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
 			  DATE_FORMAT(`user`.`last_activity`, '%d-%m-%Y/%H:%i') AS `last_activity`,
+			  DATEDIFF(NOW(), `user`.`last_activity`) AS `activity`,
 			  `user`.`status`
 			FROM 
 			  `user`
@@ -1189,13 +1194,18 @@ class Organization extends MX_Controller {
 
 		$department_id = $this->db->insert_id();
 
+		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$department_id."', `department_ids`)";
 
-		$sql_head_staff = "
-		 	UPDATE `staff` SET `department_ids` = '".$department_id."' WHERE `id` = '".$head_staff."'
-		";
+		$query_head_staff_select = $this->db->query($sql_head_staff_select);
+		$num_rows = $query_head_staff_select->num_rows();
 
-		$result_head_staff  = $this->db->query($sql_head_staff);
+		if($num_rows == 0) {
+			$sql_head_staff = "
+				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$department_id."') WHERE `id` = '".$head_staff."'
+			";
 
+			$result_head_staff  = $this->db->query($sql_head_staff);
+		}
 
 
 
@@ -1347,11 +1357,20 @@ class Organization extends MX_Controller {
 		$result = $this->db->query($sql);
 
 
-		$sql_head_staff = "
-		 	UPDATE `staff` SET `department_ids` = '".$id."' WHERE `id` = '".$head_staff."'
-		";
+		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$id."', `department_ids`) AND `id` = '".$head_staff."'";
 
-		$result_head_staff  = $this->db->query($sql_head_staff);
+		$query_head_staff_select = $this->db->query($sql_head_staff_select);
+		$num_rows = $query_head_staff_select->num_rows();
+
+		if($num_rows == 0) {
+			 $sql_head_staff = "
+				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$id."') WHERE `id` = '".$head_staff."'
+			";
+
+			$result_head_staff  = $this->db->query($sql_head_staff);
+		}
+
+
 
 
 

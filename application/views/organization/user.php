@@ -272,10 +272,27 @@ endforeach;
 										<? } ?>
 									</td>
 									<td class="text-center">
-										<div class="bg-success2"
-											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-										<span class="font-weight-light pl-1"
-											  style="font-size: 13px;display: block;">Strong</span>
+										<?
+										if($row['activity'] > $this->config->item('activity_wary_weak') OR $row['activity'] == '') {?>
+											<div style="background-color:darkred;display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+											<span class="font-weight-light pl-1"
+												  style="font-size: 13px;display: block;">Wary weak</span>
+										<?} elseif($row['activity'] > $this->config->item('activity_weak')) {?>
+											<div class="bg-danger"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+											<span class="font-weight-light pl-1"
+												  style="font-size: 13px;display: block;">Weak</span>
+										<?} elseif($row['activity'] > $this->config->item('activity_average')) {?>
+											<div class="bg-warning"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+											<span class="font-weight-light pl-1"
+												  style="font-size: 13px;display: block;">Average</span>
+										<?}else{?>
+											<div class="bg-success2"
+												 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+											<span class="font-weight-light pl-1"
+												  style="font-size: 13px;display: block;">Strong</span>
+										<?}?>
 									</td>
 									<td><?=$row['role']?></td>
 									<td><?=$row['username']?></td>

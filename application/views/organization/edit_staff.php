@@ -154,7 +154,6 @@ $user_id = $this->session->user_id;
 					class="col-sm-2 col-form-label">Department</label>
 				<div class="col-sm-10">
 					<select name="department[]"
-
 							class="col  selectpicker form-control form-control-sm"
 							id="department"
 							multiple data-live-search="true"

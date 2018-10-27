@@ -21,6 +21,7 @@ $active = 0;
 $passive = 0;
 $admin_name = '';
 $role_name = '';
+$photo = '';
 foreach ($user as $row) :
 
 	$total++;
@@ -34,6 +35,7 @@ foreach ($user as $row) :
 	if($row['parent_user_id'] == '') {
 		$admin_name = $row['user_name'];
 		$role_name = $row['role'];
+		$photo = $row['photo'];
 	}
 
 endforeach;
@@ -50,7 +52,8 @@ endforeach;
 					<div class="row">
 						<div class="col-sm-6">
 							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
-								 class="float-left mr-2" src="<?= base_url() ?>assets/img/user_img.jpg" alt="">
+								 class="float-left mr-2"
+								 src="<?= ($photo != '' ? base_url('uploads/user_' . ($row['parent_user_id'] != '' ? $row['parent_user_id'] : $row['id']) . '/user/photo/' . $photo) : base_url('assets/img/user_img.jpg')) ?>"
 							<p style="font-size: 18px;font-weight: 500;" class="mt-1">
 								<span class="users_name"><?=$admin_name?></span>
 								<span class="ml-2 mr-2">|</span>
@@ -147,7 +150,7 @@ endforeach;
 												<input type="text"
 													   class="form-control form-control-sm col-sm-8 float-left"
 													   name="password"
-													   placeholder="User Name"
+													   placeholder="Password"
 													   id="password-input"
 													   onclick="this.focus();this.select()"
 													   readonly/>
@@ -204,19 +207,45 @@ endforeach;
 			<!-- Add User Modal End -->
 
 
+
+			<!-- EDIT staff modal-->
+
+			<div class="modal fade bd-example-modal-lg " id="edit_user" tabindex="-1" role="dialog"
+				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header bg-dark">
+							<h5 class="text-white modal-title dar">Edit User</h5>
+							<button type="button" class="text-white close"
+									data-dismiss="modal"
+									aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+								 src="<?= base_url('assets/images/bars.svg') ?>"/>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Edit staff modal end -->
+
+
 		<div class="pb-2 pt-2">
 				<div class="">
 					<div class="row">
 						<div class="col-sm-12 col-md-2 col-2">
-							<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
+							<p class="display-5 font-weight-bold float-left">Toatl Users</p> <span
 								class="ml-2 mt-1 badge badge-secondary badge-pill"><?=$total?></span>
 						</div>
 						<div class="col-sm-12 col-md-2 col-2">
-							<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
+							<p class="display-5 font-weight-bold float-left">Active Users</p> <span
 								class="ml-2 mt-1 badge badge-success badge-pill"><?=$active?></span>
 						</div>
 						<div class="col-sm-12 col-md-2 col2">
-							<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
+							<p class="display-5 font-weight-bold float-left">Passive Users</p> <span
 								class="ml-2 mt-1 badge badge-warning badge-pill"><?=$passive?></span>
 						</div>
 						<div class="col-sm-12 col-md-4 col-4"></div>
@@ -252,7 +281,7 @@ endforeach;
 											<img
 												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 												class="mr-3"
-												src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . $row['parent_user_id'] . '/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
+												src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . ($row['parent_user_id'] != '' ? $row['parent_user_id'] : $row['id']) . '/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<?= $row['user_name'] ?>
@@ -300,10 +329,10 @@ endforeach;
 									<td><?=$row['parent_user_name']?></td>
 									<td><?=$row['last_activity']?></td>
 									<td colspan="2">
-										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+										<span style="border: none;padding-top: 5px;cursor: pointer;" data-id="<?=$row['id']?>"
 											  id="edit_user_modal"
 											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_users"
+											  data-target="#edit_user"
 											  data-toggle2="tooltip"
 											  data-placement="top"
 											  title="edit"><i class="fas fa-edit"></i></span>
@@ -445,4 +474,111 @@ endforeach;
 			}
 		});
 	});
+
+
+	$(document).on('click', 'span#edit_user_button', function (e) {
+
+		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+
+		var url = '<?=base_url('Organization/edit_user_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#user_edit')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					scroll_top();
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+
+					close_message();
+
+
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>";
+
+					$(location).attr('href', url);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+
+						$('.alert-danger').addClass('d-none');
+						$('.alert-success').addClass('d-none');
+
+						$.each(data.error.elements, function (index) {
+
+							$.each(data.error.elements[index], function (index, value) {
+
+								if (value != '') {
+
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+
+
+									$('.alert-danger').removeClass('d-none');
+									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+
+
+								}
+
+							});
+
+
+						});
+
+					}
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+
+	$(document).on('click', '#edit_user_modal', function () {
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_user_modal_ax/')?>' + $(this).data('id');
+		$.get(url, function (result) {
+
+			// update modal content
+			$('.modal-body').html(result);
+
+			// show modal
+			$('#myModal').modal('show');
+		});
+
+	});
+
+
+
+
 </script>

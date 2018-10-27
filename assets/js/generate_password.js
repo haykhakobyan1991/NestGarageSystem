@@ -57,11 +57,14 @@ var passwordGenerator = (function () {
 			$("#unsupported-browser-alert").show();
 			return;
 		}
-		$("#password-input").val(password);
+		$("#password-input, input#password_edit").val(password);
 	}
 
 	$(function () {
-		outputGeneratedPassword();
+		//outputGeneratedPassword();
 		$("#generate-password-button").click(outputGeneratedPassword);
+		$(document).on('click', "button#generate-password-button_edit", function () {
+			outputGeneratedPassword();
+		});
 	});
 })();

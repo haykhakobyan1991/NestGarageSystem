@@ -142,18 +142,24 @@ $(document).ready(function () {
 		$('[data-toggle2="tooltip"]').tooltip()
 	});
 
-	$('.hide_password').click(function () {
-		if ($(this).hasClass('hidden')) {
-			$('#password-input').attr('type', 'text');
-			$(this).removeClass('hidden');
-		} else {
-			$('#password-input').attr('type', 'password');
-			$(this).addClass('hidden');
-		}
 
-	});
 
 });
+
+
+$(document).on('click', '.hide_password', function () {
+	if ($(this).hasClass('hidden')) {
+		$('#password-input').attr('type', 'text');
+		$(this).removeClass('hidden');
+	} else {
+		$('#password-input').attr('type', 'password');
+		$(this).addClass('hidden');
+	}
+
+});
+
+
+
 
 $(window).on('load', function () {
 	$('.loader_svg').fadeOut('slow');

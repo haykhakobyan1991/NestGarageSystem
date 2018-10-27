@@ -2180,6 +2180,288 @@ class Organization extends MX_Controller {
 
 
 
+	public function edit_user_modal_ax() {
+
+		$id = $this->uri->segment(4);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+
+		$sql = "SELECT
+				  `id`,
+				  `photo`,
+				  `first_name`,
+				  `last_name`,
+				  `email`,
+				  `parent_user_id`,
+				  `company_id`,
+				  `role_id`,
+				  `address`,
+				  `country_id`,
+				  `country_code`,
+				  `phone_number`,
+				  `username`,
+				  `password`,
+				  `creation_date`,
+				  `last_activity`,
+				  `fb_id`,
+				  `google_id`,
+				  `status`
+				FROM 
+				  `user`
+                WHERE `id` =  ".$this->load->db_value($id)."
+                LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+		$data['id'] = $row['id'];
+		$data['first_name'] = $row['first_name'];
+		$data['last_name'] = $row['last_name'];
+		$data['email'] = $row['email'];
+		$data['role_id'] = $row['role_id'];
+		$data['username'] = $row['username'];
+		$data['phone_number'] = $row['phone_number'];
+		$data['status'] = $row['status'];
+
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		$sql_role = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `role` 
+            WHERE `status` = '1' 
+            # AND `id` <> '1' #not administrator
+		";
+
+		$query_role = $this->db->query($sql_role);
+		$data['role'] = $query_role->result_array();
+
+
+		$this->load->view('organization/edit_user', $data);
+
+	}
+
+
+	public function edit_user_ax() {
+
+		$this->load->authorisation('Organization', 'user');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			echo json_encode($messages);
+			return false;
+		}
+
+		$this->pre($_POST);
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('first_name', 'first_name', 'required');
+		$this->form_validation->set_rules('last_name', 'last_name', 'required');
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
+		$this->form_validation->set_rules('contact_number', 'contact_number', 'required');
+		$this->form_validation->set_rules('username', 'username', 'required');
+		$this->form_validation->set_rules('role', 'role', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'first_name' => form_error('first_name'),
+				'last_name' => form_error('last_name'),
+				'email' => form_error('email'),
+				'contact_number' => form_error('contact_number'),
+				'username' => form_error('username'),
+				'role' => form_error('role'),
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		$id = $this->input->post('user_id');
+
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		$email = $this->input->post('email');
+		$address = $this->input->post('address');
+		$country_id = $this->input->post('country_id');
+		$country_code = $this->input->post('country_code');
+		$contact_number = $this->input->post('contact_number');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$hash_password = '';
+		$role = $this->input->post('role');
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
+
+		if($password != '') {
+			$hash_password = $this->hash($password);
+			$hash_password = "`password` = ".$this->load->db_value($hash_password).",";
+		}
+
+
+
+
+		$sql_email_unique = "
+            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND  `email` = ".$this->load->db_value($email)." #todo if suspended and one company
+        ";
+
+		$query_email_unique = $this->db->query($sql_email_unique);
+		$num_rows = $query_email_unique->num_rows();
+
+		if($num_rows >= 1) {
+			$n = 1;
+			$validation_errors = array('email_unique' => "Email is not unique");
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		$sql_username_unique = "
+            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND `username` = ".$this->load->db_value($username)." #todo if suspended and one company
+        ";
+
+		$query_username_unique = $this->db->query($sql_username_unique);
+		$num_rows_u = $query_username_unique->num_rows();
+
+		if($num_rows_u >= 1) {
+			$n = 1;
+			$validation_errors = array('username_unique' => "Username is not unique");
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0777', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
+		}
+
+
+		// watermark
+		$config_wm['image_library'] = 'gd2'; //default value
+		$config_wm['source_image'] = set_realpath('assets/img/circle.png'); //get image
+		$config_wm['new_image'] = set_realpath('uploads/user_'.$user_id.'/user/photo/'.$username.'.png');
+		$config_wm['wm_text'] = $this->get_first_character($first_name);
+		$config_wm['wm_type'] = 'text';
+		$config_wm['wm_font_path'] = set_realpath('system/fonts/GHEAGrpalatReg.ttf');
+		$config_wm['wm_font_size'] = '48';
+		$config_wm['wm_hor_alignment'] = 'center';
+		$config_wm['wm_font_color'] = $this->rand_color(); //random
+		$config_wm['wm_padding'] = '-3';
+
+		$this->load->library('image_lib', $config_wm);
+		$this->image_lib->initialize($config_wm);
+
+		$photo = '';
+		// end watermark
+
+		if (!$this->image_lib->watermark()) {
+			$validation_errors = array('watermark' => $this->image_lib->display_errors());
+			$messages['error']['elements'][] = $validation_errors;
+			echo json_encode($messages);
+			return false;
+		} else {
+			$photo = $username.'.png';
+		}
+
+
+		//todo mail ---
+
+
+		   $sql = "
+				UPDATE `user` SET 
+					`photo` = ".$this->load->db_value($photo).",
+					`first_name` = ".$this->load->db_value($first_name).",
+					`last_name` = ".$this->load->db_value($last_name).",
+					`email` = ".$this->load->db_value($email).",
+					`company_id` = ".$this->load->db_value($company_id).",
+					`role_id` = ".$this->load->db_value($role).",
+					`address` = ".$this->load->db_value($address).",
+					`country_id` = ".$this->load->db_value($country_id).",
+					`country_code` =  ".$this->load->db_value($country_code).",
+					`phone_number` = ".$this->load->db_value($contact_number).",
+					`username` = ".$this->load->db_value($username).",
+					".$hash_password."
+					`status` = ".$this->load->db_value($status)."
+				WHERE `id` = ".$this->load->db_value($id)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+
+
+
+
+
 
 
 

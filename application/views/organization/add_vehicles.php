@@ -1,16 +1,11 @@
-<div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;" aria-labelledby="list-company-list">
-
+<div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;"
+	 aria-labelledby="list-company-list">
 	<!-- Error Message -->
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-
-
 		<div class="container">
 			<p class="display-5 font-weight-bold mb-0">Add Vehicles</p>
 		</div>
-
-
 	</div>
-
 	<div class="for_message">
 		<div class="alert alert-success" role="alert">
 			A simple success alert—check it out!
@@ -19,28 +14,18 @@
 			A simple success alert—check it out!
 		</div>
 	</div>
-
 	<div class="row">
 		<div class="col-sm-12 col-md-6 col-6">
 			<h2>Vehicle Information</h2>
 			<p>Fill in the following fields</p>
 		</div>
 	</div>
-
-
-
-
-
-
-
 	<div class="row">
 		<div class="col-md-12 col-md-6 ">
 			<p class="font-weight-bold display-5 mt-3 mr-3">Main</p>
 			<hr class="my-4">
-
 			<!-- Main Start -->
 			<form class="mt-3 mt-md-3">
-
 				<div class="first_row">
 					<div class="form-group row" style="position: relative;">
 						<label
@@ -62,45 +47,48 @@
 				</div>
 
 
-				<div class="form-group row">
-					<label
-						class="col-sm-2 col-form-label">Տ/մ տեսակ</label>
-					<div class="col-sm-10">
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label
-						class="col-sm-2 col-form-label">Մակնիշ</label>
-					<div class="col-sm-10">
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
-						</select>
-					</div>
-				</div>
-				<div class="form-group row">
-					<label
-						class="col-sm-2 col-form-label">Տիպար</label>
-					<div class="col-sm-10">
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
-						</select>
-					</div>
-				</div>
+				<div class="row">
 
-				<div class="form-group row">
-					<label
-						class="col-sm-2 col-form-label">Թողարկման
-						տարեթիվ</label>
-					<div class="col-sm-10">
+					<div class="form-group col-sm-6">
+						<label
+							class=" col-form-label">Տ/մ տեսակ</label>
+
+						<select value=""
+								class="currency form-control form-control-sm">
+							<option>opton 1</option>
+							<option>option 2</option>
+						</select>
+
+					</div>
+					<div class="form-group col-sm-6">
+						<label
+							class="col-form-label">Մակնիշ</label>
+
+						<select value=""
+								class="currency form-control form-control-sm">
+							<option>opton 1</option>
+							<option>option 2</option>
+						</select>
+
+					</div>
+
+				</div>
+				<div class="row">
+					<div class="form-group col-sm-6">
+						<label
+							class="col-form-label">Տիպար</label>
+
+						<select value=""
+								class="currency form-control form-control-sm">
+							<option>opton 1</option>
+							<option>option 2</option>
+						</select>
+					</div>
+					<div class="form-group col-sm-6">
+						<label
+							class="col-form-label">Թողարկման
+							տարեթիվ</label>
+
 						<select value=""
 								class="currency form-control form-control-sm">
 							<option>Choose...</option>
@@ -110,8 +98,11 @@
 							<?php } ?>
 
 						</select>
+
 					</div>
+
 				</div>
+
 
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Գույն</label>
@@ -150,8 +141,6 @@
 						<div class="selected-color" style="background: #ffffff;"></div>
 					</div>
 				</div>
-
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Հաշվառման համարանիշ</label>
@@ -160,7 +149,6 @@
 							   placeholder="Հաշվառման համարանիշ">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">VIN</label>
@@ -168,7 +156,6 @@
 						<input value="" name="vin" type="text" class="form-control form-control-sm" placeholder="VIN">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
@@ -177,8 +164,6 @@
 							   placeholder="Շարժիչի հզորություն">
 					</div>
 				</div>
-
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Վառելիք</label>
@@ -192,7 +177,6 @@
 						</select>
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Վազք</label>
@@ -200,7 +184,6 @@
 						<input value="" name="vin" type="text" class="form-control form-control-sm" placeholder="Վազք">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
@@ -209,7 +192,6 @@
 							   placeholder="Հոդոգռաֆ">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Այլ</label>
@@ -217,7 +199,6 @@
 						<input value="" name="" type="text" class="form-control form-control-sm mt-2" placeholder="Այլ">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label class="col-sm-10 col-form-label">Status make
 						a
@@ -226,7 +207,6 @@
 						<input checked="" type="checkbox" class="form-control form-control-sm">
 					</div>
 				</div>
-
 				<div class="form-group row">
 					<label class="col-sm-10 col-form-label">Send a notification mail to the
 						drivers</label>
@@ -234,15 +214,12 @@
 						<input checked="" type="checkbox" class="form-control form-control-sm">
 					</div>
 				</div>
-
 			</form>
 			<!-- Main End -->
 			<br>
 			<p class="font-weight-bold display-5 mt-3 mr-3">Info</p>
 			<hr class="my-4">
-
 			<!-- Info Star -->
-
 			<form class="mt-3 mt-md-3">
 				<div class="accordion" id="accordionExample_info">
 					<div class="card">
@@ -255,7 +232,6 @@
 								</button>
 							</h5>
 						</div>
-
 						<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
 							 da.add_veichls_modalta-parent="#accordionExample_info">
 							<div class="card-body">
@@ -276,7 +252,6 @@
 										</div>
 									</div>
 								</div>
-
 								<div class="form-group row mb-0">
 									<label
 										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
@@ -287,7 +262,6 @@
 											   placeholder="Հաշվառման հասցե">
 									</div>
 								</div>
-
 								<div class="form-group row mb-0">
 									<label style="font-size: 12px;"
 										   class="col-sm-2 col-form-label">Հաշվառման համար</label>
@@ -315,7 +289,8 @@
 							<div class="card-body">
 								<div class="form-group row mb-0">
 									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Կազմակերպություն</label>
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Կազմակերպություն</label>
 									<div class="col-sm-6">
 										<input style="" value="" name="" type="text"
 											   class="form-control form-control-sm"
@@ -330,7 +305,6 @@
 										</div>
 									</div>
 								</div>
-
 								<div class="form-group row mb-0">
 									<label
 										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
@@ -341,7 +315,6 @@
 											   placeholder="Հաշվառման համար">
 									</div>
 								</div>
-
 								<div class="form-group row mb-0">
 									<label style="font-size: 12px;"
 										   class="col-sm-2 col-form-label">Տեսակ</label>
@@ -352,10 +325,8 @@
 											<option>տեսակը 1</option>
 											<option>տեսակը 2</option>
 										</select>
-
 									</div>
 								</div>
-
 								<div class="form-group row mb-0">
 									<label
 										class="col-sm-2 col-form-label"
@@ -368,12 +339,8 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<h5 class="mt-2 mb-1">Այլ տվյալներ</h5>
-
-
 				<table class="table table-striped table-hover">
 					<thead>
 					<tr>
@@ -385,7 +352,6 @@
 					</tr>
 					</thead>
 					<tbody class="new_items_tbody">
-
 					<tr>
 						<td>
 							<input name="item_1" class="form-control form-control-sm" type="text"
@@ -411,19 +377,12 @@
 							</button>
 						</td>
 					</tr>
-
-
 					</tbody>
-
-
 				</table>
 				<button type="button" class="btn btn-outline-success btn-sm add_new_item"><i
 						class="fa fa-plus"></i></button>
-
 				<hr class="my-4">
-
 				<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
-
 				<div class="form-group row mb-0 mt-4">
 					<label
 						class="col-sm-2 col-form-label"
@@ -449,7 +408,6 @@
 						</div>
 					</div>
 				</div>
-
 				<div class="card">
 					<h5 class="card-header">Secondary meter</h5>
 					<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
@@ -471,21 +429,14 @@
 						</div>
 					</div>
 				</div>
-
 			</form>
-
 			<!-- Info End -->
 			<div class="text-right mt-4 pb-2">
 				<button class="btn btn-outline-success">Save</button>
 			</div>
 		</div>
 	</div>
-
-
-
 </div>
-
-
 <script>
 	$('.color_check_btn').on('click', function () {
 		var sel_color = $(this).data('value');
@@ -501,9 +452,6 @@
 		});
 
 	});
-
-
-
 	var n = 2;
 	$('.add_new_item').click(function () {
 		$('.new_items_tbody').append('<tr>\n' +
@@ -526,12 +474,10 @@
 
 		n++;
 	});
-
 	$(document).on('click', '.del_items_from_table', function () {
 		$(this).parent('td').parent('tr').remove();
 	});
 	$('.dif_meter').on('change', function () {
 		$('.dif_meter_text').text($(this).val());
 	});
-
 </script>

@@ -2285,8 +2285,6 @@ class Organization extends MX_Controller {
 			return false;
 		}
 
-		$this->pre($_POST);
-
 
 		$this->load->library('form_validation');
 		// $this->config->set_item('language', 'armenian');

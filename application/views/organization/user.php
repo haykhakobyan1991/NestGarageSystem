@@ -65,6 +65,31 @@ endforeach;
 			</div>
 
 
+		<!-- EDIT user modal-->
+
+		<div class="modal fade bd-example-modal-lg " id="edit_user" tabindex="-1" role="dialog"
+			 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header bg-dark">
+						<h5 class="text-white modal-title dar">Edit User</h5>
+						<button type="button" class="text-white close"
+								data-dismiss="modal"
+								aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div  id="modal-body" class="modal-body">
+						<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+							 src="<?= base_url('assets/images/bars.svg') ?>"/>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Edit user modal end -->
+
+
 		<!-- Add User Modal Start  -->
 			<div class="modal fade add_user_modal" tabindex="-1" role="dialog"
 				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -208,29 +233,7 @@ endforeach;
 
 
 
-			<!-- EDIT staff modal-->
 
-			<div class="modal fade bd-example-modal-lg " id="edit_user" tabindex="-1" role="dialog"
-				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-lg">
-					<div class="modal-content">
-						<div class="modal-header bg-dark">
-							<h5 class="text-white modal-title dar">Edit User</h5>
-							<button type="button" class="text-white close"
-									data-dismiss="modal"
-									aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-								 src="<?= base_url('assets/images/bars.svg') ?>"/>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<!-- Edit staff modal end -->
 
 
 		<div class="pb-2 pt-2">
@@ -482,7 +485,7 @@ endforeach;
 
 		var url = '<?=base_url('Organization/edit_user_ax') ?>';
 		e.preventDefault();
-		var form_data = new FormData($('form#user_edit')[0]);
+		var form_data = new FormData($('form#user_edit_1')[0]);
 
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
@@ -494,8 +497,8 @@ endforeach;
 			dataType: 'json',
 			data: form_data,
 			contentType: false,
-			cache: false,
 			processData: false,
+			cache: false,
 			success: function (data) {
 				if (data.success == '1') {
 
@@ -570,7 +573,7 @@ endforeach;
 		$.get(url, function (result) {
 
 			// update modal content
-			$('.modal-body').html(result);
+			$('#modal-body').html(result);
 
 			// show modal
 			$('#myModal').modal('show');

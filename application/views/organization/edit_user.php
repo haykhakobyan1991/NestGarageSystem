@@ -1,8 +1,7 @@
-<form id="user_edit" enctype="multipart/form-data" >
-	<div class="modal-body">
-		<!-- Error Message -->
+<form id="user_edit_1">
 
-		<div class="for_message">
+
+	    <div class="for_message">
 			<div class="alert alert-success d-none" role="alert"></div>
 			<div class="alert alert-danger  d-none" role="alert"></div>
 		</div>
@@ -124,10 +123,10 @@
 		<div class="text-right mt-4 pb-2">
 			<span id="edit_user_button" class="btn btn-sm btn-outline-success">Save</span>
 		</div>
-	</div>
+
 </form>
 
-<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
+<script src="<?= base_url('assets/js/generate_password.js') ?>"></script>
 <script>
 	$('select').selectpicker('refresh');
 

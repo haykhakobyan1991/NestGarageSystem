@@ -624,14 +624,10 @@ $i = '';
 <div class="text-right pb-2 mt-md-2 mt-2">
 	<span id="create_company" class="btn btn-sm btn-outline-success">Save</span>
 </div>
-
 </div>
 </div>
-
 </div>
 <!-- Company End -->
-
-
 </div>
 </div>
 </div>
@@ -639,7 +635,7 @@ $i = '';
 
 
 <div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="structure">
-	Structure
+
 </div>
 <div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu1">Lorem ipsum dolor sit amet, consectetur
 	adipisicing elit. Minus, veniam?
@@ -651,19 +647,15 @@ $i = '';
 </div>
 </div>
 
-
 <script>
 	// create company
 	$(document).on('click', '#create_company', function (e) {
-
 		var url = '<?=base_url('Organization/company_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#company')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -676,48 +668,32 @@ $i = '';
 				if (data.success == '1') {
 
 					scroll_top();
-
 					$('.alert-success').removeClass('d-none');
 					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
-
 					close_message();
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>";
-
 					$(location).attr('href', url);
 
 				} else {
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
-
-
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').addClass('border border-danger');
 									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
 									$('.alert-danger').removeClass('d-none');
 									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').removeClass('border border-danger');
 									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -726,33 +702,24 @@ $i = '';
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
-
 			}
 		});
 	});
 
 
 	$(document).on('click', '.copy_btn', function () {
-
 		var activity_state_region = $('input[name="activity_state_region"]').val();
 		var activity_city = $('input[name="activity_city"]').val();
 		var activity_zip_code = $('input[name="activity_zip_code"]').val();
 		var activity_address = $('input[name="activity_address"]').val();
-
 		$('input[name="legal_state_region"]').val(activity_state_region);
 		$('input[name="legal_city"]').val(activity_city);
 		$('input[name="legal_zip_code"]').val(activity_zip_code);
 		$('input[name="legal_address"]').val(activity_address);
-
-
 		var sel_county_name = $('.selectpicker_1').parent('div').children('button').text();
 		$('.selectpicker_2').parent('div').children('button').children('div').children('div').text(sel_county_name);
-
-
-
 		var value = $("#country option:selected").val();
 		$("#country option[value='" + value + "']").attr('selected', 'selected');
-
 	});
 
 
@@ -761,11 +728,9 @@ $i = '';
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-
 			reader.onload = function (e) {
 				$('#img-upload').attr('src', e.target.result);
 			}
-
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
@@ -775,8 +740,8 @@ $i = '';
 	});
 	/* Company logo uploade end */
 
-
 </script>
+
 
 
 

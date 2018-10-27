@@ -113,6 +113,16 @@ td {
 	color: #ffffff;
 }
 
+.page-item.active .page-link {
+	background: rgb(255,122,89) !important;
+	border: 1px solid rgb(255,122,89) !important;
+	color: #fff !important;
+}
+
+a.page-link {
+	color: #333 !important;
+}
+
 
 
 

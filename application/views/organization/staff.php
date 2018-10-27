@@ -24,6 +24,8 @@ endforeach;
 	table#example2 thead tr th:last-child:before {
 		content: '';
 	}
+
+
 </style>
 
 <!-- Staff Start -->
@@ -684,7 +686,7 @@ color: #545b62;">
 									<td><?= $row['user_name'] ?></td>
 
 									<td>
-										<table>
+										<table class="table-bordered">
 											<tbody>
 
 													<? if ($row['document_1'] != '') { ?>

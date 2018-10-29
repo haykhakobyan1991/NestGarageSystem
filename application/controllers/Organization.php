@@ -1984,8 +1984,46 @@ class Organization extends MX_Controller {
 	}
 
 
-	public function add_vehicles(){
+	public function add_vehicles() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
 		$data = array();
+
+		$lng = $this->load->lng();
+		$data['lang'] = $lng;
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $company_id)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$sql_brand = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `brand`
+			WHERE `status` = '1'	
+		";
+
+		$result_brand = $this->db->query($sql_brand);
+
+		$data['brand'] = $result_brand->result_array();
+
+
+
+
 		$this->layout->view('organization/add_vehicles', $data);
 
 	}
@@ -2452,6 +2490,28 @@ class Organization extends MX_Controller {
 		echo json_encode($messages);
 		return true;
 	}
+
+
+	public function delete_user() {
+
+		$this->load->authorisation('Organization', 'user');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('user_id');
+
+
+		$this->db->delete('user', array('id' => $id));
+
+		return true;
+
+	}
+
 
 
 

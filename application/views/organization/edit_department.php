@@ -53,4 +53,7 @@
 </form>
 <script>
 	$('#model_select').selectpicker('refresh');
+
+	$('.selectpicker').parent('div').children('button').css({'background': '#fff', 'color': '#000', 'border': '1px solid #ced4da'});
+	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
 </script>

@@ -20,6 +20,7 @@
 	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 	<script src="<?= base_url() ?>assets/js/table.js"></script>
+	<script src="<?= base_url() ?>assets/js/base.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
@@ -131,19 +132,24 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	</a>
 </nav>
 <!-- Navbar End -->
-
+<?
+$controller = $this->router->fetch_class();
+$page = $this->router->fetch_method();
+?>
 <div class="container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
 	<!-- Horizontal Tabs Start -->
 	<ul class="nav nav-tabs" style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
 		<li class="nav-item">
-			<a class="nav-link active  btn btn-sm btn-outline-success2" data-toggle="tab" href="#organization">Organization</a>
+			<a class="nav-link <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>">Organization</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#structure">Structure</a>
+			<a class="nav-link btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure') ?>">Structure</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu1">Menu 1</a>
+			<a class="nav-link btn btn-sm btn-outline-success2" href="#menu1">Menu 1</a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu2">Menu 2</a>
@@ -161,42 +167,41 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 			<div class="row">
 
-				<?
-				$page = $this->router->fetch_method();
-				?>
 
-				<!-- Vertical Tabs Start-->
-				<div class="col-sm-12 col-md-3" >
-					<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-						<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
-						   role="tab" aria-controls="company">Company
-						</a>
-						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
-						   role="tab" aria-controls="department">Department
-							<span class="badge badge-secondary badge-pill float-right">4</span>
-						</a>
-						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
-						   role="tab" aria-controls="staff">Staff
-							<span class="badge badge-secondary badge-pill float-right">2</span></a>
-						<a class="list-group-item list-group-item-action <?= ($page == 'vehicles' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-						   role="tab" aria-controls="settings">Vehicles
-							<span class="badge badge-secondary badge-pill float-right"></span>
-						</a>
-						<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-						   role="tab" aria-controls="user">User
-							<span class="badge badge-secondary badge-pill float-right"></span>
-						</a>
+				<? if ($controller == 'Organization') : ?>
+					<!-- Vertical Tabs Start-->
+					<div class="col-sm-12 col-md-3" >
+						<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+							<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
+							   role="tab" aria-controls="company">Company
+							</a>
+							<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
+							   role="tab" aria-controls="department">Department
+								<span class="badge badge-secondary badge-pill float-right">4</span>
+							</a>
+							<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
+							   role="tab" aria-controls="staff">Staff
+								<span class="badge badge-secondary badge-pill float-right">2</span></a>
+							<a class="list-group-item list-group-item-action <?= ($page == 'vehicles' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
+							   role="tab" aria-controls="settings">Vehicles
+								<span class="badge badge-secondary badge-pill float-right"></span>
+							</a>
+							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
+							   role="tab" aria-controls="user">User
+								<span class="badge badge-secondary badge-pill float-right"></span>
+							</a>
+						</div>
 					</div>
-				</div>
-				<!-- Vertical Tabs End-->
+					<!-- Vertical Tabs End-->
+				<? endif; ?>
 
 
-				<div class="col-sm-12 col-md-9" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
+				<div class="<?= ($controller == 'Organization' ? 'col-sm-12 col-md-9' : 'container') ?>" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">

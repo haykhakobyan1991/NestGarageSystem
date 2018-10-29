@@ -5,11 +5,14 @@ function get_child_function($th) {
             result = $th.data('result'),
             response = $th.data('response'),
             response_type = $th.data('res_type'),
+            lang = $th.data('lang'),
             val = $(this).val();
         $('#' + result).removeClass('d-none');
         start_load(result);
-        $.post(url, {name: id, value: val, response: response, response_type: response_type}).done(function (data) {
+        $.post(url, {name: id, value: val, response: response, response_type: response_type, lang: lang}).done(function (data) {
             $('#' + result).html(data);
+
+
             if(data == '') {
                 $(".lastChild select").remove();
             }

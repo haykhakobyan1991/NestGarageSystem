@@ -574,5 +574,9 @@ $user_id = $this->session->user_id;
 <script>
 	$('#department').selectpicker('refresh');
 	$('#country').selectpicker('refresh');
+
+
+	$('.selectpicker').parent('div').children('button').css({'background': '#fff', 'color': '#000', 'border': '1px solid #ced4da'});
+	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
 </script>
 

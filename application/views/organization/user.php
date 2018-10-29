@@ -340,8 +340,10 @@ endforeach;
 											  data-placement="top"
 											  title="edit"><i class="fas fa-edit"></i></span>
 
-										<span style="border: none;cursor: pointer;" data-id="" id="delet_users_modal"
-											  class="btn text-danger"
+										<span style="border: none;cursor: pointer;" data-toggle="modal"
+											  id="delete_user_modal"
+											  class="text-danger btn"
+											  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
 											  data-toggle2="tooltip"
 											  data-placement="top"
 											  title="delete"><i class="fas fa-trash"></i></span></td>
@@ -359,7 +361,49 @@ endforeach;
 <!--USERS END-->
 
 
+<!-- Delete Modal Start -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-secondary" id="exampleModalLabel">are you sure you want to delete ? </h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button type="button" class="btn btn-outline-danger text-danger" data-dismiss="modal">No</button>
+					<button type="button" id="delete_user" class="btn btn-outline-success text-success">Yes</button>
+					<input type="hidden" name="user_id">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal End -->
+
+
+
+
 <script>
+
+	$(document).on('click', '#delete_user_modal', function () {
+		user_id = $(this).data('id');
+		$('input[name="user_id"]').val(user_id);
+	});
+
+	$(document).on('click', '#delete_user', function () {
+		var id = $('input[name="user_id"]').val();
+		var url = '<?=base_url('Organization/delete_user/')?>';
+
+		$.post(url, {user_id: id}, function (result) {
+			location.reload();
+		});
+	});
+
+
 	$(document).on('click', '#add_user', function (e) {
 
 		var url = '<?=base_url('Organization/add_user_ax') ?>';

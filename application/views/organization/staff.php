@@ -765,8 +765,9 @@ color: #545b62;">
 											  title="edit"><i class="fas fa-edit"></i></span>
 
 										<span style="border: none; cursor:pointer;" data-toggle="modal"
+											  id="delete_staff_modal"
+											  class="text-danger btn"
 											  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
-											  id="delete_staff_modal" class="text-danger btn"
 											  data-toggle2="tooltip"
 											  data-placement="top"
 											  title="delete"><i class="fas fa-trash"></i></span></td>

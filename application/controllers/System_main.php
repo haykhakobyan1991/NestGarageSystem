@@ -70,6 +70,58 @@ class System_main extends CI_Controller {
 	}
 
 
+	public function get_child ()
+	{
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			return false;
+		}
+
+		$lng = $this->input->post('lang');
+		$response_type = $this->input->post('response_type');
+		$response = $this->input->post('response');
+		$name = $this->input->post('name');
+		$value = $this->input->post('value');
+
+		$sql = "SELECT `id`, `title_" . $lng . "` AS `title` 
+					FROM `" . $response . "` 
+					WHERE `" . $name . "_id` = '" . $value . "' 
+					ORDER BY `title`
+					";
+
+		$result = $this->db->query($sql);
+
+		$result_array = $result->result_array();
+
+		if ($result->num_rows() > 0) {
+			if ($response_type == 'select') {
+				echo '<label class=" col-form-label">Տ/մ տեսակ</label>
+
+						<select name="model"
+								class="col selectpicker form-control form-control-sm "
+								data-size="5" id="model" 
+								data-live-search="true"
+								title="Select a model">';
+				foreach ($result_array as $row) :
+					echo '<option  value="' . $row['id'] . '">' . $row['title'] . '</option>';
+				endforeach;
+				echo '</select>';
+
+				echo '<script>';
+				echo '$(\'#' . $response . '\').selectpicker(\'refresh\');'."\n";
+				echo '$(\'.selectpicker\').parent(\'div\').children(\'button\').css({\'background\': \'#fff\', \'color\': \'#000\', \'border\': \'1px solid #ced4da\'});'."\n";
+				echo '$(\'.selectpicker\').parent(\'div\').children(\'button\').removeClass(\'btn-light\');';
+				echo '</script>';
+
+			} elseif ($response_type == 'radio') {
+
+			} elseif ($response_type == 'checkbox') {
+
+			}
+		}
+	}
+
+
 
 
 

@@ -26,51 +26,56 @@
 			<hr class="my-4">
 			<!-- Main Start -->
 			<form class="mt-3 mt-md-3">
+
 				<div class="first_row">
-					<div class="form-group row" style="position: relative;">
+					<div class="form-group row ">
+
 						<label
 							class="col-sm-2 col-form-label">Կցված</label>
-						<div class="col-sm-9">
-							<select value=""
-									class="currency form-control form-control-sm">
-								<option>opton 1</option>
-								<option>option 2</option>
+						<div class="col-sm-10">
+							<select name="staff[]"
+									class="col  selectpicker form-control form-control-sm"
+									id="staff"
+									multiple data-live-search="true"
+									title="Select a Staff">
+								<? foreach ($staff_for_select as $row) : ?>
+									<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+								<? endforeach; ?>
+
 							</select>
-						</div>
-						<div class="col-1">
-							<button type="button" style="border:none;"
-									class="add_new_row btn btn-outline-secondary float-right">
-								<i class="fas fa-plus"></i></i></button>
 						</div>
 
 					</div>
 				</div>
 
 
+
+
 				<div class="row">
 
-					<div class="form-group col-sm-6">
+					<div class="form-group col-sm-6 getChild"
+						 data-url="<?=base_url('System_main/get_child')?>"
+						 data-result="model_div"
+						 data-response="model"
+						 data-res_type="select"
+						 data-lang="<?=$lang?>"
+						 id="brand"
+					>
 						<label
 							class=" col-form-label">Տ/մ տեսակ</label>
 
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
+						<select name="brand"
+								class="col selectpicker form-control form-control-sm "
+								data-size="5" id="brand" data-live-search="true"
+
+								title="Select a brand">
+							<? foreach ($brand as $row) : ?>
+								<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+							<? endforeach; ?>
 						</select>
 
 					</div>
-					<div class="form-group col-sm-6">
-						<label
-							class="col-form-label">Մակնիշ</label>
-
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
-						</select>
-
-					</div>
+					<div id="model_div" class="form-group col-sm-6"></div>
 
 				</div>
 				<div class="row">
@@ -89,11 +94,13 @@
 							class="col-form-label">Թողարկման
 							տարեթիվ</label>
 
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>Choose...</option>
-
-							<?php for ($i = 1900; $i <= date('Y'); $i++) { ?>
+						<select name=""
+								class="currency form-control form-control-sm selectpicker"
+								data-size="5"
+								data-live-search="true"
+								title="Choose..."
+						>
+							<?php for ($i = 1980; $i <= date('Y'); $i++) { ?>
 								<option value="<?= $i ?>"><?= $i ?></option>
 							<?php } ?>
 
@@ -117,8 +124,8 @@
 										style="background: #c0c0c0;"></button>
 								<button type="button" class="btn color_check_btn" data-value="#000000"
 										style="background: #000000;"></button>
-								<button type="button" class="btn color_check_btn" data-value="#696969"
-										style="background: #696969;"></button>
+								<button type="button" class="btn color_check_btn" data-value="#686868"
+										style="background: #686868;"></button>
 								<button type="button" class="btn color_check_btn" data-value="#0000ff"
 										style="background: #0000ff;"></button>
 								<button type="button" class="btn color_check_btn" data-value="#ff0000"

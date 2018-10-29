@@ -186,7 +186,7 @@ $page = $this->router->fetch_method();
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
 							   role="tab" aria-controls="staff">Staff
 								<span class="badge badge-secondary badge-pill float-right">2</span></a>
-							<a class="list-group-item list-group-item-action <?= ($page == 'vehicles' ? 'active' : '') ?>"
+							<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
 							   role="tab" aria-controls="settings">Vehicles
 								<span class="badge badge-secondary badge-pill float-right"></span>

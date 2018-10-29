@@ -161,6 +161,7 @@ $page = $this->router->fetch_method();
 	<!-- Horizontal Tabs End -->
 
 	<!-- Tab panes -->
+	<? if ($controller == 'Organization') : ?>
 	<div class="tab-content">
 
 		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
@@ -168,7 +169,7 @@ $page = $this->router->fetch_method();
 			<div class="row">
 
 
-				<? if ($controller == 'Organization') : ?>
+
 					<!-- Vertical Tabs Start-->
 					<div class="col-sm-12 col-md-3" >
 						<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
@@ -198,15 +199,15 @@ $page = $this->router->fetch_method();
 						</div>
 					</div>
 					<!-- Vertical Tabs End-->
-				<? endif; ?>
+
 
 
 				<div class="<?= ($controller == 'Organization' ? 'col-sm-12 col-md-9' : 'container') ?>" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
+						<div class="loader"></div>
 
-						<div class="loader"
-						">
-					</div>
-					<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
+						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
+
+<? endif; ?>

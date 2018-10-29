@@ -45,7 +45,8 @@
 					<div class="col-sm-12 col-md-4 col-4"></div>
 
 					<div class="col-sm-12 col-md-2 col-2">
-						<a href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()).'/add_vehicles')?>" class="btn btn-outline-success">Add Vehicle
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
+						   class="btn btn-outline-success">Add Vehicle
 						</a>
 					</div>
 
@@ -73,7 +74,7 @@ color: #545b62;">
 							<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
-						</tbody>
+						<tbody>
 						<tr>
 							<td>Veichls 1</td>
 							<td style="text-align: center; vertical-align: middle;">
@@ -99,7 +100,6 @@ color: #545b62;">
 									  data-toggle2="tooltip"
 									  data-placement="top"
 									  title="delete"><i class="fas fa-trash"></i></span></td>
-						</tr>
 						</tr>
 						<tr>
 							<td>Veichls 2</td>
@@ -127,7 +127,7 @@ color: #545b62;">
 									  data-placement="top"
 									  title="delete"><i class="fas fa-trash"></i></span></td>
 						</tr>
-						</tr>
+
 						<tr>
 							<td>Veichls 3</td>
 							<td style="text-align: center;vertical-align: middle;">
@@ -155,18 +155,12 @@ color: #545b62;">
 									  title="delete"><i class="fas fa-trash"></i></span></td>
 						</tr>
 
-						</tr>
-
-
+						</tbody>
 					</table>
-
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 
 </div>

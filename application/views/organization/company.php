@@ -189,7 +189,7 @@ $i = '';
 									</div>
 								</div>
 								<button type="button"
-										class="btn btn-sm btn-outline-light float-right mb-md-2 mb-2 copy_btn">
+										class="btn btn-sm btn-outline-success float-right mb-md-2 mb-2 copy_btn">
 									copy
 								</button>
 
@@ -634,9 +634,9 @@ $i = '';
 </div>
 
 
-<div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="structure">
 
-</div>
+
+
 <div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu1">Lorem ipsum dolor sit amet, consectetur
 	adipisicing elit. Minus, veniam?
 </div>
@@ -646,7 +646,7 @@ $i = '';
 <div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu3">Lorem ipsum dolor sit amet.</div>
 </div>
 </div>
-
+<script src="<?= base_url('assets/js/go.js') ?>"></script>
 <script>
 	// create company
 	$(document).on('click', '#create_company', function (e) {
@@ -741,6 +741,8 @@ $i = '';
 	/* Company logo uploade end */
 
 </script>
+
+
 
 
 

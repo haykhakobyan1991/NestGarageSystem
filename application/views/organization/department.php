@@ -177,8 +177,6 @@ color: #545b62;">
 									<div class="modal-footer">
 										<span id="add_department" type="button" class="btn btn-outline-success">Save</span>
 									</div>
-
-
 								</div>
 							</div>
 						</div>

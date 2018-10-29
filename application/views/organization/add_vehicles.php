@@ -7,12 +7,8 @@
 		</div>
 	</div>
 	<div class="for_message">
-		<div class="alert alert-success" role="alert">
-			A simple success alert—check it out!
-		</div>
-		<div class="alert alert-danger" role="alert">
-			A simple success alert—check it out!
-		</div>
+		<div class="alert alert-success d-none " role="alert"></div>
+		<div class="alert alert-danger d-none " role="alert"></div>
 	</div>
 	<div class="row">
 		<div class="col-sm-12 col-md-6 col-6">
@@ -31,7 +27,7 @@
 					<div class="form-group row ">
 
 						<label
-							class="col-sm-2 col-form-label">Կցված</label>
+							class="col-sm-2 col-form-label">Կցված *</label>
 						<div class="col-sm-10">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"
@@ -62,12 +58,11 @@
 						 id="brand"
 					>
 						<label
-							class=" col-form-label">Տ/մ տեսակ</label>
+							class=" col-form-label">Տ/մ տեսակ * </label>
 
 						<select name="brand"
 								class="col selectpicker form-control form-control-sm "
 								data-size="5" id="brand" data-live-search="true"
-
 								title="Select a brand">
 							<? foreach ($brand as $row) : ?>
 								<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -81,28 +76,32 @@
 				<div class="row">
 					<div class="form-group col-sm-6">
 						<label
-							class="col-form-label">Տիպար</label>
+							class="col-form-label">Տիպար *</label>
 
-						<select value=""
-								class="currency form-control form-control-sm">
-							<option>opton 1</option>
-							<option>option 2</option>
+						<select name="fleet_type"
+								class="currency form-control form-control-sm selectpicker"
+								data-size="5" id="fleet_type" data-live-search="true"
+								title="Select a fleet type"
+						>
+							<? foreach ($fleet_type as $row) : ?>
+								<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+							<? endforeach; ?>
 						</select>
 					</div>
 					<div class="form-group col-sm-6">
 						<label
 							class="col-form-label">Թողարկման
-							տարեթիվ</label>
+							տարեթիվ *</label>
 
-						<select name=""
+						<select name="production_date"
 								class="currency form-control form-control-sm selectpicker"
 								data-size="5"
 								data-live-search="true"
 								title="Choose..."
 						>
-							<?php for ($i = 1980; $i <= date('Y'); $i++) { ?>
+							<?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
 								<option value="<?= $i ?>"><?= $i ?></option>
-							<?php } ?>
+							<?php endfor; ?>
 
 						</select>
 
@@ -140,19 +139,19 @@
 						</div>
 						<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...
 						</p>
-						<input type="color" class="btn color_check_btn more_color" value=""/>
+						<input title=""  type="color" class="btn color_check_btn more_color" value=""/>
 					</div>
 					<div class="col-sm-4">
 						<p style="margin-bottom: 0;">Selected Color</p>
-						<input type="hidden" value="#ffffff" class="selected_color_value"/>
+						<input name="color" type="hidden" value="#ffffff" class="selected_color_value"/>
 						<div class="selected-color" style="background: #ffffff;"></div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label
-						class="col-sm-2 col-form-label">Հաշվառման համարանիշ</label>
+						class="col-sm-2 col-form-label">Հաշվառման համարանիշ*</label>
 					<div class="col-sm-10">
-						<input value="" name="" type="text" class="form-control form-control-sm"
+						<input value="" name="fleet_plate_number" type="text" class="form-control form-control-sm"
 							   placeholder="Հաշվառման համարանիշ">
 					</div>
 				</div>
@@ -167,7 +166,7 @@
 					<label
 						class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
 					<div class="col-sm-10">
-						<input value="" name="" type="text" class="form-control form-control-sm mt-2"
+						<input value="" min="0" step="0.1" name="engine_power" type="number" class="form-control form-control-sm mt-2"
 							   placeholder="Շարժիչի հզորություն">
 					</div>
 				</div>
@@ -175,12 +174,14 @@
 					<label
 						class="col-sm-2 col-form-label">Վառելիք</label>
 					<div class="col-sm-10">
-						<select value=""
-								class="form-control form-control-sm">
-							<option>Վառելիքի տեսակը</option>
-							<option>GAS</option>
-							<option>DIESEL</option>
-							<option>PETROL</option>
+						<select name="fuel"
+								class="form-control form-control-sm selectpicker"
+								data-size="5" id="fleet_type" data-live-search="true"
+								title="Select a fuel"
+						>
+							<? foreach ($fuel as $row) : ?>
+								<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+							<? endforeach; ?>
 						</select>
 					</div>
 				</div>
@@ -188,14 +189,14 @@
 					<label
 						class="col-sm-2 col-form-label">Վազք</label>
 					<div class="col-sm-10">
-						<input value="" name="vin" type="text" class="form-control form-control-sm" placeholder="Վազք">
+						<input value="" min="0" name="mileage" type="number" class="form-control form-control-sm" placeholder="Վազք">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label
 						class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
 					<div class="col-sm-10">
-						<input value="" name="" type="text" class="form-control form-control-sm mt-2"
+						<input value="" name="odometer" type="text" class="form-control form-control-sm mt-2"
 							   placeholder="Հոդոգռաֆ">
 					</div>
 				</div>
@@ -203,7 +204,7 @@
 					<label
 						class="col-sm-2 col-form-label">Այլ</label>
 					<div class="col-sm-10">
-						<input value="" name="" type="text" class="form-control form-control-sm mt-2" placeholder="Այլ">
+						<textarea name="other"  rows="8" class="form-control form-control-sm mt-2" placeholder="Այլ"></textarea>
 					</div>
 				</div>
 				<div class="form-group row">
@@ -211,14 +212,14 @@
 						a
 						Passive?</label>
 					<div class="col-sm-2">
-						<input checked="" type="checkbox" class="form-control form-control-sm">
+						<input  value="-1" name="status" type="checkbox" class="form-control form-control-sm">
 					</div>
 				</div>
 				<div class="form-group row">
 					<label class="col-sm-10 col-form-label">Send a notification mail to the
 						drivers</label>
 					<div class="col-sm-2">
-						<input checked="" type="checkbox" class="form-control form-control-sm">
+						<input type="checkbox" class="form-control form-control-sm">
 					</div>
 				</div>
 			</form>
@@ -439,12 +440,71 @@
 			</form>
 			<!-- Info End -->
 			<div class="text-right mt-4 pb-2">
-				<button class="btn btn-outline-success">Save</button>
+				<span id="submit" class="btn btn-outline-success">Save</span>
 			</div>
 		</div>
 	</div>
 </div>
 <script>
+
+	// create company
+	$(document).on('click', '#submit', function (e) {
+		var url = '<?=base_url('Organization/add_vehicles_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form')[0]);
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').parent('div').children('button').removeClass('border border-danger');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			success: function (data) {
+				if (data.success == '1') {
+
+					scroll_top();
+					$('.alert-success').removeClass('d-none');
+					$('.alert-danger').addClass('d-none');
+					$('.alert-success').text(data.message);
+					close_message();
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>";
+					$(location).attr('href', url);
+
+				} else {
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+									$('.alert-danger').removeClass('d-none');
+									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				close_message();
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+			}
+		});
+	});
+
 	$('.color_check_btn').on('click', function () {
 		var sel_color = $(this).data('value');
 

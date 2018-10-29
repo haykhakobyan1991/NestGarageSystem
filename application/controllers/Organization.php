@@ -2022,11 +2022,164 @@ class Organization extends MX_Controller {
 		$data['brand'] = $result_brand->result_array();
 
 
+		$sql_fleet_type = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_type`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_type = $this->db->query($sql_fleet_type);
+
+		$data['fleet_type'] = $result_fleet_type->result_array();
+
+		$sql_fuel = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fuel`
+			WHERE `status` = '1'	
+		";
+
+		$result_fuel = $this->db->query($sql_fuel);
+
+		$data['fuel'] = $result_fuel->result_array();
+
 
 
 		$this->layout->view('organization/add_vehicles', $data);
 
 	}
+
+
+	public function add_vehicles_ax() {
+
+		$this->load->authorisation('Organization', 'add_vehicles');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('staff[]', 'staff', 'required');
+		$this->form_validation->set_rules('brand', 'brand', 'required');
+		$this->form_validation->set_rules('model', 'model', 'required');
+		$this->form_validation->set_rules('fleet_type', 'fleet_type', 'required');
+		$this->form_validation->set_rules('fleet_plate_number', 'fleet_plate_number', 'required');
+		$this->form_validation->set_rules('production_date', 'production_date', 'required');
+
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'staff[]' => form_error('staff[]'),
+				'brand' => form_error('brand'),
+				'model' => form_error('model'),
+				'fleet_type' => form_error('fleet_type'),
+				'fleet_plate_number' => form_error('fleet_plate_number'),
+				'production_date' => form_error('production_date'),
+
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		$staff = implode(',', $this->input->post('staff'));
+		$brand = $this->input->post('brand');
+		$model = $this->input->post('model');
+		$fleet_type = $this->input->post('fleet_type');
+		$fleet_plate_number = $this->input->post('fleet_plate_number');
+		$production_date = $this->input->post('production_date');
+		$color = $this->input->post('color');
+		$vin = $this->input->post('vin');
+		$engine_power = $this->input->post('engine_power');
+		$fuel = $this->input->post('fuel');
+		$mileage = $this->input->post('mileage');
+		$odometer = $this->input->post('odometer');
+		$other = $this->input->post('other');
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
+
+
+
+
+
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		//todo mail ---
+
+
+		$sql = "
+				INSERT INTO `fleet` SET 
+					`staff_ids` = ".$this->load->db_value($staff).",
+					`model_id` = ".$this->load->db_value($model).",
+					`fleet_type_id` = ".$this->load->db_value($fleet_type).",
+					`production_date` = ".$this->load->db_value($production_date).",
+					`color` = ".$this->load->db_value($color).",
+					`vin_code` = ".$this->load->db_value($vin).",
+					`engine_power` = ".$this->load->db_value($engine_power).",
+					`fuel_id` = ".$this->load->db_value($fuel).",
+					`mileage` =  ".$this->load->db_value($mileage).",
+					`odometer` = ".$this->load->db_value($odometer).",
+					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
+					`other` = ".$this->load->db_value($other).",
+					`registrar_user_id` = ".$this->load->db_value($user_id).",
+					`registration_date` = NOW(),
+					`status` = ".$this->load->db_value($status)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+
 
 	public function edit_vehicles(){
 		$data = array();

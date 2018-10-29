@@ -167,7 +167,7 @@ $(window).on('load', function () {
 
 	$('.selectpicker_1').parent('div').children('button').addClass('btn-sm');
 	$('.selectpicker_2').parent('div').children('button').addClass('btn-sm');
-	$('.selectpicker').parent('div').children('button').css({'background': '#fff', 'color': '#000', 'border': '1px solid #ced4da'});
+	$('.selectpicker').parent('div').children('button').css({'background': '#fff', 'color': '#6c757d', 'border': '1px solid #ced4da'});
 	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
 });
 

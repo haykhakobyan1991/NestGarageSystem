@@ -123,6 +123,10 @@ a.page-link {
 	color: #333 !important;
 }
 
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="number"] {
+	height: calc(1.8125rem + 8px)
+}
+
 
 
 

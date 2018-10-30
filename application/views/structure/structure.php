@@ -3,10 +3,10 @@
 	.google-visualization-orgchart-node {
 		border: none;
 	}
-
 	td.google-visualization-orgchart-node.google-visualization-orgchart-node-medium img, td.google-visualization-orgchart-node.google-visualization-orgchart-node-medium.google-visualization-orgchart-nodesel img {
 		display: block;
 		margin: 0 auto;
+		width: 30px;height: 30px;
 	}
 	tbody {
 		transform: scale(0.9);
@@ -62,28 +62,42 @@
 
 		// For each orgchart box, provide the name, manager, and tooltip to show.
 		data.addRows([
-			[{v: 'Mike', f: 'Mike<img src="https://bit.ly/2OibmNa" style="width: 30px;height: 30px;">'}, '', ''],
-			[{v: 'Jim', f: 'Jim<img src="https://bit.ly/2OibmNa" style="width: 30px;height: 30px;">'}, 'Mike', ''],
-			[{v: 'Alice', f: 'Alice<img src="https://bit.ly/2OibmNa" style="width: 30px;height: 30px;">'}, 'Mike', ''],
-			[{v: 'fff', f: 'fff<img src="https://bit.ly/2OibmNa" style="width: 30px;height: 30px;">'}, 'Alice', ''],
+			[{v: 'Mike', f: 'Mike<img src="https://bit.ly/2OibmNa"><input type="hidden" value="1" />'}, '', ''],
+
+			[{v: 'Jim', f: 'Jim<img src="https://bit.ly/2OibmNa"><input type="hidden" value="2" />'}, {v: 'Mike', f: 'Mike<input type="hidden" value="1" />'}, ''],
+
+			[{v: 'Alice', f: 'Alice<img src="https://bit.ly/2OibmNa">'}, 'Mike', ''],
+
+			[{v: 'fff', f: 'fff<img src="https://bit.ly/2OibmNa">'}, 'Alice', ''],
+
 			['Alieeece', 'Alice', ''],
+
 			['Alieefece', 'Alieeece', ''],
+
 			['Alieeedce', 'Alieeece', ''],
+
 			['Alieevece', 'Alieeece', ''],
+
 			['pppp', 'Alieefece', ''],
-			['gg', 'pppp', ''],
-			['mm', 'gg', ''],
-			['vfc', 'mm', ''],
-			['vc', 'mm', ''],
+
 			['Alifffce', 'Alice', ''],
+
 			['Addddddlice', 'Mike', ''],
+
 			['xxxxxx', 'Addddddlice', ''],
+
 			['wwwwwwwwww', 'Addddddlice', ''],
+
 			['Bob', 'Jim', 'Bob Sponge'],
+
 			['Carol', 'Bob', ''],
+
 			['jane', 'Bob', ''],
+
 			['dddd', 'Bob', ''],
+
 			['ZZZZ', 'Bob', '']
+
 		]);
 
 		// Create the chart.
@@ -97,7 +111,7 @@
 	var content = document.getElementById('chart_div').getElementsByTagName('tbody');
 	var zX = 0.9;
 	$('body').on('keydown', function (e) {
-		if (e.ctrlKey && e.keyCode == 48) {
+		if (e.ctrlKey && (e.keyCode == 48 || e.keyCode == 96) ) {
 			$('tbody').css('transform', 'scale(0.9)');
 			$('#chart_div').css({'left': '0', 'top': '0'});
 			zX = 0.9;

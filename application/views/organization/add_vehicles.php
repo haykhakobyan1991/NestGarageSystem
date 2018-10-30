@@ -280,6 +280,9 @@
 				</div>
 
 
+
+				<!-- Acardion -->
+
 				<div class="accordion mt-5" id="accordionExample_info" >
 					<div class="card">
 						<div class="card-header" id="heading_info1">
@@ -291,68 +294,70 @@
 								</button>
 							</h5>
 						</div>
-						<div id="collapse_info1" class="collapse" aria-labelledby="heading_info1"
+						<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
 							 data-parent="#accordionExample_info">
 							<div class="card-body">
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Անվանում">
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="exampleFormControlFile1"></label>
-											<input type="file"
-												   class="form-control-file"
-												   id="exampleFormControlFile1">
+								<div class="add_new_items">
+									<div class="row">
+
+										<div class="col-md-2">
+											<div class="form-group">
+												<label>Company</label>
+												<input type="text"
+													   name="company_1"
+													   class="form-control form-control-sm"
+													   placeholder="Company">
+											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Կազմակերպություն</label>
-									<div class="col-sm-6">
-										<input style="" value="" name="" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Կազմակերպություն">
+										<div class="col-1">
+											<div class="form-group">
+												<label style="margin-top: 35px;"
+													   class="btn btn-sm btn-outline-secondary">
+													<span>Brows file</span>
+													<input class="btn_input"
+														   name="file_1" type="file"
+														   hidden style="display: none;"
+														   value="">
+												</label>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Reference</label>
+												<input type="text"
+													   name="reference_1"
+													   class="form-control form-control-sm"
+													   placeholder="Reference">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label>Epired Date</label>
+											<input type="date" name="expiration_1"
+												   max="3000-12-31"
+												   min="1000-01-01"
+
+												   class="form-control form-control-sm">
+										</div>
+
+										<div class="col-sm-3">
+											<label
+												class="col-form-label"
+												style="font-size: 12px;">Type</label>
+											<div class="">
+												<select value=""
+														class="selectpicker form-control form-control-sm dif_meter">
+													<option>type1</option>
+													<option>type2</option>
+												</select>
+											</div>
+										</div>
+
 									</div>
 
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										համար</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Տեսակ</label>
-									<div class="col-sm-6">
-										<select value=""
-												class=" form-control form-control-sm">
-											<option> Ընտրել տեսակը․․․</option>
-											<option>տեսակը 1</option>
-											<option>տեսակը 2</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Վավեր</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="date"
-											   class="form-control form-control-sm mt-2" placeholder="">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -372,65 +377,67 @@
 						<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2"
 							 data-parent="#accordionExample_info">
 							<div class="card-body">
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Անվանում">
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="exampleFormControlFile1"></label>
-											<input type="file"
-												   class="form-control-file"
-												   id="exampleFormControlFile1">
+								<div class="add_new_items">
+									<div class="row">
+
+										<div class="col-md-2">
+											<div class="form-group">
+												<label>Company</label>
+												<input type="text"
+													   name="company_1"
+													   class="form-control form-control-sm"
+													   placeholder="Company">
+											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Կազմակերպություն</label>
-									<div class="col-sm-6">
-										<input style="" value="" name="" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Կազմակերպություն">
+										<div class="col-1">
+											<div class="form-group">
+												<label style="margin-top: 35px;"
+													   class="btn btn-sm btn-outline-secondary">
+													<span>Brows file</span>
+													<input class="btn_input"
+														   name="file_1" type="file"
+														   hidden style="display: none;"
+														   value="">
+												</label>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Reference</label>
+												<input type="text"
+													   name="reference_1"
+													   class="form-control form-control-sm"
+													   placeholder="Reference">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label>Epired Date</label>
+											<input type="date" name="expiration_1"
+												   max="3000-12-31"
+												   min="1000-01-01"
+
+												   class="form-control form-control-sm">
+										</div>
+
+										<div class="col-sm-3">
+											<label
+												class="col-form-label"
+												style="font-size: 12px;">Type</label>
+											<div class="">
+												<select value=""
+														class="selectpicker form-control form-control-sm dif_meter">
+													<option>type1</option>
+													<option>type2</option>
+												</select>
+											</div>
+										</div>
+
 									</div>
 
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										համար</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Տեսակ</label>
-									<div class="col-sm-6">
-										<select value=""
-												class=" form-control form-control-sm">
-											<option> Ընտրել տեսակը․․․</option>
-											<option>տեսակը 1</option>
-											<option>տեսակը 2</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Վավեր</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="date"
-											   class="form-control form-control-sm mt-2" placeholder="">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -449,65 +456,67 @@
 						<div id="collapse_info3" class="collapse" aria-labelledby="heading_info3"
 							 data-parent="#accordionExample_info">
 							<div class="card-body">
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Անվանում">
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="exampleFormControlFile1"></label>
-											<input type="file"
-												   class="form-control-file"
-												   id="exampleFormControlFile1">
+								<div class="add_new_items">
+									<div class="row">
+
+										<div class="col-md-2">
+											<div class="form-group">
+												<label>Company</label>
+												<input type="text"
+													   name="company_1"
+													   class="form-control form-control-sm"
+													   placeholder="Company">
+											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Կազմակերպություն</label>
-									<div class="col-sm-6">
-										<input style="" value="" name="" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Կազմակերպություն">
+										<div class="col-1">
+											<div class="form-group">
+												<label style="margin-top: 35px;"
+													   class="btn btn-sm btn-outline-secondary">
+													<span>Brows file</span>
+													<input class="btn_input"
+														   name="file_1" type="file"
+														   hidden style="display: none;"
+														   value="">
+												</label>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Reference</label>
+												<input type="text"
+													   name="reference_1"
+													   class="form-control form-control-sm"
+													   placeholder="Reference">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label>Epired Date</label>
+											<input type="date" name="expiration_1"
+												   max="3000-12-31"
+												   min="1000-01-01"
+
+												   class="form-control form-control-sm">
+										</div>
+
+										<div class="col-sm-3">
+											<label
+												class="col-form-label"
+												style="font-size: 12px;">Type</label>
+											<div class="">
+												<select value=""
+														class="selectpicker form-control form-control-sm dif_meter">
+													<option>type1</option>
+													<option>type2</option>
+												</select>
+											</div>
+										</div>
+
 									</div>
 
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										համար</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Տեսակ</label>
-									<div class="col-sm-6">
-										<select value=""
-												class=" form-control form-control-sm">
-											<option> Ընտրել տեսակը․․․</option>
-											<option>տեսակը 1</option>
-											<option>տեսակը 2</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Վավեր</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="date"
-											   class="form-control form-control-sm mt-2" placeholder="">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -526,65 +535,67 @@
 						<div id="collapse_info4" class="collapse" aria-labelledby="heading_info4"
 							 data-parent="#accordionExample_info">
 							<div class="card-body">
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Անվանում">
-									</div>
-									<div class="col-sm-4">
-										<div class="form-group">
-											<label for="exampleFormControlFile1"></label>
-											<input type="file"
-												   class="form-control-file"
-												   id="exampleFormControlFile1">
+								<div class="add_new_items">
+									<div class="row">
+
+										<div class="col-md-2">
+											<div class="form-group">
+												<label>Company</label>
+												<input type="text"
+													   name="company_1"
+													   class="form-control form-control-sm"
+													   placeholder="Company">
+											</div>
 										</div>
-									</div>
-								</div>
 
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Կազմակերպություն</label>
-									<div class="col-sm-6">
-										<input style="" value="" name="" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Կազմակերպություն">
+										<div class="col-1">
+											<div class="form-group">
+												<label style="margin-top: 35px;"
+													   class="btn btn-sm btn-outline-secondary">
+													<span>Brows file</span>
+													<input class="btn_input"
+														   name="file_1" type="file"
+														   hidden style="display: none;"
+														   value="">
+												</label>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label>Reference</label>
+												<input type="text"
+													   name="reference_1"
+													   class="form-control form-control-sm"
+													   placeholder="Reference">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<label>Epired Date</label>
+											<input type="date" name="expiration_1"
+												   max="3000-12-31"
+												   min="1000-01-01"
+
+												   class="form-control form-control-sm">
+										</div>
+
+										<div class="col-sm-3">
+											<label
+												class="col-form-label"
+												style="font-size: 12px;">Type</label>
+											<div class="">
+												<select value=""
+														class="selectpicker form-control form-control-sm dif_meter">
+													<option>type1</option>
+													<option>type2</option>
+												</select>
+											</div>
+										</div>
+
 									</div>
 
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										համար</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Տեսակ</label>
-									<div class="col-sm-6">
-										<select value=""
-												class=" form-control form-control-sm">
-											<option> Ընտրել տեսակը․․․</option>
-											<option>տեսակը 1</option>
-											<option>տեսակը 2</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label"
-										style="font-size: 12px;">Վավեր</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="date"
-											   class="form-control form-control-sm mt-2" placeholder="">
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -788,5 +799,39 @@
 	});
 	$('.dif_meter').on('change', function () {
 		$('.dif_meter_text').text($(this).val());
+	});
+
+	// Input type File Staff
+	$(document).on('change', '.btn_input', function () {
+
+		var upload_file = $(this).val();
+		var upload_file = upload_file.split("\\");
+		var upload_file = upload_file[upload_file.length - 1];
+
+		var text_truncate = function (str, length, ending) {
+			if (length == null) {
+				length = 100;
+			}
+			if (ending == null) {
+				ending = '...';
+			}
+			if (str.length > length) {
+				return str.substring(0, length - ending.length) + ending;
+			} else {
+				return str;
+			}
+		};
+
+		if (upload_file == '') {
+			$(this).parent('label').children('span').text('Brows file');
+		} else {
+			if (upload_file.length > 13) {
+				var short_text = text_truncate(upload_file, 13, ' ...');
+				$(this).parent('label').children('span').text(short_text);
+			} else {
+				$(this).parent('label').children('span').text(upload_file);
+			}
+		}
+
 	});
 </script>

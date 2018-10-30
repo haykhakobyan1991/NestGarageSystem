@@ -19,16 +19,31 @@
 	<div class="">
 		<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
 	</div>
-	<div id="dr"
-		 style="border: 1px solid #000;max-width: 800px;max-height: 600px;overflow: hidden;cursor:grab;-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;position: relative;"
-		 unselectable="on" onselectstart="return false;" onmousedown="return false;">
-		<div id="chart_div" style="z-index: 999;"></div>
-		<div style="position:absolute; left: 0;bottom: 0;padding:3px;background: #8e8f902e;">
-			<p style="font-size: 10px;margin:0;">For default scale press Ctrl + 0</p>
-			<p style="font-size: 10px;margin:0;">For Zoom In Ctrl + Mouse Scroll Down</p>
-			<p style="font-size: 10px;margin:0;">For Zoom Out Ctrl + Mouse Scroll Up</p>
+	<div class="row" style="margin-left: 0;margin-right: 0;">
+		<div class="col-sm-6 col-md-6" id="dr"
+			 style="border: 1px solid #000;max-height: 600px;overflow: hidden;cursor:grab;-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;position: relative;"
+			 unselectable="on" onselectstart="return false;" onmousedown="return false;">
+			<div id="chart_div" style="z-index: 999;"></div>
+			<div style="position:absolute; left: 0;bottom: 0;padding:3px;background: #8e8f902e;">
+				<p style="font-size: 10px;margin:0;">For default scale press Ctrl + 0</p>
+				<p style="font-size: 10px;margin:0;">For Zoom In Ctrl + Mouse Scroll Down</p>
+				<p style="font-size: 10px;margin:0;">For Zoom Out Ctrl + Mouse Scroll Up</p>
+			</div>
+		</div>
+
+
+		<div class="col-sm-6 col-md-6" id="dr"
+			 style="border: 1px solid #000;max-height: 600px;overflow: hidden;cursor:grab;-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;position: relative;"
+			 unselectable="on" onselectstart="return false;" onmousedown="return false;">
+			<div id="chart_div" style="z-index: 999;"></div>
+			<div style="position:absolute; left: 0;bottom: 0;padding:3px;background: #8e8f902e;">
+				<p style="font-size: 10px;margin:0;">For default scale press Ctrl + 0</p>
+				<p style="font-size: 10px;margin:0;">For Zoom In Ctrl + Mouse Scroll Down</p>
+				<p style="font-size: 10px;margin:0;">For Zoom Out Ctrl + Mouse Scroll Up</p>
+			</div>
 		</div>
 	</div>
+
 
 </div>
 

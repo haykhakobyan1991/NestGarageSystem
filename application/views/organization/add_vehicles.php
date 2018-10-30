@@ -229,27 +229,78 @@
 			<hr class="my-4">
 			<!-- Info Star -->
 			<form class="mt-3 mt-md-3">
-				<div class="accordion" id="accordionExample_info">
+				<div class="card">
+					<div class="card-header">
+						<h5 class="mb-0">
+							<button class="btn btn-link" type="button">
+								Հաշվառման Համարանիշ
+							</button>
+						</h5>
+					</div>
+					<div  class="" >
+						<div class="card-body">
+							<div class="form-group row mb-0">
+								<label
+									class="col-sm-2 col-form-label" style="font-size: 12px;">Սեփականատեր</label>
+								<div class="col-sm-6">
+									<input style="" value="" name="" type="text"
+										   class="form-control form-control-sm"
+										   placeholder="Սեփականատեր">
+								</div>
+								<div class="col-sm-4">
+									<div class="form-group">
+										<label for="exampleFormControlFile1"></label>
+										<input type="file"
+											   class="form-control-file"
+											   id="exampleFormControlFile1">
+									</div>
+								</div>
+							</div>
+							<div class="form-group row mb-0">
+								<label
+									class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+									հասցե</label>
+								<div class="col-sm-6">
+									<input value="" name="" type="text"
+										   class="form-control form-control-sm mt-2"
+										   placeholder="Հաշվառման հասցե">
+								</div>
+							</div>
+							<div class="form-group row mb-0">
+								<label style="font-size: 12px;"
+									   class="col-sm-2 col-form-label">Հաշվառման համար</label>
+								<div class="col-sm-6">
+									<input value="" name="" type="text"
+										   class="form-control form-control-sm mt-2"
+										   placeholder="Հաշվառման համար">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="accordion mt-5" id="accordionExample_info" >
 					<div class="card">
 						<div class="card-header" id="heading_info1">
 							<h5 class="mb-0">
-								<button class="btn btn-link" type="button" data-toggle="collapse"
-										data-target="#collapse_info1" aria-expanded="true"
-										aria-controls="collapse_info1">
-									Հաշվառման Համարանիշ
+								<button class="btn btn-link collapsed" type="button"
+										data-toggle="collapse" data-target="#collapse_info1"
+										aria-expanded="false" aria-controls="collapse_info1">
+									N/D
 								</button>
 							</h5>
 						</div>
-						<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
-							 da.add_veichls_modalta-parent="#accordionExample_info">
+						<div id="collapse_info1" class="collapse" aria-labelledby="heading_info1"
+							 data-parent="#accordionExample_info">
 							<div class="card-body">
 								<div class="form-group row mb-0">
 									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Սեփականատեր</label>
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
 									<div class="col-sm-6">
-										<input style="" value="" name="" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Սեփականատեր">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Անվանում">
 									</div>
 									<div class="col-sm-4">
 										<div class="form-group">
@@ -260,41 +311,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										հասցե</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման հասցե">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Հաշվառման համար</label>
-									<div class="col-sm-6">
-										<input value="" name="" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header" id="heading_info2">
-							<h5 class="mb-0">
-								<button class="btn btn-link collapsed" type="button"
-										data-toggle="collapse" data-target="#collapse_info2"
-										aria-expanded="false" aria-controls="collapse_info2">
-									Ապահովագրություն
-								</button>
-							</h5>
-						</div>
-						<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2"
-							 data-parent="#accordionExample_info">
-							<div class="card-body">
+
 								<div class="form-group row mb-0">
 									<label
 										class="col-sm-2 col-form-label"
@@ -304,6 +321,65 @@
 											   class="form-control form-control-sm"
 											   placeholder="Կազմակերպություն">
 									</div>
+
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+										համար</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Հաշվառման համար">
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label style="font-size: 12px;"
+										   class="col-sm-2 col-form-label">Տեսակ</label>
+									<div class="col-sm-6">
+										<select value=""
+												class=" form-control form-control-sm">
+											<option> Ընտրել տեսակը․․․</option>
+											<option>տեսակը 1</option>
+											<option>տեսակը 2</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Վավեր</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="date"
+											   class="form-control form-control-sm mt-2" placeholder="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card">
+						<div class="card-header" id="heading_info2">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" type="button"
+										data-toggle="collapse" data-target="#collapse_info2"
+										aria-expanded="false" aria-controls="collapse_info2">
+									N/D
+								</button>
+							</h5>
+						</div>
+						<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2"
+							 data-parent="#accordionExample_info">
+							<div class="card-body">
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Անվանում">
+									</div>
 									<div class="col-sm-4">
 										<div class="form-group">
 											<label for="exampleFormControlFile1"></label>
@@ -312,6 +388,172 @@
 												   id="exampleFormControlFile1">
 										</div>
 									</div>
+								</div>
+
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Կազմակերպություն</label>
+									<div class="col-sm-6">
+										<input style="" value="" name="" type="text"
+											   class="form-control form-control-sm"
+											   placeholder="Կազմակերպություն">
+									</div>
+
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+										համար</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Հաշվառման համար">
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label style="font-size: 12px;"
+										   class="col-sm-2 col-form-label">Տեսակ</label>
+									<div class="col-sm-6">
+										<select value=""
+												class=" form-control form-control-sm">
+											<option> Ընտրել տեսակը․․․</option>
+											<option>տեսակը 1</option>
+											<option>տեսակը 2</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Վավեր</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="date"
+											   class="form-control form-control-sm mt-2" placeholder="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="heading_info3">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" type="button"
+										data-toggle="collapse" data-target="#collapse_info3"
+										aria-expanded="false" aria-controls="collapse_info3">
+									N/D
+								</button>
+							</h5>
+						</div>
+						<div id="collapse_info3" class="collapse" aria-labelledby="heading_info3"
+							 data-parent="#accordionExample_info">
+							<div class="card-body">
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Անվանում">
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="exampleFormControlFile1"></label>
+											<input type="file"
+												   class="form-control-file"
+												   id="exampleFormControlFile1">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Կազմակերպություն</label>
+									<div class="col-sm-6">
+										<input style="" value="" name="" type="text"
+											   class="form-control form-control-sm"
+											   placeholder="Կազմակերպություն">
+									</div>
+
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
+										համար</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Հաշվառման համար">
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label style="font-size: 12px;"
+										   class="col-sm-2 col-form-label">Տեսակ</label>
+									<div class="col-sm-6">
+										<select value=""
+												class=" form-control form-control-sm">
+											<option> Ընտրել տեսակը․․․</option>
+											<option>տեսակը 1</option>
+											<option>տեսակը 2</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Վավեր</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="date"
+											   class="form-control form-control-sm mt-2" placeholder="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="heading_info4">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" type="button"
+										data-toggle="collapse" data-target="#collapse_info4"
+										aria-expanded="false" aria-controls="collapse_info4">
+									N/D
+								</button>
+							</h5>
+						</div>
+						<div id="collapse_info4" class="collapse" aria-labelledby="heading_info4"
+							 data-parent="#accordionExample_info">
+							<div class="card-body">
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label" style="font-size: 12px;">Անվանում</label>
+									<div class="col-sm-6">
+										<input value="" name="" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Անվանում">
+									</div>
+									<div class="col-sm-4">
+										<div class="form-group">
+											<label for="exampleFormControlFile1"></label>
+											<input type="file"
+												   class="form-control-file"
+												   id="exampleFormControlFile1">
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group row mb-0">
+									<label
+										class="col-sm-2 col-form-label"
+										style="font-size: 12px;">Կազմակերպություն</label>
+									<div class="col-sm-6">
+										<input style="" value="" name="" type="text"
+											   class="form-control form-control-sm"
+											   placeholder="Կազմակերպություն">
+									</div>
+
 								</div>
 								<div class="form-group row mb-0">
 									<label

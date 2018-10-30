@@ -88,7 +88,7 @@
 		}
 
 		li.active > a {
-			color: #8e8f90;
+			color: #6c757d;
 			font-weight: 700;
 		}
 
@@ -113,7 +113,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="ml-auto mr-5">
-		<strong>Welcome</strong> / <span class="username_login"><a href="#" style="color: #333;"><?=$row['name']?></a></span>
+		<strong><?=lang('welcome')?></strong> / <span class="username_login"><a href="#" style="color: #333;"><?=$row['name']?></a></span>
 	</div>
 
 	<div class="langs mr-5">
@@ -142,11 +142,11 @@ $page = $this->router->fetch_method();
 	<ul class="nav nav-tabs" style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
 		<li class="nav-item">
 			<a class="nav-link <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>">Organization</a>
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?=lang('organization')?></a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure') ?>">Structure</a>
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure') ?>"><?=lang('structure')?></a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link btn btn-sm btn-outline-success2" href="#menu1">Menu 1</a>
@@ -175,25 +175,25 @@ $page = $this->router->fetch_method();
 						<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
 							<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
-							   role="tab" aria-controls="company">Company
+							   role="tab" aria-controls="company"><?=lang('company')?>
 							</a>
 							<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
-							   role="tab" aria-controls="department">Department
+							   role="tab" aria-controls="department"><?=lang('department')?>
 								<span class="badge badge-secondary badge-pill float-right">4</span>
 							</a>
 							<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
-							   role="tab" aria-controls="staff">Staff
+							   role="tab" aria-controls="staff"><?=lang('staff')?>
 								<span class="badge badge-secondary badge-pill float-right">2</span></a>
 							<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-							   role="tab" aria-controls="settings">Vehicles
+							   role="tab" aria-controls="settings"><?=lang('vehicle')?>
 								<span class="badge badge-secondary badge-pill float-right"></span>
 							</a>
 							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
 							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-							   role="tab" aria-controls="user">User
+							   role="tab" aria-controls="user"><?=lang('user')?>
 								<span class="badge badge-secondary badge-pill float-right"></span>
 							</a>
 						</div>

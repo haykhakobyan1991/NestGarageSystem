@@ -31,3 +31,13 @@ $lang['web_address'] = 'Интернет-адрес';
 $lang['general_information'] = 'Основная информация';
 $lang['status'] = 'Статус';
 $lang['account_type'] = 'Հաշվի Տեսակը';
+$lang['welcome'] = 'Добро пожаловать';
+
+$lang['company'] = 'Компания';
+$lang['organization'] = 'Организация';
+$lang['structure'] = 'Структура';
+$lang['department'] = 'Отделение';
+$lang['staff'] = 'Персонал';
+$lang['vehicle'] = 'Транспортное средство';
+$lang['user'] = 'Пользователь';
+

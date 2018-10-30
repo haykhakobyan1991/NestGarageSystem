@@ -30,4 +30,13 @@ $lang['web_address'] = 'Առցանց Հասցե';
 $lang['general_information'] = 'Հիմնական տվյալներ';
 $lang['status'] = 'Կարգավիճակ';
 $lang['account_type'] = 'Հաշվի Տեսակը';
+$lang['welcome'] = 'Բարի գալուստ';
+
+$lang['company'] = 'Ընկերություն';
+$lang['organization'] = 'Կազմակերպություն';
+$lang['structure'] = 'Կառուցվածք';
+$lang['department'] = 'Ստորաբաժանում';
+$lang['staff'] = 'Աշխատակազմ';
+$lang['vehicle'] = 'Փոխադրամիջոց';
+$lang['user'] = 'Օգտատեր';
 

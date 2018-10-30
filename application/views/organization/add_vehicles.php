@@ -639,7 +639,7 @@
 							<th scope="col">Per Days</th>
 							<th scope="col">More Info P\N</th>
 							<th scope="col">Remind Me days before</th>
-							<th scope="col">Next Alarm Date</th>
+							<th scope="col">Start Alarm Date</th>
 							<th scope="col">Delete</th>
 						</tr>
 						</thead>
@@ -651,22 +651,31 @@
 									   value="">
 							</td>
 							<td>
-								<input name="minimum[1]" class="form-control form-control-sm" type="text"
-									   placeholder="Value" value=""/>
+								<select name="value[1]"
+										class="selectpicker form-control form-control-sm dif_meter"
+										data-live-search="true"
+										data-size="5"
+										title="Select a value"
+								>
+									<? foreach ($value as $row) : ?>
+										<option
+											value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<? endforeach; ?>
+								</select>
 							</td>
 							<td>
-								<input name="remind_before[1]" class="form-control form-control-sm"
+								<input name="avg_exploitation[1]" class="form-control form-control-sm"
 									   type="text"
 									   placeholder="Avg. exploitation" value=""/>
 							</td>
 
 							<td>
-								<input name="remind_before[1]" class="form-control form-control-sm"
+								<input name="per_days[1]" class="form-control form-control-sm"
 									   type="text"
 									   placeholder="Per days" value=""/>
 							</td>
 							<td>
-								<input name="remind_before[1]" class="form-control form-control-sm"
+								<input name="more_info[1]" class="form-control form-control-sm"
 									   type="text"
 									   placeholder="More Info P\N" value=""/>
 							</td>
@@ -676,7 +685,7 @@
 									   placeholder="Remind Me  days before" value=""/>
 							</td>
 							<td>
-								<input name="date[1]" class="form-control form-control-sm" type="date"
+								<input name="start_alarm_date[1]" class="form-control form-control-sm" type="date"
 									   value=""/>
 							</td>
 							<td>
@@ -746,6 +755,9 @@
 		</div>
 	</form>
 </div>
+
+
+<div id="scripts"></div>
 
 
 <script src="<?= base_url('assets/js/bootstrap/typeahead.js') ?>"></script>
@@ -825,29 +837,42 @@
 	});
 	var n = 2;
 	$('.add_new_item').click(function () {
-		$('.new_items_tbody').append('<tr>\n' +
+
+
+
+
+		$('.new_items_tbody').append(
+			'<tr>\n' +
 			'<td>\n' +
 			'<input name="item[' + n + ']" class="form-control form-control-sm" type="text"\n' +
 			'   placeholder="Item Name"\n' +
 			'   value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input name="minimum[' + n + ']" class="form-control form-control-sm" type="text"\n' +
-			'   placeholder="Value" value=""/>\n' +
+			'<select name="value[' + n + ']"\n'+
+					'class="selectpicker form-control form-control-sm dif_meter"\n'+
+					'data-live-search="true"\n'+
+					'data-size="5"\n'+
+					'title="Select a value">\n'+
+					'<? foreach ($value as $row) : ?>\n'+
+						'<option\n'+
+							'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n'+
+					'<? endforeach; ?>\n'+
+			'</select>' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
+			'<input name="avg_exploitation[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="text"\n' +
 			'   placeholder="Avg. exploitation" value=""/>\n' +
 			'</td>\n' +
 			'\n' +
 			'<td>\n' +
-			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
+			'<input name="per_days[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="text"\n' +
 			'   placeholder="Per days" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
+			'<input name="more_info[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="text"\n' +
 			'   placeholder="More Info P\\N" value=""/>\n' +
 			'</td>\n' +
@@ -857,7 +882,7 @@
 			'   placeholder="Remind Me  days before" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<input name="date[' + n + ']" class="form-control form-control-sm" type="date"\n' +
+			'<input name="start_alarm_date[' + n + ']" class="form-control form-control-sm" type="date"\n' +
 			'   value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
@@ -865,10 +890,21 @@
 			'<i class="fa fa-trash"></i>\n' +
 			'</button>\n' +
 			'</td>\n' +
-			'</tr>');
+			'<script>' +
+			'$(\'select[name="value['+n+']"]\').selectpicker(\'refresh\');'+
+			'</'+
+			'script>\n'+
+			'</tr>'
+		);
+
+
+		$('.selectpicker').parent('div').children('button').css({'background': 'rgb(255, 255, 255)', 'color': 'rgb(108, 117, 125)', 'border': '1px solid rgb(206, 212, 218)'});
+
 
 		n++;
 	});
+
+
 	$(document).on('click', '.del_items_from_table', function () {
 		$(this).parent('td').parent('tr').remove();
 	});

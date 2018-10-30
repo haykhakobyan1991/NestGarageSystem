@@ -2060,7 +2060,19 @@ class Organization extends MX_Controller {
 
 		$result_insurance = $this->db->query($sql_insurance);
 
-		$data['insurance_type'] = $result_insurance->result_array();
+
+		$sql_value = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+				`value`
+			WHERE `status` = 1	
+		";
+
+		$result_value = $this->db->query($sql_value);
+
+		$data['value'] = $result_value->result_array();
 
 
 
@@ -2407,6 +2419,62 @@ class Organization extends MX_Controller {
 
 
 		$result = $this->db->query($sql);
+
+
+		//fleet details
+		$item = $this->input->post('item');
+		$value = $this->input->post('value');
+		$avg_exploitation = $this->input->post('avg_explotation');
+		$per_days = $this->input->post('per_days');
+		$more_info = $this->input->post('more_info');
+		$remind_before = $this->input->post('remind_before');
+		$start_alarm_date = $this->input->post('start_alarm_date');
+		$fleet_id = $this->db->insert_id();
+
+		$sql_fleet_details = "
+			INSERT INTO `nestgarage_system`.`fleet_details`
+				(`items`,
+				 `value_id`,
+				 `avg_exploitation`,
+				 `start_alarm_date`,
+				 `per_days`,
+				 `more_info`,
+				 `reminde_me`,
+				 `fleet_id`,
+				 `next_alarm_date`,
+				 `registrar_user_id`,
+				 `registration_date`,
+				 `status`)
+			VALUES
+		";
+
+		if(isset($item) && is_array($item)) :
+			foreach ($item as $i => $item_val) :
+
+				$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_EVEN);
+
+				$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
+				$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
+
+				$sql_fleet_details .= "(
+					".$this->load->db_value($item_val).",
+					".$this->load->db_value($value[$i]).",
+					".$this->load->db_value($avg_exploitation[$i]).",
+					".$this->load->db_value($start_alarm_date[$i]).",
+					".$this->load->db_value($per_days[$i]).",
+					".$this->load->db_value($more_info[$i]).",
+					".$this->load->db_value($remind_before[$i]).",
+					".$this->load->db_value($fleet_id[$i]).",
+					".$this->load->db_value($next_alarm_date[$i]).",
+					".$this->load->db_value($user_id).",
+					NOW(),
+					1
+				),";
+			endforeach;
+		endif;
+
+
+		echo $sql_fleet_details; die;
 
 
 

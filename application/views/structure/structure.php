@@ -3,11 +3,14 @@
 	.google-visualization-orgchart-node {
 		border: none;
 	}
+
 	td.google-visualization-orgchart-node.google-visualization-orgchart-node-medium img, td.google-visualization-orgchart-node.google-visualization-orgchart-node-medium.google-visualization-orgchart-nodesel img {
 		display: block;
 		margin: 0 auto;
-		width: 30px;height: 30px;
+		width: 30px;
+		height: 30px;
 	}
+
 	tbody {
 		transform: scale(0.9);
 	}
@@ -21,7 +24,7 @@
 	</div>
 	<div class="row" style="margin-left: 0;margin-right: 0;">
 		<div class="col-sm-6 col-md-6" id="dr"
-			 style="border: 1px solid #000;max-height: 600px;overflow: hidden;cursor:grab;-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;position: relative;"
+			 style="border: 1px solid #000;min-height: 450px;overflow: hidden;cursor:grab;-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;position: relative;"
 			 unselectable="on" onselectstart="return false;" onmousedown="return false;">
 			<div id="chart_div" style="z-index: 999;"></div>
 			<div style="position:absolute; left: 0;bottom: 0;padding:3px;background: #8e8f902e;">
@@ -62,41 +65,125 @@
 
 		// For each orgchart box, provide the name, manager, and tooltip to show.
 		data.addRows([
-			[{v: 'Mike', f: 'Mike<img src="https://bit.ly/2OibmNa"><input type="hidden" value="1" />'}, '', ''],
+			[
+				{v: '1', f: '1<input type="hidden" value="1" />'},
+				'',
+				''
+			],
 
-			[{v: 'Jim', f: 'Jim<img src="https://bit.ly/2OibmNa"><input type="hidden" value="2" />'}, {v: 'Mike', f: 'Mike<input type="hidden" value="1" />'}, ''],
+			[
+				{v: '1.1', f: '1.1<input type="hidden" value="1.1" />'},
+				{v: '1', f: '1<input type="hidden" value="1" />'},
+				''
+			],
 
-			[{v: 'Alice', f: 'Alice<img src="https://bit.ly/2OibmNa">'}, 'Mike', ''],
+			[
+				{v: '1.2', f: '1.2<input type="hidden" value="1.2" />'},
+				{v: '1', f: '1<input type="hidden" value="1" />'},
+				''
+			],
 
-			[{v: 'fff', f: 'fff<img src="https://bit.ly/2OibmNa">'}, 'Alice', ''],
+			[
+				{v: '1.2.1', f: '1.2.1<input type="hidden" value="1.2.1" />'},
+				{v: '1.2', f: '1.2<input type="hidden" value="1..2" />'},
+				''
+			],
 
-			['Alieeece', 'Alice', ''],
+			[
+				{v: '1.2.2', f: '1.2.2<input type="hidden" value="1.2.2" />'},
+				{v: '1.2', f: '1.2<input type="hidden" value="1.2" />'},
+				''
+			],
 
-			['Alieefece', 'Alieeece', ''],
+			[
+				{v: '1.2.2.1', f: '1.2.2.1<input type="hidden" value="1.2.2.1" />'},
+				{v: '1.2.2', f: '1.2.2<input type="hidden" value="1.2.2" />'},
+				''
+			],
 
-			['Alieeedce', 'Alieeece', ''],
+			[
+				{v: '1.2.2.2', f: '1.2.2.2<input type="hidden" value="1.2.2.2" />'},
+				{v: '1.2.2', f: '1.2.2<input type="hidden" value="1.2.2" />'},
+				''
+			],
 
-			['Alieevece', 'Alieeece', ''],
+			[
+				{v: '1.2.2.3', f: '1.2.2.3<input type="hidden" value="1.2.2.3" />'},
+				{v: '1.2.2', f: '1.2.2<input type="hidden" value="1.2.2" />'},
+				''
+			],
 
-			['pppp', 'Alieefece', ''],
+			[
+				{v: '1.2.2.2.1', f: '1.2.2.2.1<input type="hidden" value="1.2.2.2.1" />'},
+				{v: '1.2.2.2', f: '1.2.2.2<input type="hidden" value="1.2.2.2" />'},
+				''
+			],
 
-			['Alifffce', 'Alice', ''],
+			[
+				{v: '1.2.2.2.2', f: '1.2.2.2.2<input type="hidden" value="1.2.2.2.2" />'},
+				{v: '1.2.2.2', f: '1.2.2.2.2<input type="hidden" value="1.2.2.2" />'},
+				''
+			],
 
-			['Addddddlice', 'Mike', ''],
+			[
+				{v: '1.2.2.2.3', f: '1.2.2.2.3<input type="hidden" value="1.2.2.2.3" />'},
+				{v: '1.2.2.2', f: '1.2.2.2<input type="hidden" value="1.2.2.2" />'},
+				''
+			],
 
-			['xxxxxx', 'Addddddlice', ''],
+			[
+				{v: '1.2.3', f: '1.2.3<input type="hidden" value="1.2.3" />'},
+				{v: '1.2', f: '1.2<input type="hidden" value="1.2" />'},
+				''
+			],
 
-			['wwwwwwwwww', 'Addddddlice', ''],
+			[
+				{v: '1.3', f: '1.3<input type="hidden" value="1.3" />'},
+				{v: '1', f: '1<input type="hidden" value="1" />'},
+				''
+			],
 
-			['Bob', 'Jim', 'Bob Sponge'],
+			[
+				{v: '1.3.1', f: '1.3.1<input type="hidden" value="1.3.1" />'},
+				{v: '1.3', f: '1.3<input type="hidden" value="1.3" />'},
+				''
+			],
 
-			['Carol', 'Bob', ''],
+			[
+				{v: '1.3.2', f: '1.3.2<input type="hidden" value="1.3.2" />'},
+				{v: '1.3', f: '1.3<input type="hidden" value="1.3" />'},
+				''
+			],
 
-			['jane', 'Bob', ''],
+			[
+				{v: '1.1.1', f: '1.1.1<input type="hidden" value="1.1.1" />'},
+				{v: '1.1', f: '1.1<input type="hidden" value="1.1" />'},
+				''
+			],
 
-			['dddd', 'Bob', ''],
+			[
+				{v: '1.1.1.1', f: '1.1.1.1<input type="hidden" value="1.1.1.1" />'},
+				{v: '1.1.1', f: '1.1.1<input type="hidden" value="1.1.1" />'},
+				''
+			],
 
-			['ZZZZ', 'Bob', '']
+			[
+				{v: '1.1.1.2', f: '1.1.1.2<input type="hidden" value="1.1.1.2" />'},
+				{v: '1.1.1', f: '1.1.1<input type="hidden" value="1.1.1" />'},
+				''
+			],
+
+			[
+				{v: '1.1.1.3', f: '1.1.1.3<input type="hidden" value="1.1.1.3" />'},
+				{v: '1.1.1', f: '1.1.1<input type="hidden" value="1.1.1" />'},
+				''
+			],
+
+			[
+				{v: '1.1.1.4', f: '1.1.1.4<input type="hidden" value="1.1.1.4" />'},
+				{v: '1.1.1', f: '1.1.1<input type="hidden" value="1.1.1" />'},
+				''
+			]
 
 		]);
 
@@ -111,7 +198,7 @@
 	var content = document.getElementById('chart_div').getElementsByTagName('tbody');
 	var zX = 0.9;
 	$('body').on('keydown', function (e) {
-		if (e.ctrlKey && (e.keyCode == 48 || e.keyCode == 96) ) {
+		if (e.ctrlKey && (e.keyCode == 48 || e.keyCode == 96)) {
 			$('tbody').css('transform', 'scale(0.9)');
 			$('#chart_div').css({'left': '0', 'top': '0'});
 			zX = 0.9;
@@ -138,5 +225,19 @@
 	$(document).ready(function () {
 		$("#chart_div").draggable();
 	});
+
+	$(document).on('click', '.google-visualization-orgchart-node', function() {
+
+		// Active Class google-visualization-orgchart-nodesel
+
+		var ordering = $(this).children('input').val();
+
+		var arr = ordering.split('.');
+
+		console.log(arr);
+
+
+
+	})
 
 </script>

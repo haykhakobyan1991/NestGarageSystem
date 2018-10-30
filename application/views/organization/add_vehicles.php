@@ -1,5 +1,6 @@
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;"
 	 aria-labelledby="list-company-list">
+<form >
 	<!-- Error Message -->
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 		<div class="container">
@@ -21,7 +22,7 @@
 			<p class="font-weight-bold display-5 mt-3 mr-3">Main</p>
 			<hr class="my-4">
 			<!-- Main Start -->
-			<form class="mt-3 mt-md-3">
+			<div class="mt-3 mt-md-3">
 
 				<div class="first_row">
 					<div class="form-group row ">
@@ -222,13 +223,13 @@
 						<input type="checkbox" class="form-control form-control-sm">
 					</div>
 				</div>
-			</form>
+			</div>
 			<!-- Main End -->
 			<br>
 			<p class="font-weight-bold display-5 mt-3 mr-3">Info</p>
 			<hr class="my-4">
 			<!-- Info Star -->
-			<form class="mt-3 mt-md-3">
+			<div class="mt-3 mt-md-3">
 				<div class="card">
 					<div class="card-header">
 						<h5 class="mb-0">
@@ -243,14 +244,16 @@
 								<label
 									class="col-sm-2 col-form-label" style="font-size: 12px;">Սեփականատեր</label>
 								<div class="col-sm-6">
-									<input style="" value="" name="" type="text"
+									<input style="" value="" name="owner" type="text"
 										   class="form-control form-control-sm"
 										   placeholder="Սեփականատեր">
+									<input name="owner_id" type="hidden">
 								</div>
 								<div class="col-sm-4">
 									<div class="form-group">
 										<label for="exampleFormControlFile1"></label>
 										<input type="file"
+											   name="regitered_file"
 											   class="form-control-file"
 											   id="exampleFormControlFile1">
 									</div>
@@ -261,7 +264,7 @@
 									class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
 									հասցե</label>
 								<div class="col-sm-6">
-									<input value="" name="" type="text"
+									<input value="" name="regitered_address" type="text"
 										   class="form-control form-control-sm mt-2"
 										   placeholder="Հաշվառման հասցե">
 								</div>
@@ -270,7 +273,7 @@
 								<label style="font-size: 12px;"
 									   class="col-sm-2 col-form-label">Հաշվառման համար</label>
 								<div class="col-sm-6">
-									<input value="" name="" type="text"
+									<input value="" name="regitered_number" type="text"
 										   class="form-control form-control-sm mt-2"
 										   placeholder="Հաշվառման համար">
 								</div>
@@ -304,7 +307,7 @@
 											<div class="form-group">
 												<label>Company</label>
 												<input type="text"
-													   name="company_1"
+													   name="company[1]"
 													   class="form-control form-control-sm"
 													   placeholder="Company">
 											</div>
@@ -327,7 +330,7 @@
 											<div class="form-group">
 												<label>Reference</label>
 												<input type="text"
-													   name="reference_1"
+													   name="reference[1]"
 													   class="form-control form-control-sm"
 													   placeholder="Reference">
 											</div>
@@ -335,7 +338,7 @@
 
 										<div class="col-md-3">
 											<label>Epired Date</label>
-											<input type="date" name="expiration_1"
+											<input type="date" name="expiration[1]"
 												   max="3000-12-31"
 												   min="1000-01-01"
 
@@ -347,10 +350,15 @@
 												class="col-form-label"
 												style="font-size: 12px;">Type</label>
 											<div class="">
-												<select value=""
-														class="selectpicker form-control form-control-sm dif_meter">
-													<option>type1</option>
-													<option>type2</option>
+												<select name="type[1]"
+														class="selectpicker form-control form-control-sm dif_meter"
+														data-live-search="true"
+														data-size="5"
+														title="Select a insurance type"
+												>
+													<? foreach ($insurance_type as $row) : ?>
+														<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+													<? endforeach; ?>
 												</select>
 											</div>
 										</div>
@@ -384,7 +392,7 @@
 											<div class="form-group">
 												<label>Company</label>
 												<input type="text"
-													   name="company_1"
+													   name="company[2]"
 													   class="form-control form-control-sm"
 													   placeholder="Company">
 											</div>
@@ -396,7 +404,7 @@
 													   class="btn btn-sm btn-outline-secondary">
 													<span>Brows file</span>
 													<input class="btn_input"
-														   name="file_1" type="file"
+														   name="file_2" type="file"
 														   hidden style="display: none;"
 														   value="">
 												</label>
@@ -407,7 +415,7 @@
 											<div class="form-group">
 												<label>Reference</label>
 												<input type="text"
-													   name="reference_1"
+													   name="reference[2]"
 													   class="form-control form-control-sm"
 													   placeholder="Reference">
 											</div>
@@ -415,7 +423,7 @@
 
 										<div class="col-md-3">
 											<label>Epired Date</label>
-											<input type="date" name="expiration_1"
+											<input type="date" name="expiration[2]"
 												   max="3000-12-31"
 												   min="1000-01-01"
 
@@ -427,10 +435,15 @@
 												class="col-form-label"
 												style="font-size: 12px;">Type</label>
 											<div class="">
-												<select value=""
-														class="selectpicker form-control form-control-sm dif_meter">
-													<option>type1</option>
-													<option>type2</option>
+												<select name="type[2]"
+														class="selectpicker form-control form-control-sm dif_meter"
+														data-live-search="true"
+														data-size="5"
+														title="Select a insurance type"
+												>
+													<? foreach ($insurance_type as $row) : ?>
+														<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+													<? endforeach; ?>
 												</select>
 											</div>
 										</div>
@@ -463,7 +476,7 @@
 											<div class="form-group">
 												<label>Company</label>
 												<input type="text"
-													   name="company_1"
+													   name="company[3]"
 													   class="form-control form-control-sm"
 													   placeholder="Company">
 											</div>
@@ -475,7 +488,7 @@
 													   class="btn btn-sm btn-outline-secondary">
 													<span>Brows file</span>
 													<input class="btn_input"
-														   name="file_1" type="file"
+														   name="file_3" type="file"
 														   hidden style="display: none;"
 														   value="">
 												</label>
@@ -486,7 +499,7 @@
 											<div class="form-group">
 												<label>Reference</label>
 												<input type="text"
-													   name="reference_1"
+													   name="reference[3]"
 													   class="form-control form-control-sm"
 													   placeholder="Reference">
 											</div>
@@ -494,7 +507,7 @@
 
 										<div class="col-md-3">
 											<label>Epired Date</label>
-											<input type="date" name="expiration_1"
+											<input type="date" name="expiration[3]"
 												   max="3000-12-31"
 												   min="1000-01-01"
 
@@ -506,10 +519,15 @@
 												class="col-form-label"
 												style="font-size: 12px;">Type</label>
 											<div class="">
-												<select value=""
-														class="selectpicker form-control form-control-sm dif_meter">
-													<option>type1</option>
-													<option>type2</option>
+												<select name="type[3]"
+														class="selectpicker form-control form-control-sm dif_meter"
+														data-live-search="true"
+														data-size="5"
+														title="Select a insurance type"
+												>
+													<? foreach ($insurance_type as $row) : ?>
+														<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+													<? endforeach; ?>
 												</select>
 											</div>
 										</div>
@@ -542,7 +560,7 @@
 											<div class="form-group">
 												<label>Company</label>
 												<input type="text"
-													   name="company_1"
+													   name="company[4]"
 													   class="form-control form-control-sm"
 													   placeholder="Company">
 											</div>
@@ -554,7 +572,7 @@
 													   class="btn btn-sm btn-outline-secondary">
 													<span>Brows file</span>
 													<input class="btn_input"
-														   name="file_1" type="file"
+														   name="file_4" type="file"
 														   hidden style="display: none;"
 														   value="">
 												</label>
@@ -565,7 +583,7 @@
 											<div class="form-group">
 												<label>Reference</label>
 												<input type="text"
-													   name="reference_1"
+													   name="reference[4]"
 													   class="form-control form-control-sm"
 													   placeholder="Reference">
 											</div>
@@ -573,7 +591,7 @@
 
 										<div class="col-md-3">
 											<label>Epired Date</label>
-											<input type="date" name="expiration_1"
+											<input type="date" name="expiration[4]"
 												   max="3000-12-31"
 												   min="1000-01-01"
 
@@ -585,10 +603,15 @@
 												class="col-form-label"
 												style="font-size: 12px;">Type</label>
 											<div class="">
-												<select value=""
-														class="selectpicker form-control form-control-sm dif_meter">
-													<option>type1</option>
-													<option>type2</option>
+												<select name="type[4]"
+														class="selectpicker form-control form-control-sm dif_meter"
+														data-live-search="true"
+														data-size="5"
+														title="Select a insurance type"
+												>
+													<? foreach ($insurance_type as $row) : ?>
+														<option  value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+													<? endforeach; ?>
 												</select>
 											</div>
 										</div>
@@ -690,14 +713,18 @@
 						</div>
 					</div>
 				</div>
-			</form>
+			</div>
 			<!-- Info End -->
 			<div class="text-right mt-4 pb-2">
 				<span id="submit" class="btn btn-outline-success">Save</span>
 			</div>
 		</div>
 	</div>
+</form>
 </div>
+
+
+<script src="<?=base_url('assets/js/bootstrap/typeahead.js')?>"></script>
 <script>
 
 	// create company
@@ -724,7 +751,7 @@
 					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
 					close_message();
-					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company')?>";
+					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles')?>";
 					$(location).attr('href', url);
 
 				} else {
@@ -834,4 +861,32 @@
 		}
 
 	});
+
+	// search in staff
+	var url_owner = '<?=base_url('System_main/search_owner/')?>';
+	var user_id = '<?=$this->session->user_id?>';
+
+	$.get(url_owner, {user_id: user_id}, function(data){
+		// use a data source with 'id' and 'name' keys
+		$("input[name=\"owner\"]").typeahead({
+
+			source: function (query, process) {
+				objects = [];
+				map = {};
+				$.each(data, function (i, object) {
+					map[object.name] = object;
+					objects.push(object.name);
+				});
+				process(objects);
+
+				$('input[name="owner_id"]').val('');
+			},
+			updater: function (item) {
+				$('input[name="owner_id"]').val(map[item].id);
+				return item;
+			}
+		});
+	},'json');
+
+
 </script>

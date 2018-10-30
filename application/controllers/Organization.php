@@ -2049,6 +2049,20 @@ class Organization extends MX_Controller {
 		$data['fuel'] = $result_fuel->result_array();
 
 
+		$sql_insurance = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+				`insurance_type`
+			WHERE `status` = 1	
+		";
+
+		$result_insurance = $this->db->query($sql_insurance);
+
+		$data['insurance_type'] = $result_insurance->result_array();
+
+
 
 		$this->layout->view('organization/add_vehicles', $data);
 
@@ -2106,8 +2120,10 @@ class Organization extends MX_Controller {
 		}
 
 
-
-		$staff = implode(',', $this->input->post('staff'));
+		$staff = $this->input->post('staff');
+		if($staff != '') {
+			$staff = implode(',', $this->input->post('staff'));
+		}
 		$brand = $this->input->post('brand');
 		$model = $this->input->post('model');
 		$fleet_type = $this->input->post('fleet_type');
@@ -2123,8 +2139,210 @@ class Organization extends MX_Controller {
 		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
 
 
+		//info
+		$owner = '';
+		$owner_staff_id = $this->input->post('owner_id');
+		if($owner_staff_id == '') {
+			$owner = $this->input->post('owner');
+		}
+		$regitered_address = $this->input->post('regitered_address');
+		$regitered_number = $this->input->post('regitered_number');
+		$regitered_file = '';
 
 
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file');
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
+
+		if(isset($_FILES['regitered_file']['name']) AND $_FILES['regitered_file']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('regitered_file')) {
+				$validation_errors = array('regitered_file' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$regitered_file_arr = $this->upload->data();
+
+			$regitered_file = $regitered_file_arr['file_name'];
+
+		}
+
+
+
+		$company = $this->input->post('company');
+		//$file = $this->input->post('file');
+		$reference = $this->input->post('reference');
+		$expiration = $this->input->post('expiration');
+		$type = $this->input->post('type');
+
+		//file config insurance
+		$config_f_i['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/insurance');
+		$config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f_i['max_size'] = '4097152'; //4 MB
+		$config_f_i['file_name'] = $this->uname(3, 8);
+
+
+		$file_1 = '';
+		$ext_1 = '';
+		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_1')) {
+				$validation_errors = array('file_1' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_1_arr = $this->upload->data();
+
+			$file_1 = $file_1_arr['file_name'];
+
+			$file_1_array = explode('.', $file_1);
+
+			$file_1 = $file_1_array[0];
+			$ext_1 = $file_1_array[1];
+
+
+		}
+
+
+		$file_2 = '';
+		$ext_2 = '';
+		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_2')) {
+				$validation_errors = array('file_2' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+
+			$file_2_arr = $this->upload->data();
+
+			$file_2 = $file_2_arr['file_name'];
+
+			$file_2_array = explode('.', $file_2);
+
+			$file_2 = $file_2_array[0];
+			$ext_2 = $file_2_array[1];
+
+
+		}
+
+
+		$file_3 = '';
+		$ext_3 = '';
+		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_3')) {
+				$validation_errors = array('file_3' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+
+			$file_3_arr = $this->upload->data();
+
+			$file_3 = $file_3_arr['file_name'];
+
+			$file_3_array = explode('.', $file_3);
+
+			$file_3 = $file_3_array[0];
+			$ext_3 = $file_3_array[1];
+
+
+		}
+
+
+		$file_4 = '';
+		$ext_4 = '';
+		if(isset($_FILES['file_4']['name']) AND $_FILES['file_2']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_4')) {
+				$validation_errors = array('file_4' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_4_arr = $this->upload->data();
+
+			$file_4 = $file_4_arr['file_name'];
+
+			$file_4_array = explode('.', $file_4);
+
+			$file_4 = $file_4_array[0];
+			$ext_4 = $file_4_array[1];
+
+
+		}
 
 
 
@@ -2155,6 +2373,35 @@ class Organization extends MX_Controller {
 					`other` = ".$this->load->db_value($other).",
 					`registrar_user_id` = ".$this->load->db_value($user_id).",
 					`registration_date` = NOW(),
+					`owner_staff_id` = ".$this->load->db_value($owner_staff_id).",
+					`owner` = ".$this->load->db_value($owner).",
+					`regitered_address` = ".$this->load->db_value($regitered_address).",
+					`regitered_number` = ".$this->load->db_value($regitered_number).",
+					`regitered_file` = ".$this->load->db_value($regitered_file).", 
+					`insurance_company_1` = ".$this->load->db_value($company[1]).",
+				    `insurance_referance_1` = ".$this->load->db_value($reference[1]).",
+				    `insurance_type_id_1` = ".$this->load->db_value($type[1]).",
+				    `insurance_expiration_1` = ".$this->load->db_value($expiration[1]).",
+				    `insurance_file_1` = ".$this->load->db_value($file_1).",
+				    `insurance_ext_1` = ".$this->load->db_value($ext_1).",
+				    `insurance_company_2` = ".$this->load->db_value($company[2]).",
+				    `insurance_referance_2` = ".$this->load->db_value($reference[2]).",
+				    `insurance_type_id_2` = ".$this->load->db_value($type[2]).",
+				    `insurance_expiration_2` = ".$this->load->db_value($expiration[2]).",
+				    `insurance_file_2` = ".$this->load->db_value($file_2).",
+				    `insurance_ext_2` = ".$this->load->db_value($ext_2).",
+				    `insurance_company_3` = ".$this->load->db_value($company[3]).",
+				    `insurance_referance_3` = ".$this->load->db_value($reference[3]).",
+				    `insurance_type_id_3` = ".$this->load->db_value($type[3]).",
+				    `insurance_expiration_3` = ".$this->load->db_value($expiration[3]).",
+				    `insurance_file_3` = ".$this->load->db_value($file_3).",
+				    `insurance_ext_3` = ".$this->load->db_value($ext_3).",
+				    `insurance_company_4` = ".$this->load->db_value($company[4]).",
+				    `insurance_referance_4` = ".$this->load->db_value($reference[1]).",
+				    `insurance_type_id_4` = ".$this->load->db_value($type[4]).",
+				    `insurance_expiration_4` = ".$this->load->db_value($expiration[4]).",
+				    `insurance_file_4` = ".$this->load->db_value($file_4).",
+				    `insurance_ext_4` = ".$this->load->db_value($ext_4).",
 					`status` = ".$this->load->db_value($status)."
 			";
 

@@ -123,6 +123,35 @@ class System_main extends CI_Controller {
 
 
 
+	public function search_owner() {
+
+
+		$user_id = $this->input->get('user_id');
+
+		$sql_row = "SELECT company_id FROM user WHERE id = ".$this->load->db_value($user_id)." ";
+		$row = $this->db->query($sql_row)->row_array();
+		$company_id = $row['company_id'];
+
+
+		 $sql = "
+				SELECT 
+					`staff`.`id`, 
+					CONCAT_WS(' ', `staff`.`first_name`, `staff`.`last_name`) AS `name` 
+				  FROM 
+				    `staff` 
+				  LEFT JOIN 
+				  	  `user` ON `staff`.`registrar_user_id` = `user`.`id`
+				  WHERE `staff`.`status` = 1 
+				   AND  `user`.`company_id` = ".$this->load->db_value($company_id)."";
+		$result = $this->db->query($sql);
+
+		$array = $result->result_array();
+
+		echo json_encode($array);
+	}
+
+
+
 
 
 

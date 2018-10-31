@@ -2061,10 +2061,15 @@ class Organization extends MX_Controller {
 		$result_insurance = $this->db->query($sql_insurance);
 
 
+		$data['insurance_type'] = $result_insurance->result_array();
+
+
 		$sql_value = "
 			SELECT
 				`id`,
-				`title_".$lng."` AS `title`
+				`title_".$lng."` AS `title`,
+				`type`,
+				`convert`
 			 FROM
 				`value`
 			WHERE `status` = 1	
@@ -2143,8 +2148,9 @@ class Organization extends MX_Controller {
 		$production_date = $this->input->post('production_date');
 		$color = $this->input->post('color');
 		$vin = $this->input->post('vin');
-		$engine_power = $this->input->post('engine_power');
+		$engine_power = str_replace(",", ".", $this->input->post('engine_power'));
 		$fuel = $this->input->post('fuel');
+		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
 		$mileage = $this->input->post('mileage');
 		$odometer = $this->input->post('odometer');
 		$other = $this->input->post('other');
@@ -2160,6 +2166,23 @@ class Organization extends MX_Controller {
 		$regitered_address = $this->input->post('regitered_address');
 		$regitered_number = $this->input->post('regitered_number');
 		$regitered_file = '';
+
+		$value_1 = $this->input->post('value_1');
+		$value1_day = str_replace(",", ".", $this->input->post('value1_day'));
+		$auto_increment = ($this->input->post('auto_increment') != '' ? $this->input->post('auto_increment') : '-1');
+		$use_of_secondary_meter = $this->input->post('use_of_secondary_meter');
+		$value_2 = '';
+		$value2_day = '';
+		$convert = $this->input->post('convert');
+
+		if($use_of_secondary_meter == 1) {
+			$value_2 = $this->input->post('value_2');
+			if($value_2 != '') {
+				$value2_day = ($value1_day * $convert[$value_2]);
+			}
+
+		}
+
 
 
 		//file config
@@ -2358,6 +2381,63 @@ class Organization extends MX_Controller {
 
 
 
+
+		//fleet details variables
+		$item = $this->input->post('item');
+		$value = $this->input->post('value');
+		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
+		$per_days = str_replace(",", ".", $this->input->post('per_days'));
+		$more_info = $this->input->post('more_info');
+		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
+		$start_alarm_date = $this->input->post('start_alarm_date');
+		// end fleet details variables
+
+		// validation fleet details
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val == '') :
+					$n = 1;
+					$validation_errors = array('item['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
+					$n = 1;
+					$validation_errors = array('per_days['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($value[$i] == '') :
+					$n = 1;
+					$validation_errors = array('value['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
+					$n = 1;
+					$validation_errors = array('avg_exploitation['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
+					$n = 1;
+					$validation_errors = array('remind_before['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($start_alarm_date[$i] == '') :
+					$n = 1;
+					$validation_errors = array('start_alarm_date['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+			endforeach;
+		endif;
+		// end of validation fleet details
+
+
+
+
+
 		if($n == 1) {
 			echo json_encode($messages);
 			return false;
@@ -2367,6 +2447,10 @@ class Organization extends MX_Controller {
 
 
 		//todo mail ---
+
+
+
+
 
 
 		$sql = "
@@ -2379,6 +2463,7 @@ class Organization extends MX_Controller {
 					`vin_code` = ".$this->load->db_value($vin).",
 					`engine_power` = ".$this->load->db_value($engine_power).",
 					`fuel_id` = ".$this->load->db_value($fuel).",
+					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
 					`mileage` =  ".$this->load->db_value($mileage).",
 					`odometer` = ".$this->load->db_value($odometer).",
 					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
@@ -2387,6 +2472,11 @@ class Organization extends MX_Controller {
 					`registration_date` = NOW(),
 					`owner_staff_id` = ".$this->load->db_value($owner_staff_id).",
 					`owner` = ".$this->load->db_value($owner).",
+					`value1_id` = ".$this->load->db_value($value_1).",
+					`value2_id` = ".$this->load->db_value($value_2).",
+					`value1_day` = ".$this->load->db_value($value1_day).",
+					`value2_day` = ".$this->load->db_value($value2_day).",
+					`auto_increment` = ".$this->load->db_value($auto_increment).",
 					`regitered_address` = ".$this->load->db_value($regitered_address).",
 					`regitered_number` = ".$this->load->db_value($regitered_number).",
 					`regitered_file` = ".$this->load->db_value($regitered_file).", 
@@ -2419,17 +2509,10 @@ class Organization extends MX_Controller {
 
 
 		$result = $this->db->query($sql);
-
-
-		//fleet details
-		$item = $this->input->post('item');
-		$value = $this->input->post('value');
-		$avg_exploitation = $this->input->post('avg_explotation');
-		$per_days = $this->input->post('per_days');
-		$more_info = $this->input->post('more_info');
-		$remind_before = $this->input->post('remind_before');
-		$start_alarm_date = $this->input->post('start_alarm_date');
 		$fleet_id = $this->db->insert_id();
+
+
+
 
 		$sql_fleet_details = "
 			INSERT INTO `nestgarage_system`.`fleet_details`
@@ -2448,10 +2531,13 @@ class Organization extends MX_Controller {
 			VALUES
 		";
 
-		if(isset($item) && is_array($item)) :
-			foreach ($item as $i => $item_val) :
 
-				$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_EVEN);
+
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val != '') :
+
+				$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_ODD);
 
 				$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
 				$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
@@ -2464,18 +2550,21 @@ class Organization extends MX_Controller {
 					".$this->load->db_value($per_days[$i]).",
 					".$this->load->db_value($more_info[$i]).",
 					".$this->load->db_value($remind_before[$i]).",
-					".$this->load->db_value($fleet_id[$i]).",
+					".$this->load->db_value($fleet_id).",
 					".$this->load->db_value($next_alarm_date[$i]).",
 					".$this->load->db_value($user_id).",
 					NOW(),
 					1
 				),";
+
+				endif;
 			endforeach;
 		endif;
 
 
-		echo $sql_fleet_details; die;
+		$sql_fleet_details = substr($sql_fleet_details, 0, -1);
 
+		$this->db->query($sql_fleet_details);
 
 
 

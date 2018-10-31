@@ -188,6 +188,14 @@
 					</div>
 					<div class="form-group row">
 						<label
+							class="col-sm-2 col-form-label">Միջին ծախս 100 կմ</label>
+						<div class="col-sm-10">
+							<input value="" min="0" name="fuel_avg_consumption" type="number" class="form-control form-control-sm"
+								   placeholder="Միջին ծախս 100 կմ">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label
 							class="col-sm-2 col-form-label">Վազք</label>
 						<div class="col-sm-10">
 							<input value="" min="0" name="mileage" type="number" class="form-control form-control-sm"
@@ -665,13 +673,13 @@
 							</td>
 							<td>
 								<input name="avg_exploitation[1]" class="form-control form-control-sm"
-									   type="text"
+									   type="number"
 									   placeholder="Avg. exploitation" value=""/>
 							</td>
 
 							<td>
 								<input name="per_days[1]" class="form-control form-control-sm"
-									   type="text"
+									   type="number"
 									   placeholder="Per days" value=""/>
 							</td>
 							<td>
@@ -681,8 +689,8 @@
 							</td>
 							<td>
 								<input name="remind_before[1]" class="form-control form-control-sm"
-									   type="text"
-									   placeholder="Remind Me  days before" value=""/>
+									   type="number"
+									   placeholder="Remind Me  days before"/>
 							</td>
 							<td>
 								<input name="start_alarm_date[1]" class="form-control form-control-sm" type="date"
@@ -705,43 +713,74 @@
 							class="col-sm-2 col-form-label"
 							style="font-size: 12px;">Type of meter</label>
 						<div class="col-sm-6">
-							<select value=""
-									class=" form-control form-control-sm dif_meter">
-								<option>km</option>
-								<option>mile</option>
+							<select name="value_1"
+									class="selectpicker form-control form-control-sm dif_meter"
+									data-size="5"
+									title="Choose..."
+							>
+								<?
+								foreach ($value as $row) :
+									if ($row['type'] == 1) :
+										?>
+										<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<?
+									endif;
+								endforeach;
+								?>
 							</select>
 						</div>
 					</div>
 					<div class="container mt-md-3 mt-3">
 						<div class="row">
 							<div class="form-group form-check mt-md-3 mt-3 col-sm-4">
-								<input type="checkbox" class="form-check-input" id="exampleCheck1">
+								<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
+									   id="exampleCheck1">
 								<label class="form-check-label" for="exampleCheck1">auto increment?</label>
 							</div>
 							<div class="col-sm-3 mt-3">
-								<input type="text" class="orm-control form-control-sm" placeholder=""/>
+								<input name="value1_day" type="text" class="orm-control form-control-sm"
+									   placeholder=""/>
 							</div>
-							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text">km</span>/day</p>
+							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text"></span>/day</p>
 							</div>
 						</div>
 					</div>
 					<div class="card">
 						<h5 class="card-header">Secondary meter</h5>
 						<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
-							<input type="checkbox" class="form-check-input" id="exampleCheck11">
+							<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
+								   id="exampleCheck11">
 							<label class="form-check-label" for="exampleCheck11">Use of secondary
 								meter</label>
 						</div>
 						<div class="card-body">
 							<div class="form-group row mb-0">
+
 								<label
 									class="col-sm-2 col-form-label"
 									style="font-size: 12px;">Type of meter</label>
 								<div class="col-sm-6">
-									<select value="" class=" form-control form-control-sm">
-										<option>km</option>
-										<option>mile</option>
+									<select name="value_2"
+											class="selectpicker form-control form-control-sm "
+											data-size="5"
+											title="Choose..."
+									>
+										<?
+										$convert = '';
+										foreach ($value as $row) :
+											if ($row['type'] == 1) :
+												$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
+												?>
+												<option value="<?= $row['id'] ?>">
+													<?= $row['title'] ?>
+												</option>
+
+											<?
+											endif;
+										endforeach;
+										?>
 									</select>
+									<?= $convert ?>
 								</div>
 							</div>
 						</div>
@@ -769,7 +808,6 @@
 		e.preventDefault();
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');
-		$('input').parent('td').removeClass('border border-danger');
 		$('select').parent('div').children('button').removeClass('border border-danger');
 		$.ajax({
 			url: url,
@@ -798,13 +836,11 @@
 								if (value != '') {
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
 									$('.alert-danger').removeClass('d-none');
 									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
 								}
 							});
 						});
@@ -862,13 +898,13 @@
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="avg_exploitation[' + n + ']" class="form-control form-control-sm"\n' +
-			'   type="text"\n' +
-			'   placeholder="Avg. exploitation" value=""/>\n' +
+			'type="number"\n' +
+			'placeholder="Avg. exploitation" />\n' +
 			'</td>\n' +
 			'\n' +
 			'<td>\n' +
 			'<input name="per_days[' + n + ']" class="form-control form-control-sm"\n' +
-			'   type="text"\n' +
+			'   type="number"\n' +
 			'   placeholder="Per days" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
@@ -878,7 +914,7 @@
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
-			'   type="text"\n' +
+			'   type="number"\n' +
 			'   placeholder="Remind Me  days before" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
@@ -909,7 +945,8 @@
 		$(this).parent('td').parent('tr').remove();
 	});
 	$('.dif_meter').on('change', function () {
-		$('.dif_meter_text').text($(this).val());
+		$('.dif_meter_text').text($(this).children('option:selected').text());
+
 	});
 
 	// Input type File Staff

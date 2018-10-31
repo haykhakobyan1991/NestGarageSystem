@@ -167,9 +167,6 @@ $page = $this->router->fetch_method();
 		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
 
 			<div class="row">
-
-
-
 					<!-- Vertical Tabs Start-->
 					<div class="col-sm-12 col-md-3" >
 						<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">

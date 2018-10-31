@@ -707,6 +707,7 @@ $i = '';
 	});
 
 
+
 	$(document).on('click', '.copy_btn', function () {
 		var activity_state_region = $('input[name="activity_state_region"]').val();
 		var activity_city = $('input[name="activity_city"]').val();

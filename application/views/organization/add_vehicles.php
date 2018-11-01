@@ -697,9 +697,7 @@
 									   value=""/>
 							</td>
 							<td>
-								<button type="button" class="btn btn-sm btn-light del_items_from_table">
-									<i class="fa fa-trash"></i>
-								</button>
+
 							</td>
 						</tr>
 						</tbody>
@@ -738,7 +736,7 @@
 								<label class="form-check-label" for="exampleCheck1">auto increment?</label>
 							</div>
 							<div class="col-sm-3 mt-3">
-								<input name="value1_day" type="text" class="orm-control form-control-sm"
+								<input name="value1_day" type="number" class="orm-control form-control-sm"
 									   placeholder=""/>
 							</div>
 							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text"></span>/day</p>

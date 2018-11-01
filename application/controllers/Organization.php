@@ -319,10 +319,62 @@ class Organization extends MX_Controller {
 		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
 
+
+		$sql = "
+			SELECT 
+			  `fleet`.`id`,
+			  GROUP_CONCAT(
+				CONCAT(
+				  '<span class=\"m-1 badge badge-info\">',
+				  CONCAT_WS(
+					' ',
+					`staff`.`first_name`,
+					`staff`.`last_name`
+				  ),
+				  '</span>'
+				) SEPARATOR ''
+			  ) AS `staff`,
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `brand_model`,
+			  `color`,
+			  `vin_code`,
+			  `engine_power`,
+			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+			   DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
+			  `fleet`.`status` 
+			FROM
+			  `fleet` 
+			LEFT JOIN `staff` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+			LEFT JOIN `user` 
+				ON `user`.`id` = `fleet`.`registrar_user_id` 	
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id` 
+			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."	
+			GROUP BY `fleet`.`id` 
+		";
+
+
+		$query = $this->db->query($sql);
+		$data['result_array'] = $query->result_array();
+
+
+
 		$this->layout->view('organization/vehicles', $data);
 
 
 	}
+
+
+
 
 
 	public function user() {
@@ -784,7 +836,7 @@ class Organization extends MX_Controller {
 		$country = $this->input->post('country');
 		$address = $this->input->post('address');
 		$post_code = $this->input->post('post_code');
-		$department = $this->input->post('department');
+		$department = $department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
 		$position = $this->input->post('position');
 		$other = $this->input->post('other');
 
@@ -1673,7 +1725,7 @@ class Organization extends MX_Controller {
 		$add_sql_image = '';
 
 
-		 $department = implode(',', $department);
+		 $department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
 
 
 		//upload config
@@ -2158,11 +2210,10 @@ class Organization extends MX_Controller {
 
 
 		//info
-		$owner = '';
+
 		$owner_staff_id = $this->input->post('owner_id');
-		if($owner_staff_id == '') {
-			$owner = $this->input->post('owner');
-		}
+		$owner = $this->input->post('owner');
+
 		$regitered_address = $this->input->post('regitered_address');
 		$regitered_number = $this->input->post('regitered_number');
 		$regitered_file = '';
@@ -2346,7 +2397,7 @@ class Organization extends MX_Controller {
 
 		$file_4 = '';
 		$ext_4 = '';
-		if(isset($_FILES['file_4']['name']) AND $_FILES['file_2']['name'] != '') {
+		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
@@ -2499,7 +2550,7 @@ class Organization extends MX_Controller {
 				    `insurance_file_3` = ".$this->load->db_value($file_3).",
 				    `insurance_ext_3` = ".$this->load->db_value($ext_3).",
 				    `insurance_company_4` = ".$this->load->db_value($company[4]).",
-				    `insurance_referance_4` = ".$this->load->db_value($reference[1]).",
+				    `insurance_referance_4` = ".$this->load->db_value($reference[4]).",
 				    `insurance_type_id_4` = ".$this->load->db_value($type[4]).",
 				    `insurance_expiration_4` = ".$this->load->db_value($expiration[4]).",
 				    `insurance_file_4` = ".$this->load->db_value($file_4).",
@@ -2515,7 +2566,7 @@ class Organization extends MX_Controller {
 
 
 		$sql_fleet_details = "
-			INSERT INTO `nestgarage_system`.`fleet_details`
+			INSERT INTO `fleet_details`
 				(`items`,
 				 `value_id`,
 				 `avg_exploitation`,
@@ -2582,16 +2633,638 @@ class Organization extends MX_Controller {
 	}
 
 
+	public function edit_vehicles() {
 
-
-
-	public function edit_vehicles(){
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
 		$data = array();
+
+		$id =  $this->uri->segment(3); //todo to think
+
+
+		$lng = $this->load->lng();
+		$data['lang'] = $lng;
+
+		$data['fleet'] = $this->db->select('model.brand_id, fleet.*')->from('fleet')->join('model', 'fleet.model_id = model.id', 'left')->where('fleet.id', $id)->get()->row_array();
+
+		if($data['fleet']['id'] == '') {
+			$this->access_denied();
+			return false;
+		}
+
+		$data['fleet_details'] = $this->db->select('fleet_details.*')->from('fleet_details')->where('fleet_id', $data['fleet']['id'])->where('status <> ', -2 , FALSE)->get()->result_array();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $company_id)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$sql_brand = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `brand`
+			WHERE `status` = '1'	
+		";
+
+		$result_brand = $this->db->query($sql_brand);
+
+		$data['brand'] = $result_brand->result_array();
+
+
+		$sql_model = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `model`
+			WHERE `status` = '1'	
+		";
+
+		$result_model = $this->db->query($sql_model);
+
+		$data['model'] = $result_model->result_array();
+
+
+
+		$sql_fleet_type = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_type`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_type = $this->db->query($sql_fleet_type);
+
+		$data['fleet_type'] = $result_fleet_type->result_array();
+
+		$sql_fuel = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fuel`
+			WHERE `status` = '1'	
+		";
+
+		$result_fuel = $this->db->query($sql_fuel);
+
+		$data['fuel'] = $result_fuel->result_array();
+
+
+		$sql_insurance = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+				`insurance_type`
+			WHERE `status` = 1	
+		";
+
+		$result_insurance = $this->db->query($sql_insurance);
+
+
+		$data['insurance_type'] = $result_insurance->result_array();
+
+
+		$sql_value = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`,
+				`type`,
+				`convert`
+			 FROM
+				`value`
+			WHERE `status` = 1	
+		";
+
+		$result_value = $this->db->query($sql_value);
+
+		$data['value'] = $result_value->result_array();
+
+
+
 		$this->layout->view('organization/edit_vehicles', $data);
 
 	}
 
 
+	public function edit_vehicles_ax() {
+
+		$this->load->authorisation('Organization', 'add_vehicles');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('staff[]', 'staff', 'required');
+		$this->form_validation->set_rules('brand', 'brand', 'required');
+		$this->form_validation->set_rules('model', 'model', 'required');
+		$this->form_validation->set_rules('fleet_type', 'fleet_type', 'required');
+		$this->form_validation->set_rules('fleet_plate_number', 'fleet_plate_number', 'required');
+		$this->form_validation->set_rules('production_date', 'production_date', 'required');
+
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'staff[]' => form_error('staff[]'),
+				'brand' => form_error('brand'),
+				'model' => form_error('model'),
+				'fleet_type' => form_error('fleet_type'),
+				'fleet_plate_number' => form_error('fleet_plate_number'),
+				'production_date' => form_error('production_date'),
+
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		$staff = $this->input->post('staff');
+		if($staff != '') {
+			$staff = implode(',', $this->input->post('staff'));
+		}
+		$brand = $this->input->post('brand');
+		$model = $this->input->post('model');
+		$fleet_type = $this->input->post('fleet_type');
+		$fleet_plate_number = $this->input->post('fleet_plate_number');
+		$production_date = $this->input->post('production_date');
+		$color = $this->input->post('color');
+		$vin = $this->input->post('vin');
+		$engine_power = str_replace(",", ".", $this->input->post('engine_power'));
+		$fuel = $this->input->post('fuel');
+		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
+		$mileage = $this->input->post('mileage');
+		$odometer = $this->input->post('odometer');
+		$other = $this->input->post('other');
+		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
+
+
+		//info
+
+		$owner_staff_id = $this->input->post('owner_id');
+		$owner = $this->input->post('owner');
+
+		$regitered_address = $this->input->post('regitered_address');
+		$regitered_number = $this->input->post('regitered_number');
+		$regitered_file = '';
+
+		$value_1 = $this->input->post('value_1');
+		$value1_day = str_replace(",", ".", $this->input->post('value1_day'));
+		$auto_increment = ($this->input->post('auto_increment') != '' ? $this->input->post('auto_increment') : '-1');
+		$use_of_secondary_meter = $this->input->post('use_of_secondary_meter');
+		$value_2 = '';
+		$value2_day = '';
+		$convert = $this->input->post('convert');
+
+		if($use_of_secondary_meter == 1) {
+			$value_2 = $this->input->post('value_2');
+			if($value_2 != '') {
+				$value2_day = ($value1_day * $convert[$value_2]);
+			}
+
+		}
+
+
+
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file');
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
+
+		if(isset($_FILES['regitered_file']['name']) AND $_FILES['regitered_file']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('regitered_file')) {
+				$validation_errors = array('regitered_file' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$regitered_file_arr = $this->upload->data();
+
+			$regitered_file = "`regitered_file` = ".$this->load->db_value($regitered_file_arr['file_name']).",";
+
+
+
+		}
+
+
+
+		$company = $this->input->post('company');
+		//$file = $this->input->post('file');
+		$reference = $this->input->post('reference');
+		$expiration = $this->input->post('expiration');
+		$type = $this->input->post('type');
+
+		//file config insurance
+		$config_f_i['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/insurance');
+		$config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f_i['max_size'] = '4097152'; //4 MB
+		$config_f_i['file_name'] = $this->uname(3, 8);
+
+
+		$file_1 = '';
+		$ext_1 = '';
+		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_1')) {
+				$validation_errors = array('file_1' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_1_arr = $this->upload->data();
+
+			$file_1 = $file_1_arr['file_name'];
+
+			$file_1_array = explode('.', $file_1);
+
+			$file_1 = "`insurance_file_1` = ".$this->load->db_value($file_1_array[0]).",";
+			$ext_1 = " `insurance_ext_1` = ".$this->load->db_value($file_1_array[1]).",";
+
+
+
+		}
+
+
+		$file_2 = '';
+		$ext_2 = '';
+		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_2')) {
+				$validation_errors = array('file_2' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+
+			$file_2_arr = $this->upload->data();
+
+			$file_2 = $file_2_arr['file_name'];
+
+			$file_2_array = explode('.', $file_2);
+
+			$file_2 = "`insurance_file_2` = ".$this->load->db_value($file_2_array[0]).",";
+			$ext_2 = " `insurance_ext_2` = ".$this->load->db_value($file_2_array[1]).",";
+
+
+		}
+
+
+		$file_3 = '';
+		$ext_3 = '';
+		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_3')) {
+				$validation_errors = array('file_3' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+
+			$file_3_arr = $this->upload->data();
+
+			$file_3 = $file_3_arr['file_name'];
+
+			$file_3_array = explode('.', $file_3);
+
+			$file_3 = "`insurance_file_3` = ".$this->load->db_value($file_3_array[0]).",";
+			$ext_3 = " `insurance_ext_3` = ".$this->load->db_value($file_3_array[1]).",";
+
+
+		}
+
+
+		$file_4 = '';
+		$ext_4 = '';
+		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_f_i);
+			$this->upload->initialize($config_f_i);
+
+			if (!$this->upload->do_upload('file_4')) {
+				$validation_errors = array('file_4' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_4_arr = $this->upload->data();
+
+			$file_4 = $file_4_arr['file_name'];
+
+			$file_4_array = explode('.', $file_4);
+
+			$file_4 = "`insurance_file_4` = ".$this->load->db_value($file_4_array[0]).",";
+			$ext_4 = " `insurance_ext_4` = ".$this->load->db_value($file_4_array[1]).",";
+
+
+		}
+
+
+
+
+		//fleet details variables
+		$item = $this->input->post('item');
+		$value = $this->input->post('value');
+		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
+		$per_days = str_replace(",", ".", $this->input->post('per_days'));
+		$more_info = $this->input->post('more_info');
+		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
+		$start_alarm_date = $this->input->post('start_alarm_date');
+		// end fleet details variables
+
+		// validation fleet details
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val == '') :
+					$n = 1;
+					$validation_errors = array('item['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
+					$n = 1;
+					$validation_errors = array('per_days['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($value[$i] == '') :
+					$n = 1;
+					$validation_errors = array('value['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
+					$n = 1;
+					$validation_errors = array('avg_exploitation['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
+					$n = 1;
+					$validation_errors = array('remind_before['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($start_alarm_date[$i] == '') :
+					$n = 1;
+					$validation_errors = array('start_alarm_date['.$i.']' => "required");
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+			endforeach;
+		endif;
+		// end of validation fleet details
+
+
+
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		//todo mail ---
+
+
+
+
+
+
+		$sql = "
+				UPDATE `fleet` SET 
+					`staff_ids` = ".$this->load->db_value($staff).",
+					`model_id` = ".$this->load->db_value($model).",
+					`fleet_type_id` = ".$this->load->db_value($fleet_type).",
+					`production_date` = ".$this->load->db_value($production_date).",
+					`color` = ".$this->load->db_value($color).",
+					`vin_code` = ".$this->load->db_value($vin).",
+					`engine_power` = ".$this->load->db_value($engine_power).",
+					`fuel_id` = ".$this->load->db_value($fuel).",
+					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
+					`mileage` =  ".$this->load->db_value($mileage).",
+					`odometer` = ".$this->load->db_value($odometer).",
+					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
+					`other` = ".$this->load->db_value($other).",
+					`registrar_user_id` = ".$this->load->db_value($user_id).",
+					`registration_date` = NOW(),
+					`owner_staff_id` = ".$this->load->db_value($owner_staff_id).",
+					`owner` = ".$this->load->db_value($owner).",
+					`value1_id` = ".$this->load->db_value($value_1).",
+					`value2_id` = ".$this->load->db_value($value_2).",
+					`value1_day` = ".$this->load->db_value($value1_day).",
+					`value2_day` = ".$this->load->db_value($value2_day).",
+					`auto_increment` = ".$this->load->db_value($auto_increment).",
+					`regitered_address` = ".$this->load->db_value($regitered_address).",
+					`regitered_number` = ".$this->load->db_value($regitered_number).",
+					".$regitered_file."
+					`insurance_company_1` = ".$this->load->db_value($company[1]).",
+				    `insurance_referance_1` = ".$this->load->db_value($reference[1]).",
+				    `insurance_type_id_1` = ".$this->load->db_value($type[1]).",
+				    `insurance_expiration_1` = ".$this->load->db_value($expiration[1]).",
+				    ".$file_1."
+				    ".$ext_1."
+				    `insurance_company_2` = ".$this->load->db_value($company[2]).",
+				    `insurance_referance_2` = ".$this->load->db_value($reference[2]).",
+				    `insurance_type_id_2` = ".$this->load->db_value($type[2]).",
+				    `insurance_expiration_2` = ".$this->load->db_value($expiration[2]).",
+				    ".$file_2."
+				    ".$ext_2."
+				    `insurance_company_3` = ".$this->load->db_value($company[3]).",
+				    `insurance_referance_3` = ".$this->load->db_value($reference[3]).",
+				    `insurance_type_id_3` = ".$this->load->db_value($type[3]).",
+				    `insurance_expiration_3` = ".$this->load->db_value($expiration[3]).",
+				    ".$file_3."
+				    ".$ext_3."
+				    `insurance_company_4` = ".$this->load->db_value($company[4]).",
+				    `insurance_referance_4` = ".$this->load->db_value($reference[4]).",
+				    `insurance_type_id_4` = ".$this->load->db_value($type[4]).",
+				    `insurance_expiration_4` = ".$this->load->db_value($expiration[4]).",
+				    ".$file_4."
+				    ".$ext_4."
+					`status` = ".$this->load->db_value($status)."
+				WHERE `id` = ".$this->load->db_value($fleet_id)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+		$this->db->update('fleet_details', array('status' => '-2'), array('fleet_id' => $fleet_id));
+
+
+		$sql_fleet_details = "
+			INSERT INTO `fleet_details`
+				(`items`,
+				 `value_id`,
+				 `avg_exploitation`,
+				 `start_alarm_date`,
+				 `per_days`,
+				 `more_info`,
+				 `reminde_me`,
+				 `fleet_id`,
+				 `next_alarm_date`,
+				 `registrar_user_id`,
+				 `registration_date`,
+				 `status`)
+			VALUES
+		";
+
+
+
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val != '') :
+
+					$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_ODD);
+
+					$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
+					$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
+
+					$sql_fleet_details .= "(
+					".$this->load->db_value($item_val).",
+					".$this->load->db_value($value[$i]).",
+					".$this->load->db_value($avg_exploitation[$i]).",
+					".$this->load->db_value($start_alarm_date[$i]).",
+					".$this->load->db_value($per_days[$i]).",
+					".$this->load->db_value($more_info[$i]).",
+					".$this->load->db_value($remind_before[$i]).",
+					".$this->load->db_value($fleet_id).",
+					".$this->load->db_value($next_alarm_date[$i]).",
+					".$this->load->db_value($user_id).",
+					NOW(),
+					1
+				),";
+
+				endif;
+			endforeach;
+		endif;
+
+
+		$sql_fleet_details = substr($sql_fleet_details, 0, -1);
+
+		$result_fleet_details = $this->db->query($sql_fleet_details);
+
+		if($result_fleet_details) {
+			$this->db->delete('fleet_details', array('status' => '-2'));
+		}
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = 'Success';
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
 
 	public function add_user_ax() {
 

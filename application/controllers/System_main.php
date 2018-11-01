@@ -95,7 +95,7 @@ class System_main extends CI_Controller {
 
 		if ($result->num_rows() > 0) {
 			if ($response_type == 'select') {
-				echo '<label class=" col-form-label">Տ/մ տեսակ *</label>
+				echo '<label class=" col-form-label">Մոդել *</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm "

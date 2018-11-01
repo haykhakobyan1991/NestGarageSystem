@@ -113,7 +113,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
 
 	<div class="ml-auto mr-5">
-		<strong><?=lang('welcome')?></strong> / <span class="username_login"><a href="#" style="color: #333;"><?=$row['name']?></a></span>
+		<strong><?= lang('welcome') ?></strong> / <span class="username_login"><a href="#"
+																				  style="color: #333;"><?= $row['name'] ?></a></span>
 	</div>
 
 	<div class="langs mr-5">
@@ -139,14 +140,15 @@ $page = $this->router->fetch_method();
 <div class="container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
 	<!-- Horizontal Tabs Start -->
-	<ul class="nav nav-tabs" style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
+	<ul class="nav nav-tabs"
+		style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
 		<li class="nav-item">
 			<a class="nav-link <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?=lang('organization')?></a>
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure') ?>"><?=lang('structure')?></a>
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 		</li>
 		<li class="nav-item">
 			<a class="nav-link btn btn-sm btn-outline-success2" href="#menu1">Menu 1</a>
@@ -161,45 +163,46 @@ $page = $this->router->fetch_method();
 	<!-- Horizontal Tabs End -->
 
 	<!-- Tab panes -->
-	<? if ($controller == 'Organization') : ?>
+	<? if ($controller == 'Organization') { ?>
 	<div class="tab-content">
 
 		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
 
 			<div class="row">
-					<!-- Vertical Tabs Start-->
-					<div class="col-sm-12 col-md-3" >
-						<div class="list-group" id="list-tab" role="tablist" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
-							<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
-							   role="tab" aria-controls="company"><?=lang('company')?>
-							</a>
-							<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
-							   role="tab" aria-controls="department"><?=lang('department')?>
-								<span class="badge badge-secondary badge-pill float-right">4</span>
-							</a>
-							<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
-							   role="tab" aria-controls="staff"><?=lang('staff')?>
-								<span class="badge badge-secondary badge-pill float-right">2</span></a>
-							<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-							   role="tab" aria-controls="settings"><?=lang('vehicle')?>
-								<span class="badge badge-secondary badge-pill float-right"></span>
-							</a>
-							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-							   role="tab" aria-controls="user"><?=lang('user')?>
-								<span class="badge badge-secondary badge-pill float-right"></span>
-							</a>
-						</div>
+				<!-- Vertical Tabs Start-->
+				<div class="col-sm-12 col-md-3">
+					<div class="list-group" id="list-tab" role="tablist"
+						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
+						<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
+						   role="tab" aria-controls="company"><?= lang('company') ?>
+						</a>
+						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
+						   role="tab" aria-controls="department"><?= lang('department') ?>
+							<span class="badge badge-secondary badge-pill float-right">4</span>
+						</a>
+						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
+						   role="tab" aria-controls="staff"><?= lang('staff') ?>
+							<span class="badge badge-secondary badge-pill float-right">2</span></a>
+						<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
+						   role="tab" aria-controls="settings"><?= lang('vehicle') ?>
+							<span class="badge badge-secondary badge-pill float-right"></span>
+						</a>
+						<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
+						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
+						   role="tab" aria-controls="user"><?= lang('user') ?>
+							<span class="badge badge-secondary badge-pill float-right"></span>
+						</a>
 					</div>
-					<!-- Vertical Tabs End-->
+				</div>
+				<!-- Vertical Tabs End-->
 
 
-
-				<div class="<?= ($controller == 'Organization' ? 'col-sm-12 col-md-9' : 'container') ?>" style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
+				<div class="<?= ($controller == 'Organization' ? 'col-sm-12 col-md-9' : 'container') ?>"
+					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
@@ -207,4 +210,26 @@ $page = $this->router->fetch_method();
 
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 
-<? endif; ?>
+	<? } elseif ($controller == 'Structure') { ?>
+
+
+				<div class="">
+					<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
+					<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3">
+						<button type="button" class="btn btn-outline-secondary btn-sm">
+							<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
+								<img width="35" src="<?= base_url('assets/images/trees1.png') ?>">
+							</a>
+						</button>
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2') ?>">
+							<button type="button" class="btn btn-outline-secondary btn-group-sm">
+								<img width="35" src="<?= base_url('assets/images/trees2.png') ?>">
+							</button>
+						</a>
+						<button type="button" class="btn btn-outline-secondary" style="">
+							<img width="35" src="<?= base_url('assets/images/trees3.png') ?>">
+						</button>
+					</div>
+				</div>
+
+	<? } ?>

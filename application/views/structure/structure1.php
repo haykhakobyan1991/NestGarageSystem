@@ -1,9 +1,12 @@
 <!-- Structure Start -->
-<link href="<?= base_url('assets/css/jquery.ui.min.css') ?>"/>
+<style>
+	canvas {
+		background: #fff;
+	}
+</style>
+<script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
-	<div class="">
-		<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
-	</div>
+
 
 	<div id="sample">
 		<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
@@ -22,124 +25,40 @@
 				<button onclick="searchDiagram()">Search</button>
 			</div>
 			<textarea id="mySavedModel" style="display:none;width:100%;height:250px">
-				{
-					"class": "go.TreeModel",
+				{"class": "go.TreeModel",
 		  			"nodeDataArray": [
-						{
-							"key":1,
-							"name":"Stella Payne Diaz",
-							"title":"CEO"
-						},
-						{
-							"key":2,
-							"name":"Luke Warm",
-							"title":"VP Marketing/Sales",
-							"parent":1
-						},
-						{
-							"key":3,
-							"name":"Meg Meehan Hoffa",
-							"title":"Sales",
-							"parent":2
-						},
-						{
-							"key":4,
-							"name":"Peggy Flaming",
-							"title":"VP Engineering",
-							"parent":1
-						},
-						{
-							"key":5,
-							"name":"Saul Wellingood",
-							"title":"Manufacturing",
-							"parent":4
-						},
-						{
-							"key":6,
-							"name":"Al Ligori",
-							"title":"Marketing",
-							"parent":2
-						},
-						{
-							"key":7,
-							"name":"Dot Stubadd",
-							"title":"Sales Rep",
-							"parent":3
-						},
-						{
-							"key":8,
-							"name":"Les Ismore",
-							"title":"Project Mgr",
-							"parent":5
-						},
-						{
-							"key":9,
-							"name":"April Lynn Parris",
-							"title":"Events Mgr",
-							"parent":6
-						},
-						{
-							"key":10,
-							"name":"Xavier Breath",
-							"title":"Engineering",
-							"parent":4
-						},
-						{
-							"key":11,
-							"name":"Anita Hammer",
-							"title":"Process",
-							"parent":5
-						},
-						{
-							"key":12,
-							"name":"Billy Aiken",
-							"title":"Software",
-							"parent":10
-						},
-						{
-							"key":13,
-							"name":"Stan Wellback",
-							"title":"Testing",
-							"parent":10
-						},
-						{
-							"key":14,
-							"name":"Marge Innovera",
-							"title":"Hardware",
-							"parent":10
-						},
-						{
-							"key":15,
-							"name":"Evan Elpus",
-							"title":"Quality",
-							"parent":5
-						},
-						{
-							"key":16,
-							"name":"Lotta B. Essen",
-							"title":"Sales Rep",
-							"parent":3
-						},
-						{
-							"key":17,
-							"name":"Hayk",
-							"title":"Hakobyan",
-							"parent":3
-						}
+						{"key":1,"name":"Stella Payne Diaz","title":"CEO"},
+						{"key":2,"name":"Luke Warm","title":"VP Marketing/Sales","parent":1},
+						{"key":3,"name":"Meg Meehan Hoffa","title":"Sales","parent":2},
+						{"key":4,"name":"Peggy Flaming","title":"VP Engineering","parent":1},
+						{"key":5,"name":"Saul Wellingood","title":"Manufacturing","parent":4},
+						{"key":6,"name":"Al Ligori","title":"Marketing","parent":2},
+						{"key":7,"name":"Dot Stubadd","title":"Sales Rep","parent":3},
+						{"key":8,"name":"Les Ismore","title":"Project Mgr","parent":5},
+						{"key":9,"name":"April Lynn Parris","title":"Events Mgr","parent":6},
+						{"key":10,"name":"Xavier Breath","title":"Engineering","parent":4},
+						{"key":11,"name":"Anita Hammer","title":"Process","parent":5},
+						{"key":12,"name":"Billy Aiken","title":"Software","parent":10},
+						{"key":13,"name":"Stan Wellback","title":"Testing","parent":10},
+						{"key":14,"name":"Marge Innovera","title":"Hardware","parent":10},
+						{"key":15,"name":"Evan Elpus","title":"Quality","parent":5},
+						{"key":16,"name":"Lotta B. Essen","title":"Sales Rep","parent":3},
+						{"key":17,"name":"Hayk","title":"Hakobyan","parent":3},
+						{"key":18,"name":"Hakobyan","title":"zzzz","parent":3},
+						{"key":19,"name":"Hakobyan Hayk","title":"ffffff","parent":3}
 			 		]
 				}
     	</textarea>
 		</div>
 	</div>
 
-
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
 
-<script src="<?= base_url('assets/js/go.js') ?>"></script>
-
 
 <script>
+
+
 	function init() {
 		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 		var $ = go.GraphObject.make;  // for conciseness in defining templates
@@ -225,7 +144,6 @@
 					var shape = v.node.findObject("SHAPE");
 					if (shape) shape.fill = $(go.Brush, "Linear", {
 						0: color,
-						1: go.Brush.lightenBy(color, 0.05),
 						start: go.Spot.Left,
 						end: go.Spot.Right
 					});
@@ -274,7 +192,7 @@
 		// This converter is used by the Picture.
 		function findHeadShot(key) {
 			if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729";
-			return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729" + key + ".png"
+			return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729.png"
 		}
 
 		// define the Node template
@@ -511,10 +429,12 @@
 		myDiagram.addDiagramListener("ObjectSingleClicked",
 			function (e) {
 
-				var key = e.subject.part.Yd.key;
-				var name = e.subject.part.Yd.name;
-				var title = e.subject.part.Yd.title;
-				var parent = e.subject.part.Yd.parent;
+				var key = e.subject.part.Wd.key;
+				var name = e.subject.part.Wd.name;
+				var title = e.subject.part.Wd.title;
+				var parent = e.subject.part.Wd.parent;
+
+
 				var arr = [];
 				var new_arr = [];
 
@@ -523,10 +443,10 @@
 					if (part instanceof go.Node) {
 
 						arr = {
-							"key": part.Yd.key,
-							"name": part.Yd.name,
-							"title": part.Yd.title,
-							"parent": part.Yd.parent
+							"key": part.Wd.key,
+							"name": part.Wd.name,
+							"title": part.Wd.title,
+							"parent": part.Wd.parent
 						};
 						new_arr.push(arr);
 					}
@@ -534,6 +454,9 @@
 				});
 				console.table(new_arr);
 			});
+
+
+		/*Diagram Trees End*/
 
 	});
 </script>

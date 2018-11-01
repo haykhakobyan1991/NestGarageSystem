@@ -44,8 +44,6 @@ class Structure extends MX_Controller {
 
 	}
 
-
-
 	/**
 	 * @param $element
 	 */
@@ -56,7 +54,6 @@ class Structure extends MX_Controller {
 		echo '</pre>';
 	}
 
-
 	/**
 	 * @return bool
 	 */
@@ -66,7 +63,6 @@ class Structure extends MX_Controller {
 		return false;
 	}
 
-
 	/**
 	 * @param $data
 	 * @return string
@@ -74,7 +70,6 @@ class Structure extends MX_Controller {
 	public function hash($data) {
 		return hash('sha256', $data);
 	}
-
 
 	/**
 	 * @param int $start
@@ -88,7 +83,6 @@ class Structure extends MX_Controller {
 
 	}
 
-
 	/**
 	 * @param $text
 	 * @return string
@@ -97,7 +91,6 @@ class Structure extends MX_Controller {
 		return mb_substr($text,0,1, 'utf-8');
 	}
 
-
 	/**
 	 * @return string
 	 */
@@ -105,31 +98,17 @@ class Structure extends MX_Controller {
 		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 	}
 
-
-
-
-
-
-	public function structure(){
+	public function structure1(){
 		$data = array();
-		$this->layout->view('structure/structure', $data);
+		$this->layout->view('structure/structure1', $data);
 
 	}
 
+	public function structure2(){
+		$data = array();
+		$this->layout->view('structure/structure2', $data);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	}
 
 }
 //end of class

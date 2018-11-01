@@ -64,7 +64,7 @@
 					initialContentAlignment: go.Spot.Center,
 					// maxSelectionCount: 1, // users can select only one part at a time
 					validCycle: go.Diagram.CycleDestinationTree, // make sure users can only create trees
-					"clickCreatingTool.archetypeNodeData": {}, // allow double-click in background to create a new node
+					// "clickCreatingTool.archetypeNodeData": {}, // allow double-click in background to create a new node
 					"clickCreatingTool.insertPart": function (loc) {  // customize the data for the new node
 						this.archetypeNodeData = {
 							key: getNextKey(), // assign the key based on the number of nodes
@@ -87,7 +87,7 @@
 								alternateAlignment: go.TreeLayout.AlignmentBus,
 								alternateNodeSpacing: 20
 							}),
-					"undoManager.isEnabled": true // enable undo & redo
+					// "undoManager.isEnabled": true // enable undo & redo
 				});
 
 		// when the document is modified, add a "*" to the title and enable the "Save" button
@@ -161,14 +161,14 @@
 
 		// when a node is double-clicked, add a child to it
 		function nodeDoubleClick(e, obj) {
-			var clicked = obj.part;
-			if (clicked !== null) {
-				var thisemp = clicked.data;
-				myDiagram.startTransaction("add employee");
-				var newemp = {key: getNextKey(), name: "(new person)", title: "", parent: thisemp.key};
-				myDiagram.model.addNodeData(newemp);
-				myDiagram.commitTransaction("add employee");
-			}
+			// var clicked = obj.part;
+			// if (clicked !== null) {
+			// 	var thisemp = clicked.data;
+			// 	myDiagram.startTransaction("add employee");
+			// 	var newemp = {key: getNextKey(), name: "(new person)", title: "", parent: thisemp.key};
+			// 	myDiagram.model.addNodeData(newemp);
+			// 	myDiagram.commitTransaction("add employee");
+			// }
 		}
 
 		// this is used to determine feedback during drags
@@ -411,9 +411,13 @@
 
 		myDiagram.commitTransaction("highlight search");
 
-
 	}
 
+	/*
+	*
+	* Document Ready Function
+	*
+	 */
 	$(document).ready(function () {
 		init();
 
@@ -432,14 +436,20 @@
 
 					if (part instanceof go.Node) {
 
-						arr = {"key":part.Yd.key,"name":part.Yd.name,"title":part.Yd.title,"parent":part.Yd.parent};
+						arr = {
+							"key": part.Yd.key,
+							"name": part.Yd.name,
+							"title": part.Yd.title,
+							"parent": part.Yd.parent
+						};
 						new_arr.push(arr);
 					}
 
 				});
-				console.log(new_arr);
+				console.table(new_arr);
 			});
 
-	})
+
+	});
 </script>
 

@@ -62,7 +62,7 @@
 			$(go.Diagram, "myDiagramDiv", // must be the ID or reference to div
 				{
 					initialContentAlignment: go.Spot.Center,
-					maxSelectionCount: 1, // users can select only one part at a time
+					// maxSelectionCount: 1, // users can select only one part at a time
 					validCycle: go.Diagram.CycleDestinationTree, // make sure users can only create trees
 					"clickCreatingTool.archetypeNodeData": {}, // allow double-click in background to create a new node
 					"clickCreatingTool.insertPart": function (loc) {  // customize the data for the new node
@@ -187,7 +187,7 @@
 
 		// This converter is used by the Picture.
 		function findHeadShot(key) {
-			if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729"; // There are only 16 images on the server
+			if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729";
 			return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729" + key + ".png"
 		}
 
@@ -356,23 +356,6 @@
 			);
 
 
-		myDiagram.addDiagramListener("ObjectSingleClicked",
-			function (e) {
-				var key = e.subject.part.Yd.key;
-				var name = e.subject.part.Yd.name;
-				var title = e.subject.part.Yd.title;
-				var parent = e.subject.part.Yd.parent;
-				console.log('%c -----------------------', 'color: orange;');
-				console.log('%c key -->', +key);
-				console.log();
-				console.log('name -->' + name);
-				console.log();
-				console.log('title -->' + title);
-				console.log();
-				console.log('parent -->' + parent);
-				console.log('%c -----------------------', 'color: orange;');
-			});
-
 		// define the Link template
 		myDiagram.linkTemplate =
 			$(go.Link, go.Link.Orthogonal,
@@ -431,9 +414,32 @@
 
 	}
 
-
 	$(document).ready(function () {
 		init();
+
+
+		myDiagram.addDiagramListener("ObjectSingleClicked",
+			function (e) {
+
+				var key = e.subject.part.Yd.key;
+				var name = e.subject.part.Yd.name;
+				var title = e.subject.part.Yd.title;
+				var parent = e.subject.part.Yd.parent;
+				var arr = [];
+				var new_arr = [];
+
+				myDiagram.selection.each(function (part) {
+
+					if (part instanceof go.Node) {
+
+						arr = {"key":part.Yd.key,"name":part.Yd.name,"title":part.Yd.title,"parent":part.Yd.parent};
+						new_arr.push(arr);
+					}
+
+				});
+				console.log(new_arr);
+			});
+
 	})
 </script>
 

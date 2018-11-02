@@ -1008,6 +1008,7 @@
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');
 		$('select').parent('div').children('button').removeClass('border border-danger');
+
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -1016,11 +1017,20 @@
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend : function (){
+				scroll_top();
+				close_message();
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
-					scroll_top();
+					// scroll_top();
 					$('.alert-success').removeClass('d-none');
+					$('.alert-info').addClass('d-none');
 					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
 					close_message();
@@ -1028,6 +1038,8 @@
 					$(location).attr('href', url);
 
 				} else {
+					$('.alert-info').addClass('d-none');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						$.each(data.error.elements, function (index) {
@@ -1036,6 +1048,7 @@
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									$('.alert-danger').removeClass('d-none');
+
 									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
@@ -1049,11 +1062,13 @@
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
 				close_message();
+				$('.alert-info').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
 			}
 		});
+
 	});
 
 	$('.color_check_btn').on('click', function () {

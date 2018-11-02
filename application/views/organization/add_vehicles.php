@@ -9,6 +9,7 @@
 		</div>
 		<div class="for_message">
 			<div class="alert alert-success d-none " role="alert"></div>
+			<div class="alert alert-info d-none " role="alert"></div>
 			<div class="alert alert-danger d-none " role="alert"></div>
 		</div>
 		<div class="row">
@@ -230,7 +231,7 @@
 						<label class="col-sm-10 col-form-label">Send a notification mail to the
 							drivers</label>
 						<div class="col-sm-2">
-							<input type="checkbox" class="form-control form-control-sm">
+							<input name="mail_to" value="1" type="checkbox" class="form-control form-control-sm">
 						</div>
 					</div>
 				</div>
@@ -785,7 +786,7 @@
 					</div>
 				</div>
 				<!-- Info End -->
-				<div class="text-right mt-4 pb-2">
+				<div class="text-right mt-4 pb-2 ">
 					<span id="submit" class="btn btn-outline-success">Save</span>
 				</div>
 			</div>
@@ -802,6 +803,9 @@
 
 	// create company
 	$(document).on('click', '#submit', function (e) {
+
+
+
 		var url = '<?=base_url('Organization/add_vehicles_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form')[0]);
@@ -815,11 +819,20 @@
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend : function (){
+				scroll_top();
+				close_message();
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
-					scroll_top();
+					// scroll_top();
 					$('.alert-success').removeClass('d-none');
+					$('.alert-info').addClass('d-none');
 					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
 					close_message();
@@ -827,6 +840,8 @@
 					$(location).attr('href', url);
 
 				} else {
+					$('.alert-info').addClass('d-none');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						$.each(data.error.elements, function (index) {
@@ -835,6 +850,7 @@
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									$('.alert-danger').removeClass('d-none');
+
 									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
@@ -848,6 +864,7 @@
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
 				close_message();
+				$('.alert-info').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {

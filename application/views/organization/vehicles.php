@@ -8,6 +8,25 @@
 	}
 </style>
 
+<?
+
+$total = 0;
+$active = 0;
+$passive = 0;
+
+foreach ($result_array as $row) :
+	$total++;
+
+	if ($row['status'] == 1) {
+		$active++;
+	} elseif ($row['status'] == -1) {
+		$passive++;
+	}
+
+endforeach;
+?>
+
+
 <!-- Veichls Start -->
 <div class="tab-pane fade show active" id="list-settings" role="tabpanel"
 	 aria-labelledby="list-settings-list">
@@ -26,20 +45,20 @@
 			<div class="">
 				<div class="row">
 					<div class="col-sm-12 col-md-2 col-2">
-						<p class="display-5 font-weight-bold float-left">Toatl Vehicle</p> <span
-							class="ml-2 mt-1 badge badge-secondary badge-pill">6</span>
+						<p class="display-5 font-weight-bold float-left">Total Vehicle</p> <span
+							class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 					</div>
 
 					<div class="col-sm-12 col-md-2 col-2">
 						<p class="display-5 font-weight-bold float-left">Active Vehicle</p>
 						<span
-							class="ml-2 mt-1 badge badge-success badge-pill">4</span>
+							class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
 					</div>
 
 					<div class="col-sm-12 col-md-2 col2">
 						<p class="display-5 font-weight-bold float-left">Passive Vehicle</p>
 						<span
-							class="ml-2 mt-1 badge badge-warning badge-pill">2</span>
+							class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
 					</div>
 
 					<div class="col-sm-12 col-md-4 col-4"></div>
@@ -60,10 +79,11 @@
 
 
 					<table id="example3" class="table table-striped table-borderless"
-						   style="width:100%">
+						   style="width:100%" >
 						<thead style="background: #fff;
 color: #545b62;">
 						<tr>
+							<th style="font-size: 12px !important;font-weight: 500;">Հ/Հ</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Կցված</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Status</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Տտեսակ մոդել*</th>
@@ -77,6 +97,7 @@ color: #545b62;">
 						<tbody>
 						<? foreach ($result_array as $row) : ?>
 							<tr>
+								<td><?= $row['id'] ?></td>
 								<td><?= $row['staff'] ?></td>
 								<td style="text-align: center; vertical-align: middle;">
 									<? if ($row['status'] == '1') { ?>

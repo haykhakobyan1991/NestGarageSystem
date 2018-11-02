@@ -194,3 +194,7 @@ function close_message() {
 		$('.alert-success, .alert-danger').addClass('d-none');
 	}, 3000);
 }
+
+$('table').DataTable( {
+	"order": [[ 0, "desc" ]]
+} );

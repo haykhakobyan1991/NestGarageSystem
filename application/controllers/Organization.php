@@ -106,6 +106,27 @@ class Organization extends MX_Controller {
 	}
 
 
+	private function smtp_mailing() {
+
+		$config['protocol']    = 'smtp';
+		$config['smtp_host']    = 'ssl://smtp.gmail.com';
+		$config['smtp_port']    = '465';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user']    = 'dilemmatik@gmail.com';
+		$config['smtp_pass']    = 'dilemma!1';
+		$config['charset']    = 'utf-8';
+		$config['newline']    = "\r\n";
+		$config['mailtype'] = 'html'; // or text
+		$config['validation'] = TRUE; // bool whether to validate email or not
+		$this->load->library('email');
+		$this->email->initialize($config);
+
+		$this->email->from('dilemmatik@gmail.com', 'dilemmatik.ru');
+
+
+	}
+
+
 
 
 	public function company() {
@@ -343,7 +364,7 @@ class Organization extends MX_Controller {
 			  `vin_code`,
 			  `engine_power`,
 			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
-			   DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
+			   DATE_FORMAT(`fleet`.`registration_date`, '%d-%m-%Y') AS `creation_date`,
 			  `fleet`.`status` 
 			FROM
 			  `fleet` 
@@ -2497,9 +2518,36 @@ class Organization extends MX_Controller {
 
 
 
-		//todo mail ---
+		if($this->input->post('mail_to') == 1) {
 
+			$sql_for_mail = "
+				SELECT 
+					GROUP_CONCAT(`email` SEPARATOR ', ') AS `emails`
+				FROM
+					`staff`
+				WHERE FIND_IN_SET(`id`, '".$staff."')		
+				 LIMIT 1 
+			";
 
+			$result_for_mail = $this->db->query($sql_for_mail);
+
+			$emails = implode(', ', $result_for_mail->row_array());
+
+			$this->smtp_mailing();
+
+			$this->email->to($emails);
+			$this->email->subject('car added  NestGarageSystem');
+			$this->email->message('
+			   Fleet info...
+			');
+
+			if(!$this->email->send()) {
+				$messages['success'] = 0;
+				$messages['error'] = $this->email->print_debugger();
+				echo json_encode($messages);
+				return false;
+			}
+		}
 
 
 
@@ -3404,7 +3452,28 @@ class Organization extends MX_Controller {
 		}
 
 
-		//todo mail ---
+
+
+		if($this->input->post('mail_to') == 1) {
+
+
+			$this->smtp_mailing();
+
+			$this->email->to($email);
+			$this->email->subject('NestGarageSystem Account');
+			$this->email->message(
+				'Site link is: <a href="'.base_url().'">'.base_url().'</a><br>'.
+				'Account username: '.$username.'<br>'.
+				'Account password: '.$password.'<br>'
+			);
+
+			if(!$this->email->send()) {
+				$messages['success'] = 0;
+				$messages['error'] = $this->email->print_debugger();
+				echo json_encode($messages);
+				return false;
+			}
+		}
 
 
 		$sql = "

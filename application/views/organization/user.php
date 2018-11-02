@@ -109,6 +109,7 @@ endforeach;
 
 								<div class="for_message">
 									<div class="alert alert-success d-none" role="alert"></div>
+									<div class="alert alert-info  d-none" role="alert"></div>
 									<div class="alert alert-danger  d-none" role="alert"></div>
 								</div>
 
@@ -215,7 +216,7 @@ endforeach;
 												created
 												user?</label>
 											<div class="col-sm-1">
-												<input name="send_mail" value="yes" type="checkbox"
+												<input name="mail_to" value="1" type="checkbox"
 													   class="form-control form-control-sm">
 											</div>
 										</div>
@@ -423,6 +424,14 @@ endforeach;
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend : function (){
+				scroll_top();
+				close_message();
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
@@ -430,6 +439,7 @@ endforeach;
 
 					$('.alert-success').removeClass('d-none');
 					$('.alert-danger').addClass('d-none');
+					$('.alert-info').addClass('d-none');
 					$('.alert-success').text(data.message);
 
 					close_message();
@@ -452,6 +462,7 @@ endforeach;
 
 						$('.alert-danger').addClass('d-none');
 						$('.alert-success').addClass('d-none');
+						$('.alert-info').addClass('d-none');
 
 
 						$.each(data.error.elements, function (index) {
@@ -515,6 +526,7 @@ endforeach;
 				// Handle errors here
 				$('p#success').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
+				$('.alert-info').addClass('d-none');
 			},
 			complete: function () {
 
@@ -543,6 +555,14 @@ endforeach;
 			contentType: false,
 			processData: false,
 			cache: false,
+			beforeSend : function (){
+				scroll_top();
+				close_message();
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
@@ -550,6 +570,7 @@ endforeach;
 
 					$('.alert-success').removeClass('d-none');
 					$('.alert-danger').addClass('d-none');
+					$('.alert-info').addClass('d-none');
 					$('.alert-success').text(data.message);
 
 					close_message();
@@ -561,6 +582,8 @@ endforeach;
 
 
 				} else {
+
+					$('.alert-info').addClass('d-none');
 
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
@@ -602,6 +625,8 @@ endforeach;
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
 				$('p#success').addClass('d-none');
+				$('.alert-info').addClass('d-none');
+				close_message()
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {

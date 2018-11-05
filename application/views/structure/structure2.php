@@ -1,3 +1,5 @@
+
+
 <!-- Structure Start -->
 <style>
 	canvas{
@@ -19,28 +21,28 @@
 
 
 		<div>
-			<textarea id="mySavedModel" style="display:none;width:100%;height:250px">
+			<textarea id="mySavedModel" style="display:none;">
 				{"class": "go.TreeModel",
 		  			"nodeDataArray": [
-						{"key":1,"name":"Stella Payne Diaz","title":"CEO"},
-						{"key":2,"name":"Luke Warm","title":"VP Marketing/Sales","parent":1},
-						{"key":3,"name":"Meg Meehan Hoffa","title":"Sales","parent":2},
-						{"key":4,"name":"Peggy Flaming","title":"VP Engineering","parent":1},
-						{"key":5,"name":"Saul Wellingood","title":"Manufacturing","parent":4},
-						{"key":6,"name":"Al Ligori","title":"Marketing","parent":2},
-						{"key":7,"name":"Dot Stubadd","title":"Sales Rep","parent":3},
-						{"key":8,"name":"Les Ismore","title":"Project Mgr","parent":5},
-						{"key":9,"name":"April Lynn Parris","title":"Events Mgr","parent":6},
-						{"key":10,"name":"Xavier Breath","title":"Engineering","parent":4},
-						{"key":11,"name":"Anita Hammer","title":"Process","parent":5},
-						{"key":12,"name":"Billy Aiken","title":"Software","parent":10},
-						{"key":13,"name":"Stan Wellback","title":"Testing","parent":10},
-						{"key":14,"name":"Marge Innovera","title":"Hardware","parent":10},
-						{"key":15,"name":"Evan Elpus","title":"Quality","parent":5},
-						{"key":16,"name":"Lotta B. Essen","title":"Sales Rep","parent":3},
-						{"key":17,"name":"Hayk","title":"Hakobyan","parent":3},
-						{"key":18,"name":"Hakobyan","title":"zzzz","parent":3},
-						{"key":19,"name":"Hakobyan Hayk","title":"ffffff","parent":3}
+						{"key":1,"name":"Stella Payne Diaz","title":"CEO","checked":false},
+						{"key":2,"name":"Luke Warm","title":"VP Marketing/Sales","parent":1, "checked": false},
+						{"key":3,"name":"Meg Meehan Hoffa","title":"Sales","parent":2, "checked": false},
+						{"key":4,"name":"Peggy Flaming","title":"VP Engineering","parent":1, "checked": false},
+						{"key":5,"name":"Saul Wellingood","title":"Manufacturing","parent":4, "checked": false},
+						{"key":6,"name":"Al Ligori","title":"Marketing","parent":2, "checked": false},
+						{"key":7,"name":"Dot Stubadd","title":"Sales Rep","parent":3, "checked": false},
+						{"key":8,"name":"Les Ismore","title":"Project Mgr","parent":5, "checked": false},
+						{"key":9,"name":"April Lynn Parris","title":"Events Mgr","parent":6, "checked": false},
+						{"key":10,"name":"Xavier Breath","title":"Engineering","parent":4, "checked": false},
+						{"key":11,"name":"Anita Hammer","title":"Process","parent":5, "checked": false},
+						{"key":12,"name":"Billy Aiken","title":"Software","parent":10, "checked": false},
+						{"key":13,"name":"Stan Wellback","title":"Testing","parent":10, "checked": false},
+						{"key":14,"name":"Marge Innovera","title":"Hardware","parent":10, "checked": false},
+						{"key":15,"name":"Evan Elpus","title":"Quality","parent":5, "checked": false},
+						{"key":16,"name":"Lotta B. Essen","title":"Sales Rep","parent":3, "checked": false},
+						{"key":17,"name":"Hayk","title":"Hakobyan","parent":3, "checked": false},
+						{"key":18,"name":"Hakobyan","title":"zzzz","parent":3, "checked": false},
+						{"key":19,"name":"Hakobyan Hayk","title":"ffffff","parent":3, "checked": false}
 			 		]
 				}
     	</textarea>
@@ -49,15 +51,6 @@
 
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
-
-
-
-
-
-
-
-
-
 
 <script>
 
@@ -72,7 +65,8 @@
 					"ButtonBorder.fill": "white",
 					"ButtonBorder.stroke": "gray",
 					width: 14,
-					height: 14
+					height: 14,
+					margin: 10
 				},
 				go.GraphObject.make(go.Shape,
 					{
@@ -186,16 +180,21 @@
 						"_buttonStrokeOver": null
 					}),
 				$(go.Panel, "Horizontal",
-					{ position: new go.Point(16, 0), margin: new go.Margin(0, 2, 0, 0), defaultAlignment: go.Spot.Center },
+					{ padding: 3, position: new go.Point(16, 0), margin: new go.Margin(0, 2, 0, 0), defaultAlignment: go.Spot.Center },
 					new go.Binding("background", "isSelected", function(s) { return (s ? "lightblue" : "white"); }).ofObject(),
 					$("TriStateCheckBoxButton"),
 					$(go.TextBlock,
-						{ font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 0, 0, 2) },
+						{ font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 2, 0, 2) },
 						new go.Binding("text", "name", function(s) {
 							return " " + s;
 						})),
 					$(go.TextBlock,
-						{ font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 0, 0, 2) },
+						{
+							font: 'bold ,9pt Verdana, sans-serif',
+						  	margin: new go.Margin(0, 5, 0, 2),
+							stroke: "#607d8b"
+						},
+
 						new go.Binding("text", "title", function(s) {
 							return " " + s;
 						}))
@@ -227,32 +226,48 @@
 				}
 			});
 
-		// // create a random tree
-		// var nodeDataArray = [{ key: 0 }];
-		// var max = 25;
-		// var count = 0;
-		// while (count < max) {
-		// 	count = makeTree(3, count, max, nodeDataArray, nodeDataArray[0]);
-		// }
-		// myDiagram.model = new go.TreeModel(nodeDataArray);
 	}
 
 	function load() {
 		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 	}
 
-
-
-
-
 	/*
-	*
-	* Document Ready Function
-	*
+	 *
+	 * Document Ready Function
+	 *
 	 */
 
 	$(document).ready(function () {
 		init();
+
+
+		myDiagram.addDiagramListener("ObjectSingleClicked",
+			function (e) {
+
+				var key = e.subject.part.Wd.key;
+				var name = e.subject.part.Wd.name;
+				var title = e.subject.part.Wd.title;
+				var parent = e.subject.part.Wd.parent;
+
+				var arr = [];
+				var new_arr = [];
+
+				myDiagram.selection.each(function (part) {
+
+					if (part instanceof go.Node) {
+						arr = {
+							"key": part.Wd.key,
+							"name": part.Wd.name,
+							"title": part.Wd.title,
+							"parent": part.Wd.parent
+						};
+						new_arr.push(arr);
+					}
+
+				});
+				console.table(new_arr);
+			})
 	});
 </script>
 

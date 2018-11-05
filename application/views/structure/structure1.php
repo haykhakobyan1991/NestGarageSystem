@@ -9,75 +9,37 @@
 
 
 	<div id="sample">
-		<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
-		<div>
-			<div id="myInspector">
-
-			</div>
-		</div>
-
-
-		<div>
-			<div>
-				<button id="SaveButton" onclick="save()">Save</button>
-				<button onclick="load()">Load</button>
-				<input type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()">
-				<button onclick="searchDiagram()">Search</button>
-			</div>
-			<textarea id="mySavedModel" style="display:none;width:100%;height:250px">
-				{"class": "go.TreeModel",
-		  			"nodeDataArray": [
-						{"key":1,"name":"Stella Payne Diaz","title":"CEO"},
-						{"key":2,"name":"Luke Warm","title":"VP Marketing/Sales","parent":1},
-						{"key":3,"name":"Meg Meehan Hoffa","title":"Sales","parent":2},
-						{"key":4,"name":"Peggy Flaming","title":"VP Engineering","parent":1},
-						{"key":5,"name":"Saul Wellingood","title":"Manufacturing","parent":4},
-						{"key":6,"name":"Al Ligori","title":"Marketing","parent":2},
-						{"key":7,"name":"Dot Stubadd","title":"Sales Rep","parent":3},
-						{"key":8,"name":"Les Ismore","title":"Project Mgr","parent":5},
-						{"key":9,"name":"April Lynn Parris","title":"Events Mgr","parent":6},
-						{"key":10,"name":"Xavier Breath","title":"Engineering","parent":4},
-						{"key":11,"name":"Anita Hammer","title":"Process","parent":5},
-						{"key":12,"name":"Billy Aiken","title":"Software","parent":10},
-						{"key":13,"name":"Stan Wellback","title":"Testing","parent":10},
-						{"key":14,"name":"Marge Innovera","title":"Hardware","parent":10},
-						{"key":15,"name":"Evan Elpus","title":"Quality","parent":5},
-						{"key":16,"name":"Lotta B. Essen","title":"Sales Rep","parent":3},
-						{"key":17,"name":"Hayk","title":"Hakobyan","parent":3},
-						{"key":18,"name":"Hakobyan","title":"zzzz","parent":3},
-						{"key":19,"name":"Hakobyan Hayk","title":"ffffff","parent":3}
-			 		]
-				}
-    	</textarea>
-		</div>
+		<div id="myDiagramDiv" style="border: solid 1px black;  height:400px"></div>
 	</div>
+	<textarea style="width: 100%;" id="mySavedModel">
+
+</textarea>
+	<button id="SaveButton" onclick="save()">Save</button>
 
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
 
 
 <script>
-
-
 	function init() {
 		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 		var $ = go.GraphObject.make;  // for conciseness in defining templates
 
 		myDiagram =
-			$(go.Diagram, "myDiagramDiv", // must be the ID or reference to div
+			$(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
 				{
+					// position the graph in the middle of the diagram
 					initialContentAlignment: go.Spot.Center,
-					// maxSelectionCount: 1, // users can select only one part at a time
-					validCycle: go.Diagram.CycleDestinationTree, // make sure users can only create trees
-					// "clickCreatingTool.archetypeNodeData": {}, // allow double-click in background to create a new node
-					"clickCreatingTool.insertPart": function (loc) {  // customize the data for the new node
-						this.archetypeNodeData = {
-							key: getNextKey(), // assign the key based on the number of nodes
-							name: "(new person)",
-							title: ""
-						};
-						return go.ClickCreatingTool.prototype.insertPart.call(this, loc);
-					},
+
+					// allow double-click in background to create a new node
+					"clickCreatingTool.archetypeNodeData": {text: "Node", color: "red"},
+
+					// allow Ctrl-G to call groupSelection()
+					"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+
+
+					// enable undo & redo
+
 					layout:
 						$(go.TreeLayout,
 							{
@@ -85,97 +47,102 @@
 								arrangement: go.TreeLayout.ArrangementHorizontal,
 								// properties for most of the tree:
 								angle: 90,
-								layerSpacing: 35,
+								// layerSpacing: 35,
 								// properties for the "last parents":
 								alternateAngle: 90,
 								alternateLayerSpacing: 35,
-								alternateAlignment: go.TreeLayout.AlignmentBus,
+								//alternateAlignment: go.TreeLayout.AlignmentBus,
 								alternateNodeSpacing: 20
 							}),
-					// "undoManager.isEnabled": true // enable undo & redo
+
+
 				});
 
-		// when the document is modified, add a "*" to the title and enable the "Save" button
-		myDiagram.addDiagramListener("Modified", function (e) {
-			var button = document.getElementById("SaveButton");
-			if (button) button.disabled = !myDiagram.isModified;
-			var idx = document.title.indexOf("*");
-			if (myDiagram.isModified) {
-				if (idx < 0) document.title += "*";
-			} else {
-				if (idx >= 0) document.title = document.title.substr(0, idx);
-			}
-		});
+		// Define the appearance and behavior for Nodes:
 
-		// manage boss info manually when a node or link is deleted from the diagram
-		myDiagram.addDiagramListener("SelectionDeleting", function (e) {
-			var part = e.subject.first(); // e.subject is the myDiagram.selection collection,
-										  // so we'll get the first since we know we only have one selection
-			myDiagram.startTransaction("clear boss");
-			if (part instanceof go.Node) {
-				var it = part.findTreeChildrenNodes(); // find all child nodes
-				while (it.next()) { // now iterate through them and clear out the boss information
-					var child = it.value;
-					var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
-					if (bossText === null) return;
-					bossText.text = "";
-				}
-			} else if (part instanceof go.Link) {
-				var child = part.toNode;
-				var bossText = child.findObject("boss"); // since the boss TextBlock is named, we can access it by name
-				if (bossText === null) return;
-				bossText.text = "";
-			}
-			myDiagram.commitTransaction("clear boss");
-		});
+		// First, define the shared context menu for all Nodes, Links, and Groups.
 
-		var levelColors = ["#AC193D", "#2672EC", "#8C0095", "#5133AB",
-			"#008299", "#D24726", "#008A00", "#094AB2"];
-
-		// override TreeLayout.commitNodes to also modify the background brush based on the tree depth level
-		myDiagram.layout.commitNodes = function () {
-			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);  // do the standard behavior
-			// then go through all of the vertexes and set their corresponding node's Shape.fill
-			// to a brush dependent on the TreeVertex.level value
-			myDiagram.layout.network.vertexes.each(function (v) {
-				if (v.node) {
-					var level = v.level % (levelColors.length);
-					var color = levelColors[level];
-					var shape = v.node.findObject("SHAPE");
-					if (shape) shape.fill = $(go.Brush, "Linear", {
-						0: color,
-						start: go.Spot.Left,
-						end: go.Spot.Right
-					});
-				}
-			});
-		};
-
-		// This function is used to find a suitable ID when modifying/creating nodes.
-		// We used the counter combined with findNodeDataForKey to ensure uniqueness.
-		function getNextKey() {
-			var key = nodeIdCounter;
-			while (myDiagram.model.findNodeDataForKey(key) !== null) {
-				key = nodeIdCounter--;
-			}
-			return key;
+		// To simplify this code we define a function for creating a context menu button:
+		function makeButton(text, action, visiblePredicate) {
+			return $("ContextMenuButton",
+				$(go.TextBlock, text),
+				{click: action},
+				// don't bother with binding GraphObject.visible if there's no predicate
+				visiblePredicate ? new go.Binding("visible", "", function (o, e) {
+					return o.diagram ? visiblePredicate(o, e) : false;
+				}).ofObject() : {});
 		}
 
-		var nodeIdCounter = -1; // use a sequence to guarantee key uniqueness as we add/remove/modify nodes
+		// a context menu is an Adornment with a bunch of buttons in them
+		var partContextMenu =
+			$(go.Adornment, "Vertical",
+				makeButton("Properties",
+					function (e, obj) {  // OBJ is this Button
+						var contextmenu = obj.part;  // the Button is in the context menu Adornment
+						var part = contextmenu.adornedPart;  // the adornedPart is the Part that the context menu adorns
+						// now can do something with PART, or with its data, or with the Adornment (the context menu)
+						if (part instanceof go.Link) alert(linkInfo(part.data));
+						else if (part instanceof go.Group) alert(groupInfo(contextmenu));
+						else alert(nodeInfo(part.data));
+					}),
+				makeButton("Cut",
+					function (e, obj) {
+						e.diagram.commandHandler.cutSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canCutSelection();
+					}),
+				makeButton("Copy",
+					function (e, obj) {
+						e.diagram.commandHandler.copySelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canCopySelection();
+					}),
+				makeButton("Paste",
+					function (e, obj) {
+						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
+					},
+					function (o) {
+						return o.diagram.commandHandler.canPasteSelection();
+					}),
+				makeButton("Delete",
+					function (e, obj) {
+						e.diagram.commandHandler.deleteSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canDeleteSelection();
+					}),
+				makeButton("Undo",
+					function (e, obj) {
+						e.diagram.commandHandler.undo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canUndo();
+					}),
+				makeButton("Redo",
+					function (e, obj) {
+						e.diagram.commandHandler.redo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canRedo();
+					}),
+				makeButton("Group",
+					function (e, obj) {
+						e.diagram.commandHandler.groupSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canGroupSelection();
+					}),
+				makeButton("Ungroup",
+					function (e, obj) {
+						e.diagram.commandHandler.ungroupSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canUngroupSelection();
+					})
+			);
 
-		// when a node is double-clicked, add a child to it
-		function nodeDoubleClick(e, obj) {
-			// var clicked = obj.part;
-			// if (clicked !== null) {
-			// 	var thisemp = clicked.data;
-			// 	myDiagram.startTransaction("add employee");
-			// 	var newemp = {key: getNextKey(), name: "(new person)", title: "", parent: thisemp.key};
-			// 	myDiagram.model.addNodeData(newemp);
-			// 	myDiagram.commitTransaction("add employee");
-			// }
-		}
-
-		// this is used to determine feedback during drags
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;  // must be a Node
 			if (node1 === node2) return false;  // cannot work for yourself
@@ -183,21 +150,56 @@
 			return true;
 		}
 
-		// This function provides a common style for most of the TextBlocks.
-		// Some of these values may be overridden in a particular TextBlock.
 		function textStyle() {
-			return {font: "9pt  Segoe UI,sans-serif", stroke: "white"};
+			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
 
-		// This converter is used by the Picture.
-		function findHeadShot(key) {
-			if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729";
-			return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729.png"
+		function nodeDoubleClick(e, obj) {
+			// var clicked = obj.part;
+			// if (clicked !== null) {
+			//     var thisemp = clicked.data;
+			//     myDiagram.startTransaction("add employee");
+			//     var newemp = {key: getNextKey(), name: "(new person)", title: "", parent: thisemp.key};
+			//     myDiagram.model.addNodeData(newemp);
+			//     myDiagram.commitTransaction("add employee");
+			// }
 		}
+
+		function nodeInfo(d) {  // Tooltip info for a node data object
+			var str = "Node " + d.key + ": " + d.text + "\n";
+			if (d.group)
+				str += "member of " + d.group;
+			else
+				str += "top-level node";
+			return str;
+		}
+
+		// These nodes have text surrounded by a rounded rectangle
+		// whose fill color is bound to the node data.
+		// The user can drag a node by dragging its TextBlock label.
+		// Dragging from the Shape will start drawing a new link.
 
 		// define the Node template
+
+		var levelColors = ["#AC193D", "#2672EC", "#8C0095", "#5133AB", "#008299", "#D24726", "#008A00", "#094AB2"];
+		myDiagram.layout.commitNodes = function () {
+			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
+			myDiagram.layout.network.vertexes.each(function (v) {
+				if (v.node) {
+					var level = v.level % (levelColors.length);
+					var color = levelColors[level];
+					var shape = v.node.findObject("SHAPE");
+					console.log(v.node);
+					if (shape) shape.fill = $(go.Brush, "Linear", {0: color, start: go.Spot.Left, end: go.Spot.Right});
+				}
+			});
+		};
+
+
 		myDiagram.nodeTemplate =
 			$(go.Node, "Auto",
+				{locationSpot: go.Spot.Center},
+				new go.Binding("location", "loc").makeTwoWay(),
 				{doubleClick: nodeDoubleClick},
 				{ // handle dragging a Node onto a Node to (maybe) change the reporting relationship
 					mouseDragEnter: function (e, node, prev) {
@@ -239,18 +241,21 @@
 				// define the node's outer shape
 				$(go.Shape, "Rectangle",
 					{
-						name: "SHAPE", fill: "white", stroke: null,
+						name: "SHAPE", fill: "orange", stroke: null,
 						// set the port properties:
-						portId: "", fromLinkable: true, toLinkable: true, cursor: "pointer"
+						portId: "", cursor: "pointer",
+						fromLinkable: true, fromLinkableDuplicates: false, toLinkable: true, toLinkableDuplicates: false
+
 					}),
 				$(go.Panel, "Horizontal",
+
 					$(go.Picture,
 						{
 							name: "Picture",
 							desiredSize: new go.Size(39, 50),
 							margin: new go.Margin(6, 8, 6, 10),
 						},
-						new go.Binding("source", "key", findHeadShot)),
+						new go.Binding("source", "img")),
 					// define the panel where the text will appear
 					$(go.Panel, "Table",
 						{
@@ -267,7 +272,7 @@
 								minSize: new go.Size(10, 16)
 							},
 							new go.Binding("text", "name").makeTwoWay()),
-						$(go.TextBlock, "Title: ", textStyle(),
+						$(go.TextBlock, "", textStyle(),
 							{row: 1, column: 0}),
 						$(go.TextBlock, textStyle(),
 							{
@@ -276,12 +281,10 @@
 								minSize: new go.Size(10, 14),
 								margin: new go.Margin(0, 0, 0, 3)
 							},
-							new go.Binding("text", "title").makeTwoWay()),
+							new go.Binding("text", "text").makeTwoWay()),
 						$(go.TextBlock, textStyle(),
 							{row: 2, column: 0},
-							new go.Binding("text", "key", function (v) {
-								return "ID: " + v;
-							})),
+						),
 						$(go.TextBlock, textStyle(),
 							{name: "boss", row: 2, column: 3,}, // we include a name so we can access this TextBlock when deleting Nodes/Links
 							new go.Binding("text", "parent", function (v) {
@@ -301,163 +304,176 @@
 			);  // end Node
 
 
-		// the context menu allows users to make a position vacant,
-		// remove a role and reassign the subtree, or remove a department
-		myDiagram.nodeTemplate.contextMenu =
+		myDiagram.allowMove = false;
+
+		// Define the appearance and behavior for Links:
+
+		function linkInfo(d) {  // Tooltip info for a link data object
+			return "Link:\nfrom " + d.from + " to " + d.to;
+		}
+
+		// The link shape and arrowhead have their stroke brush data bound to the "color" property
+		myDiagram.linkTemplate =
+			$(go.Link,
+				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},  // allow the user to relink existing links
+				$(go.Shape,
+					{strokeWidth: 2},
+					new go.Binding("stroke", "color")),
+				$(go.Shape,
+					{toArrow: "Standard", stroke: null},
+					new go.Binding("fill", "color")),
+				{ // this tooltip Adornment is shared by all links
+					toolTip:
+						$(go.Adornment, "Auto",
+							$(go.Shape, {fill: "#FFFFCC"}),
+							$(go.TextBlock, {margin: 4},  // the tooltip shows the result of calling linkInfo(data)
+								new go.Binding("text", "", linkInfo))
+						),
+					// the same context menu Adornment is shared by all links
+					contextMenu: partContextMenu
+				}
+			);
+
+		// Define the appearance and behavior for Groups:
+
+
+		function findHeadShot(key) {
+			// if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729";
+			// return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729.png"
+		}
+
+		function groupInfo(adornment) {  // takes the tooltip or context menu, not a group node data object
+			var g = adornment.adornedPart;  // get the Group that the tooltip adorns
+			var mems = g.memberParts.count;
+			var links = 0;
+			g.memberParts.each(function (part) {
+				if (part instanceof go.Link) links++;
+			});
+			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
+		}
+
+		// Groups consist of a title in the color given by the group node data
+		// above a translucent gray rectangle surrounding the member parts
+		myDiagram.groupTemplate =
+			$(go.Group, "Vertical",
+				{
+					selectionObjectName: "PANEL",  // selection handle goes around shape, not label
+					ungroupable: true
+				},  // enable Ctrl-Shift-G to ungroup a selected Group
+				$(go.TextBlock,
+					{
+						font: "bold 19px sans-serif",
+						isMultiline: false,  // don't allow newlines in text
+						editable: true  // allow in-place editing by user
+					},
+					new go.Binding("text", "text").makeTwoWay(),
+					new go.Binding("stroke", "color")),
+				$(go.Panel, "Horizontal",
+					{name: "PANEL"},
+
+					$(go.Picture,
+						{maxSize: new go.Size(50, 50)},
+						{width: 55, height: 55},
+						new go.Binding("source", "img")),
+					$(go.Placeholder, {margin: 10, background: "transparent"})  // represents where the members are
+				),
+				{ // this tooltip Adornment is shared by all groups
+					toolTip:
+						$(go.Adornment, "Auto",
+							$(go.Shape, {fill: "#ff0900"}),
+							$(go.TextBlock, {margin: 4},
+								// bind to tooltip, not to Group.data, to allow access to Group properties
+								new go.Binding("text", "", groupInfo).ofObject())
+						),
+					// the same context menu Adornment is shared by all groups
+					contextMenu: partContextMenu
+				}
+			);
+
+		// Define the behavior for the Diagram background:
+
+		function diagramInfo(model) {  // Tooltip info for the diagram's model
+			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
+		}
+
+
+		// provide a tooltip for the background of the Diagram, when not over any Part
+		myDiagram.toolTip =
+			$(go.Adornment, "Auto",
+				$(go.Shape, {fill: "#FFFFCC"}),
+				$(go.TextBlock, {margin: 4},
+					new go.Binding("text", "", diagramInfo))
+			);
+
+		// provide a context menu for the background of the Diagram, when not over any Part
+		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
-				$("ContextMenuButton",
-					$(go.TextBlock, "Vacate Position"),
-					{
-						click: function (e, obj) {
-							var node = obj.part.adornedPart;
-							if (node !== null) {
-								var thisemp = node.data;
-								myDiagram.startTransaction("vacate");
-								// update the key, name, and comments
-								myDiagram.model.setKeyForNodeData(thisemp, getNextKey());
-								myDiagram.model.setDataProperty(thisemp, "name", "(Vacant)");
-								myDiagram.model.setDataProperty(thisemp, "comments", "");
-								myDiagram.commitTransaction("vacate");
-							}
-						}
-					}
-				),
-				$("ContextMenuButton",
-					$(go.TextBlock, "Remove Role"),
-					{
-						click: function (e, obj) {
-							// reparent the subtree to this node's boss, then remove the node
-							var node = obj.part.adornedPart;
-							if (node !== null) {
-								myDiagram.startTransaction("reparent remove");
-								var chl = node.findTreeChildrenNodes();
-								// iterate through the children and set their parent key to our selected node's parent key
-								while (chl.next()) {
-									var emp = chl.value;
-									myDiagram.model.setParentKeyForNodeData(emp.data, node.findTreeParentNode().data.key);
-								}
-								// and now remove the selected node itself
-								myDiagram.model.removeNodeData(node.data);
-								myDiagram.commitTransaction("reparent remove");
-							}
-						}
-					}
-				),
-				$("ContextMenuButton",
-					$(go.TextBlock, "Remove Department"),
-					{
-						click: function (e, obj) {
-							// remove the whole subtree, including the node itself
-							var node = obj.part.adornedPart;
-							if (node !== null) {
-								myDiagram.startTransaction("remove dept");
-								myDiagram.removeParts(node.findTreeParts());
-								myDiagram.commitTransaction("remove dept");
-							}
-						}
-					}
-				)
+				makeButton("Paste",
+					function (e, obj) {
+						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
+					},
+					function (o) {
+						return o.diagram.commandHandler.canPasteSelection();
+					}),
+				makeButton("Undo",
+					function (e, obj) {
+						e.diagram.commandHandler.undo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canUndo();
+					}),
+				makeButton("Redo",
+					function (e, obj) {
+						e.diagram.commandHandler.redo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canRedo();
+					})
 			);
 
 
-		// define the Link template
-		myDiagram.linkTemplate =
-			$(go.Link, go.Link.Orthogonal,
-				{corner: 5, relinkableFrom: true, relinkableTo: true},
-				$(go.Shape,
-					{strokeWidth: 4, stroke: "#00a4a4"}));  // the link shape
+		// Create the Diagram's Model:
 
-		// read in the JSON-format data from dthe "mySavedModel" element
-		load();
-
-		// support editing the properties of the selected person in HTML
-		if (window.Inspector) myInspector = new Inspector("myInspector", myDiagram,
+		var nodeDataArray = [
+			{key: 1, text: "Alpha"},
 			{
-				properties: {
-					"key": {readOnly: true},
-					"comments": {}
-				}
-			});
-	}
+				key: 2,
+				text: "Beta",
+				img: "https://banner2.kisspng.com/20171201/dcb/superman-logo-png-hd-5a219b596c0785.5547984215121518974425.jpg"
+			},
+			{key: 3, text: "Gamma"},
+			{key: 4, text: "fff"},
+			{key: 5, text: "sdfsdf df"},
+			{key: 6, text: "sdfsdf df"},
+			{key: 7, text: "sdfsdf df"}
+		];
 
-	// Show the diagram's model in JSON format
-	function save() {
-		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
-		myDiagram.isModified = false;
-	}
 
-	function load() {
-		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
-	}
+		var linkDataArray = [
+			{from: 1, to: 2},
+			{from: 1, to: 3},
+			{from: 2, to: 4},
+			{from: 2, to: 5},
+			{from: 3, to: 6},
+			{from: 3, to: 7},
+			{from: 3, to: 5}
+		];
 
-	// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
-	function searchDiagram() {  // called by button
-		var input = document.getElementById("mySearch");
-		if (!input) return;
-		input.focus();
-
-		myDiagram.startTransaction("highlight search");
-
-		if (input.value) {
-			// search four different data properties for the string, any of which may match for success
-			// create a case insensitive RegExp from what the user typed
-			var regex = new RegExp(input.value, "i");
-			var results = myDiagram.findNodesByExample({name: regex},
-				{nation: regex},
-				{title: regex},
-				{headOf: regex});
-			myDiagram.highlightCollection(results);
-
-			if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
-		} else {  // empty string only clears highlighteds collection
-			myDiagram.clearHighlighteds();
-		}
-
-		myDiagram.commitTransaction("highlight search");
+		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
 	}
 
-	/*
-	*
-	* Document Ready Function
-	*
-	 */
 
 	$(document).ready(function () {
 		init();
 
-		myDiagram.addDiagramListener("ObjectSingleClicked",
-			function (e) {
+	})
 
-				var key = e.subject.part.Wd.key;
-				var name = e.subject.part.Wd.name;
-				var title = e.subject.part.Wd.title;
-				var parent = e.subject.part.Wd.parent;
+	function save() {
+		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+		myDiagram.isModified = false;
+		console.log(myDiagram.model.linkDataArray);
+	}
 
-
-				var arr = [];
-				var new_arr = [];
-
-				myDiagram.selection.each(function (part) {
-
-					if (part instanceof go.Node) {
-
-						arr = {
-							"key": part.Wd.key,
-							"name": part.Wd.name,
-							"title": part.Wd.title,
-							"parent": part.Wd.parent
-						};
-						new_arr.push(arr);
-					}
-
-				});
-				console.table(new_arr);
-			});
-
-
-		/*Diagram Trees End*/
-
-	});
 </script>
 

@@ -210,26 +210,26 @@ $page = $this->router->fetch_method();
 
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 
-	<? } elseif ($controller == 'Structure') { ?>
+						<? } elseif ($controller == 'Structure') { ?>
 
 
-				<div class="">
-					<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
-					<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3">
-						<button type="button" class="btn btn-outline-secondary btn-sm">
-							<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
-								<img width="35" src="<?= base_url('assets/images/trees1.png') ?>">
-							</a>
-						</button>
-						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2') ?>">
-							<button type="button" class="btn btn-outline-secondary btn-group-sm">
-								<img width="35" src="<?= base_url('assets/images/trees2.png') ?>">
-							</button>
-						</a>
-						<button type="button" class="btn btn-outline-secondary" style="">
-							<img width="35" src="<?= base_url('assets/images/trees3.png') ?>">
-						</button>
-					</div>
-				</div>
+							<div class="">
+								<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
+								<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3">
+									<button type="button" class="btn btn-outline-secondary btn-sm">
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
+											<img width="35" src="<?= base_url('assets/images/trees1.png') ?>">
+										</a>
+									</button>
+									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2') ?>">
+										<button type="button" class="btn btn-outline-secondary btn-group-sm">
+											<img width="35" src="<?= base_url('assets/images/trees2.png') ?>">
+										</button>
+									</a>
+									<button type="button" class="btn btn-outline-secondary" style="">
+										<img width="35" src="<?= base_url('assets/images/trees3.png') ?>">
+									</button>
+								</div>
+							</div>
 
-	<? } ?>
+						<? } ?>

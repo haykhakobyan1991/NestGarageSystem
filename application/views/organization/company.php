@@ -84,204 +84,227 @@ $i = '';
 						<p class="font-weight-bold display-5 mt-3"><?= lang('general_information') ?></p>
 						<hr class="my-4">
 
-						<div class="form-group row">
+						<div class="row">
 
 							<label
-								class="col-sm-4 col-form-label"><?= lang('company_name') ?></label>
-							<div class="col-sm-8">
+								class="col-sm-2 col-form-label" style="font-size: 15px;"><?= lang('company_name') ?></label>
+							<div class="col-sm-4">
 								<input value="<?= $company['name'] ?>" name="company_name"
 									   type="text" class="form-control"
 									   placeholder="<?= lang('company_name') ?>">
 							</div>
-						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label">Owner Firstname</label>
-							<div class="col-sm-8">
+
+							<label class="col-sm-2 col-form-label" style="font-size: 15px;">Owner Firstname</label>
+							<div class="col-sm-4">
 								<input value="<?= $company['owner_firstname'] ?>"
 									   name="owner_firstname" type="text" class="form-control form-control-sm"
 									   placeholder="Owner Firstname">
 							</div>
 						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label">Owner Lastname</label>
-							<div class="col-sm-8">
+<div class="row mt-1">
+
+
+							<label class="col-sm-2 col-form-label" style="font-size: 15xp;">Owner Lastname</label>
+							<div class="col-sm-4">
 								<input value="<?= $company['owner_lastname'] ?>"
 									   name="owner_lastname" type="text" class="form-control form-control-sm"
 									   placeholder="Owner Lastname">
 							</div>
-						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label">Owner Position</label>
-							<div class="col-sm-8">
+
+
+							<label class="col-sm-2 col-form-label" style="font-size: 15px;">Owner Position</label>
+							<div class="col-sm-4">
 								<input value="<?= $company['owner_position'] ?>"
 									   name="owner_position" type="text" class="form-control form-control-sm"
 									   placeholder="Owner Position">
 							</div>
-						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label">Owner Contact Number</label>
-							<div class="col-sm-8">
+
+</div>
+
+						<div class="row mt-1">
+
+
+
+							<label class="col-sm-2 col-form-label" style="font-size: 15px;">Owner Contact Number</label>
+							<div class="col-sm-4">
 								<input value="<?= $company['owner_contact_number'] ?>"
 									   name="owner_contact_number" type="text"
 									   class="form-control form-control-sm" placeholder="Owner Contact Number">
 							</div>
-						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label">Owner Email</label>
-							<div class="col-sm-8">
+
+
+							<label class="col-sm-2 col-form-label" style="font-size: 15px;">Owner Email</label>
+							<div class="col-sm-4">
 								<input value="<?= $company['owner_email'] ?>" name="owner_email"
 									   type="email" class="form-control form-control-sm"
 									   placeholder="Owner Email">
 							</div>
+
+
 						</div>
 
+<div class="row mt-5">
 
-						<div class="form-group row">
-							<label
-								class="col-sm-4 col-form-label"><?= lang('activity_address') ?></label>
-							<div class="col-sm-8"
-								 style="border:1px solid #ced4da;padding-top: 10px;">
-								<div class="form-row">
-									<select name="activity_country"
-											class="col selectpicker form-control form-control-sm selectpicker_1"
-											data-size="5" id="country" data-live-search="true"
-											title="Select a country">
-										<option value="">Select Activity Country ...</option>
-										<? foreach ($country as $row) : ?>
-											<option <?= ($company['activity_country_id'] == $row['id'] ? 'selected' : '') ?>
-												value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-										<? endforeach; ?>
-									</select>
-									<div class="col">
-										<input name="activity_state_region"
-											   value="<?= $company['activity_state_region'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Activity State Region">
-									</div>
-								</div>
 
-								<div class="form-row mt-md-2 mt-2">
-									<div class="col">
-										<input name="activity_city"
-											   value="<?= $company['activity_city'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Activity City">
-									</div>
-									<div class="col">
-										<input name="activity_zip_code"
-											   value="<?= $company['activity_zip_code'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Zip Code">
-									</div>
-								</div>
 
-								<div class="form-group mt-md-2 mt-2">
-									<div class="col" style="padding-left: 0;padding-right: 0;">
-										<input name="activity_address"
-											   value="<?= $company['activity_address'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Activity Address">
-									</div>
-								</div>
-								<button type="button"
-										class="btn btn-sm btn-outline-success float-right mb-md-2 mb-2 copy_btn">
-									copy
-								</button>
+		<div class="col-sm-6" >
+			<label
+				class="col-sm-6 col-form-label" style="padding-left: 0;"><?= lang('activity_address') ?></label>
+			<button type="button"
+					class="btn btn-sm btn-outline-success float-right  copy_btn">
+				copy
+			</button>
+			<div class="form-row">
+				<select name="activity_country"
+						class="col selectpicker form-control form-control-sm selectpicker_1"
+						data-size="5" id="country" data-live-search="true"
+						title="Select a country">
+					<option value="">Select Activity Country ...</option>
+					<? foreach ($country as $row) : ?>
+						<option <?= ($company['activity_country_id'] == $row['id'] ? 'selected' : '') ?>
+							value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+					<? endforeach; ?>
+				</select>
+				<div class="col">
+					<input name="activity_state_region"
+						   value="<?= $company['activity_state_region'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Activity State Region">
+				</div>
+			</div>
 
-							</div>
-						</div>
+			<div class="form-row mt-md-2 mt-2">
+				<div class="col">
+					<input name="activity_city"
+						   value="<?= $company['activity_city'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Activity City">
+				</div>
+				<div class="col">
+					<input name="activity_zip_code"
+						   value="<?= $company['activity_zip_code'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Zip Code">
+				</div>
+			</div>
 
-						<div class="form-group row">
-							<label
-								class="col-sm-4 col-form-label"><?= lang('legal_address') ?></label>
-							<div class="col-sm-8"
-								 style="border:1px solid #ced4da;padding-top: 10px;">
-								<div class="form-row">
-									<select name="legal_country"
-											class="col selectpicker form-control form-control-sm selectpicker_2"
-											data-size="5" id="country" data-live-search="true"
-											title="Select a country">
-										<option value="">Select Legal Country ...</option>
-										<? foreach ($country as $row) : ?>
-											<option <?= ($company['legal_country_id'] == $row['id'] ? 'selected' : '') ?>
-												value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-										<? endforeach; ?>
-									</select>
-									<div class="col">
-										<input name="legal_state_region"
-											   value="<?= $company['legal_state_region'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Legal Region">
-									</div>
-								</div>
+			<div class="form-group mt-md-2 mt-2">
+				<div class="col" style="padding-left: 0;padding-right: 0;">
+					<input name="activity_address"
+						   value="<?= $company['activity_address'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Activity Address">
+				</div>
+			</div>
 
-								<div class="form-row mt-md-2 mt-2">
-									<div class="col">
-										<input name="legal_city"
-											   value="<?= $company['legal_city'] ?>" type="text"
-											   class="form-control form-control-sm" placeholder="Legal City">
-									</div>
-									<div class="col">
-										<input name="legal_zip_code"
-											   value="<?= $company['legal_zip_code'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Zip Code">
-									</div>
-								</div>
 
-								<div class="form-group mt-md-2 mt-2">
-									<div class="col" style="padding-left: 0;padding-right: 0;">
-										<input name="legal_address"
-											   value="<?= $company['legal_address'] ?>"
-											   type="text" class="form-control form-control-sm"
-											   placeholder="Legal Address">
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"><?= lang('tin') ?></label>
-							<div class="col-sm-8">
+		</div>
+
+
+
+		<div class="col-sm-6">
+			<label
+				class="col-sm-6 col-form-label" style="padding-left: 0;"><?= lang('legal_address') ?></label>
+			<div class="form-row">
+				<select name="legal_country"
+						class="col selectpicker form-control form-control-sm selectpicker_2"
+						data-size="5" id="country" data-live-search="true"
+						title="Select a country">
+					<option value="">Select Legal Country ...</option>
+					<? foreach ($country as $row) : ?>
+						<option <?= ($company['legal_country_id'] == $row['id'] ? 'selected' : '') ?>
+							value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+					<? endforeach; ?>
+				</select>
+				<div class="col">
+					<input name="legal_state_region"
+						   value="<?= $company['legal_state_region'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Legal Region">
+				</div>
+			</div>
+
+			<div class="form-row mt-md-2 mt-2">
+				<div class="col">
+					<input name="legal_city"
+						   value="<?= $company['legal_city'] ?>" type="text"
+						   class="form-control form-control-sm" placeholder="Legal City">
+				</div>
+				<div class="col">
+					<input name="legal_zip_code"
+						   value="<?= $company['legal_zip_code'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Zip Code">
+				</div>
+			</div>
+
+			<div class="form-group mt-md-2 mt-2">
+				<div class="col" style="padding-left: 0;padding-right: 0;">
+					<input name="legal_address"
+						   value="<?= $company['legal_address'] ?>"
+						   type="text" class="form-control form-control-sm"
+						   placeholder="Legal Address">
+				</div>
+			</div>
+		</div>
+
+
+</div>
+
+						<div class="row mt-4">
+
+
+
+							<label class="col-sm-2 col-form-label"><?= lang('tin') ?></label>
+							<div class="col-sm-4">
 								<input value="<?= $company['tin'] ?>" name="tin" type="text"
 									   class="form-control form-control-sm" placeholder="<?= lang('tin') ?>">
 							</div>
-						</div>
 
-						<div class="form-group row">
+
+
 							<label
-								class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
-							<div class="col-sm-8">
+								class="col-sm-2 col-form-label"><?= lang('phone_number') ?></label>
+							<div class="col-sm-4">
 								<input value="<?= $company['phone_number'] ?>"
 									   name="phone_number" type="text" class="form-control form-control-sm"
 									   placeholder="<?= lang('phone_number') ?>">
 							</div>
+
+
 						</div>
 
-						<div class="form-group row">
-							<label class="col-sm-4 col-form-label"><?= lang('email') ?></label>
-							<div class="col-sm-8">
+						<div class="row mt-1">
+
+
+
+
+							<label class="col-sm-2 col-form-label"><?= lang('email') ?></label>
+							<div class="col-sm-4">
 								<input value="<?= $company['email'] ?>" name="email" type="text"
 									   class="form-control form-control-sm" placeholder="<?= lang('email') ?>">
 							</div>
-						</div>
-						<div class="form-group row">
+
+
 							<label
-								class="col-sm-4 col-form-label"><?= lang('web_address') ?></label>
-							<div class="col-sm-8">
+								class="col-sm-2 col-form-label"><?= lang('web_address') ?></label>
+							<div class="col-sm-4">
 								<input value="<?= $company['web_address'] ?>" name="web_address"
 									   type="text" class="form-control form-control-sm"
 									   placeholder="<?= lang('web_address') ?>">
 							</div>
+
+
 						</div>
 					</div>
 
 
-					<div class="col-sm-12 tab-content col-sm-6 col-12" id="nav-tabContent">
+					<div class="col-sm-12 tab-content col-sm-6 col-12 mt-4" id="nav-tabContent">
 
 						<div class="accordion" id="accordionExample">
 							<div class="card">
@@ -634,9 +657,6 @@ $i = '';
 </div>
 
 
-
-
-
 <div class="tab-pane container-fluid mt-3 mt-md-3 fade" id="menu1">Lorem ipsum dolor sit amet, consectetur
 	adipisicing elit. Minus, veniam?
 </div>
@@ -705,7 +725,6 @@ $i = '';
 			}
 		});
 	});
-
 
 
 	$(document).on('click', '.copy_btn', function () {

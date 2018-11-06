@@ -147,93 +147,117 @@
 							<div class="selected-color" style="background: #ffffff;"></div>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Հաշվառման համարանիշ*</label>
-						<div class="col-sm-10">
-							<input value="" name="fleet_plate_number" type="text" class="form-control form-control-sm"
-								   placeholder="Հաշվառման համարանիշ">
+
+					<div class="row mt-3">
+						<div class="form-group col-sm-4">
+							<label
+								class=" col-form-label pl-3" style="font-size: 15px;">Հաշվառման համարանիշ*</label>
+							<div class="col-sm-12">
+								<input value="" name="fleet_plate_number" type="text"
+									   class="form-control form-control-sm"
+									   placeholder="Հաշվառման համարանիշ">
+							</div>
+						</div>
+
+						<div class="form-group col-sm-4">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">VIN</label>
+							<div class="col-sm-12">
+								<input value="" name="vin" type="text" class="form-control form-control-sm"
+									   placeholder="VIN">
+							</div>
+						</div>
+						<div class="form-group col-sm-4">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Շարժիչի հզորություն</label>
+							<div class="col-sm-12">
+								<input value="" min="0" step="0.1" name="engine_power" type="number"
+									   class="form-control form-control-sm"
+									   placeholder="Շարժիչի հզորություն">
+							</div>
+						</div>
+
+
+					</div>
+
+
+					<div class="row mt-3">
+						<div class="form-group col-sm-3">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Վառելիք</label>
+							<div class="col-sm-12">
+								<select name="fuel"
+										class="form-control form-control-sm selectpicker"
+										data-size="5" id="fleet_type" data-live-search="true"
+										title="Select a fuel"
+								>
+									<? foreach ($fuel as $row) : ?>
+										<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<? endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group col-sm-3">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Միջին ծախս 100 կմ</label>
+							<div class="col-sm-12">
+								<input value="" min="0" name="fuel_avg_consumption" type="number"
+									   class="form-control form-control-sm"
+									   placeholder="Միջին ծախս 100 կմ">
+							</div>
+						</div>
+						<div class="form-group col-sm-3">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Վազք</label>
+							<div class="col-sm-12">
+								<input value="" min="0" name="mileage" type="number" class="form-control form-control-sm"
+									   placeholder="Վազք">
+							</div>
+						</div>
+						<div class="form-group col-sm-3">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Հոդոգռաֆ</label>
+							<div class="col-sm-12">
+								<input value="" name="odometer" type="text" class="form-control form-control-sm"
+									   placeholder="Հոդոգռաֆ">
+							</div>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">VIN</label>
-						<div class="col-sm-10">
-							<input value="" name="vin" type="text" class="form-control form-control-sm"
-								   placeholder="VIN">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>
-						<div class="col-sm-10">
-							<input value="" min="0" step="0.1" name="engine_power" type="number"
-								   class="form-control form-control-sm mt-2"
-								   placeholder="Շարժիչի հզորություն">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Վառելիք</label>
-						<div class="col-sm-10">
-							<select name="fuel"
-									class="form-control form-control-sm selectpicker"
-									data-size="5" id="fleet_type" data-live-search="true"
-									title="Select a fuel"
-							>
-								<? foreach ($fuel as $row) : ?>
-									<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-								<? endforeach; ?>
-							</select>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Միջին ծախս 100 կմ</label>
-						<div class="col-sm-10">
-							<input value="" min="0" name="fuel_avg_consumption" type="number" class="form-control form-control-sm"
-								   placeholder="Միջին ծախս 100 կմ">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Վազք</label>
-						<div class="col-sm-10">
-							<input value="" min="0" name="mileage" type="number" class="form-control form-control-sm"
-								   placeholder="Վազք">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Հոդոգռաֆ</label>
-						<div class="col-sm-10">
-							<input value="" name="odometer" type="text" class="form-control form-control-sm mt-2"
-								   placeholder="Հոդոգռաֆ">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label
-							class="col-sm-2 col-form-label">Այլ</label>
-						<div class="col-sm-10">
-							<textarea name="other" rows="8" class="form-control form-control-sm mt-2"
+
+<div class="row">
+	<div class="form-group col-sm-6">
+		<label
+			class="pl-3 col-form-label" style="font-size: 15px;">Այլ</label>
+		<div class="col-sm-12">
+							<textarea name="other" rows="4" class="form-control form-control-sm mt-2"
 									  placeholder="Այլ"></textarea>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-10 col-form-label">Status make
-							a
-							Passive?</label>
-						<div class="col-sm-2">
-							<input value="-1" name="status" type="checkbox" class="form-control form-control-sm">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-10 col-form-label">Send a notification mail to the
-							drivers</label>
-						<div class="col-sm-2">
-							<input name="mail_to" value="1" type="checkbox" class="form-control form-control-sm">
-						</div>
-					</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6">
+		<div class="form-group row" style="margin-top: 40px;">
+			<label class="col-sm-10 col-form-label">Status make
+				a
+				Passive?</label>
+			<div class="col-sm-2">
+				<input value="-1" name="status" type="checkbox" class="form-control form-control-sm">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-10 col-form-label">Send a notification mail to the
+				drivers</label>
+			<div class="col-sm-2">
+				<input name="mail_to" value="1" type="checkbox" class="form-control form-control-sm">
+			</div>
+		</div>
+	</div>
+
+
+</div>
+
+
+
+
 				</div>
 				<!-- Main End -->
 				<br>
@@ -643,7 +667,9 @@
 						<thead>
 						<tr>
 							<th scope="col">Item Name</th>
-							<th scope="col">Value <small>(KM\Days\Months)</small></th>
+							<th scope="col">Value
+								<small>(KM\Days\Months)</small>
+							</th>
 							<th scope="col">Avg. exploitation</th>
 							<th scope="col">Per Days</th>
 							<th scope="col">More Info P\N</th>
@@ -805,7 +831,6 @@
 	$(document).on('click', '#submit', function (e) {
 
 
-
 		var url = '<?=base_url('Organization/add_vehicles_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form')[0]);
@@ -819,7 +844,7 @@
 			contentType: false,
 			cache: false,
 			processData: false,
-			beforeSend : function (){
+			beforeSend: function () {
 				scroll_top();
 				close_message();
 				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
@@ -890,8 +915,6 @@
 	$('.add_new_item').click(function () {
 
 
-
-
 		$('.new_items_tbody').append(
 			'<tr>\n' +
 			'<td>\n' +
@@ -900,15 +923,15 @@
 			'   value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<select name="value[' + n + ']"\n'+
-					'class="selectpicker form-control form-control-sm dif_meter"\n'+
-					'data-live-search="true"\n'+
-					'data-size="5"\n'+
-					'title="Select a value">\n'+
-					'<? foreach ($value as $row) : ?>\n'+
-						'<option\n'+
-							'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n'+
-					'<? endforeach; ?>\n'+
+			'<select name="value[' + n + ']"\n' +
+			'class="selectpicker form-control form-control-sm dif_meter"\n' +
+			'data-live-search="true"\n' +
+			'data-size="5"\n' +
+			'title="Select a value">\n' +
+			'<? foreach ($value as $row) : ?>\n' +
+			'<option\n' +
+			'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n' +
+			'<? endforeach; ?>\n' +
 			'</select>' +
 			'</td>\n' +
 			'<td>\n' +
@@ -942,14 +965,18 @@
 			'</button>\n' +
 			'</td>\n' +
 			'<script>' +
-			'$(\'select[name="value['+n+']"]\').selectpicker(\'refresh\');'+
-			'</'+
-			'script>\n'+
+			'$(\'select[name="value[' + n + ']"]\').selectpicker(\'refresh\');' +
+			'</' +
+			'script>\n' +
 			'</tr>'
 		);
 
 
-		$('.selectpicker').parent('div').children('button').css({'background': 'rgb(255, 255, 255)', 'color': 'rgb(108, 117, 125)', 'border': '1px solid rgb(206, 212, 218)'});
+		$('.selectpicker').parent('div').children('button').css({
+			'background': 'rgb(255, 255, 255)',
+			'color': 'rgb(108, 117, 125)',
+			'border': '1px solid rgb(206, 212, 218)'
+		});
 
 
 		n++;

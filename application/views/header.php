@@ -170,7 +170,7 @@ $page = $this->router->fetch_method();
 
 			<div class="row">
 				<!-- Vertical Tabs Start-->
-				<div class="col-sm-12 col-md-3">
+				<div class="col-sm-12 col-md-2">
 					<div class="list-group" id="list-tab" role="tablist"
 						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
 						<a class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"

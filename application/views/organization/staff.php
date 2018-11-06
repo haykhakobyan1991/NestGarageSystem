@@ -1,5 +1,5 @@
 <?
-$user_id = $this->session->user_id;
+$user_id = $parent_user;
 $total = 0;
 $active = 0;
 $passive = 0;

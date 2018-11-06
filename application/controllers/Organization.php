@@ -45,6 +45,29 @@ class Organization extends MX_Controller {
 	}
 
 
+	/**
+	 * @param string $company_id
+	 * @return bool
+	 */
+	public function get_parent_user($company_id = '') {
+
+		if ($company_id != '') {
+			$row_parent_user = $this->db->select('user.id')
+				->from('user')
+				->join('company', 'company.id = user.company_id', 'left')
+				->where('user.company_id', $company_id)
+				->where('user.parent_user_id', NULL)
+				->limit('1')
+				->get()
+				->row_array();
+
+			return $row_parent_user['id'];
+		}
+
+		return false;
+	}
+
+
 
 	/**
 	 * @param $element
@@ -141,8 +164,14 @@ class Organization extends MX_Controller {
 		$lng = $this->load->lng();
 
 
+
+
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
 
 		$sql_country = "
 		    SELECT 
@@ -194,6 +223,9 @@ class Organization extends MX_Controller {
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
 
 		$sql_country = "
 		    SELECT 
@@ -262,6 +294,9 @@ class Organization extends MX_Controller {
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
 
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
+
 		$sql_country = "
 		    SELECT 
               `id`,
@@ -325,6 +360,9 @@ class Organization extends MX_Controller {
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
 
 		$sql_country = "
 		    SELECT 
@@ -410,6 +448,9 @@ class Organization extends MX_Controller {
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
 
 
 		 $sql = "
@@ -619,13 +660,13 @@ class Organization extends MX_Controller {
 		$config = $this->upload_config();
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/company'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/company'), '0755', true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/index.html'));
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/company/index.html'));
+		if (!file_exists(set_realpath('uploads/company'))) {
+			mkdir(set_realpath('uploads/company'), '0755', true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/company/index.html'));
 		}
 
-		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/company');
+		$config['upload_path'] = set_realpath('uploads/company');
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
@@ -641,8 +682,8 @@ class Organization extends MX_Controller {
 			}
 
 
-			if($company_logo != '' && file_exists(set_realpath('uploads/user_'.$user_id.'/company/'.$company_logo))) {
-				unlink(set_realpath('uploads/user_'.$user_id.'/company/'.$company_logo));
+			if($company_logo != '' && file_exists(set_realpath('uploads/company/'.$company_logo))) {
+				unlink(set_realpath('uploads/company/'.$company_logo));
 			}
 
 
@@ -3720,6 +3761,9 @@ class Organization extends MX_Controller {
 		$company_id = $row['company_id'];
 
 
+
+
+
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
 			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
@@ -3754,7 +3798,7 @@ class Organization extends MX_Controller {
 		}
 
 
-		//todo mail ---
+
 
 
 		   $sql = "

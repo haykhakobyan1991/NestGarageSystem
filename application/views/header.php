@@ -78,6 +78,8 @@
 			font-weight: 700;
 		}
 
+
+
 	</style>
 	<!-- Some CSS end -->
 </head>

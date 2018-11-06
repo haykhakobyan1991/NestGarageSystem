@@ -26,7 +26,12 @@
 		});
 
 
+
+
+
 	});
+
+
 
 
 	$(document).on('click', '.remove_document', function () {
@@ -56,6 +61,9 @@
 	$(document).on('click', '.remove_new_row', function () {
 		$(this).parent('div').parent('div').remove();
 	});
+
+
+
 </script>
 
 

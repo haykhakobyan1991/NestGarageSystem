@@ -620,7 +620,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/company'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/company'), '0777', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/company'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/index.html'));
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/company/index.html'));
 		}
@@ -910,7 +910,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0777', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
 		}
 
@@ -942,7 +942,7 @@ class Organization extends MX_Controller {
 		if(isset($image) && $image != '') {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
 			}
 
@@ -982,7 +982,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1018,7 +1018,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1055,7 +1055,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1090,7 +1090,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1754,7 +1754,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0777', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
 		}
 
@@ -1786,7 +1786,7 @@ class Organization extends MX_Controller {
 		if(isset($image) && $image != '') {
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
 			}
 
@@ -1827,7 +1827,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1865,7 +1865,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1908,7 +1908,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -1943,7 +1943,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
 			}
 
@@ -2270,7 +2270,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
 			}
 
@@ -2314,7 +2314,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -2350,7 +2350,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -2387,7 +2387,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -2424,7 +2424,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -2925,7 +2925,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
 			}
 
@@ -2971,7 +2971,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -3008,7 +3008,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -3045,7 +3045,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -3082,7 +3082,7 @@ class Organization extends MX_Controller {
 
 
 			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0777', true);
+				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
 			}
 
@@ -3425,7 +3425,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0777', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
 		}
 
@@ -3721,7 +3721,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0777', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0755', true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
 		}
 

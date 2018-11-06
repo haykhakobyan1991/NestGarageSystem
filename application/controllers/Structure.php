@@ -123,7 +123,7 @@ class Structure extends MX_Controller {
 			  ) AS `driver`,
 			  `staff`.`photo` AS `driver_photo`,
 			  `staff`.`id` AS `driver_id`,
-			  `department`.`title`,
+			  `department`.`id` AS `department_id`,
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
@@ -171,32 +171,29 @@ class Structure extends MX_Controller {
 
 		$structure_arr = array();
 		$cmp_id = '';
-		$head_staff_id = '';
+		$department_id = '';
 		$driver_id = '';
 		$fleet_id = '';
 
 		$from_to_arr = array();
 		foreach ($structure_array AS $key => $value) :
 			if ($value['company_id'] != $cmp_id) :
-//				$structure_arr['company'][$value['company_id']] = $value['company'];
-//				$structure_arr['company_logo'][$value['company_id']] = $value['company_logo'];
-
 
 				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/user_' . $user_id . '/company/' . $value['company_logo']));
 
 			endif;
 			$cmp_id = $value['company_id'];
 
-			if ($value['head_staff_id'] != $head_staff_id) :
+			if ($value['department_id'] != $department_id) :
 
-				$structure_arr[] = array('key' => 'h'.$value['head_staff_id'], 'text' => $value['head'], 'img' => base_url('uploads/user_'.$user_id.'/staff/original/'.$value['head_staff_photo']));
-				$from_to_arr[] = array('from' => 'c'.$value['company_id'], 'to' => 'h'.$value['head_staff_id']);
+				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'text' => $value['head'], 'img' => base_url('uploads/user_'.$user_id.'/staff/original/'.$value['head_staff_photo']));
+				$from_to_arr[] = array('from' => 'c'.$value['company_id'], 'to' => 'h'.$value['department_id']);
 			endif;
-			$head_staff_id = $value['head_staff_id'];
+			$department_id = $value['department_id'];
 
 			if ($value['driver_id'] != $driver_id) :
 				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/user_'.$user_id.'/staff/original/'.$value['driver_photo']) : base_url('assets/img/staff.svg')));
-				$from_to_arr[] = array('from' => 'h'.$value['head_staff_id'], 'to' => 'd'.$value['driver_id']);
+				$from_to_arr[] = array('from' => 'h'.$value['department_id'], 'to' => 'd'.$value['driver_id']);
 
 			endif;
 			$driver_id = $value['driver_id'];
@@ -206,13 +203,22 @@ class Structure extends MX_Controller {
 				$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'));
 
 			endif;
-			$from_to_arr[] = array('from' => 'd'.$value['driver_id'], 'to' => 'f'.$value['fleet_id']);
 			$fleet_id = $value['fleet_id'];
+			if($value['fleet_id'] != '') :
+				$from_to_arr[] = array('from' => 'd'.$value['driver_id'], 'to' => 'f'.$value['fleet_id']);
+			endif;
 
 		endforeach;
 
+//		echo '<br>';
+//		echo '<br>';
+//		echo '<br>';
+
+
 
 		$from_to_arr = array_values(array_unique($from_to_arr, SORT_REGULAR));
+
+//		$this->pre($from_to_arr);
 
 		$data['structure'] = json_encode($structure_arr);
 		$data['from_to'] = json_encode($from_to_arr);
@@ -245,7 +251,7 @@ class Structure extends MX_Controller {
 			  ) AS `driver`,
 			  `staff`.`photo` AS `driver_photo`,
 			  `staff`.`id` AS `driver_id`,
-			  `department`.`title`,
+			  `department`.`id` AS `department_id`,
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
@@ -293,9 +299,8 @@ class Structure extends MX_Controller {
 
 		$structure_arr = array();
 		$cmp_id = '';
-		$head_staff_id = '';
+		$department_id = '';
 		$driver_id = '';
-		$fleet_id = '';
 
 		foreach ($structure_array AS $key => $value) :
 			if ($value['company_id'] != $cmp_id) :
@@ -305,24 +310,22 @@ class Structure extends MX_Controller {
 			endif;
 			$cmp_id = $value['company_id'];
 
-			if ($value['head_staff_id'] != $head_staff_id) :
+			if ($value['department_id'] != $department_id) :
 
-				$structure_arr[] = array('key' => 'h'.$value['head_staff_id'], 'name' => $value['head'], 'parent' => 'c'.$value['company_id'], 'title' => 'Head staff');
+				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'name' => $value['head'], 'parent' => 'c'.$value['company_id'], 'title' => 'Head staff');
 			endif;
-			$head_staff_id = $value['head_staff_id'];
+			$department_id = $value['department_id'];
 
 			if ($value['driver_id'] != $driver_id) :
-				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'name' => $value['driver'], 'parent' => 'h'.$value['head_staff_id'], 'title' => 'Driver');
+				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'name' => $value['driver'], 'parent' => 'h'.$value['department_id'], 'title' => 'Driver');
 			endif;
 			$driver_id = $value['driver_id'];
 
 
-			if ($value['fleet_id'] != $fleet_id) :
-
-
+			if ($value['fleet_id'] != '') :
+				$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'name' => $value['model'], 'parent' => 'd'.$value['driver_id'], 'title' => 'Fleet');
 			endif;
-			$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'name' => $value['model'], 'parent' => 'd'.$value['driver_id'], 'title' => 'Fleet');
-			$fleet_id = $value['fleet_id'];
+
 
 		endforeach;
 		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));

@@ -118,6 +118,7 @@ endforeach;
 										<div class="for_message">
 											<div class="alert alert-success d-none" role="alert"></div>
 											<div class="alert alert-danger  d-none" role="alert"></div>
+											<div class="alert alert-info  d-none" role="alert"></div>
 										</div>
 
 										<div class="row">
@@ -637,6 +638,9 @@ endforeach;
 										</div>
 										<div class="text-right mt-4 pb-2">
 											<span id="add_staff" class="btn btn-outline-success">Save</span>
+											<span id="load" class="btn btn-sm btn-success d-none"><img
+													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+													src="<?= base_url() ?>assets/images/bars2.svg"/></span>
 										</div>
 									</div>
 
@@ -861,17 +865,20 @@ color: #545b62;">
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend: function () {
+				scroll_top();
+				close_message();
+				loading('start', 'add_staff');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
-					scroll_top();
-
-					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
-					$('.alert-success').text(data.message);
-
 					close_message();
-
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').text(data.message);
+					loading('stop', 'add_staff');
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
 
@@ -880,9 +887,10 @@ color: #545b62;">
 					$(location).attr('href', url + '#staff');
 
 				} else {
-
+					close_message();
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
+						loading('stop', 'add_staff');
 
 						$('.alert-danger').addClass('d-none');
 						$('.alert-success').addClass('d-none');
@@ -930,9 +938,8 @@ color: #545b62;">
 	});
 
 
-	$(document).on('click', 'span#edit_staff', function (e) {
+	$(document).on('click', '#edit_staff_btn', function (e) {
 
-		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 
 		var url = '<?=base_url('Organization/edit_staff_ax') ?>';
 		e.preventDefault();
@@ -950,14 +957,20 @@ color: #545b62;">
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend: function () {
+				scroll_top();
+				close_message();
+				loading('start', 'edit_staff_btn');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
-					scroll_top();
-
+					close_message();
 					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
+					loading('stop', 'edit_staff_btn');
 
 					close_message();
 
@@ -968,12 +981,10 @@ color: #545b62;">
 
 
 				} else {
-
+					close_message();
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
-
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
+						loading('stop', 'edit_staff_btn');
 
 						$.each(data.error.elements, function (index) {
 

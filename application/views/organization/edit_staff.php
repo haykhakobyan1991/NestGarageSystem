@@ -6,6 +6,7 @@ $user_id = $this->session->user_id;
 	<div class="for_message">
 		<div class="alert alert-success d-none" role="alert"></div>
 		<div class="alert alert-danger  d-none" role="alert"></div>
+		<div class="alert alert-info  d-none" role="alert"></div>
 	</div>
 
 	<div class="row">
@@ -567,7 +568,10 @@ $user_id = $this->session->user_id;
 		</div>
 	</div>
 	<div class="text-right mt-4 pb-2">
-		<span id="edit_staff" class="btn btn-outline-success">Save</span>
+		<span id="edit_staff_btn" class="btn btn-success">Save</span>
+		<span id="load" class="btn btn-sm btn-success d-none"><img
+				style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+				src="<?= base_url() ?>assets/images/bars2.svg"/></span>
 	</div>
 </form>
 

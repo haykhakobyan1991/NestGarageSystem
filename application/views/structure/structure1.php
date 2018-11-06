@@ -9,9 +9,9 @@
 
 
 	<div id="sample">
-		<div id="myDiagramDiv" style="border: solid 1px black;  height:400px"></div>
+		<div id="myDiagramDiv" style="border: solid 1px black;  height:600px"></div>
 	</div>
-	<textarea style="width: 100%;" id="mySavedModel">
+	<textarea style="display: none; width: 100%;" id="mySavedModel">
 
 </textarea>
 	<button id="SaveButton" onclick="save()">Save</button>

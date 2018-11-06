@@ -102,6 +102,8 @@ class Structure extends MX_Controller {
 		$data = array();
 		$user_id = $this->session->user_id;
 
+		$lng = $this->load->lng();
+
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
 
@@ -125,7 +127,11 @@ class Structure extends MX_Controller {
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
-			  `model`.`title_hy`  AS `model`,
+			   CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `model`,
 			  `fleet`.`id` AS `fleet_id`
 			FROM
 			  `user` 
@@ -149,6 +155,8 @@ class Structure extends MX_Controller {
 				) 
 			  LEFT JOIN `model` 
 				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 		
 			WHERE company.id = '" . $company_id . "' 
 			ORDER BY `head_staff`.`id`,
 			  `staff`.`id`,
@@ -216,6 +224,7 @@ class Structure extends MX_Controller {
 	public function structure2(){
 		$data = array();
 		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
@@ -240,7 +249,11 @@ class Structure extends MX_Controller {
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
-			  `model`.`title_hy`  AS `model`,
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `model`,
 			  `fleet`.`id` AS `fleet_id`
 			FROM
 			  `user` 
@@ -263,7 +276,9 @@ class Structure extends MX_Controller {
 				  `fleet`.`staff_ids`
 				) 
 			  LEFT JOIN `model` 
-				ON `fleet`.`model_id` = `model`.`id` 
+				ON `fleet`.`model_id` = `model`.`id`
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 	
 			WHERE company.id = '" . $company_id . "' 
 			ORDER BY `head_staff`.`id`,
 			  `staff`.`id`,

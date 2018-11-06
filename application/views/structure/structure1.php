@@ -181,7 +181,7 @@
 
 		// define the Node template
 
-		var levelColors = ["#AC193D", "#2672EC", "#8C0095", "#5133AB", "#008299", "#D24726", "#008A00", "#094AB2"];
+		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
 			myDiagram.layout.network.vertexes.each(function (v) {
@@ -434,30 +434,34 @@
 
 		// Create the Diagram's Model:
 
-		var nodeDataArray = [
-			{key: 1, text: "Alpha"},
-			{
-				key: 2,
-				text: "Beta",
-				img: "https://banner2.kisspng.com/20171201/dcb/superman-logo-png-hd-5a219b596c0785.5547984215121518974425.jpg"
-			},
-			{key: 3, text: "Gamma"},
-			{key: 4, text: "fff"},
-			{key: 5, text: "sdfsdf df"},
-			{key: 6, text: "sdfsdf df"},
-			{key: 7, text: "sdfsdf df"}
-		];
+		// var nodeDataArray = [
+		// 	{key: 'c1', text: "Alpha"},
+		// 	{
+		// 		key: 'd2',
+		// 		text: "Beta",
+		// 		img: "https://banner2.kisspng.com/20171201/dcb/superman-logo-png-hd-5a219b596c0785.5547984215121518974425.jpg"
+		// 	},
+		// 	{key: '3', text: "Gamma"},
+		// 	{key: '4', text: "fff"},
+		// 	{key: '5', text: "sdfsdf df"},
+		// 	{key: '6', text: "sdfsdf df"},
+		// 	{key: '7', text: "sdfsdf df"}
+		// ];
+		//
+		//
+		// var linkDataArray = [
+		// 	{from: 'c1', to: 'd2'},
+		// 	{from: 'c1', to: 3},
+		// 	{from: 'd2', to: 4},
+		// 	{from: 'd2', to: 5},
+		// 	{from: 3, to: 6},
+		// 	{from: 3, to: 7},
+		// 	{from: 3, to: 5}
+		// ];
 
 
-		var linkDataArray = [
-			{from: 1, to: 2},
-			{from: 1, to: 3},
-			{from: 2, to: 4},
-			{from: 2, to: 5},
-			{from: 3, to: 6},
-			{from: 3, to: 7},
-			{from: 3, to: 5}
-		];
+		var nodeDataArray = <?=$structure?>;
+		var linkDataArray = <?=$from_to?>;
 
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 

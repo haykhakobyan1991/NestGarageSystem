@@ -100,12 +100,222 @@ class Structure extends MX_Controller {
 
 	public function structure1(){
 		$data = array();
+		$user_id = $this->session->user_id;
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`head_staff`.`first_name`,
+				`head_staff`.`last_name`
+			  ) AS `head`,
+			  `head_staff`.`photo` AS `head_staff_photo`,
+			  `head_staff`.`id` AS `head_staff_id`,
+			  CONCAT_WS(
+				' ',
+				`staff`.`first_name`,
+				`staff`.`last_name`
+			  ) AS `driver`,
+			  `staff`.`photo` AS `driver_photo`,
+			  `staff`.`id` AS `driver_id`,
+			  `department`.`title`,
+			  `company`.`id` AS `company_id`,
+			  `company`.`name` AS `company`,
+			  `company`.`logo` AS `company_logo`,
+			  `model`.`title_hy`  AS `model`,
+			  `fleet`.`id` AS `fleet_id`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+			  LEFT JOIN staff AS head_staff 
+				ON department.`head_staff_id` = head_staff.id 
+			  LEFT JOIN staff 
+				ON FIND_IN_SET(
+				  department.id,
+				  staff.`department_ids`
+				) 
+				AND `staff`.`id` <> `head_staff`.`id` 
+				/*todo*/
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			WHERE company.id = '" . $company_id . "' 
+			ORDER BY `head_staff`.`id`,
+			  `staff`.`id`,
+			  `department`.`id`,
+			  `fleet`.`id` 
+		";
+
+
+		$result = $this->db->query($sql);
+
+		$structure_array = $result->result_array();
+
+		$structure_arr = array();
+		$cmp_id = '';
+		$head_staff_id = '';
+		$driver_id = '';
+		$fleet_id = '';
+
+		$from_to_arr = array();
+		foreach ($structure_array AS $key => $value) :
+			if ($value['company_id'] != $cmp_id) :
+//				$structure_arr['company'][$value['company_id']] = $value['company'];
+//				$structure_arr['company_logo'][$value['company_id']] = $value['company_logo'];
+
+
+				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/user_' . $user_id . '/company/' . $value['company_logo']));
+
+			endif;
+			$cmp_id = $value['company_id'];
+
+			if ($value['head_staff_id'] != $head_staff_id) :
+
+				$structure_arr[] = array('key' => 'h'.$value['head_staff_id'], 'text' => $value['head'], 'img' => base_url('uploads/user_'.$user_id.'/staff/original/'.$value['head_staff_photo']));
+				$from_to_arr[] = array('from' => 'c'.$value['company_id'], 'to' => 'h'.$value['head_staff_id']);
+			endif;
+			$head_staff_id = $value['head_staff_id'];
+
+			if ($value['driver_id'] != $driver_id) :
+				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/user_'.$user_id.'/staff/original/'.$value['driver_photo']) : base_url('assets/img/staff.svg')));
+				$from_to_arr[] = array('from' => 'h'.$value['head_staff_id'], 'to' => 'd'.$value['driver_id']);
+
+			endif;
+			$driver_id = $value['driver_id'];
+
+
+			if ($value['fleet_id'] != $fleet_id) :
+				$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'));
+
+			endif;
+			$from_to_arr[] = array('from' => 'd'.$value['driver_id'], 'to' => 'f'.$value['fleet_id']);
+			$fleet_id = $value['fleet_id'];
+
+		endforeach;
+
+
+		$from_to_arr = array_values(array_unique($from_to_arr, SORT_REGULAR));
+
+		$data['structure'] = json_encode($structure_arr);
+		$data['from_to'] = json_encode($from_to_arr);
+
 		$this->layout->view('structure/structure1', $data);
 
 	}
 
 	public function structure2(){
 		$data = array();
+		$user_id = $this->session->user_id;
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`head_staff`.`first_name`,
+				`head_staff`.`last_name`
+			  ) AS `head`,
+			  `head_staff`.`photo` AS `head_staff_photo`,
+			  `head_staff`.`id` AS `head_staff_id`,
+			  CONCAT_WS(
+				' ',
+				`staff`.`first_name`,
+				`staff`.`last_name`
+			  ) AS `driver`,
+			  `staff`.`photo` AS `driver_photo`,
+			  `staff`.`id` AS `driver_id`,
+			  `department`.`title`,
+			  `company`.`id` AS `company_id`,
+			  `company`.`name` AS `company`,
+			  `company`.`logo` AS `company_logo`,
+			  `model`.`title_hy`  AS `model`,
+			  `fleet`.`id` AS `fleet_id`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+			  LEFT JOIN staff AS head_staff 
+				ON department.`head_staff_id` = head_staff.id 
+			  LEFT JOIN staff 
+				ON FIND_IN_SET(
+				  department.id,
+				  staff.`department_ids`
+				) 
+				AND `staff`.`id` <> `head_staff`.`id` 
+				/*todo*/
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			WHERE company.id = '" . $company_id . "' 
+			ORDER BY `head_staff`.`id`,
+			  `staff`.`id`,
+			  `department`.`id`,
+			  `fleet`.`id` 
+		";
+
+
+		$result = $this->db->query($sql);
+
+		$structure_array = $result->result_array();
+
+		$structure_arr = array();
+		$cmp_id = '';
+		$head_staff_id = '';
+		$driver_id = '';
+		$fleet_id = '';
+
+		foreach ($structure_array AS $key => $value) :
+			if ($value['company_id'] != $cmp_id) :
+
+				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'name' => $value['company'], 'title' => 'Company');
+
+			endif;
+			$cmp_id = $value['company_id'];
+
+			if ($value['head_staff_id'] != $head_staff_id) :
+
+				$structure_arr[] = array('key' => 'h'.$value['head_staff_id'], 'name' => $value['head'], 'parent' => 'c'.$value['company_id'], 'title' => 'Head staff');
+			endif;
+			$head_staff_id = $value['head_staff_id'];
+
+			if ($value['driver_id'] != $driver_id) :
+				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'name' => $value['driver'], 'parent' => 'h'.$value['head_staff_id'], 'title' => 'Driver');
+			endif;
+			$driver_id = $value['driver_id'];
+
+
+			if ($value['fleet_id'] != $fleet_id) :
+
+
+			endif;
+			$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'name' => $value['model'], 'parent' => 'd'.$value['driver_id'], 'title' => 'Fleet');
+			$fleet_id = $value['fleet_id'];
+
+		endforeach;
+		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
+
+
+
+		$data['structure'] = json_encode($structure_unique);
+
 		$this->layout->view('structure/structure2', $data);
 
 	}

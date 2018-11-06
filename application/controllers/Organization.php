@@ -2075,7 +2075,9 @@ class Organization extends MX_Controller {
 		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
 			->where('user.company_id', $company_id)
+			->where('department.head_staff_id <> ', 'staff.id', FALSE)
 			->where('staff.status', 1)
 			->get()
 			->result_array();
@@ -2711,7 +2713,9 @@ class Organization extends MX_Controller {
 		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
 			->where('user.company_id', $company_id)
+			->where('department.head_staff_id <> ', 'staff.id', FALSE)
 			->where('staff.status', 1)
 			->get()
 			->result_array();

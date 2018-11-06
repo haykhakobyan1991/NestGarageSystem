@@ -23,27 +23,7 @@
 		<div>
 			<textarea id="mySavedModel" style="display:none;">
 				{"class": "go.TreeModel",
-		  			"nodeDataArray": [
-						{"key":1,"name":"Stella Payne Diaz","title":"CEO","checked":false},
-						{"key":2,"name":"Luke Warm","title":"VP Marketing/Sales","parent":1, "checked": false},
-						{"key":3,"name":"Meg Meehan Hoffa","title":"Sales","parent":2, "checked": false},
-						{"key":4,"name":"Peggy Flaming","title":"VP Engineering","parent":1, "checked": false},
-						{"key":5,"name":"Saul Wellingood","title":"Manufacturing","parent":4, "checked": false},
-						{"key":6,"name":"Al Ligori","title":"Marketing","parent":2, "checked": false},
-						{"key":7,"name":"Dot Stubadd","title":"Sales Rep","parent":3, "checked": false},
-						{"key":8,"name":"Les Ismore","title":"Project Mgr","parent":5, "checked": false},
-						{"key":9,"name":"April Lynn Parris","title":"Events Mgr","parent":6, "checked": false},
-						{"key":10,"name":"Xavier Breath","title":"Engineering","parent":4, "checked": false},
-						{"key":11,"name":"Anita Hammer","title":"Process","parent":5, "checked": false},
-						{"key":12,"name":"Billy Aiken","title":"Software","parent":10, "checked": false},
-						{"key":13,"name":"Stan Wellback","title":"Testing","parent":10, "checked": false},
-						{"key":14,"name":"Marge Innovera","title":"Hardware","parent":10, "checked": false},
-						{"key":15,"name":"Evan Elpus","title":"Quality","parent":5, "checked": false},
-						{"key":16,"name":"Lotta B. Essen","title":"Sales Rep","parent":3, "checked": false},
-						{"key":17,"name":"Hayk","title":"Hakobyan","parent":3, "checked": false},
-						{"key":18,"name":"Hakobyan","title":"zzzz","parent":3, "checked": false},
-						{"key":19,"name":"Hakobyan Hayk","title":"ffffff","parent":3, "checked": false}
-			 		]
+		  			"nodeDataArray": <?=$structure?>
 				}
     	</textarea>
 		</div>

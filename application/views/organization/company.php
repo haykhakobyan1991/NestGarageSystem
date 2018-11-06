@@ -1,5 +1,5 @@
 <?php
-$user_id = $this->session->user_id;
+$user_id = $parent_user;
 $i = '';
 ?>
 
@@ -59,7 +59,7 @@ $i = '';
 							<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
 								 style="width: 100px;"
 								 alt=""
-								 src="<?= ($company['logo'] != '' ? base_url('uploads/user_' . $user_id . '/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
+								 src="<?= ($company['logo'] != '' ? base_url('uploads/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
 							<div class="media-body">
 								<h5 class="mt-0">LOGO</h5>
 								<p>Upload your company LOGO</p>

@@ -4,38 +4,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content=""/>
 	<meta name="keywords" content="fleet car garage fleetManagement"/>
-
 	<title>Create Company</title>
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-
-
 	<script src="<?= base_url() ?>assets/js/base.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
-
-
 	<!-- Tables Start -->
-	<script>
-		$(document).ready(function () {
-			$('#example').DataTable();
-			$('#example2').DataTable();
-			$('#example3').DataTable();
-			$('#example4').DataTable();
-		});
-	</script>
+	<script>$(document).ready(function () {$('#example').DataTable();$('#example2').DataTable();$('#example3').DataTable();$('#example4').DataTable();});</script>
 	<!-- Tables End -->
 
 	<!-- Some CSS Start-->
@@ -205,8 +192,8 @@ $page = $this->router->fetch_method();
 
 
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
-						<div class="loader"></div>
 
+						<div class="loader"></div>
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 
 						<? } elseif ($controller == 'Structure') { ?>

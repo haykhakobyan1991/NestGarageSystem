@@ -249,6 +249,10 @@ color: #545b62;">
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend : function (){
+
+				$('span#add_department').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+			},
 			success: function (data) {
 				if (data.success == '1') {
 

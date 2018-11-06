@@ -192,9 +192,18 @@ function scroll_top() {
 function close_message() {
 	setTimeout(function () {
 		$('.alert-success, .alert-danger').addClass('d-none');
-	}, 3000);
+	}, 5000);
+	$('.alert-info').addClass('d-none');
 }
 
-$('table:not(.vehicle)').DataTable( {
-	"order": [[ 0, "desc" ]]
-} );
+function loading(e = 'start', id = '') {
+	if (e == 'start') {
+		$('#'+id).addClass('d-none');
+		$('#load').removeClass('d-none');
+	} else {
+		$('#'+id).removeClass('d-none');
+		$('#load').addClass('d-none');
+	}
+}
+
+

@@ -178,7 +178,12 @@ color: #545b62;">
 									</div>
 
 									<div class="modal-footer">
-										<span id="add_department" type="button" class="btn btn-outline-success">Save</span>
+										<button id="add_department_btn" type="button"
+												class="btn btn-outline-success">Save
+										</button>
+										<button id="load" class="btn btn-sm btn-success d-none"><img
+												style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+												src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 									</div>
 								</div>
 							</div>
@@ -205,7 +210,8 @@ color: #545b62;">
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
 					<button type="button" class="btn btn-outline-danger text-danger" data-dismiss="modal">No</button>
-					<button type="button" id="delete_department" class="btn btn-outline-success text-success">Yes</button>
+					<button type="button" id="delete_department" class="btn btn-outline-success text-success">Yes
+					</button>
 					<input type="hidden" name="department_id">
 				</div>
 			</div>
@@ -231,7 +237,7 @@ color: #545b62;">
 
 
 	// create department
-	$(document).on('click', 'span#add_department', function (e) {
+	$(document).on('click', '#add_department_btn', function (e) {
 
 		var url = '<?=base_url('Organization/add_department_ax') ?>';
 		e.preventDefault();
@@ -240,6 +246,7 @@ color: #545b62;">
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
+		loading('start', 'add_department_btn');
 
 		$.ajax({
 			url: url,
@@ -249,20 +256,22 @@ color: #545b62;">
 			contentType: false,
 			cache: false,
 			processData: false,
-			beforeSend : function (){
-
-				$('span#add_department').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+			beforeSend: function () {
+				scroll_top();
+				close_message();
+				loading('start', 'add_department_btn');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
 			},
 			success: function (data) {
 				if (data.success == '1') {
+					close_message();
 
-					scroll_top();
 
 					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
 					$('.alert-success').text(data.message);
 
-					close_message();
+					loading('stop', 'add_department_btn');
 
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>";
@@ -271,7 +280,8 @@ color: #545b62;">
 
 
 				} else {
-
+					close_message();
+					loading('stop', 'add_department_btn');
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 
@@ -321,9 +331,8 @@ color: #545b62;">
 	});
 
 
-	$(document).on('click', 'span#edit_department', function (e) {
+	$(document).on('click', '#edit_department_btn', function (e) {
 
-		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 
 		var url = '<?=base_url('Organization/edit_department_ax') ?>';
 		e.preventDefault();
@@ -341,16 +350,17 @@ color: #545b62;">
 			contentType: false,
 			cache: false,
 			processData: false,
+			beforeSend: function () {
+
+
+				loading('start', 'edit_department_btn');
+
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
-					scroll_top();
 
-					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
-					$('.alert-success').text(data.message);
-
-					close_message();
+					loading('stop', 'edit_department_btn');
 
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department')?>";
@@ -359,12 +369,11 @@ color: #545b62;">
 
 
 				} else {
-
+					scroll_top();
 					if ($.isArray(data.error.elements)) {
-						scroll_top();
 
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
+						loading('stop', 'edit_department_btn');
+
 
 						$.each(data.error.elements, function (index) {
 

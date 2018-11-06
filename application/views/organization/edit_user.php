@@ -121,7 +121,7 @@
 
 		</div>
 		<div class="text-right mt-4 pb-2">
-			<span id="edit_user_button" class="btn btn-sm btn-outline-success">Save</span>
+			<span id="edit_user_button" class="btn btn-sm btn-success">Save</span>
 		</div>
 
 </form>

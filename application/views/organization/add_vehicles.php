@@ -210,7 +210,8 @@
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Վազք</label>
 							<div class="col-sm-12">
-								<input value="" min="0" name="mileage" type="number" class="form-control form-control-sm"
+								<input value="" min="0" name="mileage" type="number"
+									   class="form-control form-control-sm"
 									   placeholder="Վազք">
 							</div>
 						</div>
@@ -224,38 +225,38 @@
 						</div>
 					</div>
 
-<div class="row">
-	<div class="form-group col-sm-6">
-		<label
-			class="pl-3 col-form-label" style="font-size: 15px;">Այլ</label>
-		<div class="col-sm-12">
+					<div class="row">
+						<div class="form-group col-sm-6">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">Այլ</label>
+							<div class="col-sm-12">
 							<textarea name="other" rows="4" class="form-control form-control-sm mt-2"
 									  placeholder="Այլ"></textarea>
-		</div>
-	</div>
+							</div>
+						</div>
 
-	<div class="col-sm-6">
-		<div class="form-group row" style="margin-top: 40px;">
-			<label class="col-sm-10 col-form-label">Status make
-				a
-				Passive?</label>
-			<div class="col-sm-2">
-				<input value="-1" name="status" type="checkbox" class="form-control form-control-sm">
-			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-sm-10 col-form-label">Send a notification mail to the
-				drivers</label>
-			<div class="col-sm-2">
-				<input name="mail_to" value="1" type="checkbox" class="form-control form-control-sm">
-			</div>
-		</div>
-	</div>
+						<div class="col-sm-6">
+							<div class="form-group row" style="margin-top: 40px;">
+								<label class="col-sm-10 col-form-label">Status make
+									a
+									Passive?</label>
+								<div class="col-sm-2">
+									<input value="-1" name="status" type="checkbox"
+										   class="form-control form-control-sm">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-sm-10 col-form-label">Send a notification mail to the
+									drivers</label>
+								<div class="col-sm-2">
+									<input name="mail_to" value="1" type="checkbox"
+										   class="form-control form-control-sm">
+								</div>
+							</div>
+						</div>
 
 
-</div>
-
-
+					</div>
 
 
 				</div>

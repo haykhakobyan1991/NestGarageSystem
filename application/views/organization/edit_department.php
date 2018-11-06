@@ -1,4 +1,3 @@
-
 <form id="department_edit">
 	<div class="for_message">
 		<div class="alert alert-success d-none " role="alert"></div>
@@ -47,7 +46,10 @@
 	</div>
 
 	<div class="modal-footer">
-		<span id="edit_department" type="button" class="btn btn-secondary">Save</span>
+		<button id="edit_department_btn" type="button" class="btn btn-secondary">Save</button>
+		<span id="load" class="btn btn-sm btn-success d-none"><img
+				style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+				src="<?= base_url() ?>assets/images/bars2.svg"/></span>
 	</div>
 
 
@@ -55,6 +57,10 @@
 <script>
 	$('#model_select').selectpicker('refresh');
 
-	$('.selectpicker').parent('div').children('button').css({'background': '#fff', 'color': '#000', 'border': '1px solid #ced4da'});
+	$('.selectpicker').parent('div').children('button').css({
+		'background': '#fff',
+		'color': '#000',
+		'border': '1px solid #ced4da'
+	});
 	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
 </script>

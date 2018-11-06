@@ -1019,6 +1019,7 @@ color: #545b62;">
 
 
 	$(document).on('click', '#edit_staff_modal', function () {
+
 		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_staff_modal_ax/')?>' + $(this).data('id');
 		$.get(url, function (result) {
 

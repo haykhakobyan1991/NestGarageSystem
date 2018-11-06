@@ -10,8 +10,9 @@
 		<div class="for_message">
 			<div class="alert alert-success d-none " role="alert"></div>
 			<div class="alert alert-danger d-none " role="alert"></div>
+			<div class="alert alert-info d-none " role="alert"></div>
 		</div>
-		<input type="hidden" name="fleet_id" value="<?=$fleet['id']?>">
+		<input type="hidden" name="fleet_id" value="<?= $fleet['id'] ?>">
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-6">
 				<h2>Vehicle Information</h2>
@@ -829,12 +830,12 @@
 							?>
 							<tr>
 								<td>
-									<input name="item[<?=$count?>]" class="form-control form-control-sm" type="text"
+									<input name="item[<?= $count ?>]" class="form-control form-control-sm" type="text"
 										   placeholder="Item Name"
-										   value="<?=$values['items']?>">
+										   value="<?= $values['items'] ?>">
 								</td>
 								<td>
-									<select name="value[<?=$count?>]"
+									<select name="value[<?= $count ?>]"
 											class="selectpicker form-control form-control-sm dif_meter"
 											data-live-search="true"
 											data-size="5"
@@ -843,7 +844,7 @@
 										<? foreach ($value as $row) : ?>
 											<option
 												value="<?= $row['id'] ?>"
-												<?=($values['value_id'] == $row['id'] ? 'selected' : '')?>
+												<?= ($values['value_id'] == $row['id'] ? 'selected' : '') ?>
 											>
 												<?= $row['title'] ?>
 											</option>
@@ -851,39 +852,40 @@
 									</select>
 								</td>
 								<td>
-									<input name="avg_exploitation[<?=$count?>]" class="form-control form-control-sm"
+									<input name="avg_exploitation[<?= $count ?>]" class="form-control form-control-sm"
 										   type="number"
 										   placeholder="Avg. exploitation"
-										   value="<?=$values['avg_exploitation']?>"/>
+										   value="<?= $values['avg_exploitation'] ?>"/>
 								</td>
 
 								<td>
-									<input name="per_days[<?=$count?>]" class="form-control form-control-sm"
+									<input name="per_days[<?= $count ?>]" class="form-control form-control-sm"
 										   type="number"
 										   placeholder="Per days"
-										   value="<?=$values['per_days']?>"/>
+										   value="<?= $values['per_days'] ?>"/>
 								</td>
 								<td>
-									<input name="more_info[<?=$count?>]" class="form-control form-control-sm"
+									<input name="more_info[<?= $count ?>]" class="form-control form-control-sm"
 										   type="text"
-										   placeholder="More Info P\N" value="<?=$values['more_info']?>"/>
+										   placeholder="More Info P\N" value="<?= $values['more_info'] ?>"/>
 								</td>
 								<td>
-									<input name="remind_before[<?=$count?>]" class="form-control form-control-sm"
+									<input name="remind_before[<?= $count ?>]" class="form-control form-control-sm"
 										   type="number"
 										   placeholder="Remind Me  days before"
-										   value="<?=$values['reminde_me']?>" />
+										   value="<?= $values['reminde_me'] ?>"/>
 								</td>
 								<td>
-									<input name="start_alarm_date[<?=$count?>]" class="form-control form-control-sm" type="date"
-										   value="<?=$values['start_alarm_date']?>"/>
+									<input name="start_alarm_date[<?= $count ?>]" class="form-control form-control-sm"
+										   type="date"
+										   value="<?= $values['start_alarm_date'] ?>"/>
 								</td>
 								<td>
-									<?if($count != 1) :?>
-									<button type="button" class="btn btn-sm btn-light del_items_from_table">
-										<i class="fa fa-trash"></i>
-									</button>
-									<?endif;?>
+									<? if ($count != 1) :?>
+										<button type="button" class="btn btn-sm btn-light del_items_from_table">
+											<i class="fa fa-trash"></i>
+										</button>
+									<? endif; ?>
 								</td>
 							</tr>
 						<? endforeach; ?>
@@ -911,7 +913,7 @@
 										<option
 											value="<?= $row['id'] ?>"
 											<?
-											if($fleet['value1_id'] == $row['id']) {
+											if ($fleet['value1_id'] == $row['id']) {
 												echo 'selected';
 												$title = $row['title'];
 											}
@@ -929,15 +931,18 @@
 					<div class="container mt-md-3 mt-3">
 						<div class="row">
 							<div class="form-group form-check mt-md-3 mt-3 col-sm-4">
-								<input <?=($fleet['auto_increment'] == '1' ? 'checked' : '')?> name="auto_increment" value="1" type="checkbox" class="form-check-input"
-									   id="exampleCheck1">
+								<input <?= ($fleet['auto_increment'] == '1' ? 'checked' : '') ?> name="auto_increment"
+																								 value="1"
+																								 type="checkbox"
+																								 class="form-check-input"
+																								 id="exampleCheck1">
 								<label class="form-check-label" for="exampleCheck1">auto increment?</label>
 							</div>
 							<div class="col-sm-3 mt-3">
 								<input name="value1_day" type="number" class="orm-control form-control-sm"
-									   placeholder=""  value="<?=$fleet['value1_day']?>" />
+									   placeholder="" value="<?= $fleet['value1_day'] ?>"/>
 							</div>
-							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text"><?=$title?></span>/day</p>
+							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text"><?= $title ?></span>/day</p>
 							</div>
 						</div>
 					</div>
@@ -945,7 +950,7 @@
 						<h5 class="card-header">Secondary meter</h5>
 						<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
 							<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
-								   id="exampleCheck11" <?=($fleet['value2_id'] != '' ? 'checked' : '')?> >
+								   id="exampleCheck11" <?= ($fleet['value2_id'] != '' ? 'checked' : '') ?> >
 							<label class="form-check-label" for="exampleCheck11">Use of secondary
 								meter</label>
 						</div>
@@ -969,7 +974,7 @@
 												?>
 												<option
 													value="<?= $row['id'] ?>"
-													<?=($fleet['value2_id'] == $row['id'] ? 'selected' : '')?>
+													<?= ($fleet['value2_id'] == $row['id'] ? 'selected' : '') ?>
 												>
 													<?= $row['title'] ?>
 												</option>
@@ -1017,7 +1022,7 @@
 			contentType: false,
 			cache: false,
 			processData: false,
-			beforeSend : function (){
+			beforeSend: function () {
 				scroll_top();
 				close_message();
 				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
@@ -1153,14 +1158,12 @@
 		});
 
 
-
 	});
 
 
 	$(document).on('click', '.del_items_from_table', function () {
 		$(this).parent('td').parent('tr').remove();
 	});
-
 
 
 	$('.dif_meter').on('change', function () {

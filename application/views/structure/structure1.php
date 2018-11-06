@@ -252,7 +252,7 @@
 					$(go.Picture,
 						{
 							name: "Picture",
-							desiredSize: new go.Size(39, 50),
+							desiredSize: new go.Size(50, 50),
 							margin: new go.Margin(6, 8, 6, 10),
 						},
 						new go.Binding("source", "img")),
@@ -372,8 +372,8 @@
 					{name: "PANEL"},
 
 					$(go.Picture,
-						{maxSize: new go.Size(50, 50)},
-						{width: 55, height: 55},
+						{ row: 1, column: 2 },
+						{width: 100, height: 100},
 						new go.Binding("source", "img")),
 					$(go.Placeholder, {margin: 10, background: "transparent"})  // represents where the members are
 				),

@@ -51,10 +51,37 @@
 	li.active > a {
 		color: #5e1017;
 	}
+
+	.loader {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		z-index: 99;
+		top: 0;
+		background: #fff;
+	}
+
+	.loader_svg {
+		width: 10em;
+		margin-left: 10em;
+		position: absolute;
+		left: calc(50% - 14em);
+		top: 50%;
+		z-index: 999;
+		margin-top: -10em;
+	}
+
 </style>
 
 
+
+
+
 <div class="container">
+		<div class="loader"></div>
+
+		<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 	<div class="row">
 
 		<div class="col-sm-3"></div>
@@ -116,7 +143,7 @@
 	</div>
 
 	<!--Sign up modal-->
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	<div id="reg_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 		 aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -289,6 +316,7 @@
 					<div class="collapse" id="collapseExample">
 						<div class="card card-body">
 							<form id="login">
+
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="email" value="">
@@ -303,7 +331,9 @@
 											Field must be filled in</p></small>
 								</div>
 							</form>
-							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In
+							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
+							<button id="load" type="submit" class="btn btn-outline-success btn-block signIn d-none">
+								<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />
 							</button>
 						</div>
 					</div>
@@ -472,7 +502,16 @@
 			data: form_data,
 			cache: false,
 			dataType: 'json',
+			beforeSend : function (){
+
+				//$('button#sign_up').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?//= base_url() ?>//assets/images/bars2.svg" />');
+				//$('button#sign_up').addClass('bg-success2');
+
+				// todo urish divov
+
+			},
 			success: function (data) {
+
 				if (data.success == '1') {
 
 					$('p#success').html(data.message);
@@ -543,6 +582,13 @@
 			data: form_data,
 			cache: false,
 			dataType: 'json',
+			beforeSend: function () {
+
+				close_message();
+				$('button#signIn').addClass('bg-success2');
+				loading('start', 'signIn');
+
+			},
 			success: function (data) {
 				if (data.success == '1') {
 
@@ -554,6 +600,8 @@
 					if ($.isArray(data.error.elements)) {
 
 						// scroll_top();
+						loading('stop', 'signIn');
+						$('button#signIn').removeClass('bg-success2');
 
 						$('p#success').addClass('d-none');
 						$.each(data.error.elements, function (index) {
@@ -590,6 +638,23 @@
 		});
 	});
 
+
+</script>
+
+
+<script>
+
+	$(document).on('keypress', function (e) {
+		var key = e.which;
+		if(key == 13) {
+			if($('#collapseExample').hasClass('show')) {
+				$('#signIn').trigger('click');
+			}
+			if($('#reg_modal').hasClass('show')) {
+				$('#sign_up').trigger('click');
+			}
+		}
+	});
 
 </script>
 

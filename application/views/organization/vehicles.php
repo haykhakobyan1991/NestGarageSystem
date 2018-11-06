@@ -11,6 +11,14 @@
 	}
 </style>
 
+<script>
+	// $(window).on('load', function () {
+	// 	$('table:not(.vehicle)').DataTable({
+	// 		"order": [[ 0, "desc" ]]
+	// 	});
+	// });
+</script>
+
 <?
 
 $total = 0;

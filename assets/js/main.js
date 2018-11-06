@@ -195,6 +195,6 @@ function close_message() {
 	}, 3000);
 }
 
-$('table').DataTable( {
+$('table:not(.vehicle)').DataTable( {
 	"order": [[ 0, "desc" ]]
 } );

@@ -663,7 +663,7 @@
 						</div>
 					</div>
 					<h5 class="mt-2 mb-1">Այլ տվյալներ</h5>
-					<table class="table table-striped table-hover">
+					<table class="vehicle table table-striped table-hover">
 						<thead>
 						<tr>
 							<th scope="col">Item Name</th>

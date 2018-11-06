@@ -1,3 +1,6 @@
+<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script src="<?= base_url() ?>assets/js/table.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <style>
 	table#example3 thead tr th:last-child:after {
 		content: '';
@@ -135,7 +138,5 @@ color: #545b62;">
 			</div>
 		</div>
 	</div>
-
-
 </div>
 <!-- Veichls End -->

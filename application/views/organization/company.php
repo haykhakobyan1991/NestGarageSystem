@@ -106,7 +106,7 @@ $i = '';
 <div class="row mt-1">
 
 
-							<label class="col-sm-2 col-form-label" style="font-size: 15xp;">Owner Lastname</label>
+							<label class="col-sm-2 col-form-label" style="font-size: 15px;">Owner Lastname</label>
 							<div class="col-sm-4">
 								<input value="<?= $company['owner_lastname'] ?>"
 									   name="owner_lastname" type="text" class="form-control form-control-sm"

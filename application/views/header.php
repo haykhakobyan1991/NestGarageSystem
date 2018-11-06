@@ -3,23 +3,22 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content=""/>
-	<meta name="keywords" content=""/>
+	<meta name="keywords" content="fleet car garage fleetManagement"/>
 
 	<title>Create Company</title>
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/animate.css">
+
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<script rel="stylesheet" src="<?= base_url() ?>assets/js/all.js"></script>
-	<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-	<script src="<?= base_url() ?>assets/js/table.js"></script>
+
+
 	<script src="<?= base_url() ?>assets/js/base.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>

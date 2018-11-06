@@ -372,7 +372,7 @@
 					{name: "PANEL"},
 
 					$(go.Picture,
-						{ row: 1, column: 2 },
+						{row: 1, column: 2},
 						{width: 100, height: 100},
 						new go.Binding("source", "img")),
 					$(go.Placeholder, {margin: 10, background: "transparent"})  // represents where the members are
@@ -470,6 +470,26 @@
 
 	$(document).ready(function () {
 		init();
+
+		myDiagram.addDiagramListener("ObjectSingleClicked",
+			function (e) {
+				var arr = [];
+				var new_arr = [];
+
+				myDiagram.selection.each(function (part) {
+
+					if (part instanceof go.Node) {
+						arr = {
+							"key": part.Wd.key,
+							"name": part.Wd.text,
+							"parent": part.Wd.parent
+						};
+						new_arr.push(arr);
+					}
+
+				});
+				console.table(new_arr);
+			});
 
 	})
 

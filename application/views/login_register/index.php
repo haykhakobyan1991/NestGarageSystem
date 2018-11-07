@@ -156,7 +156,7 @@
 				</div>
 
 
-				<div class="row">
+				<div class="row content_area">
 
 					<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
@@ -185,8 +185,6 @@
 
 					<div class="col-md-6 mt-md-3 mt-3">
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
-
-							<p id="success" class="text-success d-none"></p>
 							<form id="register">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm firstname"
@@ -256,14 +254,15 @@
 
 							</form>
 
-							<button id="sign_up" type="submit" class="btn btn-outline-success btn-block signUp">Join
+							<button id="sign_up" type="submit" class="btn btn-success btn-block signUp">Join
 							</button>
+
+							<button id="load" class="btn btn-block  btn-success d-none"><img
+									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 
 						</div>
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 
@@ -350,9 +349,6 @@
 
 
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
 		</div>
 	</div>
 </div>
@@ -362,13 +358,7 @@
 <script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 
 
-<script type="text/javascript">
-	// var url = window.location.href;
-	// if(url.indexOf('#signIn') != -1) {
-	// 	$('#collapseExample').addClass('show');
-	// 	$('#exampleModal').modal('show');
-	// }
-</script>
+
 
 
 <!-- Sign In With FACEBOOK  -->
@@ -504,9 +494,7 @@
 			dataType: 'json',
 			beforeSend : function (){
 
-				//$('button#sign_up').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?//= base_url() ?>//assets/images/bars2.svg" />');
-				//$('button#sign_up').addClass('bg-success2');
-
+				loading('start', 'sign_up');
 				// todo urish divov
 
 			},
@@ -514,18 +502,26 @@
 
 				if (data.success == '1') {
 
-					$('p#success').html(data.message);
-					$('p#success').removeClass('d-none');
+
+					loading('stop', 'sign_up');
+
+					$('.modal-header h5').text('your registration is successful');
+					$('.modal-header h5').addClass('text-success');
+					$('.content_area').removeClass('row');
+					$('.content_area').html('<div class="container-fluid text-center" style="padding:20px;">\n' +
+						'    <div class="alert alert-success" role="alert" style="\n' +
+						'">\n' +
+						'  Your Username and password we will send to Your email address\n' +
+						'    </div>\n' +
+						'    </div>');
+
 					$('input, select').val('');
 
-					setTimeout(function () {
-						$('button[aria-label="Close"]').trigger('click');
-					}, 4000);
 
 				} else {
 
 					if ($.isArray(data.error.elements)) {
-
+						loading('stop', 'sign_up');
 
 						// scroll_top();
 

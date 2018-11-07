@@ -159,6 +159,7 @@ class Organization extends MX_Controller {
 		$this->load->helper('url');
 		$this->load->library('session');
 		$user_id = $this->session->user_id;
+
 		$data = array();
 
 		$lng = $this->load->lng();
@@ -208,323 +209,6 @@ class Organization extends MX_Controller {
 
 	}
 
-
-
-	public function department() {
-
-		$this->load->authorisation();
-		$this->load->helper('url');
-		$this->load->library('session');
-		$user_id = $this->session->user_id;
-		$data = array();
-
-		$lng = $this->load->lng();
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-		$data['parent_user'] = $this->get_parent_user($company_id);
-
-		$sql_country = "
-		    SELECT 
-              `id`,
-              `title_".$lng."` AS `title`,
-              `status` 
-            FROM
-              `country` 
-            WHERE `status` = '1' 
-            ORDER BY `title_".$lng."` 
-		";
-
-		$query_country = $this->db->query($sql_country);
-		$data['country'] = $query_country->result_array();
-
-
-		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
-
-
-		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
-			->from('staff')
-			->join('user', 'staff.registrar_user_id = user.id', 'left')
-			->where('user.company_id', $company_id)
-			->where('staff.status', 1)
-			->get()
-			->result_array();
-
-
-		$query = $this->db->select('
-									department.id, 
-									department.title, 
-									department.description, 
-									staff.first_name, 
-									staff.last_name, 
-									CONCAT_WS("<br>", staff.contact_1, staff.contact_2) AS phone, 
-									staff.email, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name, 
-									DATE_FORMAT(department.registration_date, "%d-%m-%y %H:%i") AS registration_date
-								')
-			->from('department')
-			->join('staff', 'staff.id = department.head_staff_id', 'left')
-			->join('user', 'department.registrar_user_id = user.id', 'left')
-			->where('department.status', 1)
-			->where('department.company_id', $company_id)
-			->get();
-
-		$data['department'] = $query->result_array();
-		$data['department_num_rows'] = $query->num_rows();
-
-
-		$this->layout->view('organization/department', $data);
-
-	}
-
-
-	public function staff() {
-
-		$this->load->authorisation();
-		$this->load->helper('url');
-		$this->load->library('session');
-		$user_id = $this->session->user_id;
-		$data = array();
-
-		$lng = $this->load->lng();
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-		$data['parent_user'] = $this->get_parent_user($company_id);
-
-
-		$sql_country = "
-		    SELECT 
-              `id`,
-              `title_".$lng."` AS `title`,
-              `status` 
-            FROM
-              `country` 
-            WHERE `status` = '1' 
-            ORDER BY `title_".$lng."` 
-		";
-
-		$query_country = $this->db->query($sql_country);
-		$data['country'] = $query_country->result_array();
-
-		$sql_department = "
-		    SELECT 
-              `id`,
-              `title`,
-              `status` 
-            FROM
-              `department` 
-            WHERE `status` = '1' 
-             AND `company_id` = '".$company_id."'
-             ORDER BY `title` 
-		";
-
-		$query_department = $this->db->query($sql_department);
-		$data['department'] = $query_department->result_array();
-
-
-		$data['staff'] = $this->db->select('
-			staff.*, 
-			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
-			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
-			CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
-			->from('staff')
-			->join('user', 'staff.registrar_user_id = user.id', 'left')
-			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
-			->join('staff AS head_staff', 'department.head_staff_id = head_staff.id', 'left')
-			->where('user.company_id', $company_id)
-			->group_by('staff.id')
-			->get()
-			->result_array();
-
-
-		$this->layout->view('organization/staff', $data);
-
-	}
-
-
-	public function vehicles() {
-
-		$this->load->authorisation();
-		$this->load->helper('url');
-		$this->load->library('session');
-		$user_id = $this->session->user_id;
-		$data = array();
-
-		$lng = $this->load->lng();
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-		$data['parent_user'] = $this->get_parent_user($company_id);
-
-		$sql_country = "
-		    SELECT 
-              `id`,
-              `title_".$lng."` AS `title`,
-              `status` 
-            FROM
-              `country` 
-            WHERE `status` = '1' 
-            ORDER BY `title_".$lng."` 
-		";
-
-		$query_country = $this->db->query($sql_country);
-		$data['country'] = $query_country->result_array();
-
-
-		$sql = "
-			SELECT 
-			  `fleet`.`id`,
-			  GROUP_CONCAT(
-				CONCAT(
-				  '<span class=\"m-1 badge badge-info\">',
-				  CONCAT_WS(
-					' ',
-					`staff`.`first_name`,
-					`staff`.`last_name`
-				  ),
-				  '</span>'
-				) SEPARATOR ''
-			  ) AS `staff`,
-			  CONCAT_WS(
-				' ',
-				`brand`.`title_".$lng."`,
-				`model`.`title_".$lng."`
-			  ) AS `brand_model`,
-			  `color`,
-			  `vin_code`,
-			  `engine_power`,
-			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
-			   DATE_FORMAT(`fleet`.`registration_date`, '%d-%m-%Y') AS `creation_date`,
-			  `fleet`.`status` 
-			FROM
-			  `fleet` 
-			LEFT JOIN `staff` 
-				ON FIND_IN_SET(
-				  `staff`.`id`,
-				  `fleet`.`staff_ids`
-				) 
-			LEFT JOIN `user` 
-				ON `user`.`id` = `fleet`.`registrar_user_id` 	
-			LEFT JOIN `model` 
-				ON `model`.`id` = `fleet`.`model_id` 
-			LEFT JOIN `brand` 
-				ON `brand`.`id` = `model`.`brand_id` 
-			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."	
-			GROUP BY `fleet`.`id` 
-		";
-
-
-		$query = $this->db->query($sql);
-		$data['result_array'] = $query->result_array();
-
-
-
-		$this->layout->view('organization/vehicles', $data);
-
-
-	}
-
-
-
-
-
-	public function user() {
-		$this->load->authorisation();
-		$this->load->helper('url');
-		$this->load->library('session');
-		$user_id = $this->session->user_id;
-		$data = array();
-
-		$lng = $this->load->lng();
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-		$data['parent_user'] = $this->get_parent_user($company_id);
-
-
-		 $sql = "
-			SELECT
-			  `user`.`id`,
-			  `user`.`photo`,
-			  `user`.`parent_user_id`,
-			  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
-			  `user`.`email`,
-			  CONCAT_WS(' ', `parent_user`.`first_name`, `parent_user`.`last_name`) AS `parent_user_name`,
-			  `company`.`name` AS `company_name`,
-			  `role`.`title` AS `role`,
-			  `user`.`address`,
-			  `user`.`country_id`,
-			  `user`.`country_code`,
-			  `user`.`phone_number`,
-			  `user`.`username`,
-			  DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
-			  DATE_FORMAT(`user`.`last_activity`, '%d-%m-%Y/%H:%i') AS `last_activity`,
-			  DATEDIFF(NOW(), `user`.`last_activity`) AS `activity`,
-			  `user`.`status`
-			FROM 
-			  `user`
-			LEFT JOIN `user` AS `parent_user`
-				ON `user`.`parent_user_id` = `parent_user`.`id`
-			LEFT JOIN `company`	
-				ON `user`.`company_id` = `company`.`id`
-			LEFT JOIN `role`	
-				ON `user`.`role_id` = `role`.`id`
-			WHERE `user`.`company_id` = '".$company_id."'
-				
-		";
-
-		$query = $this->db->query($sql);
-		$data['user'] = $query->result_array();
-
-
-		$sql_country = "
-		    SELECT 
-              `id`,
-              `title_".$lng."` AS `title`,
-              `status` 
-            FROM
-              `country` 
-            WHERE `status` = '1' 
-            ORDER BY `title_".$lng."` 
-		";
-
-		$query_country = $this->db->query($sql_country);
-		$data['country'] = $query_country->result_array();
-
-
-		 $sql_role = "
-		    SELECT 
-              `id`,
-              `title`,
-              `status` 
-            FROM
-              `role` 
-            WHERE `status` = '1' 
-             AND `id` <> '1' #not administrator
-		";
-
-		$query_role = $this->db->query($sql_role);
-		$data['role'] = $query_role->result_array();
-
-		$this->layout->view('organization/user', $data);
-	}
-
-
-
-
-
-
 	public function company_ax() {
 
 		$this->load->authorisation('Organization', 'company');
@@ -533,6 +217,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 		$this->load->library('image_lib');
 
 
@@ -548,11 +233,11 @@ class Organization extends MX_Controller {
 
 		$this->load->library('form_validation');
 		// $this->config->set_item('language', 'armenian');
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_error_delimiters('<div>', '</div>');
 		$this->form_validation->set_rules('company_type', 'Company type', 'required');
 		$this->form_validation->set_rules('company_name', 'Company name', 'required');
-		$this->form_validation->set_rules('owner_email', 'owner_email', 'valid_email');
-		$this->form_validation->set_rules('email', 'email', 'valid_email');
+		$this->form_validation->set_rules('owner_email', 'lang:owner_email', 'valid_email');
+		$this->form_validation->set_rules('email', 'lang:email', 'valid_email');
 
 
 
@@ -659,14 +344,7 @@ class Organization extends MX_Controller {
 		//upload config
 		$config = $this->upload_config();
 
-
-		if (!file_exists(set_realpath('uploads/company'))) {
-			mkdir(set_realpath('uploads/company'), 0755, true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/index.html'));
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/company/index.html'));
-		}
-
-		$config['upload_path'] = set_realpath('uploads/company');
+		$config['upload_path'] = set_realpath('uploads/'.$folder.'/company');
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
@@ -682,8 +360,8 @@ class Organization extends MX_Controller {
 			}
 
 
-			if($company_logo != '' && file_exists(set_realpath('uploads/company/'.$company_logo))) {
-				unlink(set_realpath('uploads/company/'.$company_logo));
+			if($company_logo != '' && file_exists(set_realpath('uploads/'.$folder.'/company/'.$company_logo))) {
+				unlink(set_realpath('uploads/'.$folder.'/company/'.$company_logo));
 			}
 
 
@@ -819,15 +497,12 @@ class Organization extends MX_Controller {
 		}
 
 
-
-
-
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message'] = 'Success';
+			$messages['message'] = lang('success');
 		} else {
 			$messages['success'] = 0;
-			$messages['error'] = 'Error';
+			$messages['error'] = lang('error');
 		}
 
 		// Return success or error message
@@ -836,6 +511,427 @@ class Organization extends MX_Controller {
 	}
 
 
+	public function department() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		$data['company'] = $this->db->select('*')->from('company')->where('id', $company_id)->get()->row_array();
+
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $company_id)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$query = $this->db->select('
+									department.id, 
+									department.title, 
+									department.description, 
+									staff.first_name, 
+									staff.last_name, 
+									CONCAT_WS("<br>", staff.contact_1, staff.contact_2) AS phone, 
+									staff.email, CONCAT_WS(" ", user.first_name, user.last_name) AS user_name, 
+									DATE_FORMAT(department.registration_date, "%d-%m-%y %H:%i") AS registration_date
+								')
+			->from('department')
+			->join('staff', 'staff.id = department.head_staff_id', 'left')
+			->join('user', 'department.registrar_user_id = user.id', 'left')
+			->where('department.status', 1)
+			->where('department.company_id', $company_id)
+			->get();
+
+		$data['department'] = $query->result_array();
+		$data['department_num_rows'] = $query->num_rows();
+
+
+		$this->layout->view('organization/department', $data);
+
+	}
+
+	public function add_department_ax() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'head_staff' =>  form_error('head_staff')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+
+
+		$title = $this->input->post('title');
+		$head_staff = $this->input->post('head_staff');
+		$description = $this->input->post('description');
+		$status = 1;
+
+
+
+
+		$sql = "
+				INSERT INTO 
+				  `department`
+				SET
+				  `title` = ".$this->load->db_value($title).",
+				  `registrar_user_id` = ".$this->load->db_value($user_id).",
+				  `registration_date` = NOW(),
+				  `company_id` = ".$this->load->db_value($company_id).",
+				  `head_staff_id` = ".$this->load->db_value($head_staff).",
+				  `description` = ".$this->load->db_value($description).",
+				  `status` = ".$this->load->db_value($status)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+		$department_id = $this->db->insert_id();
+
+		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$department_id."', `department_ids`)";
+
+		$query_head_staff_select = $this->db->query($sql_head_staff_select);
+		$num_rows = $query_head_staff_select->num_rows();
+
+		if($num_rows == 0) {
+			$sql_head_staff = "
+				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$department_id."') WHERE `id` = '".$head_staff."'
+			";
+
+			$result_head_staff  = $this->db->query($sql_head_staff);
+		}
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+	public function edit_department_modal_ax() {
+
+		$id = $this->uri->segment(3);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+
+		$sql = "SELECT
+                  `id`,
+				  `company_id`,
+				  `title`,
+				  `description`,
+				  `registration_date`,
+				  `registrar_user_id`,
+				  `head_staff_id`,
+				  `status`
+                FROM 
+                   `department`
+                WHERE `id` =  ".$this->load->db_value($id)."
+                LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->where('user.company_id', $row['company_id'])
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+
+		$data['id'] = $row['id'];
+		$data['company_id'] = $row['company_id'];
+		$data['title'] = $row['title'];
+		$data['description'] = $row['description'];
+		$data['head_staff_id'] = $row['head_staff_id'];
+
+
+
+		$this->load->view('organization/edit_department', $data);
+
+	}
+
+	public function edit_department_ax() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'head_staff' =>  form_error('head_staff')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+//		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+//		$company_id = $row['company_id'];
+
+
+
+
+		$id = $this->input->post('department_id');
+		$title = $this->input->post('title');
+		$head_staff = $this->input->post('head_staff');
+		$description = $this->input->post('description');
+		$status = 1;
+
+
+
+
+		$sql = "
+				UPDATE 
+				  `department`
+				SET
+				  `title` = ".$this->load->db_value($title).",
+				  `head_staff_id` = ".$this->load->db_value($head_staff).",
+				  `description` = ".$this->load->db_value($description).",
+				  `status` = ".$this->load->db_value($status)."
+				WHERE `id` =   ".$this->load->db_value($id)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+
+		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$id."', `department_ids`) AND `id` = '".$head_staff."'";
+
+		$query_head_staff_select = $this->db->query($sql_head_staff_select);
+		$num_rows = $query_head_staff_select->num_rows();
+
+		if($num_rows == 0) {
+			$sql_head_staff = "
+				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$id."') WHERE `id` = '".$head_staff."'
+			";
+
+			$result_head_staff  = $this->db->query($sql_head_staff);
+		}
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+	public function delete_department() {
+
+		$this->load->authorisation('Organization', 'department');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('department_id');
+
+
+		$this->db->delete('department', array('id' => $id));
+
+		return true;
+
+	}
+
+
+	public function staff() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+		$sql_department = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `department` 
+            WHERE `status` = '1' 
+             AND `company_id` = '".$company_id."'
+             ORDER BY `title` 
+		";
+
+		$query_department = $this->db->query($sql_department);
+		$data['department'] = $query_department->result_array();
+
+
+		$data['staff'] = $this->db->select('
+			staff.*, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
+			CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
+			->join('staff AS head_staff', 'department.head_staff_id = head_staff.id', 'left')
+			->where('user.company_id', $company_id)
+			->group_by('staff.id')
+			->get()
+			->result_array();
+
+
+		$this->layout->view('organization/staff', $data);
+
+	}
 
 	public function add_staff_ax() {
 
@@ -845,6 +941,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 		$this->load->library('image_lib');
 
 
@@ -863,7 +960,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('firstname', 'firstname', 'required');
 		$this->form_validation->set_rules('lastname', 'lastname', 'required');
-		$this->form_validation->set_rules('email', 'email', 'valid_email');
+		$this->form_validation->set_rules('email', 'lang:email', 'required|valid_email');
 
 
 
@@ -950,12 +1047,12 @@ class Organization extends MX_Controller {
 		$config = $this->upload_config();
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0755', true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
+		if (!file_exists(set_realpath('uploads/'.$folder.'/staff/original'))) {
+			mkdir(set_realpath('uploads/'.$folder.'/staff/original'), 0755, true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/original/index.html'));
 		}
 
-		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/original');
+		$config['upload_path'] = set_realpath('uploads/'.$folder.'/staff/original');
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
@@ -982,16 +1079,16 @@ class Organization extends MX_Controller {
 
 		if(isset($image) && $image != '') {
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/thumbs'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/thumbs'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/thumbs/index.html'));
 			}
 
 
 			$config_r = array(
 				'image_library' => 'gd2',
-				'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
-				'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
+				'source_image' => set_realpath('uploads/'.$folder.'/staff/original').$image,
+				'new_image' => set_realpath('uploads/'.$folder.'/staff/thumbs').$image,
 				'maintain_ratio' => TRUE,
 				'create_thumb' => TRUE,
 				'thumb_marker' => '',
@@ -1014,7 +1111,7 @@ class Organization extends MX_Controller {
 
 
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/staff/files');
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -1022,9 +1119,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1058,9 +1155,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1095,9 +1192,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1130,9 +1227,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1161,7 +1258,7 @@ class Organization extends MX_Controller {
 
 		}
 
-			$sql = "
+		$sql = "
 				INSERT INTO 
 				  `staff` 
 				SET
@@ -1209,285 +1306,9 @@ class Organization extends MX_Controller {
 			";
 
 
-			$result = $this->db->query($sql);
-
-
-
-
-		if ($result){
-			$messages['success'] = 1;
-			$messages['message'] = 'Success';
-		} else {
-			$messages['success'] = 0;
-			$messages['error'] = 'Error';
-		}
-
-		// Return success or error message
-		echo json_encode($messages);
-		return true;
-	}
-
-
-
-	public function add_department_ax() {
-
-		$this->load->authorisation('Organization', 'department');
-
-		$this->load->library('session');
-		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
-		$n = 0;
-		$user_id = $this->session->user_id;
-
-		$result = false;
-
-		if ($this->input->server('REQUEST_METHOD') != 'POST') {
-			// Return error
-			$messages['error'] = 'error_message';
-			$this->access_denied();
-			return false;
-		}
-
-
-		$this->load->library('form_validation');
-		// $this->config->set_item('language', 'armenian');
-		$this->form_validation->set_error_delimiters('', '');
-		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
-
-
-
-
-
-		if($this->form_validation->run() == false){
-			//validation errors
-			$n = 1;
-
-			$validation_errors = array(
-				'title' => form_error('title'),
-				'head_staff' => form_error('head_staff'),
-			);
-			$messages['error']['elements'][] = $validation_errors;
-		}
-
-
-		if($n == 1) {
-			echo json_encode($messages);
-			return false;
-		}
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-
-
-		$title = $this->input->post('title');
-		$head_staff = $this->input->post('head_staff');
-		$description = $this->input->post('description');
-		$status = 1;
-
-
-
-
-		$sql = "
-				INSERT INTO 
-				  `department`
-				SET
-				  `title` = ".$this->load->db_value($title).",
-				  `registrar_user_id` = ".$this->load->db_value($user_id).",
-				  `registration_date` = NOW(),
-				  `company_id` = ".$this->load->db_value($company_id).",
-				  `head_staff_id` = ".$this->load->db_value($head_staff).",
-				  `description` = ".$this->load->db_value($description).",
-				  `status` = ".$this->load->db_value($status)."
-			";
-
-
-		$result = $this->db->query($sql);
-
-		$department_id = $this->db->insert_id();
-
-		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$department_id."', `department_ids`)";
-
-		$query_head_staff_select = $this->db->query($sql_head_staff_select);
-		$num_rows = $query_head_staff_select->num_rows();
-
-		if($num_rows == 0) {
-			$sql_head_staff = "
-				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$department_id."') WHERE `id` = '".$head_staff."'
-			";
-
-			$result_head_staff  = $this->db->query($sql_head_staff);
-		}
-
-
-
-
-		if ($result){
-			$messages['success'] = 1;
-			$messages['message'] = 'Success';
-		} else {
-			$messages['success'] = 0;
-			$messages['error'] = 'Error';
-		}
-
-		// Return success or error message
-		echo json_encode($messages);
-		return true;
-	}
-
-
-	public function edit_department_modal_ax() {
-
-		$id = $this->uri->segment(3);
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$lng = $this->load->lng();
-
-		if($id == NULL) {
-			$message = 'Undifined ID';
-			show_error($message, '404', $heading = '404 Page Not Found');
-			return false;
-		}
-
-
-		$sql = "SELECT
-                  `id`,
-				  `company_id`,
-				  `title`,
-				  `description`,
-				  `registration_date`,
-				  `registrar_user_id`,
-				  `head_staff_id`,
-				  `status`
-                FROM 
-                   `department`
-                WHERE `id` =  ".$this->load->db_value($id)."
-                LIMIT 1";
-
-		$query = $this->db->query($sql);
-		$row = $query->row_array();
-
-
-		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
-			->from('staff')
-			->join('user', 'staff.registrar_user_id = user.id', 'left')
-			->where('user.company_id', $row['company_id'])
-			->where('staff.status', 1)
-			->get()
-			->result_array();
-
-
-
-		$data['id'] = $row['id'];
-		$data['company_id'] = $row['company_id'];
-		$data['title'] = $row['title'];
-		$data['description'] = $row['description'];
-		$data['head_staff_id'] = $row['head_staff_id'];
-
-
-
-		$this->load->view('organization/edit_department', $data);
-
-	}
-
-
-
-	public function edit_department_ax() {
-
-		$this->load->authorisation('Organization', 'department');
-
-		$this->load->library('session');
-		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
-		$n = 0;
-		$user_id = $this->session->user_id;
-
-		$result = false;
-
-		if ($this->input->server('REQUEST_METHOD') != 'POST') {
-			// Return error
-			$messages['error'] = 'error_message';
-			$this->access_denied();
-			return false;
-		}
-
-
-		$this->load->library('form_validation');
-		// $this->config->set_item('language', 'armenian');
-		$this->form_validation->set_error_delimiters('', '');
-		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
-
-
-
-
-
-		if($this->form_validation->run() == false){
-			//validation errors
-			$n = 1;
-
-			$validation_errors = array(
-				'title' => form_error('title'),
-				'head_staff' => form_error('head_staff'),
-			);
-			$messages['error']['elements'][] = $validation_errors;
-		}
-
-
-		if($n == 1) {
-			echo json_encode($messages);
-			return false;
-		}
-
-
-//		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-//		$company_id = $row['company_id'];
-
-
-
-
-		$id = $this->input->post('department_id');
-		$title = $this->input->post('title');
-		$head_staff = $this->input->post('head_staff');
-		$description = $this->input->post('description');
-		$status = 1;
-
-
-
-
-		$sql = "
-				UPDATE 
-				  `department`
-				SET
-				  `title` = ".$this->load->db_value($title).",
-				  `head_staff_id` = ".$this->load->db_value($head_staff).",
-				  `description` = ".$this->load->db_value($description).",
-				  `status` = ".$this->load->db_value($status)."
-				WHERE `id` =   ".$this->load->db_value($id)."
-			";
-
-
 		$result = $this->db->query($sql);
 
 
-		$sql_head_staff_select = "SELECT `id` FROM `staff` WHERE FIND_IN_SET('".$id."', `department_ids`) AND `id` = '".$head_staff."'";
-
-		$query_head_staff_select = $this->db->query($sql_head_staff_select);
-		$num_rows = $query_head_staff_select->num_rows();
-
-		if($num_rows == 0) {
-			 $sql_head_staff = "
-				UPDATE `staff` SET `department_ids` = CONCAT_WS(',', `department_ids`, '".$id."') WHERE `id` = '".$head_staff."'
-			";
-
-			$result_head_staff  = $this->db->query($sql_head_staff);
-		}
-
-
-
-
-
 
 
 		if ($result){
@@ -1502,29 +1323,6 @@ class Organization extends MX_Controller {
 		echo json_encode($messages);
 		return true;
 	}
-
-	public function delete_department() {
-
-		$this->load->authorisation('Organization', 'department');
-
-		if ($this->input->server('REQUEST_METHOD') != 'POST') {
-			// Return error
-			$messages['error'] = 'error_message';
-			$this->access_denied();
-			return false;
-		}
-
-		$id = $this->input->post('department_id');
-
-
-		$this->db->delete('department', array('id' => $id));
-
-		return true;
-
-	}
-
-
-
 
 	public function edit_staff_modal_ax() {
 
@@ -1534,6 +1332,7 @@ class Organization extends MX_Controller {
 		$lng = $this->load->lng();
 		$data = array();
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		if($id == NULL) {
 			$message = 'Undifined ID';
@@ -1676,8 +1475,6 @@ class Organization extends MX_Controller {
 
 	}
 
-
-
 	public function edit_staff_ax() {
 
 		$this->load->authorisation('Organization', 'staff');
@@ -1686,6 +1483,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -1702,7 +1500,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('firstname', 'firstname', 'required');
 		$this->form_validation->set_rules('lastname', 'lastname', 'required');
-		$this->form_validation->set_rules('email', 'email', 'valid_email');
+		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
 
 
 
@@ -1787,19 +1585,19 @@ class Organization extends MX_Controller {
 		$add_sql_image = '';
 
 
-		 $department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
+		$department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
 
 
 		//upload config
 		$config = $this->upload_config();
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/original'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/staff/original'), '0755', true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/original/index.html'));
+		if (!file_exists(set_realpath('uploads/'.$folder.'/staff/original'))) {
+			mkdir(set_realpath('uploads/'.$folder.'/staff/original'), 0755, true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/original/index.html'));
 		}
 
-		$config['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/original');
+		$config['upload_path'] = set_realpath('uploads/'.$folder.'/staff/original');
 
 
 		if(isset($_FILES['photo']['name']) AND $_FILES['photo']['name'] != '') {
@@ -1826,16 +1624,16 @@ class Organization extends MX_Controller {
 
 		if(isset($image) && $image != '') {
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/thumbs'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/thumbs/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/thumbs'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/thumbs'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/thumbs/index.html'));
 			}
 
 
 			$config_r = array(
 				'image_library' => 'gd2',
-				'source_image' => set_realpath('uploads/user_'.$user_id.'/staff/original').$image,
-				'new_image' => set_realpath('uploads/user_'.$user_id.'/staff/thumbs').$image,
+				'source_image' => set_realpath('uploads/'.$folder.'/staff/original').$image,
+				'new_image' => set_realpath('uploads/'.$folder.'/staff/thumbs').$image,
 				'maintain_ratio' => TRUE,
 				'create_thumb' => TRUE,
 				'thumb_marker' => '',
@@ -1859,7 +1657,7 @@ class Organization extends MX_Controller {
 
 
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/staff/files');
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/staff/files');
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -1867,9 +1665,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1905,9 +1703,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1948,9 +1746,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -1983,9 +1781,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/staff/files'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/staff/files'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/staff/files/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/staff/files'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/staff/files'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/files/index.html'));
 			}
 
 
@@ -2098,109 +1896,91 @@ class Organization extends MX_Controller {
 	}
 
 
-	public function add_vehicles() {
+	public function vehicles() {
 
 		$this->load->authorisation();
 		$this->load->helper('url');
 		$this->load->library('session');
 		$user_id = $this->session->user_id;
+
 		$data = array();
 
 		$lng = $this->load->lng();
-		$data['lang'] = $lng;
 
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
 
-		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
-			->from('staff')
-			->join('user', 'staff.registrar_user_id = user.id', 'left')
-			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
-			->where('user.company_id', $company_id)
-			->where('department.head_staff_id <> ', 'staff.id', FALSE)
-			->where('staff.status', 1)
-			->get()
-			->result_array();
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
 
 
-		$sql_brand = "
+		$sql = "
 			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `brand`
-			WHERE `status` = '1'	
+			  `fleet`.`id`,
+			  GROUP_CONCAT(
+				CONCAT(
+				  '<span class=\"m-1 badge badge-info\">',
+				  CONCAT_WS(
+					' ',
+					`staff`.`first_name`,
+					`staff`.`last_name`
+				  ),
+				  '</span>'
+				) SEPARATOR ''
+			  ) AS `staff`,
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `brand_model`,
+			  `color`,
+			  `vin_code`,
+			  `engine_power`,
+			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+			   DATE_FORMAT(`fleet`.`registration_date`, '%d-%m-%Y') AS `creation_date`,
+			  `fleet`.`status` 
+			FROM
+			  `fleet` 
+			LEFT JOIN `staff` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+			LEFT JOIN `user` 
+				ON `user`.`id` = `fleet`.`registrar_user_id` 	
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id` 
+			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."	
+			GROUP BY `fleet`.`id` 
 		";
 
-		$result_brand = $this->db->query($sql_brand);
 
-		$data['brand'] = $result_brand->result_array();
-
-
-		$sql_fleet_type = "
-			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `fleet_type`
-			WHERE `status` = '1'	
-		";
-
-		$result_fleet_type = $this->db->query($sql_fleet_type);
-
-		$data['fleet_type'] = $result_fleet_type->result_array();
-
-		$sql_fuel = "
-			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `fuel`
-			WHERE `status` = '1'	
-		";
-
-		$result_fuel = $this->db->query($sql_fuel);
-
-		$data['fuel'] = $result_fuel->result_array();
-
-
-		$sql_insurance = "
-			SELECT
-				`id`,
-				`title_".$lng."` AS `title`
-			 FROM
-				`insurance_type`
-			WHERE `status` = 1	
-		";
-
-		$result_insurance = $this->db->query($sql_insurance);
-
-
-		$data['insurance_type'] = $result_insurance->result_array();
-
-
-		$sql_value = "
-			SELECT
-				`id`,
-				`title_".$lng."` AS `title`,
-				`type`,
-				`convert`
-			 FROM
-				`value`
-			WHERE `status` = 1	
-		";
-
-		$result_value = $this->db->query($sql_value);
-
-		$data['value'] = $result_value->result_array();
+		$query = $this->db->query($sql);
+		$data['result_array'] = $query->result_array();
 
 
 
-		$this->layout->view('organization/add_vehicles', $data);
+		$this->layout->view('organization/vehicles', $data);
+
 
 	}
-
 
 	public function add_vehicles_ax() {
 
@@ -2210,6 +1990,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -2284,7 +2065,15 @@ class Organization extends MX_Controller {
 
 		$value_1 = $this->input->post('value_1');
 		$value1_day = str_replace(",", ".", $this->input->post('value1_day'));
-		$auto_increment = ($this->input->post('auto_increment') != '' ? $this->input->post('auto_increment') : '-1');
+
+		if($this->input->post('auto_increment') != '' ) {
+			$auto_increment = $this->input->post('auto_increment');
+			$auto_increment_date = "`auto_increment_date` = NOW(),";
+		} else {
+			$auto_increment = '-1';
+			$auto_increment_date = '';
+		}
+
 		$use_of_secondary_meter = $this->input->post('use_of_secondary_meter');
 		$value_2 = '';
 		$value2_day = '';
@@ -2301,7 +2090,7 @@ class Organization extends MX_Controller {
 
 
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file');
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/regitered_file');
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -2310,9 +2099,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['regitered_file']['name']) AND $_FILES['regitered_file']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/regitered_file'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/regitered_file'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/regitered_file/index.html'));
 			}
 
 
@@ -2335,6 +2124,99 @@ class Organization extends MX_Controller {
 		}
 
 
+		//fleet details variables
+		$item = $this->input->post('item');
+		$value = $this->input->post('value');
+		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
+		$per_days = str_replace(",", ".", $this->input->post('per_days'));
+		$more_info = $this->input->post('more_info');
+		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
+		$start_alarm_date = $this->input->post('start_alarm_date');
+		// end fleet details variables
+
+		// validation fleet details
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val == '') :
+					$n = 1;
+					$validation_errors = array('item['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
+					$n = 1;
+					$validation_errors = array('per_days['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($value[$i] == '') :
+					$n = 1;
+					$validation_errors = array('value['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
+					$n = 1;
+					$validation_errors = array('avg_exploitation['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
+					$n = 1;
+					$validation_errors = array('remind_before['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($start_alarm_date[$i] == '') :
+					$n = 1;
+					$validation_errors = array('start_alarm_date['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+			endforeach;
+		endif;
+		// end of validation fleet details
+
+
+
+
+		if($this->input->post('mail_to') == 1) {
+
+			$sql_for_mail = "
+				SELECT 
+					GROUP_CONCAT(`email` SEPARATOR ', ') AS `emails`
+				FROM
+					`staff`
+				WHERE FIND_IN_SET(`id`, '".$staff."')		
+				 LIMIT 1 
+			";
+
+			$result_for_mail = $this->db->query($sql_for_mail);
+
+			$emails = implode(', ', $result_for_mail->row_array());
+
+			$this->smtp_mailing();
+
+			$this->email->to($emails);
+			$this->email->subject('car added  NestGarageSystem');
+			$this->email->message('
+			   Fleet info...
+			'); //todo change
+
+			if(!$this->email->send()) {
+				$n = 1;
+				$validation_errors = array('mail_not_sent' => 'mail_not_sent');
+				$messages['error']['elements'][] = $validation_errors;
+			}
+		}
+
+
+		if($n == 1) {
+			$messages['success'] = 0;
+			echo json_encode($messages);
+			return false;
+		}
+
+
 
 		$company = $this->input->post('company');
 		//$file = $this->input->post('file');
@@ -2343,7 +2225,7 @@ class Organization extends MX_Controller {
 		$type = $this->input->post('type');
 
 		//file config insurance
-		$config_f_i['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/insurance');
+		$config_f_i['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/insurance');
 		$config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f_i['max_size'] = '4097152'; //4 MB
 		$config_f_i['file_name'] = $this->uname(3, 8);
@@ -2354,9 +2236,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -2390,9 +2272,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -2427,9 +2309,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -2464,9 +2346,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -2497,104 +2379,6 @@ class Organization extends MX_Controller {
 
 
 
-		//fleet details variables
-		$item = $this->input->post('item');
-		$value = $this->input->post('value');
-		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
-		$per_days = str_replace(",", ".", $this->input->post('per_days'));
-		$more_info = $this->input->post('more_info');
-		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
-		$start_alarm_date = $this->input->post('start_alarm_date');
-		// end fleet details variables
-
-		// validation fleet details
-		if(is_array($item)) :
-			foreach ($item as $i => $item_val) :
-				if($item_val == '') :
-					$n = 1;
-					$validation_errors = array('item['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
-					$n = 1;
-					$validation_errors = array('per_days['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($value[$i] == '') :
-					$n = 1;
-					$validation_errors = array('value['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
-					$n = 1;
-					$validation_errors = array('avg_exploitation['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
-					$n = 1;
-					$validation_errors = array('remind_before['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($start_alarm_date[$i] == '') :
-					$n = 1;
-					$validation_errors = array('start_alarm_date['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-			endforeach;
-		endif;
-		// end of validation fleet details
-
-
-
-
-
-		if($n == 1) {
-			echo json_encode($messages);
-			return false;
-		}
-
-
-
-
-		if($this->input->post('mail_to') == 1) {
-
-			$sql_for_mail = "
-				SELECT 
-					GROUP_CONCAT(`email` SEPARATOR ', ') AS `emails`
-				FROM
-					`staff`
-				WHERE FIND_IN_SET(`id`, '".$staff."')		
-				 LIMIT 1 
-			";
-
-			$result_for_mail = $this->db->query($sql_for_mail);
-
-			$emails = implode(', ', $result_for_mail->row_array());
-
-			$this->smtp_mailing();
-
-			$this->email->to($emails);
-			$this->email->subject('car added  NestGarageSystem');
-			$this->email->message('
-			   Fleet info...
-			');
-
-			if(!$this->email->send()) {
-				$messages['success'] = 0;
-				$messages['error'] = $this->email->print_debugger();
-				echo json_encode($messages);
-				return false;
-			}
-		}
-
-
-
-
 		$sql = "
 				INSERT INTO `fleet` SET 
 					`staff_ids` = ".$this->load->db_value($staff).",
@@ -2619,6 +2403,7 @@ class Organization extends MX_Controller {
 					`value1_day` = ".$this->load->db_value($value1_day).",
 					`value2_day` = ".$this->load->db_value($value2_day).",
 					`auto_increment` = ".$this->load->db_value($auto_increment).",
+					".$auto_increment_date."
 					`regitered_address` = ".$this->load->db_value($regitered_address).",
 					`regitered_number` = ".$this->load->db_value($regitered_number).",
 					`regitered_file` = ".$this->load->db_value($regitered_file).", 
@@ -2679,12 +2464,12 @@ class Organization extends MX_Controller {
 			foreach ($item as $i => $item_val) :
 				if($item_val != '') :
 
-				$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_ODD);
+					$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_ODD);
 
-				$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
-				$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
+					$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
+					$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
 
-				$sql_fleet_details .= "(
+					$sql_fleet_details .= "(
 					".$this->load->db_value($item_val).",
 					".$this->load->db_value($value[$i]).",
 					".$this->load->db_value($avg_exploitation[$i]).",
@@ -2712,17 +2497,16 @@ class Organization extends MX_Controller {
 
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message'] = 'Success';
+			$messages['message'] = lang('success');
 		} else {
 			$messages['success'] = 0;
-			$messages['error'] = 'Error';
+			$messages['error'] = lang('error');
 		}
 
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
 	}
-
 
 	public function edit_vehicles() {
 
@@ -2850,10 +2634,31 @@ class Organization extends MX_Controller {
 
 
 
+		// get total value
+		$diff = date_diff(date_create(date("Y-m-d")), date_create($data['fleet']['auto_increment_date']));
+
+		$day = $diff->format("%a");
+		$total_value_1 = '';
+		if($day != 0) {
+			$total_value_1 = $day * $data['fleet']['value1_day'];
+		} else {
+			$total_value_1 = $data['fleet']['value1_day'];
+		}
+
+		$total_value_2 = '';
+		if($day != 0) {
+			$total_value_2 = $day * $data['fleet']['value2_day'];
+		} else {
+			$total_value_2 = $data['fleet']['value2_day'];
+		}
+
+
+		$this->db->update('fleet', array('total_value_1' => $total_value_1, 'total_value_2' =>  $total_value_2), array('id' => $data['fleet']['id']));
+
+
 		$this->layout->view('organization/edit_vehicles', $data);
 
 	}
-
 
 	public function edit_vehicles_ax() {
 
@@ -2863,6 +2668,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$fleet_id = $this->input->post('fleet_id');
 
@@ -2939,7 +2745,13 @@ class Organization extends MX_Controller {
 
 		$value_1 = $this->input->post('value_1');
 		$value1_day = str_replace(",", ".", $this->input->post('value1_day'));
-		$auto_increment = ($this->input->post('auto_increment') != '' ? $this->input->post('auto_increment') : '-1');
+		if($this->input->post('auto_increment') != '' ) {
+			$auto_increment = $this->input->post('auto_increment');
+			$auto_increment_date = "`auto_increment_date` = NOW(),";
+		} else {
+			$auto_increment = '-1';
+			$auto_increment_date = '`auto_increment_date` = NULL,';
+		}
 		$use_of_secondary_meter = $this->input->post('use_of_secondary_meter');
 		$value_2 = '';
 		$value2_day = '';
@@ -2955,8 +2767,71 @@ class Organization extends MX_Controller {
 
 
 
+		//fleet details variables
+		$item = $this->input->post('item');
+		$value = $this->input->post('value');
+		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
+		$per_days = str_replace(",", ".", $this->input->post('per_days'));
+		$more_info = $this->input->post('more_info');
+		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
+		$start_alarm_date = $this->input->post('start_alarm_date');
+		// end fleet details variables
+
+		// validation fleet details
+		if(is_array($item)) :
+			foreach ($item as $i => $item_val) :
+				if($item_val == '') :
+					$n = 1;
+					$validation_errors = array('item['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
+					$n = 1;
+					$validation_errors = array('per_days['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($value[$i] == '') :
+					$n = 1;
+					$validation_errors = array('value['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
+					$n = 1;
+					$validation_errors = array('avg_exploitation['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
+					$n = 1;
+					$validation_errors = array('remind_before['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+
+				if($start_alarm_date[$i] == '') :
+					$n = 1;
+					$validation_errors = array('start_alarm_date['.$i.']' => lang('required'));
+					$messages['error']['elements'][] = $validation_errors;
+				endif;
+			endforeach;
+		endif;
+		// end of validation fleet details
+
+
+
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file');
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/regitered_file');
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -2965,9 +2840,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['regitered_file']['name']) AND $_FILES['regitered_file']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/regitered_file/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/regitered_file'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/regitered_file'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/regitered_file/index.html'));
 			}
 
 
@@ -3000,7 +2875,7 @@ class Organization extends MX_Controller {
 		$type = $this->input->post('type');
 
 		//file config insurance
-		$config_f_i['upload_path'] = set_realpath('uploads/user_'.$user_id.'/fleet/insurance');
+		$config_f_i['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/insurance');
 		$config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f_i['max_size'] = '4097152'; //4 MB
 		$config_f_i['file_name'] = $this->uname(3, 8);
@@ -3011,9 +2886,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_1']['name']) AND $_FILES['file_1']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -3048,9 +2923,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_2']['name']) AND $_FILES['file_2']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -3085,9 +2960,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -3122,9 +2997,9 @@ class Organization extends MX_Controller {
 		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
 
 
-			if (!file_exists(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/user_'.$user_id.'/fleet/insurance'), '0755', true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/fleet/insurance/index.html'));
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
 			}
 
 
@@ -3153,79 +3028,6 @@ class Organization extends MX_Controller {
 		}
 
 
-
-
-		//fleet details variables
-		$item = $this->input->post('item');
-		$value = $this->input->post('value');
-		$avg_exploitation = str_replace(",", ".", $this->input->post('avg_exploitation'));
-		$per_days = str_replace(",", ".", $this->input->post('per_days'));
-		$more_info = $this->input->post('more_info');
-		$remind_before = str_replace(",", ".", $this->input->post('remind_before'));
-		$start_alarm_date = $this->input->post('start_alarm_date');
-		// end fleet details variables
-
-		// validation fleet details
-		if(is_array($item)) :
-			foreach ($item as $i => $item_val) :
-				if($item_val == '') :
-					$n = 1;
-					$validation_errors = array('item['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($per_days[$i] == '' || !is_numeric($per_days[$i])) :
-					$n = 1;
-					$validation_errors = array('per_days['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($value[$i] == '') :
-					$n = 1;
-					$validation_errors = array('value['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($avg_exploitation[$i] == '' || !is_numeric($avg_exploitation[$i])) :
-					$n = 1;
-					$validation_errors = array('avg_exploitation['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($remind_before[$i] == ''  || !is_numeric(($remind_before[$i]))) :
-					$n = 1;
-					$validation_errors = array('remind_before['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-
-				if($start_alarm_date[$i] == '') :
-					$n = 1;
-					$validation_errors = array('start_alarm_date['.$i.']' => "required");
-					$messages['error']['elements'][] = $validation_errors;
-				endif;
-			endforeach;
-		endif;
-		// end of validation fleet details
-
-
-
-
-
-		if($n == 1) {
-			echo json_encode($messages);
-			return false;
-		}
-
-
-
-
-		//todo mail ---
-
-
-
-
-
-
 		$sql = "
 				UPDATE `fleet` SET 
 					`staff_ids` = ".$this->load->db_value($staff).",
@@ -3250,6 +3052,7 @@ class Organization extends MX_Controller {
 					`value1_day` = ".$this->load->db_value($value1_day).",
 					`value2_day` = ".$this->load->db_value($value2_day).",
 					`auto_increment` = ".$this->load->db_value($auto_increment).",
+					".$auto_increment_date."
 					`regitered_address` = ".$this->load->db_value($regitered_address).",
 					`regitered_number` = ".$this->load->db_value($regitered_number).",
 					".$regitered_file."
@@ -3348,16 +3151,212 @@ class Organization extends MX_Controller {
 
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message'] = 'Success';
+			$messages['message'] = lang('success');
 		} else {
 			$messages['success'] = 0;
-			$messages['error'] = 'Error';
+			$messages['error'] = lang('error');
 		}
 
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
 	}
+
+
+
+
+	public function user() {
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		$data['parent_user'] = $this->get_parent_user($company_id);
+
+
+		 $sql = "
+			SELECT
+			  `user`.`id`,
+			  `user`.`photo`,
+			  `user`.`parent_user_id`,
+			  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+			  `user`.`email`,
+			  CONCAT_WS(' ', `parent_user`.`first_name`, `parent_user`.`last_name`) AS `parent_user_name`,
+			  `company`.`name` AS `company_name`,
+			  `role`.`title` AS `role`,
+			  `user`.`address`,
+			  `user`.`country_id`,
+			  `user`.`country_code`,
+			  `user`.`phone_number`,
+			  `user`.`username`,
+			  DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
+			  DATE_FORMAT(`user`.`last_activity`, '%d-%m-%Y/%H:%i') AS `last_activity`,
+			  DATEDIFF(NOW(), `user`.`last_activity`) AS `activity`,
+			  `user`.`status`
+			FROM 
+			  `user`
+			LEFT JOIN `user` AS `parent_user`
+				ON `user`.`parent_user_id` = `parent_user`.`id`
+			LEFT JOIN `company`	
+				ON `user`.`company_id` = `company`.`id`
+			LEFT JOIN `role`	
+				ON `user`.`role_id` = `role`.`id`
+			WHERE `user`.`company_id` = '".$company_id."'
+				
+		";
+
+		$query = $this->db->query($sql);
+		$data['user'] = $query->result_array();
+
+
+		$sql_country = "
+		    SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `status` 
+            FROM
+              `country` 
+            WHERE `status` = '1' 
+            ORDER BY `title_".$lng."` 
+		";
+
+		$query_country = $this->db->query($sql_country);
+		$data['country'] = $query_country->result_array();
+
+
+		 $sql_role = "
+		    SELECT 
+              `id`,
+              `title`,
+              `status` 
+            FROM
+              `role` 
+            WHERE `status` = '1' 
+             AND `id` <> '1' #not administrator
+		";
+
+		$query_role = $this->db->query($sql_role);
+		$data['role'] = $query_role->result_array();
+
+		$this->layout->view('organization/user', $data);
+	}
+
+
+
+
+
+	public function add_vehicles() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+		$data['lang'] = $lng;
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
+			->where('user.company_id', $company_id)
+			->where('department.head_staff_id <> ', 'staff.id', FALSE)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$sql_brand = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `brand`
+			WHERE `status` = '1'	
+		";
+
+		$result_brand = $this->db->query($sql_brand);
+
+		$data['brand'] = $result_brand->result_array();
+
+
+		$sql_fleet_type = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_type`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_type = $this->db->query($sql_fleet_type);
+
+		$data['fleet_type'] = $result_fleet_type->result_array();
+
+		$sql_fuel = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fuel`
+			WHERE `status` = '1'	
+		";
+
+		$result_fuel = $this->db->query($sql_fuel);
+
+		$data['fuel'] = $result_fuel->result_array();
+
+
+		$sql_insurance = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+				`insurance_type`
+			WHERE `status` = 1	
+		";
+
+		$result_insurance = $this->db->query($sql_insurance);
+
+
+		$data['insurance_type'] = $result_insurance->result_array();
+
+
+		$sql_value = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`,
+				`type`,
+				`convert`
+			 FROM
+				`value`
+			WHERE `status` = 1	
+		";
+
+		$result_value = $this->db->query($sql_value);
+
+		$data['value'] = $result_value->result_array();
+
+
+
+		$this->layout->view('organization/add_vehicles', $data);
+
+	}
+
+
 
 	public function add_user_ax() {
 
@@ -3466,7 +3465,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0755', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), 0755, true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
 		}
 
@@ -3765,7 +3764,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), '0755', true);
+			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), 0755, true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
 		}
 

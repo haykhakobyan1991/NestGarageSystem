@@ -1,5 +1,6 @@
 <?
-$user_id = $parent_user;
+$user_id = $this->session->user_id;
+$folder = $this->session->folder;
 $total = 0;
 $active = 0;
 $passive = 0;
@@ -219,7 +220,7 @@ endforeach;
 
 													<label
 														class="col-sm-2 col-form-label"
-														style="font-size: 15px;">Email</label>
+														style="font-size: 15px;">Email *</label>
 													<div class="col-sm-4">
 														<input type="email" class="form-control form-control-sm"
 															   name="email"
@@ -671,7 +672,7 @@ color: #545b62;">
 							<th style="font-size: 12px !important;font-weight:500;">Created date</th>
 							<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
 							<th style="font-size: 12px !important;font-weight:500;">Փաստաթուղթ</th>
-							<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
+							<th style="font-size: 12px !important;font-weight:500;min-width: 80px !important;"></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -682,7 +683,7 @@ color: #545b62;">
 										<img
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 											class="mr-3"
-											src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . $row['registrar_user_id'] . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
+											src="<?= ($row['photo'] != '' ? base_url('uploads/'.$folder.'/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
 											alt="Generic placeholder image">
 										<div class="media-body">
 											<?= $row['first_name'] . ' ' . $row['last_name'] ?>
@@ -720,7 +721,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_1'] != '' ? base_url('uploads/user_' . $user_id . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_1'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_1']); ?>
 													</a>
 												</td>
@@ -735,7 +736,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_2'] != '' ? base_url('uploads/user_' . $user_id . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_2'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_2']); ?>
 													</a>
 												</td>
@@ -750,7 +751,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_3'] != '' ? base_url('uploads/user_' . $user_id . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_3'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_3']); ?>
 													</a>
 												</td>
@@ -765,7 +766,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_4'] != '' ? base_url('uploads/user_' . $user_id . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_4'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_4']); ?>
 													</a>
 												</td>
@@ -887,42 +888,36 @@ color: #545b62;">
 					$(location).attr('href', url + '#staff');
 
 				} else {
-					close_message();
+
+					$('.alert-info').addClass('d-none');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'add_staff');
-
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
-
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},
@@ -969,10 +964,8 @@ color: #545b62;">
 
 					close_message();
 					$('.alert-success').removeClass('d-none');
-					$('.alert-success').text(data.message);
+					$('.alert-success').html(data.message);
 					loading('stop', 'edit_staff_btn');
-
-					close_message();
 
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
@@ -981,39 +974,35 @@ color: #545b62;">
 
 
 				} else {
-					close_message();
+					$('.alert-info').addClass('d-none');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'edit_staff_btn');
-
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},

@@ -667,15 +667,15 @@
 					<table class="vehicle table table-striped table-hover">
 						<thead>
 						<tr>
-							<th scope="col">Item Name</th>
-							<th scope="col">Value
-								<small>(KM\Days\Months)</small>
+							<th scope="col">Item Name *</th>
+							<th scope="col">Value *
+								<small>(KM\Days\Months) </small>
 							</th>
-							<th scope="col">Avg. exploitation</th>
-							<th scope="col">Per Days</th>
-							<th scope="col">More Info P\N</th>
-							<th scope="col">Remind Me days before</th>
-							<th scope="col">Start Alarm Date</th>
+							<th scope="col">Avg. exploitation *</th>
+							<th scope="col">Per Days *</th>
+							<th scope="col">More Info P\N </th>
+							<th scope="col">Remind days before *</th>
+							<th scope="col">Start Alarm Date *</th>
 							<th scope="col">Delete</th>
 						</tr>
 						</thead>
@@ -847,8 +847,7 @@
 			processData: false,
 			beforeSend: function () {
 				scroll_top();
-				close_message();
-				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				loading('start', 'submit');
 				$(this).addClass('bg-success2');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
@@ -870,14 +869,22 @@
 
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
+						loading('stop', 'submit');
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
 							$.each(data.error.elements[index], function (index, value) {
 								if (value != '') {
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -885,6 +892,8 @@
 							});
 						});
 					}
+
+					$('.alert-danger').html(errors);
 				}
 			},
 			error: function (jqXHR, textStatus) {

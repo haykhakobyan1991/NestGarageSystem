@@ -190,9 +190,9 @@ function scroll_top() {
 }
 
 function close_message() {
-	setTimeout(function () {
+	//setTimeout(function () {
 		$('.alert-success, .alert-danger').addClass('d-none');
-	}, 5000);
+	//}, 5000);
 	$('.alert-info').addClass('d-none');
 }
 

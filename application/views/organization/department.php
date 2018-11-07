@@ -282,40 +282,34 @@ color: #545b62;">
 				} else {
 					close_message();
 					loading('stop', 'add_department_btn');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
-
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
-
+						loading('stop', 'add_department_btn');
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},
@@ -369,40 +363,36 @@ color: #545b62;">
 
 
 				} else {
-					scroll_top();
+					close_message();
+					loading('stop', 'edit_department_btn');
+
 					if ($.isArray(data.error.elements)) {
-
+						scroll_top();
 						loading('stop', 'edit_department_btn');
-
-
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},

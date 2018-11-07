@@ -1,5 +1,6 @@
 <?
 $user_id = $this->session->user_id;
+$folder = $this->session->folder;
 ?>
 <form id="staff_edit" enctype="multipart/form-data">
 	<input type="hidden" name="staff_id" value="<?= $id ?>">
@@ -21,7 +22,7 @@ $user_id = $this->session->user_id;
 					 id='img-upload2'
 
 					 style="width: 100px;" alt=""
-					 src="<?= ($photo == '' ? base_url('assets/images/no_choose_image.svg') : base_url('uploads/user_'.$user_id.'/staff/original/'.$photo)) ?>">
+					 src="<?= ($photo == '' ? base_url('assets/images/no_choose_image.svg') : base_url('uploads/'.$folder.'/staff/thumbs/'.$photo)) ?>">
 				<div class="media-body">
 					<div class="input-group ml-2 ml-md-2">
 														<span class="input-group-btn">
@@ -98,7 +99,7 @@ $user_id = $this->session->user_id;
 
 			<div class="form-group row">
 				<label
-					class="col-sm-2 col-form-label">Email</label>
+					class="col-sm-2 col-form-label">Email *</label>
 				<div class="col-sm-10">
 					<input type="email" class="form-control form-control-sm"
 						   name="email"
@@ -251,7 +252,7 @@ $user_id = $this->session->user_id;
 												</label>
 												<a style="margin-top: 4px"
 												   target="_blank"
-												   href="<?= ($ext_1 != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $file_1. '.' . $ext_1 : 'javascript:void(0)' )  ?>">
+												   href="<?= ($ext_1 != '' ? base_url('uploads/'.$folder.'/staff/files/'). $file_1. '.' . $ext_1 : 'javascript:void(0)' )  ?>">
 													<?= $this->select_ext($ext_1); ?>
 												</a>
 
@@ -341,7 +342,7 @@ $user_id = $this->session->user_id;
 											</label>
 											<a style="margin-top: 4px"
 											   target="_blank"
-											   href="<?= ($ext_2 != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $file_2. '.' . $ext_2 : 'javascript:void(0)' )  ?>">
+											   href="<?= ($ext_2 != '' ? base_url('uploads/'.$folder.'/staff/files/'). $file_2. '.' . $ext_2 : 'javascript:void(0)' )  ?>">
 												<?= $this->select_ext($ext_2); ?>
 											</a>
 
@@ -431,7 +432,7 @@ $user_id = $this->session->user_id;
 											</label>
 											<a style="margin-top: 4px"
 											   target="_blank"
-											   href="<?= ($ext_3 != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $file_3. '.' . $ext_3 : 'javascript:void(0)' )  ?>">
+											   href="<?= ($ext_3 != '' ? base_url('uploads/'.$folder.'/staff/files/'). $file_3. '.' . $ext_3 : 'javascript:void(0)' )  ?>">
 												<?= $this->select_ext($ext_3); ?>
 											</a>
 
@@ -520,7 +521,7 @@ $user_id = $this->session->user_id;
 											</label>
 											<a style="margin-top: 4px"
 											   target="_blank"
-											   href="<?= ($ext_4 != '' ? base_url('uploads/user_'.$user_id.'/staff/files/'). $file_4. '.' . $ext_4 : 'javascript:void(0)' )  ?>">
+											   href="<?= ($ext_4 != '' ? base_url('uploads/'.$folder.'/staff/files/'). $file_4. '.' . $ext_4 : 'javascript:void(0)' )  ?>">
 												<?= $this->select_ext($ext_4); ?>
 											</a>
 

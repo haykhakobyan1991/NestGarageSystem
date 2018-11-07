@@ -1,5 +1,6 @@
 <?php
-$user_id = $parent_user;
+$user_id = $this->session->user_id;
+$folder = $this->session->folder;
 $i = '';
 ?>
 
@@ -59,7 +60,7 @@ $i = '';
 							<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
 								 style="width: 100px;"
 								 alt=""
-								 src="<?= ($company['logo'] != '' ? base_url('uploads/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
+								 src="<?= ($company['logo'] != '' ? base_url('uploads/'.$folder.'/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
 							<div class="media-body">
 								<h5 class="mt-0">LOGO</h5>
 								<p>Upload your company LOGO</p>
@@ -701,26 +702,35 @@ $i = '';
 					$(location).attr('href', url);
 
 				} else {
-					close_message();
+					$('.alert-info').addClass('d-none');
+
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'create_company');
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
 							$.each(data.error.elements[index], function (index, value) {
 								if (value != '') {
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
 							});
 						});
 					}
+
+					$('.alert-danger').html(errors);
 				}
 			},
 			error: function (jqXHR, textStatus) {

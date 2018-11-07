@@ -111,31 +111,31 @@ class User extends CI_Controller {
 		if (!file_exists(set_realpath('uploads/'.$folder.'/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/index.html'));
 		}
 
 		if (!file_exists(set_realpath('uploads/'.$folder.'/company/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/company/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/company/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/company/'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/company/index.html'));
 		}
 
 		if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/fleet/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/fleet/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/index.html'));
 		}
 
 		if (!file_exists(set_realpath('uploads/'.$folder.'/staff/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/staff/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/index.html'));
 		}
 
 		if (!file_exists(set_realpath('uploads/'.$folder.'/user/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/user/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/index.html'));
 		}
 
 
@@ -500,6 +500,7 @@ class User extends CI_Controller {
 			$session = array_merge($sess, $per);
 
 			$this->session->set_userdata($session);
+
 
 		}
 

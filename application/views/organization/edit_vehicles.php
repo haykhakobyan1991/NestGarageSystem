@@ -899,7 +899,7 @@
 						<label
 							class="col-sm-2 col-form-label"
 							style="font-size: 12px;">Type of meter</label>
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<select name="value_1"
 									class="selectpicker form-control form-control-sm dif_meter"
 									data-size="5"
@@ -926,6 +926,14 @@
 								endforeach;
 								?>
 							</select>
+						</div>
+						<div class="col-sm-3"></div>
+						<div class="col-sm-3">
+							<?
+								if($fleet['auto_increment'] == '1'){
+									echo 'Total '.round($fleet['total_value_1'], 2).' '.$title;  //mi ban ara sirunana
+								}
+							?>
 						</div>
 					</div>
 					<div class="container mt-md-3 mt-3">
@@ -960,7 +968,7 @@
 								<label
 									class="col-sm-2 col-form-label"
 									style="font-size: 12px;">Type of meter</label>
-								<div class="col-sm-6">
+								<div class="col-sm-4">
 									<select name="value_2"
 											class="selectpicker form-control form-control-sm "
 											data-size="5"
@@ -974,7 +982,11 @@
 												?>
 												<option
 													value="<?= $row['id'] ?>"
-													<?= ($fleet['value2_id'] == $row['id'] ? 'selected' : '') ?>
+													<?
+													if ($fleet['value2_id'] == $row['id']) {
+														echo 'selected';
+														$title2 = $row['title'];
+													} ?>
 												>
 													<?= $row['title'] ?>
 												</option>
@@ -985,6 +997,14 @@
 										?>
 									</select>
 									<?= $convert ?>
+								</div>
+								<div class="col-sm-3"></div>
+								<div class="col-sm-3">
+									<?
+										if($fleet['auto_increment'] == '1'){
+											echo 'Total '.round($fleet['total_value_2'], 2).' '.$title2;  //mi ban ara sirunana
+										}
+									?>
 								</div>
 							</div>
 						</div>
@@ -1024,7 +1044,7 @@
 			processData: false,
 			beforeSend: function () {
 				scroll_top();
-				close_message();
+
 				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 				$(this).addClass('bg-success2');
 				$('.alert-info').removeClass('d-none');
@@ -1033,12 +1053,11 @@
 			success: function (data) {
 				if (data.success == '1') {
 
+					close_message();
 					// scroll_top();
 					$('.alert-success').removeClass('d-none');
-					$('.alert-info').addClass('d-none');
-					$('.alert-danger').addClass('d-none');
-					$('.alert-success').text(data.message);
-					close_message();
+
+					$('.alert-success').html(data.message);
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles')?>";
 					$(location).attr('href', url);
 
@@ -1047,14 +1066,22 @@
 
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
+						loading('stop', 'submit');
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
 							$.each(data.error.elements[index], function (index, value) {
 								if (value != '') {
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+									if(value != tmp) {
+										errors += value + '<br>';
+									}
+									tmp = value;
+
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -1062,6 +1089,8 @@
 							});
 						});
 					}
+
+					$('.alert-danger').html(errors);
 				}
 			},
 			error: function (jqXHR, textStatus) {

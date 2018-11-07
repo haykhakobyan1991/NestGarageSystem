@@ -3,6 +3,28 @@
 	canvas {
 		background: #fff;
 	}
+
+	th, td {
+		border: 1px solid #333 !important;
+		vertical-align: middle !important;
+	}
+
+	th {
+		text-align: center !important;
+	}
+
+	i.fa.fa-plus {
+		display: inline-block;
+		float: right;
+		vertical-align: middle;
+		cursor: pointer;
+		font-size: 12px;
+	}
+
+	.more {
+		display: none;
+	}
+
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
@@ -14,6 +36,34 @@
 	<button id="SaveButton" onclick="save()">Save</button>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
+
+
+<div class="row">
+	<div class="container-fluid">
+		<table class="table ">
+			<thead>
+			<tr>
+				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
+				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
+				<th class="table-secondary" scope="col" colspan="4" class="text-center">Տրանսպորտային միջոց</th>
+				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>
+				<th class="table-secondary" scope="col" rowspan="2">գումար</th>
+			</tr>
+			<tr>
+				<th class="table-primary">մոդել</th>
+				<th class="table-primary">տեսակ</th>
+				<th class="table-primary">պետհամարանիշ</th>
+				<th class="table-primary">վարորդ</th>
+			</tr>
+			</thead>
+			<tbody class="cars_table">
+
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
 <script>
 	function init() {
 		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -23,8 +73,6 @@
 				{
 					// position the graph in the middle of the diagram
 					initialContentAlignment: go.Spot.Center,
-					// allow double-click in background to create a new node
-					"clickCreatingTool.archetypeNodeData": {text: "Node", color: "red"},
 					// allow Ctrl-G to call groupSelection()
 					"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
 					// enable undo & redo
@@ -43,6 +91,7 @@
 								alternateNodeSpacing: 20
 							}),
 				});
+
 		function makeButton(text, action, visiblePredicate) {
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
@@ -52,6 +101,7 @@
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
+
 		// a context menu is an Adornment with a bunch of buttons in them
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
@@ -65,39 +115,75 @@
 						else alert(nodeInfo(part.data));
 					}),
 				makeButton("Cut",
-					function (e, obj) {e.diagram.commandHandler.cutSelection();},
-					function (o) {return o.diagram.commandHandler.canCutSelection();}),
-				makeButton("Copy", function (e, obj) {e.diagram.commandHandler.copySelection();},
-					function (o) {return o.diagram.commandHandler.canCopySelection();}),
+					function (e, obj) {
+						e.diagram.commandHandler.cutSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canCutSelection();
+					}),
+				makeButton("Copy", function (e, obj) {
+						e.diagram.commandHandler.copySelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canCopySelection();
+					}),
 				makeButton("Paste",
-					function (e, obj) {e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);},
-					function (o) {return o.diagram.commandHandler.canPasteSelection();}),
+					function (e, obj) {
+						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
+					},
+					function (o) {
+						return o.diagram.commandHandler.canPasteSelection();
+					}),
 				makeButton("Delete",
-					function (e, obj) {e.diagram.commandHandler.deleteSelection();},
-					function (o) {return o.diagram.commandHandler.canDeleteSelection();}),
+					function (e, obj) {
+						e.diagram.commandHandler.deleteSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canDeleteSelection();
+					}),
 				makeButton("Undo",
-					function (e, obj) {e.diagram.commandHandler.undo();},
-					function (o) {return o.diagram.commandHandler.canUndo();}),
+					function (e, obj) {
+						e.diagram.commandHandler.undo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canUndo();
+					}),
 				makeButton("Redo",
-					function (e, obj) {e.diagram.commandHandler.redo();},
-					function (o) {return o.diagram.commandHandler.canRedo();}),
+					function (e, obj) {
+						e.diagram.commandHandler.redo();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canRedo();
+					}),
 				makeButton("Group",
-					function (e, obj) {e.diagram.commandHandler.groupSelection();},
-					function (o) {return o.diagram.commandHandler.canGroupSelection();}),
+					function (e, obj) {
+						e.diagram.commandHandler.groupSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canGroupSelection();
+					}),
 				makeButton("Ungroup",
-					function (e, obj) {e.diagram.commandHandler.ungroupSelection();},
-					function (o) {return o.diagram.commandHandler.canUngroupSelection();})
+					function (e, obj) {
+						e.diagram.commandHandler.ungroupSelection();
+					},
+					function (o) {
+						return o.diagram.commandHandler.canUngroupSelection();
+					})
 			);
+
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;  // must be a Node
 			if (node1 === node2) return false;  // cannot work for yourself
 			if (node2.isInTreeOf(node1)) return false;  // cannot work for someone who works for you
 			return true;
 		}
+
 		function textStyle() {
 			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
-		function nodeDoubleClick(e, obj) {}
+
+		function nodeDoubleClick(e, obj) {
+		}
 
 		function nodeInfo(d) {  // Tooltip info for a node data object
 			var str = "Node " + d.key + ": " + d.text + "\n";
@@ -107,6 +193,7 @@
 				str += "top-level node";
 			return str;
 		}
+
 		// define the Node template
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
@@ -227,10 +314,12 @@
 				) // end Horizontal Panel
 			);  // end Node
 		myDiagram.allowMove = false;
+
 		// Define the appearance and behavior for Links:
 		function linkInfo(d) {  // Tooltip info for a link data object
 			return "Link:\nfrom " + d.from + " to " + d.to;
 		}
+
 		// The link shape and arrowhead have their stroke brush data bound to the "color" property
 		myDiagram.linkTemplate =
 			$(go.Link,
@@ -251,8 +340,11 @@
 					contextMenu: partContextMenu
 				}
 			);
+
 		// Define the appearance and behavior for Groups:
-		function findHeadShot(key) {}
+		function findHeadShot(key) {
+		}
+
 		function groupInfo(adornment) {  // takes the tooltip or context menu, not a group node data object
 			var g = adornment.adornedPart;  // get the Group that the tooltip adorns
 			var mems = g.memberParts.count;
@@ -262,6 +354,7 @@
 			});
 			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
+
 		// Groups consist of a title in the color given by the group node data
 		// above a translucent gray rectangle surrounding the member parts
 		myDiagram.groupTemplate =
@@ -299,10 +392,12 @@
 					contextMenu: partContextMenu
 				}
 			);
+
 		// Define the behavior for the Diagram background:
 		function diagramInfo(model) {  // Tooltip info for the diagram's model
 			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
 		}
+
 		// provide a tooltip for the background of the Diagram, when not over any Part
 		myDiagram.toolTip =
 			$(go.Adornment, "Auto",
@@ -340,12 +435,14 @@
 		var linkDataArray = <?=$from_to?>;
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 	}
+
 	$(document).ready(function () {
 		init();
 		myDiagram.addDiagramListener("ObjectSingleClicked",
 			function (e) {
 				var arr = [];
 				var new_arr = [];
+
 				myDiagram.selection.each(function (part) {
 					if (part instanceof go.Node) {
 						arr = {
@@ -353,17 +450,72 @@
 							"name": part.Wd.text,
 							"parent": part.Wd.parent
 						};
-						new_arr.push(arr);
+						console.log(arr.key);
+						var str1 = arr.key;
+						var re1 = 'f';
+						var found1 = str1.match(re1);
+						if (found1 == 'f') {
+							new_arr.push(arr);
+						}
 					}
 				});
-				console.table(new_arr);
+				console.log(new_arr);
+				var new_row = '';
+				var str = new_arr[new_arr.length - 1].key;
+				console.log('str --> ' + str);
+				var re = 'f';
+				var found = str.match(re);
+
+				if (found == 'f') {
+					$.each(new_arr, function () {
+						new_row += '<tr>\n' +
+							'<td scope="row">1 <i class="fa fa-plus expand_tr"></i></td>\n' +
+							'<td>18.12.2018</td>\n' +
+							'<td>Mersedes bens</td>\n' +
+							'<td>Հեչբեկ</td>\n' +
+							'<td>35sx674</td>\n' +
+							'<td>Արամ</td>\n' +
+							'<td></td>\n' +
+							'<td>150000</td>\n' +
+							'</tr>\n' +
+							/*See details*/
+							'<tr class="more">\n' +
+							'<td scope="row">1․1</td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td>Յուղ</td>\n' +
+							'<td>15000</td>\n' +
+							'</tr>\n' +
+							'<tr class="more">\n' +
+							'<td scope="row">1.2</td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td>Անվադող</td>\n' +
+							'<td>25400</td>\n' +
+							'</tr>'
+					});
+
+					$('.cars_table').html(new_row);
+				}
 			});
 
 	});
+
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
 		console.log(myDiagram.model.linkDataArray);
 	}
+
+	$(document).on('click', '.expand_tr', function () {
+		$('.more').toggle();
+	});
+
 </script>
 

@@ -331,9 +331,9 @@
 								</div>
 							</form>
 							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
-							<button id="load" type="submit" class="btn btn-outline-success btn-block signIn d-none">
-								<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />
-							</button>
+							<button id="load2" class="btn btn-block  btn-success d-none"><img
+									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 						</div>
 					</div>
 
@@ -582,12 +582,12 @@
 
 				close_message();
 				$('button#signIn').addClass('bg-success2');
-				loading('start', 'signIn');
+				loading('start', 'signIn','load2');
 
 			},
 			success: function (data) {
 				if (data.success == '1') {
-
+					loading('stop', 'signIn', 'load2');
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/company')?>";
 					$(location).attr('href', url);
 
@@ -596,7 +596,7 @@
 					if ($.isArray(data.error.elements)) {
 
 						// scroll_top();
-						loading('stop', 'signIn');
+						loading('stop', 'signIn', 'load2');
 						$('button#signIn').removeClass('bg-success2');
 
 						$('p#success').addClass('d-none');

@@ -196,14 +196,14 @@ function close_message() {
 	$('.alert-info').addClass('d-none');
 }
 
-function loading(e = 'start', id = '') {
+function loading(e = 'start', id = '', load = 'load') {
 	if (e == 'start') {
 		$('#'+id).addClass('d-none');
 		$(id).addClass('d-none');
-		$('#load').removeClass('d-none');
+		$('#'+load).removeClass('d-none');
 	} else {
 		$('#'+id).removeClass('d-none');
 		$(id).removeClass('d-none');
-		$('#load').addClass('d-none');
+		$('#'+load).addClass('d-none');
 	}
 }

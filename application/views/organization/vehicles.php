@@ -12,11 +12,9 @@
 </style>
 
 <script>
-	// $(window).on('load', function () {
-	// 	$('table:not(.vehicle)').DataTable({
-	// 		"order": [[ 0, "desc" ]]
-	// 	});
-	// });
+	$(document).ready(function() {
+		$('#example3').DataTable();
+	})
 </script>
 
 <?

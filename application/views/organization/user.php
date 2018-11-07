@@ -15,7 +15,11 @@
 	}
 
 </style>
-
+<script>
+	$(document).ready(function() {
+		$('#example4').DataTable();
+	})
+</script>
 
 <?
 

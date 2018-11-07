@@ -21,14 +21,6 @@
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
-	<!-- Tables Start -->
-	<script>$(document).ready(function () {
-			$('#example').DataTable();
-			$('#example2').DataTable();
-			$('#example3').DataTable();
-			$('#example4').DataTable();
-		});</script>
-	<!-- Tables End -->
 
 	<!-- Some CSS Start-->
 	<style>
@@ -82,7 +74,6 @@
 			color: #6c757d;
 			font-weight: 700;
 		}
-
 
 
 	</style>

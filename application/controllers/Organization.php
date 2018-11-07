@@ -661,7 +661,7 @@ class Organization extends MX_Controller {
 
 
 		if (!file_exists(set_realpath('uploads/company'))) {
-			mkdir(set_realpath('uploads/company'), '0755', true);
+			mkdir(set_realpath('uploads/company'), 0755, true);
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/index.html'));
 			copy(set_realpath('uploads/index.html'), set_realpath('uploads/company/index.html'));
 		}

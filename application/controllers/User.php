@@ -81,6 +81,70 @@ class User extends CI_Controller {
     }
 
 
+	private function smtp_mailing() {
+
+		$config['protocol']    = 'smtp';
+		$config['smtp_host']    = 'ssl://smtp.gmail.com';
+		$config['smtp_port']    = '465';
+		$config['smtp_timeout'] = '7';
+		$config['smtp_user']    = 'dilemmatik@gmail.com';
+		$config['smtp_pass']    = 'dilemma!1';
+		$config['charset']    = 'utf-8';
+		$config['newline']    = "\r\n";
+		$config['mailtype'] = 'html'; // or text
+		$config['validation'] = TRUE; // bool whether to validate email or not
+		$this->load->library('email');
+		$this->email->initialize($config);
+
+		$this->email->from('dilemmatik@gmail.com', 'dilemmatik.ru');
+
+
+	}
+
+
+	/**
+	 * @param $folder
+	 * @return bool
+	 */
+	private function folder($folder) {
+
+		if (!file_exists(set_realpath('uploads/'.$folder.'/'))) {
+			mkdir(set_realpath('uploads/' . $folder . '/'), 0755, true);
+			//chmod(set_realpath('uploads/' . $folder . '/'), 0755);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/'));
+		}
+
+		if (!file_exists(set_realpath('uploads/'.$folder.'/company/'))) {
+			mkdir(set_realpath('uploads/' . $folder . '/company/'), 0755, true);
+			//chmod(set_realpath('uploads/' . $folder . '/company/'), 0755);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/company/'));
+		}
+
+		if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/'))) {
+			mkdir(set_realpath('uploads/' . $folder . '/fleet/'), 0755, true);
+			//chmod(set_realpath('uploads/' . $folder . '/fleet/'), 0755);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/'));
+		}
+
+		if (!file_exists(set_realpath('uploads/'.$folder.'/staff/'))) {
+			mkdir(set_realpath('uploads/' . $folder . '/staff/'), 0755, true);
+			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/'));
+		}
+
+		if (!file_exists(set_realpath('uploads/'.$folder.'/user/'))) {
+			mkdir(set_realpath('uploads/' . $folder . '/user/'), 0755, true);
+			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/'));
+		}
+
+
+		return true;
+
+	}
+
+
+
 
 	public function index() {
 
@@ -148,9 +212,11 @@ class User extends CI_Controller {
         $country_code = $this->input->post('country_code');
         $phone_number = $this->input->post('phone_number');
         $username = $this->generate_username($email);
+        $pass = $this->input->post('up_password');
         $password = $this->input->post('up_password');
         $confirm_password = $this->input->post('confirm_password');
         $country = $this->input->post('up_country');
+		$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
 
 
 
@@ -207,7 +273,7 @@ class User extends CI_Controller {
 
         if($num_rows == 1) {
             $n = 1;
-            $validation_errors = array('up_email' => "Email is not unique");
+            $validation_errors = array('up_email' => "Email is not unique"); //todo ml
             $messages['error']['elements'][] = $validation_errors;
         }
 
@@ -216,6 +282,25 @@ class User extends CI_Controller {
             echo json_encode($messages);
             return false;
         }
+
+
+        // mailing
+
+		$this->smtp_mailing();
+
+		$this->email->to($email);
+		$this->email->subject('(Fleet management system) Your account is created');
+		$this->email->message(
+			'Username: '.$username.'<br />'.
+			'Password: '.$pass
+		);
+
+		if(!$this->email->send()) {
+			$messages['success'] = 0;
+			$messages['error'] = $this->email->print_debugger();
+			echo json_encode($messages);
+			return false;
+		}
 
 
 
@@ -233,6 +318,7 @@ class User extends CI_Controller {
               `role_id`,
               `fb_id`,
               `google_id`,
+              `folder`,
               `status`
             ) 
             VALUES
@@ -249,6 +335,7 @@ class User extends CI_Controller {
                 '1',
                 ".$this->load->db_value($fb_id).",
                 ".$this->load->db_value($google_id).",
+                ".$this->load->db_value($folder).",
                 '1'
               )
         ";
@@ -328,6 +415,7 @@ class User extends CI_Controller {
 					`user`.`email`,
 					`user`.`password`,
 					`user`.`role_id`,
+					`user`.`folder`,
 					`user`.`status`
 				FROM 
 					`user`				
@@ -399,9 +487,11 @@ class User extends CI_Controller {
 
 
 
+			$this->folder($account['folder']); //create folders
 
 			$sess = array(
 				'user_id' => $account['id'],
+				'folder' => $account['folder'],
 				'username' => $account['username'],
 				'password' => $account['password']
 			);

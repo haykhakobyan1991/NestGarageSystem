@@ -179,7 +179,7 @@ class Structure extends MX_Controller {
 		foreach ($structure_array AS $key => $value) :
 			if ($value['company_id'] != $cmp_id) :
 
-				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/user_' . $user_id . '/company/' . $value['company_logo']));
+				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/company/' . $value['company_logo']));
 
 			endif;
 			$cmp_id = $value['company_id'];

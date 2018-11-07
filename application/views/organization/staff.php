@@ -1,3 +1,6 @@
+<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script src="<?= base_url() ?>assets/js/table.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <?
 $user_id = $this->session->user_id;
 $folder = $this->session->folder;
@@ -25,9 +28,8 @@ endforeach;
 	table#example2 thead tr th:last-child:before {
 		content: '';
 	}
-
-
 </style>
+
 
 <!-- Staff Start -->
 <div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
@@ -837,6 +839,12 @@ color: #545b62;">
 		staff_id = $(this).data('id');
 		$('input[name="staff_id"]').val(staff_id);
 	});
+
+
+	$(document).ready(function () {
+		$('#example2').DataTable();
+	});
+
 
 	$(document).on('click', '#delete_staff', function () {
 		var id = $('input[name="staff_id"]').val();

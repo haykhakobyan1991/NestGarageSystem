@@ -12,8 +12,9 @@
 </style>
 
 <script>
-
-
+	$(document).ready(function() {
+		$('#example').DataTable();
+	})
 </script>
 <!-- Department Start -->
 

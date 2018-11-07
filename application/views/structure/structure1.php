@@ -6,47 +6,28 @@
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
-
-
 	<div id="sample">
 		<div id="myDiagramDiv" style="border: solid 1px black;  height:600px"></div>
 	</div>
 	<textarea style="display: none; width: 100%;" id="mySavedModel">
-
 </textarea>
 	<button id="SaveButton" onclick="save()">Save</button>
-
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
-
-
-	<div class="row">
-		<div class="container-fluid">
-
-		</div>
-	</div>
 </div>
-
-
 <script>
 	function init() {
 		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 		var $ = go.GraphObject.make;  // for conciseness in defining templates
-
 		myDiagram =
 			$(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
 				{
 					// position the graph in the middle of the diagram
 					initialContentAlignment: go.Spot.Center,
-
 					// allow double-click in background to create a new node
 					"clickCreatingTool.archetypeNodeData": {text: "Node", color: "red"},
-
 					// allow Ctrl-G to call groupSelection()
 					"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
-
-
 					// enable undo & redo
-
 					layout:
 						$(go.TreeLayout,
 							{
@@ -61,15 +42,7 @@
 								//alternateAlignment: go.TreeLayout.AlignmentBus,
 								alternateNodeSpacing: 20
 							}),
-
-
 				});
-
-		// Define the appearance and behavior for Nodes:
-
-		// First, define the shared context menu for all Nodes, Links, and Groups.
-
-		// To simplify this code we define a function for creating a context menu button:
 		function makeButton(text, action, visiblePredicate) {
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
@@ -79,7 +52,6 @@
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
-
 		// a context menu is an Adornment with a bunch of buttons in them
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
@@ -93,84 +65,39 @@
 						else alert(nodeInfo(part.data));
 					}),
 				makeButton("Cut",
-					function (e, obj) {
-						e.diagram.commandHandler.cutSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canCutSelection();
-					}),
-				makeButton("Copy",
-					function (e, obj) {
-						e.diagram.commandHandler.copySelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canCopySelection();
-					}),
+					function (e, obj) {e.diagram.commandHandler.cutSelection();},
+					function (o) {return o.diagram.commandHandler.canCutSelection();}),
+				makeButton("Copy", function (e, obj) {e.diagram.commandHandler.copySelection();},
+					function (o) {return o.diagram.commandHandler.canCopySelection();}),
 				makeButton("Paste",
-					function (e, obj) {
-						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
-					},
-					function (o) {
-						return o.diagram.commandHandler.canPasteSelection();
-					}),
+					function (e, obj) {e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);},
+					function (o) {return o.diagram.commandHandler.canPasteSelection();}),
 				makeButton("Delete",
-					function (e, obj) {
-						e.diagram.commandHandler.deleteSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canDeleteSelection();
-					}),
+					function (e, obj) {e.diagram.commandHandler.deleteSelection();},
+					function (o) {return o.diagram.commandHandler.canDeleteSelection();}),
 				makeButton("Undo",
-					function (e, obj) {
-						e.diagram.commandHandler.undo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canUndo();
-					}),
+					function (e, obj) {e.diagram.commandHandler.undo();},
+					function (o) {return o.diagram.commandHandler.canUndo();}),
 				makeButton("Redo",
-					function (e, obj) {
-						e.diagram.commandHandler.redo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canRedo();
-					}),
+					function (e, obj) {e.diagram.commandHandler.redo();},
+					function (o) {return o.diagram.commandHandler.canRedo();}),
 				makeButton("Group",
-					function (e, obj) {
-						e.diagram.commandHandler.groupSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canGroupSelection();
-					}),
+					function (e, obj) {e.diagram.commandHandler.groupSelection();},
+					function (o) {return o.diagram.commandHandler.canGroupSelection();}),
 				makeButton("Ungroup",
-					function (e, obj) {
-						e.diagram.commandHandler.ungroupSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canUngroupSelection();
-					})
+					function (e, obj) {e.diagram.commandHandler.ungroupSelection();},
+					function (o) {return o.diagram.commandHandler.canUngroupSelection();})
 			);
-
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;  // must be a Node
 			if (node1 === node2) return false;  // cannot work for yourself
 			if (node2.isInTreeOf(node1)) return false;  // cannot work for someone who works for you
 			return true;
 		}
-
 		function textStyle() {
 			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
-
-		function nodeDoubleClick(e, obj) {
-			// var clicked = obj.part;
-			// if (clicked !== null) {
-			//     var thisemp = clicked.data;
-			//     myDiagram.startTransaction("add employee");
-			//     var newemp = {key: getNextKey(), name: "(new person)", title: "", parent: thisemp.key};
-			//     myDiagram.model.addNodeData(newemp);
-			//     myDiagram.commitTransaction("add employee");
-			// }
-		}
+		function nodeDoubleClick(e, obj) {}
 
 		function nodeInfo(d) {  // Tooltip info for a node data object
 			var str = "Node " + d.key + ": " + d.text + "\n";
@@ -180,14 +107,7 @@
 				str += "top-level node";
 			return str;
 		}
-
-		// These nodes have text surrounded by a rounded rectangle
-		// whose fill color is bound to the node data.
-		// The user can drag a node by dragging its TextBlock label.
-		// Dragging from the Shape will start drawing a new link.
-
 		// define the Node template
-
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
@@ -201,8 +121,6 @@
 				}
 			});
 		};
-
-
 		myDiagram.nodeTemplate =
 			$(go.Node, "Auto",
 				{locationSpot: go.Spot.Center},
@@ -255,7 +173,6 @@
 
 					}),
 				$(go.Panel, "Horizontal",
-
 					$(go.Picture,
 						{
 							name: "Picture",
@@ -309,16 +226,11 @@
 					)  // end Table Panel
 				) // end Horizontal Panel
 			);  // end Node
-
-
 		myDiagram.allowMove = false;
-
 		// Define the appearance and behavior for Links:
-
 		function linkInfo(d) {  // Tooltip info for a link data object
 			return "Link:\nfrom " + d.from + " to " + d.to;
 		}
-
 		// The link shape and arrowhead have their stroke brush data bound to the "color" property
 		myDiagram.linkTemplate =
 			$(go.Link,
@@ -336,19 +248,11 @@
 							$(go.TextBlock, {margin: 4},  // the tooltip shows the result of calling linkInfo(data)
 								new go.Binding("text", "", linkInfo))
 						),
-					// the same context menu Adornment is shared by all links
 					contextMenu: partContextMenu
 				}
 			);
-
 		// Define the appearance and behavior for Groups:
-
-
-		function findHeadShot(key) {
-			// if (key < 0 || key > 16) return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729";
-			// return "https://vignette.wikia.nocookie.net/tumblr-survivor-athena/images/7/7a/Blank_Avatar.png/revision/latest?cb=20161204161729.png"
-		}
-
+		function findHeadShot(key) {}
 		function groupInfo(adornment) {  // takes the tooltip or context menu, not a group node data object
 			var g = adornment.adornedPart;  // get the Group that the tooltip adorns
 			var mems = g.memberParts.count;
@@ -358,7 +262,6 @@
 			});
 			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
-
 		// Groups consist of a title in the color given by the group node data
 		// above a translucent gray rectangle surrounding the member parts
 		myDiagram.groupTemplate =
@@ -396,14 +299,10 @@
 					contextMenu: partContextMenu
 				}
 			);
-
 		// Define the behavior for the Diagram background:
-
 		function diagramInfo(model) {  // Tooltip info for the diagram's model
 			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
 		}
-
-
 		// provide a tooltip for the background of the Diagram, when not over any Part
 		myDiagram.toolTip =
 			$(go.Adornment, "Auto",
@@ -411,7 +310,6 @@
 				$(go.TextBlock, {margin: 4},
 					new go.Binding("text", "", diagramInfo))
 			);
-
 		// provide a context menu for the background of the Diagram, when not over any Part
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
@@ -438,53 +336,17 @@
 					})
 			);
 
-
-		// Create the Diagram's Model:
-
-		// var nodeDataArray = [
-		// 	{key: 'c1', text: "Alpha"},
-		// 	{
-		// 		key: 'd2',
-		// 		text: "Beta",
-		// 		img: "https://banner2.kisspng.com/20171201/dcb/superman-logo-png-hd-5a219b596c0785.5547984215121518974425.jpg"
-		// 	},
-		// 	{key: '3', text: "Gamma"},
-		// 	{key: '4', text: "fff"},
-		// 	{key: '5', text: "sdfsdf df"},
-		// 	{key: '6', text: "sdfsdf df"},
-		// 	{key: '7', text: "sdfsdf df"}
-		// ];
-		//
-		//
-		// var linkDataArray = [
-		// 	{from: 'c1', to: 'd2'},
-		// 	{from: 'c1', to: 3},
-		// 	{from: 'd2', to: 4},
-		// 	{from: 'd2', to: 5},
-		// 	{from: 3, to: 6},
-		// 	{from: 3, to: 7},
-		// 	{from: 3, to: 5}
-		// ];
-
-
 		var nodeDataArray = <?=$structure?>;
 		var linkDataArray = <?=$from_to?>;
-
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
-
 	}
-
-
 	$(document).ready(function () {
 		init();
-
 		myDiagram.addDiagramListener("ObjectSingleClicked",
 			function (e) {
 				var arr = [];
 				var new_arr = [];
-
 				myDiagram.selection.each(function (part) {
-
 					if (part instanceof go.Node) {
 						arr = {
 							"key": part.Wd.key,
@@ -493,18 +355,15 @@
 						};
 						new_arr.push(arr);
 					}
-
 				});
 				console.table(new_arr);
 			});
 
-	})
-
+	});
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
 		console.log(myDiagram.model.linkDataArray);
 	}
-
 </script>
 

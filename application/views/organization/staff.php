@@ -673,8 +673,8 @@ color: #545b62;">
 							<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
 							<th style="font-size: 12px !important;font-weight:500;">Created date</th>
 							<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
-							<th style="font-size: 12px !important;font-weight:500;">Փաստաթուղթ</th>
-							<th style="font-size: 12px !important;font-weight:500;min-width: 80px !important;"></th>
+							<th style="font-size: 12px !important;font-weight:500;max-width: 400px">Փաստաթուղթ</th>
+							<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -719,7 +719,7 @@ color: #545b62;">
 												<td><?= $row['document_1'] ?></td>
 												<td><?= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?></td>
 												<td><?= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?></td>
-												<td><?= ($row['note_1'] != '' ? $row['note_1'] : '-') ?></td>
+												<td style="word-break: break-word;"><?= ($row['note_1'] != '' ? $row['note_1'] : '-') ?></td>
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"

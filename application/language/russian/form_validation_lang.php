@@ -37,8 +37,9 @@
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$lang['form_validation_required']		= 'Поля с *, являются обязательными';
-$lang['form_validation_required_all'] = 'Все поля обязательны для заполнения';
+$lang['form_validation_required']		= 'Поля с *, являются обязательными.';
+$lang['form_validation_required_all'] = 'Все поля обязательны для заполнения.';
+$lang['form_validation_required_single'] = '{field}: Это поле обязательно к заполнению.';
 $lang['form_validation_isset']			= 'The {field} field must have a value.';
 $lang['form_validation_valid_email']		= 'Пожалуйста, введите действительный адрес эл почты.';
 $lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';

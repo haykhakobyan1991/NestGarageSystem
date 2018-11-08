@@ -523,6 +523,11 @@ class CI_Form_validation {
 			{
 				array_unshift($new_rules, 'required_all');
 			}
+			// 'required_single' is a kind of a weird alias for 'required' ...
+			elseif ($rule === 'required_single' && (empty($new_rules) OR $new_rules[0] !== 'required'))
+			{
+				array_unshift($new_rules, 'required_single');
+			}
 			// 'isset' is a kind of a weird alias for 'required' ...
 			elseif ($rule === 'isset' && (empty($new_rules) OR $new_rules[0] !== 'required'))
 			{
@@ -706,7 +711,7 @@ class CI_Form_validation {
 				($postdata === NULL OR $postdata === '')
 				&& $callback === FALSE
 				&& $callable === FALSE
-				&& ! in_array($rule, array('required', 'required_all', 'isset', 'matches'), TRUE)
+				&& ! in_array($rule, array('required', 'required_all', 'required_single', 'isset', 'matches'), TRUE)
 			)
 			{
 				continue;
@@ -1597,6 +1602,20 @@ class CI_Form_validation {
 	 * @return	bool
 	 */
 	public function required_all($str)
+	{
+		return is_array($str)
+			? (empty($str) === FALSE)
+			: (trim($str) !== '');
+	}
+
+
+	/**
+	 * Required single
+	 *
+	 * @param	string
+	 * @return	bool
+	 */
+	public function required_single($str)
 	{
 		return is_array($str)
 			? (empty($str) === FALSE)

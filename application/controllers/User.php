@@ -389,8 +389,8 @@ class User extends CI_Controller {
 		// $this->config->set_item('language', 'armenian');
 		$this->form_validation->set_error_delimiters('', '');
 
-		$this->form_validation->set_rules('email', 'Email', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('email', 'lang:email', 'required_single');
+		$this->form_validation->set_rules('password', 'lang:password', 'required_single');
 
 
 		if ($this->form_validation->run() == false) {

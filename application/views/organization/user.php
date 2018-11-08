@@ -29,6 +29,7 @@ $passive = 0;
 $admin_name = '';
 $role_name = '';
 $photo = '';
+$folder = $this->session->folder;
 foreach ($user as $row) :
 
 	$total++;
@@ -60,7 +61,7 @@ endforeach;
 						<div class="col-sm-6">
 							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
 								 class="float-left mr-2"
-								 src="<?= ($photo != '' ? base_url('uploads/user_' . ($row['parent_user_id'] != '' ? $row['parent_user_id'] : $row['id']) . '/user/photo/' . $photo) : base_url('assets/img/user_img.jpg')) ?>"
+								 src="<?= ($photo != '' ? base_url('uploads/'.$folder.'/user/photo/' . $photo) : base_url('assets/img/user_img.jpg')) ?>"
 							<p style="font-size: 18px;font-weight: 500;" class="mt-1">
 								<span class="users_name"><?=$admin_name?></span>
 								<span class="ml-2 mr-2">|</span>
@@ -231,6 +232,9 @@ endforeach;
 								</div>
 								<div class="text-right mt-4 pb-2">
 									<span id="add_user" class="btn btn-sm btn-outline-success">Save</span>
+									<span id="load" class="btn btn-sm btn-success d-none"><img
+											style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+											src="<?= base_url() ?>assets/images/bars2.svg"/></span>
 								</div>
 							</div>
 						</form>
@@ -292,7 +296,7 @@ endforeach;
 											<img
 												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 												class="mr-3"
-												src="<?= ($row['photo'] != '' ? base_url('uploads/user_' . ($row['parent_user_id'] != '' ? $row['parent_user_id'] : $row['id']) . '/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
+												src="<?= ($row['photo'] != '' ? base_url('uploads/'.$folder.'/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<?= $row['user_name'] ?>
@@ -434,8 +438,7 @@ endforeach;
 			beforeSend : function (){
 				scroll_top();
 				close_message();
-				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
-				$(this).addClass('bg-success2');
+				loading('start', 'add_user');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
 			},
@@ -443,89 +446,47 @@ endforeach;
 				if (data.success == '1') {
 
 					scroll_top();
-
-					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
-					$('.alert-info').addClass('d-none');
-					$('.alert-success').text(data.message);
-
 					close_message();
-
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').text(data.message);
+					loading('stop', 'add_user');
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>";
-
 					$(location).attr('href', url);
-
-					$(location).attr('href', url + '#staff');
 
 				} else {
 
+					$('.alert-info').addClass('d-none');
 
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
-
-						var error = '';
-						var i = 0;
-
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
-						$('.alert-info').addClass('d-none');
+						loading('stop', 'add_user');
+						errors = '';
+						tmp = '';
 
 
 						$.each(data.error.elements, function (index) {
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
-									i++;
-									if (i == 1) {
-										error += '* - ով դաշտերը պարտադիր են <br> ';
-									}
-
-									if (index == 'username_unique') {
-										error += value + ' <br> ';
-									}
-
-									if (index == 'email_unique') {
-										error += value + ' <br> ';
-									}
-
-									if (index == 'username_unique') {
-										index = 'username';
-									}
-
-									if (index == 'email_unique') {
-										index = 'email';
-									}
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').parent('div').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-
-									$('.alert-danger').html(error);
-
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
-
-
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').parent('div').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},
@@ -565,8 +526,7 @@ endforeach;
 			beforeSend : function (){
 				scroll_top();
 				close_message();
-				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
-				$(this).addClass('bg-success2');
+				loading('start', 'edit_user_button');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
 			},
@@ -574,17 +534,12 @@ endforeach;
 				if (data.success == '1') {
 
 					scroll_top();
-
-					$('.alert-success').removeClass('d-none');
-					$('.alert-danger').addClass('d-none');
-					$('.alert-info').addClass('d-none');
-					$('.alert-success').text(data.message);
-
 					close_message();
-
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').text(data.message);
+					loading('stop', 'edit_user_button');
 
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user')?>";
-
 					$(location).attr('href', url);
 
 
@@ -594,38 +549,33 @@ endforeach;
 
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
+						loading('stop', 'edit_user_button');
+						errors = '';
+						tmp = '';
 
-						$('.alert-danger').addClass('d-none');
-						$('.alert-success').addClass('d-none');
 
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
-
 									$('input[name="' + index + '"]').addClass('border border-danger');
-									$('select[name="' + index + '"]').addClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
 									$('.alert-danger').removeClass('d-none');
-									$('.alert-danger').text('* - ով դաշտերը պարտադիր են');
+
+									if(value != tmp) {
+										errors += value;
+									}
+									tmp = value;
 
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
-									$('select[name="' + index + '"]').removeClass('border border-danger');
-									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
-
-
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},
@@ -633,7 +583,7 @@ endforeach;
 				// Handle errors here
 				$('p#success').addClass('d-none');
 				$('.alert-info').addClass('d-none');
-				close_message()
+				close_message();
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {

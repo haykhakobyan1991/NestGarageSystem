@@ -42,6 +42,7 @@ $lang['user'] = 'Օգտատեր';
 
 
 $lang['required'] = '* - ով դաշտերը պարտադիր են';
+$lang['required_all'] = 'Բոլոր դաշտերը պարտադիր են';
 $lang['owner_email'] = 'Սեփականատիրոջ էլ․ հասցե';
 $lang['success'] = 'Հաջողվեց!';
 $lang['error'] = 'Սխալ';

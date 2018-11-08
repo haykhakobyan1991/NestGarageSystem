@@ -40,7 +40,7 @@ $i = '';
 						<tbody>
 						<? foreach ($company_type as $item) : ?>
 							<tr>
-								<td style="border: none;"><?= $item['title'] ?></td>
+								<td style="border: none;"><?= $item['title'] ?> *</td>
 								<td style="border: none;"><input style="width: 20px;height: 20px;"
 																 type="radio"
 																 value="<?= $item['id'] ?>"
@@ -91,7 +91,7 @@ $i = '';
 
 							<label
 								class="col-sm-2 col-form-label"
-								style="font-size: 15px;"><?= lang('company_name') ?></label>
+								style="font-size: 15px;"><?= lang('company_name') ?> *</label>
 							<div class="col-sm-4">
 								<input value="<?= $company['name'] ?>" name="company_name"
 									   type="text" class="form-control"
@@ -714,6 +714,7 @@ $i = '';
 								if (value != '') {
 									$('input[name="' + index + '"]').addClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
@@ -725,6 +726,7 @@ $i = '';
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+									$('input[name="' + index + '"]').parent('td').removeClass('border border-danger');
 								}
 							});
 						});

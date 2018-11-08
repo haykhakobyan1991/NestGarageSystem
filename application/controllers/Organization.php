@@ -23,7 +23,6 @@ class Organization extends MX_Controller {
 
 	}
 
-
 	/**
 	 * @return mixed
 	 */
@@ -43,7 +42,6 @@ class Organization extends MX_Controller {
 		return $config;
 
 	}
-
 
 	/**
 	 * @param string $company_id
@@ -67,8 +65,6 @@ class Organization extends MX_Controller {
 		return false;
 	}
 
-
-
 	/**
 	 * @param $element
 	 */
@@ -79,7 +75,6 @@ class Organization extends MX_Controller {
 		echo '</pre>';
 	}
 
-
 	/**
 	 * @return bool
 	 */
@@ -89,7 +84,6 @@ class Organization extends MX_Controller {
 		return false;
 	}
 
-
 	/**
 	 * @param $data
 	 * @return string
@@ -97,7 +91,6 @@ class Organization extends MX_Controller {
 	public function hash($data) {
 		return hash('sha256', $data);
 	}
-
 
 	/**
 	 * @param int $start
@@ -111,7 +104,6 @@ class Organization extends MX_Controller {
 
 	}
 
-
 	/**
 	 * @param $text
 	 * @return string
@@ -120,14 +112,12 @@ class Organization extends MX_Controller {
 		return mb_substr($text,0,1, 'utf-8');
 	}
 
-
 	/**
 	 * @return string
 	 */
 	public function rand_color() {
 		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 	}
-
 
 	private function smtp_mailing() {
 
@@ -149,7 +139,19 @@ class Organization extends MX_Controller {
 
 	}
 
+	private function get_unique_associate_array($array) {
 
+		$serialized_array = array_map("serialize", $array);
+
+		foreach ($serialized_array as $key => $val) {
+
+			$result[$val] = true;
+
+		}
+
+		return array_map("unserialize", (array_keys($result)));
+
+	}
 
 
 	public function company() {
@@ -1982,6 +1984,109 @@ class Organization extends MX_Controller {
 
 	}
 
+	public function add_vehicles() {
+
+		$this->load->authorisation();
+		$this->load->helper('url');
+		$this->load->library('session');
+		$user_id = $this->session->user_id;
+		$data = array();
+
+		$lng = $this->load->lng();
+		$data['lang'] = $lng;
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+			->from('staff')
+			->join('user', 'staff.registrar_user_id = user.id', 'left')
+			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
+			->where('user.company_id', $company_id)
+			->where('department.head_staff_id <> ', 'staff.id', FALSE)
+			->where('staff.status', 1)
+			->get()
+			->result_array();
+
+
+		$sql_brand = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `brand`
+			WHERE `status` = '1'	
+		";
+
+		$result_brand = $this->db->query($sql_brand);
+
+		$data['brand'] = $result_brand->result_array();
+
+
+		$sql_fleet_type = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_type`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_type = $this->db->query($sql_fleet_type);
+
+		$data['fleet_type'] = $result_fleet_type->result_array();
+
+		$sql_fuel = "
+			SELECT 
+				`id`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fuel`
+			WHERE `status` = '1'	
+		";
+
+		$result_fuel = $this->db->query($sql_fuel);
+
+		$data['fuel'] = $result_fuel->result_array();
+
+
+		$sql_insurance = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+				`insurance_type`
+			WHERE `status` = 1	
+		";
+
+		$result_insurance = $this->db->query($sql_insurance);
+
+
+		$data['insurance_type'] = $result_insurance->result_array();
+
+
+		$sql_value = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`,
+				`type`,
+				`convert`
+			 FROM
+				`value`
+			WHERE `status` = 1	
+		";
+
+		$result_value = $this->db->query($sql_value);
+
+		$data['value'] = $result_value->result_array();
+
+
+
+		$this->layout->view('organization/add_vehicles', $data);
+
+	}
+
 	public function add_vehicles_ax() {
 
 		$this->load->authorisation('Organization', 'add_vehicles');
@@ -3163,8 +3268,6 @@ class Organization extends MX_Controller {
 	}
 
 
-
-
 	public function user() {
 		$this->load->authorisation();
 		$this->load->helper('url');
@@ -3249,115 +3352,6 @@ class Organization extends MX_Controller {
 		$this->layout->view('organization/user', $data);
 	}
 
-
-
-
-
-	public function add_vehicles() {
-
-		$this->load->authorisation();
-		$this->load->helper('url');
-		$this->load->library('session');
-		$user_id = $this->session->user_id;
-		$data = array();
-
-		$lng = $this->load->lng();
-		$data['lang'] = $lng;
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
-			->from('staff')
-			->join('user', 'staff.registrar_user_id = user.id', 'left')
-			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
-			->where('user.company_id', $company_id)
-			->where('department.head_staff_id <> ', 'staff.id', FALSE)
-			->where('staff.status', 1)
-			->get()
-			->result_array();
-
-
-		$sql_brand = "
-			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `brand`
-			WHERE `status` = '1'	
-		";
-
-		$result_brand = $this->db->query($sql_brand);
-
-		$data['brand'] = $result_brand->result_array();
-
-
-		$sql_fleet_type = "
-			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `fleet_type`
-			WHERE `status` = '1'	
-		";
-
-		$result_fleet_type = $this->db->query($sql_fleet_type);
-
-		$data['fleet_type'] = $result_fleet_type->result_array();
-
-		$sql_fuel = "
-			SELECT 
-				`id`,
-				`title_".$lng."` AS `title`
-			  FROM
-			    `fuel`
-			WHERE `status` = '1'	
-		";
-
-		$result_fuel = $this->db->query($sql_fuel);
-
-		$data['fuel'] = $result_fuel->result_array();
-
-
-		$sql_insurance = "
-			SELECT
-				`id`,
-				`title_".$lng."` AS `title`
-			 FROM
-				`insurance_type`
-			WHERE `status` = 1	
-		";
-
-		$result_insurance = $this->db->query($sql_insurance);
-
-
-		$data['insurance_type'] = $result_insurance->result_array();
-
-
-		$sql_value = "
-			SELECT
-				`id`,
-				`title_".$lng."` AS `title`,
-				`type`,
-				`convert`
-			 FROM
-				`value`
-			WHERE `status` = 1	
-		";
-
-		$result_value = $this->db->query($sql_value);
-
-		$data['value'] = $result_value->result_array();
-
-
-
-		$this->layout->view('organization/add_vehicles', $data);
-
-	}
-
-
-
 	public function add_user_ax() {
 
 		$this->load->authorisation('Organization', 'department');
@@ -3366,6 +3360,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -3379,10 +3374,10 @@ class Organization extends MX_Controller {
 
 		$this->load->library('form_validation');
 		// $this->config->set_item('language', 'armenian');
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_error_delimiters('<div>', '</div>');
 		$this->form_validation->set_rules('first_name', 'first_name', 'required');
 		$this->form_validation->set_rules('last_name', 'last_name', 'required');
-		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
+		$this->form_validation->set_rules('email', 'lang:email', 'required|valid_email');
 		$this->form_validation->set_rules('contact_number', 'contact_number', 'required');
 		$this->form_validation->set_rules('username', 'username', 'required');
 		$this->form_validation->set_rules('password', 'password', 'required');
@@ -3405,6 +3400,7 @@ class Organization extends MX_Controller {
 				'password' => form_error('password'),
 				'role' => form_error('role'),
 			);
+			asort($validation_errors); //todo
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
@@ -3425,30 +3421,33 @@ class Organization extends MX_Controller {
 
 
 
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
 		$sql_email_unique = "
-            SELECT `id` FROM `user` WHERE `email` = ".$this->load->db_value($email)." #todo if suspended and one company
-        ";
+            SELECT `id` FROM `user` WHERE `email` = ".$this->load->db_value($email)." AND `company_id` =  ".$company_id."
+        ";// todo if suspended
 
 		$query_email_unique = $this->db->query($sql_email_unique);
 		$num_rows = $query_email_unique->num_rows();
 
 		if($num_rows >= 1) {
 			$n = 1;
-			$validation_errors = array('email_unique' => "Email is not unique");
+			$validation_errors = array('email' => lang('email_is_not_unique'));
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
 		$sql_username_unique = "
-            SELECT `id` FROM `user` WHERE `username` = ".$this->load->db_value($username)." #todo if suspended and one company
-        ";
+            SELECT `id` FROM `user` WHERE `username` = ".$this->load->db_value($username)." AND `company_id` =  ".$company_id."
+        ";// todo if suspended
 
 		$query_username_unique = $this->db->query($sql_username_unique);
 		$num_rows_u = $query_username_unique->num_rows();
 
 		if($num_rows_u >= 1) {
 			$n = 1;
-			$validation_errors = array('username_unique' => "Username is not unique");
+			$validation_errors = array('username' => lang('username_is_not_unique'));
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
@@ -3464,16 +3463,16 @@ class Organization extends MX_Controller {
 		$company_id = $row['company_id'];
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), 0755, true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
+		if (!file_exists(set_realpath('uploads/'.$folder.'/user/photo'))) {
+			mkdir(set_realpath('uploads/'.$folder.'/user/photo'), 0755, true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/photo/index.html'));
 		}
 
 
 		// watermark
 		$config_wm['image_library'] = 'gd'; //default value
 		$config_wm['source_image'] = set_realpath('assets/img/circle.png'); //get image
-		$config_wm['new_image'] = set_realpath('uploads/user_'.$user_id.'/user/photo/'.$username.'.png');
+		$config_wm['new_image'] = set_realpath('uploads/'.$folder.'/user/photo/'.$username.'.png');
 		$config_wm['wm_text'] = $this->get_first_character($first_name);
 		$config_wm['wm_type'] = 'text';
 		$config_wm['wm_font_path'] = set_realpath('system/fonts/GHEAGrpalatReg.ttf');
@@ -3535,6 +3534,7 @@ class Organization extends MX_Controller {
 					`phone_number` = ".$this->load->db_value($contact_number).",
 					`username` = ".$this->load->db_value($username).",
 					`password` = ".$this->load->db_value($hash_password).",
+					`folder` = ".$this->load->db_value($folder).",
 					`creation_date` = NOW(),
 					`status` = ".$this->load->db_value($status)."
 			";
@@ -3547,19 +3547,16 @@ class Organization extends MX_Controller {
 
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message'] = 'Success';
+			$messages['message'] = lang('success');
 		} else {
 			$messages['success'] = 0;
-			$messages['error'] = 'Error';
+			$messages['error'] = lang('error');
 		}
 
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
 	}
-
-
-
 
 	public function edit_user_modal_ax() {
 
@@ -3647,7 +3644,6 @@ class Organization extends MX_Controller {
 
 	}
 
-
 	public function edit_user_ax() {
 
 		$this->load->authorisation('Organization', 'user');
@@ -3656,6 +3652,7 @@ class Organization extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -3669,7 +3666,7 @@ class Organization extends MX_Controller {
 
 		$this->load->library('form_validation');
 		// $this->config->set_item('language', 'armenian');
-		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_error_delimiters('<div>', '</div>');
 		$this->form_validation->set_rules('first_name', 'first_name', 'required');
 		$this->form_validation->set_rules('last_name', 'last_name', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
@@ -3693,6 +3690,7 @@ class Organization extends MX_Controller {
 				'username' => form_error('username'),
 				'role' => form_error('role'),
 			);
+			asort($validation_errors); //todo
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
@@ -3718,12 +3716,12 @@ class Organization extends MX_Controller {
 			$hash_password = "`password` = ".$this->load->db_value($hash_password).",";
 		}
 
-
-
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
 
 		$sql_email_unique = "
-            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND  `email` = ".$this->load->db_value($email)." #todo if suspended and one company
-        ";
+            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND  `email` = ".$this->load->db_value($email)." AND `company_id` =  ".$company_id." 
+        ";//todo if suspended
 
 		$query_email_unique = $this->db->query($sql_email_unique);
 		$num_rows = $query_email_unique->num_rows();
@@ -3736,8 +3734,8 @@ class Organization extends MX_Controller {
 
 
 		$sql_username_unique = "
-            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND `username` = ".$this->load->db_value($username)." #todo if suspended and one company
-        ";
+            SELECT `id` FROM `user` WHERE `id` <> '".$id."' AND `username` = ".$this->load->db_value($username)."  AND `company_id` =  ".$company_id."
+        ";//todo if suspended
 
 		$query_username_unique = $this->db->query($sql_username_unique);
 		$num_rows_u = $query_username_unique->num_rows();
@@ -3763,16 +3761,16 @@ class Organization extends MX_Controller {
 
 
 
-		if (!file_exists(set_realpath('uploads/user_'.$user_id.'/user/photo'))) {
-			mkdir(set_realpath('uploads/user_'.$user_id.'/user/photo'), 0755, true);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/user_'.$user_id.'/user/photo/index.html'));
+		if (!file_exists(set_realpath('uploads/'.$folder.'/user/photo'))) {
+			mkdir(set_realpath('uploads/'.$folder.'/user/photo'), 0755, true);
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/photo/index.html'));
 		}
 
 
 		// watermark
 		$config_wm['image_library'] = 'gd2'; //default value
 		$config_wm['source_image'] = set_realpath('assets/img/circle.png'); //get image
-		$config_wm['new_image'] = set_realpath('uploads/user_'.$user_id.'/user/photo/'.$username.'.png');
+		$config_wm['new_image'] = set_realpath('uploads/'.$folder.'/user/photo/'.$username.'.png');
 		$config_wm['wm_text'] = $this->get_first_character($first_name);
 		$config_wm['wm_type'] = 'text';
 		$config_wm['wm_font_path'] = set_realpath('system/fonts/GHEAGrpalatReg.ttf');
@@ -3836,7 +3834,6 @@ class Organization extends MX_Controller {
 		echo json_encode($messages);
 		return true;
 	}
-
 
 	public function delete_user() {
 

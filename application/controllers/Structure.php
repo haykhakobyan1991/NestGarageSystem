@@ -101,6 +101,8 @@ class Structure extends MX_Controller {
 	public function structure1(){
 		$data = array();
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
+		$this->load->authorisation();
 
 		$lng = $this->load->lng();
 
@@ -124,6 +126,7 @@ class Structure extends MX_Controller {
 			  `staff`.`photo` AS `driver_photo`,
 			  `staff`.`id` AS `driver_id`,
 			  `department`.`id` AS `department_id`,
+			  `department`.`title` AS `department`,
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
@@ -179,27 +182,27 @@ class Structure extends MX_Controller {
 		foreach ($structure_array AS $key => $value) :
 			if ($value['company_id'] != $cmp_id) :
 
-				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/company/' . $value['company_logo']));
+				$structure_arr[] = array('key' => 'c'.$value['company_id'], 'text' => $value['company'], 'img' => base_url('uploads/'.$folder.'/company/' . $value['company_logo']));
 
 			endif;
 			$cmp_id = $value['company_id'];
 
-			if ($value['department_id'] != $department_id) :
+			if ($value['department_id'] != $department_id && $value['department_id'] != '') :
 
-				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'text' => $value['head'], 'img' => base_url('uploads/user_'.$user_id.'/staff/original/'.$value['head_staff_photo']));
+				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'text' => $value['head'].' ('.$value['department'].')', 'img' => base_url('uploads/'.$folder.'/staff/original/'.$value['head_staff_photo']));
 				$from_to_arr[] = array('from' => 'c'.$value['company_id'], 'to' => 'h'.$value['department_id']);
 			endif;
 			$department_id = $value['department_id'];
 
-			if ($value['driver_id'] != $driver_id) :
-				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/user_'.$user_id.'/staff/original/'.$value['driver_photo']) : base_url('assets/img/staff.svg')));
+			if ($value['driver_id'] != $driver_id && $value['driver_id'] != '') :
+				$structure_arr[] = array('key' => 'd'.$value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/'.$folder.'/staff/original/'.$value['driver_photo']) : base_url('assets/img/staff.svg')));
 				$from_to_arr[] = array('from' => 'h'.$value['department_id'], 'to' => 'd'.$value['driver_id']);
 
 			endif;
 			$driver_id = $value['driver_id'];
 
 
-			if ($value['fleet_id'] != $fleet_id) :
+			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
 				$structure_arr[] = array('key' => 'f'.$value['fleet_id'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'));
 
 			endif;
@@ -231,6 +234,7 @@ class Structure extends MX_Controller {
 		$data = array();
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
+		$this->load->authorisation();
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
@@ -252,6 +256,7 @@ class Structure extends MX_Controller {
 			  `staff`.`photo` AS `driver_photo`,
 			  `staff`.`id` AS `driver_id`,
 			  `department`.`id` AS `department_id`,
+			  `department`.`title` AS `department`,
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
@@ -312,7 +317,7 @@ class Structure extends MX_Controller {
 
 			if ($value['department_id'] != $department_id) :
 
-				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'name' => $value['head'], 'parent' => 'c'.$value['company_id'], 'title' => 'Head staff');
+				$structure_arr[] = array('key' => 'h'.$value['department_id'], 'name' => $value['head'].' ('.$value['department'].')', 'parent' => 'c'.$value['company_id'], 'title' => 'Head staff');
 			endif;
 			$department_id = $value['department_id'];
 

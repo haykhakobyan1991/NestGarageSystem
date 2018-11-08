@@ -38,6 +38,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['form_validation_required']		= '* - ով դաշտերը պարտադիր են';
+$lang['form_validation_required_all']		= 'Բոլոր դաշտերը պարտադիր են';
 $lang['form_validation_isset']			= 'The {field} field must have a value.';
 $lang['form_validation_valid_email']		= '{field}: Խնդրում ենք մուտքագրել գործող էլեկտրոնային հասցե:';
 $lang['form_validation_valid_emails']		= 'The {field} field must contain all valid email addresses.';

@@ -226,15 +226,15 @@ class User extends CI_Controller {
 
         $this->load->library('form_validation');
         // $this->config->set_item('language', 'armenian');
-        $this->form_validation->set_error_delimiters('', '');
-        $this->form_validation->set_rules('firstname', 'First name', 'required');
-        $this->form_validation->set_rules('lastname', 'Last name', 'required');
-        $this->form_validation->set_rules('up_email', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('country_code', 'Country code', 'required|numeric');
-        $this->form_validation->set_rules('phone_number', 'Phone number', 'required|numeric');
-        $this->form_validation->set_rules('up_password','Password','required|min_length[6]');
-        $this->form_validation->set_rules('confirm_password','Confirm password','required');
-        $this->form_validation->set_rules('up_country','Country','required');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('firstname', 'First name', 'required_all');
+        $this->form_validation->set_rules('lastname', 'Last name', 'required_all');
+        $this->form_validation->set_rules('up_email', 'lang:email', 'required_all|valid_email');
+        $this->form_validation->set_rules('country_code', 'Country code', 'required_all|numeric');
+        $this->form_validation->set_rules('phone_number', 'Phone number', 'required_all|numeric');
+        $this->form_validation->set_rules('up_password','Password','required_all|min_length[6]');
+        $this->form_validation->set_rules('confirm_password','Confirm password','required_all');
+        $this->form_validation->set_rules('up_country','Country','required_all');
 
 
 
@@ -252,7 +252,9 @@ class User extends CI_Controller {
                 'up_email' => form_error('up_email')
             );
             $messages['error']['elements'][] = $validation_errors;
-        }
+        } else {
+        	echo 777;die;
+		}
 
 
 

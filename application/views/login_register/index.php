@@ -490,7 +490,6 @@
 			beforeSend : function (){
 
 				loading('start', 'sign_up');
-				// todo urish divov
 
 			},
 			success: function (data) {
@@ -530,7 +529,7 @@
 									$('.alert-danger').removeClass('d-none');
 
 									if(value != tmp) {
-										errors += value + '<br>';
+										errors += value;
 									}
 									tmp = value;
 

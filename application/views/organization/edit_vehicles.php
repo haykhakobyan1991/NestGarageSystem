@@ -931,7 +931,7 @@
 						<div class="col-sm-3">
 							<?
 								if($fleet['auto_increment'] == '1'){
-									echo 'Total '.round($fleet['total_value_1'], 2).' '.$title;  //mi ban ara sirunana
+									echo 'Total '.round($fleet['total_value_1'], 2  ).' '.$title;  //mi ban ara sirunana
 								}
 							?>
 						</div>

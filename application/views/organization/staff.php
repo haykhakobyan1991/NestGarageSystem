@@ -858,7 +858,7 @@ color: #545b62;">
 
 	$(document).on('click', '#add_staff', function (e) {
 
-		var url = '<?=base_url('Organization/add_staff_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff')[0]);
 
@@ -944,7 +944,7 @@ color: #545b62;">
 	$(document).on('click', '#edit_staff_btn', function (e) {
 
 
-		var url = '<?=base_url('Organization/edit_staff_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/edit_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff_edit')[0]);
 

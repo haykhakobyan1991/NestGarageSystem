@@ -832,7 +832,7 @@
 	$(document).on('click', '#submit', function (e) {
 
 
-		var url = '<?=base_url('Organization/add_vehicles_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_vehicles_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');

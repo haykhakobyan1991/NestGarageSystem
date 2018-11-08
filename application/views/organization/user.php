@@ -418,7 +418,7 @@ endforeach;
 
 	$(document).on('click', '#add_user', function (e) {
 
-		var url = '<?=base_url('Organization/add_user_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_user_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#user')[0]);
 
@@ -507,7 +507,7 @@ endforeach;
 
 		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 
-		var url = '<?=base_url('Organization/edit_user_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/edit_user_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#user_edit_1')[0]);
 

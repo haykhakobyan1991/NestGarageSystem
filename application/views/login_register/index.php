@@ -477,7 +477,7 @@
 	// sign up
 	$(document).on('click', '#sign_up', function () {
 
-		var url = '<?=base_url('User/signUp_ax')?>';
+		var url = '<?=base_url($this->uri->segment(1).'/User/signUp_ax')?>';
 		var form_data = $('#register').serialize();
 		$('small.text-muted').addClass('d-none');
 
@@ -564,7 +564,7 @@
 	// Sign In
 	$(document).on('click', '#signIn', function () {
 
-		var url = '<?=base_url('User/signIn_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/User/signIn_ax') ?>';
 		var form_data = $('#login').serialize();
 		$('small.text-muted').addClass('d-none');
 

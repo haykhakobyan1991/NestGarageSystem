@@ -18,8 +18,12 @@ class Structure extends MX_Controller {
 		$this->load->helper('language');
 
 		$lng = $this->load->lng();
-		$this->load->load_lang('translate', $lng);
 
+		$language = $this->load->get_language($lng);
+
+		$this->config->set_item('language', $language);
+
+		$this->load->load_lang('translate', $lng);
 
 	}
 

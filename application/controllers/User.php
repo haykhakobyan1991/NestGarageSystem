@@ -19,8 +19,13 @@ class User extends CI_Controller {
         // load the helper
         $this->load->helper('language');
 
-        $lng = $this->load->lng();
-        $this->load->load_lang('translate', $lng);
+
+		$language = $this->load->get_language();
+
+		$this->config->set_item('language', $language);
+
+        $this->load->load_lang('translate');
+
     }
 
 
@@ -252,9 +257,7 @@ class User extends CI_Controller {
                 'up_email' => form_error('up_email')
             );
             $messages['error']['elements'][] = $validation_errors;
-        } else {
-        	echo 777;die;
-		}
+        }
 
 
 

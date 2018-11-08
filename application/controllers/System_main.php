@@ -49,11 +49,10 @@ class System_main extends CI_Controller {
 		$url_array = explode(base_url(), $current_url);
 		$url = array();
 		$all_lang_arr = array('hy', 'ru', 'en');
+
 		if(isset($url_array[1])) {
 			$url = explode('/', $url_array[1]);
 		}
-
-
 
 		if (in_array($url[0], $all_lang_arr)) {
 			$start = 1;

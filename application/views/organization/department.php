@@ -240,7 +240,7 @@ color: #545b62;">
 	// create department
 	$(document).on('click', '#add_department_btn', function (e) {
 
-		var url = '<?=base_url('Organization/add_department_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_department_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#department')[0]);
 
@@ -329,7 +329,7 @@ color: #545b62;">
 	$(document).on('click', '#edit_department_btn', function (e) {
 
 
-		var url = '<?=base_url('Organization/edit_department_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/edit_department_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#department_edit')[0]);
 

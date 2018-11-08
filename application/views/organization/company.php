@@ -671,7 +671,7 @@ $i = '';
 	// create company
 	$(document).on('click', '#create_company', function (e) {
 
-		var url = '<?=base_url('Organization/company_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1).'/Organization/company_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#company')[0]);
 		$('input').removeClass('border border-danger');

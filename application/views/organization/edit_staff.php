@@ -64,7 +64,7 @@ $folder = $this->session->folder;
 						   placeholder="Last Name">
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mt-1">
 				<label
 					class="col-sm-2 col-form-label">Contact Number 1</label>
 				<div class="col-sm-4">
@@ -83,7 +83,7 @@ $folder = $this->session->folder;
 						   placeholder="Contact Number 2">
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mt-1">
 				<label
 					class="col-sm-2 col-form-label">Email *</label>
 				<div class="col-sm-4">
@@ -107,7 +107,7 @@ $folder = $this->session->folder;
 					</select>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mt-1">
 				<label
 					class="col-sm-2 col-form-label">Address
 					Leave</label>
@@ -127,7 +127,7 @@ $folder = $this->session->folder;
 						   placeholder="Post Code">
 				</div>
 			</div>
-			<div class="row">
+			<div class="row mt-1">
 				<label
 					class="col-sm-2 col-form-label">Department</label>
 				<div class="col-sm-4">

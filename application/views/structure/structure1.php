@@ -5,15 +5,19 @@
 	}
 
 	th, td {
-		border: 1px solid #333 !important;
 		vertical-align: middle !important;
-	}
-
-	th {
 		text-align: center !important;
 	}
 
-	i.fa.fa-plus {
+	table td {
+		padding: 2px !important
+	}
+
+	th {
+		border: 1px solid #333 !important;
+	}
+
+	i.fa.fa-plus, i.fa.fa-minus {
 		display: inline-block;
 		float: right;
 		vertical-align: middle;
@@ -24,7 +28,6 @@
 	.more {
 		display: none;
 	}
-
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
@@ -36,18 +39,17 @@
 	<button id="SaveButton" onclick="save()">Save</button>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
-
-
 <div class="row">
 	<div class="container-fluid">
-		<table class="table ">
+		<table class="table table-borderless">
 			<thead>
 			<tr>
 				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
 				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
-				<th class="table-secondary" scope="col" colspan="4" class="text-center">Տրանսպորտային միջոց</th>
+				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>
 				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>
 				<th class="table-secondary" scope="col" rowspan="2">գումար</th>
+				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>
 			</tr>
 			<tr>
 				<th class="table-primary">մոդել</th>
@@ -56,38 +58,27 @@
 				<th class="table-primary">վարորդ</th>
 			</tr>
 			</thead>
-			<tbody class="cars_table">
-
-			</tbody>
+			<tbody class="cars_table"></tbody>
 		</table>
 	</div>
 </div>
-
-
 <script>
 	function init() {
-		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
-		var $ = go.GraphObject.make;  // for conciseness in defining templates
+		if (window.goSamples) goSamples();
+		var $ = go.GraphObject.make;
 		myDiagram =
-			$(go.Diagram, "myDiagramDiv",  // create a Diagram for the DIV HTML element
+			$(go.Diagram, "myDiagramDiv",
 				{
-					// position the graph in the middle of the diagram
 					initialContentAlignment: go.Spot.Center,
-					// allow Ctrl-G to call groupSelection()
 					"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
-					// enable undo & redo
 					layout:
 						$(go.TreeLayout,
 							{
 								treeStyle: go.TreeLayout.StyleLastParents,
 								arrangement: go.TreeLayout.ArrangementHorizontal,
-								// properties for most of the tree:
 								angle: 90,
-								// layerSpacing: 35,
-								// properties for the "last parents":
 								alternateAngle: 90,
 								alternateLayerSpacing: 35,
-								//alternateAlignment: go.TreeLayout.AlignmentBus,
 								alternateNodeSpacing: 20
 							}),
 				});
@@ -96,20 +87,17 @@
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
 				{click: action},
-				// don't bother with binding GraphObject.visible if there's no predicate
 				visiblePredicate ? new go.Binding("visible", "", function (o, e) {
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
 
-		// a context menu is an Adornment with a bunch of buttons in them
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Properties",
-					function (e, obj) {  // OBJ is this Button
-						var contextmenu = obj.part;  // the Button is in the context menu Adornment
-						var part = contextmenu.adornedPart;  // the adornedPart is the Part that the context menu adorns
-						// now can do something with PART, or with its data, or with the Adornment (the context menu)
+					function (e, obj) {
+						var contextmenu = obj.part;
+						var part = contextmenu.adornedPart;
 						if (part instanceof go.Link) alert(linkInfo(part.data));
 						else if (part instanceof go.Group) alert(groupInfo(contextmenu));
 						else alert(nodeInfo(part.data));
@@ -120,12 +108,6 @@
 					},
 					function (o) {
 						return o.diagram.commandHandler.canCutSelection();
-					}),
-				makeButton("Copy", function (e, obj) {
-						e.diagram.commandHandler.copySelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canCopySelection();
 					}),
 				makeButton("Paste",
 					function (e, obj) {
@@ -172,9 +154,9 @@
 			);
 
 		function mayWorkFor(node1, node2) {
-			if (!(node1 instanceof go.Node)) return false;  // must be a Node
-			if (node1 === node2) return false;  // cannot work for yourself
-			if (node2.isInTreeOf(node1)) return false;  // cannot work for someone who works for you
+			if (!(node1 instanceof go.Node)) return false;
+			if (node1 === node2) return false;
+			if (node2.isInTreeOf(node1)) return false;
 			return true;
 		}
 
@@ -182,10 +164,9 @@
 			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
 
-		function nodeDoubleClick(e, obj) {
-		}
+		function nodeDoubleClick(e, obj) {}
 
-		function nodeInfo(d) {  // Tooltip info for a node data object
+		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
 			if (d.group)
 				str += "member of " + d.group;
@@ -194,7 +175,6 @@
 			return str;
 		}
 
-		// define the Node template
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
@@ -213,48 +193,44 @@
 				{locationSpot: go.Spot.Center},
 				new go.Binding("location", "loc").makeTwoWay(),
 				{doubleClick: nodeDoubleClick},
-				{ // handle dragging a Node onto a Node to (maybe) change the reporting relationship
+				{
 					mouseDragEnter: function (e, node, prev) {
 						var diagram = node.diagram;
 						var selnode = diagram.selection.first();
 						if (!mayWorkFor(selnode, node)) return;
 						var shape = node.findObject("SHAPE");
 						if (shape) {
-							shape._prevFill = shape.fill;  // remember the original brush
+							shape._prevFill = shape.fill;
 							shape.fill = "darkred";
 						}
 					},
 					mouseDragLeave: function (e, node, next) {
 						var shape = node.findObject("SHAPE");
 						if (shape && shape._prevFill) {
-							shape.fill = shape._prevFill;  // restore the original brush
+							shape.fill = shape._prevFill;
 						}
 					},
 					mouseDrop: function (e, node) {
 						var diagram = node.diagram;
-						var selnode = diagram.selection.first();  // assume just one Node in selection
+						var selnode = diagram.selection.first();
 						if (mayWorkFor(selnode, node)) {
-							// find any existing link into the selected node
 							var link = selnode.findTreeParentLink();
-							if (link !== null) {  // reconnect any existing link
+							if (link !== null) {
 								link.fromNode = node;
-							} else {  // else create a new link
+							} else {
 								diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
 							}
 						}
 					}
 				},
-				// for sorting, have the Node.text be the data.name
+
 				new go.Binding("text", "name"),
-				// bind the Part.layerName to control the Node's layer depending on whether it isSelected
 				new go.Binding("layerName", "isSelected", function (sel) {
 					return sel ? "Foreground" : "";
 				}).ofObject(),
-				// define the node's outer shape
 				$(go.Shape, "Rectangle",
 					{
 						name: "SHAPE", fill: "orange", stroke: null,
-						// set the port properties:
 						portId: "", cursor: "pointer",
 						fromLinkable: true, fromLinkableDuplicates: false, toLinkable: true, toLinkableDuplicates: false
 
@@ -267,7 +243,6 @@
 							margin: new go.Margin(6, 8, 6, 10),
 						},
 						new go.Binding("source", "img")),
-					// define the panel where the text will appear
 					$(go.Panel, "Table",
 						{
 							maxSize: new go.Size(150, 999),
@@ -275,7 +250,7 @@
 							defaultAlignment: go.Spot.Left
 						},
 						$(go.RowColumnDefinition, {column: 2, width: 4}),
-						$(go.TextBlock, textStyle(),  // the name
+						$(go.TextBlock, textStyle(),
 							{
 								row: 0, column: 0, columnSpan: 5,
 								font: "12pt Segoe UI,sans-serif",
@@ -288,7 +263,7 @@
 						$(go.TextBlock, textStyle(),
 							{
 								row: 1, column: 1, columnSpan: 4,
-								editable: true, isMultiline: false,
+								editable: false, isMultiline: false,
 								minSize: new go.Size(10, 14),
 								margin: new go.Margin(0, 0, 0, 3)
 							},
@@ -297,56 +272,56 @@
 							{row: 2, column: 0},
 						),
 						$(go.TextBlock, textStyle(),
-							{name: "boss", row: 2, column: 3,}, // we include a name so we can access this TextBlock when deleting Nodes/Links
+							{name: "boss", row: 2, column: 3,},
 							new go.Binding("text", "parent", function (v) {
 								return "Boss: " + v;
 							})),
-						$(go.TextBlock, textStyle(),  // the comments
+						$(go.TextBlock, textStyle(),
 							{
 								row: 3, column: 0, columnSpan: 5,
 								font: "italic 9pt sans-serif",
 								wrap: go.TextBlock.WrapFit,
-								editable: true,  // by default newlines are allowed
+								editable: true,
 								minSize: new go.Size(10, 14)
 							},
 							new go.Binding("text", "comments").makeTwoWay())
-					)  // end Table Panel
-				) // end Horizontal Panel
-			);  // end Node
+					)
+				)
+			);
 		myDiagram.allowMove = false;
 
-		// Define the appearance and behavior for Links:
-		function linkInfo(d) {  // Tooltip info for a link data object
+
+		function linkInfo(d) {
 			return "Link:\nfrom " + d.from + " to " + d.to;
 		}
 
-		// The link shape and arrowhead have their stroke brush data bound to the "color" property
+
 		myDiagram.linkTemplate =
 			$(go.Link,
-				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},  // allow the user to relink existing links
+				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
 				$(go.Shape,
 					{strokeWidth: 2},
 					new go.Binding("stroke", "color")),
 				$(go.Shape,
 					{toArrow: "Standard", stroke: null},
 					new go.Binding("fill", "color")),
-				{ // this tooltip Adornment is shared by all links
+				{
 					toolTip:
 						$(go.Adornment, "Auto",
 							$(go.Shape, {fill: "#FFFFCC"}),
-							$(go.TextBlock, {margin: 4},  // the tooltip shows the result of calling linkInfo(data)
+							$(go.TextBlock, {margin: 4},
 								new go.Binding("text", "", linkInfo))
 						),
 					contextMenu: partContextMenu
 				}
 			);
 
-		// Define the appearance and behavior for Groups:
+
 		function findHeadShot(key) {
 		}
 
-		function groupInfo(adornment) {  // takes the tooltip or context menu, not a group node data object
-			var g = adornment.adornedPart;  // get the Group that the tooltip adorns
+		function groupInfo(adornment) {
+			var g = adornment.adornedPart;
 			var mems = g.memberParts.count;
 			var links = 0;
 			g.memberParts.each(function (part) {
@@ -355,19 +330,17 @@
 			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
 
-		// Groups consist of a title in the color given by the group node data
-		// above a translucent gray rectangle surrounding the member parts
 		myDiagram.groupTemplate =
 			$(go.Group, "Vertical",
 				{
-					selectionObjectName: "PANEL",  // selection handle goes around shape, not label
+					selectionObjectName: "PANEL",
 					ungroupable: true
-				},  // enable Ctrl-Shift-G to ungroup a selected Group
+				},
 				$(go.TextBlock,
 					{
 						font: "bold 19px sans-serif",
-						isMultiline: false,  // don't allow newlines in text
-						editable: true  // allow in-place editing by user
+						isMultiline: false,
+						editable: true
 					},
 					new go.Binding("text", "text").makeTwoWay(),
 					new go.Binding("stroke", "color")),
@@ -378,34 +351,33 @@
 						{row: 1, column: 2},
 						{width: 100, height: 100},
 						new go.Binding("source", "img")),
-					$(go.Placeholder, {margin: 10, background: "transparent"})  // represents where the members are
+					$(go.Placeholder, {margin: 10, background: "transparent"})
 				),
-				{ // this tooltip Adornment is shared by all groups
+				{
 					toolTip:
 						$(go.Adornment, "Auto",
 							$(go.Shape, {fill: "#ff0900"}),
 							$(go.TextBlock, {margin: 4},
-								// bind to tooltip, not to Group.data, to allow access to Group properties
+
 								new go.Binding("text", "", groupInfo).ofObject())
 						),
-					// the same context menu Adornment is shared by all groups
+
 					contextMenu: partContextMenu
 				}
 			);
 
-		// Define the behavior for the Diagram background:
-		function diagramInfo(model) {  // Tooltip info for the diagram's model
+
+		function diagramInfo(model) {
 			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
 		}
 
-		// provide a tooltip for the background of the Diagram, when not over any Part
 		myDiagram.toolTip =
 			$(go.Adornment, "Auto",
 				$(go.Shape, {fill: "#FFFFCC"}),
 				$(go.TextBlock, {margin: 4},
 					new go.Binding("text", "", diagramInfo))
 			);
-		// provide a context menu for the background of the Diagram, when not over any Part
+
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Paste",
@@ -462,14 +434,14 @@
 				console.log(new_arr);
 				var new_row = '';
 				var str = new_arr[new_arr.length - 1].key;
-				console.log('str --> ' + str);
+				console.log('str -->' + str);
 				var re = 'f';
 				var found = str.match(re);
 
 				if (found == 'f') {
 					$.each(new_arr, function () {
 						new_row += '<tr>\n' +
-							'<td scope="row">1 <i class="fa fa-plus expand_tr"></i></td>\n' +
+							'<td scope="row">1 <i class="fa fa-plus expand_tr" ></i></td>\n' +
 							'<td>18.12.2018</td>\n' +
 							'<td>Mersedes bens</td>\n' +
 							'<td>Հեչբեկ</td>\n' +
@@ -477,32 +449,35 @@
 							'<td>Արամ</td>\n' +
 							'<td></td>\n' +
 							'<td>150000</td>\n' +
+							'<td><a href="#"><i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i></a></td>\n' +
 							'</tr>\n' +
 							/*See details*/
 							'<tr class="more">\n' +
-							'<td scope="row">1․1</td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td>Յուղ</td>\n' +
-							'<td>15000</td>\n' +
+							'<td class="table-primary" scope="row">1․1</td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary">Յուղ</td>\n' +
+							'<td class="table-primary">15000</td>\n' +
 							'</tr>\n' +
 							'<tr class="more">\n' +
-							'<td scope="row">1.2</td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td>Անվադող</td>\n' +
-							'<td>25400</td>\n' +
+							'<td class="table-primary" scope="row">1.2</td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary"></td>\n' +
+							'<td class="table-primary">Անվադող</td>\n' +
+							'<td class="table-primary">25400</td>\n' +
 							'</tr>'
 					});
 
 					$('.cars_table').html(new_row);
 				}
+
+				$('[data-toggle="tooltip"]').tooltip();
 			});
 
 	});
@@ -514,8 +489,14 @@
 	}
 
 	$(document).on('click', '.expand_tr', function () {
+		if ($(this).hasClass('fa-plus')) {
+			$(this).removeClass('fa-plus');
+			$(this).addClass('fa-minus');
+		} else {
+			$(this).addClass('fa-plus');
+			$(this).removeClass('fa-minus');
+		}
 		$('.more').toggle();
 	});
-
 </script>
 

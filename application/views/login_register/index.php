@@ -184,55 +184,51 @@
 
 
 					<div class="col-md-6 mt-md-3 mt-3">
+						<div class="alert-danger mb-2 p-2 mr-2 d-none">fsdfd fsd s fsd fsddfd</div>
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
+
+
+
 							<form id="register">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm firstname"
 										   placeholder="First Name" name="firstname" value="">
-									<small id="firstname" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm lastname"
 										   placeholder="Last Name" name="lastname" value="">
-									<small id="lastname" class="form-text text-muted d-none"><p class="text-danger"></p>
-									</small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="up_email" value="">
-									<small id="up_email" class="form-text text-muted d-none"><p class="text-danger"></p>
-									</small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm country_code"
 										   placeholder="Country Code" name="country_code" value="">
-									<small id="country_code" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="text" class="form-control form-control-sm phone_number"
 										   placeholder="Phone Number" name="phone_number" value="">
-									<small id="phone_number" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
 										   placeholder="Password" name="up_password" value="">
-									<small id="up_password" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
+
 								</div>
 
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm confirm_password"
 										   placeholder="Confirm Password" name="confirm_password" value="">
-									<small id="confirm_password" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
 
 								</div>
 
@@ -246,8 +242,7 @@
 											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
-									<small id="up_country" class="form-text text-muted d-none"><p
-											class="text-danger"></p></small>
+
 
 								</div>
 
@@ -520,32 +515,34 @@
 
 				} else {
 
+
 					if ($.isArray(data.error.elements)) {
+						scroll_top();
 						loading('stop', 'sign_up');
-
-						// scroll_top();
-
-						$('p#success').addClass('d-none');
+						errors = '';
+						tmp = '';
 						$.each(data.error.elements, function (index) {
-
 							$.each(data.error.elements[index], function (index, value) {
-
 								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
 
-									$('#' + index + ' > p').text(value);
-									$('#' + index).removeClass('d-none');
+									if(value != tmp) {
+										errors += value + '<br>';
+									}
+									tmp = value;
 
 								} else {
-									$('#' + index + ' > p').text('');
-									$('#' + index).addClass('d-none');
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 								}
-
 							});
-
-
 						});
-
 					}
+
+					$('.alert-danger').html(errors);
 
 				}
 			},

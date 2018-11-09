@@ -10,7 +10,7 @@
 	}
 
 	table td {
-		padding: 2px !important
+		padding: 5px !important
 	}
 
 	th {
@@ -241,6 +241,8 @@
 				}
 			});
 		};
+
+
 		myDiagram.nodeTemplate =
 			$(go.Node, "Auto",
 				{locationSpot: go.Spot.Center},
@@ -486,7 +488,7 @@
 							'<td>18.12.2018</td>\n' +
 							'<td>' + value['name'] + '</td>\n' +
 							'<td>Հեչբեկ</td>\n' +
-							'<td>35xx335</td>\n' +
+							'<td>35sx674</td>\n' +
 							'<td>Արամ</td>\n' +
 							'<td></td>\n' +
 							'<td>150000</td>\n' +
@@ -531,6 +533,7 @@
 			$(this).addClass('fa-plus');
 			$(this).removeClass('fa-minus');
 		}
+
 		var btn_value = $(this).data('value');
 		$('.more[data-value=' + btn_value + ']').toggle('slow');
 	});

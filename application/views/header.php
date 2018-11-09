@@ -121,7 +121,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
 ?>
-<div class="container-fluid" style="margin-top: 5rem;">
+<div class="res_cont_fl container-fluid" style="margin-top: 5rem;">
 	<!-- Nav tabs -->
 	<!-- Horizontal Tabs Start -->
 	<ul class="nav nav-tabs"

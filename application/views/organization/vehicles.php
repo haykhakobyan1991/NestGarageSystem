@@ -53,18 +53,18 @@ endforeach;
 		<div class=" pb-2 pt-2">
 			<div class="">
 				<div class="row">
-					<div class="col-sm-12 col-md-2 col-2">
+					<div class="col-sm-12 col-md-2">
 						<p class="display-5 font-weight-bold float-left">Total Vehicle</p> <span
 							class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 					</div>
 
-					<div class="col-sm-12 col-md-2 col-2">
+					<div class="col-sm-12 col-md-2">
 						<p class="display-5 font-weight-bold float-left">Active Vehicle</p>
 						<span
 							class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
 					</div>
 
-					<div class="col-sm-12 col-md-2 col2">
+					<div class="col-sm-12 col-md-2">
 						<p class="display-5 font-weight-bold float-left">Passive Vehicle</p>
 						<span
 							class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
@@ -72,7 +72,7 @@ endforeach;
 
 					<div class="col-sm-12 col-md-4 col-4"></div>
 
-					<div class="col-sm-12 col-md-2 col-2">
+					<div class="col-sm-12 col-md-2">
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
 						   class="btn btn-outline-success">Add Vehicle
 						</a>

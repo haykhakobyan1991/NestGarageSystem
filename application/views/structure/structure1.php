@@ -32,17 +32,16 @@
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
 	<div id="sample">
-		<div id="myDiagramDiv" style="border: solid 1px black;  height:600px"></div>
+		<div id="myDiagramDiv" style="height:450px"></div>
 	</div>
-	<textarea style="display: none; width: 100%;" id="mySavedModel">
-</textarea>
+	<textarea style="display: none; width: 100%;" id="mySavedModel"></textarea>
 	<button id="SaveButton" onclick="save()">Save</button>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
 <div class="row">
 	<div class="container-fluid">
 		<table class="table table-borderless">
-			<thead>
+			<thead class="d-none">
 			<tr>
 				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
 				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
@@ -62,6 +61,55 @@
 		</table>
 	</div>
 </div>
+
+<hr class="my-4">
+
+<div class="row mt-3">
+	<div class="container-fluid">
+		<ul class="nav justify-content-center navbar navbar-light" style="background-color: #d6d8db;">
+			<li class="nav-item">
+				<a class="nav-link active" href="#">ՏԵԽ ԶՆՆՈՒՄ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՎԱՌԵԼԻՔ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՏՈՒԳԱՆՔ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՊԱՏԱՀԱՐՆԵՐ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ԱՆՎԱԴՈՂ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ԱՐԳԵԼԱԿ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՔՍՈՒՔ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՖԻԼՏՐ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">ՄԱՐՏԿՈՑ</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Ահազանգ</a>
+			</li>
+		</ul>
+	</div>
+</div>
+
 <script>
 	function init() {
 		if (window.goSamples) goSamples();
@@ -164,7 +212,8 @@
 			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
 
-		function nodeDoubleClick(e, obj) {}
+		function nodeDoubleClick(e, obj) {
+		}
 
 		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
@@ -414,7 +463,6 @@
 			function (e) {
 				var arr = [];
 				var new_arr = [];
-
 				myDiagram.selection.each(function (part) {
 					if (part instanceof go.Node) {
 						arr = {
@@ -422,64 +470,68 @@
 							"name": part.Wd.text,
 							"parent": part.Wd.parent
 						};
+
 						console.log(arr.key);
 						var str1 = arr.key;
 						var re1 = 'f';
 						var found1 = str1.match(re1);
+
 						if (found1 == 'f') {
 							new_arr.push(arr);
 						}
 					}
 				});
 				console.log(new_arr);
+
 				var new_row = '';
 				var str = new_arr[new_arr.length - 1].key;
+
 				console.log('str -->' + str);
+
 				var re = 'f';
 				var found = str.match(re);
 
 				if (found == 'f') {
-					$.each(new_arr, function () {
+					$('thead').removeClass('d-none');
+					$.each(new_arr, function (key, value) {
 						new_row += '<tr>\n' +
-							'<td scope="row">1 <i class="fa fa-plus expand_tr" ></i></td>\n' +
+							'<td scope="row">1<i class="fa fa-plus expand_tr mt-1" data-value="' + value['key'] + '"></i></td>\n' +
 							'<td>18.12.2018</td>\n' +
 							'<td>Mersedes bens</td>\n' +
 							'<td>Հեչբեկ</td>\n' +
-							'<td>35sx674</td>\n' +
+							'<td>35xx335</td>\n' +
 							'<td>Արամ</td>\n' +
 							'<td></td>\n' +
 							'<td>150000</td>\n' +
 							'<td><a href="#"><i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i></a></td>\n' +
 							'</tr>\n' +
 							/*See details*/
-							'<tr class="more">\n' +
-							'<td class="table-primary" scope="row">1․1</td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary">Յուղ</td>\n' +
-							'<td class="table-primary">15000</td>\n' +
+							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
+							'<td scope="row">1․1</td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td style="color: #333;">Յուղ</td>\n' +
+							'<td>125000</td>\n' +
 							'</tr>\n' +
-							'<tr class="more">\n' +
-							'<td class="table-primary" scope="row">1.2</td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary"></td>\n' +
-							'<td class="table-primary">Անվադող</td>\n' +
-							'<td class="table-primary">25400</td>\n' +
+							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
+							'<td scope="row">1.2</td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td></td>\n' +
+							'<td style="color: #333;">Անվադող</td>\n' +
+							'<td>25000</td>\n' +
 							'</tr>'
 					});
 
 					$('.cars_table').html(new_row);
 				}
-
 				$('[data-toggle="tooltip"]').tooltip();
 			});
-
 	});
 
 	function save() {
@@ -496,7 +548,8 @@
 			$(this).addClass('fa-plus');
 			$(this).removeClass('fa-minus');
 		}
-		$('.more').toggle();
+		var btn_value = $(this).data('value');
+		$('.more[data-value=' + btn_value + ']').toggle('slow');
 	});
 </script>
 

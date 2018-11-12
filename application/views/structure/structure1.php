@@ -3,16 +3,20 @@
 	canvas {
 		background: #fff;
 	}
+
 	th, td {
 		vertical-align: middle !important;
 		text-align: center !important;
 	}
+
 	table td {
-		padding: 2px !important
+		padding: 5px !important
 	}
+
 	th {
 		border: 1px solid #333 !important;
 	}
+
 	i.fa.fa-plus, i.fa.fa-minus {
 		display: inline-block;
 		float: right;
@@ -20,6 +24,7 @@
 		cursor: pointer;
 		font-size: 12px;
 	}
+
 	.more {
 		display: none;
 	}
@@ -33,31 +38,6 @@
 	<button id="SaveButton" onclick="save()">Save</button>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
-<div class="row">
-	<div class="container-fluid">
-		<table class="table table-borderless">
-			<thead class="d-none">
-			<tr>
-				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
-				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
-				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>
-				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>
-				<th class="table-secondary" scope="col" rowspan="2">գումար</th>
-				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>
-			</tr>
-			<tr>
-				<th class="table-primary">մոդել</th>
-				<th class="table-primary">տեսակ</th>
-				<th class="table-primary">պետհամարանիշ</th>
-				<th class="table-primary">վարորդ</th>
-			</tr>
-			</thead>
-			<tbody class="cars_table"></tbody>
-		</table>
-	</div>
-</div>
-
-<hr class="my-4">
 
 <div class="row mt-3">
 	<div class="container-fluid">
@@ -105,6 +85,35 @@
 	</div>
 </div>
 
+<hr class="my-4">
+
+<div class="row mt-3">
+	<div class="container-fluid">
+		<table class="table table-borderless">
+			<thead class="d-none">
+
+			<tr>
+				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
+				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
+				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>
+				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>
+				<th class="table-secondary" scope="col" rowspan="2">գումար</th>
+				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>
+			</tr>
+
+			<tr>
+				<th class="table-primary">մոդել</th>
+				<th class="table-primary">տեսակ</th>
+				<th class="table-primary">պետհամարանիշ</th>
+				<th class="table-primary">վարորդ</th>
+			</tr>
+
+			</thead>
+			<tbody class="cars_table"></tbody>
+		</table>
+	</div>
+</div>
+
 <script>
 	function init() {
 		if (window.goSamples) goSamples();
@@ -125,6 +134,7 @@
 								alternateNodeSpacing: 20
 							}),
 				});
+
 		function makeButton(text, action, visiblePredicate) {
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
@@ -133,6 +143,7 @@
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
+
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Properties",
@@ -193,17 +204,21 @@
 						return o.diagram.commandHandler.canUngroupSelection();
 					})
 			);
+
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;
 			if (node1 === node2) return false;
 			if (node2.isInTreeOf(node1)) return false;
 			return true;
 		}
+
 		function textStyle() {
 			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
 		}
+
 		function nodeDoubleClick(e, obj) {
 		}
+
 		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
 			if (d.group)
@@ -212,6 +227,7 @@
 				str += "top-level node";
 			return str;
 		}
+
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
@@ -225,6 +241,8 @@
 				}
 			});
 		};
+
+
 		myDiagram.nodeTemplate =
 			$(go.Node, "Auto",
 				{locationSpot: go.Spot.Center},
@@ -324,9 +342,11 @@
 				)
 			);
 		myDiagram.allowMove = false;
+
 		function linkInfo(d) {
 			return "Link:\nfrom " + d.from + " to " + d.to;
 		}
+
 		myDiagram.linkTemplate =
 			$(go.Link,
 				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
@@ -346,8 +366,10 @@
 					contextMenu: partContextMenu
 				}
 			);
+
 		function findHeadShot(key) {
 		}
+
 		function groupInfo(adornment) {
 			var g = adornment.adornedPart;
 			var mems = g.memberParts.count;
@@ -357,6 +379,7 @@
 			});
 			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
+
 		myDiagram.groupTemplate =
 			$(go.Group, "Vertical",
 				{
@@ -389,9 +412,11 @@
 					contextMenu: partContextMenu
 				}
 			);
+
 		function diagramInfo(model) {
 			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
 		}
+
 		myDiagram.toolTip =
 			$(go.Adornment, "Auto",
 				$(go.Shape, {fill: "#FFFFCC"}),
@@ -426,6 +451,7 @@
 		var linkDataArray = <?=$from_to?>;
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 	}
+
 	$(document).ready(function () {
 		init();
 		myDiagram.addDiagramListener("ObjectSingleClicked",
@@ -439,7 +465,7 @@
 							"name": part.Wd.text,
 							"parent": part.Wd.parent
 						};
-						console.log(arr.key);
+						// console.log(arr.key);
 						var str1 = arr.key;
 						var re1 = 'f';
 						var found1 = str1.match(re1);
@@ -448,10 +474,10 @@
 						}
 					}
 				});
-				console.log(new_arr);
+				// console.log(new_arr);
 				var new_row = '';
 				var str = new_arr[new_arr.length - 1].key;
-				console.log('str -->' + str);
+				// console.log('str -->' + str);
 				var re = 'f';
 				var found = str.match(re);
 				if (found == 'f') {
@@ -460,34 +486,31 @@
 						new_row += '<tr>\n' +
 							'<td scope="row">1<i class="fa fa-plus expand_tr mt-1" data-value="' + value['key'] + '"></i></td>\n' +
 							'<td>18.12.2018</td>\n' +
-							'<td>Mersedes bens</td>\n' +
+							'<td>' + value['name'] + '</td>\n' +
 							'<td>Հեչբեկ</td>\n' +
-							'<td>35xx335</td>\n' +
+							'<td>35sx674</td>\n' +
 							'<td>Արամ</td>\n' +
 							'<td></td>\n' +
 							'<td>150000</td>\n' +
-							'<td><a href="#"><i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i></a></td>\n' +
+							'<td>\n' +
+							'<a href="#">\n' +
+							'<i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i>\n' +
+							'</a>\n' +
+							'</td>\n' +
 							'</tr>\n' +
 							/*See details*/
 							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-							'<td scope="row">1․1</td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
+							'<td class="pl-4" scope="row">1․1</td>\n' +
+							'<td colspan="5"></td>\n' +
 							'<td style="color: #333;">Յուղ</td>\n' +
-							'<td>125000</td>\n' +
+							'<td class="pr-4" >125000</td>\n' +
 							'</tr>\n' +
+
 							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-							'<td scope="row">1.2</td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
-							'<td></td>\n' +
+							'<td class="pl-4" scope="row">1.2</td>\n' +
+							'<td colspan="5"></td>\n' +
 							'<td style="color: #333;">Անվադող</td>\n' +
-							'<td>25000</td>\n' +
+							'<td class="pr-4" >25000</td>\n' +
 							'</tr>'
 					});
 					$('.cars_table').html(new_row);
@@ -495,11 +518,13 @@
 				$('[data-toggle="tooltip"]').tooltip();
 			});
 	});
+
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
 		console.log(myDiagram.model.linkDataArray);
 	}
+
 	$(document).on('click', '.expand_tr', function () {
 		if ($(this).hasClass('fa-plus')) {
 			$(this).removeClass('fa-plus');
@@ -508,6 +533,7 @@
 			$(this).addClass('fa-plus');
 			$(this).removeClass('fa-minus');
 		}
+
 		var btn_value = $(this).data('value');
 		$('.more[data-value=' + btn_value + ']').toggle('slow');
 	});

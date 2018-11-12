@@ -59,11 +59,11 @@ endforeach;
 				<div class="container">
 					<div class="row">
 						<div class="col-sm-6">
-							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"
+							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;width: 50px"
 								 class="float-left mr-2"
 								 src="<?= ($photo != '' ? base_url('uploads/'.$folder.'/user/photo/' . $photo) : base_url('assets/img/user_img.jpg')) ?>"
 							<p style="font-size: 18px;font-weight: 500;" class="mt-1">
-								<span class="users_name"><?=$admin_name?></span>
+								<span style="display: inline-block;margin-top: 12px;" class="users_name"><?=$admin_name?></span>
 								<span class="ml-2 mr-2">|</span>
 								<span class="users_position font-weight-light"><?=$role_name?></span>
 							</p>

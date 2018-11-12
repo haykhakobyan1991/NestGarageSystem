@@ -29,22 +29,15 @@ endforeach;
 		content: '';
 	}
 </style>
-
-
 <!-- Staff Start -->
 <div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
-
 	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
 		 aria-labelledby="list-staff-list">
-
-
 		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 			<div class="container">
 				<p class="display-5 font-weight-bold mb-0">Section: Staff</p>
 			</div>
 		</div>
-
-
 		<div class="pb-2 pt-2">
 			<div class="">
 				<div class="row">
@@ -52,28 +45,21 @@ endforeach;
 						<p class="display-5 font-weight-bold float-left">Toatl Staff</p> <span
 							class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 					</div>
-
 					<div class="col-sm-12 col-md-2">
 						<p class="display-5 font-weight-bold float-left">Active Staff</p> <span
 							class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
 					</div>
-
 					<div class="col-sm-12 col-md-2">
 						<p class="display-5 font-weight-bold float-left">Passive Staff</p> <span
 							class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
 					</div>
-
 					<div class="col-sm-12 col-md-4 col-4"></div>
-
-					<div class="col-sm-12 col-md-2">
+					<div class="col-sm-12 col-md-2 ">
 							<span class="btn btn-outline-success" data-toggle="modal"
 								  data-target=".add_staff_modal">Add User
 							</span>
 					</div>
-
-
 					<!-- EDIT staff modal-->
-
 					<div class="modal fade bd-example-modal-lg " id="edit_staff" tabindex="-1" role="dialog"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-lg">
@@ -93,10 +79,7 @@ endforeach;
 							</div>
 						</div>
 					</div>
-
 					<!-- Edit staff modal end -->
-
-
 					<!-- Add User Modal Start  -->
 					<form id="staff" enctype="multipart/form-data">
 						<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
@@ -685,7 +668,7 @@ color: #545b62;">
 										<img
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 											class="mr-3"
-											src="<?= ($row['photo'] != '' ? base_url('uploads/'.$folder.'/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
+											src="<?= ($row['photo'] != '' ? base_url('uploads/' . $folder . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
 											alt="Generic placeholder image">
 										<div class="media-body">
 											<?= $row['first_name'] . ' ' . $row['last_name'] ?>
@@ -723,7 +706,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_1'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_1']); ?>
 													</a>
 												</td>
@@ -738,7 +721,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_2'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_2']); ?>
 													</a>
 												</td>
@@ -753,7 +736,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_3'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_3']); ?>
 													</a>
 												</td>
@@ -768,7 +751,7 @@ color: #545b62;">
 												<td>
 													<a style="font-size: 25px;color: #333;"
 													   target="_blank"
-													   href="<?= ($row['ext_4'] != '' ? base_url('uploads/'.$folder.'/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
+													   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
 														<?= $this->select_ext($row['ext_4']); ?>
 													</a>
 												</td>
@@ -858,7 +841,7 @@ color: #545b62;">
 
 	$(document).on('click', '#add_staff', function (e) {
 
-		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_staff_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1) . '/Organization/add_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff')[0]);
 
@@ -912,7 +895,7 @@ color: #545b62;">
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
@@ -944,7 +927,7 @@ color: #545b62;">
 	$(document).on('click', '#edit_staff_btn', function (e) {
 
 
-		var url = '<?=base_url($this->uri->segment(1).'/Organization/edit_staff_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1) . '/Organization/edit_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff_edit')[0]);
 
@@ -997,7 +980,7 @@ color: #545b62;">
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;

@@ -43,6 +43,7 @@ class MY_Loader extends MX_Loader {
         $sql = "SELECT 
 					`permission`.`id`,
 				    `permission`.`controller`,
+				    `permission`.`title_".$this->lng()."` AS `title`,
 					`permission`.`page`,
 					`permission`.`status`
 				FROM 
@@ -54,6 +55,9 @@ class MY_Loader extends MX_Loader {
 		";
 
         $query = $this->db->query($sql);
+        $row = $query->row_array();
+
+	    $this->layout->set_title($row['title']);
 		
 		if($query->num_rows() != 1) {
 			if ($type == '1') {

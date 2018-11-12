@@ -40,7 +40,7 @@ class User extends CI_Controller {
 		$file = FCPATH.'application/login_register/login_pass.ini';
 		//chmod( $file, '0755' );
 		$up_array = parse_ini_file($file,$section);
-	//	chmod( $file, '0666' );
+	    //chmod( $file, '0666' );
 
 		return $up_array[$section];
 

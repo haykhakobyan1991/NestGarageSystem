@@ -282,18 +282,28 @@ endforeach;
 
 												</div>
 
+												<div class="row mt-1">
+													<label class="col-sm-2 col-form-label">Nest Card ID</label>
+													<div class="col-sm-4">
+														<input type="text" class="form-control form-control-sm"
+															   name="nest_card_id"
+															   placeholder="Nest Card ID">
+													</div>
 
-												<div class="form-group mt-md-2 mt-2">
-													<label
-														for="exampleFormControlTextarea1">Other</label>
+
+													<label class="col-sm-2"
+														   for="exampleFormControlTextarea1">Other</label>
 													<textarea placeholder="Other"
-															  class="form-control"
+															  class="form-control col-sm-4"
 															  id="exampleFormControlTextarea1"
 															  name="other"
 															  rows="3"></textarea>
+
+
 												</div>
 
-												<div class="form-group row">
+
+												<div class="form-group row mt-1">
 													<label
 														class="col-sm-10 col-form-label">Status make
 														a

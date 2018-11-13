@@ -18,7 +18,7 @@ $i = '';
 	</div>
 
 
-	<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+	<div class="jumbotron jumbotron-fluid pb-2 pt-2" style="margin: 0;">
 
 
 		<div class="container">
@@ -30,16 +30,17 @@ $i = '';
 
 	<form id="company">
 		<div class="jumbotron jumbotron-fluid pb-2 pt-2" style="background: #fff">
-			<div class="container">
+			<div class="container-fluid">
 
 				<p class="display-5 font-weight-bold"><?= lang('status') ?></p>
 
 				<hr class="my-4">
 				<div class="row">
-					<table class="table table-hover table-secondary col-sm-12 col-md-5" style="background: #fff;">
+					<table class="table  table-secondary col-sm-12 col-md-5" style="background: #fff;font-size: 13px;">
 						<tbody>
+						<tr>
 						<? foreach ($company_type as $item) : ?>
-							<tr>
+
 								<td style="border: none;"><?= $item['title'] ?> *</td>
 								<td style="border: none;"><input style="width: 20px;height: 20px;"
 																 type="radio"
@@ -49,24 +50,24 @@ $i = '';
 																 aria-label="Checkbox for following text input"
 																 class="btn btn-primary">
 								</td>
-							</tr>
+
 						<? endforeach; ?>
+						</tr>
 						</tbody>
 					</table>
 
-					<div class="form-group col-sm-12 col-md-6">
+					<div class="form-group col-sm-12 col-md-6" style="margin-left: 25px;margin-top: -25px;">
 
 						<div class="media">
 							<img class="align-self-start mr-3 mt-3 mt-md-3" id='img-upload'
-								 style="width: 100px;"
+								 style="width: 50px;"
 								 alt=""
 								 src="<?= ($company['logo'] != '' ? base_url('uploads/'.$folder.'/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
-							<div class="media-body">
-								<h5 class="mt-0">LOGO</h5>
-								<p>Upload your company LOGO</p>
-								<div class="input-group ml-2 ml-md-2">
+							<div class="media-body" style="margin-top: 25px;">
+								<p style="float: left;">Upload your company LOGO</p>
+								<div class="input-group ml-2 ml-md-2" style="display: inline-block;width: auto;">
 															<span class="input-group-btn">
-																<span class="btn btn-outline-success btn-file mr-1">
+																<span class="btn btn-sm btn-outline-success btn-file mr-1" style="margin-top: -5px;">
 																	Browse… <input type="file" id="imgInp" name="photo">
 																</span>
 															</span>

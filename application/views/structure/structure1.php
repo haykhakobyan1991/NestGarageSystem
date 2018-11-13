@@ -32,7 +32,7 @@
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
 	<div id="sample">
-		<div id="myDiagramDiv" style="height:450px"></div>
+		<div id="myDiagramDiv" style="height:300px"></div>
 	</div>
 	<textarea style="display: none; width: 100%;" id="mySavedModel"></textarea>
 	<button id="SaveButton" onclick="save()">Save</button>
@@ -87,32 +87,32 @@
 
 <hr class="my-4">
 
-<div class="row mt-3">
-	<div class="container-fluid">
-		<table class="table table-borderless">
-			<thead class="d-none">
-
-			<tr>
-				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>
-				<th class="table-secondary" scope="col" rowspan="2">երբ</th>
-				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>
-				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>
-				<th class="table-secondary" scope="col" rowspan="2">գումար</th>
-				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>
-			</tr>
-
-			<tr>
-				<th class="table-primary">մոդել</th>
-				<th class="table-primary">տեսակ</th>
-				<th class="table-primary">պետհամարանիշ</th>
-				<th class="table-primary">վարորդ</th>
-			</tr>
-
-			</thead>
-			<tbody class="cars_table"></tbody>
-		</table>
-	</div>
-</div>
+<!--<div class="row mt-3">-->
+<!--	<div class="container-fluid">-->
+<!--		<table class="table table-borderless">-->
+<!--			<thead class="d-none">-->
+<!---->
+<!--			<tr>-->
+<!--				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>-->
+<!--				<th class="table-secondary" scope="col" rowspan="2">երբ</th>-->
+<!--				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>-->
+<!--				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>-->
+<!--				<th class="table-secondary" scope="col" rowspan="2">գումար</th>-->
+<!--				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>-->
+<!--			</tr>-->
+<!---->
+<!--			<tr>-->
+<!--				<th class="table-primary">մոդել</th>-->
+<!--				<th class="table-primary">տեսակ</th>-->
+<!--				<th class="table-primary">պետհամարանիշ</th>-->
+<!--				<th class="table-primary">վարորդ</th>-->
+<!--			</tr>-->
+<!---->
+<!--			</thead>-->
+<!--			<tbody class="cars_table"></tbody>-->
+<!--		</table>-->
+<!--	</div>-->
+<!--</div>-->
 
 <script>
 	function init() {
@@ -225,7 +225,7 @@
 				str += "member of " + d.group;
 			else
 				str += "top-level node";
-			return str;
+			// return str;
 		}
 
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
@@ -259,6 +259,7 @@
 							shape.fill = "darkred";
 						}
 					},
+					height: 35,
 					mouseDragLeave: function (e, node, next) {
 						var shape = node.findObject("SHAPE");
 						if (shape && shape._prevFill) {
@@ -292,23 +293,23 @@
 					$(go.Picture,
 						{
 							name: "Picture",
-							desiredSize: new go.Size(50, 50),
-							margin: new go.Margin(6, 8, 6, 10),
+							desiredSize: new go.Size(25, 25),
+							margin: new go.Margin(2, 2, 0, 2),
 						},
 						new go.Binding("source", "img")),
 					$(go.Panel, "Table",
 						{
-							maxSize: new go.Size(150, 999),
-							margin: new go.Margin(6, 10, 0, 3),
+							maxSize: new go.Size(100, 999),
+							margin: new go.Margin(2,2, 0, 1),
 							defaultAlignment: go.Spot.Left
 						},
 						$(go.RowColumnDefinition, {column: 2, width: 4}),
 						$(go.TextBlock, textStyle(),
 							{
-								row: 0, column: 0, columnSpan: 5,
-								font: "12pt Segoe UI,sans-serif",
+								row: 0, column: 0, columnSpan: 2,
+								font: "10pt Segoe UI,sans-serif",
 								editable: true, isMultiline: false,
-								minSize: new go.Size(10, 16)
+								minSize: new go.Size(8, 14)
 							},
 							new go.Binding("text", "name").makeTwoWay()),
 						$(go.TextBlock, "", textStyle(),
@@ -318,7 +319,7 @@
 								row: 1, column: 1, columnSpan: 4,
 								editable: false, isMultiline: false,
 								minSize: new go.Size(10, 14),
-								margin: new go.Margin(0, 0, 0, 3)
+								margin: new go.Margin(1, 1, 0, 3)
 							},
 							new go.Binding("text", "text").makeTwoWay()),
 						$(go.TextBlock, textStyle(),
@@ -360,7 +361,7 @@
 					toolTip:
 						$(go.Adornment, "Auto",
 							$(go.Shape, {fill: "#FFFFCC"}),
-							$(go.TextBlock, {margin: 4},
+							$(go.TextBlock, {margin: 2},
 								new go.Binding("text", "", linkInfo))
 						),
 					contextMenu: partContextMenu
@@ -377,7 +378,7 @@
 			g.memberParts.each(function (part) {
 				if (part instanceof go.Link) links++;
 			});
-			return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
+			// return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
 
 		myDiagram.groupTemplate =
@@ -398,15 +399,15 @@
 					{name: "PANEL"},
 					$(go.Picture,
 						{row: 1, column: 2},
-						{width: 100, height: 100},
+						{width: 25, height: 25},
 						new go.Binding("source", "img")),
-					$(go.Placeholder, {margin: 10, background: "transparent"})
+					$(go.Placeholder, {margin: 2, background: "transparent"})
 				),
 				{
 					toolTip:
 						$(go.Adornment, "Auto",
 							$(go.Shape, {fill: "#ff0900"}),
-							$(go.TextBlock, {margin: 4},
+							$(go.TextBlock, {margin: 2},
 								new go.Binding("text", "", groupInfo).ofObject())
 						),
 					contextMenu: partContextMenu
@@ -417,12 +418,6 @@
 			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
 		}
 
-		myDiagram.toolTip =
-			$(go.Adornment, "Auto",
-				$(go.Shape, {fill: "#FFFFCC"}),
-				$(go.TextBlock, {margin: 4},
-					new go.Binding("text", "", diagramInfo))
-			);
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Paste",
@@ -475,47 +470,47 @@
 					}
 				});
 				// console.log(new_arr);
-				var new_row = '';
-				var str = new_arr[new_arr.length - 1].key;
+				// var new_row = '';
+				// var str = new_arr[new_arr.length - 1].key;
 				// console.log('str -->' + str);
-				var re = 'f';
-				var found = str.match(re);
-				if (found == 'f') {
-					$('thead').removeClass('d-none');
-					$.each(new_arr, function (key, value) {
-						new_row += '<tr>\n' +
-							'<td scope="row">1<i class="fa fa-plus expand_tr mt-1" data-value="' + value['key'] + '"></i></td>\n' +
-							'<td>18.12.2018</td>\n' +
-							'<td>' + value['name'] + '</td>\n' +
-							'<td>Հեչբեկ</td>\n' +
-							'<td>35sx674</td>\n' +
-							'<td>Արամ</td>\n' +
-							'<td></td>\n' +
-							'<td>150000</td>\n' +
-							'<td>\n' +
-							'<a href="#">\n' +
-							'<i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i>\n' +
-							'</a>\n' +
-							'</td>\n' +
-							'</tr>\n' +
-							/*See details*/
-							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-							'<td class="pl-4" scope="row">1․1</td>\n' +
-							'<td colspan="5"></td>\n' +
-							'<td style="color: #333;">Յուղ</td>\n' +
-							'<td class="pr-4" >125000</td>\n' +
-							'</tr>\n' +
-
-							'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-							'<td class="pl-4" scope="row">1.2</td>\n' +
-							'<td colspan="5"></td>\n' +
-							'<td style="color: #333;">Անվադող</td>\n' +
-							'<td class="pr-4" >25000</td>\n' +
-							'</tr>'
-					});
-					$('.cars_table').html(new_row);
-				}
-				$('[data-toggle="tooltip"]').tooltip();
+				// var re = 'f';
+				// var found = str.match(re);
+				// if (found == 'f') {
+				// 	$('thead').removeClass('d-none');
+				// 	// $.each(new_arr, function (key, value) {
+				// 	// 	new_row += '<tr>\n' +
+				// 	// 					'<td scope="row">1<i class="fa fa-plus expand_tr mt-1" data-value="' + value['key'] + '"></i></td>\n' +
+				// 	// 					'<td>18.12.2018</td>\n' +
+				// 	// 					'<td>' + value['name'] + '</td>\n' +
+				// 	// 					'<td>Հեչբեկ</td>\n' +
+				// 	// 					'<td>35sx674</td>\n' +
+				// 	// 					'<td>Արամ</td>\n' +
+				// 	// 					'<td></td>\n' +
+				// 	// 					'<td>150000</td>\n' +
+				// 	// 					'<td>\n' +
+				// 	// 					'<a href="#">\n' +
+				// 	// 					'<i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i>\n' +
+				// 	// 					'</a>\n' +
+				// 	// 					'</td>\n' +
+				// 	// 				'</tr>\n' +
+				// 	//
+				// 	// 		'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
+				// 	// 			'<td class="pl-4" scope="row">1․1</td>\n' +
+				// 	// 			'<td colspan="5"></td>\n' +
+				// 	// 			'<td style="color: #333;">Յուղ</td>\n' +
+				// 	// 			'<td class="pr-4" >125000</td>\n' +
+				// 	// 		'</tr>\n' +
+				// 	//
+				// 	// 		'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
+				// 	// 			'<td class="pl-4" scope="row">1.2</td>\n' +
+				// 	// 			'<td colspan="5"></td>\n' +
+				// 	// 			'<td style="color: #333;">Անվադող</td>\n' +
+				// 	// 			'<td class="pr-4" >25000</td>\n' +
+				// 	// 		'</tr>'
+				// 	// });
+				// 	$('.cars_table').html(new_row);
+				// }
+				// $('[data-toggle="tooltip"]').tooltip();
 			});
 	});
 

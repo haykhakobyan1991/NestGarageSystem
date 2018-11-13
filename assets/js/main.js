@@ -171,7 +171,7 @@ $(window).on('load', function () {
 $(document).on('click', '.langs > ul > li', function () {
 	var lang = $(this).data('lang');
 	var url = $(this).parent('ul').data('url');
-	var current_url = window.location.href;  //todo if firefox document.URL;
+	var current_url = window.location.href;  //todo if firefox document.URL
 	$.ajax({
 		type: 'POST',
 		url: url,

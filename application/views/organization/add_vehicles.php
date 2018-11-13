@@ -1,3 +1,6 @@
+<style>
+	label {font-size: 13px !important;}
+</style>
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;"
 	 aria-labelledby="list-company-list">
 	<form>
@@ -13,24 +16,16 @@
 			<div class="alert alert-danger d-none " role="alert"></div>
 		</div>
 		<div class="row">
-			<div class="col-sm-12 col-md-6 col-6">
-				<h2>Vehicle Information</h2>
-				<p>Fill in the following fields</p>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-md-12 col-md-6 ">
-				<p class="font-weight-bold display-5 mt-3 mr-3">Main</p>
-				<hr class="my-4">
+
 				<!-- Main Start -->
 				<div class="mt-3 mt-md-3">
 
-					<div class="first_row">
-						<div class="form-group row ">
+					<div class="row">
 
-							<label
-								class="col-sm-2 col-form-label">Կցված *</label>
-							<div class="col-sm-10">
+						<div class="form-group col-sm-2">
+							<label class=" col-form-label"">Կցված *</label>
+							<div class="">
 								<select name="staff[]"
 										class="col  selectpicker form-control form-control-sm"
 										id="staff"
@@ -42,14 +37,9 @@
 
 								</select>
 							</div>
-
 						</div>
-					</div>
 
-
-					<div class="row">
-
-						<div class="form-group col-sm-6 getChild"
+						<div class="form-group col-sm-2 getChild"
 							 data-url="<?= base_url('System_main/get_child') ?>"
 							 data-result="model_div"
 							 data-response="model"
@@ -70,11 +60,9 @@
 							</select>
 
 						</div>
-						<div id="model_div" class="form-group col-sm-6"></div>
+						<div id="model_div" class="form-group col-sm-2"></div>
 
-					</div>
-					<div class="row">
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-2">
 							<label
 								class="col-form-label">Տիպար *</label>
 
@@ -88,7 +76,9 @@
 								<? endforeach; ?>
 							</select>
 						</div>
-						<div class="form-group col-sm-6">
+
+
+						<div class="form-group col-sm-2">
 							<label
 								class="col-form-label">Թողարկման
 								տարեթիվ *</label>
@@ -107,49 +97,7 @@
 
 						</div>
 
-					</div>
-
-
-					<div class="form-group row">
-						<label class="col-sm-2 col-form-label">Գույն</label>
-						<div class="col-sm-6">
-							<p style="margin-bottom: 0;">Standart Colors</p>
-							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-
-								<div class="btn-group mr-2" role="group" aria-label="First group">
-									<button type="button" class="btn color_check_btn" data-value="#ffffff"
-											style="background: #ffffff;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#c0c0c0"
-											style="background: #c0c0c0;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#000000"
-											style="background: #000000;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#686868"
-											style="background: #686868;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#0000ff"
-											style="background: #0000ff;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#ff0000"
-											style="background: #ff0000;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#d2b48c"
-											style="background: #d2b48c;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#008000"
-											style="background: #008000;"></button>
-									<button type="button" class="btn color_check_btn" data-value="#ffd0d0"
-											style="background: #ffd0d0;"></button>
-								</div>
-							</div>
-							<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...
-							</p>
-							<input title="" type="color" class="btn color_check_btn more_color" value=""/>
-						</div>
-						<div class="col-sm-4">
-							<p style="margin-bottom: 0;">Selected Color</p>
-							<input name="color" type="hidden" value="#ffffff" class="selected_color_value"/>
-							<div class="selected-color" style="background: #ffffff;"></div>
-						</div>
-					</div>
-
-					<div class="row mt-3">
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-2">
 							<label
 								class=" col-form-label pl-3" style="font-size: 15px;">Հաշվառման համարանիշ*</label>
 							<div class="col-sm-12">
@@ -158,8 +106,13 @@
 									   placeholder="Հաշվառման համարանիշ">
 							</div>
 						</div>
+					</div>
 
-						<div class="form-group col-sm-4">
+
+					<div class="row mt-3">
+
+
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">VIN</label>
 							<div class="col-sm-12">
@@ -167,7 +120,7 @@
 									   placeholder="VIN">
 							</div>
 						</div>
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Շարժիչի հզորություն</label>
 							<div class="col-sm-12">
@@ -177,12 +130,7 @@
 							</div>
 						</div>
 
-
-					</div>
-
-
-					<div class="row mt-3">
-						<div class="form-group col-sm-3">
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Վառելիք</label>
 							<div class="col-sm-12">
@@ -197,7 +145,8 @@
 								</select>
 							</div>
 						</div>
-						<div class="form-group col-sm-3">
+
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Միջին ծախս 100 կմ</label>
 							<div class="col-sm-12">
@@ -206,7 +155,7 @@
 									   placeholder="Միջին ծախս 100 կմ">
 							</div>
 						</div>
-						<div class="form-group col-sm-3">
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Վազք</label>
 							<div class="col-sm-12">
@@ -215,7 +164,8 @@
 									   placeholder="Վազք">
 							</div>
 						</div>
-						<div class="form-group col-sm-3">
+
+						<div class="form-group col-sm-2">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Հոդոգռաֆ</label>
 							<div class="col-sm-12">
@@ -223,19 +173,21 @@
 									   placeholder="Հոդոգռաֆ">
 							</div>
 						</div>
+
 					</div>
 
+
 					<div class="row">
-						<div class="form-group col-sm-6">
+						<div class="form-group col-sm-4">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Այլ</label>
 							<div class="col-sm-12">
-							<textarea name="other" rows="4" class="form-control form-control-sm mt-2"
+							<textarea name="other" rows="3" class="form-control form-control-sm mt-2"
 									  placeholder="Այլ"></textarea>
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-3">
 							<div class="form-group row" style="margin-top: 40px;">
 								<label class="col-sm-10 col-form-label">Status make
 									a
@@ -255,15 +207,52 @@
 							</div>
 						</div>
 
+						<div class="col-sm-2">
+							<label class="col-form-label">Գույն</label>
+							<p style="margin-bottom: 0;">Standart Colors</p>
+							<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+
+								<div class="btn-group mr-2" role="group" aria-label="First group">
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#ffffff"
+											style="background: #ffffff;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#c0c0c0"
+											style="background: #c0c0c0;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#000000"
+											style="background: #000000;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#686868"
+											style="background: #686868;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#0000ff"
+											style="background: #0000ff;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#ff0000"
+											style="background: #ff0000;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#d2b48c"
+											style="background: #d2b48c;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#008000"
+											style="background: #008000;"></button>
+									<button type="button" class="btn btn-sm color_check_btn" data-value="#ffd0d0"
+											style="background: #ffd0d0;"></button>
+								</div>
+							</div>
+							<p style="margin-bottom: 0;"><i class="fas fa-palette"></i> Mor Fill Colors ...
+							</p>
+							<input title="" type="color" class="btn color_check_btn more_color" value=""/>
+						</div>
+
+						<div class="form-group row">
+
+							<div class="col-sm-1">
+								<p style="margin-bottom: 0;">Selected Color</p>
+								<input name="color" type="hidden" value="#ffffff" class="selected_color_value"/>
+								<div class="selected-color" style="background: #ffffff;"></div>
+							</div>
+						</div>
 
 					</div>
 
 
 				</div>
 				<!-- Main End -->
-				<br>
-				<p class="font-weight-bold display-5 mt-3 mr-3">Info</p>
-				<hr class="my-4">
+
 				<!-- Info Star -->
 				<div class="mt-3 mt-md-3">
 					<div class="card">
@@ -276,16 +265,35 @@
 						</div>
 						<div class="">
 							<div class="card-body">
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Սեփականատեր</label>
-									<div class="col-sm-6">
+
+								<div class="row">
+
+									<div class="col-sm-3">
+										<label
+											class=" col-form-label" style="font-size: 12px;">Սեփականատեր</label>
 										<input style="" value="" name="owner" type="text"
 											   class="form-control form-control-sm"
 											   placeholder="Սեփականատեր">
 										<input name="owner_id" type="hidden">
 									</div>
-									<div class="col-sm-4">
+
+									<div class="col-sm-3">
+										<label
+											class="col-form-label" style="font-size: 12px;">Հաշվառման
+											հասցե</label>
+										<input value="" name="regitered_address" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Հաշվառման հասցե">
+									</div>
+
+									<div class="col-sm-3">
+										<label style="font-size: 12px;"
+											   class="col-form-label">Հաշվառման համար</label>
+										<input value="" name="regitered_number" type="text"
+											   class="form-control form-control-sm mt-2"
+											   placeholder="Հաշվառման համար">
+									</div>
+									<div class="col-sm-3" style="margin-top: 35px;">
 										<div class="form-group">
 											<label for="exampleFormControlFile1"></label>
 											<input type="file"
@@ -294,26 +302,10 @@
 												   id="exampleFormControlFile1">
 										</div>
 									</div>
+
 								</div>
-								<div class="form-group row mb-0">
-									<label
-										class="col-sm-2 col-form-label" style="font-size: 12px;">Հաշվառման
-										հասցե</label>
-									<div class="col-sm-6">
-										<input value="" name="regitered_address" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման հասցե">
-									</div>
-								</div>
-								<div class="form-group row mb-0">
-									<label style="font-size: 12px;"
-										   class="col-sm-2 col-form-label">Հաշվառման համար</label>
-									<div class="col-sm-6">
-										<input value="" name="regitered_number" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-								</div>
+
+
 							</div>
 						</div>
 					</div>
@@ -669,11 +661,11 @@
 						<tr>
 							<th scope="col">Item Name *</th>
 							<th scope="col">Value *
-								<small>(KM\Days\Months) </small>
+								<small>(KM\Days\Months)</small>
 							</th>
 							<th scope="col">Avg. exploitation *</th>
 							<th scope="col">Per Days *</th>
-							<th scope="col">More Info P\N </th>
+							<th scope="col">More Info P\N</th>
 							<th scope="col">Remind days before *</th>
 							<th scope="col">Start Alarm Date *</th>
 							<th scope="col">Delete</th>
@@ -734,83 +726,92 @@
 							class="fa fa-plus"></i></button>
 					<hr class="my-4">
 					<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
-					<div class="form-group row mb-0 mt-4">
-						<label
-							class="col-sm-2 col-form-label"
-							style="font-size: 12px;">Type of meter</label>
-						<div class="col-sm-6">
-							<select name="value_1"
-									class="selectpicker form-control form-control-sm dif_meter"
-									data-size="5"
-									title="Choose..."
-							>
-								<?
-								foreach ($value as $row) :
-									if ($row['type'] == 1) :
-										?>
-										<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-									<?
-									endif;
-								endforeach;
-								?>
-							</select>
-						</div>
-					</div>
-					<div class="container mt-md-3 mt-3">
-						<div class="row">
-							<div class="form-group form-check mt-md-3 mt-3 col-sm-4">
-								<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
-									   id="exampleCheck1">
-								<label class="form-check-label" for="exampleCheck1">auto increment?</label>
-							</div>
-							<div class="col-sm-3 mt-3">
-								<input name="value1_day" type="number" class="orm-control form-control-sm"
-									   placeholder=""/>
-							</div>
-							<div class="col-sm-3 mt-3"><p><span class="dif_meter_text"></span>/day</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<h5 class="card-header">Secondary meter</h5>
-						<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
-							<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
-								   id="exampleCheck11">
-							<label class="form-check-label" for="exampleCheck11">Use of secondary
-								meter</label>
-						</div>
-						<div class="card-body">
-							<div class="form-group row mb-0">
 
+					<div class="row">
+
+
+							<div class="col-sm-3">
 								<label
-									class="col-sm-2 col-form-label"
+									class="col-form-label"
 									style="font-size: 12px;">Type of meter</label>
-								<div class="col-sm-6">
-									<select name="value_2"
-											class="selectpicker form-control form-control-sm "
-											data-size="5"
-											title="Choose..."
-									>
+								<select name="value_1"
+										class="selectpicker form-control form-control-sm dif_meter"
+										data-size="5"
+										title="Choose..."
+								>
+									<?
+									foreach ($value as $row) :
+										if ($row['type'] == 1) :
+											?>
+											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<?
-										$convert = '';
-										foreach ($value as $row) :
-											if ($row['type'] == 1) :
-												$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
-												?>
-												<option value="<?= $row['id'] ?>">
-													<?= $row['title'] ?>
-												</option>
+										endif;
+									endforeach;
+									?>
+								</select>
 
-											<?
-											endif;
-										endforeach;
-										?>
-									</select>
-									<?= $convert ?>
+								<div class="form-group form-check mt-md-3 mt-3 mb-0">
+									<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
+										   id="exampleCheck1">
+									<label class="form-check-label" for="exampleCheck1">auto increment?</label>
+								</div>
+
+
+								<input name="value1_day" type="number" class="mt-2 form-control form-control-sm"
+									   placeholder=""/>
+								<div class=" mt-3"><p style="display: inline-block;margin-left: 15px;margin-top: -12px;"><span class="dif_meter_text"></span>/day</p>
+								</div>
+							</div>
+
+						<div class="col-sm-3">
+							<div class="card">
+								<h5 class="card-header" style="padding: 2px 0 2px 5px !important;">Secondary meter</h5>
+								<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
+									<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
+										   id="exampleCheck11">
+									<label class="form-check-label" for="exampleCheck11">Use of secondary
+										meter</label>
+								</div>
+								<div class="card-body">
+									<div class="form-group  mb-0">
+
+										<label
+											class="col-form-label"
+											style="font-size: 12px;">Type of meter</label>
+										<div>
+											<select name="value_2"
+													class="selectpicker form-control form-control-sm "
+													data-size="5"
+													title="Choose..."
+											>
+												<?
+												$convert = '';
+												foreach ($value as $row) :
+													if ($row['type'] == 1) :
+														$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
+														?>
+														<option value="<?= $row['id'] ?>">
+															<?= $row['title'] ?>
+														</option>
+
+													<?
+													endif;
+												endforeach;
+												?>
+											</select>
+											<?= $convert ?>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
+
+
+
 					</div>
+
+
+
 				</div>
 				<!-- Info End -->
 				<div class="text-right mt-4 pb-2 ">
@@ -832,7 +833,7 @@
 	$(document).on('click', '#submit', function (e) {
 
 
-		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_vehicles_ax') ?>';
+		var url = '<?=base_url($this->uri->segment(1) . '/Organization/add_vehicles_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');
@@ -880,7 +881,7 @@
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;

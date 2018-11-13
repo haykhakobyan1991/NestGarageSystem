@@ -1,5 +1,3 @@
-
-
 <!-- Structure Start -->
 <style>
 	canvas{
@@ -212,16 +210,8 @@
 		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
 	}
 
-	/*
-	 *
-	 * Document Ready Function
-	 *
-	 */
-
 	$(document).ready(function () {
 		init();
-
-
 		myDiagram.addDiagramListener("ObjectSingleClicked",
 			function (e) {
 

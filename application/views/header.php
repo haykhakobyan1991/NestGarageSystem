@@ -4,7 +4,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content=""/>
 	<meta name="keywords" content="fleet car garage fleetManagement"/>
-	<title><?=$title?></title>
+	<title><?= $title ?></title>
 	<!--// Stylesheets //-->
 	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
 	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
@@ -80,7 +80,10 @@
 	<!-- Some CSS end -->
 </head>
 <body>
-
+<?
+$controller = $this->router->fetch_class();
+$page = $this->router->fetch_method();
+?>
 
 <?
 $user_id = $this->session->user_id;
@@ -95,6 +98,17 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 <nav class="navbar navbar-light bg-light fixed-top"
 	 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
 	<a class="navbar-brand" href="#">NestGarageSystem</a>
+	<div class="ml-4">
+
+		<a class="nav_a mr-2 <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
+		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
+
+		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
+		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
+
+
+	</div>
+
 
 	<div class="ml-auto mr-5">
 		<strong><?= lang('welcome') ?></strong> / <span class="username_login"><a href="#"
@@ -117,34 +131,9 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	</a>
 </nav>
 <!-- Navbar End -->
-<?
-$controller = $this->router->fetch_class();
-$page = $this->router->fetch_method();
-?>
+
 <div class="res_cont_fl container-fluid" style="margin-top: 5rem;">
-	<!-- Nav tabs -->
-	<!-- Horizontal Tabs Start -->
-	<ul class="nav nav-tabs"
-		style="border: none !important;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;padding: 5px;">
-		<li class="nav-item">
-			<a class="nav-link <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2" href="#menu1">Menu 1</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu2">Menu 2</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link btn btn-sm btn-outline-success2" data-toggle="tab" href="#menu3">Menu 2</a>
-		</li>
-	</ul>
-	<!-- Horizontal Tabs End -->
+
 
 	<!-- Tab panes -->
 	<? if ($controller == 'Organization') { ?>
@@ -199,7 +188,7 @@ $page = $this->router->fetch_method();
 
 							<div class="">
 								<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
-								<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3">
+								<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3" style="left: 20px;z-index: 999;position: absolute;">
 									<button type="button"
 											class="btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
 										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">

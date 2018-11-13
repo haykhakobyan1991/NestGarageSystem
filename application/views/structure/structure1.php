@@ -1,4 +1,15 @@
 <!-- Structure Start -->
+<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script src="<?= base_url() ?>assets/js/table.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
+<script>
+	$(document).ready(function () {
+		for (i = 1; i < 14; i++) {
+			$('#ex_' + i + '').DataTable();
+			$('#ex_' + i + '_next').parent('ul').append('<i class="add_new_tr fa fa-plus" data-id="ex_' + i + '"></i>');
+		}
+	})
+</script>
 <style>
 	canvas {
 		background: #fff;
@@ -28,6 +39,12 @@
 	.more {
 		display: none;
 	}
+
+	.add_new_tr {
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid #dee2e6;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2">
@@ -39,35 +56,525 @@
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
 
+<div class="row">
+	<div class="col-sm-6">
+		<div class="card">
+			<div class="card-header">Car</div>
+			<div class="card-body">
+				<div class="row mt-2">
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>unit:</span> <span class="float-right">1</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>Make:</span> <span class="float-right">BMW</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Color:</span> <span
+								style="width: 25px;height: 25px;background: #fff;border: 1px solid #efefef;"
+								class="float-right"></span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Engine:</span> <span class="float-right">ER45543</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>Model:</span> <span class="float-right">M-3</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Year:</span> <span class="float-right">2015</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>VIN:</span> <span class="float-right">123123123QWE900938</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>Type of Vehicle:</span> <span class="float-right">Berline</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>Department:</span> <span class="float-right">Sales</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
+	<div class="col-sm-6">
+		<div class="card">
+			<div class="card-header">Driver</div>
+			<div class="card-body">
+				<div class="row mt-2">
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>unit:</span> <span class="float-right">1</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>Make:</span> <span class="float-right">BMW</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Color:</span> <span
+								style="width: 25px;height: 25px;background: #fff;border: 1px solid #efefef;"
+								class="float-right"></span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Engine:</span> <span class="float-right">ER45543</span>
+						</div>
+					</div>
+				</div>
 
-<!--<div class="row mt-3">-->
-<!--	<div class="container-fluid">-->
-<!--		<table class="table table-borderless">-->
-<!--			<thead class="d-none">-->
-<!---->
-<!--			<tr>-->
-<!--				<th class="table-secondary" scope="col" rowspan="2">Ն։</th>-->
-<!--				<th class="table-secondary" scope="col" rowspan="2">երբ</th>-->
-<!--				<th class="table-secondary text-center" scope="col" colspan="4">Տրանսպորտային միջոց</th>-->
-<!--				<th class="table-secondary" scope="col" rowspan="2">ծաղսի տեսակ</th>-->
-<!--				<th class="table-secondary" scope="col" rowspan="2">գումար</th>-->
-<!--				<th class="table-secondary" scope="col" rowspan="2"><i class="fas fa-info-circle"></i></th>-->
-<!--			</tr>-->
-<!---->
-<!--			<tr>-->
-<!--				<th class="table-primary">մոդել</th>-->
-<!--				<th class="table-primary">տեսակ</th>-->
-<!--				<th class="table-primary">պետհամարանիշ</th>-->
-<!--				<th class="table-primary">վարորդ</th>-->
-<!--			</tr>-->
-<!---->
-<!--			</thead>-->
-<!--			<tbody class="cars_table"></tbody>-->
-<!--		</table>-->
-<!--	</div>-->
-<!--</div>-->
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small" role="alert">
+							<span>Model:</span> <span class="float-right">M-3</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="alert alert-secondary small">
+							<span>Year:</span> <span class="float-right">2015</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>VIN:</span> <span class="float-right">123123123QWE900938</span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+
+
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>Type of Vehicle:</span> <span class="float-right">Berline</span>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="alert alert-secondary small">
+							<span>Department:</span> <span class="float-right">Sales</span>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<nav>
+	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
+		   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+
+		<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
+		   aria-selected="false">ՎԱՌԵԼԻՔ</a>
+
+		<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3"
+		   aria-selected="false">ՏՈՒԳԱՆՔ</a>
+
+		<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4"
+		   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+
+		<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
+		   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+
+		<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
+		   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+
+		<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
+		   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+
+		<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
+		   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+
+		<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
+		   aria-selected="false">ԱՐԳԵԼԱԿ</a>
+
+		<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab" aria-controls="nav-10"
+		   aria-selected="false">ՔՍՈՒՔ</a>
+
+		<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab" aria-controls="nav-11"
+		   aria-selected="false">ՖԻԼՏՐ</a>
+
+		<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-12"
+		   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+
+		<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-13"
+		   aria-selected="false">ԱՀԱԶԱՆԳ</a>
+	</div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_1" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ում Կողմից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_1"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_2" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ում Կողմից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ Լիտր</th>
+						<th style="font-size: 12px !important;font-weight:500;">1 լիտր-արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_2"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_3" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեասակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_3"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_4" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ապահովագրական Ընկերություն</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Եզրակացության Համար</th>
+						<th style="font-size: 12px !important;font-weight:500;">Փոխարինման Ենթակա Դետալների Անվանում
+						</th>
+						<th style="font-size: 12px !important;font-weight:500;">Հատուցվող գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_4"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_5" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ապահովագրական Ընկերություն</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_5">
+
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_6" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_6"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_7" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգման ենթակա աշխ․ նյութեր</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_7"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_8" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ Ամառ Ձմեռ Բոլոր</th>
+						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_8"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_9" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ Դիսկ Բառաբան</th>
+						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_9"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_10" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ լիտր Արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_10"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_11" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_11"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_12" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
+						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
+						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
+						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
+						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_12"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			<div class="container-fluid">
+				<table id="ex_13" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">ID</th>
+						<th style="font-size: 12px !important;font-weight:500;">Service</th>
+						<th style="font-size: 12px !important;font-weight:500;">Service frequency</th>
+						<th style="font-size: 12px !important;font-weight:500;">Last performed</th>
+						<th style="font-size: 12px !important;font-weight:500;">Last Performed at (meter)</th>
+						<th style="font-size: 12px !important;font-weight:500;">Next services</th>
+						<th style="font-size: 12px !important;font-weight:500;">To go</th>
+						<th style="font-size: 12px !important;font-weight:500;">Create reminder</th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+					</tr>
+					</thead>
+
+					<tbody class="ex_13"></tbody>
+
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 
 <script>
 	function init() {
@@ -255,7 +762,7 @@
 					$(go.Panel, "Table",
 						{
 							maxSize: new go.Size(100, 999),
-							margin: new go.Margin(2,2, 0, 1),
+							margin: new go.Margin(2, 2, 0, 1),
 							defaultAlignment: go.Spot.Left
 						},
 						$(go.RowColumnDefinition, {column: 2, width: 4}),
@@ -424,48 +931,6 @@
 						}
 					}
 				});
-				// console.log(new_arr);
-				// var new_row = '';
-				// var str = new_arr[new_arr.length - 1].key;
-				// console.log('str -->' + str);
-				// var re = 'f';
-				// var found = str.match(re);
-				// if (found == 'f') {
-				// 	$('thead').removeClass('d-none');
-				// 	// $.each(new_arr, function (key, value) {
-				// 	// 	new_row += '<tr>\n' +
-				// 	// 					'<td scope="row">1<i class="fa fa-plus expand_tr mt-1" data-value="' + value['key'] + '"></i></td>\n' +
-				// 	// 					'<td>18.12.2018</td>\n' +
-				// 	// 					'<td>' + value['name'] + '</td>\n' +
-				// 	// 					'<td>Հեչբեկ</td>\n' +
-				// 	// 					'<td>35sx674</td>\n' +
-				// 	// 					'<td>Արամ</td>\n' +
-				// 	// 					'<td></td>\n' +
-				// 	// 					'<td>150000</td>\n' +
-				// 	// 					'<td>\n' +
-				// 	// 					'<a href="#">\n' +
-				// 	// 					'<i style="color:rgb(255,122,89);" class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="մանրամասն"></i>\n' +
-				// 	// 					'</a>\n' +
-				// 	// 					'</td>\n' +
-				// 	// 				'</tr>\n' +
-				// 	//
-				// 	// 		'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-				// 	// 			'<td class="pl-4" scope="row">1․1</td>\n' +
-				// 	// 			'<td colspan="5"></td>\n' +
-				// 	// 			'<td style="color: #333;">Յուղ</td>\n' +
-				// 	// 			'<td class="pr-4" >125000</td>\n' +
-				// 	// 		'</tr>\n' +
-				// 	//
-				// 	// 		'<tr class="more table-dark" data-value="' + value['key'] + '">\n' +
-				// 	// 			'<td class="pl-4" scope="row">1.2</td>\n' +
-				// 	// 			'<td colspan="5"></td>\n' +
-				// 	// 			'<td style="color: #333;">Անվադող</td>\n' +
-				// 	// 			'<td class="pr-4" >25000</td>\n' +
-				// 	// 		'</tr>'
-				// 	// });
-				// 	$('.cars_table').html(new_row);
-				// }
-				// $('[data-toggle="tooltip"]').tooltip();
 			});
 	});
 
@@ -494,4 +959,208 @@
 		var btn_value = $(this).data('value');
 		$('.more[data-value=' + btn_value + ']').toggle('slow');
 	});
+	var ii = 1;
+	$(document).on('click', '.add_new_tr', function () {
+		var dt_id = $(this).data('id');
+		console.log('dt_id -->' + dt_id);
+
+		if (dt_id == 'ex_1') {
+			$('.ex_1 .odd').remove();
+			$('.ex_1').append('<tr role="row">\n' +
+				'\t\t\t\t\t\t\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\t\t\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\t\t</tr>');
+		}
+		if (dt_id == 'ex_2') {
+			$('.ex_2 .odd').remove();
+			$('.ex_2').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_3') {
+			$('.ex_3 .odd').remove();
+			$('.ex_3').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_4') {
+			$('.ex_4 .odd').remove();
+			$('.ex_4').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_5') {
+			$('.ex_5 .odd').remove();
+			$('.ex_5').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_6') {
+			$('.ex_6 .odd').remove();
+			$('.ex_6').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_7') {
+			$('.ex_7 .odd').remove();
+			$('.ex_7').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_8') {
+			$('.ex_8 .odd').remove();
+			$('.ex_8').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_9') {
+			$('.ex_9 .odd').remove();
+			$('.ex_9').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_10') {
+			$('.ex_10 .odd').remove();
+			$('.ex_10').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_11') {
+			$('.ex_11 .odd').remove();
+			$('.ex_11').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_12') {
+			$('.ex_12 .odd').remove();
+			$('.ex_12').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+		if (dt_id == 'ex_13') {
+			$('.ex_13 .odd').remove();
+			$('.ex_13').append('<tr role="row">\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+		}
+
+		ii++;
+
+	})
+
+
 </script>

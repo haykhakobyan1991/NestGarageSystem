@@ -1,5 +1,5 @@
 <style>
-	label {font-size: 13px !important;}
+	label {font-size: 11px !important;}
 </style>
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;"
 	 aria-labelledby="list-company-list">
@@ -174,6 +174,34 @@
 							</div>
 						</div>
 
+					</div>
+
+					<div class="row mt-3">
+						<div class="form-group col-sm-2">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">GPS Exist?</label>
+							<div class="col-sm-12">
+								<select name="fuel"
+										class="form-control form-control-sm selectpicker"
+										data-size="5" id="fleet_type" data-live-search="true"
+										title="GPS Exist?"
+								>
+
+										<option value="yes">yes</option>
+										<option value="no">no</option>
+
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group col-sm-2">
+							<label
+								class="pl-3 col-form-label" style="font-size: 15px;">GPS Tracker IMEI</label>
+							<div class="col-sm-12">
+								<input value="" name="odometer" type="text" class="form-control form-control-sm"
+									   placeholder="GPS Tracker IMEI">
+							</div>
+						</div>
 					</div>
 
 

@@ -39,53 +39,8 @@
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 </div>
 
-<div class="row mt-3">
-	<div class="container-fluid">
-		<ul class="nav justify-content-center navbar navbar-light" style="background-color: #d6d8db;">
-			<li class="nav-item">
-				<a class="nav-link active" href="#">ՏԵԽ ԶՆՆՈՒՄ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՎԱՌԵԼԻՔ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՏՈՒԳԱՆՔ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՊԱՏԱՀԱՐՆԵՐ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ԱՆՎԱԴՈՂ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ԱՐԳԵԼԱԿ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՔՍՈՒՔ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՖԻԼՏՐ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">ՄԱՐՏԿՈՑ</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Ահազանգ</a>
-			</li>
-		</ul>
-	</div>
-</div>
 
-<hr class="my-4">
+
 
 <!--<div class="row mt-3">-->
 <!--	<div class="container-fluid">-->

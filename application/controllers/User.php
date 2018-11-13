@@ -9,24 +9,25 @@ class User extends CI_Controller {
     /**
      * User constructor.
      */
-    public function __construct() {
+	public function __construct() {
 
-        parent::__construct();
+		parent::__construct();
 
-        // load the library
-        $this->load->library('layout');
+		// load the library
+		$this->load->library('layout');
 
-        // load the helper
-        $this->load->helper('language');
+		// load the helper
+		$this->load->helper('language');
 
+		$lng = $this->load->lng();
 
-		$language = $this->load->get_language();
+		$language = $this->load->get_language($lng);
 
 		$this->config->set_item('language', $language);
 
-        $this->load->load_lang('translate');
+		$this->load->load_lang('translate', $lng);
 
-    }
+	}
 
 
     /**
@@ -154,11 +155,16 @@ class User extends CI_Controller {
 	public function index() {
 
         $this->load->library('session');
-        $this->load->helper('url');
-        $this->load->helper('form');
+		$this->load->helper(array('form', 'url', 'captcha'));
         $data[] = array();
 
         $lng = $this->load->lng();
+
+		//captcha
+		$captcha = $this->_generateCaptcha();
+		$data['captcha'] = $captcha;
+		$this->session->set_userdata('captchaWord', $captcha['word']);
+
 
 
         $sql_country = "
@@ -256,6 +262,7 @@ class User extends CI_Controller {
                 'up_country' => form_error('up_country'),
                 'up_email' => form_error('up_email')
             );
+			asort($validation_errors); //todo
             $messages['error']['elements'][] = $validation_errors;
         }
 
@@ -380,8 +387,7 @@ class User extends CI_Controller {
 		$n = 0;
 		$messages['error'] = array();
 		$this->load->library('session');
-		$this->load->helper('url');
-		$this->load->helper('form');
+		$this->load->helper(array('form', 'url', 'captcha'));
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$password = $this->hash($password);
@@ -394,15 +400,28 @@ class User extends CI_Controller {
 
 		$this->form_validation->set_rules('email', 'lang:email', 'required_single');
 		$this->form_validation->set_rules('password', 'lang:password', 'required_single');
+		$this->form_validation->set_rules('captcha', 'Captcha', 'required_single');
+
+		$word = $this->session->captchaWord;
+		$code = $this->input->post('captcha');
+
+		if (strtolower($code) != strtolower($word)) {
+			$n = 1;
+			$validation_errors = array('captcha' =>  'Captcha is incorrect');
+			$messages['error']['elements'][] = $validation_errors;
+
+		}
+
+
 
 
 		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 			$validation_errors = array(
-
 				'password' => form_error('password'),
-				'email' => form_error('email')
+				'email' => form_error('email'),
+				'captcha' => form_error('captcha')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -412,6 +431,9 @@ class User extends CI_Controller {
 			echo json_encode($messages);
 			return false;
 		}
+
+
+
 
 
 		$sql = "SELECT 
@@ -527,6 +549,264 @@ class User extends CI_Controller {
 		return true;
 
 	}
+
+
+
+	public function login_google_ax() {
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$this->access_denied();
+			return false;
+		}
+
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		$email = $this->input->post('email');
+		$google_photo = $this->input->post('google_photo');
+		$google_id = $this->input->post('google_id');
+		$username = $this->generate_username($email);
+		$messages['success'] = 1;
+
+		$user_id = '';
+
+
+
+
+
+
+		$sql_email = "
+            SELECT `id` FROM `user` WHERE `email` = '".$email."'
+        ";
+
+		$query = $this->db->query($sql_email);
+
+
+		$num_rows = $query->num_rows();
+
+		if($num_rows > '0') {
+
+			$row = $query->row_array();
+			$user_id = $row['id'];
+
+			$sql = "
+                UPDATE `user`
+					SET 
+					 `photo` = ".$this->load->db_value($google_photo).",
+					 `google_id` = ".$this->load->db_value($google_id)."
+				WHERE  `email` = ".$this->load->db_value($email)."
+		    ";
+
+
+			$result = $this->db->query($sql);
+
+			if(!$result) {
+				$messages['success'] = 0;
+				$messages['error'] = 'Error';
+				echo json_encode($messages);
+				return false;
+			}
+
+		} else {
+
+			$sql = "INSERT INTO `user`
+					SET 
+					 `role_id` = '1',
+					 `first_name` = ".$this->load->db_value($first_name).",
+					 `last_name` = ".$this->load->db_value($last_name).",
+					 `email` = ".$this->load->db_value($email).",
+					 `photo` = ".$this->load->db_value($google_photo).",
+					 `google_id` = ".$this->load->db_value($google_id).",
+					 `username` = ".$this->load->db_value($username).",
+					 `status` = '1'";
+
+			$result = $this->db->query($sql);
+
+			$user_id = $this->db->insert_id();
+
+			if(!$result) {
+				$messages['success'] = 0;
+				$messages['error'] = 'Error';
+				echo json_encode($messages);
+				return false;
+			}
+		}
+
+
+
+		$session = array(
+			'google_id'  => $google_id,
+			'google_photo'  => $google_photo,
+			'username' => $username,
+			'user_id' => $user_id
+		);
+
+
+		$this->session->set_userdata($session);
+
+
+		echo json_encode($messages);
+		return true;
+	}
+
+	public function login_fb_ax() {
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$this->access_denied();
+			return false;
+		}
+
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$first_name = $this->input->post('first_name');
+		$last_name = $this->input->post('last_name');
+		$email = $this->input->post('email');
+		$fb_photo = $this->input->post('fb_photo');
+		$fb_id = $this->input->post('fb_id');
+		$username = $this->generate_username($email);
+		$messages['success'] = 1;
+
+		$user_id = '';
+
+
+
+
+
+
+		$sql_email = "
+            SELECT `id` FROM `user` WHERE `email` = '".$email."'
+        ";
+
+		$query = $this->db->query($sql_email);
+
+
+		$num_rows = $query->num_rows();
+
+		if($num_rows > '0') {
+
+			$row = $query->row_array();
+			$user_id = $row['id'];
+
+			$sql = "
+                UPDATE `user`
+					SET 
+					 `photo` = ".$this->load->db_value($fb_photo).",
+					 `fb_id` = ".$this->load->db_value($fb_id)."
+				WHERE  `email` = ".$this->load->db_value($email)."
+		    ";
+
+
+			$result = $this->db->query($sql);
+
+			if(!$result) {
+				$messages['success'] = 0;
+				$messages['error'] = 'Error';
+				echo json_encode($messages);
+				return false;
+			}
+
+		} else {
+
+			$sql = "INSERT INTO `user`
+					SET 
+					 `role_id` = '1',
+					 `first_name` = ".$this->load->db_value($first_name).",
+					 `last_name` = ".$this->load->db_value($last_name).",
+					 `email` = ".$this->load->db_value($email).",
+					 `photo` = ".$this->load->db_value($fb_photo).",
+					 `fb_id` = ".$this->load->db_value($fb_id).",
+					 `username` = ".$this->load->db_value($username).",
+					 `status` = '1'";
+
+			$result = $this->db->query($sql);
+
+			$user_id = $this->db->insert_id();
+
+			if(!$result) {
+				$messages['success'] = 0;
+				$messages['error'] = 'Error';
+				echo json_encode($messages);
+				return false;
+			}
+		}
+
+
+
+		$session = array(
+			'fb_id'  => $fb_id,
+			'fb_photo'  => $fb_photo,
+			'username' => $username,
+			'user_id' => $user_id
+		);
+
+
+		$this->session->set_userdata($session);
+
+
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+	public function _generateCaptcha() {
+		$values = array(
+			'img_path' => set_realpath('assets/img/captcha/'),
+			'img_url' => base_url('assets/img/captcha/'),
+			'font_path' => set_realpath('system/fonts/GHEAGrpalatReg.ttf'),
+			'img_width' => '150',
+			'img_height' => 50,
+			'expiration' => 7200,
+			'font_size'	=> 16,
+			'captcha_case_sensitive' => true,
+			'colors'	=> array(
+				'background'	=> array(255,255,255),
+				'border'	=> array(206,212,218),
+				'text'		=> array(40,167,69),
+				'grid'		=> array(255,193,7)
+			)
+		);
+		/* Generate the captcha */
+		return create_captcha($values);
+	}
+
+
+	public function refresh() {
+
+		$this->load->helper('captcha');
+		// Captcha configuration
+		$values = array(
+			'img_path' => set_realpath('assets/img/captcha/'),
+			'img_url' => base_url('assets/img/captcha/'),
+			'font_path' => set_realpath('system/fonts/GHEAGrpalatReg.ttf'),
+			'img_width' => '150',
+			'img_height' => 50,
+			'expiration' => 3600,
+			'font_size'	=> 16,
+			'captcha_case_sensitive' => true,
+			'colors'	=> array(
+				'background'	=> array(255,255,255),
+				'border'	=> array(206,212,218),
+				'text'		=> array(40,167,69),
+				'grid'		=> array(255,193,7)
+			)
+		);
+		$captcha = create_captcha($values);
+
+		// Unset previous captcha and set new captcha word
+		$this->session->unset_userdata('captchaWord');
+		$this->session->set_userdata('captchaWord', $captcha['word']);
+
+		// Display captcha image
+		echo $captcha['image'];
+	}
+
+
+
+
+
+
 
 
 

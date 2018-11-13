@@ -473,7 +473,14 @@
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
 		console.log(myDiagram.model.linkDataArray);
+		var url = '<?=base_url('Structure/change_from_to_ax')?>';
+		var data = myDiagram.model.linkDataArray;
+
+		$.post(url, {data: data}).done(function (data) {
+			console.log("Data Loaded: " + data);
+		});
 	}
+
 
 	$(document).on('click', '.expand_tr', function () {
 		if ($(this).hasClass('fa-plus')) {

@@ -177,7 +177,9 @@ class Structure extends MX_Controller {
 
 		$result = $this->db->query($sql);
 
+
 		$structure_array = $result->result_array();
+
 
 		$structure_arr = array();
 		$cmp_id = '';
@@ -329,13 +331,67 @@ class Structure extends MX_Controller {
 			endif;
 
 		endforeach;
-		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
 
+		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
 
 
 		$data['structure'] = json_encode($structure_unique);
 
 		$this->layout->view('structure/structure2', $data);
+
+	}
+
+
+	public function change_from_to_ax() {
+
+
+		$data = $this->input->post('data');
+
+
+		foreach ($data as &$value) :
+
+			// Company
+			if(preg_match('/^(c)/', $value['from'])) {
+				$value['company']['from'] = preg_replace('/^(c)/', '', $value['from']);
+			}
+
+			// Head staff
+			if(preg_match('/^(h)/', $value['from'])) {
+				$value['head_staff']['from'] = preg_replace('/^(h)/', '', $value['from']);
+			}
+			if(preg_match('/^(h)/', $value['to'])) {
+				$value['head_staff']['to'] = preg_replace('/^(h)/', '', $value['to']);
+			}
+
+			// Driver
+			if(preg_match('/^(d)/', $value['from'])) {
+				$value['driver']['from'] = preg_replace('/^(d)/', '', $value['from']);
+			}
+
+			if(preg_match('/^(d)/', $value['to'])) {
+				$value['driver']['to'] = preg_replace('/^(d)/', '', $value['to']);
+			}
+
+			// Fleet
+			if(preg_match('/^(f)/', $value['from'])) {
+				$value['fleet']['from'] = preg_replace('/^(f)/', '', $value['from']);
+			}
+
+			if(preg_match('/^(f)/', $value['to'])) {
+				$value['fleet']['to'] = preg_replace('/^(f)/', '', $value['to']);
+			}
+
+			//unset old values
+			unset($value['from']);
+			unset($value['to']);
+			unset($value['__gohashid']);
+
+		endforeach;
+
+
+		$this->pre($data);
+
+
 
 	}
 

@@ -29,6 +29,8 @@ $passive = 0;
 $admin_name = '';
 $role_name = '';
 $photo = '';
+$fb_id = '';
+$google_id = '';
 $folder = $this->session->folder;
 foreach ($user as $row) :
 
@@ -44,9 +46,12 @@ foreach ($user as $row) :
 		$admin_name = $row['user_name'];
 		$role_name = $row['role'];
 		$photo = $row['photo'];
+		$google_id = $row['google_id'];
+		$fb_id = $row['fb_id'];
 	}
 
 endforeach;
+
 ?>
 
 <!-- USERS START -->
@@ -61,7 +66,7 @@ endforeach;
 						<div class="col-sm-6">
 							<img style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;width: 50px"
 								 class="float-left mr-2"
-								 src="<?= ($photo != '' ? base_url('uploads/'.$folder.'/user/photo/' . $photo) : base_url('assets/img/user_img.jpg')) ?>"
+								 src="<?= ($photo != '' && $google_id == '' && $fb_id == '' ? base_url('uploads/'.$folder.'/user/photo/' . $photo) : ($photo != '' && $google_id != '' || $fb_id != '' ? $photo :base_url('assets/img/user_img.jpg')) ) ?>"
 							<p style="font-size: 18px;font-weight: 500;" class="mt-1">
 								<span style="display: inline-block;margin-top: 12px;" class="users_name"><?=$admin_name?></span>
 								<span class="ml-2 mr-2">|</span>
@@ -296,7 +301,7 @@ endforeach;
 											<img
 												style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 												class="mr-3"
-												src="<?= ($row['photo'] != '' ? base_url('uploads/'.$folder.'/user/photo/' . $row['photo']) : base_url('assets/img/user_img.jpg')) ?>"
+												src="<?= (($row['photo'] != '' && $row['google_id'] == '' && $row['fb_id'] == '') ? base_url('uploads/'.$folder.'/user/photo/' . $row['photo']) : ($row['photo'] != '' && $row['google_id'] != '' || $row['fb_id'] != '' ? $row['photo'] :base_url('assets/img/user_img.jpg')) ) ?>"
 												alt="Generic placeholder image">
 											<div class="media-body">
 												<?= $row['user_name'] ?>

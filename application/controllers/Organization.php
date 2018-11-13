@@ -3304,6 +3304,8 @@ class Organization extends MX_Controller {
 			  `user`.`country_code`,
 			  `user`.`phone_number`,
 			  `user`.`username`,
+			  `user`.`google_id`,
+			  `user`.`fb_id`,
 			  DATE_FORMAT(`user`.`creation_date`, '%d-%m-%Y') AS `creation_date`,
 			  DATE_FORMAT(`user`.`last_activity`, '%d-%m-%Y/%H:%i') AS `last_activity`,
 			  DATEDIFF(NOW(), `user`.`last_activity`) AS `activity`,

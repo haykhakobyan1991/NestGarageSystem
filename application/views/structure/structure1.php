@@ -1,25 +1,70 @@
+<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script src="<?= base_url() ?>assets/js/table.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <!-- Structure Start -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
+<script>
+	$(document).ready(function () {
+		for (i = 1; i < 14; i++) {
+			$('#ex_' + i + '').DataTable();
+			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" data-id="ex_' + i + '"> </i>');
+			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right">Save</button>');
+		}
+	})
+</script>
 <style>
-	canvas {background: #fff;}
-	th, td {vertical-align: middle !important;text-align: center !important;}
-	table td {padding: 5px !important}
-	th {border: 1px solid #333 !important;}
-	i.fa.fa-plus, i.fa.fa-minus {display: inline-block;float: right;vertical-align: middle;cursor: pointer;font-size: 12px;}
-	.more {display: none;}
-	.add_new_tr {display: inline-block;padding: 10px;border: 1px solid #dee2e6;}
-	text.highcharts-credits {display: none;}
-	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {display: none;}
+	canvas {
+		background: #fff;
+	}
+
+	th, td {
+		vertical-align: middle !important;
+		text-align: center !important;
+	}
+
+	table td {
+		padding: 5px !important
+	}
+
+	th {
+		border: 1px solid #333 !important;
+	}
+
+	i.fa.fa-plus, i.fa.fa-minus {
+		display: inline-block;
+		float: right;
+		vertical-align: middle;
+		cursor: pointer;
+		font-size: 12px;
+	}
+
+	.more {
+		display: none;
+	}
+
+	.add_new_tr {
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid #dee2e6;
+	}
+
+	text.highcharts-credits {
+		display: none;
+	}
+
+	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
+		display: none;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
 	<div id="sample">
 		<div id="myDiagramDiv" style="height:300px"></div>
 	</div>
-	<textarea style="display: none; width: 100%;" id="mySavedModel"></textarea>
+	<textarea style="display: none; width: 100%;" id="mySavedModel" title=""> </textarea>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 	<nav class="selectted_information float-left d-none">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -37,31 +82,53 @@
 		<div class="container-fluid bg-secondary">
 			<div class="row">
 				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">unit: <span class="text-white ml-2">1</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Make: <span class="text-white ml-2">BMW</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Color: <span class="ml-2 text-white" style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"></span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Engine: <span class="text-white ml-2">ER45543</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Model: <span class="text-white ml-2">M-3</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Year: <span class="text-white ml-2">2015</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">VIN: <span class="text-white ml-2">123123123QWE900938</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Type of Vehicle: <span class="text-white ml-2">Berline</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">TDepartment: <span class="text-white ml-2">Sales</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">unit: <span
+							class="text-white ml-2">1</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Make: <span
+							class="text-white ml-2">BMW</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Color: <span
+							class="ml-2 text-white"
+							style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"> </span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Engine: <span
+							class="text-white ml-2">ER45543</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Model: <span
+							class="text-white ml-2">M-3</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Year: <span
+							class="text-white ml-2">2015</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">VIN: <span
+							class="text-white ml-2">123123123QWE900938</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Type of Vehicle: <span
+							class="text-white ml-2">Berline</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">TDepartment: <span
+							class="text-white ml-2">Sales</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Կցված: <span class="text-white ml-2">Անուն Ազգանուն</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման համարանիշ: <span class="text-white ml-2">HB32454</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վառելիք։ <span class="text-white ml-2">Բենզին</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Միջին ծաղսը 100 կմ․ ։<span class="text-white ml-2">8․5</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Օրեկան․ ։<span class="text-white ml-2">120 կմ․</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վազք։<span class="text-white ml-2">87000</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հոռոգռաֆ։<span class="text-white ml-2">սդֆսֆսֆ</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Exsist?։<span class="text-white ml-2">Այո</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Tracker IMEI։<span class="text-white ml-2">45787585455</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Կցված: <span
+							class="text-white ml-2">Անուն Ազգանուն</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման համարանիշ: <span
+							class="text-white ml-2">HB32454</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վառելիք։ <span
+							class="text-white ml-2">Բենզին</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Միջին ծաղսը 100 կմ․ ։<span
+							class="text-white ml-2">8․5</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Օրեկան․ ։<span
+							class="text-white ml-2">120 կմ․</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վազք։<span
+							class="text-white ml-2">87000</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հոռոգռաֆ։<span
+							class="text-white ml-2">սդֆսֆսֆ</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Exsist?։<span
+							class="text-white ml-2">Այո</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Tracker IMEI։<span
+							class="text-white ml-2">45787585455</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման Հասցե։<span class="text-white ml-2">Հասցե 14 </span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ապահովագրություն: <span class="text-white ml-2">Կասկո</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ուժի մեջ է: <span class="text-white ml-2">22․12․2018</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման Հասցե։<span
+							class="text-white ml-2">Հասցե 14 </span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ապահովագրություն: <span
+							class="text-white ml-2">Կասկո</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ուժի մեջ է: <span
+							class="text-white ml-2">22․12․2018</span></p>
 				</div>
 				<div class="p-2 w-auto ml-2">
 					<div id="container" style="width:100%;"></div>
@@ -76,19 +143,31 @@
 		<div class="container-fluid bg-secondary">
 			<div class="row">
 				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">First name: <span class="text-white ml-2">name</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Last Name: <span class="text-white ml-2">last name</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Contact Number 1: <span class="text-white ml-2">78785165</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Contact Number 2: <span class="text-white ml-2">4588541788</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Email: <span class="text-white ml-2">example@ex.com</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Leave Country: <span class="text-white ml-2">Armenia</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Address: <span class="text-white ml-2">address 45/12</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Post Code: <span class="text-white ml-2">0033</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Department: <span class="text-white ml-2">sales</span></p>
+					<p class="text-white-50 small text-white"
+					   style="display: block;margin-bottom: 2px;">First name: <span class="text-white ml-2">name</span></p>
+					<p class="text-white-50 small text-white"
+					   style="display: block;margin-bottom: 2px;">Last Name: <span
+							class="text-white ml-2">last name</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Contact Number 1: <span
+							class="text-white ml-2">78785165</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Contact Number 2: <span
+							class="text-white ml-2">4588541788</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Email: <span
+							class="text-white ml-2">example@ex.com</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Leave Country: <span
+							class="text-white ml-2">Armenia</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Address: <span
+							class="text-white ml-2">address 45/12</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Post Code: <span
+							class="text-white ml-2">0033</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Department: <span
+							class="text-white ml-2">sales</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Position: <span class="text-white ml-2">Driver</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Nest Card ID: <span class="text-white ml-2">4568741gt</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Position: <span
+							class="text-white ml-2">Driver</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Nest Card ID: <span
+							class="text-white ml-2">4568741gt</span></p>
 				</div>
 			</div>
 		</div>
@@ -96,19 +175,32 @@
 </div>
 <nav class="mt-2">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab" aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
-		<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2" aria-selected="false">ՎԱՌԵԼԻՔ</a>
-		<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3" aria-selected="false">ՏՈՒԳԱՆՔ</a>
-		<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4" aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
-		<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5" aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
-		<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6" aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
-		<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7" aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
-		<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8" aria-selected="false">ԱՆՎԱԴՈՂ</a>
-		<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9" aria-selected="false">ԱՐԳԵԼԱԿ</a>
-		<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab" aria-controls="nav-10" aria-selected="false">ՔՍՈՒՔ</a>
-		<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab" aria-controls="nav-11" aria-selected="false">ՖԻԼՏՐ</a>
-		<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-12" aria-selected="false">ՄԱՐՏԿՈՑ</a>
-		<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-13" aria-selected="false">ԱՀԱԶԱՆԳ</a>
+		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
+		   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+		<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
+		   aria-selected="false">ՎԱՌԵԼԻՔ</a>
+		<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3"
+		   aria-selected="false">ՏՈՒԳԱՆՔ</a>
+		<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4"
+		   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+		<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
+		   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+		<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
+		   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+		<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
+		   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+		<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
+		   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+		<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
+		   aria-selected="false">ԱՐԳԵԼԱԿ</a>
+		<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab" aria-controls="nav-10"
+		   aria-selected="false">ՔՍՈՒՔ</a>
+		<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab" aria-controls="nav-11"
+		   aria-selected="false">ՖԻԼՏՐ</a>
+		<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-12"
+		   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+		<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-13"
+		   aria-selected="false">ԱՀԱԶԱՆԳ</a>
 	</div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
@@ -124,13 +216,34 @@
 						<th style="font-size: 12px !important;font-weight:500;">Ում Կողմից</th>
 						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
 						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_1">
-					<input id="searching" class="form-control-sm form-control col-sm-2"
-						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-					<i class="add_new_tr fa fa-plus" data-id="ex_1"></i>
+
+					<tr>
+							<td>1</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					</tr>					<tr>
+							<td>2</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					</tr>					<tr>
+							<td>3</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+					</tr>
+
 					</tbody>
 				</table>
 			</div>
@@ -150,12 +263,11 @@
 						<th style="font-size: 12px !important;font-weight:500;">Քանակ Լիտր</th>
 						<th style="font-size: 12px !important;font-weight:500;">1 լիտր-արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_2">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_2"></i>
+
 					</tbody>
 				</table>
 			</div>
@@ -163,7 +275,8 @@
 	</div>
 
 	<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
-		<div class="row col-sm-12 col-md-12" style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 			<div class="container-fluid">
 				<table id="ex_3" class="table table-striped table-borderless" style="width:100%">
 					<thead style="background: #fff;color: #545b62;">
@@ -174,13 +287,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
 						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
 						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_3">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_3"></i>
+
+
 					</tbody>
 
 				</table>
@@ -202,13 +315,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Եզրակացության Համար</th>
 						<th style="font-size: 12px !important;font-weight:500;">Փոխարինման Ենթակա Դետալների Անվանում</th>
 						<th style="font-size: 12px !important;font-weight:500;">Հատուցվող գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_4">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_4"></i>
+
+
 					</tbody>
 
 				</table>
@@ -229,13 +342,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
 						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
 						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_5">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_5"></i>
+
+
 					</tbody>
 
 				</table>
@@ -260,13 +373,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
 						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_6">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_6"></i>
+
+  
 					</tbody>
 
 				</table>
@@ -286,13 +399,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգող</th>
 						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգման ենթակա աշխ․ նյութեր</th>
 						<th style="font-size: 12px !important;font-weight:500;">Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_7">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_7"></i>
+
+
 					</tbody>
 
 				</table>
@@ -318,13 +431,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
 						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_8">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_8"></i>
+
+
 					</tbody>
 
 				</table>
@@ -350,13 +463,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
 						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_9">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_9"></i>
+
+
 					</tbody>
 
 				</table>
@@ -381,13 +494,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Քանակ լիտր Արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_10">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_10"></i>
+
+
 					</tbody>
 
 				</table>
@@ -412,13 +525,13 @@
 						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
 						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i> </th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_11">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_11"></i>
+
+
 					</tbody>
 
 				</table>
@@ -442,13 +555,12 @@
 						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
 						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
 						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_12">
-						<input id="searching" class="form-control-sm form-control col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_12"></i>
+
 					</tbody>
 
 				</table>
@@ -471,13 +583,12 @@
 						<th style="font-size: 12px !important;font-weight:500;">Next services</th>
 						<th style="font-size: 12px !important;font-weight:500;">To go</th>
 						<th style="font-size: 12px !important;font-weight:500;">Create reminder</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"></i></th>
+						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 
 					<tbody class="ex_13">
-						<input id="searching" class="form-control form-control-sm col-sm-2" style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
-						<i class="add_new_tr fa fa-plus" data-id="ex_13"></i>
+
 					</tbody>
 
 				</table>
@@ -875,202 +986,208 @@
 		var dt_id = $(this).data('id');
 
 		if (dt_id == 'ex_1') {
-			$('.ex_1 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_1').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_2') {
-			$('.ex_2 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_2').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_3') {
-			$('.ex_3 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_3').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_4') {
-			$('.ex_4 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_4').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_5') {
-			$('.ex_5 .odd').remove();
+			$$("td[valign='top']").parent('tr').remove();
 			$('.ex_5').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_6') {
-			$('.ex_6 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_6').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_7') {
-			$('.ex_7 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_7').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_8') {
-			$('.ex_8 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
+			;
 			$('.ex_8').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_9') {
-			$('.ex_9 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_9').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_10') {
-			$('.ex_10 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_10').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_11') {
-			$('.ex_11 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_11').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_12') {
-			$('.ex_12 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_12').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_13') {
-			$('.ex_13 .odd').remove();
+			$("td[valign='top']").parent('tr').remove();
 			$('.ex_13').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
-
 		ii++;
 
+
+		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
+		$('th').unbind("click");
+		;
+
 	});
+
 
 	$(document).on('click', '.del_row_ft', function () {
 		$(this).parent('td').parent('tr').remove();
@@ -1080,7 +1197,7 @@
 		Highcharts.chart('container', {
 			chart: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				type: 'area',
 				width: 400,
@@ -1089,7 +1206,7 @@
 			},
 			title: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				text: 'US and USSR nuclear stockpiles'
 			},
@@ -1098,7 +1215,7 @@
 				allowDecimals: false,
 				labels: {
 					style: {
-						color: '#FFF'
+						color: '#FFFFFF'
 					},
 					formatter: function () {
 						return this.value;
@@ -1108,13 +1225,13 @@
 			yAxis: {
 				title: {
 					style: {
-						color: '#FFF'
+						color: '#FFFFFF'
 					},
 					text: 'Nuclear weapon states'
 				},
 				labels: {
 					style: {
-						color: '#FFF'
+						color: '#FFFFFF'
 					},
 					formatter: function () {
 						return this.value / 1000 + 'k';
@@ -1126,7 +1243,7 @@
 			},
 			plotOptions: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				area: {
 					pointStart: 1940,
@@ -1160,7 +1277,7 @@
 		Highcharts.chart('container2', {
 			chart: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
@@ -1172,7 +1289,7 @@
 			},
 			title: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				text: 'Browser market shares in January'
 			},
@@ -1181,7 +1298,7 @@
 			},
 			plotOptions: {
 				style: {
-					color: '#FFF'
+					color: '#FFFFFF'
 				},
 				pie: {
 					allowPointSelect: true,
@@ -1189,7 +1306,7 @@
 					dataLabels: {
 						enabled: true,
 						style: {
-							color: '#FFF'
+							color: '#FFFFFF'
 						},
 					}
 				}
@@ -1219,21 +1336,5 @@
 		});
 	});
 
-
-	$(function () {
-		$('#searching').keyup(function () {
-
-			var val = $(this).val().toLowerCase();
-			$(".for_search").parent('td').parent('tr').hide();
-
-			$(".for_search").each(function () {
-				var text = $(this).val().toLowerCase();
-
-				if (text.indexOf(val) != -1) {
-					$(this).parent('td').parent('tr').show();
-				}
-			});
-		});
-	});
 
 </script>

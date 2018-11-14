@@ -659,7 +659,7 @@
 		}
 
 		function textStyle() {
-			return {font: "15px  Segoe UI,sans-serif", stroke: "#fff"};
+			return {font: "9px  Segoe UI,sans-serif", stroke: "#fff"};
 		}
 
 		function nodeDoubleClick(e, obj) {
@@ -753,7 +753,7 @@
 						$(go.TextBlock, textStyle(),
 							{
 								row: 0, column: 0, columnSpan: 2,
-								font: "15px Segoe UI,sans-serif",
+								font: "9px Segoe UI,sans-serif",
 								editable: true, isMultiline: false,
 								minSize: new go.Size(8, 14)
 							},
@@ -779,7 +779,7 @@
 						$(go.TextBlock, textStyle(),
 							{
 								row: 3, column: 0, columnSpan: 5,
-								font: "italic 15px sans-serif",
+								font: "italic 9px sans-serif",
 								wrap: go.TextBlock.WrapFit,
 								editable: true,
 								minSize: new go.Size(10, 14)
@@ -835,7 +835,7 @@
 				},
 				$(go.TextBlock,
 					{
-						font: "bold 15px sans-serif",
+						font: "bold 9px sans-serif",
 						isMultiline: false,
 						editable: true
 					},

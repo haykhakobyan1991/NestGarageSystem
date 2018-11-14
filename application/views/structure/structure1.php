@@ -42,9 +42,11 @@
 		padding: 10px;
 		border: 1px solid #dee2e6;
 	}
+
 	text.highcharts-credits {
 		display: none;
 	}
+
 	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
 		display: none;
 	}
@@ -246,6 +248,8 @@
 					</thead>
 
 					<tbody class="ex_1">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_1"></i>
 					</tbody>
 
@@ -273,6 +277,8 @@
 					</thead>
 
 					<tbody class="ex_2">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_2"></i>
 					</tbody>
 
@@ -299,6 +305,8 @@
 					</thead>
 
 					<tbody class="ex_3">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_3"></i>
 					</tbody>
 
@@ -327,6 +335,8 @@
 					</thead>
 
 					<tbody class="ex_4">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_4"></i>
 					</tbody>
 
@@ -353,6 +363,8 @@
 					</thead>
 
 					<tbody class="ex_5">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_5"></i>
 					</tbody>
 
@@ -383,6 +395,8 @@
 					</thead>
 
 					<tbody class="ex_6">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_6"></i>
 					</tbody>
 
@@ -408,6 +422,8 @@
 					</thead>
 
 					<tbody class="ex_7">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_7"></i>
 					</tbody>
 
@@ -439,6 +455,8 @@
 					</thead>
 
 					<tbody class="ex_8">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_8"></i>
 					</tbody>
 
@@ -470,6 +488,8 @@
 					</thead>
 
 					<tbody class="ex_9">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_9"></i>
 					</tbody>
 
@@ -500,6 +520,8 @@
 					</thead>
 
 					<tbody class="ex_10">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_10"></i>
 					</tbody>
 
@@ -530,6 +552,8 @@
 					</thead>
 
 					<tbody class="ex_11">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_11"></i>
 					</tbody>
 
@@ -559,6 +583,8 @@
 					</thead>
 
 					<tbody class="ex_12">
+					<input id="searching" class="form-control-sm form-control col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_12"></i>
 					</tbody>
 
@@ -587,6 +613,8 @@
 					</thead>
 
 					<tbody class="ex_13">
+					<input id="searching" class="form-control form-control-sm col-sm-2"
+						   style="display: inline-block;margin-bottom: 4px;" placeholder="search" value=""/>
 					<i class="add_new_tr fa fa-plus" data-id="ex_13"></i>
 					</tbody>
 
@@ -988,10 +1016,10 @@
 			$('.ex_1 .odd').remove();
 			$('.ex_1').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -999,12 +1027,12 @@
 			$('.ex_2 .odd').remove();
 			$('.ex_2').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1012,12 +1040,12 @@
 			$('.ex_3 .odd').remove();
 			$('.ex_3').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1025,13 +1053,13 @@
 			$('.ex_4 .odd').remove();
 			$('.ex_4').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1039,12 +1067,12 @@
 			$('.ex_5 .odd').remove();
 			$('.ex_5').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1052,15 +1080,15 @@
 			$('.ex_6 .odd').remove();
 			$('.ex_6').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1068,11 +1096,11 @@
 			$('.ex_7 .odd').remove();
 			$('.ex_7').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1080,17 +1108,17 @@
 			$('.ex_8 .odd').remove();
 			$('.ex_8').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1098,17 +1126,17 @@
 			$('.ex_9 .odd').remove();
 			$('.ex_9').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1116,16 +1144,16 @@
 			$('.ex_10 .odd').remove();
 			$('.ex_10').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1133,16 +1161,16 @@
 			$('.ex_11 .odd').remove();
 			$('.ex_11').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1150,15 +1178,15 @@
 			$('.ex_12 .odd').remove();
 			$('.ex_12').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1166,14 +1194,14 @@
 			$('.ex_13 .odd').remove();
 			$('.ex_13').append('<tr role="row">\n' +
 				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center for_search"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
 				'</tr>');
 		}
@@ -1195,7 +1223,7 @@
 				type: 'area',
 				width: 400,
 				height: 300,
-				backgroundColor:'rgba(255, 255, 255, 0.0)'
+				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
 				style: {
@@ -1211,7 +1239,7 @@
 						color: '#FFF'
 					},
 					formatter: function () {
-						return this.value; // clean, unformatted number for year
+						return this.value;
 					}
 				}
 			},
@@ -1253,7 +1281,8 @@
 				}
 			},
 			series: [{
-				data: [369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
+				data: [
+					369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
 					20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
 					26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
 					24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
@@ -1263,9 +1292,6 @@
 				]
 			}]
 		});
-
-
-
 
 		//Chart 2
 
@@ -1280,7 +1306,7 @@
 				type: 'pie',
 				width: 400,
 				height: 250,
-				backgroundColor:'rgba(255, 255, 255, 0.0)'
+				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
 				style: {
@@ -1331,5 +1357,21 @@
 		});
 	});
 
+
+	$(function () {
+		$('#searching').keyup(function () {
+
+			var val = $(this).val().toLowerCase();
+			$(".for_search").parent('td').parent('tr').hide();
+
+			$(".for_search").each(function () {
+				var text = $(this).val().toLowerCase();
+
+				if (text.indexOf(val) != -1) {
+					$(this).parent('td').parent('tr').show();
+				}
+			});
+		});
+	});
 
 </script>

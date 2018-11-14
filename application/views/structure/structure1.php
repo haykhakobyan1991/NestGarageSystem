@@ -1,11 +1,9 @@
 <!-- Structure Start -->
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
+
 
 <style>
 	canvas {

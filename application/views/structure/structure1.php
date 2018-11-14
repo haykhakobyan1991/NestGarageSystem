@@ -2,14 +2,7 @@
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script>
-	$(document).ready(function () {
-		for (i = 1; i < 14; i++) {
-			$('#ex_' + i + '').DataTable();
-			$('#ex_' + i + '_next').parent('ul').append('<i class="add_new_tr fa fa-plus" data-id="ex_' + i + '"></i>');
-		}
-	})
-</script>
+
 <style>
 	canvas {
 		background: #fff;
@@ -232,7 +225,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_1"></tbody>
+					<tbody class="ex_1">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_1"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -257,7 +252,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_2"></tbody>
+					<tbody class="ex_2">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_2"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -281,7 +278,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_3"></tbody>
+					<tbody class="ex_3">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_3"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -307,7 +306,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_4"></tbody>
+					<tbody class="ex_4">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_4"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -332,7 +333,7 @@
 					</thead>
 
 					<tbody class="ex_5">
-
+					<i class="add_new_tr fa fa-plus"  data-id="ex_5"></i>
 					</tbody>
 
 				</table>
@@ -361,7 +362,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_6"></tbody>
+					<tbody class="ex_6">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_6"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -384,7 +387,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_7"></tbody>
+					<tbody class="ex_7">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_7"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -413,7 +418,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_8"></tbody>
+					<tbody class="ex_8">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_8"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -442,7 +449,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_9"></tbody>
+					<tbody class="ex_9">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_9"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -470,7 +479,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_10"></tbody>
+					<tbody class="ex_10">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_10"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -498,7 +509,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_11"></tbody>
+					<tbody class="ex_11">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_11"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -525,7 +538,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_12"></tbody>
+					<tbody class="ex_12">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_12"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -551,7 +566,9 @@
 					</tr>
 					</thead>
 
-					<tbody class="ex_13"></tbody>
+					<tbody class="ex_13">
+					<i class="add_new_tr fa fa-plus"  data-id="ex_13"></i>
+					</tbody>
 
 				</table>
 			</div>
@@ -947,205 +964,208 @@
 	var ii = 1;
 	$(document).on('click', '.add_new_tr', function () {
 		var dt_id = $(this).data('id');
-		console.log('dt_id -->' + dt_id);
 
 		if (dt_id == 'ex_1') {
 			$('.ex_1 .odd').remove();
 			$('.ex_1').append('<tr role="row">\n' +
-				'\t\t\t\t\t\t\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\t\t\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\t\t\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\t\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_2') {
 			$('.ex_2 .odd').remove();
 			$('.ex_2').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_3') {
 			$('.ex_3 .odd').remove();
 			$('.ex_3').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_4') {
 			$('.ex_4 .odd').remove();
 			$('.ex_4').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_5') {
 			$('.ex_5 .odd').remove();
 			$('.ex_5').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_6') {
 			$('.ex_6 .odd').remove();
 			$('.ex_6').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_7') {
 			$('.ex_7 .odd').remove();
 			$('.ex_7').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_8') {
 			$('.ex_8 .odd').remove();
 			$('.ex_8').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_9') {
 			$('.ex_9 .odd').remove();
 			$('.ex_9').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_10') {
 			$('.ex_10 .odd').remove();
 			$('.ex_10').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_11') {
 			$('.ex_11 .odd').remove();
 			$('.ex_11').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_12') {
 			$('.ex_12 .odd').remove();
 			$('.ex_12').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 		if (dt_id == 'ex_13') {
 			$('.ex_13 .odd').remove();
 			$('.ex_13').append('<tr role="row">\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td class="sorting_1">' + ii + '</td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t\\t<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
-				'\t\t\t\t\'\\t\\t\\t\\t\\t\\t</tr>');
+				'<td class="sorting_1">' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'</tr>');
 		}
 
 		ii++;
 
-	})
+	});
+
+	$(document).on('click', '.del_row_ft', function() {
+		$(this).parent('td').parent('tr').remove();
+	});
 
 
 </script>

@@ -149,20 +149,24 @@ class Structure extends MX_Controller {
 				ON user.`company_id` = company.`id` 
 			  LEFT JOIN department 
 				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
 			  LEFT JOIN staff AS head_staff 
 				ON department.`head_staff_id` = head_staff.id 
+				 AND `head_staff`.`status` = '1'
 			  LEFT JOIN staff 
 				ON FIND_IN_SET(
 				  department.id,
 				  staff.`department_ids`
 				) 
 				AND `staff`.`id` <> `head_staff`.`id` 
+				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
 				ON FIND_IN_SET(
 				  `staff`.`id`,
 				  `fleet`.`staff_ids`
 				) 
+				AND `fleet`.`status` = '1'
 			  LEFT JOIN `model` 
 				ON `fleet`.`model_id` = `model`.`id` 
 			  LEFT JOIN `brand` 
@@ -274,22 +278,26 @@ class Structure extends MX_Controller {
 				ON user.`company_id` = company.`id` 
 			  LEFT JOIN department 
 				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
 			  LEFT JOIN staff AS head_staff 
 				ON department.`head_staff_id` = head_staff.id 
+				 AND `head_staff`.`status` = '1'
 			  LEFT JOIN staff 
 				ON FIND_IN_SET(
 				  department.id,
 				  staff.`department_ids`
 				) 
 				AND `staff`.`id` <> `head_staff`.`id` 
+				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
 				ON FIND_IN_SET(
 				  `staff`.`id`,
 				  `fleet`.`staff_ids`
 				) 
+				AND `fleet`.`status` = '1'
 			  LEFT JOIN `model` 
-				ON `fleet`.`model_id` = `model`.`id`
+				ON `fleet`.`model_id` = `model`.`id` 
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 	
 			WHERE company.id = '" . $company_id . "' 
@@ -348,6 +356,51 @@ class Structure extends MX_Controller {
 		$data = $this->input->post('data');
 
 
+
+		$old_data = json_decode($this->input->post('old_data'), true);
+
+
+		foreach ($old_data as &$value) :
+
+			// Company
+			if(preg_match('/^(c)/', $value['from'])) {
+				$value['company']['from'] = preg_replace('/^(c)/', '', $value['from']);
+			}
+
+			// Head staff
+			if(preg_match('/^(h)/', $value['from'])) {
+				$value['head_staff']['from'] = preg_replace('/^(h)/', '', $value['from']);
+			}
+			if(preg_match('/^(h)/', $value['to'])) {
+				$value['head_staff']['to'] = preg_replace('/^(h)/', '', $value['to']);
+			}
+
+			// Driver
+			if(preg_match('/^(d)/', $value['from'])) {
+				$value['driver']['from'] = preg_replace('/^(d)/', '', $value['from']);
+			}
+
+			if(preg_match('/^(d)/', $value['to'])) {
+				$value['driver']['to'] = preg_replace('/^(d)/', '', $value['to']);
+			}
+
+			// Fleet
+			if(preg_match('/^(f)/', $value['from'])) {
+				$value['fleet']['from'] = preg_replace('/^(f)/', '', $value['from']);
+			}
+
+			if(preg_match('/^(f)/', $value['to'])) {
+				$value['fleet']['to'] = preg_replace('/^(f)/', '', $value['to']);
+			}
+
+			//unset old values
+			unset($value['from']);
+			unset($value['to']);
+
+		endforeach;
+
+
+
 		foreach ($data as &$value) :
 
 			// Company
@@ -390,10 +443,199 @@ class Structure extends MX_Controller {
 
 
 		$this->pre($data);
+		echo '<br>----------------------OLD DATA------------------------------<br>';
+		$this->pre($old_data);
+		echo '<br>----------------------DIFF ARRAY----------------------------<br>';
+//		$this->pre($this->array_diff_assoc_recursive($old_data, $data));
+
+//		$arrayDiff = array_map('array_diff_assoc', $old_data, $data);
+//
+//		$this->pre($arrayDiff);
+
+
+		$user_id = $this->session->user_id;
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql = "
+			SELECT 
+			  `head_staff`.`id` AS `head_staff_id`,
+			  `staff`.`id` AS `driver_id`,
+			  `department`.`id` AS `department_id`,
+			  `company`.`id` AS `company_id`,
+			  `fleet`.`id` AS `fleet_id`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
+			  LEFT JOIN staff AS head_staff 
+				ON department.`head_staff_id` = head_staff.id 
+				 AND `head_staff`.`status` = '1'
+			  LEFT JOIN staff 
+				ON FIND_IN_SET(
+				  department.id,
+				  staff.`department_ids`
+				) 
+				AND `staff`.`id` <> `head_staff`.`id` 
+				AND `staff`.`status` = '1'
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+				AND `fleet`.`status` = '1'
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 	
+			WHERE company.id = '" . $company_id . "' 
+			ORDER BY `head_staff`.`id`,
+			  `staff`.`id`,
+			  `department`.`id`,
+			  `fleet`.`id` 
+		";
+
+		$result = $this->db->query($sql);
+		$structure_array = $result->result_array();
+
+		$department_id = '';
+		$driver_id = '';
+		$from_to_arr = array();
+
+		foreach ($structure_array AS $key => $value) :
+
+			if ($value['department_id'] != $department_id) :
+				$from_to_arr[] = array(
+					'company' => array('from' => $value['company_id']),
+					'head_staff' => array('to' => $value['department_id'])
+				);
+			endif;
+			$department_id = $value['department_id'];
+
+			if ($value['driver_id'] != $driver_id && $value['driver_id'] != '') :
+				$from_to_arr[] = array(
+					'head_staff' => array('from' => $value['department_id']),
+					'driver' => array('to' => $value['driver_id'])
+				);
+			endif;
+			$driver_id = $value['driver_id'];
+
+			if ($value['fleet_id'] != '') :
+				$from_to_arr[] = array(
+					'driver' => array('from' => $value['driver_id']),
+					'fleet' => array('to' => $value['fleet_id'])
+				);
+			endif;
+
+		endforeach;
+
+
+		$from_to_arr = array_values(array_unique($from_to_arr, SORT_REGULAR));
 
 
 
 	}
+
+
+//	/**
+//	 * @param $arr1
+//	 * @param $arr2
+//	 * $arr1 is old array
+//	 * $arr2 is new array
+//	 * @return array
+//	 */
+//	public function array_diff_assoc_recursive ($arr1, $arr2)
+//	{
+//
+//
+//		if( count($arr1) >= count($arr2)) {
+//			$result = array();
+//			foreach ($arr1 as $k => $v) {
+//				if (!isset($arr2[$k])) {
+//					$result[$k]['deleted'] = $v;
+//				} else {
+//					if (is_array($v) && is_array($arr2[$k])) {
+//						$diff = 	$this->array_diff_assoc_recursive($v, $arr2[$k]);
+//					if (!empty($diff))
+//						$result[$k] = $diff;
+//					}
+//				}
+//			}
+//		} else if(count($arr1) < count($arr2)) {
+//			$result = array();
+//			foreach ($arr2 as $k => $v) {
+//				if (!isset($arr1[$k])) {
+//					$result[$k]['added'] = $v;
+//				} else {
+//					if (is_array($v) && is_array($arr1[$k])) {
+//						$diff = 	$this->array_diff_assoc_recursive($v, $arr1[$k]);
+//					if (!empty($diff))
+//						$result[$k] = $diff;
+//					}
+//				}
+//			}
+//		}
+//		//else if(count($arr1) == count($arr2)) {
+//		//	$result = array();
+////			foreach ($arr1 as $k => $v) {
+////				// echo 'deleted';
+////				if (!isset($arr2[$k]) && !$this->is_in_array($arr2, $v)) {
+////					$result[$k]['deleted or ?'] = $v;
+////				} else {
+////					if (isset($arr2[$k]) && is_array($v) && is_array($arr2[$k])) {
+////						$diff = $this->array_diff_assoc_recursive($v, $arr2[$k]);
+////						if (!empty($diff))
+////						$result[$k] = $diff;
+////					}
+////				}
+////			}
+////
+////			foreach ($arr2 as $k => $v) {
+////				if (!isset($arr1[$k]) && !$this->is_in_array($arr1, $v)) {
+////					$result[$k]['added or ?'] = $v;
+////				} else {
+////					if (is_array($v) && is_array($arr1[$k])) {
+////						$diff = 	$this->array_diff_assoc_recursive($v, $arr1[$k]);
+////						if (!empty($diff))
+////							$result[$k] = $diff;
+////					}
+////				}
+////			}
+//
+//	//	}
+//
+//		return $result;
+//	}
+//
+////	private function is_in_array($array, $key_value){
+////
+//////		print_r($key_value);
+//////		echo '<br>*-*-*-*-*-*-*-*-*-*-*-<br>';
+//////		print_r($array);
+////
+////		$within_array = false;
+////		foreach ($array as $k => $v) {
+////			if (is_array($v)) {
+////				$within_array = $this->is_in_array($v, $key_value);
+////				if ($within_array == true) {
+////					break;
+////				}
+////			} else {
+////				if(is_array($key_value)) {
+////					var_dump($v);
+////					if (in_array($v, $key_value)) {
+////						$within_array = true;
+////
+////						break;
+////					}
+////				}
+////			}
+////		}
+////		return $within_array;
+////	}
 
 }
 //end of class

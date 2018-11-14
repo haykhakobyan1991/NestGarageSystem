@@ -962,8 +962,9 @@
 		console.log(myDiagram.model.linkDataArray);
 		var url = '<?=base_url('Structure/change_from_to_ax')?>';
 		var data = myDiagram.model.linkDataArray;
+		var old_data = '<?=$from_to?>';
 
-		$.post(url, {data: data}).done(function (data) {
+		$.post(url, {data: data, old_data: old_data}).done(function (data) {
 			console.log("Data Loaded: " + data);
 		});
 	}

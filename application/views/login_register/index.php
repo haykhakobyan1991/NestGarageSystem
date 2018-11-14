@@ -100,9 +100,9 @@
 				<div class="text-center">
 
 					<div id="fb" class="mb-2 mb-md-2"
-						 style="cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);">
-						<img style="float: left; margin: 4px;" src="https://new.dilemmatik.ru/assets/images/fb.png">
-						<span style="font-size: 14px;  line-height: 38px;">Continue with Facebook</span>
+						 style="background: #3d5a98; cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(61, 90, 152, 0.67), 0 3px 6px rgba(27, 53, 104, 0.88);">
+						<img style="float: left; margin: 4px;" src="<?=base_url('assets/img/fb.png')?>">
+						<span style="color: #fff; font-size: 14px;  line-height: 38px;">Continue with Facebook</span>
 					</div>
 
 

@@ -1,6 +1,10 @@
 <!-- Structure Start -->
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<!--[if lt IE 9]>
+<script src="https://code.highcharts.com/modules/oldie.js"></script>
+<![endif]-->
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 
 <style>
@@ -37,6 +41,12 @@
 		display: inline-block;
 		padding: 10px;
 		border: 1px solid #dee2e6;
+	}
+	text.highcharts-credits {
+		display: none;
+	}
+	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
+		display: none;
 	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
@@ -120,6 +130,14 @@
 							class="text-white ml-2">22․12․2018</span></p>
 
 				</div>
+
+				<div class="p-2 w-auto ml-2">
+					<div id="container" style="width:100%;"></div>
+				</div>
+
+				<div class="p-2 w-auto">
+					<div id="container2" style="width:100%;"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -130,9 +148,11 @@
 		<div class="container-fluid bg-secondary">
 			<div class="row">
 				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">First name: <span
+					<p class="text-white-50 small text-white"
+					   style="display: block;margin-bottom: 2px;">First name: <span
 							class="text-white ml-2">name</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Last Name: <span
+					<p class="text-white-50 small text-white"
+					   style="display: block;margin-bottom: 2px;">Last Name: <span
 							class="text-white ml-2">last name</span></p>
 					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Contact Number 1: <span
 							class="text-white ml-2">78785165</span></p>
@@ -226,7 +246,7 @@
 					</thead>
 
 					<tbody class="ex_1">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_1"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_1"></i>
 					</tbody>
 
 				</table>
@@ -253,7 +273,7 @@
 					</thead>
 
 					<tbody class="ex_2">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_2"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_2"></i>
 					</tbody>
 
 				</table>
@@ -279,7 +299,7 @@
 					</thead>
 
 					<tbody class="ex_3">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_3"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_3"></i>
 					</tbody>
 
 				</table>
@@ -307,7 +327,7 @@
 					</thead>
 
 					<tbody class="ex_4">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_4"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_4"></i>
 					</tbody>
 
 				</table>
@@ -333,7 +353,7 @@
 					</thead>
 
 					<tbody class="ex_5">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_5"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_5"></i>
 					</tbody>
 
 				</table>
@@ -363,7 +383,7 @@
 					</thead>
 
 					<tbody class="ex_6">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_6"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_6"></i>
 					</tbody>
 
 				</table>
@@ -388,7 +408,7 @@
 					</thead>
 
 					<tbody class="ex_7">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_7"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_7"></i>
 					</tbody>
 
 				</table>
@@ -419,7 +439,7 @@
 					</thead>
 
 					<tbody class="ex_8">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_8"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_8"></i>
 					</tbody>
 
 				</table>
@@ -450,7 +470,7 @@
 					</thead>
 
 					<tbody class="ex_9">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_9"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_9"></i>
 					</tbody>
 
 				</table>
@@ -480,7 +500,7 @@
 					</thead>
 
 					<tbody class="ex_10">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_10"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_10"></i>
 					</tbody>
 
 				</table>
@@ -510,7 +530,7 @@
 					</thead>
 
 					<tbody class="ex_11">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_11"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_11"></i>
 					</tbody>
 
 				</table>
@@ -539,7 +559,7 @@
 					</thead>
 
 					<tbody class="ex_12">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_12"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_12"></i>
 					</tbody>
 
 				</table>
@@ -567,7 +587,7 @@
 					</thead>
 
 					<tbody class="ex_13">
-					<i class="add_new_tr fa fa-plus"  data-id="ex_13"></i>
+					<i class="add_new_tr fa fa-plus" data-id="ex_13"></i>
 					</tbody>
 
 				</table>
@@ -841,7 +861,6 @@
 			g.memberParts.each(function (part) {
 				if (part instanceof go.Link) links++;
 			});
-			// return "Group " + g.data.key + ": " + g.data.text + "\n" + mems + " members including " + links + " links";
 		}
 
 		myDiagram.groupTemplate =
@@ -1163,8 +1182,153 @@
 
 	});
 
-	$(document).on('click', '.del_row_ft', function() {
+	$(document).on('click', '.del_row_ft', function () {
 		$(this).parent('td').parent('tr').remove();
+	});
+
+	$(document).ready(function () {
+		Highcharts.chart('container', {
+			chart: {
+				style: {
+					color: '#FFF'
+				},
+				type: 'area',
+				width: 400,
+				height: 300,
+				backgroundColor:'rgba(255, 255, 255, 0.0)'
+			},
+			title: {
+				style: {
+					color: '#FFF'
+				},
+				text: 'US and USSR nuclear stockpiles'
+			},
+			xAxis: {
+
+				allowDecimals: false,
+				labels: {
+					style: {
+						color: '#FFF'
+					},
+					formatter: function () {
+						return this.value; // clean, unformatted number for year
+					}
+				}
+			},
+			yAxis: {
+				title: {
+					style: {
+						color: '#FFF'
+					},
+					text: 'Nuclear weapon states'
+				},
+				labels: {
+					style: {
+						color: '#FFF'
+					},
+					formatter: function () {
+						return this.value / 1000 + 'k';
+					}
+				}
+			},
+			tooltip: {
+				pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
+			},
+			plotOptions: {
+				style: {
+					color: '#FFF'
+				},
+				area: {
+					pointStart: 1940,
+					marker: {
+						enabled: false,
+						symbol: 'circle',
+						radius: 2,
+						states: {
+							hover: {
+								enabled: true
+							}
+						}
+					}
+				}
+			},
+			series: [{
+				data: [369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
+					20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
+					26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
+					24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
+					21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
+					10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
+					5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
+				]
+			}]
+		});
+
+
+
+
+		//Chart 2
+
+		Highcharts.chart('container2', {
+			chart: {
+				style: {
+					color: '#FFF'
+				},
+				plotBackgroundColor: null,
+				plotBorderWidth: null,
+				plotShadow: false,
+				type: 'pie',
+				width: 400,
+				height: 250,
+				backgroundColor:'rgba(255, 255, 255, 0.0)'
+			},
+			title: {
+				style: {
+					color: '#FFF'
+				},
+				text: 'Browser market shares in January'
+			},
+			tooltip: {
+				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+				style: {
+					color: '#FFF'
+				},
+				pie: {
+					allowPointSelect: true,
+					cursor: 'pointer',
+					dataLabels: {
+						enabled: true,
+						style: {
+							color: '#FFF'
+						},
+					}
+				}
+			},
+			series: [{
+				name: 'Brands',
+				colorByPoint: true,
+				data: [{
+					name: 'Chrome',
+					y: 61.41,
+					sliced: true,
+					selected: true
+				}, {
+					name: 'Internet Explorer',
+					y: 11.84
+				}, {
+					name: 'Firefox',
+					y: 10.85
+				}, {
+					name: 'Edge',
+					y: 15.67
+				}, {
+					name: 'Safari',
+					y: 20.18
+				}]
+			}]
+		});
 	});
 
 

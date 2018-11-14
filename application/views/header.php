@@ -187,7 +187,6 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 
 							<div class="">
-								<p class="display-5 font-weight-bold mb-0 pl-3">Structure</p>
 								<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3" style="left: 20px;z-index: 999;position: absolute;">
 									<button type="button"
 											class="btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">

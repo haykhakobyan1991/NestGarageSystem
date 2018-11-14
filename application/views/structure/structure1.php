@@ -47,147 +47,132 @@
 	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
-<div class="jumbotron jumbotron-fluid pb-2 pt-2">
+<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
 	<div id="sample">
 		<div id="myDiagramDiv" style="height:300px"></div>
 	</div>
 	<textarea style="display: none; width: 100%;" id="mySavedModel"></textarea>
-	<button id="SaveButton" onclick="save()">Save</button>
+
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+	<nav class="selectted_information float-left d-none">
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab"
+			   aria-controls="nav-car" aria-selected="true">Car</a>
+			<a class="nav-item nav-link" id="nav-driver-tab" data-toggle="tab" href="#nav-driver" role="tab"
+			   aria-controls="nav-driver" aria-selected="false">Driver</a>
+
+		</div>
+	</nav>
+	<button class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save()">Save</button>
 </div>
 
-<div class="row">
-	<div class="col-sm-6">
-		<div class="card">
-			<div class="card-header">Car</div>
-			<div class="card-body">
-				<div class="row mt-2">
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>unit:</span> <span class="float-right">1</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>Make:</span> <span class="float-right">BMW</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Color:</span> <span
-								style="width: 25px;height: 25px;background: #fff;border: 1px solid #efefef;"
-								class="float-right"></span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Engine:</span> <span class="float-right">ER45543</span>
-						</div>
-					</div>
+<span class="selectted_information d-none">
+<div class="tab-content mt-3" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
+
+		<div class="container-fluid bg-secondary">
+			<div class="row">
+				<div class="p-2  w-auto mr-3">
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">unit: <span
+							class="text-white ml-2">1</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Make: <span
+							class="text-white ml-2">BMW</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Color: <span
+							class="ml-2 text-white"
+							style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"></span>
+					</p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Engine: <span
+							class="text-white ml-2">ER45543</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Model: <span
+							class="text-white ml-2">M-3</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Year: <span
+							class="text-white ml-2">2015</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">VIN: <span
+							class="text-white ml-2">123123123QWE900938</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Type of Vehicle: <span
+							class="text-white ml-2">Berline</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">TDepartment: <span
+							class="text-white ml-2">Sales</span>
+					</p>
 				</div>
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>Model:</span> <span class="float-right">M-3</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Year:</span> <span class="float-right">2015</span>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>VIN:</span> <span class="float-right">123123123QWE900938</span>
-						</div>
-					</div>
+
+				<div class="p-2  w-auto">
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Կցված: <span
+							class="text-white ml-2">Անուն Ազգանուն</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման համարանիշ: <span
+							class="text-white ml-2">HB32454</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վառելիք։ <span
+							class="text-white ml-2">Բենզին</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Միջին ծաղսը 100 կմ․ ։<span
+							class="text-white ml-2">8․5</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Օրեկան․ ։<span
+							class="text-white ml-2">120 կմ․</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վազք։<span
+							class="text-white ml-2">87000</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հոռոգռաֆ։<span
+							class="text-white ml-2">սդֆսֆսֆ</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Exsist?։<span
+							class="text-white ml-2">Այո</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Tracker IMEI։<span
+							class="text-white ml-2">45787585455</span></p>
+
 				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>Type of Vehicle:</span> <span class="float-right">Berline</span>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>Department:</span> <span class="float-right">Sales</span>
-						</div>
-					</div>
+
+				<div class="p-2  w-auto">
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման Հասցե։<span
+							class="text-white ml-2">Հասցե 14 </span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ապահովագրություն: <span
+							class="text-white ml-2">Կասկո</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ուժի մեջ է: <span
+							class="text-white ml-2">22․12․2018</span></p>
+
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	<div class="col-sm-6">
-		<div class="card">
-			<div class="card-header">Driver</div>
-			<div class="card-body">
-				<div class="row mt-2">
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>unit:</span> <span class="float-right">1</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>Make:</span> <span class="float-right">BMW</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Color:</span> <span
-								style="width: 25px;height: 25px;background: #fff;border: 1px solid #efefef;"
-								class="float-right"></span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Engine:</span> <span class="float-right">ER45543</span>
-						</div>
-					</div>
+
+	<div class="tab-pane fade" id="nav-driver" role="tabpanel" aria-labelledby="nav-driver-tab">
+		<div class="container-fluid bg-secondary">
+			<div class="row">
+				<div class="p-2  w-auto mr-3">
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">First name: <span
+							class="text-white ml-2">name</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Last Name: <span
+							class="text-white ml-2">last name</span></p>
+					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Contact Number 1: <span
+							class="text-white ml-2">78785165</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Contact Number 2: <span
+							class="text-white ml-2">4588541788</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Email: <span
+							class="text-white ml-2">example@ex.com</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Leave Country: <span
+							class="text-white ml-2">Armenia</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Address: <span
+							class="text-white ml-2">address 45/12</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Post Code: <span
+							class="text-white ml-2">0033</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Department: <span
+							class="text-white ml-2">sales</span>
+					</p>
 				</div>
 
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small" role="alert">
-							<span>Model:</span> <span class="float-right">M-3</span>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="alert alert-secondary small">
-							<span>Year:</span> <span class="float-right">2015</span>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>VIN:</span> <span class="float-right">123123123QWE900938</span>
-						</div>
-					</div>
+				<div class="p-2  w-auto">
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Position: <span
+							class="text-white ml-2">Driver</span></p>
+					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Nest Card ID: <span
+							class="text-white ml-2">4568741gt</span></p>
 				</div>
-				<div class="row">
-
-
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>Type of Vehicle:</span> <span class="float-right">Berline</span>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="alert alert-secondary small">
-							<span>Department:</span> <span class="float-right">Sales</span>
-						</div>
-					</div>
-
-				</div>
-
 
 			</div>
 		</div>
 	</div>
+
 </div>
 
-<nav>
+
+<nav class="mt-2">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
 		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
 		   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
@@ -573,8 +558,7 @@
 		</div>
 	</div>
 </div>
-
-
+</span>
 
 <script>
 	function init() {
@@ -675,7 +659,7 @@
 		}
 
 		function textStyle() {
-			return {font: "9pt  Segoe UI,sans-serif", stroke: "#fff"};
+			return {font: "15px  Segoe UI,sans-serif", stroke: "#fff"};
 		}
 
 		function nodeDoubleClick(e, obj) {
@@ -769,7 +753,7 @@
 						$(go.TextBlock, textStyle(),
 							{
 								row: 0, column: 0, columnSpan: 2,
-								font: "10pt Segoe UI,sans-serif",
+								font: "15px Segoe UI,sans-serif",
 								editable: true, isMultiline: false,
 								minSize: new go.Size(8, 14)
 							},
@@ -795,7 +779,7 @@
 						$(go.TextBlock, textStyle(),
 							{
 								row: 3, column: 0, columnSpan: 5,
-								font: "italic 9pt sans-serif",
+								font: "italic 15px sans-serif",
 								wrap: go.TextBlock.WrapFit,
 								editable: true,
 								minSize: new go.Size(10, 14)
@@ -851,7 +835,7 @@
 				},
 				$(go.TextBlock,
 					{
-						font: "bold 19px sans-serif",
+						font: "bold 15px sans-serif",
 						isMultiline: false,
 						editable: true
 					},
@@ -928,6 +912,7 @@
 						var found1 = str1.match(re1);
 						if (found1 == 'f') {
 							new_arr.push(arr);
+							$('.selectted_information').removeClass('d-none');
 						}
 					}
 				});

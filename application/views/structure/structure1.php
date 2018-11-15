@@ -19,20 +19,19 @@
 	canvas {
 		background: #fff;
 	}
-
+	tr {
+		background: rgba(0, 0, 0, .05) !important;
+	}
 	th, td {
 		vertical-align: middle !important;
 		text-align: center !important;
 	}
-
 	table td {
 		padding: 5px !important
 	}
-
 	th {
 		border: 1px solid #333 !important;
 	}
-
 	i.fa.fa-plus, i.fa.fa-minus {
 		display: inline-block;
 		float: right;
@@ -40,24 +39,30 @@
 		cursor: pointer;
 		font-size: 12px;
 	}
-
 	.more {
 		display: none;
 	}
-
 	.add_new_tr {
 		display: inline-block;
 		padding: 10px;
 		border: 1px solid #dee2e6;
 	}
-
 	text.highcharts-credits {
 		display: none;
 	}
-
 	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
 		display: none;
 	}
+	table#ex_1 thead tr th:last-child:after, table#ex_2 thead tr th:last-child:after, table#ex_3 thead tr th:last-child:after, table#ex_4 thead tr th:last-child:after, table#ex_5 thead tr th:last-child:after, table#ex_6 thead tr th:last-child:after, table#ex_7 thead tr th:last-child:after, table#ex_8 thead tr th:last-child:after, table#ex_9 thead tr th:last-child:after, table#ex_10 thead tr th:last-child:after, table#ex_11 thead tr th:last-child:after, table#ex_12 thead tr th:last-child:after, table#ex_13 thead tr th:last-child:after {
+		content: '';
+	}
+	table#ex_1 thead tr th:last-child:before, table#ex_2 thead tr th:last-child:before, table#ex_3 thead tr th:last-child:before, table#ex_4 thead tr th:last-child:before, table#ex_5 thead tr th:last-child:before, table#ex_6 thead tr th:last-child:before, table#ex_7 thead tr th:last-child:before, table#ex_8 thead tr th:last-child:before, table#ex_9 thead tr th:last-child:before, table#ex_10 thead tr th:last-child:before, table#ex_11 thead tr th:last-child:before, table#ex_12 thead tr th:last-child:before, table#ex_13 thead tr th:last-child:before {
+		content: '';
+	}
+	.nav-item.nav-link.active.show,.nav-item.nav-link.active{
+	background-color: rgb(255, 122, 89) !important;
+	color: #fff;
+}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
@@ -220,30 +225,57 @@
 					</tr>
 					</thead>
 					<tbody class="ex_1">
-
-					<tr>
+						<tr>
 							<td>1</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					</tr>					<tr>
+							<td><input type="text" name="_1" value="12.12.2018"
+									   style="width: 100%;border: none;outline: none;" class="text-center"/><span
+									class="d-none">12.12.2018</span></td>
+							<td><input type="text" name="_1" value="uuuu"
+									   style="width: 100%;border: none; outline: none;" class="text-center"/><span
+									class="d-none">uuuu</span></td>
+							<td><input type="text" name="_1" value="20.03.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">20.03.2019</span></td>
+							<td><input type="text" name="_1" value="12000"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">12000</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+						<tr>
 							<td>2</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					</tr>					<tr>
+							<td><input type="text" name="_2" value="12.09.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">12.09.2018</span></td>
+							<td><input type="text" name="_2" value="dddddd"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">dddddd</span></td>
+							<td><input type="text" name="_2" value="23.06.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">23.06.2019</span></td>
+							<td><input type="text" name="_2" value="55000"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">55000</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+						<tr>
 							<td>3</td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					</tr>
-
+							<td><input type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -266,9 +298,7 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-					<tbody class="ex_2">
-
-					</tbody>
+					<tbody class="ex_2"></tbody>
 				</table>
 			</div>
 		</div>
@@ -290,17 +320,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_3">
-
-
-					</tbody>
-
+					<tbody class="ex_3"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -318,17 +342,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_4">
-
-
-					</tbody>
-
+					<tbody class="ex_4"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -345,17 +363,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_5">
-
-
-					</tbody>
-
+					<tbody class="ex_5"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -376,17 +388,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_6">
-
-  
-					</tbody>
-
+					<tbody class="ex_6"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -402,17 +408,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_7">
-
-
-					</tbody>
-
+					<tbody class="ex_7"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -434,17 +434,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_8">
-
-
-					</tbody>
-
+					<tbody class="ex_8"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -466,17 +460,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_9">
-
-
-					</tbody>
-
+					<tbody class="ex_9"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -497,17 +485,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_10">
-
-
-					</tbody>
-
+					<tbody class="ex_10"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -528,17 +510,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i> </th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_11">
-
-
-					</tbody>
-
+					<tbody class="ex_11"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -558,16 +534,11 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_12">
-
-					</tbody>
-
+					<tbody class="ex_12"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-
 	<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
 		<div class="row col-sm-12 col-md-12"
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
@@ -586,18 +557,13 @@
 						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
-
-					<tbody class="ex_13">
-
-					</tbody>
-
+					<tbody class="ex_13"></tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
 </span>
-
 <script>
 	function init() {
 		if (window.goSamples) goSamples();
@@ -618,7 +584,6 @@
 								alternateNodeSpacing: 20
 							}),
 				});
-
 		function makeButton(text, action, visiblePredicate) {
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
@@ -627,7 +592,6 @@
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
-
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Properties",
@@ -652,12 +616,12 @@
 					function (o) {
 						return o.diagram.commandHandler.canPasteSelection();
 					}),
-				makeButton("Delete",
+				makeButton("deletee",
 					function (e, obj) {
-						e.diagram.commandHandler.deleteSelection();
+						e.diagram.commandHandler.deleteeSelection();
 					},
 					function (o) {
-						return o.diagram.commandHandler.canDeleteSelection();
+						return o.diagram.commandHandler.candeleteeSelection();
 					}),
 				makeButton("Undo",
 					function (e, obj) {
@@ -688,21 +652,16 @@
 						return o.diagram.commandHandler.canUngroupSelection();
 					})
 			);
-
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;
 			if (node1 === node2) return false;
 			if (node2.isInTreeOf(node1)) return false;
 			return true;
 		}
-
 		function textStyle() {
 			return {font: "9px  Segoe UI,sans-serif", stroke: "#fff"};
 		}
-
-		function nodeDoubleClick(e, obj) {
-		}
-
+		function nodeDoubleClick(e, obj) {}
 		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
 			if (d.group)
@@ -711,7 +670,6 @@
 				str += "top-level node";
 			// return str;
 		}
-
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
@@ -725,8 +683,6 @@
 				}
 			});
 		};
-
-
 		myDiagram.nodeTemplate =
 			$(go.Node, "Auto",
 				{locationSpot: go.Spot.Center},
@@ -827,11 +783,7 @@
 				)
 			);
 		myDiagram.allowMove = false;
-
-		function linkInfo(d) {
-			return "Link:\nfrom " + d.from + " to " + d.to;
-		}
-
+		function linkInfo(d) {return "Link:\nfrom " + d.from + " to " + d.to;}
 		myDiagram.linkTemplate =
 			$(go.Link,
 				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
@@ -851,10 +803,7 @@
 					contextMenu: partContextMenu
 				}
 			);
-
-		function findHeadShot(key) {
-		}
-
+		function findHeadShot(key) {}
 		function groupInfo(adornment) {
 			var g = adornment.adornedPart;
 			var mems = g.memberParts.count;
@@ -863,7 +812,6 @@
 				if (part instanceof go.Link) links++;
 			});
 		}
-
 		myDiagram.groupTemplate =
 			$(go.Group, "Vertical",
 				{
@@ -896,11 +844,7 @@
 					contextMenu: partContextMenu
 				}
 			);
-
-		function diagramInfo(model) {
-			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
-		}
-
+		function diagramInfo(model) {return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";}
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Paste",
@@ -929,7 +873,6 @@
 		var linkDataArray = <?=$from_to?>;
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 	}
-
 	$(document).ready(function () {
 		init();
 		myDiagram.addDiagramListener("ObjectSingleClicked",
@@ -955,7 +898,6 @@
 				});
 			});
 	});
-
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
@@ -963,13 +905,10 @@
 		var url = '<?=base_url('Structure/change_from_to_ax')?>';
 		var data = myDiagram.model.linkDataArray;
 		var old_data = '<?=$from_to?>';
-
 		$.post(url, {data: data, old_data: old_data}).done(function (data) {
 			console.log("Data Loaded: " + data);
 		});
 	}
-
-
 	$(document).on('click', '.expand_tr', function () {
 		if ($(this).hasClass('fa-plus')) {
 			$(this).removeClass('fa-plus');
@@ -978,274 +917,261 @@
 			$(this).addClass('fa-plus');
 			$(this).removeClass('fa-minus');
 		}
-
 		var btn_value = $(this).data('value');
 		$('.more[data-value=' + btn_value + ']').toggle('slow');
 	});
 	var ii = 1;
+
+	 $('.ex_1 tr').each(function () {ii++;});
+	 $('.ex_2 tr').each(function () {ii++;});
+	 $('.ex_3 tr').each(function () {ii++;});
+	 $('.ex_4 tr').each(function () {ii++;});
+	 $('.ex_5 tr').each(function () {ii++;});
+	 $('.ex_6 tr').each(function () {ii++;});
+	 $('.ex_7 tr').each(function () {ii++;});
+	 $('.ex_8 tr').each(function () {ii++;});
+	 $('.ex_9 tr').each(function () {ii++;});
+	$('.ex_10 tr').each(function () {ii++;});
+	$('.ex_11 tr').each(function () {ii++;});
+	$('.ex_12 tr').each(function () {ii++;});
+	$('.ex_13 tr').each(function () {ii++;});
 	$(document).on('click', '.add_new_tr', function () {
 		var dt_id = $(this).data('id');
-
 		if (dt_id == 'ex_1') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_1').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_2') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_2').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_3') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_3').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_4') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_4').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_5') {
 			$$("td[valign='top']").parent('tr').remove();
 			$('.ex_5').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_6') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_6').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_7') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_7').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_8') {
 			$("td[valign='top']").parent('tr').remove();
-			;
 			$('.ex_8').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_9') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_9').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_10') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_10').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_11') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_11').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_12') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_12').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
-		if (dt_id == 'ex_13') {
+		if (ex_13 == dt_id) {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_13').append('<tr role="row">\n' +
-				'<td class="sorting_1">' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" style="cursor:pointer;color:rgb(255, 122, 89);"></i></td>\n' +
+				'<td class="sorting_1"> ' + ii + '</td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		ii++;
-
-
 		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
 		$('th').unbind("click");
-		;
-
+		$(function () {$('[data-toggle="tooltip"]').tooltip()})
 	});
-
-
-	$(document).on('click', '.del_row_ft', function () {
-		$(this).parent('td').parent('tr').remove();
-	});
-
+	$(document).on('click', '.del_row_ft', function () {$(this).parent('td').parent('tr').remove();});
 	$(document).ready(function () {
 		Highcharts.chart('container', {
 			chart: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				type: 'area',
 				width: 400,
 				height: 300,
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				text: 'US and USSR nuclear stockpiles'
 			},
 			xAxis: {
 
 				allowDecimals: false,
 				labels: {
-					style: {
-						color: '#FFFFFF'
-					},
-					formatter: function () {
-						return this.value;
-					}
+					style: {color: '#FFFFFF'},
+					formatter: function () {return this.value;}
 				}
 			},
 			yAxis: {
 				title: {
-					style: {
-						color: '#FFFFFF'
-					},
+					style: {color: '#FFFFFF'},
 					text: 'Nuclear weapon states'
 				},
 				labels: {
-					style: {
-						color: '#FFFFFF'
-					},
-					formatter: function () {
-						return this.value / 1000 + 'k';
-					}
+					style: {color: '#FFFFFF'},
+					formatter: function () {return this.value / 1000 + 'k';}
 				}
 			},
 			tooltip: {
 				pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
 			},
 			plotOptions: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				area: {
 					pointStart: 1940,
 					marker: {
@@ -1262,7 +1188,7 @@
 			},
 			series: [{
 				data: [
-					369, 640, 1005, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
+					1000, 1200, 3000, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
 					20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
 					26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
 					24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
@@ -1272,14 +1198,10 @@
 				]
 			}]
 		});
-
 		//Chart 2
-
 		Highcharts.chart('container2', {
 			chart: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				plotBackgroundColor: null,
 				plotBorderWidth: null,
 				plotShadow: false,
@@ -1289,18 +1211,14 @@
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				text: 'Browser market shares in January'
 			},
 			tooltip: {
 				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 			},
 			plotOptions: {
-				style: {
-					color: '#FFFFFF'
-				},
+				style: {color: '#FFFFFF'},
 				pie: {
 					allowPointSelect: true,
 					cursor: 'pointer',
@@ -1336,6 +1254,7 @@
 			}]
 		});
 	});
-
-
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 </script>

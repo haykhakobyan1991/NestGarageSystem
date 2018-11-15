@@ -59,7 +59,6 @@ endforeach;
 
 	<div class="tab-pane fade show active" id="list-users" role="tabpanel" aria-labelledby="list-users-list"
 			 style="padding-top: 10px;">
-
 			<div class="jumbotron jumbotron-fluid pb-2 pt-2">
 				<div class="container">
 					<div class="row">
@@ -76,8 +75,6 @@ endforeach;
 					</div>
 				</div>
 			</div>
-
-
 		<!-- EDIT user modal-->
 
 		<div class="modal fade bd-example-modal-lg " id="edit_user" tabindex="-1" role="dialog"

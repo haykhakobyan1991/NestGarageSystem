@@ -896,6 +896,8 @@
 						}
 					}
 				});
+				/*Remove BoxShadow From HighCharts Pie Diagram*/
+				$('.highcharts-text-outline').attr('stroke','');
 			});
 	});
 	function save() {
@@ -1142,11 +1144,11 @@
 				style: {color: '#FFFFFF'},
 				type: 'area',
 				width: 400,
-				height: 300,
+				height: 250,
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {color: '#FFFFFF'},
+				style: {color: '#FFFFFF',fontSize: '14px'},
 				text: 'US and USSR nuclear stockpiles'
 			},
 			xAxis: {
@@ -1206,12 +1208,12 @@
 				plotBorderWidth: null,
 				plotShadow: false,
 				type: 'pie',
-				width: 400,
+				width: 350,
 				height: 250,
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {color: '#FFFFFF'},
+				style: {color: '#FFFFFF',fontSize: '14px'},
 				text: 'Browser market shares in January'
 			},
 			tooltip: {
@@ -1225,7 +1227,9 @@
 					dataLabels: {
 						enabled: true,
 						style: {
-							color: '#FFFFFF'
+							color: '#FFFFFF',
+							fontSize: '10px,',
+							fontWeight: '300'
 						},
 					}
 				}
@@ -1233,28 +1237,18 @@
 			series: [{
 				name: 'Brands',
 				colorByPoint: true,
-				data: [{
-					name: 'Chrome',
-					y: 61.41,
-					sliced: true,
-					selected: true
-				}, {
-					name: 'Internet Explorer',
-					y: 11.84
-				}, {
-					name: 'Firefox',
-					y: 10.85
-				}, {
-					name: 'Edge',
-					y: 15.67
-				}, {
-					name: 'Safari',
-					y: 20.18
-				}]
+				data: [
+					{name: 'Chrome', y: 61.41},
+					{name: 'Internet Explorer', y: 11.84},
+					{name: 'Firefox', y: 10.85},
+					{name: 'Edge', y: 15.67},
+					{name: 'Safari', y: 20.18}
+				]
 			}]
 		});
 	});
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})
+
 </script>

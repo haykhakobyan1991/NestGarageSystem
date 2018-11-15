@@ -174,10 +174,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 				<!-- Vertical Tabs End-->
 
 
-				<div class="<?= ($controller == 'Organization' ? 'col-sm-12 col-md-9' : 'container') ?>"
+				<div class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
 					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
-
-
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
 
 						<div class="loader"></div>

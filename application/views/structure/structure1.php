@@ -10,8 +10,8 @@
 	$(document).ready(function () {
 		for (i = 1; i < 14; i++) {
 			$('#ex_' + i + '').DataTable();
-			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" data-id="ex_' + i + '"> </i>');
-			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right">Save</button>');
+			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" style="position:absolute;right:250px;bottom:12px;" data-id="ex_' + i + '"> </i>');
+			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right" style="right:200px;position:absolute;bottom:15px;">Save</button>');
 		}
 	})
 </script>
@@ -19,19 +19,24 @@
 	canvas {
 		background: #fff;
 	}
+
 	tr {
 		background: rgba(0, 0, 0, .05) !important;
 	}
+
 	th, td {
 		vertical-align: middle !important;
 		text-align: center !important;
 	}
+
 	table td {
 		padding: 5px !important
 	}
+
 	th {
 		border: 1px solid #333 !important;
 	}
+
 	i.fa.fa-plus, i.fa.fa-minus {
 		display: inline-block;
 		float: right;
@@ -39,30 +44,37 @@
 		cursor: pointer;
 		font-size: 12px;
 	}
+
 	.more {
 		display: none;
 	}
+
 	.add_new_tr {
 		display: inline-block;
 		padding: 10px;
 		border: 1px solid #dee2e6;
 	}
+
 	text.highcharts-credits {
 		display: none;
 	}
+
 	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
 		display: none;
 	}
+
 	table#ex_1 thead tr th:last-child:after, table#ex_2 thead tr th:last-child:after, table#ex_3 thead tr th:last-child:after, table#ex_4 thead tr th:last-child:after, table#ex_5 thead tr th:last-child:after, table#ex_6 thead tr th:last-child:after, table#ex_7 thead tr th:last-child:after, table#ex_8 thead tr th:last-child:after, table#ex_9 thead tr th:last-child:after, table#ex_10 thead tr th:last-child:after, table#ex_11 thead tr th:last-child:after, table#ex_12 thead tr th:last-child:after, table#ex_13 thead tr th:last-child:after {
 		content: '';
 	}
+
 	table#ex_1 thead tr th:last-child:before, table#ex_2 thead tr th:last-child:before, table#ex_3 thead tr th:last-child:before, table#ex_4 thead tr th:last-child:before, table#ex_5 thead tr th:last-child:before, table#ex_6 thead tr th:last-child:before, table#ex_7 thead tr th:last-child:before, table#ex_8 thead tr th:last-child:before, table#ex_9 thead tr th:last-child:before, table#ex_10 thead tr th:last-child:before, table#ex_11 thead tr th:last-child:before, table#ex_12 thead tr th:last-child:before, table#ex_13 thead tr th:last-child:before {
 		content: '';
 	}
-	.nav-item.nav-link.active.show,.nav-item.nav-link.active{
-	background-color: rgb(255, 122, 89) !important;
-	color: #fff;
-}
+
+	.nav-item.nav-link.active.show, .nav-item.nav-link.active {
+		background-color: rgb(255, 122, 89) !important;
+		color: #fff;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
@@ -584,6 +596,7 @@
 								alternateNodeSpacing: 20
 							}),
 				});
+
 		function makeButton(text, action, visiblePredicate) {
 			return $("ContextMenuButton",
 				$(go.TextBlock, text),
@@ -592,6 +605,7 @@
 					return o.diagram ? visiblePredicate(o, e) : false;
 				}).ofObject() : {});
 		}
+
 		var partContextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Properties",
@@ -652,16 +666,21 @@
 						return o.diagram.commandHandler.canUngroupSelection();
 					})
 			);
+
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;
 			if (node1 === node2) return false;
 			if (node2.isInTreeOf(node1)) return false;
 			return true;
 		}
+
 		function textStyle() {
 			return {font: "9px  Segoe UI,sans-serif", stroke: "#fff"};
 		}
-		function nodeDoubleClick(e, obj) {}
+
+		function nodeDoubleClick(e, obj) {
+		}
+
 		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
 			if (d.group)
@@ -670,6 +689,7 @@
 				str += "top-level node";
 			// return str;
 		}
+
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
 		myDiagram.layout.commitNodes = function () {
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
@@ -748,7 +768,7 @@
 							{
 								row: 0, column: 0, columnSpan: 2,
 								font: "9px Segoe UI,sans-serif",
-								editable: true, isMultiline: false,
+								editable: false, isMultiline: false,
 								minSize: new go.Size(8, 14)
 							},
 							new go.Binding("text", "name").makeTwoWay()),
@@ -783,10 +803,14 @@
 				)
 			);
 		myDiagram.allowMove = false;
-		function linkInfo(d) {return "Link:\nfrom " + d.from + " to " + d.to;}
+
+		function linkInfo(d) {
+			return "Link:\nfrom " + d.from + " to " + d.to;
+		}
+
 		myDiagram.linkTemplate =
 			$(go.Link,
-				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
+				{toShortLength: 3, relinkableFrom: false, relinkableTo: false},
 				$(go.Shape,
 					{strokeWidth: 2},
 					new go.Binding("stroke", "color")),
@@ -803,7 +827,10 @@
 					contextMenu: partContextMenu
 				}
 			);
-		function findHeadShot(key) {}
+
+		function findHeadShot(key) {
+		}
+
 		function groupInfo(adornment) {
 			var g = adornment.adornedPart;
 			var mems = g.memberParts.count;
@@ -812,6 +839,7 @@
 				if (part instanceof go.Link) links++;
 			});
 		}
+
 		myDiagram.groupTemplate =
 			$(go.Group, "Vertical",
 				{
@@ -822,7 +850,7 @@
 					{
 						font: "bold 9px sans-serif",
 						isMultiline: false,
-						editable: true
+						editable: false
 					},
 					new go.Binding("text", "text").makeTwoWay(),
 					new go.Binding("stroke", "color")),
@@ -844,7 +872,11 @@
 					contextMenu: partContextMenu
 				}
 			);
-		function diagramInfo(model) {return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";}
+
+		function diagramInfo(model) {
+			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
+		}
+
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
 				makeButton("Paste",
@@ -873,6 +905,7 @@
 		var linkDataArray = <?=$from_to?>;
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 	}
+
 	$(document).ready(function () {
 		init();
 		myDiagram.addDiagramListener("ObjectSingleClicked",
@@ -897,9 +930,10 @@
 					}
 				});
 				/*Remove BoxShadow From HighCharts Pie Diagram*/
-				$('.highcharts-text-outline').attr('stroke','');
+				$('.highcharts-text-outline').attr('stroke', '');
 			});
 	});
+
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
@@ -911,6 +945,7 @@
 			console.log("Data Loaded: " + data);
 		});
 	}
+
 	$(document).on('click', '.expand_tr', function () {
 		if ($(this).hasClass('fa-plus')) {
 			$(this).removeClass('fa-plus');
@@ -924,19 +959,45 @@
 	});
 	var ii = 1;
 
-	 $('.ex_1 tr').each(function () {ii++;});
-	 $('.ex_2 tr').each(function () {ii++;});
-	 $('.ex_3 tr').each(function () {ii++;});
-	 $('.ex_4 tr').each(function () {ii++;});
-	 $('.ex_5 tr').each(function () {ii++;});
-	 $('.ex_6 tr').each(function () {ii++;});
-	 $('.ex_7 tr').each(function () {ii++;});
-	 $('.ex_8 tr').each(function () {ii++;});
-	 $('.ex_9 tr').each(function () {ii++;});
-	$('.ex_10 tr').each(function () {ii++;});
-	$('.ex_11 tr').each(function () {ii++;});
-	$('.ex_12 tr').each(function () {ii++;});
-	$('.ex_13 tr').each(function () {ii++;});
+	$('.ex_1 tr').each(function () {
+		ii++;
+	});
+	$('.ex_2 tr').each(function () {
+		ii++;
+	});
+	$('.ex_3 tr').each(function () {
+		ii++;
+	});
+	$('.ex_4 tr').each(function () {
+		ii++;
+	});
+	$('.ex_5 tr').each(function () {
+		ii++;
+	});
+	$('.ex_6 tr').each(function () {
+		ii++;
+	});
+	$('.ex_7 tr').each(function () {
+		ii++;
+	});
+	$('.ex_8 tr').each(function () {
+		ii++;
+	});
+	$('.ex_9 tr').each(function () {
+		ii++;
+	});
+	$('.ex_10 tr').each(function () {
+		ii++;
+	});
+	$('.ex_11 tr').each(function () {
+		ii++;
+	});
+	$('.ex_12 tr').each(function () {
+		ii++;
+	});
+	$('.ex_13 tr').each(function () {
+		ii++;
+	});
 	$(document).on('click', '.add_new_tr', function () {
 		var dt_id = $(this).data('id');
 		if (dt_id == 'ex_1') {
@@ -1135,9 +1196,13 @@
 		ii++;
 		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
 		$('th').unbind("click");
-		$(function () {$('[data-toggle="tooltip"]').tooltip()})
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
 	});
-	$(document).on('click', '.del_row_ft', function () {$(this).parent('td').parent('tr').remove();});
+	$(document).on('click', '.del_row_ft', function () {
+		$(this).parent('td').parent('tr').remove();
+	});
 	$(document).ready(function () {
 		Highcharts.chart('container', {
 			chart: {
@@ -1148,7 +1213,7 @@
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {color: '#FFFFFF',fontSize: '14px'},
+				style: {color: '#FFFFFF', fontSize: '14px'},
 				text: 'US and USSR nuclear stockpiles'
 			},
 			xAxis: {
@@ -1156,7 +1221,9 @@
 				allowDecimals: false,
 				labels: {
 					style: {color: '#FFFFFF'},
-					formatter: function () {return this.value;}
+					formatter: function () {
+						return this.value;
+					}
 				}
 			},
 			yAxis: {
@@ -1166,7 +1233,9 @@
 				},
 				labels: {
 					style: {color: '#FFFFFF'},
-					formatter: function () {return this.value / 1000 + 'k';}
+					formatter: function () {
+						return this.value / 1000 + 'k';
+					}
 				}
 			},
 			tooltip: {
@@ -1213,7 +1282,7 @@
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {color: '#FFFFFF',fontSize: '14px'},
+				style: {color: '#FFFFFF', fontSize: '14px'},
 				text: 'Browser market shares in January'
 			},
 			tooltip: {

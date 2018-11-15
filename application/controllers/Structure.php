@@ -206,13 +206,13 @@ class Structure extends MX_Controller {
 			$department_id = $value['department_id'];
 
 			if ($value['driver_id'] != $driver_id && $value['driver_id'] != '') :
-				$structure_arr[] = array('key' => 'd' . $value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/' . $folder . '/staff/original/' . $value['driver_photo']) : base_url('assets/img/staff.svg')));
+				$structure_arr[] = array('key' => 'd' . $value['driver_id'], 'text' => $value['driver'], 'img' => ($value['driver_photo'] != '' ? base_url('uploads/' . $folder . '/staff/original/' . $value['driver_photo']) : base_url('assets/img/staff.svg')), 'from' => true);
 				$from_to_arr[] = array('from' => 'h' . $value['department_id'], 'to' => 'd' . $value['driver_id']);
 			endif;
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'));
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'), 'to'=> true);
 			endif;
 			$fleet_id = $value['fleet_id'];
 

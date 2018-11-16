@@ -1203,7 +1203,11 @@
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
+
+
 		console.log(myDiagram.model.linkDataArray);
+
+
 		var url = '<?=base_url('Structure/change_from_to_ax')?>';
 		var data = myDiagram.model.linkDataArray;
 		var old_data = '<?=$from_to?>';

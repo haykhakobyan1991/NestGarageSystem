@@ -139,5 +139,55 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
 }
 
 
+.btn-file {
+	position: relative !important;
+	overflow: hidden !important;
+}
+
+.btn-file input[type=file] {
+	position: absolute !important;
+	top: 0 !important;
+	right: 0 !important;
+	min-width: 100% !important;
+	min-height: 100% !important;
+	font-size: 100px !important;
+	text-align: right !important;
+	filter: alpha(opacity=0) !important;
+	opacity: 0 !important;
+	outline: none !important;
+	background: white !important;
+	cursor: inherit !important;
+	display: block !important;
+}
+
+#example_wrapper, #example2_wrapper, #example3_wrapper {
+	width: 100% !important;
+}
+
+#img-upload {
+	width: 100% !important;
+}
+
+.list-group-item.active {
+	z-index: 2;
+	color: #fff !important;
+	background-color: #8e8f90 !important;
+	border-color: #8e8f90 !important;
+}
+
+.page-item.active .page-link {
+	background: #545b62 !important;
+	border: 1px solid #545b62 !important;
+}
+
+.nav-link {
+	color: #333 !important;
+}
+
+li.active > a {
+	color: #6c757d !important;
+	font-weight: 700 !important;
+}
+
 
 

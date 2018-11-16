@@ -22,62 +22,7 @@
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
 
-	<!-- Some CSS Start-->
-	<style>
 
-		.btn-file {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.btn-file input[type=file] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			min-width: 100%;
-			min-height: 100%;
-			font-size: 100px;
-			text-align: right;
-			filter: alpha(opacity=0);
-			opacity: 0;
-			outline: none;
-			background: white;
-			cursor: inherit;
-			display: block;
-		}
-
-		#example_wrapper, #example2_wrapper, #example3_wrapper {
-			width: 100%;
-		}
-
-		#img-upload {
-			width: 100%;
-		}
-
-		.list-group-item.active {
-			z-index: 2;
-			color: #fff;
-			background-color: #8e8f90;
-			border-color: #8e8f90;
-		}
-
-		.page-item.active .page-link {
-			background: #545b62;
-			border: 1px solid #545b62;
-		}
-
-		.nav-link {
-			color: #333;
-		}
-
-		li.active > a {
-			color: #6c757d;
-			font-weight: 700;
-		}
-
-
-	</style>
-	<!-- Some CSS end -->
 </head>
 <body>
 <?

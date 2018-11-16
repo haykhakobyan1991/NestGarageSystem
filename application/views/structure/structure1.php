@@ -1,6 +1,7 @@
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/structure1.css"/>
 <!-- Structure Start -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
@@ -10,72 +11,12 @@
 	$(document).ready(function () {
 		for (i = 1; i < 14; i++) {
 			$('#ex_' + i + '').DataTable();
-			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" style="position:absolute;right:250px;bottom:12px;" data-id="ex_' + i + '"> </i>');
-			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right" style="right:200px;position:absolute;bottom:15px;">Save</button>');
+			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" style="position:absolute;left:250px;bottom:12px;" data-id="ex_' + i + '"> </i>');
+			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right" style="left:285px;position:absolute;bottom:13px;">Save</button>');
 		}
 	})
 </script>
-<style>
-	canvas {
-		background: #fff;
-	}
 
-	tr {
-		background: rgba(0, 0, 0, .05) !important;
-	}
-
-	th, td {
-		vertical-align: middle !important;
-		text-align: center !important;
-	}
-
-	table td {
-		padding: 5px !important
-	}
-
-	th {
-		border: 1px solid #333 !important;
-	}
-
-	i.fa.fa-plus, i.fa.fa-minus {
-		display: inline-block;
-		float: right;
-		vertical-align: middle;
-		cursor: pointer;
-		font-size: 12px;
-	}
-
-	.more {
-		display: none;
-	}
-
-	.add_new_tr {
-		display: inline-block;
-		padding: 10px;
-		border: 1px solid #dee2e6;
-	}
-
-	text.highcharts-credits {
-		display: none;
-	}
-
-	g.highcharts-legend-item.highcharts-area-series.highcharts-color-0.highcharts-series-0 {
-		display: none;
-	}
-
-	table#ex_1 thead tr th:last-child:after, table#ex_2 thead tr th:last-child:after, table#ex_3 thead tr th:last-child:after, table#ex_4 thead tr th:last-child:after, table#ex_5 thead tr th:last-child:after, table#ex_6 thead tr th:last-child:after, table#ex_7 thead tr th:last-child:after, table#ex_8 thead tr th:last-child:after, table#ex_9 thead tr th:last-child:after, table#ex_10 thead tr th:last-child:after, table#ex_11 thead tr th:last-child:after, table#ex_12 thead tr th:last-child:after, table#ex_13 thead tr th:last-child:after {
-		content: '';
-	}
-
-	table#ex_1 thead tr th:last-child:before, table#ex_2 thead tr th:last-child:before, table#ex_3 thead tr th:last-child:before, table#ex_4 thead tr th:last-child:before, table#ex_5 thead tr th:last-child:before, table#ex_6 thead tr th:last-child:before, table#ex_7 thead tr th:last-child:before, table#ex_8 thead tr th:last-child:before, table#ex_9 thead tr th:last-child:before, table#ex_10 thead tr th:last-child:before, table#ex_11 thead tr th:last-child:before, table#ex_12 thead tr th:last-child:before, table#ex_13 thead tr th:last-child:before {
-		content: '';
-	}
-
-	.nav-item.nav-link.active.show, .nav-item.nav-link.active {
-		background-color: rgb(255, 122, 89) !important;
-		color: #fff;
-	}
-</style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
 	<div id="sample">
@@ -239,16 +180,16 @@
 					<tbody class="ex_1">
 						<tr>
 							<td>1</td>
-							<td><input type="text" name="_1" value="12.12.2018"
+							<td><input title="" type="text" name="_1" value="12.12.2018"
 									   style="width: 100%;border: none;outline: none;" class="text-center"/><span
 									class="d-none">12.12.2018</span></td>
-							<td><input type="text" name="_1" value="uuuu"
+							<td><input title="" type="text" name="_1" value="uuuu"
 									   style="width: 100%;border: none; outline: none;" class="text-center"/><span
 									class="d-none">uuuu</span></td>
-							<td><input type="text" name="_1" value="20.03.2019"
+							<td><input title="" type="text" name="_1" value="20.03.2019"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">20.03.2019</span></td>
-							<td><input type="text" name="_1" value="12000"
+							<td><input title="" type="text" name="_1" value="12000"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">12000</span></td>
 							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
@@ -256,16 +197,16 @@
 						</tr>
 						<tr>
 							<td>2</td>
-							<td><input type="text" name="_2" value="12.09.2018"
+							<td><input title="" type="text" name="_2" value="12.09.2018"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">12.09.2018</span></td>
-							<td><input type="text" name="_2" value="dddddd"
+							<td><input title="" type="text" name="_2" value="dddddd"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">dddddd</span></td>
-							<td><input type="text" name="_2" value="23.06.2019"
+							<td><input title="" type="text" name="_2" value="23.06.2019"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">23.06.2019</span></td>
-							<td><input type="text" name="_2" value="55000"
+							<td><input title="" type="text" name="_2" value="55000"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">55000</span></td>
 							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
@@ -273,16 +214,357 @@
 						</tr>
 						<tr>
 							<td>3</td>
-							<td><input type="text" name="_3" value="03.04.2018"
+							<td><input title="" type="text" name="_3" value="03.04.2018"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">03.04.2018</span></td>
-							<td><input type="text" name="_3" value="ggggg"
+							<td><input title="" type="text" name="_3" value="ggggg"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">ggggg</span></td>
-							<td><input type="text" name="_3" value="25.08.2019"
+							<td><input title="" type="text" name="_3" value="25.08.2019"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">25.08.2019</span></td>
-							<td><input type="text" name="_3" value="15400"
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+					<tr>
+							<td>4</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+					<tr>
+							<td>5</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+					<tr>
+							<td>6</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+					<tr>
+							<td>7</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr>
+					<tr>
+							<td>8</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>9</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>10</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>11</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>12</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>13</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>14</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>15</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>16</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>17</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>18</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>19</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>20</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>21</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>22</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>23</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">15400</span></td>
+							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
+								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+						</tr><tr>
+							<td>24</td>
+							<td><input title="" type="text" name="_3" value="03.04.2018"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">03.04.2018</span></td>
+							<td><input title="" type="text" name="_3" value="ggggg"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">ggggg</span></td>
+							<td><input title="" type="text" name="_3" value="25.08.2019"
+									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
+									class="d-none">25.08.2019</span></td>
+							<td><input title="" type="text" name="_3" value="15400"
 									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
 									class="d-none">15400</span></td>
 							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
@@ -683,11 +965,6 @@
 
 		function nodeInfo(d) {
 			var str = "Node " + d.key + ": " + d.text + "\n";
-			if (d.group)
-				str += "member of " + d.group;
-			else
-				str += "top-level node";
-			// return str;
 		}
 
 		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
@@ -802,7 +1079,9 @@
 					)
 				)
 			);
+
 		myDiagram.allowMove = false;
+		myDiagram.allowUndo = false;
 
 		function linkInfo(d) {
 			return "Link:\nfrom " + d.from + " to " + d.to;
@@ -810,7 +1089,7 @@
 
 		myDiagram.linkTemplate =
 			$(go.Link,
-				{toShortLength: 3, relinkableFrom: false, relinkableTo: false},
+				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
 				$(go.Shape,
 					{strokeWidth: 2},
 					new go.Binding("stroke", "color")),
@@ -833,7 +1112,6 @@
 
 		function groupInfo(adornment) {
 			var g = adornment.adornedPart;
-			var mems = g.memberParts.count;
 			var links = 0;
 			g.memberParts.each(function (part) {
 				if (part instanceof go.Link) links++;
@@ -844,7 +1122,7 @@
 			$(go.Group, "Vertical",
 				{
 					selectionObjectName: "PANEL",
-					ungroupable: true
+					ungroupable: false
 				},
 				$(go.TextBlock,
 					{
@@ -861,21 +1139,9 @@
 						{width: 25, height: 25},
 						new go.Binding("source", "img")),
 					$(go.Placeholder, {margin: 2, background: "transparent"})
-				),
-				{
-					toolTip:
-						$(go.Adornment, "Auto",
-							$(go.Shape, {fill: "#ff0900"}),
-							$(go.TextBlock, {margin: 2},
-								new go.Binding("text", "", groupInfo).ofObject())
-						),
-					contextMenu: partContextMenu
-				}
+				)
 			);
 
-		function diagramInfo(model) {
-			return "Model:\n" + model.nodeDataArray.length + " nodes, " + model.linkDataArray.length + " links";
-		}
 
 		myDiagram.contextMenu =
 			$(go.Adornment, "Vertical",
@@ -1004,10 +1270,10 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_1').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1015,12 +1281,12 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_2').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1028,12 +1294,12 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_3').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1041,13 +1307,13 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_4').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1055,12 +1321,12 @@
 			$$("td[valign='top']").parent('tr').remove();
 			$('.ex_5').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1068,15 +1334,15 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_6').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1084,11 +1350,11 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_7').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1096,17 +1362,17 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_8').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1114,17 +1380,17 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_9').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1132,16 +1398,16 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_10').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1149,16 +1415,16 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_11').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1166,15 +1432,15 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_12').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
@@ -1182,20 +1448,21 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_13').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
 				'</tr>');
 		}
 		ii++;
 		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
 		$('th').unbind("click");
+		// $('.pagination li').unbind("click");
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		})

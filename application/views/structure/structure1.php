@@ -12,7 +12,7 @@
 		for (i = 1; i < 14; i++) {
 			$('#ex_' + i + '').DataTable();
 			$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" style="position:absolute;left:250px;bottom:12px;" data-id="ex_' + i + '"> </i>');
-			$('#ex_' + i + '_wrapper').append('<button class="btn btn-sm btn-success ml-1 mr-1 float-right" style="left:285px;position:absolute;bottom:13px;">Save</button>');
+			$('#ex_' + i + '_wrapper').append('<button name="" class="btn btn-sm btn-success ml-1 mr-1 float-right" style="left:285px;position:absolute;bottom:13px;">Save</button>');
 		}
 	})
 </script>
@@ -22,7 +22,7 @@
 	<div id="sample">
 		<div id="myDiagramDiv" style="height:300px"></div>
 	</div>
-	<textarea style="display: none; width: 100%;" id="mySavedModel" title=""> </textarea>
+	<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 	<nav class="selectted_information float-left d-none">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -32,7 +32,7 @@
 			   aria-controls="nav-driver" aria-selected="false">Driver</a>
 		</div>
 	</nav>
-	<button class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save()">Save</button>
+	<button name="" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save()">Save</button>
 </div>
 <span class="selectted_information d-none">
 <div class="tab-content mt-3" id="nav-tabContent">
@@ -40,59 +40,37 @@
 		<div class="container-fluid bg-secondary">
 			<div class="row">
 				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">unit: <span
-							class="text-white ml-2">1</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Make: <span
-							class="text-white ml-2">BMW</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Color: <span
-							class="ml-2 text-white"
-							style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"> </span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Engine: <span
-							class="text-white ml-2">ER45543</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Model: <span
-							class="text-white ml-2">M-3</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Year: <span
-							class="text-white ml-2">2015</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">VIN: <span
-							class="text-white ml-2">123123123QWE900938</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Type of Vehicle: <span
-							class="text-white ml-2">Berline</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">TDepartment: <span
-							class="text-white ml-2">Sales</span></p>
+					<p class="text-white-50 small driver_info" >unit: <span class="text-white ml-2">1</span></p>
+					<p class="text-white-50 small driver_info" >Make: <span class="text-white ml-2">BMW</span></p>
+					<p class="text-white-50 small driver_info" >Color: <span class="ml-2 text-white" style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"> </span></p>
+					<p class="small text-white-50 driver_info" >Engine: <span class="text-white ml-2">ER45543</span></p>
+					<p class="small text-white-50 driver_info" >Model: <span class="text-white ml-2">M-3</span></p>
+					<p class="small text-white-50 driver_info" >Year: <span class="text-white ml-2">2015</span></p>
+					<p class="small text-white-50 driver_info" >VIN: <span class="text-white ml-2">123123123QWE900938</span></p>
+					<p class="small text-white-50 driver_info" >Type of Vehicle: <span class="text-white ml-2">Berline</span></p>
+					<p class="small text-white-50 driver_info" >TDepartment: <span class="text-white ml-2">Sales</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Կցված: <span
-							class="text-white ml-2">Անուն Ազգանուն</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման համարանիշ: <span
-							class="text-white ml-2">HB32454</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վառելիք։ <span
-							class="text-white ml-2">Բենզին</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Միջին ծաղսը 100 կմ․ ։<span
-							class="text-white ml-2">8․5</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Օրեկան․ ։<span
-							class="text-white ml-2">120 կմ․</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Վազք։<span
-							class="text-white ml-2">87000</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հոռոգռաֆ։<span
-							class="text-white ml-2">սդֆսֆսֆ</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Exsist?։<span
-							class="text-white ml-2">Այո</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">GPS Tracker IMEI։<span
-							class="text-white ml-2">45787585455</span></p>
+					<p class="small text-white-50 driver_info">Կցված: <span class="text-white ml-2">Անուն Ազգանուն</span></p>
+					<p class="small text-white-50 driver_info">Հաշվառման համարանիշ: <span class="text-white ml-2">HB32454</span></p>
+					<p class="small text-white-50 driver_info">Վառելիք։ <span class="text-white ml-2">Բենզին</span></p>
+					<p class="small text-white-50 driver_info">Միջին ծաղսը 100 կմ․ ։<span class="text-white ml-2">8․5</span></p>
+					<p class="small text-white-50 driver_info">Օրեկան․ ։<span class="text-white ml-2">120 կմ․</span></p>
+					<p class="small text-white-50 driver_info">Վազք։<span class="text-white ml-2">87000</span></p>
+					<p class="small text-white-50 driver_info">Հոռոգռաֆ։<span class="text-white ml-2">սդֆսֆսֆ</span></p>
+					<p class="small text-white-50 driver_info">GPS Exsist?։<span class="text-white ml-2">Այո</span></p>
+					<p class="small text-white-50 driver_info">GPS Tracker IMEI։<span class="text-white ml-2">45787585455</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Հաշվառման Հասցե։<span
-							class="text-white ml-2">Հասցե 14 </span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ապահովագրություն: <span
-							class="text-white ml-2">Կասկո</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Ուժի մեջ է: <span
-							class="text-white ml-2">22․12․2018</span></p>
+					<p class="small text-white-50 driver_info">Հաշվառման Հասցե։<span class="text-white ml-2">Հասցե 14 </span></p>
+					<p class="small text-white-50 driver_info">Ապահովագրություն: <span class="text-white ml-2">Կասկո</span></p>
+					<p class="small text-white-50 driver_info">Ուժի մեջ է: <span class="text-white ml-2">22․12․2018</span></p>
 				</div>
 				<div class="p-2 w-auto ml-2">
-					<div id="container" style="width:100%;"></div>
+					<div id="container" class="w-100"></div>
 				</div>
 				<div class="p-2 w-auto">
-					<div id="container2" style="width:100%;"></div>
+					<div id="container2" class="w-100"></div>
 				</div>
 			</div>
 		</div>
@@ -101,31 +79,19 @@
 		<div class="container-fluid bg-secondary">
 			<div class="row">
 				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small text-white"
-					   style="display: block;margin-bottom: 2px;">First name: <span class="text-white ml-2">name</span></p>
-					<p class="text-white-50 small text-white"
-					   style="display: block;margin-bottom: 2px;">Last Name: <span
-							class="text-white ml-2">last name</span></p>
-					<p class="text-white-50 small text-white" style="display: block;margin-bottom: 2px;">Contact Number 1: <span
-							class="text-white ml-2">78785165</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Contact Number 2: <span
-							class="text-white ml-2">4588541788</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Email: <span
-							class="text-white ml-2">example@ex.com</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Leave Country: <span
-							class="text-white ml-2">Armenia</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Address: <span
-							class="text-white ml-2">address 45/12</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Post Code: <span
-							class="text-white ml-2">0033</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Department: <span
-							class="text-white ml-2">sales</span></p>
+					<p class="text-white-50 small driver_info" >First name: <span class="text-white ml-2">name</span></p>
+					<p class="text-white-50 small driver_info">Last Name: <span class="text-white ml-2">last name</span></p>
+					<p class="text-white-50 small driver_info">Contact Number 1: <span class="text-white ml-2">78785165</span></p>
+					<p class="small text-white-50 driver_info">Contact Number 2: <span class="text-white ml-2">4588541788</span></p>
+					<p class="small text-white-50 driver_info">Email: <span class="text-white ml-2">example@ex.com</span></p>
+					<p class="small text-white-50 driver_info">Leave Country: <span class="text-white ml-2">Armenia</span></p>
+					<p class="small text-white-50 driver_info">Address: <span class="text-white ml-2">address 45/12</span></p>
+					<p class="small text-white-50 driver_info">Post Code: <span class="text-white ml-2">0033</span></p>
+					<p class="small text-white-50 driver_info">Department: <span class="text-white ml-2">sales</span></p>
 				</div>
 				<div class="p-2  w-auto">
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Position: <span
-							class="text-white ml-2">Driver</span></p>
-					<p class="small text-white-50" style="display: block;margin-bottom: 2px;">Nest Card ID: <span
-							class="text-white ml-2">4568741gt</span></p>
+					<p class="small text-white-50 driver_info" >Position: <span class="text-white ml-2">Driver</span></p>
+					<p class="small text-white-50 driver_info" >Nest Card ID: <span class="text-white ml-2">4568741gt</span></p>
 				</div>
 			</div>
 		</div>
@@ -163,18 +129,17 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
 	<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_1" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_1" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ում Կողմից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Ում Կողմից</th>
+						<th class="table_th">Վերջնաժամկետ</th>
+						<th class="table_th">Գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_1">
@@ -576,20 +541,19 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_2" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_2" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ում Կողմից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ Լիտր</th>
-						<th style="font-size: 12px !important;font-weight:500;">1 լիտր-արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Ում Կողմից</th>
+						<th class="table_th">Վարորդ</th>
+						<th class="table_th">Քանակ Լիտր</th>
+						<th class="table_th">1 լիտր-արժեք</th>
+						<th class="table_th">Գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_2"></tbody>
@@ -599,19 +563,18 @@
 	</div>
 
 	<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_3" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_3" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեասակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Տեասակ</th>
+						<th class="table_th">Վարորդ</th>
+						<th class="table_th">Այլ Ինֆորմացիա</th>
+						<th class="table_th">Գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_3"></tbody>
@@ -620,20 +583,19 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_4" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_4" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ապահովագրական Ընկերություն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վարորդ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Եզրակացության Համար</th>
-						<th style="font-size: 12px !important;font-weight:500;">Փոխարինման Ենթակա Դետալների Անվանում</th>
-						<th style="font-size: 12px !important;font-weight:500;">Հատուցվող գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Ապահովագրական Ընկերություն</th>
+						<th class="table_th">Վարորդ</th>
+						<th class="table_th">Եզրակացության Համար</th>
+						<th class="table_th">Փոխարինման Ենթակա Դետալների Անվանում</th>
+						<th class="table_th">Հատուցվող գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_4"></tbody>
@@ -642,19 +604,18 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_5" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_5" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ապահովագրական Ընկերություն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վերջնաժամկետ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Ապահովագրական Ընկերություն</th>
+						<th class="table_th">Տեսակ</th>
+						<th class="table_th">Վերջնաժամկետ</th>
+						<th class="table_th">Գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_5"></tbody>
@@ -663,23 +624,22 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_6" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_6" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Գումար</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Տեսակ</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Նոր-Օգտագործված</th>
+						<th class="table_th">Քանակ</th>
+						<th class="table_th">Միավորի Արժեք</th>
+						<th class="table_th">Գումար</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_6"></tbody>
@@ -688,18 +648,17 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_7" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_7" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Վերանորոգման ենթակա աշխ․ նյութեր</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Վերանորոգող</th>
+						<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
+						<th class="table_th">Արժեք</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_7"></tbody>
@@ -708,24 +667,23 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_8" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_8" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ Ամառ Ձմեռ Բոլոր</th>
-						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Տեսակ Ամառ Ձմեռ Բոլոր</th>
+						<th class="table_th">Նոր-Օգտագործված</th>
+						<th class="table_th">Քանակ</th>
+						<th class="table_th">Այլ Ինֆորմաիա</th>
+						<th class="table_th">Միավորի Արժեք</th>
+						<th class="table_th">Ամբողջ</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_8"></tbody>
@@ -734,24 +692,23 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_9" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_9" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ Դիսկ Բառաբան</th>
-						<th style="font-size: 12px !important;font-weight:500;">Նոր-Օգտագործված</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմաիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Միավորի Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Տեսակ Դիսկ Բառաբան</th>
+						<th class="table_th">Նոր-Օգտագործված</th>
+						<th class="table_th">Քանակ</th>
+						<th class="table_th">Այլ Ինֆորմաիա</th>
+						<th class="table_th">Միավորի Արժեք</th>
+						<th class="table_th">Ամբողջ</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_9"></tbody>
@@ -760,23 +717,22 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_10" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_10" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ լիտր Արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Տեսակ</th>
+						<th class="table_th">Այլ Ինֆորմացիա</th>
+						<th class="table_th">Քանակ լիտր Արժեք</th>
+						<th class="table_th">միավորի արժեք</th>
+						<th class="table_th">Ամբողջ</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_10"></tbody>
@@ -785,23 +741,22 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_11" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_11" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Տեսակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i> </th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Տեսակ</th>
+						<th class="table_th">Այլ Ինֆորմացիա</th>
+						<th class="table_th">Քանակ</th>
+						<th class="table_th">միավորի արժեք</th>
+						<th class="table_th">Ամբողջ</th>
+						<th class="table_th"><i class="fa fa-trash"> </i> </th>
 					</tr>
 					</thead>
 					<tbody class="ex_11"></tbody>
@@ -810,22 +765,21 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_12" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_12" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Երբ</th>
-						<th style="font-size: 12px !important;font-weight:500;">Որտեղից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Արտադրող</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մոդել</th>
-						<th style="font-size: 12px !important;font-weight:500;">Այլ Ինֆորմացիա</th>
-						<th style="font-size: 12px !important;font-weight:500;">Քանակ</th>
-						<th style="font-size: 12px !important;font-weight:500;">միավորի արժեք</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ամբողջ</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Երբ</th>
+						<th class="table_th">Որտեղից</th>
+						<th class="table_th">Արտադրող</th>
+						<th class="table_th">Մոդել</th>
+						<th class="table_th">Այլ Ինֆորմացիա</th>
+						<th class="table_th">Քանակ</th>
+						<th class="table_th">միավորի արժեք</th>
+						<th class="table_th">Ամբողջ</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_12"></tbody>
@@ -834,21 +788,20 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
-		<div class="row col-sm-12 col-md-12"
-			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="row col-sm-12 col-md-12 bpp_o">
 			<div class="container-fluid">
-				<table id="ex_13" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table id="ex_13" class="table table-striped table-borderless w-100">
+					<thead class="thead_tables">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">ID</th>
-						<th style="font-size: 12px !important;font-weight:500;">Service</th>
-						<th style="font-size: 12px !important;font-weight:500;">Service frequency</th>
-						<th style="font-size: 12px !important;font-weight:500;">Last performed</th>
-						<th style="font-size: 12px !important;font-weight:500;">Last Performed at (meter)</th>
-						<th style="font-size: 12px !important;font-weight:500;">Next services</th>
-						<th style="font-size: 12px !important;font-weight:500;">To go</th>
-						<th style="font-size: 12px !important;font-weight:500;">Create reminder</th>
-						<th style="font-size: 12px !important;font-weight:500;"><i class="fa fa-trash"> </i></th>
+						<th class="table_th">ID</th>
+						<th class="table_th">Service</th>
+						<th class="table_th">Service frequency</th>
+						<th class="table_th">Last performed</th>
+						<th class="table_th">Last Performed at (meter)</th>
+						<th class="table_th">Next services</th>
+						<th class="table_th">To go</th>
+						<th class="table_th">Create reminder</th>
+						<th class="table_th"><i class="fa fa-trash"> </i></th>
 					</tr>
 					</thead>
 					<tbody class="ex_13"></tbody>
@@ -858,6 +811,7 @@
 	</div>
 </div>
 </span>
+
 <script>
 	function init() {
 		if (window.goSamples) goSamples();
@@ -957,7 +911,10 @@
 		}
 
 		function textStyle() {
-			return {font: "9px  Segoe UI,sans-serif", stroke: "#fff"};
+			return {
+				font: "9px  Segoe UI,sans-serif",
+				stroke: "#fff"
+			};
 		}
 
 		function nodeDoubleClick(e, obj) {
@@ -975,7 +932,7 @@
 					var level = v.level % (levelColors.length);
 					var color = levelColors[level];
 					var shape = v.node.findObject("SHAPE");
-					console.log(v.node);
+					console.log(v.node.Wd);
 					if (shape) shape.fill = $(go.Brush, "Linear", {0: color, start: go.Spot.Left, end: go.Spot.Right});
 				}
 			});
@@ -1016,16 +973,25 @@
 						}
 					}
 				},
+
 				new go.Binding("text", "name"),
 				new go.Binding("layerName", "isSelected", function (sel) {
 					return sel ? "Foreground" : "";
 				}).ofObject(),
-				$(go.Shape, "Rectangle",
-					{
-						name: "SHAPE", fill: "orange", stroke: null,
-						portId: "", cursor: "pointer",
-						fromLinkable: true, fromLinkableDuplicates: false, toLinkable: true, toLinkableDuplicates: false
-					}),
+				$(go.Shape, "Rectangle", {
+						name: "SHAPE",
+						stroke: null,
+						portId: "",
+						cursor: "pointer",
+						fromLinkableDuplicates: true,
+						toLinkableDuplicates: true
+					},
+						new go.Binding("fromLinkable", "from"),
+					    new go.Binding("toLinkable", "to"),
+						new go.Binding("fromLinkable", "fromDepartment"),
+						new go.Binding("toLinkable", "toStaff"),
+					),
+
 				$(go.Panel, "Horizontal",
 					$(go.Picture,
 						{
@@ -1043,9 +1009,12 @@
 						$(go.RowColumnDefinition, {column: 2, width: 4}),
 						$(go.TextBlock, textStyle(),
 							{
-								row: 0, column: 0, columnSpan: 2,
+								row: 0,
+								column: 0,
+								columnSpan: 2,
 								font: "9px Segoe UI,sans-serif",
-								editable: false, isMultiline: false,
+								editable: false,
+								isMultiline: false,
 								minSize: new go.Size(8, 14)
 							},
 							new go.Binding("text", "name").makeTwoWay()),
@@ -1053,8 +1022,11 @@
 							{row: 1, column: 0}),
 						$(go.TextBlock, textStyle(),
 							{
-								row: 1, column: 1, columnSpan: 4,
-								editable: false, isMultiline: false,
+								row: 1,
+								column: 1,
+								columnSpan: 4,
+								editable: false,
+								isMultiline: false,
 								minSize: new go.Size(10, 14),
 								margin: new go.Margin(1, 1, 0, 3)
 							},
@@ -1063,13 +1035,19 @@
 							{row: 2, column: 0},
 						),
 						$(go.TextBlock, textStyle(),
-							{name: "boss", row: 2, column: 3,},
+							{
+								name: "boss",
+								row: 2,
+								column: 3,
+							},
 							new go.Binding("text", "parent", function (v) {
 								return "Boss: " + v;
 							})),
 						$(go.TextBlock, textStyle(),
 							{
-								row: 3, column: 0, columnSpan: 5,
+								row: 3,
+								column: 0,
+								columnSpan: 5,
 								font: "italic 9px sans-serif",
 								wrap: go.TextBlock.WrapFit,
 								editable: true,
@@ -1081,7 +1059,6 @@
 			);
 
 		myDiagram.allowMove = false;
-		myDiagram.allowUndo = false;
 
 		function linkInfo(d) {
 			return "Link:\nfrom " + d.from + " to " + d.to;
@@ -1203,11 +1180,7 @@
 	function save() {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
-
-
 		console.log(myDiagram.model.linkDataArray);
-
-
 		var url = '<?=base_url('Structure/change_from_to_ax')?>';
 		var data = myDiagram.model.linkDataArray;
 		var old_data = '<?=$from_to?>';
@@ -1274,193 +1247,193 @@
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_1').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_2') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_2').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_3') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_3').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_4') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_4').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_5') {
 			$$("td[valign='top']").parent('tr').remove();
 			$('.ex_5').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_6') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_6').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_7') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_7').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_8') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_8').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_9') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_9').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_10') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_10').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_11') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_11').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (dt_id == 'ex_12') {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_12').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		if (ex_13 == dt_id) {
 			$("td[valign='top']").parent('tr').remove();
 			$('.ex_13').append('<tr role="row">\n' +
 				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" style="width: 100%;border:none; outline: none;" class="text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"  style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
 				'</tr>');
 		}
 		ii++;
@@ -1530,10 +1503,10 @@
 			},
 			series: [{
 				data: [
-					1000, 1200, 3000, 1436, 2063, 3057, 4618, 6444, 9822, 15468,
+					null, null, null, null, null, 4618, 6444, 9822, 15468,
 					20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
 					26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-					24304, 23464, 23708, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
+					24304, 23464, 25587, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
 					21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
 					10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
 					5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
@@ -1553,7 +1526,10 @@
 				backgroundColor: 'rgba(255, 255, 255, 0.0)'
 			},
 			title: {
-				style: {color: '#FFFFFF', fontSize: '14px'},
+				style: {
+					color: '#FFFFFF',
+					fontSize: '14px'
+				},
 				text: 'Browser market shares in January'
 			},
 			tooltip: {

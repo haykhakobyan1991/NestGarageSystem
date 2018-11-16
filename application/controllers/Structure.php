@@ -404,6 +404,7 @@ class Structure extends MX_Controller {
 
 		$array = $this->from_to($new_data_arr['c_h'], $new_data_arr['h_d'], $new_data_arr['d_f'], $old_data_arr['c_h'], $old_data_arr['h_d'], $old_data_arr['d_f']);
 
+		echo hr();
 		$this->pre($array);
 
 

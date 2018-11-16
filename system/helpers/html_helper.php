@@ -394,6 +394,23 @@ if ( ! function_exists('br'))
 
 // ------------------------------------------------------------------------
 
+if ( ! function_exists('hr'))
+{
+	/**
+	 * Generates HTML HR tags based on number supplied
+	 *
+	 * @deprecated	3.0.0	Use str_repeat() instead
+	 * @param	int	$count	Number of times to repeat the tag
+	 * @return	string
+	 */
+	function hr($count = 1)
+	{
+		return str_repeat('<hr />', $count);
+	}
+}
+
+// ------------------------------------------------------------------------
+
 if ( ! function_exists('nbs'))
 {
 	/**

@@ -350,8 +350,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function change_from_to_ax() {
 
+	public function change_from_to_ax() {
 
 		$data = $this->input->post('data');
 		$old_data = json_decode($this->input->post('old_data'), true);
@@ -392,182 +392,156 @@ class Structure extends MX_Controller {
 		endforeach;
 
 
-		echo '<br>----------------------New DATA------------------------------<br>';
-		$this->pre($new_data_arr['d_f']);
-
-		echo '<br>----------------------OLD DATA------------------------------<br>';
-		$this->pre($old_data_arr['d_f']);
-
-		echo '<br>----------------------DIFF c -> h----------------------------<br>';
-		$this->pre($this->array_diff_assoc_recursive($old_data_arr['c_h'], $new_data_arr['c_h']));
-		echo '<br>----------------------DIFF h -> d----------------------------<br>';
-		$this->pre($this->array_diff_assoc_recursive($old_data_arr['h_d'], $new_data_arr['h_d']));
-		$h_d = $this->array_diff_assoc_recursive($old_data_arr['h_d'], $new_data_arr['h_d']);
-		echo '<br>----------------------DIFF d -> f----------------------------<br>';
-		$this->pre($this->array_diff_assoc_recursive($old_data_arr['d_f'], $new_data_arr['d_f']));
-		$d_f = $this->array_diff_assoc_recursive($old_data_arr['d_f'], $new_data_arr['d_f']);
-
-		if(!empty($h_d)) {
-			foreach ($h_d as $department_id => $driver_ids) {
-				$sql = "SELECT `id` FROM `department` WHERE `id` = '".$department_id."'";
-				$query = $this->db->query($sql);
-				$num_rows = $query->num_rows();
-				if($num_rows == 0) {
-					echo 'add<br>';
-				} else {
-					echo 'delete<br>';
-				}
-			}
-		}
-
-		if (!empty($d_f)) {
-
-			$i = 0;
-			foreach ($d_f as $driver_id => $fleet_ids) {
+//		echo '<br>----------------------New department - driver------------------------------<br>';
+//		$this->pre($new_data_arr['h_d']);
+//		echo '<br>----------------------OLD department - driver------------------------------<br>';
+//		$this->pre($old_data_arr['h_d']);
+//		echo '<br>----------------------New Driver - fleet------------------------------<br>';
+//		$this->pre($new_data_arr['d_f']);
+//		echo '<br>----------------------OLD Driver - fleet------------------------------<br>';
+//		$this->pre($old_data_arr['d_f']);
 
 
-				if (count($fleet_ids) > 1) {
-					echo '1.1';
-					foreach ($fleet_ids as $key => $fleet_id) {
-						echo '2.1';
-						$sql = "
-							SELECT 
-								`id`,
-								`staff_ids`
-							 FROM 	
-								`fleet` 
-							WHERE FIND_IN_SET('" . $driver_id . "', `staff_ids`) 
-							 AND FIND_IN_SET(`id`, '" . $fleet_id . "')
-						";
+		$array = $this->from_to($new_data_arr['c_h'], $new_data_arr['h_d'], $new_data_arr['d_f'], $old_data_arr['c_h'], $old_data_arr['h_d'], $old_data_arr['d_f']);
 
-
-						$query = $this->db->query($sql);
-						$num_rows = $query->num_rows();
-						$row = $query->row_array();
-
-						if ($num_rows == 0) {
-							echo  '<br>add ';
-							 echo $sql_add = "
-								UPDATE `fleet` SET  `staff_ids` = CONCAT_WS(',', `staff_ids`, $driver_id) WHERE FIND_IN_SET(`id`, '" . $fleet_id . "')
-							";
-							// $this->db->query($sql_add);
-						} else {
-							echo '<br>delete';
-							$staff_ids = explode(',', $row['staff_ids']);
-
-
-							if (($key = array_search($driver_id, $staff_ids)) !== false) {
-								unset($staff_ids[$key]);
-							}
-
-							 echo $sql_delete = "
-								UPDATE `fleet` SET  `staff_ids` = '" . implode(',', $staff_ids) . "' WHERE FIND_IN_SET(`id`, '" . $fleet_id . "')
-							";
-							// $this->db->query($sql_delete);
-						}
-					}
-				} else {
-					echo '1.2';
-
-					echo $sql = "
-						SELECT 
-							`id`,
-  							`staff_ids`
-						 FROM 	
-						 	`fleet` 
-						WHERE FIND_IN_SET('" . $driver_id . "', `staff_ids`) 
-						 AND FIND_IN_SET(`id`, '" . implode(',', $fleet_ids) . "')
-				";
-
-
-					$query = $this->db->query($sql);
-					$num_rows = $query->num_rows();
-					$row = $query->row_array();
-
-					if ($num_rows == 0) {
-						echo '<br>add';
-						echo $sql_add = "
-						UPDATE `fleet` SET  `staff_ids` = CONCAT_WS(',', `staff_ids`, $driver_id) WHERE FIND_IN_SET(`id`, '" .  implode(',', $fleet_ids)  . "')
-					";
-						// $this->db->query($sql_add);
-					} else {
-						echo '<br>delete';
-						$staff_ids = explode(',', $row['staff_ids']);
-
-
-						if (($key = array_search($driver_id, $staff_ids)) !== false) {
-							unset($staff_ids[$key]);
-						}
-
-						 $sql_delete = "
-							UPDATE `fleet` SET  `staff_ids` = '" . implode(',', $staff_ids) . "' WHERE FIND_IN_SET(`id`, '" .  implode(',', $fleet_ids)  . "')
-						";
-						// $this->db->query($sql_delete);
-					}
-				}
-
-			}
-		}
-
-
-
-
-
-
-		$user_id = $this->session->user_id;
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-
+		$this->pre($array);
 
 
 	}
+
+
 
 
 	/**
-	 * @param $arr1
-	 * @param $arr2
-	 * $arr1 is old array
-	 * $arr2 is new array
+	 * @param $new_ch
+	 * @param $new_hd
+	 * @param $new_df
+	 * @param $old_ch
+	 * @param $old_hd
+	 * @param $old_df
 	 * @return array
 	 */
-	public function array_diff_assoc_recursive ($arr1, $arr2)
-	{
+	private function from_to ($new_ch, $new_hd, $new_df, $old_ch, $old_hd, $old_df) {
 
+		$change_array = array();
 
-		$result = array();
-		foreach ($arr1 as $k => $v) {
-			if (!isset($arr2[$k])) {
-				$result[$k] = $v;
-			} else {
-				if (isset($arr2[$k]) && isset($result[$k]) &&  $result[$k] != $v &&  $result[$k] != $arr2[$k]) {
-					$result[$k] = array(implode(',',$v), implode(',', $arr2[$k]));
-				} elseif (isset($arr2[$k]) && is_array($v) && is_array($arr2[$k])) {
-					$diff = $this->array_diff_assoc_recursive($v, $arr2[$k]);
-					if (!empty($diff))
-						$result[$k] = $diff;
+		foreach ($new_ch as $company_id => $department_array) {
+			foreach ($department_array as $key => $department_id) {
+				if (!isset($old_ch[$company_id][$key])) {
+					if(isset($old_ch[$company_id]) && !in_array($department_id, $old_ch[$company_id])) {
+						$change_array['added']['c_h'][] = array(
+							'from' => $company_id,
+							'to' => $department_id
+						);
+					}
+				} elseif(!in_array($department_id, $old_ch[$company_id])) {
+					$change_array['added']['c_h'][] = array(
+						'from' => $company_id,
+						'to' => $department_id
+					);
 				}
 			}
 		}
 
-		foreach ($arr2 as $k => $v) {
-			if (!isset($arr1[$k])) {
-				$result[$k] = $v;
-			} else {
-				if (isset($arr1[$k]) && isset($result[$k]) && $result[$k] != $v &&  $result[$k] != $arr1[$k]) {
-					$result[$k] = array(implode(',',$v), implode(',', $arr1[$k]));
-				} elseif (isset($arr1[$k]) && is_array($v) && is_array($arr1[$k])) {
-					$diff = $this->array_diff_assoc_recursive($v, $arr1[$k]);
-					if (!empty($diff))
-						$result[$k] = $diff;
+		foreach ($new_hd as $department_id => $driver_array) {
+			foreach ($driver_array as $key => $driver_id) {
+				if (!isset($old_hd[$department_id][$key])) {
+					if(isset($old_hd[$department_id]) && !in_array($driver_id, $old_hd[$department_id])) {
+						$change_array['added']['h_d'][] = array(
+							'from' => $department_id,
+							'to' => $driver_id
+						);
+					}
+				} elseif(!in_array($driver_id, $old_hd[$department_id])) {
+					$change_array['added']['h_d'][] = array(
+						'from' => $department_id,
+						'to' => $driver_id
+					);
+				}
+			}
+		}
+
+		foreach ($new_df as $driver_id => $fleet_array) {
+			foreach ($fleet_array as $key => $fleet_id) {
+				if (!isset($old_df[$driver_id][$key])) {
+					if(isset($old_df[$driver_id]) && !in_array($fleet_id, $old_df[$driver_id])) {
+						$change_array['added']['d_f'][] = array(
+							'from' => $driver_id,
+							'to' => $fleet_id
+						);
+					}
+				} elseif(!in_array($fleet_id, $old_df[$driver_id])) {
+					$change_array['added']['d_f'][] = array(
+						'from' => $driver_id,
+						'to' => $fleet_id
+					);
 				}
 			}
 		}
 
 
-		return $result;
+		foreach ($old_ch as $company_id => $department_array) {
+			foreach ($department_array as $key => $department_id) {
+				if (!isset($new_ch[$company_id][$key])) {
+					if(isset($new_ch[$company_id]) && !in_array($department_id, $new_ch[$company_id])) {
+						$change_array['deleted']['c_h'][] = array(
+							'from' => $company_id,
+							'to' => $department_id
+						);
+					}
+				} elseif(!in_array($department_id, $new_ch[$company_id])) {
+					$change_array['deleted']['c_h'][] = array(
+						'from' => $company_id,
+						'to' => $department_id
+					);
+				}
+			}
+		}
+
+		foreach ($old_hd as $department_id => $driver_array) {
+			foreach ($driver_array as $key => $driver_id) {
+				if (!isset($new_hd[$department_id][$key])) {
+					if(isset($new_hd[$department_id]) && !in_array($driver_id, $new_hd[$department_id])) {
+						$change_array['deleted']['h_d'][] = array(
+							'from' => $department_id,
+							'to' => $driver_id
+						);
+					}
+				} elseif(!in_array($driver_id, $new_hd[$department_id])) {
+					$change_array['deleted']['h_d'][] = array(
+						'from' => $department_id,
+						'to' => $driver_id
+					);
+				}
+			}
+		}
+
+		foreach ($old_df as $driver_id => $fleet_array) {
+			foreach ($fleet_array as $key => $fleet_id) {
+				if (!isset($new_df[$driver_id][$key])) {
+					if(isset($new_df[$driver_id]) && !in_array($fleet_id, $new_df[$driver_id])) {
+						$change_array['deleted']['d_f'][] = array(
+							'from' => $driver_id,
+							'to' => $fleet_id
+						);
+					}
+				} elseif(!in_array($fleet_id, $new_df[$driver_id])) {
+					$change_array['deleted']['d_f'][] = array(
+						'from' => $driver_id,
+						'to' => $fleet_id
+					);
+				}
+			}
+		}
+
+
+		return $change_array;
+
 	}
+
+
+
+
 
 
 

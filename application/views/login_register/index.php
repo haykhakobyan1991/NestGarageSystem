@@ -657,7 +657,6 @@
 			beforeSend: function () {
 
 				close_message();
-				$('button#signIn').addClass('bg-success2');
 				loading('start', 'signIn','load2');
 
 			},

@@ -153,12 +153,11 @@ class Structure extends MX_Controller {
 			  LEFT JOIN staff AS head_staff 
 				ON department.`head_staff_id` = head_staff.id 
 				 AND `head_staff`.`status` = '1'
-			  LEFT JOIN staff 
+			  LEFT JOIN `staff`
 				ON FIND_IN_SET(
-				  department.id,
-				  staff.`department_ids`
+				  `department`.`id`,
+				  `staff`.`department_ids`
 				) 
-				AND `staff`.`id` <> `head_staff`.`id` 
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
@@ -172,9 +171,10 @@ class Structure extends MX_Controller {
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 		
 			WHERE company.id = '" . $company_id . "' 
+			AND `staff`.`id` <> `head_staff`.`id` /*todo*/
 			ORDER BY `head_staff`.`id`,
+			  `department`.`id`, /*todo*/
 			  `staff`.`id`,
-			  `department`.`id`,
 			  `fleet`.`id` 
 		";
 
@@ -353,8 +353,27 @@ class Structure extends MX_Controller {
 
 	public function change_from_to_ax() {
 
+		$return = array('error' => '', 'result' => '');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$return['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
 		$data = $this->input->post('data');
 		$old_data = json_decode($this->input->post('old_data'), true);
+		$structure = json_decode($this->input->post('structure'), true);
+
+
+		$structure_arr = array();
+		foreach ($structure as $value) :
+
+			$structure_arr[$value['key']] = $value['text'];
+
+		endforeach;
 
 
 		$old_data_arr = array();
@@ -401,12 +420,311 @@ class Structure extends MX_Controller {
 //		echo '<br>----------------------OLD Driver - fleet------------------------------<br>';
 //		$this->pre($old_data_arr['d_f']);
 
+		if(!isset($new_data_arr['c_h']) || !isset($new_data_arr['h_d']) || !isset($new_data_arr['d_f'])) {
+			$return['error'] = 'ERROR'; //todo
+			echo json_encode($return);
+			return false;
+		}
 
 		$array = $this->from_to($new_data_arr['c_h'], $new_data_arr['h_d'], $new_data_arr['d_f'], $old_data_arr['c_h'], $old_data_arr['h_d'], $old_data_arr['d_f']);
 
-		echo hr();
-		$this->pre($array);
 
+		//ask change or no
+		if ($this->input->post('value') == '-1') {
+
+			if (isset($array['deleted'])) {
+				$return['result'][] = '<b>Deleted</b>'.hr();
+				foreach ($array['deleted'] as $f_t => $value) {
+					foreach ($value as $from_to) {
+
+						if($f_t == 'd_f') {
+							 $return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
+						} elseif($f_t == 'h_d') {
+							 $return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
+						} elseif($f_t == 'c_h') {
+							 $return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department</b> ' . $structure_arr['h'.$from_to['to']] . br();
+						}
+
+					}
+				}
+			}
+
+			if(isset($array['added'])) {
+				$return['result'][] = (isset($array['deleted']) ? hr().'<b>Added</b>'.hr() : '<b>Added</b>'.hr());
+				foreach ($array['added'] as $f_t => $value) {
+					foreach ($value as $from_to) {
+
+						if($f_t == 'd_f' && isset($structure_arr['d'.$from_to['from']]) && isset($structure_arr['f'.$from_to['to']])) {
+							 $return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
+						} elseif($f_t == 'h_d' && isset($structure_arr['h'.$from_to['from']]) && isset($structure_arr['d'.$from_to['to']])) {
+							 $return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
+						} elseif($f_t == 'c_h' && isset($structure_arr['c'.$from_to['from']]) && isset($structure_arr['h'.$from_to['to']])) {
+							 $return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department:</b> ' . $structure_arr['h'.$from_to['to']] . br();
+						} else {
+							$return['result'] = false;
+							$return['error'] = 'Անհնար միացում'; //todo
+						}
+
+					}
+				}
+			}
+
+		} elseif ($this->input->post('value') == '1') {
+
+			$return['result'] = true;
+
+			if (isset($array['deleted'])) {
+				foreach ($array['deleted'] as $f_t => $value) {
+					//echo $f_t;
+					//echo hr();
+					//$this->pre($value);
+					foreach ($value as $from_to) {
+
+						if ($f_t == 'c_h') {
+							$sql = "
+								UPDATE 
+								  `department` 
+								SET
+								  `status` = '-1' 
+								WHERE `company_id` = '" . $from_to['from'] . "' 
+								  AND `id` = '" . $from_to['to'] . "' 
+							";
+
+							$this->db->query($sql);
+
+						} else if ($f_t == 'h_d') {
+							//select departments for this staff
+							$sql_sel = "
+								SELECT 
+								  `department_ids` 
+								FROM
+								  `staff` 
+								WHERE FIND_IN_SET('" . $from_to['from'] . "', `department_ids`) 
+								  AND `id` = '" . $from_to['to'] . "' 
+							";
+
+							$query_sel = $this->db->query($sql_sel);
+							$row = $query_sel->row_array();
+
+							// department ides to array
+							$old_departments = explode(',', $row['department_ids']);
+
+
+							// unset found department
+							if (($key = array_search($from_to['from'], $old_departments)) !== false) {
+								unset($old_departments[$key]);
+							}
+
+							// after unset departments, to string
+							$new_departments = implode(',', $old_departments);
+
+							// update staff departments after unset
+							$sql = "
+								UPDATE 
+								  `staff` 
+								SET
+								  `department_ids` = '" . $new_departments . "' 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							";
+
+							 $this->db->query($sql);
+
+							// check isset staffs for this department
+							$sql_isset_departments = "
+								SELECT 
+								  `department_ids` 
+								FROM
+								  `staff` 
+								WHERE FIND_IN_SET('" . $from_to['from'] . "', `department_ids`)
+							";
+
+							$query_isset_departments = $this->db->query($sql_isset_departments);
+
+							//if not isset staffs for this department
+							if ($query_isset_departments->num_rows() == 0) {
+								// todo petqa te che  ?
+								$sql = "
+									UPDATE 
+									  `department` 
+									SET
+									  `status` = '-1' 
+									WHERE `id` = '" . $from_to['from'] . "' 
+								";
+
+								$this->db->query($sql);
+							}
+
+						} else if ($f_t == 'd_f') {
+							//select staffs for this fleet
+							 $sql_sel = "
+								SELECT 
+								  `staff_ids` 
+								FROM
+								  `fleet` 
+								WHERE FIND_IN_SET('" . $from_to['from'] . "', `staff_ids`) 
+								  AND `id` = '" . $from_to['to'] . "' 
+							";
+
+
+							$query_sel = $this->db->query($sql_sel);
+							$row = $query_sel->row_array();
+
+							// staffs ides to array
+							$old_staffs = explode(',', $row['staff_ids']);
+
+
+							// unset found staff
+							if (($key = array_search($from_to['from'], $old_staffs)) !== false) {
+								unset($old_staffs[$key]);
+							}
+
+							// after unset staffs, to string
+							$new_staffs = implode(',', $old_staffs);
+
+
+							// update staff departments after unset
+							$sql = "
+								UPDATE 
+								  `fleet` 
+								SET
+								  `staff_ids` = '" . $new_staffs . "' 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							";
+
+							$this->db->query($sql);
+
+
+							// check isset fleets for this staff
+							$sql_isset_staffs = "
+								SELECT 
+								  `staff_ids` 
+								FROM
+								  `fleet` 
+								WHERE FIND_IN_SET('" . $from_to['from'] . "', `staff_ids`)
+							";
+
+							$query_isset_staffs = $this->db->query($sql_isset_staffs);
+
+							//if not isset fleets for this staff
+							if ($query_isset_staffs->num_rows() == 0) {
+								// todo petqa te che  ?
+								$sql = "
+								UPDATE 
+								  `staff` 
+								SET
+								  `status` = '-1' 
+								WHERE `id` = '" . $from_to['from'] . "' 
+							";
+
+								//todo $this->db->query($sql);
+							}
+						}
+
+					}
+				}
+			}
+
+
+			if (isset($array['added'])) {
+				foreach ($array['added'] as $f_t => $value) {
+//					echo $f_t;
+//					echo hr();
+//					$this->pre($value);
+					foreach ($value as $from_to) {
+
+						if ($f_t == 'c_h') {
+							// todo Իմ ջոկելով ես դեպքը երբեք չի լինի
+							$sql = "
+								UPDATE 
+								  `department` 
+								SET
+								  `status` = '1' 
+								WHERE `company_id` = '" . $from_to['from'] . "' 
+								  AND `id` = '" . $from_to['to'] . "' 
+							";
+
+							$this->db->query($sql);
+
+						} else if ($f_t == 'h_d') {
+							//select departments for this staff
+							echo $sql_sel = "
+								SELECT 
+								  `department_ids` 
+								FROM
+								  `staff` 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							";
+
+							$query_sel = $this->db->query($sql_sel);
+							$row = $query_sel->row_array();
+
+							$new_departments = '';
+
+							if($row['department_ids'] != '') {
+								$new_departments = $row['department_ids'].','.$from_to['from'];
+							} else {
+								$new_departments = $from_to['from'];
+							}
+
+
+							 // update staff departments
+							 $sql = "
+								UPDATE 
+								  `staff` 
+								SET
+								  `department_ids` = '" . $new_departments . "' 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							 ";
+
+							 $this->db->query($sql);
+
+
+
+						} else if ($f_t == 'd_f') {
+							//select staffs for this fleet
+							$sql_sel = "
+								SELECT 
+								  `staff_ids` 
+								FROM
+								  `fleet` 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							";
+
+
+							$query_sel = $this->db->query($sql_sel);
+							$row = $query_sel->row_array();
+
+							$new_staffs = '';
+
+							if($row['staff_ids'] != '') {
+								$new_staffs = $row['staff_ids'].','.$from_to['from'];
+							} else {
+								$new_staffs = $from_to['from'];
+							}
+
+
+							// update fleet staffs
+							$sql = "
+								UPDATE 
+								  `fleet` 
+								SET
+								  `staff_ids` = '" . $new_staffs . "' 
+								WHERE `id` = '" . $from_to['to'] . "' 
+							";
+
+							$this->db->query($sql);
+
+
+						}
+
+					}
+				}
+			}
+		}
+
+
+		echo json_encode($return);
+		return true;
 
 	}
 
@@ -434,6 +752,11 @@ class Structure extends MX_Controller {
 							'from' => $company_id,
 							'to' => $department_id
 						);
+					} elseif (!isset($old_ch[$company_id])) {
+						$change_array['added']['c_h'][] = array(
+							'from' => $company_id,
+							'to' => $department_id
+						);
 					}
 				} elseif(!in_array($department_id, $old_ch[$company_id])) {
 					$change_array['added']['c_h'][] = array(
@@ -452,6 +775,11 @@ class Structure extends MX_Controller {
 							'from' => $department_id,
 							'to' => $driver_id
 						);
+					} elseif (!isset($old_hd[$department_id])) {
+						$change_array['added']['h_d'][] = array(
+							'from' => $department_id,
+							'to' => $driver_id
+						);
 					}
 				} elseif(!in_array($driver_id, $old_hd[$department_id])) {
 					$change_array['added']['h_d'][] = array(
@@ -466,6 +794,11 @@ class Structure extends MX_Controller {
 			foreach ($fleet_array as $key => $fleet_id) {
 				if (!isset($old_df[$driver_id][$key])) {
 					if(isset($old_df[$driver_id]) && !in_array($fleet_id, $old_df[$driver_id])) {
+						$change_array['added']['d_f'][] = array(
+							'from' => $driver_id,
+							'to' => $fleet_id
+						);
+					} elseif(!isset($old_df[$driver_id])) { //new todo
 						$change_array['added']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id
@@ -489,6 +822,11 @@ class Structure extends MX_Controller {
 							'from' => $company_id,
 							'to' => $department_id
 						);
+					} elseif(!isset($new_ch[$company_id])) { //new todo
+						$change_array['deleted']['c_h'][] = array(
+							'from' => $company_id,
+							'to' => $department_id
+						);
 					}
 				} elseif(!in_array($department_id, $new_ch[$company_id])) {
 					$change_array['deleted']['c_h'][] = array(
@@ -507,6 +845,11 @@ class Structure extends MX_Controller {
 							'from' => $department_id,
 							'to' => $driver_id
 						);
+					} elseif (!isset($new_hd[$department_id])) { //new todo
+						$change_array['deleted']['h_d'][] = array(
+							'from' => $department_id,
+							'to' => $driver_id
+						);
 					}
 				} elseif(!in_array($driver_id, $new_hd[$department_id])) {
 					$change_array['deleted']['h_d'][] = array(
@@ -521,6 +864,11 @@ class Structure extends MX_Controller {
 			foreach ($fleet_array as $key => $fleet_id) {
 				if (!isset($new_df[$driver_id][$key])) {
 					if(isset($new_df[$driver_id]) && !in_array($fleet_id, $new_df[$driver_id])) {
+						$change_array['deleted']['d_f'][] = array(
+							'from' => $driver_id,
+							'to' => $fleet_id
+						);
+					} elseif (!isset($new_df[$driver_id])) { //new todo
 						$change_array['deleted']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id

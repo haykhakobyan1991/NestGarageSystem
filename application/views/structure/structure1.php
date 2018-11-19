@@ -32,8 +32,34 @@
 			   aria-controls="nav-driver" aria-selected="false">Driver</a>
 		</div>
 	</nav>
-	<button name="" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save()">Save</button>
+	<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save('-1')">Save</button>
 </div>
+
+<!--  Modal Start -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-secondary" id="exampleModalLabel">Changes</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div id="result" class="modal-body">
+				<div class="alert alert-info">
+					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" id="save_changes"  class="btn btn-outline-success" onclick="save('1')">Save changes</button>
+				<button type="button"  class="btn btn-outline-danger " data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!--  Modal End -->
+
 <span class="selectted_information d-none">
 <div class="tab-content mt-3" id="nav-tabContent">
 	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
@@ -1177,15 +1203,43 @@
 			});
 	});
 
-	function save() {
+
+
+	//if value is -1 show, if value is 1 run queryes
+	function save(value) {
 		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 		myDiagram.isModified = false;
 		console.log(myDiagram.model.linkDataArray);
 		var url = '<?=base_url('Structure/change_from_to_ax')?>';
 		var data = myDiagram.model.linkDataArray;
 		var old_data = '<?=$from_to?>';
-		$.post(url, {data: data, old_data: old_data}).done(function (data) {
+		var structure = '<?=$structure?>';
+		$.post(url, {data: data, old_data: old_data, structure: structure, value: value}).done(function (data) {
 			console.log("Data Loaded: " + data);
+			var return_data = JSON.parse(data);
+			var res = '';
+			if(return_data.error != '') {
+				$('#result').html('<h2 class="text-center alert alert-danger">'+return_data.error+'</h2>');
+			} else {
+				if(value == '-1') {
+					if(return_data.result != '') {
+						$.each(return_data.result, function (index, val) {
+							res += val
+						});
+						$('#result').html('<div class="alert alert-info">'+res+'</div>');
+					} else {
+						$('#save_changes').addClass('d-none');
+						$('#result').html('<h2 class="text-center alert alert-info">Information is empty</h2>');
+					}
+				} else if(value == '1') {
+					if(return_data.result) {
+						location.reload();
+					} else {
+						$('#result').html('<h2 class="text-center alert alert-danger">'+return_data.error+'</h2>');
+					}
+				}
+			}
+
 		});
 	}
 

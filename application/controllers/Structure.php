@@ -104,8 +104,8 @@ class Structure extends MX_Controller {
 		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 	}
 
-	public function structure1 ()
-	{
+	public function structure1 () {
+
 		$this->load->authorisation();
 
 		$user_id = $this->session->user_id;
@@ -222,13 +222,14 @@ class Structure extends MX_Controller {
 
 		endforeach;
 
-
 		$from_to_arr = array_values(array_unique($from_to_arr, SORT_REGULAR));
+		$structure_arr = array_values(array_unique($structure_arr, SORT_REGULAR));
 
 		$data['structure'] = json_encode($structure_arr);
 		$data['from_to'] = json_encode($from_to_arr);
 
 		//$this->pre($structure_arr);
+		//$this->pre($from_to_arr);
 
 		$this->layout->view('structure/structure1', $data);
 
@@ -287,7 +288,7 @@ class Structure extends MX_Controller {
 				  department.id,
 				  staff.`department_ids`
 				) 
-				AND `staff`.`id` <> `head_staff`.`id` 
+				
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
@@ -301,6 +302,7 @@ class Structure extends MX_Controller {
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 	
 			WHERE company.id = '" . $company_id . "' 
+			 AND `staff`.`id` <> `head_staff`.`id` 
 			ORDER BY `head_staff`.`id`,
 			  `staff`.`id`,
 			  `department`.`id`,
@@ -347,6 +349,23 @@ class Structure extends MX_Controller {
 
 		$this->layout->view('structure/structure2', $data);
 
+	}
+
+
+
+	public function structure3 () {
+
+		$this->load->authorisation();
+
+		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
+		$lng = $this->load->lng();
+		$data = array();
+
+
+
+
+		$this->layout->view('structure/structure3', $data);
 	}
 
 
@@ -455,11 +474,11 @@ class Structure extends MX_Controller {
 					foreach ($value as $from_to) {
 
 						if($f_t == 'd_f' && isset($structure_arr['d'.$from_to['from']]) && isset($structure_arr['f'.$from_to['to']])) {
-							 $return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
+							$return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
 						} elseif($f_t == 'h_d' && isset($structure_arr['h'.$from_to['from']]) && isset($structure_arr['d'.$from_to['to']])) {
-							 $return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
+							$return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
 						} elseif($f_t == 'c_h' && isset($structure_arr['c'.$from_to['from']]) && isset($structure_arr['h'.$from_to['to']])) {
-							 $return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department:</b> ' . $structure_arr['h'.$from_to['to']] . br();
+							$return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department:</b> ' . $structure_arr['h'.$from_to['to']] . br();
 						} else {
 							$return['result'] = false;
 							$return['error'] = 'Անհնար միացում'; //todo
@@ -609,12 +628,12 @@ class Structure extends MX_Controller {
 							if ($query_isset_staffs->num_rows() == 0) {
 								// todo petqa te che  ?
 								$sql = "
-								UPDATE 
-								  `staff` 
-								SET
-								  `status` = '-1' 
-								WHERE `id` = '" . $from_to['from'] . "' 
-							";
+									UPDATE 
+									  `staff` 
+									SET
+									  `status` = '-1' 
+									WHERE `id` = '" . $from_to['from'] . "' 
+								";
 
 								//todo $this->db->query($sql);
 							}
@@ -647,7 +666,7 @@ class Structure extends MX_Controller {
 
 						} else if ($f_t == 'h_d') {
 							//select departments for this staff
-							echo $sql_sel = "
+							 $sql_sel = "
 								SELECT 
 								  `department_ids` 
 								FROM
@@ -887,56 +906,6 @@ class Structure extends MX_Controller {
 		return $change_array;
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function structure3 ()
-	{
-		$this->load->authorisation();
-
-		$user_id = $this->session->user_id;
-		$folder = $this->session->folder;
-		$lng = $this->load->lng();
-		$data = array();
-
-
-
-
-		$this->layout->view('structure/structure3', $data);
-	}
-
-
 
 
 

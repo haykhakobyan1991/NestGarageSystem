@@ -67,6 +67,7 @@ $route['^(ru|hy)/edit_vehicles/(:num)$'] = "Organization/edit_vehicles/$1";
 //structure
 $route['^(ru|hy)/structure1'] = "Structure/structure1";
 $route['^(ru|hy)/structure2'] = "Structure/structure2";
+$route['^(ru|hy)/structure3'] = "Structure/structure3";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

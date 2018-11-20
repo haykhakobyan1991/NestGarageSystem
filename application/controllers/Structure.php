@@ -897,5 +897,48 @@ class Structure extends MX_Controller {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public function structure3 ()
+	{
+		$this->load->authorisation();
+
+		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
+		$lng = $this->load->lng();
+		$data = array();
+
+
+
+
+		$this->layout->view('structure/structure3', $data);
+	}
+
+
+
+
+
 }
 //end of class

@@ -18,22 +18,6 @@
 </script>
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
-<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
-	<div id="sample">
-		<div id="myDiagramDiv" style="height:300px"></div>
-	</div>
-	<textarea class="d-none" id="mySavedModel" title=""> </textarea>
-	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
-	<nav class="selectted_information float-left d-none">
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab"
-			   aria-controls="nav-car" aria-selected="true">Car</a>
-			<a class="nav-item nav-link" id="nav-driver-tab" data-toggle="tab" href="#nav-driver" role="tab"
-			   aria-controls="nav-driver" aria-selected="false">Driver</a>
-		</div>
-	</nav>
-	<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save('-1')">Save</button>
-</div>
 
 <!--  Modal Start -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -60,69 +44,28 @@
 </div>
 <!--  Modal End -->
 
-<span class="selectted_information d-none">
-<div class="tab-content mt-3" id="nav-tabContent">
-	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
-		<div class="container-fluid bg-secondary">
-			<div class="row">
-				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small driver_info" >unit: <span class="text-white ml-2">1</span></p>
-					<p class="text-white-50 small driver_info" >Make: <span class="text-white ml-2">BMW</span></p>
-					<p class="text-white-50 small driver_info" >Color: <span class="ml-2 text-white" style="    width: 25px;height: 10px;background: #fff;border: 1px solid #efefef;display: inline-block;"> </span></p>
-					<p class="small text-white-50 driver_info" >Engine: <span class="text-white ml-2">ER45543</span></p>
-					<p class="small text-white-50 driver_info" >Model: <span class="text-white ml-2">M-3</span></p>
-					<p class="small text-white-50 driver_info" >Year: <span class="text-white ml-2">2015</span></p>
-					<p class="small text-white-50 driver_info" >VIN: <span class="text-white ml-2">123123123QWE900938</span></p>
-					<p class="small text-white-50 driver_info" >Type of Vehicle: <span class="text-white ml-2">Berline</span></p>
-					<p class="small text-white-50 driver_info" >TDepartment: <span class="text-white ml-2">Sales</span></p>
-				</div>
-				<div class="p-2  w-auto">
-					<p class="small text-white-50 driver_info">Կցված: <span class="text-white ml-2">Անուն Ազգանուն</span></p>
-					<p class="small text-white-50 driver_info">Հաշվառման համարանիշ: <span class="text-white ml-2">HB32454</span></p>
-					<p class="small text-white-50 driver_info">Վառելիք։ <span class="text-white ml-2">Բենզին</span></p>
-					<p class="small text-white-50 driver_info">Միջին ծաղսը 100 կմ․ ։<span class="text-white ml-2">8․5</span></p>
-					<p class="small text-white-50 driver_info">Օրեկան․ ։<span class="text-white ml-2">120 կմ․</span></p>
-					<p class="small text-white-50 driver_info">Վազք։<span class="text-white ml-2">87000</span></p>
-					<p class="small text-white-50 driver_info">Հոռոգռաֆ։<span class="text-white ml-2">սդֆսֆսֆ</span></p>
-					<p class="small text-white-50 driver_info">GPS Exsist?։<span class="text-white ml-2">Այո</span></p>
-					<p class="small text-white-50 driver_info">GPS Tracker IMEI։<span class="text-white ml-2">45787585455</span></p>
-				</div>
-				<div class="p-2  w-auto">
-					<p class="small text-white-50 driver_info">Հաշվառման Հասցե։<span class="text-white ml-2">Հասցե 14 </span></p>
-					<p class="small text-white-50 driver_info">Ապահովագրություն: <span class="text-white ml-2">Կասկո</span></p>
-					<p class="small text-white-50 driver_info">Ուժի մեջ է: <span class="text-white ml-2">22․12․2018</span></p>
-				</div>
-				<div class="p-2 w-auto ml-2">
-					<div id="container" class="w-100"></div>
-				</div>
-				<div class="p-2 w-auto">
-					<div id="container2" class="w-100"></div>
-				</div>
-			</div>
-		</div>
+<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
+	<div id="sample">
+		<div id="myDiagramDiv" style="height:300px"></div>
 	</div>
-	<div class="tab-pane fade" id="nav-driver" role="tabpanel" aria-labelledby="nav-driver-tab">
-		<div class="container-fluid bg-secondary">
-			<div class="row">
-				<div class="p-2  w-auto mr-3">
-					<p class="text-white-50 small driver_info" >First name: <span class="text-white ml-2">name</span></p>
-					<p class="text-white-50 small driver_info">Last Name: <span class="text-white ml-2">last name</span></p>
-					<p class="text-white-50 small driver_info">Contact Number 1: <span class="text-white ml-2">78785165</span></p>
-					<p class="small text-white-50 driver_info">Contact Number 2: <span class="text-white ml-2">4588541788</span></p>
-					<p class="small text-white-50 driver_info">Email: <span class="text-white ml-2">example@ex.com</span></p>
-					<p class="small text-white-50 driver_info">Leave Country: <span class="text-white ml-2">Armenia</span></p>
-					<p class="small text-white-50 driver_info">Address: <span class="text-white ml-2">address 45/12</span></p>
-					<p class="small text-white-50 driver_info">Post Code: <span class="text-white ml-2">0033</span></p>
-					<p class="small text-white-50 driver_info">Department: <span class="text-white ml-2">sales</span></p>
-				</div>
-				<div class="p-2  w-auto">
-					<p class="small text-white-50 driver_info" >Position: <span class="text-white ml-2">Driver</span></p>
-					<p class="small text-white-50 driver_info" >Nest Card ID: <span class="text-white ml-2">4568741gt</span></p>
-				</div>
-			</div>
+	<textarea class="d-none" id="mySavedModel" title=""> </textarea>
+	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+	<nav class="selectted_information float-left d-none">
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab"
+			   aria-controls="nav-car" aria-selected="true">Car</a>
+			<a class="nav-item nav-link" id="nav-driver-tab" data-toggle="tab" href="#nav-driver" role="tab"
+			   aria-controls="nav-driver" aria-selected="false">Driver</a>
 		</div>
-	</div>
+	</nav>
+	<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save('-1')">Save</button>
 </div>
+
+
+
+<span class="selectted_information d-none">
+
+
 <nav class="mt-2">
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
 		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
@@ -153,6 +96,7 @@
 		   aria-selected="false">ԱՀԱԶԱՆԳ</a>
 	</div>
 </nav>
+
 <div class="tab-content" id="nav-tabContent">
 	<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
 		<div class="row col-sm-12 col-md-12 bpp_o">
@@ -1194,7 +1138,15 @@
 						var found1 = str1.match(re1);
 						if (found1 == 'f') {
 							new_arr.push(arr);
-							$('.selectted_information').removeClass('d-none');
+							console.log(arr);
+							console.log(new_arr);
+							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Structure/car_info')?>';
+							$.post(url, {arr: arr}, ).done(function (data) {
+								$('.selectted_information').removeClass('d-none');
+								$('#nav-tabContent').html(data);
+								$('#nav-car-tab').addClass('active');
+								$('#nav-driver-tab').removeClass('active');
+							});
 						}
 					}
 				});
@@ -1501,122 +1453,7 @@
 	$(document).on('click', '.del_row_ft', function () {
 		$(this).parent('td').parent('tr').remove();
 	});
-	$(document).ready(function () {
-		Highcharts.chart('container', {
-			chart: {
-				style: {color: '#FFFFFF'},
-				type: 'area',
-				width: 400,
-				height: 250,
-				backgroundColor: 'rgba(255, 255, 255, 0.0)'
-			},
-			title: {
-				style: {color: '#FFFFFF', fontSize: '14px'},
-				text: 'US and USSR nuclear stockpiles'
-			},
-			xAxis: {
 
-				allowDecimals: false,
-				labels: {
-					style: {color: '#FFFFFF'},
-					formatter: function () {
-						return this.value;
-					}
-				}
-			},
-			yAxis: {
-				title: {
-					style: {color: '#FFFFFF'},
-					text: 'Nuclear weapon states'
-				},
-				labels: {
-					style: {color: '#FFFFFF'},
-					formatter: function () {
-						return this.value / 1000 + 'k';
-					}
-				}
-			},
-			tooltip: {
-				pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-			},
-			plotOptions: {
-				style: {color: '#FFFFFF'},
-				area: {
-					pointStart: 1940,
-					marker: {
-						enabled: false,
-						symbol: 'circle',
-						radius: 2,
-						states: {
-							hover: {
-								enabled: true
-							}
-						}
-					}
-				}
-			},
-			series: [{
-				data: [
-					null, null, null, null, null, 4618, 6444, 9822, 15468,
-					20434, 24126, 27387, 29459, 31056, 31982, 32040, 31233, 29224, 27342,
-					26662, 26956, 27912, 28999, 28965, 27826, 25579, 25722, 24826, 24605,
-					24304, 23464, 25587, 24099, 24357, 24237, 24401, 24344, 23586, 22380,
-					21004, 17287, 14747, 13076, 12555, 12144, 11009, 10950, 10871, 10824,
-					10577, 10527, 10475, 10421, 10358, 10295, 10104, 9914, 9620, 9326,
-					5113, 5113, 4954, 4804, 4761, 4717, 4368, 4018
-				]
-			}]
-		});
-		//Chart 2
-		Highcharts.chart('container2', {
-			chart: {
-				style: {color: '#FFFFFF'},
-				plotBackgroundColor: null,
-				plotBorderWidth: null,
-				plotShadow: false,
-				type: 'pie',
-				width: 350,
-				height: 250,
-				backgroundColor: 'rgba(255, 255, 255, 0.0)'
-			},
-			title: {
-				style: {
-					color: '#FFFFFF',
-					fontSize: '14px'
-				},
-				text: 'Browser market shares in January'
-			},
-			tooltip: {
-				pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-			},
-			plotOptions: {
-				style: {color: '#FFFFFF'},
-				pie: {
-					allowPointSelect: true,
-					cursor: 'pointer',
-					dataLabels: {
-						enabled: true,
-						style: {
-							color: '#FFFFFF',
-							fontSize: '10px,',
-							fontWeight: '300'
-						},
-					}
-				}
-			},
-			series: [{
-				name: 'Brands',
-				colorByPoint: true,
-				data: [
-					{name: 'Chrome', y: 61.41},
-					{name: 'Internet Explorer', y: 11.84},
-					{name: 'Firefox', y: 10.85},
-					{name: 'Edge', y: 15.67},
-					{name: 'Safari', y: 20.18}
-				]
-			}]
-		});
-	});
 	$(function () {
 		$('[data-toggle="tooltip"]').tooltip()
 	})

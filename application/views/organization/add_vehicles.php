@@ -62,7 +62,7 @@
 						</div>
 						<div id="model_div" class="form-group col-sm-2"></div>
 
-						<div class="form-group col-sm-2">
+						<div class="form-group col-lg-1">
 							<label
 								class="col-form-label">Տիպար *</label>
 
@@ -78,9 +78,9 @@
 						</div>
 
 
-						<div class="form-group col-sm-2">
+						<div class="form-group col-lg-1">
 							<label
-								class="col-form-label">Թողարկման
+								class="col-form-label">Թող.
 								տարեթիվ *</label>
 
 							<select name="production_date"
@@ -97,7 +97,7 @@
 
 						</div>
 
-						<div class="form-group col-sm-2">
+						<div class="form-group" style="flex:0 0 12%">
 							<label
 								class=" col-form-label pl-3" style="font-size: 15px;">Հաշվառման համարանիշ*</label>
 							<div class="col-sm-12">
@@ -106,13 +106,8 @@
 									   placeholder="Հաշվառման համարանիշ">
 							</div>
 						</div>
-					</div>
 
-
-					<div class="row mt-3">
-
-
-						<div class="form-group col-sm-2">
+						<div class="form-group " style="width: 10%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">VIN</label>
 							<div class="col-sm-12">
@@ -120,7 +115,8 @@
 									   placeholder="VIN">
 							</div>
 						</div>
-						<div class="form-group col-sm-2">
+
+						<div class="form-group" style="width: 10%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Շարժիչի հզորություն</label>
 							<div class="col-sm-12">
@@ -130,7 +126,13 @@
 							</div>
 						</div>
 
-						<div class="form-group col-sm-2">
+					</div>
+
+
+					<div class="row mt-3">
+
+
+						<div class="form-group" style="width: 12%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Վառելիք</label>
 							<div class="col-sm-12">
@@ -146,7 +148,7 @@
 							</div>
 						</div>
 
-						<div class="form-group col-sm-2">
+						<div class="form-group " style="width: 10%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Միջին ծախս 100 կմ</label>
 							<div class="col-sm-12">
@@ -155,7 +157,7 @@
 									   placeholder="Միջին ծախս 100 կմ">
 							</div>
 						</div>
-						<div class="form-group col-sm-2">
+						<div class="form-group col-sm-2"  style="width: 10%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Վազք</label>
 							<div class="col-sm-12">
@@ -165,7 +167,7 @@
 							</div>
 						</div>
 
-						<div class="form-group col-sm-2">
+						<div class="form-group" style="width: 12%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Հոդոգռաֆ</label>
 							<div class="col-sm-12">
@@ -174,10 +176,7 @@
 							</div>
 						</div>
 
-					</div>
-
-					<div class="row mt-3">
-						<div class="form-group col-sm-2">
+						<div class="form-group" style="width: 10%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">GPS Exist?</label>
 							<div class="col-sm-12">
@@ -187,14 +186,14 @@
 										title="GPS Exist?"
 								>
 
-										<option value="yes">yes</option>
-										<option value="no">no</option>
+									<option value="yes">yes</option>
+									<option value="no">no</option>
 
 								</select>
 							</div>
 						</div>
 
-						<div class="form-group col-sm-2">
+						<div class="form-group" style="width: 12%">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">GPS Tracker IMEI</label>
 							<div class="col-sm-12">
@@ -202,11 +201,8 @@
 									   placeholder="GPS Tracker IMEI">
 							</div>
 						</div>
-					</div>
 
-
-					<div class="row">
-						<div class="form-group col-sm-4">
+						<div class="form-group col-sm-3">
 							<label
 								class="pl-3 col-form-label" style="font-size: 15px;">Այլ</label>
 							<div class="col-sm-12">
@@ -215,20 +211,26 @@
 							</div>
 						</div>
 
-						<div class="col-sm-3">
+					</div>
+
+
+					<div class="row">
+
+
+						<div class="col-sm-2">
 							<div class="form-group row" style="margin-top: 40px;">
-								<label class="col-sm-10 col-form-label">Status make
+								<label class="col-sm-9 col-form-label">Status make
 									a
 									Passive?</label>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<input value="-1" name="status" type="checkbox"
 										   class="form-control form-control-sm">
 								</div>
 							</div>
 							<div class="form-group row">
-								<label class="col-sm-10 col-form-label">Send a notification mail to the
+								<label class="col-sm-9 col-form-label">Send a notification mail to the
 									drivers</label>
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<input name="mail_to" value="1" type="checkbox"
 										   class="form-control form-control-sm">
 								</div>
@@ -275,6 +277,61 @@
 							</div>
 						</div>
 
+						<div class="card">
+							<div class="card-header">
+								<h5 class="mb-0">
+									<button class="btn btn-link" type="button">
+										Հաշվառման Համարանիշ
+									</button>
+								</h5>
+							</div>
+							<div class="">
+								<div class="card-body">
+
+									<div class="row">
+
+										<div class="col-sm-3">
+											<label
+												class=" col-form-label" style="font-size: 12px;">Սեփականատեր</label>
+											<input style="" value="" name="owner" type="text"
+												   class="form-control form-control-sm"
+												   placeholder="Սեփականատեր">
+											<input name="owner_id" type="hidden">
+										</div>
+
+										<div class="col-sm-3">
+											<label
+												class="col-form-label" style="font-size: 12px;">Հաշվառման
+												հասցե</label>
+											<input value="" name="regitered_address" type="text"
+												   class="form-control form-control-sm mt-2"
+												   placeholder="Հաշվառման հասցե">
+										</div>
+
+										<div class="col-sm-3">
+											<label style="font-size: 12px;"
+												   class="col-form-label">Հաշվառման համար</label>
+											<input value="" name="regitered_number" type="text"
+												   class="form-control form-control-sm mt-2"
+												   placeholder="Հաշվառման համար">
+										</div>
+										<div class="col-sm-3" style="margin-top: 35px;">
+											<div class="form-group">
+												<label for="exampleFormControlFile1"></label>
+												<input type="file"
+													   name="regitered_file"
+													   class="form-control-file"
+													   id="exampleFormControlFile1">
+											</div>
+										</div>
+
+									</div>
+
+
+								</div>
+							</div>
+						</div>
+
 					</div>
 
 
@@ -283,65 +340,12 @@
 
 				<!-- Info Star -->
 				<div class="mt-3 mt-md-3">
-					<div class="card">
-						<div class="card-header">
-							<h5 class="mb-0">
-								<button class="btn btn-link" type="button">
-									Հաշվառման Համարանիշ
-								</button>
-							</h5>
-						</div>
-						<div class="">
-							<div class="card-body">
-
-								<div class="row">
-
-									<div class="col-sm-3">
-										<label
-											class=" col-form-label" style="font-size: 12px;">Սեփականատեր</label>
-										<input style="" value="" name="owner" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="Սեփականատեր">
-										<input name="owner_id" type="hidden">
-									</div>
-
-									<div class="col-sm-3">
-										<label
-											class="col-form-label" style="font-size: 12px;">Հաշվառման
-											հասցե</label>
-										<input value="" name="regitered_address" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման հասցե">
-									</div>
-
-									<div class="col-sm-3">
-										<label style="font-size: 12px;"
-											   class="col-form-label">Հաշվառման համար</label>
-										<input value="" name="regitered_number" type="text"
-											   class="form-control form-control-sm mt-2"
-											   placeholder="Հաշվառման համար">
-									</div>
-									<div class="col-sm-3" style="margin-top: 35px;">
-										<div class="form-group">
-											<label for="exampleFormControlFile1"></label>
-											<input type="file"
-												   name="regitered_file"
-												   class="form-control-file"
-												   id="exampleFormControlFile1">
-										</div>
-									</div>
-
-								</div>
-
-
-							</div>
-						</div>
-					</div>
-
 
 					<!-- Acardion -->
+					<div class="row">
 
-					<div class="accordion mt-5" id="accordionExample_info">
+					<div class="accordion mt-5 col-sm-8" id="accordionExample_info">
+
 						<div class="card">
 							<div class="card-header" id="heading_info1">
 								<h5 class="mb-0">
@@ -426,7 +430,6 @@
 								</div>
 							</div>
 						</div>
-
 
 						<div class="card">
 							<div class="card-header" id="heading_info2">
@@ -682,7 +685,90 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
+
+					<div class="col-sm-4">
+						<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
+
+						<div class="col-sm-12">
+							<label
+								class="col-form-label"
+								style="font-size: 12px;">Type of meter</label>
+							<select name="value_1"
+									class="selectpicker form-control form-control-sm dif_meter"
+									data-size="5"
+									title="Choose..."
+							>
+								<?
+								foreach ($value as $row) :
+									if ($row['type'] == 1) :
+										?>
+										<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<?
+									endif;
+								endforeach;
+								?>
+							</select>
+
+							<div class="form-group form-check mt-md-3 mt-3 mb-0">
+								<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
+									   id="exampleCheck1">
+								<label class="form-check-label" for="exampleCheck1">auto increment?</label>
+							</div>
+
+
+							<input name="value1_day" type="number" class="mt-2 form-control form-control-sm"
+								   placeholder=""/>
+							<div class=" mt-3"><p style="display: inline-block;margin-left: 15px;margin-top: -12px;"><span class="dif_meter_text"></span>/day</p>
+							</div>
+						</div>
+
+						<div class="col-sm-12">
+							<div class="card">
+								<h5 class="card-header" style="padding: 2px 0 2px 5px !important;">Secondary meter</h5>
+								<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
+									<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
+										   id="exampleCheck11">
+									<label class="form-check-label" for="exampleCheck11">Use of secondary
+										meter</label>
+								</div>
+								<div class="card-body">
+									<div class="form-group  mb-0">
+
+										<label
+											class="col-form-label"
+											style="font-size: 12px;">Type of meter</label>
+										<div>
+											<select name="value_2"
+													class="selectpicker form-control form-control-sm "
+													data-size="5"
+													title="Choose..."
+											>
+												<?
+												$convert = '';
+												foreach ($value as $row) :
+													if ($row['type'] == 1) :
+														$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
+														?>
+														<option value="<?= $row['id'] ?>">
+															<?= $row['title'] ?>
+														</option>
+
+													<?
+													endif;
+												endforeach;
+												?>
+											</select>
+											<?= $convert ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					<hr class="my-4">
 					<h5 class="mt-2 mb-1">Այլ տվյալներ</h5>
 					<table class="vehicle table table-striped table-hover">
 						<thead>
@@ -753,90 +839,8 @@
 					<button type="button" class="btn btn-outline-success btn-sm add_new_item"><i
 							class="fa fa-plus"></i></button>
 					<hr class="my-4">
-					<h5 class="mt-md-3 mt-3 mb-md-2 mb-2">kilometers per day</h5>
-
-					<div class="row">
 
 
-							<div class="col-sm-3">
-								<label
-									class="col-form-label"
-									style="font-size: 12px;">Type of meter</label>
-								<select name="value_1"
-										class="selectpicker form-control form-control-sm dif_meter"
-										data-size="5"
-										title="Choose..."
-								>
-									<?
-									foreach ($value as $row) :
-										if ($row['type'] == 1) :
-											?>
-											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-										<?
-										endif;
-									endforeach;
-									?>
-								</select>
-
-								<div class="form-group form-check mt-md-3 mt-3 mb-0">
-									<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
-										   id="exampleCheck1">
-									<label class="form-check-label" for="exampleCheck1">auto increment?</label>
-								</div>
-
-
-								<input name="value1_day" type="number" class="mt-2 form-control form-control-sm"
-									   placeholder=""/>
-								<div class=" mt-3"><p style="display: inline-block;margin-left: 15px;margin-top: -12px;"><span class="dif_meter_text"></span>/day</p>
-								</div>
-							</div>
-
-						<div class="col-sm-3">
-							<div class="card">
-								<h5 class="card-header" style="padding: 2px 0 2px 5px !important;">Secondary meter</h5>
-								<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
-									<input name="use_of_secondary_meter" value="1" type="checkbox" class="form-check-input"
-										   id="exampleCheck11">
-									<label class="form-check-label" for="exampleCheck11">Use of secondary
-										meter</label>
-								</div>
-								<div class="card-body">
-									<div class="form-group  mb-0">
-
-										<label
-											class="col-form-label"
-											style="font-size: 12px;">Type of meter</label>
-										<div>
-											<select name="value_2"
-													class="selectpicker form-control form-control-sm "
-													data-size="5"
-													title="Choose..."
-											>
-												<?
-												$convert = '';
-												foreach ($value as $row) :
-													if ($row['type'] == 1) :
-														$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
-														?>
-														<option value="<?= $row['id'] ?>">
-															<?= $row['title'] ?>
-														</option>
-
-													<?
-													endif;
-												endforeach;
-												?>
-											</select>
-											<?= $convert ?>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-
-
-					</div>
 
 
 

@@ -153,21 +153,21 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
 						   role="tab" aria-controls="department"><?= lang('department') ?>
-							<span class="badge badge-secondary badge-pill float-right">4</span>
+							<span class="float-right">4</span>
 						</a>
 						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
 						   role="tab" aria-controls="staff"><?= lang('staff') ?>
-							<span class="badge badge-secondary badge-pill float-right">2</span></a>
+							<span class="float-right">2</span></a>
 						<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
 						   role="tab" aria-controls="settings"><?= lang('vehicle') ?>
-							<span class="badge badge-secondary badge-pill float-right"></span>
+							<span class="float-right"></span>
 						</a>
 						<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
 						   role="tab" aria-controls="user"><?= lang('user') ?>
-							<span class="badge badge-secondary badge-pill float-right"></span>
+							<span class="float-right"></span>
 						</a>
 					</div>
 				</div>
@@ -175,7 +175,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 
 				<div class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
-					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
+					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;">
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
 
 						<div class="loader"></div>

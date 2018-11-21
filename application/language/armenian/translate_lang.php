@@ -27,8 +27,32 @@ $lang['tin'] = 'ՀՎՀՀ';
 $lang['phone_number'] = 'Հեռախոսահամար';
 $lang['email'] = 'Էլ․ հասցե';
 $lang['web_address'] = 'Առցանց Հասցե';
-$lang['general_information'] = 'Հիմնական տվյալներ';
+$lang['general_information'] = 'Սեփականատիրոջ Հիմնական տվյալներ';
 $lang['status'] = 'Կարգավիճակ';
+$lang['Basic_information'] = 'Ընկերության Հիմնական տվյալներ';
+$lang['account_type'] = 'Հաշվի տեսակը';
+$lang['Same_as'] = 'Նույնը';
+$lang['browse'] = 'Բեռնել';
+$lang['owner_firstname'] = 'Անունը';
+$lang['owner_lastname'] = 'Ազգանունը';
+$lang['owner_position'] = 'Պաշտոնը';
+$lang['owner_email'] = 'էլ․ հասցեն';
+$lang['contact_number'] = 'հեռախոսահամար';
+$lang['account_number'] = 'Հաշվեհամար';
+$lang['Correspondent_Bank'] = 'Թղթակից բանկը';
+$lang['swift_code'] = 'Սվիֆտ կոդ';
+$lang['account'] = 'Հաշիվ';
+$lang['save'] = 'պահել';
+$lang['cancel'] = 'չեղարկել';
+$lang['logo'] = 'Լոգո';
+$lang['upload_logo'] = 'Վերբեռնեք ձեր ընկերության Լոգո';
+$lang['changed_property'] = 'Պահպանել կատարված փոփոխությունները';
+$lang['Activity_Region'] = 'Գործունեության երկիրը';
+$lang['Activity_City'] = 'Գործունեության քաղաքը';
+$lang['zip_code'] = 'Զիպ կոդ';
+$lang['Activity_address'] = 'Գործունեության հասցե';
+$lang['legal_region'] = 'իրական Երկիր';
+
 $lang['account_type'] = 'Հաշվի Տեսակը';
 $lang['welcome'] = 'Բարի գալուստ';
 
@@ -43,7 +67,7 @@ $lang['user'] = 'Օգտատեր';
 
 $lang['required'] = '* - ով դաշտերը պարտադիր են';
 $lang['required_all'] = 'Բոլոր դաշտերը պարտադիր են';
-$lang['owner_email'] = 'Սեփականատիրոջ էլ․ հասցե';
+$lang['owner_email'] = 'էլ․ հասցե';
 $lang['success'] = 'Հաջողվեց!';
 $lang['error'] = 'Սխալ';
 

@@ -37,8 +37,8 @@
 							class="text-white ml-2"><?= $result['mileage'] ?></span></p>
 					<p class="small text-white-50 driver_info">Հոռոգռաֆ։<span
 							class="text-white ml-2"><?= $result['odometer'] ?></span></p>
-					<p class="small text-white-50 driver_info">GPS Exsist?։<span class="text-white ml-2">-?-</span></p>
-					<p class="small text-white-50 driver_info">GPS Tracker IMEI։<span class="text-white ml-2">-?-</span>
+					<p class="small text-white-50 driver_info">GPS Exsist?։<span class="text-white ml-2"><?=($result['gps_tracker_exists'] == 1 ? 'Yes' : 'No')?></span></p>
+					<p class="small text-white-50 driver_info">GPS Tracker IMEI։<span class="text-white ml-2"><?=$result['gps_tracker_imei']?></span>
 					</p>
 				</div>
 				<div class="p-2  w-auto">

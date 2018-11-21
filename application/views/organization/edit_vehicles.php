@@ -208,6 +208,32 @@
 								   placeholder="VIN">
 						</div>
 					</div>
+
+					<div class="form-group row"  >
+						<label
+							class="col-sm-2 col-form-label" style="font-size: 15px;">GPS Exist?</label>
+						<div class="col-sm-10">
+							<select name="gps_exist"
+									class="form-control form-control-sm selectpicker"
+									data-size="5" id="fleet_type" data-live-search="true"
+									title="GPS Exist?"
+							>
+								<option <?=$fleet['gps_tracker_exists'] == 1 ? 'selected' : ''?> value="1">yes</option>
+								<option <?=$fleet['gps_tracker_exists'] == -1 ? 'selected' : ''?> value="-1">no</option>
+
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row" >
+						<label
+							class="col-sm-2 col-form-label" style="font-size: 15px;">GPS Tracker IMEI</label>
+						<div class="col-sm-10">
+							<input value="<?= $fleet['gps_tracker_imei'] ?>" name="gps_tracker_imei" type="text" class="form-control form-control-sm"
+								   placeholder="GPS Tracker IMEI">
+						</div>
+					</div>
+
 					<div class="form-group row">
 						<label
 							class="col-sm-2 col-form-label">Շարժիչի հզորություն</label>

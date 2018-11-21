@@ -9,7 +9,7 @@ select{
 	font-size: 14px !important;
 }
 label {
-	font-size: 14px !important;
+	font-size: 12px !important;
 }
 .banck_account.form-group.row {
 	margin: 0 !important
@@ -252,7 +252,7 @@ i.fas.fa-sign-out-alt{
 }
 
 .radio_btn:first-child {
-	margin-top: 6 !important;
+	margin-top: 6px !important;
 }
 
 button.btn.btn-sm.btn-outline-success.float-right.copy_btn {
@@ -266,3 +266,34 @@ button.btn.btn-sm.btn-outline-success.float-right.copy_btn {
 button.btn.dropdown-toggle.btn-sm{
 	padding: 11px 20px !important;
 }
+
+.save_cancel_btn.btn.btn-success,button.btn.btn-primary{
+	border: 1px solid rgb(255, 122, 89) !important;
+	background: #fff !important;
+	color: rgb(255, 122, 89);
+	transition: all .3s ease-in-out;
+	min-width: 91.86px !important;
+	min-height: 40px !important;
+}
+
+.save_cancel_btn.btn.btn-success:hover,button.btn.btn-primary:hover{
+	background: rgb(255, 122, 89) !important;
+	color: #fff;
+}
+
+#load:hover svg#loading_svg{
+	fill: #fff !important;
+}
+
+.pos_abs_div.fixed-bottom.text-left.pb-2.mt-md-2.mt-2 {
+	background: #f3f1f1;
+	padding: 10px;
+	padding-left: 45px;
+	padding-bottom: 20px;
+	border-top: 1px solid #8c8c8c47;
+}
+
+.pos_abs_div{
+	bottom: -60px;
+}
+

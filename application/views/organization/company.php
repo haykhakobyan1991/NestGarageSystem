@@ -25,80 +25,88 @@ $i = '';
 			</div>
 
 			<div class="container">
-
-
-
 				<div class="row">
-					<div class="col-sm-4">
-						<div style="overflow: hidden;">
-							<label
-								class="col-form-label mr-2"
-								style="font-size: 15px;"><?= lang('company_name') ?> *</label>
-							<input style="min-width: 176px;" value="<?= $company['name'] ?>" name="company_name"
-								   type="text" class="form-control w-auto float-right"
-								   placeholder="<?= lang('company_name') ?>">
-						</div>
+					<div class="col-sm-7">
 
-
-						<div style="overflow: hidden;margin-top: 4px;">
-							<label class="col-form-label mr-2"><?= lang('tin') ?></label>
-							<input style="min-width: 176px;" value="<?= $company['tin'] ?>" name="tin" type="text"
-								   class="form-control form-control-sm w-auto float-right"
-								   placeholder="<?= lang('tin') ?>">
-						</div>
-
-						<div style="overflow: hidden;margin-top: 4px;">
-							<label
-								class="col-form-label mr-2"><?= lang('web_address') ?></label>
-
-							<input style="min-width: 176px;" value="<?= $company['web_address'] ?>" name="web_address"
-								   type="text" class="form-control form-control-sm w-auto float-right"
-								   placeholder="<?= lang('web_address') ?>">
-						</div>
-
-					</div>
-
-
-					<div class="col-sm-2">
-						<table class="table  table-secondary col-sm-12 col-md-5"
-							   style="background: #fff;font-size: 13px;">
-							<tbody>
-
-							<? foreach ($company_type as $item) : ?>
-
-								<div class="radio_btn" style="margin-top: 16px;">
-									<span style="font-size: 12px;"><?= $item['title'] ?> *</span>
-									<input style="width: 15px;height: 15px;"
-										   type="radio"
-										   value="<?= $item['id'] ?>"
-										<?= ($company['company_type_id'] == $item['id'] ? 'checked' : '') ?>
-										   name="company_type"
-										   aria-label="Checkbox for following text input"
-										   class="btn btn-primary float-right">
+						<div class="row">
+							<div class="col-sm-5">
+								<div class="row">
+									<label
+										class="col-form-label col-sm-5"
+										style="font-size: 15px;"><?= lang('company_name') ?> *</label>
+									<input value="<?= $company['name'] ?>" name="company_name"
+										   type="text" class="form-control col-sm-7"
+										   placeholder="<?= lang('company_name') ?>">
 								</div>
 
-							<? endforeach; ?>
+							</div>
 
-							</tbody>
-						</table>
+							<div class="col-sm-7">
+								<div class="row">
+									<label
+										class="col-form-label col-sm-4"><?= lang('web_address') ?></label>
+
+									<select name="company_type"
+											class="selectpicker form-control form-control-sm selectpicker_1 col-sm-8"
+											data-size="5" id="company_type" data-live-search="true"
+											title="Select a Company type">
+										<? foreach ($company_type as $item) : ?>
+											<option <?= ($company['company_type_id'] == $item['id'] ? 'selected' : '') ?>
+												value="<?= $item['id'] ?>">
+												<?= $item['title'] ?>
+											</option>
+										<? endforeach; ?>
+									</select>
+								</div>
+
+
+							</div>
+						</div>
+
+						<div class="row mt-1">
+							<div class="col-sm-5">
+								<div class="row">
+									<label class="col-form-label col-sm-5"><?= lang('tin') ?></label>
+									<input value="<?= $company['tin'] ?>" name="tin" type="text"
+										   class="form-control form-control-sm col-sm-7"
+										   placeholder="<?= lang('tin') ?>">
+								</div>
+
+							</div>
+
+							<div class="col-sm-7">
+								<div class="row">
+									<label class="col-form-label col-sm-4"><?= lang('web_address') ?></label>
+
+									<input value="<?= $company['web_address'] ?>"
+										   name="web_address"
+										   type="text" class="form-control form-control-sm col-sm-8"
+										   placeholder="<?= lang('web_address') ?>">
+								</div>
+
+							</div>
+						</div>
+
+
 					</div>
 
 
 					<div class="col-sm-3">
-						<h5 style="margin-left: 64px;float: none;display: unset;"><?=lang('logo')?></h5>
+						<h5 style="margin-left: 64px;float: none;display: unset;"><?= lang('logo') ?></h5>
 						<div class="media">
 							<img class="align-self-start" id='img-upload'
 								 style="width: 50px;margin-top: -16px;"
 								 alt=""
 								 src="<?= ($company['logo'] != '' ? base_url('uploads/' . $folder . '/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
 							<div class="media-body" style="margin-top: 25px;">
-								<p style="float: left;margin-top: -20px;margin-left:15px;"><?=lang('upload_logo');?></p>
+								<p style="float: left;margin-top: -20px;margin-left:15px;"><?= lang('upload_logo'); ?></p>
 								<div class="input-group ml-2 ml-md-2" style="display: inline-block;width: auto;">
 															<span class="input-group-btn">
 																<span
 																	class="btn btn-sm btn-outline-success btn-file mr-1"
-																	style="margin-left: 385px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-top: -55px;">
-																	<?= lang('browse') ?> <input type="file" id="imgInp" name="photo">
+																	style="margin-left: 290px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-top: -55px;">
+																	<?= lang('browse') ?> <input type="file" id="imgInp"
+																								 name="photo">
 																</span>
 															</span>
 									<input type="text" class="form-control form-control-sm" readonly
@@ -112,8 +120,9 @@ $i = '';
 
 				</div>
 
+				<hr class="my-2 mt-1">
 
-				<div class="row mt-2">
+				<div class="row mt-3">
 
 
 					<div class="col-sm-6">
@@ -126,7 +135,7 @@ $i = '';
 									class="col selectpicker form-control form-control-sm selectpicker_1"
 									data-size="5" id="country" data-live-search="true"
 									title="Select a country">
-								<option value=""><?=lang('Activity_Region')?></option>
+								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['activity_country_id'] == $row['id'] ? 'selected' : '') ?>
 										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -136,7 +145,7 @@ $i = '';
 								<input name="activity_state_region"
 									   value="<?= $company['activity_state_region'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('Activity_Region')?>">
+									   placeholder="<?= lang('Activity_Region') ?>">
 							</div>
 						</div>
 
@@ -145,13 +154,13 @@ $i = '';
 								<input name="activity_city"
 									   value="<?= $company['activity_city'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('Activity_City')?>">
+									   placeholder="<?= lang('Activity_City') ?>">
 							</div>
 							<div class="col">
 								<input name="activity_zip_code"
 									   value="<?= $company['activity_zip_code'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('zip_code')?>">
+									   placeholder="<?= lang('zip_code') ?>">
 							</div>
 						</div>
 
@@ -160,7 +169,7 @@ $i = '';
 								<input name="activity_address"
 									   value="<?= $company['activity_address'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('Activity_address')?>">
+									   placeholder="<?= lang('Activity_address') ?>">
 							</div>
 
 
@@ -191,7 +200,7 @@ $i = '';
 									class="col selectpicker form-control form-control-sm selectpicker_2"
 									data-size="5" id="country" data-live-search="true"
 									title="Select a country">
-								<option value=""><?=lang('Activity_Region')?></option>
+								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['legal_country_id'] == $row['id'] ? 'selected' : '') ?>
 										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -201,7 +210,7 @@ $i = '';
 								<input name="legal_state_region"
 									   value="<?= $company['legal_state_region'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('legal_region')?>">
+									   placeholder="<?= lang('legal_region') ?>">
 							</div>
 						</div>
 
@@ -215,7 +224,7 @@ $i = '';
 								<input name="legal_zip_code"
 									   value="<?= $company['legal_zip_code'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('zip_code')?>">
+									   placeholder="<?= lang('zip_code') ?>">
 							</div>
 						</div>
 
@@ -262,54 +271,77 @@ $i = '';
 
 						<div class="row">
 
+							<div class="col-sm-5">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('owner_firstname') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_firstname'] ?>"
+											   name="owner_firstname" type="text" class="form-control form-control-sm"
+											   placeholder="<?= lang('owner_firstname') ?>">
+									</div>
+								</div>
 
-							<label class="col-sm-2 col-form-label" style="font-size: 15px;"><?= lang('owner_firstname') ?></label>
-							<div class="col-sm-3">
-								<input value="<?= $company['owner_firstname'] ?>"
-									   name="owner_firstname" type="text" class="form-control form-control-sm"
-									   placeholder="<?= lang('owner_firstname') ?>">
 							</div>
+							<div class="col-sm-4">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('owner_position') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_position'] ?>"
+											   name="owner_position" type="text" class="form-control form-control-sm"
+											   placeholder="<?= lang('owner_position') ?>">
+									</div>
+								</div>
 
-							<label class="col-sm-2 col-form-label" style="font-size: 15px;"><?= lang('owner_position') ?></label>
-							<div class="col-sm-3">
-								<input value="<?= $company['owner_position'] ?>"
-									   name="owner_position" type="text" class="form-control form-control-sm"
-									   placeholder="<?= lang('owner_position') ?>">
 							</div>
 
 
 						</div>
 
 						<div class="row mt-1">
-							<label class="col-sm-2 col-form-label" style="font-size: 15px;"><?=lang('owner_lastname')?></label>
-							<div class="col-sm-3">
-								<input value="<?= $company['owner_lastname'] ?>"
-									   name="owner_lastname" type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('owner_lastname')?>">
+							<div class="col-sm-5">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('owner_lastname') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_lastname'] ?>"
+											   name="owner_lastname" type="text" class="form-control form-control-sm"
+											   placeholder="<?= lang('owner_lastname') ?>">
+									</div>
+								</div>
+
 							</div>
 
 
+							<div class="col-sm-4">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('owner_email') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_email'] ?>" name="owner_email"
+											   type="email" class="form-control form-control-sm"
+											   placeholder="<?= lang('owner_email') ?>">
+									</div>
+								</div>
 
-
-
-							<label class="col-sm-2 col-form-label" style="font-size: 15px;"><?=lang('owner_email')?></label>
-							<div class="col-sm-3">
-								<input value="<?= $company['owner_email'] ?>" name="owner_email"
-									   type="email" class="form-control form-control-sm"
-									   placeholder="<?=lang('owner_email')?>">
 							</div>
-
-
 
 
 						</div>
 
 						<div class="row mt-1">
-							<label class="col-sm-2 col-form-label" style="font-size: 15px;"><?=lang('contact_number')?></label>
-							<div class="col-sm-3">
-								<input value="<?= $company['owner_contact_number'] ?>"
-									   name="owner_contact_number" type="text"
-									   class="form-control form-control-sm" placeholder="<?=lang('contact_number')?>">
+							<div class="col-sm-5">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('contact_number') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_contact_number'] ?>"
+											   name="owner_contact_number" type="text"
+											   class="form-control form-control-sm"
+											   placeholder="<?= lang('contact_number') ?>">
+									</div>
+								</div>
 							</div>
 
 
@@ -341,68 +373,70 @@ $i = '';
 									 aria-labelledby="headingOne"
 									 data-parent="#accordionExample">
 									<div class="card-body">
-									<div class="row">
-										<div class="form-group row mb-1 col-sm-4">
-											<label
-												class="col-sm-5 col-form-label text-right"><?= lang('account_type') ?></label>
-											<div class="col-sm-7">
-												<input
-													value="<?= $company['account_name_1'] ?>"
-													name="account_name_1"
-													type="text"
-													class="account_number form-control form-control-sm"
-													placeholder="<?= lang('account_type') ?>">
-											</div>
-										</div>
-
-										<div class="form-group row mb-1 col-sm-4">
-											<label class="col-sm-5 col-form-label text-right"><?=lang('account_number')?></label>
-											<div class="col-sm-7">
-												<input
-													value="<?= $company['account_number_1'] ?>"
-													name="account_number_1"
-													type="text"
-													class="account_number form-control form-control-sm"
-													placeholder="<?=lang('account_number')?>">
-											</div>
-										</div>
-
-										<div class="form-group row mb-1 col-sm-4">
-											<label class="col-sm-5 col-form-label text-right"><?=lang('Correspondent_Bank')?></label>
-											<div class="col-sm-7">
-												<input type="text"
-													   name="correspondent_bank_1"
-													   class="form-control form-control-sm correspondent_bank"
-													   value="<?= $company['correspondent_bank_1'] ?>"
-													   placeholder="<?=lang('Correspondent_Bank')?>">
-											</div>
-										</div>
-									</div>
 										<div class="row">
 											<div class="form-group row mb-1 col-sm-4">
-												<label class="col-sm-5 col-form-label text-right"><?=lang('swift_code')?></label>
+												<label
+													class="col-sm-5 col-form-label text-right"><?= lang('account_type') ?></label>
 												<div class="col-sm-7">
-													<input type="text"
-														   name="swift_code_1"
-														   class="form-control form-control-sm swift_code"
-														   value="<?= $company['swift_code_1'] ?>"
-														   placeholder="<?=lang('swift_code')?>">
+													<input
+														value="<?= $company['account_name_1'] ?>"
+														name="account_name_1"
+														type="text"
+														class="account_number form-control form-control-sm"
+														placeholder="<?= lang('account_type') ?>">
 												</div>
 											</div>
 
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-5 col-form-label text-right"><?=lang('account')?></label>
+													class="col-sm-5 col-form-label text-right"><?= lang('account_number') ?></label>
+												<div class="col-sm-7">
+													<input
+														value="<?= $company['account_number_1'] ?>"
+														name="account_number_1"
+														type="text"
+														class="account_number form-control form-control-sm"
+														placeholder="<?= lang('account_number') ?>">
+												</div>
+											</div>
+
+											<div class="form-group row mb-1 col-sm-4">
+												<label
+													class="col-sm-6 col-form-label text-right"><?= lang('Correspondent_Bank') ?></label>
+												<div class="col-sm-6">
+													<input type="text"
+														   name="correspondent_bank_1"
+														   class="form-control form-control-sm correspondent_bank"
+														   value="<?= $company['correspondent_bank_1'] ?>"
+														   placeholder="<?= lang('Correspondent_Bank') ?>">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="form-group row mb-1 col-sm-4">
+												<label
+													class="col-sm-5 col-form-label text-right"><?= lang('swift_code') ?></label>
+												<div class="col-sm-7">
+													<input type="text"
+														   name="swift_code_1"
+														   class="form-control form-control-sm swift_code"
+														   value="<?= $company['swift_code_1'] ?>"
+														   placeholder="<?= lang('swift_code') ?>">
+												</div>
+											</div>
+
+											<div class="form-group row mb-1 col-sm-4">
+												<label
+													class="col-sm-5 col-form-label text-right"><?= lang('account') ?></label>
 												<div class="col-sm-7">
 													<input type="text"
 														   value="<?= $company['account_1'] ?>"
 														   name="account_1"
 														   class="form-control form-control-sm account"
-														   placeholder="<?=lang('account')?>">
+														   placeholder="<?= lang('account') ?>">
 												</div>
 											</div>
 										</div>
-
 
 
 									</div>
@@ -437,48 +471,50 @@ $i = '';
 												</div>
 											</div>
 											<div class="form-group row mb-1 col-sm-4">
-												<label class="col-sm-5 col-form-label"><?=lang('account_number')?></label>
+												<label
+													class="col-sm-5 col-form-label"><?= lang('account_number') ?></label>
 												<div class="col-sm-7">
 													<input
 														value="<?= $company['account_number_2'] ?>"
 														name="account_number_2"
 														type="text"
 														class="account_number form-control form-control-sm"
-														placeholder="<?=lang('account_number')?>">
+														placeholder="<?= lang('account_number') ?>">
 												</div>
 											</div>
 											<div class="form-group row mb-1 col-sm-4">
-												<label class="col-sm-5 col-form-label"><?=lang('Correspondent_Bank')?></label>
-												<div class="col-sm-7">
+												<label
+													class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
+												<div class="col-sm-6">
 													<input type="text"
 														   name="correspondent_bank_2"
 														   class="form-control form-control-sm correspondent_bank"
 														   value="<?= $company['correspondent_bank_2'] ?>"
-														   placeholder="<?=lang('Correspondent_Bank')?>">
+														   placeholder="<?= lang('Correspondent_Bank') ?>">
 												</div>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="form-group row mb-1 col-sm-4">
-												<label class="col-sm-5 col-form-label"><?=lang('swift_code')?></label>
+												<label class="col-sm-5 col-form-label"><?= lang('swift_code') ?></label>
 												<div class="col-sm-7">
 													<input type="text"
 														   name="swift_code_2"
 														   class="form-control form-control-sm swift_code"
 														   value="<?= $company['swift_code_2'] ?>"
-														   placeholder="<?=lang('swift_code')?>">
+														   placeholder="<?= lang('swift_code') ?>">
 												</div>
 											</div>
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-5 col-form-label"><?=lang('account')?></label>
+													class="col-sm-5 col-form-label"><?= lang('account') ?></label>
 												<div class="col-sm-7">
 													<input type="text"
 														   name="account_2"
 														   class="form-control form-control-sm account"
 														   value="<?= $company['account_2'] ?>"
-														   placeholder="<?=lang('account')?>">
+														   placeholder="<?= lang('account') ?>">
 												</div>
 											</div>
 										</div>
@@ -521,55 +557,53 @@ $i = '';
 
 
 				<div class="form-group row mb-1 col-sm-4">
-					<label class="col-sm-5 col-form-label"><?=lang('account_number')?></label>
+					<label class="col-sm-5 col-form-label"><?= lang('account_number') ?></label>
 					<div class="col-sm-7">
 						<input
 							value="<?= $company['account_number_3'] ?>"
 							type="text"
 							name="account_number_3"
 							class="account_number form-control form-control-sm"
-							placeholder="<?=lang('account_number')?>">
+							placeholder="<?= lang('account_number') ?>">
 					</div>
 				</div>
 
 				<div class="form-group row mb-1 col-sm-4">
-					<label class="col-sm-5 col-form-label"><?=lang('Correspondent_Bank')?></label>
-					<div class="col-sm-7">
+					<label class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
+					<div class="col-sm-6">
 						<input type="text"
 							   name="correspondent_bank_3"
 							   class="form-control form-control-sm correspondent_bank"
 							   value="<?= $company['correspondent_bank_3'] ?>"
-							   placeholder="<?=lang('Correspondent_Bank')?>">
+							   placeholder="<?= lang('Correspondent_Bank') ?>">
 					</div>
 				</div>
 
 			</div>
 			<div class="row">
 				<div class="form-group row mb-1 col-sm-4">
-					<label class="col-sm-5 col-form-label"><?=lang('swift_code')?></label>
+					<label class="col-sm-5 col-form-label"><?= lang('swift_code') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="swift_code_3"
 							   class="form-control form-control-sm swift_code"
 							   value="<?= $company['swift_code_3'] ?>"
-							   placeholder="<?=lang('swift_code')?>">
+							   placeholder="<?= lang('swift_code') ?>">
 					</div>
 				</div>
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label
-						class="col-sm-5 col-form-label"><?=lang('account')?></label>
+						class="col-sm-5 col-form-label"><?= lang('account') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="account_3"
 							   class="form-control form-control-sm account"
 							   value="<?= $company['account_3'] ?>"
-							   placeholder="<?=lang('account')?>">
+							   placeholder="<?= lang('account') ?>">
 					</div>
 				</div>
 			</div>
-
-
 
 
 		</div>
@@ -593,72 +627,69 @@ $i = '';
 		 data-parent="#accordionExample">
 		<div class="card-body">
 
-<div class="row">
+			<div class="row">
 
-	<div class="form-group row mb-1 col-sm-4">
-		<label
-			class="col-sm-5 col-form-label"><?= lang('account_type') ?></label>
-		<div class="col-sm-7">
-			<input
-				value="<?= $company['account_name_4'] ?>"
-				type="text"
-				name="account_name_4"
-				class="account_number form-control form-control-sm"
-				placeholder="<?= lang('account_type') ?>">
-		</div>
-	</div>
+				<div class="form-group row mb-1 col-sm-4">
+					<label
+						class="col-sm-5 col-form-label"><?= lang('account_type') ?></label>
+					<div class="col-sm-7">
+						<input
+							value="<?= $company['account_name_4'] ?>"
+							type="text"
+							name="account_name_4"
+							class="account_number form-control form-control-sm"
+							placeholder="<?= lang('account_type') ?>">
+					</div>
+				</div>
 
-	<div class="form-group row mb-1 col-sm-4">
-		<label class="col-sm-5 col-form-label"><?=lang('account_number')?></label>
-		<div class="col-sm-7">
-			<input
-				value="<?= $company['account_number_4'] ?>"
-				type="text"
-				name="account_number_4"
-				class="account_number form-control form-control-sm"
-				placeholder="<?=lang('account_number')?>">
-		</div>
-	</div>
+				<div class="form-group row mb-1 col-sm-4">
+					<label class="col-sm-5 col-form-label"><?= lang('account_number') ?></label>
+					<div class="col-sm-7">
+						<input
+							value="<?= $company['account_number_4'] ?>"
+							type="text"
+							name="account_number_4"
+							class="account_number form-control form-control-sm"
+							placeholder="<?= lang('account_number') ?>">
+					</div>
+				</div>
 
-	<div class="form-group row mb-1 col-sm-4">
-		<label class="col-sm-5 col-form-label"><?=lang('Correspondent_Bank')?></label>
-		<div class="col-sm-7">
-			<input type="text"
-				   name="correspondent_bank_4"
-				   class="form-control form-control-sm correspondent_bank"
-				   value="<?= $company['correspondent_bank_4'] ?>"
-				   placeholder="<?=lang('Correspondent_Bank')?>">
-		</div>
-	</div>
+				<div class="form-group row mb-1 col-sm-4">
+					<label class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
+					<div class="col-sm-6">
+						<input type="text"
+							   name="correspondent_bank_4"
+							   class="form-control form-control-sm correspondent_bank"
+							   value="<?= $company['correspondent_bank_4'] ?>"
+							   placeholder="<?= lang('Correspondent_Bank') ?>">
+					</div>
+				</div>
 
-</div>
+			</div>
 			<div class="row">
 				<div class="form-group row mb-1 col-sm-4">
-					<label class="col-sm-5 col-form-label"><?=lang('swift_code')?></label>
+					<label class="col-sm-5 col-form-label"><?= lang('swift_code') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="swift_code_4"
 							   class="form-control form-control-sm swift_code"
 							   value="<?= $company['swift_code_4'] ?>"
-							   placeholder="<?=lang('swift_code')?>">
+							   placeholder="<?= lang('swift_code') ?>">
 					</div>
 				</div>
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label
-						class="col-sm-5 col-form-label"><?=lang('account')?></label>
+						class="col-sm-5 col-form-label"><?= lang('account') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="account_4"
 							   class="form-control form-control-sm account"
 							   value="<?= $company['account_4'] ?>"
-							   placeholder="<?=lang('account')?>">
+							   placeholder="<?= lang('account') ?>">
 					</div>
 				</div>
 			</div>
-
-
-
 
 
 		</div>
@@ -689,74 +720,67 @@ $i = '';
 </div>
 
 
-
-
-
-
 <div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<span id="create_company" class="save_cancel_btn btn btn-success"><?=lang('save')?></span>
-	<span id="load" class="btn save_cancel_btn btn-success d-none"><svg id="loading_svg"  width="80" height="20" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg" fill="rgb(255, 122, 89)">
+	<span id="create_company" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
+	<span id="load" class="btn save_cancel_btn btn-success d-none"><svg id="loading_svg" width="80" height="20"
+																		viewBox="0 0 135 140"
+																		xmlns="http://www.w3.org/2000/svg"
+																		fill="rgb(255, 122, 89)">
     <rect y="10" width="15" height="120" rx="6">
         <animate attributeName="height"
 				 begin="0.5s" dur="1s"
 				 values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
         <animate attributeName="y"
 				 begin="0.5s" dur="1s"
 				 values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
     </rect>
     <rect x="30" y="10" width="15" height="120" rx="6">
         <animate attributeName="height"
 				 begin="0.25s" dur="1s"
 				 values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
         <animate attributeName="y"
 				 begin="0.25s" dur="1s"
 				 values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
     </rect>
     <rect x="60" width="15" height="140" rx="6">
         <animate attributeName="height"
 				 begin="0s" dur="1s"
 				 values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
         <animate attributeName="y"
 				 begin="0s" dur="1s"
 				 values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
     </rect>
     <rect x="90" y="10" width="15" height="120" rx="6">
         <animate attributeName="height"
 				 begin="0.25s" dur="1s"
 				 values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
         <animate attributeName="y"
 				 begin="0.25s" dur="1s"
 				 values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
     </rect>
     <rect x="120" y="10" width="15" height="120" rx="6">
         <animate attributeName="height"
 				 begin="0.5s" dur="1s"
 				 values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
         <animate attributeName="y"
 				 begin="0.5s" dur="1s"
 				 values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite" />
+				 repeatCount="indefinite"/>
     </rect>
 </svg></span>
 
-	<button class="dont_save btn btn-primary"><?=lang('cancel')?></button>
-	<span style="color: #8c8c8c;" class="pl-3"><?=lang('changed_property')?></span>
+	<button class="dont_save btn btn-primary"><?= lang('cancel') ?></button>
+	<span style="color: #8c8c8c;" class="pl-3"><?= lang('changed_property') ?></span>
 </div>
-
-
-
-
-
-
 
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
@@ -871,9 +895,9 @@ $i = '';
 		readURL(this);
 	});
 	/* Company logo uploade end */
-	
-	$('input,select').on('change keyup textarea',function() {
-		if(!$('.pos_abs_div').hasClass('animated')){
+
+	$('input,select').on('change keyup textarea', function () {
+		if (!$('.pos_abs_div').hasClass('animated')) {
 			$('.pos_abs_div').animate({
 				bottom: "+=60",
 			});

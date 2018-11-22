@@ -815,7 +815,7 @@ class Structure extends MX_Controller {
 							'from' => $driver_id,
 							'to' => $fleet_id
 						);
-					} elseif(!isset($old_df[$driver_id])) { //new todo
+					} elseif(!isset($old_df[$driver_id])) { //new todo stugel
 						$change_array['added']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id
@@ -839,7 +839,7 @@ class Structure extends MX_Controller {
 							'from' => $company_id,
 							'to' => $department_id
 						);
-					} elseif(!isset($new_ch[$company_id])) { //new todo
+					} elseif(!isset($new_ch[$company_id])) { //new todo stugel
 						$change_array['deleted']['c_h'][] = array(
 							'from' => $company_id,
 							'to' => $department_id

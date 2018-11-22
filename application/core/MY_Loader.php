@@ -166,19 +166,19 @@ class MY_Loader extends MX_Loader {
 		if(in_array($ext, $extension)) {
 
 			if($ext == 'xlsx' || $ext == 'csv') {
-				return '<i class="fas fa-file-excel"></i>';
+				return '<i style="padding-top: 35px;float: right;" class="fas fa-file-excel"></i>';
 			}elseif ($ext == 'doc' || $ext == 'docx'){
-				return '<i class="fas fa-file-word"></i>';
+				return '<i style="padding-top: 35px;float: right;" class="fas fa-file-word"></i>';
 			}elseif($ext == 'jpg' || $ext == 'png'){
-				return '<i class="fas fa-file-image"></i>';
+				return '<i style="padding-top: 35px;float: right;" class="fas fa-file-image"></i>';
 			}elseif ($ext == 'zip'){
-				return '<i class="fas fa-file-archive"></i>';
+				return '<i style="padding-top: 35px;float: right;" class="fas fa-file-archive"></i>';
 			}
 
-			return '<i class="fas fa-file-'.$ext.'"></i>';
+			return '<i style="padding-top: 35px;float: right;" class="fas fa-file-'.$ext.'"></i>';
 		}
 
-		return '<i class="fas fa-exclamation-circle"></i>';
+		return '<i style="padding-top: 35px;float: right;" class="fas fa-exclamation-circle"></i>';
 	}
 
 

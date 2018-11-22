@@ -12,25 +12,25 @@ $folder = $this->session->folder;
 
 	<div class="row">
 		<div class="col-sm-12 col-md-6 col-6">
-			<h2>Staff Infprmation</h2>
-			<p>Fill in the following fields</p>
+			<h5><?= lang('staff_information') ?></h5>
 		</div>
-
 		<div class="col-sm-12 col-md-6 col-6">
+			<h5 style="padding-top: 10px;margin-left: 116px;float: none;display: unset;"><?= lang('picture') ?></h5>
 			<div class="media">
 				<img class="align-self-start mr-3"
 					 id='img-upload2'
-
-					 style="width: 100px;" alt=""
+					 style="width: 100px;margin-top: -30px;" alt=""
 					 src="<?= ($photo == '' ? base_url('assets/images/no_choose_image.svg') : base_url('uploads/' . $folder . '/staff/thumbs/' . $photo)) ?>">
 				<div class="media-body">
+					<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
 					<div class="input-group ml-2 ml-md-2">
 														<span class="input-group-btn">
 															<span
-																class="btn btn-outline-success btn-file mr-1">
-																Browse… <input type="file" id="imgInp2"
-																			   name="photo"
-																			   onchange="readURL2(this);">
+																class="btn btn-outline-success btn-file"
+																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
+																<?= lang('browse') ?> <input type="file" id="imgInp2"
+																							 name="photo"
+																							 onchange="readURL2(this);">
 															</span>
 														</span>
 						<input type="text" class="form-control form-control-sm"
@@ -43,139 +43,176 @@ $folder = $this->session->folder;
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-12 col-md-12 col-12  mt-md-5 mt-5 pl-md-4 pl-4 pr-md-4 pr-4">
-			<div class="row mt-3">
-				<label
-					class="col-sm-2 col-form-label">First Name *</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="firstname"
-						   value="<?= $first_name ?>"
-						   placeholder="First Name">
-				</div>
-				<label
-					class="col-sm-2 col-form-label">Last
-					Name *</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="lastname"
-						   value="<?= $last_name ?>"
-						   placeholder="Last Name">
-				</div>
-			</div>
-			<div class="row mt-1">
-				<label
-					class="col-sm-2 col-form-label">Contact Number 1</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="contact_1"
-						   value="<?= $contact_1 ?>"
-						   placeholder="Contact Number 1">
+	<hr class="my-2">
+
+
+	<div class="row mt-1">
+		<div class="col-sm-12 col-md-12 col-12  pl-md-4 pl-4 pr-md-4 pr-4">
+
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="row">
+						<label
+							class="col-sm-4 col-form-label">First Name *</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="firstname"
+								   value="<?= $first_name ?>"
+								   placeholder="First Name">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label
+							class="col-sm-4 col-form-label">Last
+							Name *</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="lastname"
+								   value="<?= $last_name ?>"
+								   placeholder="Last Name">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label
+							class="col-sm-4 col-form-label">Email *</label>
+						<div class="col-sm-8">
+							<input type="email" class="form-control form-control-sm"
+								   name="email"
+								   value="<?= $email ?>"
+								   placeholder="Email">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label
+							class="col-sm-4 col-form-label">Department</label>
+						<div class="col-sm-8">
+							<select name="department[]"
+									class="col  selectpicker form-control form-control-sm"
+									id="department"
+									multiple data-live-search="true"
+									title="Select a Department">
+								<? foreach ($department as $row) : ?>
+									<option <?= (in_array($row['id'], $department_id) ? 'selected' : '') ?>
+										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<? endforeach; ?>
+							</select>
+						</div>
+					</div>
+					<div class="row" style="margin-top: .75rem!important;">
+						<label class="col-sm-4 col-form-label">Position</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="position"
+								   value="<?= $position ?>"
+								   placeholder="Position">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label class="col-sm-4 col-form-label">Nest Card ID</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="nest_card_id"
+								   placeholder="Nest Card ID">
+						</div>
+					</div>
 				</div>
 
-				<label
-					class="col-sm-2 col-form-label">Contact Number 2</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="contact_2"
-						   value="<?= $contact_2 ?>"
-						   placeholder="Contact Number 2">
+				<div class="col-sm-6">
+					<div class="row">
+						<label
+							class="col-sm-4 col-form-label">Leave Country</label>
+						<div class="col-sm-8">
+							<select name="country"
+									class="col selectpicker form-control form-control-sm"
+									data-size="5" id="country" data-live-search="true"
+									title="Select a Country">
+								<option value="">Select a Country ...</option>
+								<? foreach ($country as $row) : ?>
+									<option <?= ($country_id == $row['id'] ? 'selected' : '') ?>
+										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<? endforeach; ?>
+							</select>
+						</div>
+					</div>
+					<div class="row" style="margin-top: .75rem!important;">
+						<label
+							class="col-sm-4 col-form-label">Address
+							Leave</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="address"
+								   value="<?= $address ?>"
+								   placeholder="Address">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label
+							class="col-sm-4 col-form-label">Post
+							Code</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="post_code"
+								   value="<?= $post_code ?>"
+								   placeholder="Post Code">
+						</div>
+					</div>
+					<div class="row mt-1">
+						<label
+							class="col-sm-4 col-form-label">Contact Number</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="contact_1"
+								   value="<?= $contact_1 ?>"
+								   placeholder="Contact Number 1">
+						</div>
+					</div>
+					<div class="row">
+						<label
+							class="col-sm-4 col-form-label"></label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control form-control-sm"
+								   name="contact_2"
+								   value="<?= $contact_2 ?>"
+								   placeholder="Contact Number 2">
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="row mt-1">
-				<label
-					class="col-sm-2 col-form-label">Email *</label>
-				<div class="col-sm-4">
-					<input type="email" class="form-control form-control-sm"
-						   name="email"
-						   value="<?= $email ?>"
-						   placeholder="Email">
+
+				<div class="col-sm-12 ">
+					<div class="row ">
+						<label class="pl-3" for="exampleFormControlTextarea1">Other</label>
+					</div>
+					<div class="row" style="    margin-right: -1px;
+    margin-left: -1px;">
+															<textarea placeholder="Other"
+																	  class="form-control"
+																	  id="exampleFormControlTextarea1"
+																	  name="other"
+																	  rows="3"><?= $other ?></textarea>
+
+					</div>
 				</div>
-				<label
-					class="col-sm-2 col-form-label">Leave Country</label>
-				<div class="col-sm-4">
-					<select name="country"
-							class="col selectpicker form-control form-control-sm"
-							data-size="5" id="country" data-live-search="true"
-							title="Select a Country">
-						<option value="">Select a Country ...</option>
-						<? foreach ($country as $row) : ?>
-							<option <?= ($country_id == $row['id'] ? 'selected' : '') ?>
-								value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-						<? endforeach; ?>
-					</select>
+
+
+				<div class="form-group row mt-1 ml-1">
+					<label
+						class="col-sm-10 col-form-label">Status make
+						a
+						Passive?</label>
+					<div class="col-sm-2 mt-2">
+						<input style="width: 18px; height: 18px;" name="status"
+							   value="-1"
+							<?= ($status == '-1' ? 'checked' : '') ?>
+							   type="checkbox"
+							   class="form-control form-control-sm st_inp">
+					</div>
 				</div>
-			</div>
-			<div class="row mt-1">
-				<label
-					class="col-sm-2 col-form-label">Address
-					Leave</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="address"
-						   value="<?= $address ?>"
-						   placeholder="Address">
-				</div>
-				<label
-					class="col-sm-2 col-form-label">Post
-					Code</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="post_code"
-						   value="<?= $post_code ?>"
-						   placeholder="Post Code">
-				</div>
-			</div>
-			<div class="row mt-1">
-				<label
-					class="col-sm-2 col-form-label">Department</label>
-				<div class="col-sm-4">
-					<select name="department[]"
-							class="col  selectpicker form-control form-control-sm"
-							id="department"
-							multiple data-live-search="true"
-							title="Select a Department">
-						<? foreach ($department as $row) : ?>
-							<option <?= (in_array($row['id'], $department_id) ? 'selected' : '') ?>
-								value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-						<? endforeach; ?>
-					</select>
-				</div>
-				<label class="col-sm-2 col-form-label">Position</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control form-control-sm"
-						   name="position"
-						   value="<?= $position ?>"
-						   placeholder="Position">
-				</div>
-			</div>
-			<div class="form-group mt-md-2 mt-2">
-				<label
-					for="exampleFormControlTextarea1">Other</label>
-				<textarea placeholder="Other"
-						  class="form-control"
-						  id="exampleFormControlTextarea1"
-						  name="other"
-						  rows="3"><?= $other ?></textarea>
 			</div>
 
-			<div class="form-group row">
-				<label
-					class="col-sm-10 col-form-label">Status make
-					a
-					Passive?</label>
-				<div class="col-sm-2">
-					<input name="status"
-						   value="-1"
-						<?= ($status == '-1' ? 'checked' : '') ?>
-						   type="checkbox"
-						   class="form-control form-control-sm">
-				</div>
-			</div>
+
 			<div class="accordion" id="accordionExample1">
 				<div class="card">
-					<div class="card-header" id="headingOne">
+					<div class="card-header p-0" id="headingOne">
 						<h5 class="mb-0">
 							<button class="btn btn-sm btn-link text-success" type="button"
 									data-toggle="collapse"
@@ -207,13 +244,18 @@ $folder = $this->session->folder;
 									<div class="col-md-2">
 										<div class="form-group">
 
-											<label style="margin-top: 30px;"
-												   class="btn btn-sm btn-outline-success">
-												<span>Brows file</span>
-												<input class="btn_input"
-													   name="file_1" type="file"
-													   hidden style="display: none;"
-													   value="">
+											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 10px 10px !important;
+    font-weight: 500 !important;
+    margin-left: -8px;""
+											class="btn btn-sm btn-outline-success">
+											<span>Brows file</span>
+											<input class="btn_input"
+												   name="file_1" type="file"
+												   hidden style="display: none;"
+												   value="">
 
 
 											</label>
@@ -261,7 +303,7 @@ $folder = $this->session->folder;
 					</div>
 				</div>
 				<div class="card">
-					<div class="card-header" id="headingTwo">
+					<div class="card-header p-0" id="headingTwo">
 						<h5 class="mb-0">
 							<button class="btn btn-sm btn-link collapsed text-success"
 									type="button"
@@ -294,13 +336,18 @@ $folder = $this->session->folder;
 									<div class="col-md-2">
 										<div class="form-group">
 
-											<label style="margin-top: 30px;"
-												   class="btn btn-sm btn-outline-success">
-												<span>Brows file</span>
-												<input class="btn_input"
-													   name="file_2" type="file"
-													   hidden style="display: none;"
-													   value="">
+											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 10px 10px !important;
+    font-weight: 500 !important;
+    margin-left: -8px;""
+											class="btn btn-sm btn-outline-success">
+											<span>Brows file</span>
+											<input class="btn_input"
+												   name="file_2" type="file"
+												   hidden style="display: none;"
+												   value="">
 
 
 											</label>
@@ -348,7 +395,7 @@ $folder = $this->session->folder;
 					</div>
 				</div>
 				<div class="card">
-					<div class="card-header" id="headingThree">
+					<div class="card-header p-0" id="headingThree">
 						<h5 class="mb-0">
 							<button class="btn btn-sm btn-link collapsed text-success"
 									type="button"
@@ -381,13 +428,18 @@ $folder = $this->session->folder;
 									<div class="col-md-2">
 										<div class="form-group">
 
-											<label style="margin-top: 30px;"
-												   class="btn btn-sm btn-outline-success">
-												<span>Brows file</span>
-												<input class="btn_input"
-													   name="file_3" type="file"
-													   hidden style="display: none;"
-													   value="">
+											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 10px 10px !important;
+    font-weight: 500 !important;
+    margin-left: -8px;""
+											class="btn btn-sm btn-outline-success">
+											<span>Brows file</span>
+											<input class="btn_input"
+												   name="file_3" type="file"
+												   hidden style="display: none;"
+												   value="">
 
 
 											</label>
@@ -435,7 +487,7 @@ $folder = $this->session->folder;
 				</div>
 
 				<div class="card">
-					<div class="card-header" id="headingFour">
+					<div class="card-header p-0" id="headingFour">
 						<h5 class="mb-0">
 							<button class="btn btn-sm btn-link collapsed text-success"
 									type="button"
@@ -468,13 +520,18 @@ $folder = $this->session->folder;
 									<div class="col-md-2">
 										<div class="form-group">
 
-											<label style="margin-top: 30px;"
-												   class="btn btn-sm btn-outline-success">
-												<span>Brows file</span>
-												<input class="btn_input"
-													   name="file_4" type="file"
-													   hidden style="display: none;"
-													   value="">
+											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+    font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 10px 10px !important;
+    font-weight: 500 !important;
+    margin-left: -8px;""
+											class="btn btn-sm btn-outline-success">
+											<span>Brows file</span>
+											<input class="btn_input"
+												   name="file_4" type="file"
+												   hidden style="display: none;"
+												   value="">
 
 
 											</label>
@@ -524,11 +581,18 @@ $folder = $this->session->folder;
 			</div>
 		</div>
 	</div>
-	<div class="text-right mt-4 pb-2">
-		<span id="edit_staff_btn" class="btn btn-success">Save</span>
-		<span id="load" class="btn btn-sm btn-success d-none"><img
+	<div class="modal-footer pb-0 col-sm-12">
+		<button id="edit_staff_btn" type="button"
+				class="btn btn-outline-success"><?= lang('save') ?>
+		</button>
+		<button id="load" class="btn btn-sm btn-success d-none"><img
 				style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-				src="<?= base_url() ?>assets/images/bars2.svg"/></span>
+				src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+		<button type="button" class="cancel_btn close btn btn-sm"
+				data-dismiss="modal"
+				aria-label="Close">
+			<?= lang('cancel') ?>
+		</button>
 	</div>
 </form>
 

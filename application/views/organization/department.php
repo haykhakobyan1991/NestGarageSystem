@@ -9,10 +9,15 @@
 	table#example thead tr th:last-child:before {
 		content: '';
 	}
+
+	a.page_link {
+		color: #fff !important;
+		background: rgb(255, 122, 89) !important;
+	}
 </style>
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$('#example').DataTable();
 	})
 </script>
@@ -26,14 +31,13 @@
 		 aria-labelledby="list-department-list">
 
 
-		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-			<div class="container">
-				<p class="display-5 font-weight-bold mb-0">Section: Departments</p>
+		<div class="pt-2">
+			<div class="container-fluid">
+				<p class="display-5 font-weight-bold mb-0"><?= lang('department') ?></p>
+				<hr class="my-2">
 			</div>
-		</div>
 
-		<div class=" pb-2 pt-2">
-			<div class="">
+			<div class="container-fluid">
 				<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
 				<span
 					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span>
@@ -41,38 +45,41 @@
 					  data-target="#add_department">Ստեղծել Ստորաբաժանում
 					</span>
 				<hr class="my-4">
-				<div class="row col-sm-12 col-md-12"
-					 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+			</div>
 
 
-					<table id="example" class="table table-striped table-borderless"
-						   style="width:100%">
-						<thead style="background: #fff;
+			<div class="row  m-0 col-sm-12 col-md-12"
+				 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+
+
+				<table id="example" class="table table-striped table-borderless"
+					   style="width:100%">
+					<thead style="background: #fff;
 color: #545b62;">
+					<tr>
+						<th style="font-size: 12px !important;font-weight:500;">Ստորաբաժանում</th>
+						<th style="font-size: 12px !important;font-weight:500;">Մանրամասն</th>
+						<th style="font-size: 12px !important;font-weight:500;">Անուն</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ազգանուն</th>
+						<th style="font-size: 12px !important;font-weight:500;">Հեռ․</th>
+						<th style="font-size: 12px !important;font-weight:500;">Էլ․ հասցե</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ստեղծվել է</th>
+						<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
+						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
+					</tr>
+					</thead>
+					<tbody>
+					<? foreach ($department as $item) : ?>
 						<tr>
-							<th style="font-size: 12px !important;font-weight:500;">Ստորաբաժանում</th>
-							<th style="font-size: 12px !important;font-weight:500;">Մանրամասն</th>
-							<th style="font-size: 12px !important;font-weight:500;">Անուն</th>
-							<th style="font-size: 12px !important;font-weight:500;">Ազգանուն</th>
-							<th style="font-size: 12px !important;font-weight:500;">Հեռ․</th>
-							<th style="font-size: 12px !important;font-weight:500;">Էլ․ հասցե</th>
-							<th style="font-size: 12px !important;font-weight:500;">Ստեղծվել է</th>
-							<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
-							<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
-						</tr>
-						</thead>
-						<tbody>
-						<? foreach ($department as $item) : ?>
-							<tr>
-								<td><?= $item['title'] ?></td>
-								<td><?= $item['description'] ?></td>
-								<td><?= $item['first_name'] ?></td>
-								<td><?= $item['last_name'] ?></td>
-								<td><?= $item['phone'] ?></td>
-								<td><?= $item['email'] ?></td>
-								<td><?= $item['registration_date'] ?></td>
-								<td><?= $item['user_name'] ?></td>
-								<td colspan="2">
+							<td><?= $item['title'] ?></td>
+							<td><?= $item['description'] ?></td>
+							<td><?= $item['first_name'] ?></td>
+							<td><?= $item['last_name'] ?></td>
+							<td><?= $item['phone'] ?></td>
+							<td><?= $item['email'] ?></td>
+							<td><?= $item['registration_date'] ?></td>
+							<td><?= $item['user_name'] ?></td>
+							<td colspan="2">
 
 										<span
 											style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
@@ -83,117 +90,113 @@ color: #545b62;">
 											data-placement="top"
 											title="edit"><i class="fas fa-edit"></i></span>
 
-									<span style="border: none; cursor:pointer;" data-toggle="modal"
-										  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
-										  id="delete_department_modal" class="text-danger"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete"><i class="fas fa-trash"></i></span></td>
+								<span style="border: none; cursor:pointer;" data-toggle="modal"
+									  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
+									  id="delete_department_modal" class="text-secondary"
+									  data-toggle2="tooltip"
+									  data-placement="top"
+									  title="delete"><i class="fas fa-trash"></i></span></td>
 
-							</tr>
-
-
-						<? endforeach; ?>
-					</table>
+						</tr>
 
 
-				</div>
+					<? endforeach; ?>
+				</table>
 
 
-				<div class="modal fade bd-example-modal-lg " id="edit_department" tabindex="-1" role="dialog"
-					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header bg-dark">
-								<h5 class="text-white modal-title dar">Edit Department</h5>
-								<button type="button" class="text-white close"
-										data-dismiss="modal"
-										aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-									 src="<?= base_url() ?>assets/images/bars.svg"/>
-							</div>
+			</div>
+
+
+			<div class="modal fade  " id="edit_department" tabindex="-1" role="dialog"
+				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header bg-dark">
+							<h6 class="text-white modal-title dar"><?=lang('department')?></h6>
+						</div>
+						<div class="modal-body">
+							<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+								 src="<?= base_url() ?>assets/images/bars.svg"/>
 						</div>
 					</div>
 				</div>
+			</div>
 
-				<!--  Department Modal Start -->
-				<form id="department">
-					<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="add_department"
-						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="modal-header bg-dark">
-									<h5 class="text-white modal-title dar">New Department</h5>
-									<button type="button" class="text-white close"
-											data-dismiss="modal"
-											aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
+			<!--  Department Modal Start -->
+			<form id="department">
+				<div class="modal fade " tabindex="-1" role="dialog" id="add_department"
+					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header bg-dark">
+								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6>
+
+							</div>
+							<div class="modal-body">
+								<!-- Error Message -->
+
+								<div class="for_message">
+									<div class="alert alert-success d-none " role="alert"></div>
+									<div class="alert alert-danger d-none " role="alert"></div>
 								</div>
-								<div class="modal-body">
-									<!-- Error Message -->
 
-									<div class="for_message">
-										<div class="alert alert-success d-none " role="alert"></div>
-										<div class="alert alert-danger d-none " role="alert"></div>
+
+								<div class="form-group row mb-0">
+
+									<label class="col-sm-3 col-form-label">Անվանում *</label>
+									<div class="col-sm-8">
+										<input type="text" name="title" class="form-control" placeholder="Անվանում">
 									</div>
+								</div>
 
 
-									<div class="form-group row">
-
-										<label class="col-sm-4 col-form-label">Անվանում *</label>
-										<div class="col-sm-8">
-											<input type="text" name="title" class="form-control" placeholder="Անվանում">
-										</div>
+								<div class="form-group row mb-0 mt-1">
+									<label class="col-sm-3 col-form-label">Ղեկավար *</label>
+									<div class="col-sm-8">
+										<select name="head_staff"
+												class="form-control selectpicker"
+												data-size="5" id="head_staff" data-live-search="true"
+												title="<?= lang('select_staff') ?>">
+											<?
+											foreach ($staff_for_select as $val) :
+												?>
+												<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
+											<? endforeach; ?>
+										</select>
 									</div>
+								</div>
 
-
-									<div class="form-group row">
-										<label class="col-sm-4 col-form-label">Ղեկավար *</label>
-										<div class="col-sm-8">
-											<select name="head_staff"
-													class="form-control selectpicker"
-													data-size="5" id="head_staff" data-live-search="true"
-													title="Select a Staff">
-												<?
-												foreach ($staff_for_select as $val) :
-													?>
-													<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
-												<? endforeach; ?>
-											</select>
-										</div>
-									</div>
-
-									<div class="form-group row">
-										<label class="col-sm-4 col-form-label">Մանրամասն</label>
-										<div class="col-sm-8">
-											<textarea rows="4" value="" type="text"
+								<div class="form-group row mb-2 mt-1">
+									<label class="col-sm-3 col-form-label">Մանրամասն</label>
+									<div class="col-sm-8">
+											<textarea rows="3" value="" type="text"
 													  class=" form-control"
 													  name="description"
 													  placeholder="Մանրամասն"></textarea>
-										</div>
 									</div>
+								</div>
 
-									<div class="modal-footer">
-										<button id="add_department_btn" type="button"
-												class="btn btn-outline-success">Save
-										</button>
-										<button id="load" class="btn btn-sm btn-success d-none"><img
-												style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-												src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-									</div>
+								<div class="modal-footer pb-0">
+									<button id="add_department_btn" type="button"
+											class="btn btn-outline-success"><?= lang('save') ?>
+									</button>
+									<button id="load" class="btn btn-sm btn-success d-none"><img
+											style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+											src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+									<button type="button" class="cancel_btn close btn btn-sm"
+											data-dismiss="modal"
+											aria-label="Close">
+										<?= lang('cancel') ?>
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	</div>
+</div>
 </div>
 <!-- Department End -->
 
@@ -203,16 +206,23 @@ color: #545b62;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-secondary" id="exampleModalLabel">are you sure you want to delete ? </h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 15px;">are
+					you sure you want to delete ? </h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
-					<button type="button" class="btn btn-outline-danger text-danger" data-dismiss="modal">No</button>
-					<button type="button" id="delete_department" class="btn btn-outline-success text-success">Yes
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" id="delete_department"
+							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
 					</button>
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
+							data-dismiss="modal"><?= lang('cancel') ?></button>
+
 					<input type="hidden" name="department_id">
 				</div>
 			</div>
@@ -229,7 +239,7 @@ color: #545b62;">
 
 	$(document).on('click', '#delete_department', function () {
 		var id = $('input[name="department_id"]').val();
-		var url = '<?=base_url('Organization/delete_department/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Organization/delete_department/')?>';
 
 		$.post(url, {department_id, id}, function (result) {
 			location.reload();
@@ -240,7 +250,7 @@ color: #545b62;">
 	// create department
 	$(document).on('click', '#add_department_btn', function (e) {
 
-		var url = '<?=base_url($this->uri->segment(1).'/Organization/add_department_ax') ?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/add_department_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#department')[0]);
 
@@ -297,7 +307,7 @@ color: #545b62;">
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
@@ -329,7 +339,7 @@ color: #545b62;">
 	$(document).on('click', '#edit_department_btn', function (e) {
 
 
-		var url = '<?=base_url($this->uri->segment(1).'/Organization/edit_department_ax') ?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_department_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#department_edit')[0]);
 
@@ -380,7 +390,7 @@ color: #545b62;">
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
@@ -410,7 +420,7 @@ color: #545b62;">
 
 
 	$(document).on('click', '#edit_department_modal', function () {
-		var url = '<?=base_url('Organization/edit_department_modal_ax/')?>' + $(this).data('id');
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_department_modal_ax/')?>' + $(this).data('id');
 		$.get(url, function (result) {
 
 			// update modal content

@@ -203,9 +203,11 @@ input[type="text"], input[type="email"], input[type="password"], input[type="dat
 	border-color: #8e8f90 !important;
 }
 
-.page-item.active .page-link {
-	background: #545b62 !important;
-	border: 1px solid #545b62 !important;
+.page-item.active .page-link  {
+	background: rgb(255, 122, 89) !important;
+	color: #fff !important;
+	border: 1px solid rgb(255, 122, 89) !important;
+
 }
 
 .nav-link {
@@ -226,7 +228,7 @@ li.active > a {
 	background: #fff;
 }
 
-button, .nav_a,.btn.btn-outline-dark,button.btn.btn-sm.btn-outline-success.float-right.copy_btn {
+button, .nav_a,.btn.btn-outline-dark,button.btn.btn-sm.btn-outline-success.float-right.copy_btn,.btn.btn-outline-success.btn-sm.float-right,.cancel_btn  {
 	font-size: 14px !important;
 	line-height: 14px !important;
 	padding: 12px 24px !important;
@@ -297,3 +299,39 @@ button.btn.dropdown-toggle.btn-sm{
 	bottom: -60px;
 }
 
+.cancel_btn {
+	border: 1px solid rgb(255, 122, 89) !important;
+	color: rgb(255, 122, 89) !important;
+	opacity: 1 !important;
+	transition: all .3s ease-in-out;
+}
+
+.cancel_btn:hover {
+	background: rgb(255, 122, 89) !important;
+	color: #fff !important;
+}
+
+.yes_btn{
+	border: 1px solid rgb(255, 122, 89) !important;
+	color: #fff !important;
+	background: rgb(255, 122, 89) !important;
+	opacity: 1 !important;
+	transition: all .3s ease-in-out;
+}
+
+.yes_btn:hover {
+	background: #fff !important;
+	color:rgb(255, 122, 89) !important;
+}
+
+input.form-control.form-control-sm.st_inp::before{
+	content: "";
+	margin-left: -3px;
+	margin-top: -3px;
+	height: 23px;
+	width: 23px;
+	border: 3px solid #8c8c8c;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 1 !important;
+}

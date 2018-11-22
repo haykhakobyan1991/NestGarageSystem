@@ -4,13 +4,13 @@ $folder = $this->session->folder;
 <div class="tab-content mt-3" id="nav-tabContent-car" style="display: none">
 
 	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
-		<div class="container-fluid bg-secondary">
+		<div class="container-fluid ">
 			<div class="row"><?
 				if (!empty($result)) {
 					foreach ($result as $row) {
 						?>
 						<div class="col-sm-4 " style="border: 5px solid #dee2e6 !important;">
-						<div class="row">
+						<div class="row bg-secondary">
 							<div class="col-sm-4 p-2  w-auto">
 								<p class="text-white-50 small driver_info">Make: <span
 										class="text-white ml-2"><?= $row['brand'] ?></span></p>
@@ -76,7 +76,7 @@ $folder = $this->session->folder;
 						?>
 
 						<div class="col-sm-4" style="border: 5px solid #dee2e6 !important;">
-						<div class="row">
+						<div class="row bg-secondary">
 							<div class="col-sm-6 p-2  w-auto">
 								<p class="text-white-50 small driver_info">First name:
 									<span class="text-white ml-2"><?= $row_d['first_name'] ?></span>
@@ -293,6 +293,5 @@ $folder = $this->session->folder;
 
 
 	});
-
 
 </script>

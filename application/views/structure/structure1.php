@@ -47,15 +47,15 @@
 <div class="content m-1">
 	<div class="content m-1">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 active " data-id="1"
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed active " data-id="1"
 			   data-toggle="tab" href="#nav-info" role="tab">
 				<i class="fas fa-info"></i> Ինֆորմացիա
 			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2" data-id="2"
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed" data-id="2"
 			   data-toggle="tab" href="#nav-info" role="tab">
 				<i class="fas fa-plus"></i> Ավելացնել ծաղսեր
 			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2" data-id="3"
+			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed" data-id="3"
 			   data-toggle="tab" href="#nav-info" role="tab">
 				<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
 			</a>
@@ -757,24 +757,47 @@
 			);
 		var nodeDataArray = <?=$structure?>;
 		var linkDataArray = <?=$from_to?>;
+
+
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 
-
+		myDiagram.selectCollection(myDiagram.nodes);
 	}
 
 	$(document).ready(function () {
 		init();
 		myDiagram.addDiagramListener("ObjectSingleClicked",
 			function (e) {
+				var linkDataArray = <?=$from_to?>;
+
+
+
+
 				var arr = [];
 				var new_arr = [];
 				myDiagram.selection.each(function (part) {
+
+					$.each(linkDataArray, function (key, value) {
+						 // console.log(value.from + '----' +part.Wd.key);
+						if(value.from == part.Wd.key){
+							console.log(linkDataArray[key].to);
+							$.each(linkDataArray, function (ky, val) {
+								if (val.from == value.to) {
+									console.log(val.to);
+								}
+							})
+						}
+
+					});
+
 					if (part instanceof go.Node) {
 						arr = {
 							"key": part.Wd.key,
 							"name": part.Wd.text,
 							"parent": part.Wd.parent
 						};
+
+						// console.log(part.Wd);
 						// console.log(arr.key);
 						var str1 = arr.key;
 						var re1 = 'f';
@@ -784,6 +807,7 @@
 						if (found1 == 'f' || found2 == 'd') {
 							new_arr.push(arr);
 						}
+						// console.log(new_arr);
 					}
 				});
 				if ($('a[data-id="1"]').hasClass('active')) {

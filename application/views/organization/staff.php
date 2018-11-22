@@ -81,7 +81,7 @@ endforeach;
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header bg-dark">
-								<h6 class="text-white modal-title dar"><?=lang('staff1')?></h6>
+								<h6 class="text-white modal-title dar"><?= lang('staff1') ?></h6>
 							</div>
 							<div class="modal-body">
 								<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
@@ -647,20 +647,20 @@ endforeach;
 											</div>
 										</div>
 
-											<div class="modal-footer pb-0 col-sm-12">
-												<button id="add_staff" type="button"
-														class="btn btn-outline-success"><?= lang('save') ?>
-												</button>
-												<button id="load" class="btn btn-sm btn-success d-none"><img
-														style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-														src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-												<button type="button" class="cancel_btn close btn btn-sm"
-														data-dismiss="modal"
-														aria-label="Close">
-													<?= lang('cancel') ?>
-												</button>
-											</div>
+										<div class="modal-footer pb-0 col-sm-12">
+											<button id="add_staff" type="button"
+													class="btn btn-outline-success"><?= lang('save') ?>
+											</button>
+											<button id="load" class="btn btn-sm btn-success d-none"><img
+													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+											<button type="button" class="cancel_btn close btn btn-sm"
+													data-dismiss="modal"
+													aria-label="Close">
+												<?= lang('cancel') ?>
+											</button>
 										</div>
+									</div>
 
 
 								</div>
@@ -736,7 +736,7 @@ color: #545b62;">
 												<a style="color: #333;"
 												   target="_blank"
 												   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
-												<?= $row['document_1'] ?>
+													<?= $row['document_1'] ?>
 												</a>
 											</td>
 
@@ -753,7 +753,7 @@ color: #545b62;">
 												<a style="color: #333;"
 												   target="_blank"
 												   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
-												<?= $row['document_2'] ?>
+													<?= $row['document_2'] ?>
 												</a>
 											</td>
 											<td><?= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?></td>
@@ -767,7 +767,7 @@ color: #545b62;">
 												<a style="color: #333;"
 												   target="_blank"
 												   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
-												<?= $row['document_3'] ?>
+													<?= $row['document_3'] ?>
 												</a>
 											</td>
 											<td><?= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?></td>
@@ -785,7 +785,7 @@ color: #545b62;">
 												<a style="color: #333;"
 												   target="_blank"
 												   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
-												<?= $row['document_4'] ?>
+													<?= $row['document_4'] ?>
 												</a></td>
 											<td><?= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?></td>
 											<td><?= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?></td>

@@ -916,57 +916,128 @@ class Structure extends MX_Controller {
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
 
+		$fleet_arr = array();
+		$driver_arr = array();
 		$arr = $this->input->post('arr');
 
-		$fleet_id = preg_replace('/^(f)/', '', $arr['key']);
 
 
-		 $sql = "
-			SELECT
-				`brand`.`title_".$lng."` AS `brand`,
-				`model`.`title_".$lng."` AS `model`,
-				`fleet_type`.`title_".$lng."` AS `fleet_type`,
-				`fuel`.`title_".$lng."` AS `fuel`,
-				`insurance_type`.`title_".$lng."` AS `insurance_type`,
-				`staff`.`first_name`,
-				`staff`.`last_name`,
-				`staff`.`contact_1`,
-				`staff`.`contact_2`,
-				`staff`.`email`,
-				`staff`.`address`,
-				`staff`.`post_code`,
-				`staff`.`position`,
-				`country`.`title_".$lng."` AS `country`,
-				GROUP_CONCAT(
-					`department`.`title`
-				) AS `department`,
-				`fleet`.*
-			 FROM
-			   `fleet`
-			LEFT JOIN `model` 
-				ON `model`.`id` = `fleet`.`model_id` 
-			LEFT JOIN `brand` 
-				ON `brand`.`id` = `model`.`brand_id` 
-			LEFT JOIN `fleet_type`
-				ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
-			LEFT JOIN `fuel`
-				ON `fleet`.`fuel_id` = `fuel`.`id` 
-			LEFT JOIN `insurance_type`
-				ON `fleet`.`insurance_type_id_1` = `insurance_type`.`id`	
-			LEFT JOIN `staff`
-				ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	
-			LEFT JOIN `department`
-				ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)
-			LEFT JOIN `country`
-				ON `country`.`id` = `staff`.`country_id`			
-			WHERE `fleet`.`id` = '" . $fleet_id . "'
-			GROUP BY `fleet`.`id`
-		";
+		foreach ($arr as $value) :
+			if(preg_match('/^(f)/', $value['key'])) :
+				$fleet_arr[] = preg_replace('/^(f)/', '', $value['key']);
+			elseif (preg_match('/^(d)/', $value['key'])) :
+				$driver_arr[] = preg_replace('/^(d)/', '', $value['key']);
+			endif;
+		endforeach;
 
 
-		$result = $this->db->query($sql);
+		$fleet_ids = implode(',', $fleet_arr);
+		$staff_ids = implode(',', $driver_arr);
 
-		$data['result'] = $result->row_array();
+
+
+		if($fleet_ids != '') {
+
+			$sql = "
+				SELECT
+					`brand`.`title_".$lng."` AS `brand`,
+					`model`.`title_".$lng."` AS `model`,
+					`fleet_type`.`title_".$lng."` AS `fleet_type`,
+					`fuel`.`title_".$lng."` AS `fuel`,
+					`insurance_type`.`title_".$lng."` AS `insurance_type`,
+					`staff`.`first_name`,
+					`staff`.`last_name`,
+					`staff`.`contact_1`,
+					`staff`.`contact_2`,
+					`staff`.`email`,
+					`staff`.`address`,
+					`staff`.`post_code`,
+					`staff`.`position`,
+					`staff`.`nest_card_id`,
+					`staff`.`photo`,
+					`country`.`title_".$lng."` AS `country`,
+					GROUP_CONCAT(
+						`department`.`title`
+					) AS `department`,
+					`fleet`.*
+				 FROM
+				   `fleet`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 
+				LEFT JOIN `fleet_type`
+					ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
+				LEFT JOIN `fuel`
+					ON `fleet`.`fuel_id` = `fuel`.`id` 
+				LEFT JOIN `insurance_type`
+					ON `fleet`.`insurance_type_id_1` = `insurance_type`.`id`	
+				LEFT JOIN `staff`
+					ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	
+				LEFT JOIN `department`
+					ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)
+				LEFT JOIN `country`
+					ON `country`.`id` = `staff`.`country_id`			
+				WHERE FIND_IN_SET(`fleet`.`id`, '" . $fleet_ids . "')
+				GROUP BY `fleet`.`id`
+			";
+
+
+			$result = $this->db->query($sql);
+
+			$data['result'] = $result->result_array();
+
+		}
+
+		if($staff_ids != '') {
+			$sql = "
+				SELECT
+					`brand`.`title_".$lng."` AS `brand`,
+					`model`.`title_".$lng."` AS `model`,
+					`fleet_type`.`title_".$lng."` AS `fleet_type`,
+					`fuel`.`title_".$lng."` AS `fuel`,
+					`insurance_type`.`title_".$lng."` AS `insurance_type`,
+					`staff`.`first_name`,
+					`staff`.`last_name`,
+					`staff`.`contact_1`,
+					`staff`.`contact_2`,
+					`staff`.`email`,
+					`staff`.`address`,
+					`staff`.`post_code`,
+					`staff`.`position`,
+					`staff`.`nest_card_id`,
+					`staff`.`photo`,
+					`country`.`title_".$lng."` AS `country`,
+					GROUP_CONCAT(
+						`department`.`title`
+					) AS `department`,
+					`fleet`.*
+				 FROM
+				   `fleet`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 
+				LEFT JOIN `fleet_type`
+					ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
+				LEFT JOIN `fuel`
+					ON `fleet`.`fuel_id` = `fuel`.`id` 
+				LEFT JOIN `insurance_type`
+					ON `fleet`.`insurance_type_id_1` = `insurance_type`.`id`	
+				LEFT JOIN `staff`
+					ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	
+				LEFT JOIN `department`
+					ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)
+				LEFT JOIN `country`
+					ON `country`.`id` = `staff`.`country_id`			
+				WHERE FIND_IN_SET(`staff`.`id`, '" . $staff_ids . "')
+				GROUP BY `staff`.`id`
+			";
+
+			$result = $this->db->query($sql);
+
+			$data['result_driver'] = $result->result_array();
+		}
 
 
 

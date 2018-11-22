@@ -44,743 +44,375 @@
 </div>
 <!--  Modal End -->
 
-<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
-	<div id="sample">
-		<div id="myDiagramDiv" style="height:300px"></div>
-	</div>
-	<textarea class="d-none" id="mySavedModel" title=""> </textarea>
-	<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
-	<nav class="selectted_information float-left d-none">
+<div class="content m-1">
+	<div class="content m-1">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-car-tab" data-toggle="tab" href="#nav-car" role="tab"
-			   aria-controls="nav-car" aria-selected="true">Car</a>
-			<a class="nav-item nav-link" id="nav-driver-tab" data-toggle="tab" href="#nav-driver" role="tab"
-			   aria-controls="nav-driver" aria-selected="false">Driver</a>
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 active " data-id="1"
+			   data-toggle="tab" href="#nav-info" role="tab">
+				<i class="fas fa-info"></i> Ինֆորմացիա
+			</a>
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2" data-id="2"
+			   data-toggle="tab" href="#nav-info" role="tab">
+				<i class="fas fa-plus"></i> Ավելացնել ծաղսեր
+			</a>
+			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2" data-id="3"
+			   data-toggle="tab" href="#nav-info" role="tab">
+				<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
+			</a>
+		</div>
+	</div>
+
+	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
+		<div id="sample">
+			<div id="myDiagramDiv" style="height:300px"></div>
+		</div>
+		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
+		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+
+		<button name=""
+				data-toggle="modal"
+				data-target=".bd-example-modal-lg"
+				class="btn btn-sm btn-outline-secondary mt-1"
+				id="SaveButton"
+				style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;"
+				onclick="save('-1')">Save
+		</button>
+</div>
+
+	<span class="selectted_information "></span>
+
+</div>
+
+
+<div id="add-info" style="display: none">
+	<nav class="mt-2">
+		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
+			   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+			<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
+			   aria-selected="false">ՎԱՌԵԼԻՔ</a>
+			<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3"
+			   aria-selected="false">ՏՈՒԳԱՆՔ</a>
+			<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4"
+			   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+			<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
+			   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+			<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
+			   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+			<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
+			   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+			<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
+			   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+			<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
+			   aria-selected="false">ԱՐԳԵԼԱԿ</a>
+			<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab"
+			   aria-controls="nav-10"
+			   aria-selected="false">ՔՍՈՒՔ</a>
+			<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab"
+			   aria-controls="nav-11"
+			   aria-selected="false">ՖԻԼՏՐ</a>
+			<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab"
+			   aria-controls="nav-12"
+			   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+			<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab"
+			   aria-controls="nav-13"
+			   aria-selected="false">ԱՀԱԶԱՆԳ</a>
 		</div>
 	</nav>
-	<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" onclick="save('-1')">Save</button>
-</div>
 
 
-
-<span class="selectted_information d-none">
-
-
-<nav class="mt-2">
-	<div class="nav nav-tabs" id="nav-tab" role="tablist">
-		<a class="nav-item nav-link active" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
-		   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
-		<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
-		   aria-selected="false">ՎԱՌԵԼԻՔ</a>
-		<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3"
-		   aria-selected="false">ՏՈՒԳԱՆՔ</a>
-		<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4"
-		   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
-		<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
-		   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
-		<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
-		   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
-		<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
-		   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
-		<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
-		   aria-selected="false">ԱՆՎԱԴՈՂ</a>
-		<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
-		   aria-selected="false">ԱՐԳԵԼԱԿ</a>
-		<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab" aria-controls="nav-10"
-		   aria-selected="false">ՔՍՈՒՔ</a>
-		<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab" aria-controls="nav-11"
-		   aria-selected="false">ՖԻԼՏՐ</a>
-		<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab" aria-controls="nav-12"
-		   aria-selected="false">ՄԱՐՏԿՈՑ</a>
-		<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab" aria-controls="nav-13"
-		   aria-selected="false">ԱՀԱԶԱՆԳ</a>
-	</div>
-</nav>
-
-<div class="tab-content" id="nav-tabContent">
-	<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_1" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Ում Կողմից</th>
-						<th class="table_th">Վերջնաժամկետ</th>
-						<th class="table_th">Գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_1">
+	<div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_1" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
 						<tr>
-							<td>1</td>
-							<td><input title="" type="text" name="_1" value="12.12.2018"
-									   style="width: 100%;border: none;outline: none;" class="text-center"/><span
-									class="d-none">12.12.2018</span></td>
-							<td><input title="" type="text" name="_1" value="uuuu"
-									   style="width: 100%;border: none; outline: none;" class="text-center"/><span
-									class="d-none">uuuu</span></td>
-							<td><input title="" type="text" name="_1" value="20.03.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">20.03.2019</span></td>
-							<td><input title="" type="text" name="_1" value="12000"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">12000</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Ում Կողմից</th>
+							<th class="table_th">Վերջնաժամկետ</th>
+							<th class="table_th">Գումար</th>
+							<th class="table_th"><i class="add_new_tr fa fa-plus" data-id="ex_1"> </i></th>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td><input title="" type="text" name="_2" value="12.09.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">12.09.2018</span></td>
-							<td><input title="" type="text" name="_2" value="dddddd"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">dddddd</span></td>
-							<td><input title="" type="text" name="_2" value="23.06.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">23.06.2019</span></td>
-							<td><input title="" type="text" name="_2" value="55000"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">55000</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					<tr>
-							<td>4</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					<tr>
-							<td>5</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					<tr>
-							<td>6</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					<tr>
-							<td>7</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					<tr>
-							<td>8</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>9</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>10</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>11</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>12</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>13</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>14</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>15</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>16</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>17</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>18</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>19</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>20</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>21</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>22</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>23</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr><tr>
-							<td>24</td>
-							<td><input title="" type="text" name="_3" value="03.04.2018"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">03.04.2018</span></td>
-							<td><input title="" type="text" name="_3" value="ggggg"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">ggggg</span></td>
-							<td><input title="" type="text" name="_3" value="25.08.2019"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">25.08.2019</span></td>
-							<td><input title="" type="text" name="_3" value="15400"
-									   style="width: 100%;border:none; outline: none;" class="text-center"/><span
-									class="d-none">15400</span></td>
-							<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top"
-								   title="delete this row" style="cursor:pointer;color:rgb(255, 122, 89);"> </i></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_2" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Ում Կողմից</th>
-						<th class="table_th">Վարորդ</th>
-						<th class="table_th">Քանակ Լիտր</th>
-						<th class="table_th">1 լիտր-արժեք</th>
-						<th class="table_th">Գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_2"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
+						</thead>
+						<tbody class="ex_1">
 
-	<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_3" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Տեասակ</th>
-						<th class="table_th">Վարորդ</th>
-						<th class="table_th">Այլ Ինֆորմացիա</th>
-						<th class="table_th">Գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_3"></tbody>
-				</table>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_2" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Ում Կողմից</th>
+							<th class="table_th">Վարորդ</th>
+							<th class="table_th">Քանակ Լիտր</th>
+							<th class="table_th">1 լիտր-արժեք</th>
+							<th class="table_th">Գումար</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_2"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_3" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Տեասակ</th>
+							<th class="table_th">Վարորդ</th>
+							<th class="table_th">Այլ Ինֆորմացիա</th>
+							<th class="table_th">Գումար</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_3"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_4" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Ապահովագրական Ընկերություն</th>
+							<th class="table_th">Վարորդ</th>
+							<th class="table_th">Եզրակացության Համար</th>
+							<th class="table_th">Փոխարինման Ենթակա Դետալների Անվանում</th>
+							<th class="table_th">Հատուցվող գումար</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_4"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_5" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Ապահովագրական Ընկերություն</th>
+							<th class="table_th">Տեսակ</th>
+							<th class="table_th">Վերջնաժամկետ</th>
+							<th class="table_th">Գումար</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_5"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_6" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Տեսակ</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Նոր-Օգտագործված</th>
+							<th class="table_th">Քանակ</th>
+							<th class="table_th">Միավորի Արժեք</th>
+							<th class="table_th">Գումար</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_6"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_7" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Վերանորոգող</th>
+							<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
+							<th class="table_th">Արժեք</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_7"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_8" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Տեսակ Ամառ Ձմեռ Բոլոր</th>
+							<th class="table_th">Նոր-Օգտագործված</th>
+							<th class="table_th">Քանակ</th>
+							<th class="table_th">Այլ Ինֆորմաիա</th>
+							<th class="table_th">Միավորի Արժեք</th>
+							<th class="table_th">Ամբողջ</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_8"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_9" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Տեսակ Դիսկ Բառաբան</th>
+							<th class="table_th">Նոր-Օգտագործված</th>
+							<th class="table_th">Քանակ</th>
+							<th class="table_th">Այլ Ինֆորմաիա</th>
+							<th class="table_th">Միավորի Արժեք</th>
+							<th class="table_th">Ամբողջ</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_9"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_10" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Տեսակ</th>
+							<th class="table_th">Այլ Ինֆորմացիա</th>
+							<th class="table_th">Քանակ լիտր Արժեք</th>
+							<th class="table_th">միավորի արժեք</th>
+							<th class="table_th">Ամբողջ</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_10"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_11" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Տեսակ</th>
+							<th class="table_th">Այլ Ինֆորմացիա</th>
+							<th class="table_th">Քանակ</th>
+							<th class="table_th">միավորի արժեք</th>
+							<th class="table_th">Ամբողջ</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_11"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_12" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Որտեղից</th>
+							<th class="table_th">Արտադրող</th>
+							<th class="table_th">Մոդել</th>
+							<th class="table_th">Այլ Ինֆորմացիա</th>
+							<th class="table_th">Քանակ</th>
+							<th class="table_th">միավորի արժեք</th>
+							<th class="table_th">Ամբողջ</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_12"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
+			<div class="row col-sm-12 col-md-12 bpp_o">
+				<div class="container-fluid">
+					<table id="ex_13" class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">ID</th>
+							<th class="table_th">Service</th>
+							<th class="table_th">Service frequency</th>
+							<th class="table_th">Last performed</th>
+							<th class="table_th">Last Performed at (meter)</th>
+							<th class="table_th">Next services</th>
+							<th class="table_th">To go</th>
+							<th class="table_th">Create reminder</th>
+							<th class="table_th"><i class="fa fa-trash"> </i></th>
+						</tr>
+						</thead>
+						<tbody class="ex_13"></tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_4" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Ապահովագրական Ընկերություն</th>
-						<th class="table_th">Վարորդ</th>
-						<th class="table_th">Եզրակացության Համար</th>
-						<th class="table_th">Փոխարինման Ենթակա Դետալների Անվանում</th>
-						<th class="table_th">Հատուցվող գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_4"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_5" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Ապահովագրական Ընկերություն</th>
-						<th class="table_th">Տեսակ</th>
-						<th class="table_th">Վերջնաժամկետ</th>
-						<th class="table_th">Գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_5"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_6" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Տեսակ</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Նոր-Օգտագործված</th>
-						<th class="table_th">Քանակ</th>
-						<th class="table_th">Միավորի Արժեք</th>
-						<th class="table_th">Գումար</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_6"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_7" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Վերանորոգող</th>
-						<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
-						<th class="table_th">Արժեք</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_7"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_8" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Տեսակ Ամառ Ձմեռ Բոլոր</th>
-						<th class="table_th">Նոր-Օգտագործված</th>
-						<th class="table_th">Քանակ</th>
-						<th class="table_th">Այլ Ինֆորմաիա</th>
-						<th class="table_th">Միավորի Արժեք</th>
-						<th class="table_th">Ամբողջ</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_8"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_9" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Տեսակ Դիսկ Բառաբան</th>
-						<th class="table_th">Նոր-Օգտագործված</th>
-						<th class="table_th">Քանակ</th>
-						<th class="table_th">Այլ Ինֆորմաիա</th>
-						<th class="table_th">Միավորի Արժեք</th>
-						<th class="table_th">Ամբողջ</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_9"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_10" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Տեսակ</th>
-						<th class="table_th">Այլ Ինֆորմացիա</th>
-						<th class="table_th">Քանակ լիտր Արժեք</th>
-						<th class="table_th">միավորի արժեք</th>
-						<th class="table_th">Ամբողջ</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_10"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_11" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Տեսակ</th>
-						<th class="table_th">Այլ Ինֆորմացիա</th>
-						<th class="table_th">Քանակ</th>
-						<th class="table_th">միավորի արժեք</th>
-						<th class="table_th">Ամբողջ</th>
-						<th class="table_th"><i class="fa fa-trash"> </i> </th>
-					</tr>
-					</thead>
-					<tbody class="ex_11"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_12" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Երբ</th>
-						<th class="table_th">Որտեղից</th>
-						<th class="table_th">Արտադրող</th>
-						<th class="table_th">Մոդել</th>
-						<th class="table_th">Այլ Ինֆորմացիա</th>
-						<th class="table_th">Քանակ</th>
-						<th class="table_th">միավորի արժեք</th>
-						<th class="table_th">Ամբողջ</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_12"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-	<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
-		<div class="row col-sm-12 col-md-12 bpp_o">
-			<div class="container-fluid">
-				<table id="ex_13" class="table table-striped table-borderless w-100">
-					<thead class="thead_tables">
-					<tr>
-						<th class="table_th">ID</th>
-						<th class="table_th">Service</th>
-						<th class="table_th">Service frequency</th>
-						<th class="table_th">Last performed</th>
-						<th class="table_th">Last Performed at (meter)</th>
-						<th class="table_th">Next services</th>
-						<th class="table_th">To go</th>
-						<th class="table_th">Create reminder</th>
-						<th class="table_th"><i class="fa fa-trash"> </i></th>
-					</tr>
-					</thead>
-					<tbody class="ex_13"></tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
-</span>
 
 <script>
 	function init() {
@@ -899,10 +531,12 @@
 			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
 			myDiagram.layout.network.vertexes.each(function (v) {
 				if (v.node) {
-					var level = v.level % (levelColors.length);
-					var color = levelColors[level];
-					var shape = v.node.findObject("SHAPE");
+					level = v.level % (levelColors.length);
+					color = levelColors[level];
+					shape = v.node.findObject("SHAPE");
 					console.log(v.node.Wd);
+
+
 					if (shape) shape.fill = $(go.Brush, "Linear", {0: color, start: go.Spot.Left, end: go.Spot.Right});
 				}
 			});
@@ -911,6 +545,7 @@
 			$(go.Node, "Auto",
 				{locationSpot: go.Spot.Center},
 				new go.Binding("location", "loc").makeTwoWay(),
+
 				{doubleClick: nodeDoubleClick},
 				{
 					mouseDragEnter: function (e, node, prev) {
@@ -948,6 +583,8 @@
 				new go.Binding("layerName", "isSelected", function (sel) {
 					return sel ? "Foreground" : "";
 				}).ofObject(),
+
+
 				$(go.Shape, "Rectangle", {
 						name: "SHAPE",
 						stroke: null,
@@ -956,10 +593,14 @@
 						fromLinkableDuplicates: true,
 						toLinkableDuplicates: true
 					},
+					new go.Binding("fill", "isHighlighted", function (h) {
+						return h ? "#ff7a59" : color;
+					}).ofObject(),
 						new go.Binding("fromLinkable", "from"),
 					    new go.Binding("toLinkable", "to"),
 						new go.Binding("fromLinkable", "fromDepartment"),
 						new go.Binding("toLinkable", "toStaff"),
+
 					),
 
 				$(go.Panel, "Horizontal",
@@ -1117,6 +758,8 @@
 		var nodeDataArray = <?=$structure?>;
 		var linkDataArray = <?=$from_to?>;
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+
+
 	}
 
 	$(document).ready(function () {
@@ -1135,26 +778,68 @@
 						// console.log(arr.key);
 						var str1 = arr.key;
 						var re1 = 'f';
+						var re2 = 'd';
 						var found1 = str1.match(re1);
-						if (found1 == 'f') {
+						var found2 = str1.match(re2);
+						if (found1 == 'f' || found2 == 'd') {
 							new_arr.push(arr);
-							console.log(arr);
-							console.log(new_arr);
-							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Structure/car_info')?>';
-							$.post(url, {arr: arr}, ).done(function (data) {
-								$('.selectted_information').removeClass('d-none');
-								$('#nav-tabContent').html(data);
-								$('#nav-car-tab').addClass('active');
-								$('#nav-driver-tab').removeClass('active');
-							});
 						}
 					}
 				});
+				if ($('a[data-id="1"]').hasClass('active')) {
+					if (new_arr.length !== 0) {
+						var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
+						$.post(url, {arr: new_arr}).done(function (data) {
+							$('#add-info').fadeOut('slow');
+							$('.selectted_information').html(data);
+							$('#nav-tabContent-car').fadeIn('slow');
+						});
+					}
+				} else {
+					$('.selectted_information').html('');
+				}
+
 				/*Remove BoxShadow From HighCharts Pie Diagram*/
 				$('.highcharts-text-outline').attr('stroke', '');
 			});
+
+
+		$('.info-type').click(function () {
+			if ($(this).data('id') == 2) {
+				$('#nav-tabContent-car').fadeOut();
+				$('#add-info').fadeIn('slow');
+			} else if ($(this).data('id') == 1) {
+				$('#add-info').fadeOut('slow');
+			}
+		});
+
+
 	});
 
+
+	// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
+	function searchDiagram() {  // called by button
+		var input = document.getElementById("mySearch");
+		if (!input) return;
+		input.focus();
+
+		myDiagram.startTransaction("highlight search");
+
+		if (input.value) {
+			// search four different data properties for the string, any of which may match for success
+			// create a case insensitive RegExp from what the user typed
+			var regex = new RegExp(input.value, "i");
+			var results = myDiagram.findNodesByExample({text: regex});
+
+			myDiagram.highlightCollection(results);
+			// try to center the diagram at the first node that was found
+			if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
+		} else {  // empty string only clears highlighteds collection
+			myDiagram.clearHighlighteds();
+		}
+
+		myDiagram.commitTransaction("highlight search");
+	}
 
 
 	//if value is -1 show, if value is 1 run queryes
@@ -1194,6 +879,7 @@
 
 		});
 	}
+
 
 	$(document).on('click', '.expand_tr', function () {
 		if ($(this).hasClass('fa-plus')) {
@@ -1446,16 +1132,17 @@
 		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
 		$('th').unbind("click");
 		// $('.pagination li').unbind("click");
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
+		// $(function () {
+		// 	$('[data-toggle="tooltip"]').tooltip()
+		// })
 	});
 	$(document).on('click', '.del_row_ft', function () {
 		$(this).parent('td').parent('tr').remove();
 	});
 
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	})
+	// $(function () {
+	// 	$('[data-toggle="tooltip"]').tooltip()
+	// })
+
 
 </script>

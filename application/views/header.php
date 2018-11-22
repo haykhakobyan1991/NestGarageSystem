@@ -185,25 +185,38 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 
 							<div class="">
-								<div class="btn-group mt-3 mt-md-3 mb-3 mb-md-3" style="right: 40px;z-index: 999;position: absolute;">
-									<button type="button"
-											class="btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
-											<img width="35" src="<?= base_url('assets/images/trees1.png') ?>">
-										</a>
+								<div class="btn-group  mb-3 mb-md-3 <?= ($page == 'structure1' ? 'mt-5 mt-md-5' : 'mt-3 mt-md-3') ?> "
+									 style="<?= ($page == 'structure1' ? 'left: 30px;' : 'right: 46px;') ?> z-index: 999;position: absolute;">
+
+									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
+										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
+											<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
 									</button>
+									</a>
 									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2') ?>">
-										<button type="button"
-												class="btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
-											<img width="35" src="<?= base_url('assets/images/trees2.png') ?>">
+										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
+											<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
 										</button>
 									</a>
 									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3') ?>">
-										<button type="button" class="btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>" style="">
-											<img width="35" src="<?= base_url('assets/images/trees3.png') ?>">
+										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>"
+												style="">
+											<img width="20" src="<?= base_url('assets/images/trees3.svg') ?>">
 										</button>
 									</a>
+
+								</div><?
+								if($page == 'structure1') {
+									?>
+								<div class="row btn-group mt-5 mt-md-5"
+									 style=" right: 46px; z-index: 999;position: absolute;">
+									<input class="form-control col-7" type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()">
+									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2" onclick="searchDiagram()">Search</a>
 								</div>
+								<?}?>
 							</div>
 
 						<? } ?>

@@ -53,6 +53,19 @@ $lang['zip_code'] = 'Զիպ կոդ';
 $lang['Activity_address'] = 'Գործունեության հասցե';
 $lang['legal_region'] = 'իրական Երկիր';
 $lang['type'] = 'Տեսակ';
+$lang['New_Department'] = 'Նոր ստորաբաժանում';
+$lang['select_staff'] = 'ընտրեք աշխատակազմ';
+$lang['total_staff'] = 'Ընդհանուր անձնակազմ';
+$lang['active_staff'] = 'Ակտիվ Աշխատակազմ';
+$lang['passive_staff'] = 'Պասիվ աշխատակազմ';
+$lang['add_user'] = 'Ավելացնել Օգտատեր';
+$lang['add_staff'] = 'ավելացնել աշխատող';
+$lang['new_staff'] = 'Նոր Աշխատող';
+$lang['staff1'] = 'Աշխատող';
+$lang['staff_information'] = 'Աշխատակցի տեղեկություններ';
+$lang['fill_followings_fields'] = 'Լրացրեք հետեւյալ դաշտերը';
+$lang['picture'] = 'Նկար';
+$lang['upload_staff_picture'] = 'Բեռնեք աշխատակցի նկարը';
 
 $lang['account_type'] = 'Հաշվի Տեսակը';
 $lang['welcome'] = 'Բարի գալուստ';
@@ -71,6 +84,9 @@ $lang['required_all'] = 'Բոլոր դաշտերը պարտադիր են';
 $lang['owner_email'] = 'էլ․ հասցե';
 $lang['success'] = 'Հաջողվեց!';
 $lang['error'] = 'Սխալ';
+$lang['yes'] = 'Այո';
+
+
 
 
 

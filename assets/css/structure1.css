@@ -19,7 +19,7 @@ th {
 	border: 1px solid #333 !important;
 }
 
-i.fa.fa-plus, i.fa.fa-minus {
+i.fa.fa-minus {
 	display: inline-block;
 	float: right;
 	vertical-align: middle;
@@ -31,11 +31,11 @@ i.fa.fa-plus, i.fa.fa-minus {
 	display: none;
 }
 
-.add_new_tr {
-	display: inline-block;
-	padding: 10px;
-	border: 1px solid #dee2e6;
-}
+/*.add_new_tr {*/
+	/*display: inline-block;*/
+	/*padding: 10px;*/
+	/*border: 1px solid #dee2e6;*/
+/*}*/
 
 text.highcharts-credits {
 	display: none;
@@ -66,7 +66,6 @@ table#ex_1 thead tr th:last-child:before, table#ex_2 thead tr th:last-child:befo
 
 .del_row_ft {
 	cursor: pointer;
-	color: rgb(255, 122, 89);
 }
 
 .table_th {

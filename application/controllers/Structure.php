@@ -17,6 +17,7 @@ class Structure extends MX_Controller {
 
 		// load the helper
 		$this->load->helper('language');
+		$this->load->helper('date');
 
 		$lng = $this->load->lng();
 
@@ -112,6 +113,24 @@ class Structure extends MX_Controller {
 		$folder = $this->session->folder;
 		$lng = $this->load->lng();
 		$data = array();
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
@@ -1042,6 +1061,32 @@ class Structure extends MX_Controller {
 
 
 		$this->load->view('structure/car_info', $data);
+	}
+
+
+	public function vehicle_inspection() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+		$this->load->view('structure/vehicle_inspection', $data);
 	}
 
 

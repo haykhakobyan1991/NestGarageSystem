@@ -30,6 +30,7 @@ $lang['web_address'] = 'Առցանց Հասցե';
 $lang['general_information'] = 'Սեփականատիրոջ Հիմնական տվյալներ';
 $lang['status'] = 'Կարգավիճակ';
 $lang['Basic_information'] = 'Ընկերության Հիմնական տվյալներ';
+$lang['veichlse_information'] = 'Փոխադրամիջոցի Հիմնական տվյալներ';
 $lang['account_type'] = 'Հաշվի տեսակը';
 $lang['Same_as'] = 'Նույնը';
 $lang['browse'] = 'Բեռնել';
@@ -58,6 +59,11 @@ $lang['select_staff'] = 'ընտրեք աշխատակազմ';
 $lang['total_staff'] = 'Ընդհանուր անձնակազմ';
 $lang['active_staff'] = 'Ակտիվ Աշխատակազմ';
 $lang['passive_staff'] = 'Պասիվ աշխատակազմ';
+
+$lang['total_veichls'] = 'Ընդհանուր Փոխադրամիջոց';
+$lang['active_veichls'] = 'Ակտիվ Փոխադրամիջոց';
+$lang['passive_veichls'] = 'Պասիվ Փոխադրամիջոց';
+
 $lang['add_user'] = 'Ավելացնել Օգտատեր';
 $lang['add_staff'] = 'ավելացնել աշխատող';
 $lang['new_staff'] = 'Նոր Աշխատող';
@@ -66,6 +72,7 @@ $lang['staff_information'] = 'Աշխատակցի տեղեկություններ'
 $lang['fill_followings_fields'] = 'Լրացրեք հետեւյալ դաշտերը';
 $lang['picture'] = 'Նկար';
 $lang['upload_staff_picture'] = 'Բեռնեք աշխատակցի նկարը';
+$lang['Veichls'] = 'Փոխադրամիջոց';
 
 $lang['account_type'] = 'Հաշվի Տեսակը';
 $lang['welcome'] = 'Բարի գալուստ';

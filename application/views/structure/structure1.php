@@ -17,7 +17,13 @@
 	})
 </script>
 
+<style>
+	.row.bg-secondary {
+		min-height: 194px;
+	}
+</style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
+<script src="https://gojs.net/latest/extensions/Robot.js"></script>
 
 <!--  Modal Start -->
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
@@ -32,12 +38,15 @@
 			</div>
 			<div id="result" class="modal-body">
 				<div class="alert alert-info">
-					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />
+					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+						 src="<?= base_url() ?>assets/images/load.svg"/>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="save_changes"  class="btn btn-outline-success" onclick="save('1')">Save changes</button>
-				<button type="button"  class="btn btn-outline-danger " data-dismiss="modal">Close</button>
+				<button type="button" id="save_changes" class="btn btn-outline-success" onclick="save('1')">Save
+					changes
+				</button>
+				<button type="button" class="btn btn-outline-danger " data-dismiss="modal">Close</button>
 			</div>
 		</div>
 	</div>
@@ -77,7 +86,7 @@
 				style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;"
 				onclick="save('-1')">Save
 		</button>
-</div>
+	</div>
 
 	<span class="selectted_information "></span>
 
@@ -414,375 +423,384 @@
 		</div>
 	</div>
 
-<script>
-	function init() {
-		if (window.goSamples) goSamples();
-		var $ = go.GraphObject.make;
-		myDiagram =
-			$(go.Diagram, "myDiagramDiv",
-				{
-					initialContentAlignment: go.Spot.Center,
-					"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
-					layout:
-						$(go.TreeLayout,
-							{
-								treeStyle: go.TreeLayout.StyleLastParents,
-								arrangement: go.TreeLayout.ArrangementHorizontal,
-								angle: 90,
-								alternateAngle: 90,
-								alternateLayerSpacing: 35,
-								alternateNodeSpacing: 20
-							}),
+	<script>
+		function init() {
+			if (window.goSamples) goSamples();
+			var $ = go.GraphObject.make;
+			myDiagram =
+				$(go.Diagram, "myDiagramDiv",
+					{
+						initialContentAlignment: go.Spot.Center,
+						"commandHandler.archetypeGroupData": {text: "Group", isGroup: true, color: "blue"},
+						layout:
+							$(go.TreeLayout,
+								{
+									treeStyle: go.TreeLayout.StyleLastParents,
+									arrangement: go.TreeLayout.ArrangementHorizontal,
+									angle: 90,
+									alternateAngle: 90,
+									alternateLayerSpacing: 35,
+									alternateNodeSpacing: 20
+								}),
+					});
+
+			function makeButton(text, action, visiblePredicate) {
+				return $("ContextMenuButton",
+					$(go.TextBlock, text),
+					{click: action},
+					visiblePredicate ? new go.Binding("visible", "", function (o, e) {
+						return o.diagram ? visiblePredicate(o, e) : false;
+					}).ofObject() : {});
+			}
+
+			var partContextMenu =
+				$(go.Adornment, "Vertical",
+					makeButton("Properties",
+						function (e, obj) {
+							var contextmenu = obj.part;
+							var part = contextmenu.adornedPart;
+							if (part instanceof go.Link) alert(linkInfo(part.data));
+							else if (part instanceof go.Group) alert(groupInfo(contextmenu));
+							else alert(nodeInfo(part.data));
+						}),
+					makeButton("Cut",
+						function (e, obj) {
+							e.diagram.commandHandler.cutSelection();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canCutSelection();
+						}),
+					makeButton("Paste",
+						function (e, obj) {
+							e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
+						},
+						function (o) {
+							return o.diagram.commandHandler.canPasteSelection();
+						}),
+					makeButton("deletee",
+						function (e, obj) {
+							e.diagram.commandHandler.deleteeSelection();
+						},
+						function (o) {
+							return o.diagram.commandHandler.candeleteeSelection();
+						}),
+					makeButton("Undo",
+						function (e, obj) {
+							e.diagram.commandHandler.undo();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canUndo();
+						}),
+					makeButton("Redo",
+						function (e, obj) {
+							e.diagram.commandHandler.redo();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canRedo();
+						}),
+					makeButton("Group",
+						function (e, obj) {
+							e.diagram.commandHandler.groupSelection();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canGroupSelection();
+						}),
+					makeButton("Ungroup",
+						function (e, obj) {
+							e.diagram.commandHandler.ungroupSelection();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canUngroupSelection();
+						})
+				);
+
+			function mayWorkFor(node1, node2) {
+				if (!(node1 instanceof go.Node)) return false;
+				if (node1 === node2) return false;
+				if (node2.isInTreeOf(node1)) return false;
+				return true;
+			}
+
+			function textStyle() {
+				return {
+					font: "9px  Segoe UI,sans-serif",
+					stroke: "#fff"
+				};
+			}
+
+			function nodeDoubleClick(e, obj) {
+			}
+
+			function nodeInfo(d) {
+				var str = "Node " + d.key + ": " + d.text + "\n";
+			}
+
+			var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
+			myDiagram.layout.commitNodes = function () {
+				go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
+				myDiagram.layout.network.vertexes.each(function (v) {
+					if (v.node) {
+						level = v.level % (levelColors.length);
+						color = levelColors[level];
+						shape = v.node.findObject("SHAPE");
+
+
+						if (shape) shape.fill = $(go.Brush, "Linear", {
+							0: color,
+							start: go.Spot.Left,
+							end: go.Spot.Right
+						});
+					}
 				});
-
-		function makeButton(text, action, visiblePredicate) {
-			return $("ContextMenuButton",
-				$(go.TextBlock, text),
-				{click: action},
-				visiblePredicate ? new go.Binding("visible", "", function (o, e) {
-					return o.diagram ? visiblePredicate(o, e) : false;
-				}).ofObject() : {});
-		}
-
-		var partContextMenu =
-			$(go.Adornment, "Vertical",
-				makeButton("Properties",
-					function (e, obj) {
-						var contextmenu = obj.part;
-						var part = contextmenu.adornedPart;
-						if (part instanceof go.Link) alert(linkInfo(part.data));
-						else if (part instanceof go.Group) alert(groupInfo(contextmenu));
-						else alert(nodeInfo(part.data));
-					}),
-				makeButton("Cut",
-					function (e, obj) {
-						e.diagram.commandHandler.cutSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canCutSelection();
-					}),
-				makeButton("Paste",
-					function (e, obj) {
-						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
-					},
-					function (o) {
-						return o.diagram.commandHandler.canPasteSelection();
-					}),
-				makeButton("deletee",
-					function (e, obj) {
-						e.diagram.commandHandler.deleteeSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.candeleteeSelection();
-					}),
-				makeButton("Undo",
-					function (e, obj) {
-						e.diagram.commandHandler.undo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canUndo();
-					}),
-				makeButton("Redo",
-					function (e, obj) {
-						e.diagram.commandHandler.redo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canRedo();
-					}),
-				makeButton("Group",
-					function (e, obj) {
-						e.diagram.commandHandler.groupSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canGroupSelection();
-					}),
-				makeButton("Ungroup",
-					function (e, obj) {
-						e.diagram.commandHandler.ungroupSelection();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canUngroupSelection();
-					})
-			);
-
-		function mayWorkFor(node1, node2) {
-			if (!(node1 instanceof go.Node)) return false;
-			if (node1 === node2) return false;
-			if (node2.isInTreeOf(node1)) return false;
-			return true;
-		}
-
-		function textStyle() {
-			return {
-				font: "9px  Segoe UI,sans-serif",
-				stroke: "#fff"
 			};
-		}
+			myDiagram.nodeTemplate =
+				$(go.Node, "Auto",
+					{locationSpot: go.Spot.Center},
+					new go.Binding("location", "loc").makeTwoWay(),
 
-		function nodeDoubleClick(e, obj) {
-		}
-
-		function nodeInfo(d) {
-			var str = "Node " + d.key + ": " + d.text + "\n";
-		}
-
-		var levelColors = ["#37474F", "#546E7A", "#78909C", "#B0BEC5"];
-		myDiagram.layout.commitNodes = function () {
-			go.TreeLayout.prototype.commitNodes.call(myDiagram.layout);
-			myDiagram.layout.network.vertexes.each(function (v) {
-				if (v.node) {
-					level = v.level % (levelColors.length);
-					color = levelColors[level];
-					shape = v.node.findObject("SHAPE");
-					console.log(v.node.Wd);
-
-
-					if (shape) shape.fill = $(go.Brush, "Linear", {0: color, start: go.Spot.Left, end: go.Spot.Right});
-				}
-			});
-		};
-		myDiagram.nodeTemplate =
-			$(go.Node, "Auto",
-				{locationSpot: go.Spot.Center},
-				new go.Binding("location", "loc").makeTwoWay(),
-
-				{doubleClick: nodeDoubleClick},
-				{
-					mouseDragEnter: function (e, node, prev) {
-						var diagram = node.diagram;
-						var selnode = diagram.selection.first();
-						if (!mayWorkFor(selnode, node)) return;
-						var shape = node.findObject("SHAPE");
-						if (shape) {
-							shape._prevFill = shape.fill;
-							shape.fill = "darkred";
-						}
-					},
-					height: 35,
-					mouseDragLeave: function (e, node, next) {
-						var shape = node.findObject("SHAPE");
-						if (shape && shape._prevFill) {
-							shape.fill = shape._prevFill;
-						}
-					},
-					mouseDrop: function (e, node) {
-						var diagram = node.diagram;
-						var selnode = diagram.selection.first();
-						if (mayWorkFor(selnode, node)) {
-							var link = selnode.findTreeParentLink();
-							if (link !== null) {
-								link.fromNode = node;
-							} else {
-								diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
+					{doubleClick: nodeDoubleClick},
+					{
+						mouseDragEnter: function (e, node, prev) {
+							var diagram = node.diagram;
+							var selnode = diagram.selection.first();
+							if (!mayWorkFor(selnode, node)) return;
+							var shape = node.findObject("SHAPE");
+							if (shape) {
+								shape._prevFill = shape.fill;
+								shape.fill = "darkred";
+							}
+						},
+						height: 35,
+						mouseDragLeave: function (e, node, next) {
+							var shape = node.findObject("SHAPE");
+							if (shape && shape._prevFill) {
+								shape.fill = shape._prevFill;
+							}
+						},
+						mouseDrop: function (e, node) {
+							var diagram = node.diagram;
+							var selnode = diagram.selection.first();
+							if (mayWorkFor(selnode, node)) {
+								var link = selnode.findTreeParentLink();
+								if (link !== null) {
+									link.fromNode = node;
+								} else {
+									diagram.toolManager.linkingTool.insertLink(node, node.port, selnode, selnode.port);
+								}
 							}
 						}
-					}
-				},
-
-				new go.Binding("text", "name"),
-				new go.Binding("layerName", "isSelected", function (sel) {
-					return sel ? "Foreground" : "";
-				}).ofObject(),
-
-
-				$(go.Shape, "Rectangle", {
-						name: "SHAPE",
-						stroke: null,
-						portId: "",
-						cursor: "pointer",
-						fromLinkableDuplicates: true,
-						toLinkableDuplicates: true
 					},
-					new go.Binding("fill", "isHighlighted", function (h) {
-						return h ? "#ff7a59" : color;
+
+					new go.Binding("text", "name"),
+					new go.Binding("layerName", "isSelected", function (sel) {
+						return sel ? "Foreground" : "";
 					}).ofObject(),
+
+
+					$(go.Shape, "Rectangle", {
+							name: "SHAPE",
+							stroke: null,
+							portId: "",
+							cursor: "pointer",
+							fromLinkableDuplicates: true,
+							toLinkableDuplicates: true
+						},
+						new go.Binding("fill", "isHighlighted", function (h) {
+							return h ? "#ff7a59" : color;
+						}).ofObject(),
 						new go.Binding("fromLinkable", "from"),
-					    new go.Binding("toLinkable", "to"),
+						new go.Binding("toLinkable", "to"),
 						new go.Binding("fromLinkable", "fromDepartment"),
 						new go.Binding("toLinkable", "toStaff"),
-
 					),
 
-				$(go.Panel, "Horizontal",
-					$(go.Picture,
-						{
-							name: "Picture",
-							desiredSize: new go.Size(25, 25),
-							margin: new go.Margin(2, 2, 0, 2),
-						},
-						new go.Binding("source", "img")),
-					$(go.Panel, "Table",
-						{
-							maxSize: new go.Size(100, 999),
-							margin: new go.Margin(2, 2, 0, 1),
-							defaultAlignment: go.Spot.Left
-						},
-						$(go.RowColumnDefinition, {column: 2, width: 4}),
-						$(go.TextBlock, textStyle(),
+					$(go.Panel, "Horizontal",
+						$(go.Picture,
 							{
-								row: 0,
-								column: 0,
-								columnSpan: 2,
-								font: "9px Segoe UI,sans-serif",
-								editable: false,
-								isMultiline: false,
-								minSize: new go.Size(8, 14)
+								name: "Picture",
+								desiredSize: new go.Size(25, 25),
+								margin: new go.Margin(2, 2, 0, 2),
 							},
-							new go.Binding("text", "name").makeTwoWay()),
-						$(go.TextBlock, "", textStyle(),
-							{row: 1, column: 0}),
-						$(go.TextBlock, textStyle(),
+							new go.Binding("source", "img")),
+						$(go.Panel, "Table",
 							{
-								row: 1,
-								column: 1,
-								columnSpan: 4,
-								editable: false,
-								isMultiline: false,
-								minSize: new go.Size(10, 14),
-								margin: new go.Margin(1, 1, 0, 3)
+								maxSize: new go.Size(100, 999),
+								margin: new go.Margin(2, 2, 0, 1),
+								defaultAlignment: go.Spot.Left
 							},
-							new go.Binding("text", "text").makeTwoWay()),
-						$(go.TextBlock, textStyle(),
-							{row: 2, column: 0},
-						),
-						$(go.TextBlock, textStyle(),
-							{
-								name: "boss",
-								row: 2,
-								column: 3,
-							},
-							new go.Binding("text", "parent", function (v) {
-								return "Boss: " + v;
-							})),
-						$(go.TextBlock, textStyle(),
-							{
-								row: 3,
-								column: 0,
-								columnSpan: 5,
-								font: "italic 9px sans-serif",
-								wrap: go.TextBlock.WrapFit,
-								editable: true,
-								minSize: new go.Size(10, 14)
-							},
-							new go.Binding("text", "comments").makeTwoWay())
+							$(go.RowColumnDefinition, {column: 2, width: 4}),
+							$(go.TextBlock, textStyle(),
+								{
+									row: 0,
+									column: 0,
+									columnSpan: 2,
+									font: "9px Segoe UI,sans-serif",
+									editable: false,
+									isMultiline: false,
+									minSize: new go.Size(8, 14)
+								},
+								new go.Binding("text", "name").makeTwoWay()),
+							$(go.TextBlock, "", textStyle(),
+								{row: 1, column: 0}),
+							$(go.TextBlock, textStyle(),
+								{
+									row: 1,
+									column: 1,
+									columnSpan: 4,
+									editable: false,
+									isMultiline: false,
+									minSize: new go.Size(10, 14),
+									margin: new go.Margin(1, 1, 0, 3)
+								},
+								new go.Binding("text", "text").makeTwoWay()),
+							$(go.TextBlock, textStyle(),
+								{row: 2, column: 0},
+							),
+							$(go.TextBlock, textStyle(),
+								{
+									name: "boss",
+									row: 2,
+									column: 3,
+								},
+								new go.Binding("text", "parent", function (v) {
+									return "Boss: " + v;
+								})),
+							$(go.TextBlock, textStyle(),
+								{
+									row: 3,
+									column: 0,
+									columnSpan: 5,
+									font: "italic 9px sans-serif",
+									wrap: go.TextBlock.WrapFit,
+									editable: true,
+									minSize: new go.Size(10, 14)
+								},
+								new go.Binding("text", "comments").makeTwoWay())
+						)
 					)
-				)
-			);
+				);
 
-		myDiagram.allowMove = false;
+			myDiagram.allowMove = false;
 
-		function linkInfo(d) {
-			return "Link:\nfrom " + d.from + " to " + d.to;
-		}
+			function linkInfo(d) {
+				return "Link:\nfrom " + d.from + " to " + d.to;
+			}
 
-		myDiagram.linkTemplate =
-			$(go.Link,
-				{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
-				$(go.Shape,
-					{strokeWidth: 2},
-					new go.Binding("stroke", "color")),
-				$(go.Shape,
-					{toArrow: "Standard", stroke: null},
-					new go.Binding("fill", "color")),
-				{
-					toolTip:
-						$(go.Adornment, "Auto",
-							$(go.Shape, {fill: "#FFFFCC"}),
-							$(go.TextBlock, {margin: 2},
-								new go.Binding("text", "", linkInfo))
-						),
-					contextMenu: partContextMenu
-				}
-			);
-
-		function findHeadShot(key) {
-		}
-
-		function groupInfo(adornment) {
-			var g = adornment.adornedPart;
-			var links = 0;
-			g.memberParts.each(function (part) {
-				if (part instanceof go.Link) links++;
-			});
-		}
-
-		myDiagram.groupTemplate =
-			$(go.Group, "Vertical",
-				{
-					selectionObjectName: "PANEL",
-					ungroupable: false
-				},
-				$(go.TextBlock,
+			myDiagram.linkTemplate =
+				$(go.Link,
+					{toShortLength: 3, relinkableFrom: true, relinkableTo: true},
+					$(go.Shape,
+						{strokeWidth: 2},
+						new go.Binding("stroke", "color")),
+					$(go.Shape,
+						{toArrow: "Standard", stroke: null},
+						new go.Binding("fill", "color")),
 					{
-						font: "bold 9px sans-serif",
-						isMultiline: false,
-						editable: false
+						toolTip:
+							$(go.Adornment, "Auto",
+								$(go.Shape, {fill: "#FFFFCC"}),
+								$(go.TextBlock, {margin: 2},
+									new go.Binding("text", "", linkInfo))
+							),
+						contextMenu: partContextMenu
+					}
+				);
+
+			function findHeadShot(key) {
+			}
+
+			function groupInfo(adornment) {
+				var g = adornment.adornedPart;
+				var links = 0;
+				g.memberParts.each(function (part) {
+					if (part instanceof go.Link) links++;
+				});
+			}
+
+			myDiagram.groupTemplate =
+				$(go.Group, "Vertical",
+					{
+						selectionObjectName: "PANEL",
+						ungroupable: false
 					},
-					new go.Binding("text", "text").makeTwoWay(),
-					new go.Binding("stroke", "color")),
-				$(go.Panel, "Horizontal",
-					{name: "PANEL"},
-					$(go.Picture,
-						{row: 1, column: 2},
-						{width: 25, height: 25},
-						new go.Binding("source", "img")),
-					$(go.Placeholder, {margin: 2, background: "transparent"})
-				)
-			);
+					$(go.TextBlock,
+						{
+							font: "bold 9px sans-serif",
+							isMultiline: false,
+							editable: false
+						},
+						new go.Binding("text", "text").makeTwoWay(),
+						new go.Binding("stroke", "color")),
+					$(go.Panel, "Horizontal",
+						{name: "PANEL"},
+						$(go.Picture,
+							{row: 1, column: 2},
+							{width: 25, height: 25},
+							new go.Binding("source", "img")),
+						$(go.Placeholder, {margin: 2, background: "transparent"})
+					)
+				);
 
 
-		myDiagram.contextMenu =
-			$(go.Adornment, "Vertical",
-				makeButton("Paste",
-					function (e, obj) {
-						e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
-					},
-					function (o) {
-						return o.diagram.commandHandler.canPasteSelection();
-					}),
-				makeButton("Undo",
-					function (e, obj) {
-						e.diagram.commandHandler.undo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canUndo();
-					}),
-				makeButton("Redo",
-					function (e, obj) {
-						e.diagram.commandHandler.redo();
-					},
-					function (o) {
-						return o.diagram.commandHandler.canRedo();
-					})
-			);
-		var nodeDataArray = <?=$structure?>;
-		var linkDataArray = <?=$from_to?>;
+			myDiagram.contextMenu =
+				$(go.Adornment, "Vertical",
+					makeButton("Paste",
+						function (e, obj) {
+							e.diagram.commandHandler.pasteSelection(e.diagram.lastInput.documentPoint);
+						},
+						function (o) {
+							return o.diagram.commandHandler.canPasteSelection();
+						}),
+					makeButton("Undo",
+						function (e, obj) {
+							e.diagram.commandHandler.undo();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canUndo();
+						}),
+					makeButton("Redo",
+						function (e, obj) {
+							e.diagram.commandHandler.redo();
+						},
+						function (o) {
+							return o.diagram.commandHandler.canRedo();
+						})
+				);
+			var nodeDataArray = <?=$structure?>;
+			var linkDataArray = <?=$from_to?>;
 
 
-		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+			myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+		}
 
-		myDiagram.selectCollection(myDiagram.nodes);
-	}
+		$(document).ready(function () {
 
-	$(document).ready(function () {
-		init();
-		myDiagram.addDiagramListener("ObjectSingleClicked",
-			function (e) {
-				var linkDataArray = <?=$from_to?>;
+			init();
+			robot = new Robot(myDiagram);
 
 
+			function dragSelectNodes(dd) {
+				var alpha = myDiagram.findNodeForKey(dd);
+				if (alpha === null) return;
+
+				alpha.isSelected = true;
+
+			}
+
+			myDiagram.addDiagramListener("ObjectSingleClicked",
+				function (e) {
 
 
-				var arr = [];
-				var new_arr = [];
-				myDiagram.selection.each(function (part) {
-
+					var linkDataArray = <?=$from_to?>;
 					$.each(linkDataArray, function (key, value) {
-						 // console.log(value.from + '----' +part.Wd.key);
-						if(value.from == part.Wd.key){
+						// console.log(value.from + '----' +part.Wd.key);
+						if (value.from == myDiagram.selection.Ca.key.Wd.key) {
 							console.log(linkDataArray[key].to);
+							dragSelectNodes(linkDataArray[key].to);
+
 							$.each(linkDataArray, function (ky, val) {
 								if (val.from == value.to) {
+									dragSelectNodes(val.to);
 									console.log(val.to);
 								}
 							})
@@ -790,383 +808,389 @@
 
 					});
 
-					if (part instanceof go.Node) {
-						arr = {
-							"key": part.Wd.key,
-							"name": part.Wd.text,
-							"parent": part.Wd.parent
-						};
+					//	console.log(myDiagram.selection.Ca.key.Wd.key);
 
-						// console.log(part.Wd);
-						// console.log(arr.key);
-						var str1 = arr.key;
-						var re1 = 'f';
-						var re2 = 'd';
-						var found1 = str1.match(re1);
-						var found2 = str1.match(re2);
-						if (found1 == 'f' || found2 == 'd') {
-							new_arr.push(arr);
+					var arr = [];
+					var new_arr = [];
+					myDiagram.selection.each(function (part) {
+
+
+						if (part instanceof go.Node) {
+							arr = {
+								"key": part.Wd.key,
+								"name": part.Wd.text,
+								"parent": part.Wd.parent
+							};
+
+							var str1 = arr.key;
+							var re1 = 'f';
+							var re2 = 'd';
+							var found1 = str1.match(re1);
+							var found2 = str1.match(re2);
+							if (found1 == 'f' || found2 == 'd') {
+								new_arr.push(arr);
+							}
+							// console.log(new_arr);
 						}
-						// console.log(new_arr);
-					}
-				});
-				if ($('a[data-id="1"]').hasClass('active')) {
-					if (new_arr.length !== 0) {
-						var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
-						$.post(url, {arr: new_arr}).done(function (data) {
-							$('#add-info').fadeOut('slow');
-							$('.selectted_information').html(data);
-							$('#nav-tabContent-car').fadeIn('slow');
-						});
-					}
-				} else {
-					$('.selectted_information').html('');
-				}
+					});
 
-				/*Remove BoxShadow From HighCharts Pie Diagram*/
-				$('.highcharts-text-outline').attr('stroke', '');
+
+					if ($('a[data-id="1"]').hasClass('active')) {
+						if (new_arr.length !== 0) {
+							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
+							$.post(url, {arr: new_arr}).done(function (data) {
+								$('#add-info').fadeOut('slow');
+								$('.selectted_information').html(data);
+								$('#nav-tabContent-car').fadeIn('slow');
+							});
+						}
+					} else {
+						$('.selectted_information').html('');
+					}
+
+					/*Remove BoxShadow From HighCharts Pie Diagram*/
+					$('.highcharts-text-outline').attr('stroke', '');
+				});
+
+
+			$('.info-type').click(function () {
+				if ($(this).data('id') == 2) {
+					$('#nav-tabContent-car').fadeOut();
+					$('#add-info').fadeIn('slow');
+				} else if ($(this).data('id') == 1) {
+					$('#add-info').fadeOut('slow');
+				}
 			});
 
 
-		$('.info-type').click(function () {
-			if ($(this).data('id') == 2) {
-				$('#nav-tabContent-car').fadeOut();
-				$('#add-info').fadeIn('slow');
-			} else if ($(this).data('id') == 1) {
-				$('#add-info').fadeOut('slow');
-			}
 		});
 
+		// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
+		function searchDiagram() {  // called by button
+			var input = document.getElementById("mySearch");
+			if (!input) return;
+			input.focus();
 
-	});
+			myDiagram.startTransaction("highlight search");
 
+			if (input.value) {
+				// search four different data properties for the string, any of which may match for success
+				// create a case insensitive RegExp from what the user typed
+				var regex = new RegExp(input.value, "i");
+				var results = myDiagram.findNodesByExample({text: regex});
 
-	// the Search functionality highlights all of the nodes that have at least one data property match a RegExp
-	function searchDiagram() {  // called by button
-		var input = document.getElementById("mySearch");
-		if (!input) return;
-		input.focus();
+				myDiagram.highlightCollection(results);
+				// try to center the diagram at the first node that was found
+				if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
+			} else {  // empty string only clears highlighteds collection
+				myDiagram.clearHighlighteds();
+			}
 
-		myDiagram.startTransaction("highlight search");
-
-		if (input.value) {
-			// search four different data properties for the string, any of which may match for success
-			// create a case insensitive RegExp from what the user typed
-			var regex = new RegExp(input.value, "i");
-			var results = myDiagram.findNodesByExample({text: regex});
-
-			myDiagram.highlightCollection(results);
-			// try to center the diagram at the first node that was found
-			if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
-		} else {  // empty string only clears highlighteds collection
-			myDiagram.clearHighlighteds();
+			myDiagram.commitTransaction("highlight search");
 		}
 
-		myDiagram.commitTransaction("highlight search");
-	}
 
-
-	//if value is -1 show, if value is 1 run queryes
-	function save(value) {
-		document.getElementById("mySavedModel").value = myDiagram.model.toJson();
-		myDiagram.isModified = false;
-		console.log(myDiagram.model.linkDataArray);
-		var url = '<?=base_url('Structure/change_from_to_ax')?>';
-		var data = myDiagram.model.linkDataArray;
-		var old_data = '<?=$from_to?>';
-		var structure = '<?=$structure?>';
-		$.post(url, {data: data, old_data: old_data, structure: structure, value: value}).done(function (data) {
-			console.log("Data Loaded: " + data);
-			var return_data = JSON.parse(data);
-			var res = '';
-			if(return_data.error != '') {
-				$('#result').html('<h2 class="text-center alert alert-danger">'+return_data.error+'</h2>');
-			} else {
-				if(value == '-1') {
-					if(return_data.result != '') {
-						$.each(return_data.result, function (index, val) {
-							res += val
-						});
-						$('#result').html('<div class="alert alert-info">'+res+'</div>');
-					} else {
-						$('#save_changes').addClass('d-none');
-						$('#result').html('<h2 class="text-center alert alert-info">Information is empty</h2>');
-					}
-				} else if(value == '1') {
-					if(return_data.result) {
-						location.reload();
-					} else {
-						$('#result').html('<h2 class="text-center alert alert-danger">'+return_data.error+'</h2>');
+		//if value is -1 show, if value is 1 run queryes
+		function save(value) {
+			document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+			myDiagram.isModified = false;
+			console.log(myDiagram.model.linkDataArray);
+			var url = '<?=base_url('Structure/change_from_to_ax')?>';
+			var data = myDiagram.model.linkDataArray;
+			var old_data = '<?=$from_to?>';
+			var structure = '<?=$structure?>';
+			$.post(url, {data: data, old_data: old_data, structure: structure, value: value}).done(function (data) {
+				console.log("Data Loaded: " + data);
+				var return_data = JSON.parse(data);
+				var res = '';
+				if (return_data.error != '') {
+					$('#result').html('<h2 class="text-center alert alert-danger">' + return_data.error + '</h2>');
+				} else {
+					if (value == '-1') {
+						if (return_data.result != '') {
+							$.each(return_data.result, function (index, val) {
+								res += val
+							});
+							$('#result').html('<div class="alert alert-info">' + res + '</div>');
+						} else {
+							$('#save_changes').addClass('d-none');
+							$('#result').html('<h2 class="text-center alert alert-info">Information is empty</h2>');
+						}
+					} else if (value == '1') {
+						if (return_data.result) {
+							location.reload();
+						} else {
+							$('#result').html('<h2 class="text-center alert alert-danger">' + return_data.error + '</h2>');
+						}
 					}
 				}
+
+			});
+		}
+
+
+		$(document).on('click', '.expand_tr', function () {
+			if ($(this).hasClass('fa-plus')) {
+				$(this).removeClass('fa-plus');
+				$(this).addClass('fa-minus');
+			} else {
+				$(this).addClass('fa-plus');
+				$(this).removeClass('fa-minus');
 			}
-
+			var btn_value = $(this).data('value');
+			$('.more[data-value=' + btn_value + ']').toggle('slow');
 		});
-	}
+		var ii = 1;
 
+		$('.ex_1 tr').each(function () {
+			ii++;
+		});
+		$('.ex_2 tr').each(function () {
+			ii++;
+		});
+		$('.ex_3 tr').each(function () {
+			ii++;
+		});
+		$('.ex_4 tr').each(function () {
+			ii++;
+		});
+		$('.ex_5 tr').each(function () {
+			ii++;
+		});
+		$('.ex_6 tr').each(function () {
+			ii++;
+		});
+		$('.ex_7 tr').each(function () {
+			ii++;
+		});
+		$('.ex_8 tr').each(function () {
+			ii++;
+		});
+		$('.ex_9 tr').each(function () {
+			ii++;
+		});
+		$('.ex_10 tr').each(function () {
+			ii++;
+		});
+		$('.ex_11 tr').each(function () {
+			ii++;
+		});
+		$('.ex_12 tr').each(function () {
+			ii++;
+		});
+		$('.ex_13 tr').each(function () {
+			ii++;
+		});
+		$(document).on('click', '.add_new_tr', function () {
+			var dt_id = $(this).data('id');
+			if (dt_id == 'ex_1') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_1').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_2') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_2').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_3') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_3').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_4') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_4').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_5') {
+				$$("td[valign='top']").parent('tr').remove();
+				$('.ex_5').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_6') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_6').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_7') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_7').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_8') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_8').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_9') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_9').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_10') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_10').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_11') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_11').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (dt_id == 'ex_12') {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_12').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			if (ex_13 == dt_id) {
+				$("td[valign='top']").parent('tr').remove();
+				$('.ex_13').append('<tr role="row">\n' +
+					'<td class="sorting_1"> ' + ii + '</td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
+					'</tr>');
+			}
+			ii++;
+			$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
+			$('th').unbind("click");
+			// $('.pagination li').unbind("click");
+			// $(function () {
+			// 	$('[data-toggle="tooltip"]').tooltip()
+			// })
+		});
+		$(document).on('click', '.del_row_ft', function () {
+			$(this).parent('td').parent('tr').remove();
+		});
 
-	$(document).on('click', '.expand_tr', function () {
-		if ($(this).hasClass('fa-plus')) {
-			$(this).removeClass('fa-plus');
-			$(this).addClass('fa-minus');
-		} else {
-			$(this).addClass('fa-plus');
-			$(this).removeClass('fa-minus');
-		}
-		var btn_value = $(this).data('value');
-		$('.more[data-value=' + btn_value + ']').toggle('slow');
-	});
-	var ii = 1;
-
-	$('.ex_1 tr').each(function () {
-		ii++;
-	});
-	$('.ex_2 tr').each(function () {
-		ii++;
-	});
-	$('.ex_3 tr').each(function () {
-		ii++;
-	});
-	$('.ex_4 tr').each(function () {
-		ii++;
-	});
-	$('.ex_5 tr').each(function () {
-		ii++;
-	});
-	$('.ex_6 tr').each(function () {
-		ii++;
-	});
-	$('.ex_7 tr').each(function () {
-		ii++;
-	});
-	$('.ex_8 tr').each(function () {
-		ii++;
-	});
-	$('.ex_9 tr').each(function () {
-		ii++;
-	});
-	$('.ex_10 tr').each(function () {
-		ii++;
-	});
-	$('.ex_11 tr').each(function () {
-		ii++;
-	});
-	$('.ex_12 tr').each(function () {
-		ii++;
-	});
-	$('.ex_13 tr').each(function () {
-		ii++;
-	});
-	$(document).on('click', '.add_new_tr', function () {
-		var dt_id = $(this).data('id');
-		if (dt_id == 'ex_1') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_1').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value=""  class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_2') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_2').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_3') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_3').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_4') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_4').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_5') {
-			$$("td[valign='top']").parent('tr').remove();
-			$('.ex_5').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_6') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_6').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_7') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_7').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_8') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_8').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_9') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_9').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_10') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_10').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_11') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_11').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (dt_id == 'ex_12') {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_12').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		if (ex_13 == dt_id) {
-			$("td[valign='top']").parent('tr').remove();
-			$('.ex_13').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + ii + '</td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-				'</tr>');
-		}
-		ii++;
-		$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
-		$('th').unbind("click");
-		// $('.pagination li').unbind("click");
 		// $(function () {
 		// 	$('[data-toggle="tooltip"]').tooltip()
 		// })
-	});
-	$(document).on('click', '.del_row_ft', function () {
-		$(this).parent('td').parent('tr').remove();
-	});
-
-	// $(function () {
-	// 	$('[data-toggle="tooltip"]').tooltip()
-	// })
 
 
-</script>
+	</script>

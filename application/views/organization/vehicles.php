@@ -43,47 +43,46 @@ endforeach;
 	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
 		 aria-labelledby="list-staff-list">
 
-
-		<div class="jumbotron jumbotron-fluid pb-2 pt-2">
-			<div class="container">
-				<p class="display-5 font-weight-bold mb-0">Section: Veichls</p>
-			</div>
+		<div class="container-fluid">
+			<p class="display-5 font-weight-bold mb-0"><?=lang('Veichls')?></p>
+			<hr class="my-2">
 		</div>
 
-		<div class=" pb-2 pt-2">
-			<div class="">
-				<div class="row">
-					<div class="col-sm-12 col-md-2">
-						<p class="display-5 font-weight-bold float-left">Total Vehicle</p> <span
-							class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
+		<div class="container-fluid">
+
+			<div class="row">
+				<diiv class="col-sm-8 pt-2">
+					<div class="row">
+						<div class="col-sm-3">
+							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('total_veichls')?></p> <span
+								class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
+						</div>
+						<div class="col-sm-3">
+							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('active_veichls')?></p>
+							<span
+								class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
+						</div>
+						<div class="col-sm-3">
+							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('passive_veichls')?></p>
+							<span
+								class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
+						</div>
 					</div>
-
-					<div class="col-sm-12 col-md-2">
-						<p class="display-5 font-weight-bold float-left">Active Vehicle</p>
-						<span
-							class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
-					</div>
-
-					<div class="col-sm-12 col-md-2">
-						<p class="display-5 font-weight-bold float-left">Passive Vehicle</p>
-						<span
-							class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
-					</div>
-
-					<div class="col-sm-12 col-md-4 col-4"></div>
-
-					<div class="col-sm-12 col-md-2">
-						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
-						   class="btn btn-outline-success">Add Vehicle
-						</a>
-					</div>
-
+				</diiv>
+				<div class="col-sm-4 text-right">
+					<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
+					   class="text-capitalize btn btn-outline-success btn-sm float-right">Add Vehicle
+					</a>
 				</div>
+			</div>
 
+			<hr class="my-2">
+		</div>
 
-				<hr class="my-4">
+		<div class="pt-2">
+			<div class="">
 
-				<div class="row col-sm-12 col-md-12"
+				<div class="row col-sm-12 col-md-12 ml-0 mr-0"
 					 style="background: #fff; padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 
 
@@ -132,7 +131,7 @@ color: #545b62;">
 											  title="edit"><i class="fas fa-edit"></i></span></a>
 
 									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-										  class="btn text-danger"
+										  class="btn text-secondary"
 										  data-toggle2="tooltip"
 										  data-placement="top"
 										  title="delete"><i class="fas fa-trash"></i></span></td>

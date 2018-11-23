@@ -836,6 +836,7 @@
 
 
 					if ($('a[data-id="1"]').hasClass('active')) {
+						$('.selectted_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
 						if (new_arr.length !== 0) {
 							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
 							$.post(url, {arr: new_arr}).done(function (data) {

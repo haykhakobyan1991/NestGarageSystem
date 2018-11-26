@@ -927,6 +927,7 @@ class Structure extends MX_Controller {
 	public function car_info() {
 
 		// $this->load->authorisation();
+		//todo if not post redirect to 404
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -1069,6 +1070,7 @@ class Structure extends MX_Controller {
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
 		$data = array();
+		$arr = $this->input->post('arr');
 
 		$sql_add_user = "
 			SELECT
@@ -1086,7 +1088,223 @@ class Structure extends MX_Controller {
 
 		$data['user'] = $query_add_user->row_array();
 
-		$this->load->view('structure/vehicle_inspection', $data);
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `inspection`.`id`,
+				  `inspection`.`add_date`,
+				  `inspection`.`add_user_id`,
+				  `inspection`.`end_date`,
+				  `inspection`.`price`,
+				  `inspection`.`fleet_id`,
+				  CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+				  ) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `inspection`.`status` 
+				FROM
+				  `inspection` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `inspection`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `inspection`.`add_user_id`	
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `inspection`.`status` = '1' 
+				AND FIND_IN_SET(`inspection`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_inspection', $data);
+		}
+	}
+
+
+	public function inspection_ax() {
+
+		//$this->load->authorisation('Structure', 'inspection');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+
+
+		if ($fleet_id != '') {
+
+			$end_date = $this->input->post('end_date');
+			$price = $this->input->post('price');
+			$date = $this->input->post('date');
+
+			if (is_array($end_date)) :
+				foreach ($end_date as $i => $end_date_val) :
+					if ($end_date_val == '') :
+						$n = 1;
+						$validation_errors = array('end_date[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `inspection` (
+				  `add_date`,
+				  `add_user_id`,
+				  `end_date`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+				" . $this->load->db_value($add_dte) . ",
+				" . $this->load->db_value($user_id) . ",
+				" . $this->load->db_value($end_date[$key]) . ",
+				" . $this->load->db_value($price[$key]) . ",
+				" . $this->load->db_value($fleet_id) . ",
+				" . $this->load->db_value($status) . "
+			),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fleet_ids = explode(',', $this->input->post('fleet_ids'));
+			$price = $this->input->post('price');
+			$end_date = $this->input->post('end_date');
+			$status = '1';
+
+			$this->form_validation->set_rules('end_date', 'end_date', 'required');
+			$this->form_validation->set_rules('price', 'price', 'required');
+
+			if($this->form_validation->run() == false){
+				//validation errors
+				$n = 1;
+
+				$validation_errors = array(
+					'end_date' => form_error('end_date'),
+					'price' => form_error('price')
+				);
+				$messages['error']['elements'][] = $validation_errors;
+			}
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `inspection` (
+				  `add_date`,
+				  `add_user_id`,
+				  `end_date`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fleet_ids as $key => $fl_id) {
+				$sql .= "(
+				 NOW(),
+				" . $this->load->db_value($user_id) . ",
+				" . $this->load->db_value($end_date) . ",
+				" . $this->load->db_value($price) . ",
+				" . $this->load->db_value($fl_id) . ",
+				" . $this->load->db_value($status) . "
+			),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
 	}
 
 

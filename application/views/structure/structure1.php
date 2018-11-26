@@ -56,12 +56,16 @@
 <div class="content m-1">
 	<div class="content m-1">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed active " data-id="1"
-			   data-toggle="tab" href="#nav-info" role="tab">
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == '' ? 'active show' : '' ?> "
+			   data-id="1"
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"
+			   role="tab">
 				<i class="fas fa-info"></i> Ինֆորմացիա
 			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed" data-id="2"
-			   data-toggle="tab" href="#nav-info" role="tab">
+			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) != '' ? 'active show' : '' ?> "
+			   data-id="2"
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection') ?>"
+			   role="tab">
 				<i class="fas fa-plus"></i> Ավելացնել ծաղսեր
 			</a>
 			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed" data-id="3"
@@ -93,10 +97,13 @@
 </div>
 
 
-<div id="add-info" style="display: none">
+<div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
 	<nav class="mt-2">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link tab_nav" data-tab="1" id="nav-1-tab" data-toggle="tab" href="#nav-1" role="tab"
+			<a class="nav-item nav-link tab_nav <?= $this->uri->segment(3) == 'inspection' ? 'active show' : '' ?> "
+			   data-tab="1" id="nav-1-tab"
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection') ?>"
+			   role="tab"
 			   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
 			<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
 			   aria-selected="false">ՎԱՌԵԼԻՔ</a>
@@ -132,7 +139,7 @@
 
 	<div class="tab-content" id="nav-tabContent">
 
-		<div class="tab-pane fade" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="tab-pane fade active show" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
 
 		</div>
 
@@ -822,8 +829,8 @@
 
 
 					if ($('a[data-id="1"]').hasClass('active')) {
-						$('.selectted_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
 						if (new_arr.length !== 0) {
+							$('.selectted_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
 							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
 							$.post(url, {arr: new_arr}).done(function (data) {
 								$('#add-info').fadeOut('slow');
@@ -835,6 +842,7 @@
 						$('.selectted_information').html('');
 
 						if($('.tab_nav').data('tab') == 1) {
+
 							vehicle_inspection(new_arr)
 						}
 
@@ -853,25 +861,25 @@
 					$('.highcharts-text-outline').attr('stroke', '');
 				});
 
-
-			$('.info-type').click(function () {
-
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 1) {
-						$(this).html('');
-					}
-
-				});
-
-				$('.nav-item').removeClass('active');
-
-				if ($(this).data('id') == 2) {
-					$('#nav-tabContent-car').fadeOut();
-					$('#add-info').fadeIn('slow');
-				} else if ($(this).data('id') == 1) {
-					$('#add-info').fadeOut('slow');
-				}
-			});
+			//
+			// $('.info-type').click(function () {
+			//
+			// 	$('.tab-pane').each(function(){
+			// 		if($(this).data('tab') == 1) {
+			// 			$(this).html('');
+			// 		}
+			//
+			// 	});
+			//
+			// 	$('.nav-item').removeClass('active');
+			//
+			// 	if ($(this).data('id') == 2) {
+			// 		$('#nav-tabContent-car').fadeOut();
+			// 		$('#add-info').fadeIn('slow');
+			// 	} else if ($(this).data('id') == 1) {
+			// 		$('#add-info').fadeOut('slow');
+			// 	}
+			// });
 
 
 		});
@@ -901,7 +909,7 @@
 		}
 
 
-		//if value is -1 show, if value is 1 run queryes
+		//if value is -1 show, if value is 1 run query
 		function save(value) {
 			document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 			myDiagram.isModified = false;
@@ -1201,59 +1209,27 @@
 		}
 
 
-
-
-		// $(function () {
-		// 	$('[data-toggle="tooltip"]').tooltip()
-		// })
-
-
-	</script>
-
-
-
-
-	<script>
+		//ex_1
 		var i = 1;
-		$(document).on('click', '.add_new_tr', function () {
+		$(document).on('click', '.ex_1_add_new_tr', function () {
 			i++;
+
+			var fleet = $('input[name="vehicle[1]"]').val();
+
 			$('.ex_1').append('<tr role="row">\n' +
-				'<td class="sorting_1"> ' + i + '</td>\n' +
-				'<td><input title="" readonly type="text" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?= $user['name'] ?>"  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="end_date[' + i + ']" value=""  class="in_row_input text-center"/></td>\n' +
-				'<td><input title="" type="text" name="price[' + i + ']" value=""  class="in_row_input text-center"/></td>\n' +
+				'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="'+fleet+'"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" readonly type="text" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="number" name="price[' + i + ']" min="0" class="form-control text-center"/></td>\n' +
 				'<td>' +
-				'<button class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
 				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
-				'</button>' +
+				'</span>' +
 				'</td>\n' +
 				'</tr>');
+
 		});
-
-
-		function newDateTime() {
-			Number.prototype.padLeft = function (base, chr) {
-				var len = (String(base || 10).length - String(this).length) + 1;
-				return len > 0 ? new Array(len).join(chr || '0') + this : this;
-			};
-
-
-			var new_date = new Date,
-				date = [
-						new_date.getFullYear(),
-						(new_date.getMonth() + 1).padLeft(),
-						new_date.getDate().padLeft()].join('-') +
-					' ' +
-					[
-						new_date.getHours().padLeft(),
-						new_date.getMinutes().padLeft(),
-						new_date.getSeconds().padLeft()
-					].join(':');
-
-			return date;
-		}
-
 
 
 	</script>

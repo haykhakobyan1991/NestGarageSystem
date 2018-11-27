@@ -21,6 +21,10 @@
 	.row.bg-secondary {
 		min-height: 194px;
 	}
+
+	.modal {
+		top: 30% !important;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <script src="https://gojs.net/latest/extensions/Robot.js"></script>
@@ -64,12 +68,15 @@
 			</a>
 			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) != '' ? 'active show' : '' ?> "
 			   data-id="2"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection') ?>"
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses') ?>"
 			   role="tab">
-				<i class="fas fa-plus"></i> Ավելացնել ծաղսեր
+				<i class="fas fa-plus"></i> Ավելացնել ծախսեր
 			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed" data-id="3"
-			   data-toggle="tab" href="#nav-info" role="tab">
+			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed"
+			   data-id="3"
+			   data-toggle="tab"
+			   href="#nav-info"
+			   role="tab">
 				<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
 			</a>
 		</div>
@@ -100,23 +107,48 @@
 <div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
 	<nav class="mt-2">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link tab_nav <?= $this->uri->segment(3) == 'inspection' ? 'active show' : '' ?> "
+			<a class="nav-item nav-link tab_nav "
 			   data-tab="1" id="nav-1-tab"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection') ?>"
+			   data-toggle="tab"
+			   href="#nav-1"
 			   role="tab"
-			   aria-controls="nav-1" aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
-			<a class="nav-item nav-link" id="nav-2-tab" data-toggle="tab" href="#nav-2" role="tab" aria-controls="nav-2"
+			   aria-controls="nav-1"
+			   aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="2" id="nav-2-tab"
+			   data-toggle="tab"
+			   href="#nav-2"
+			   role="tab"
+			   aria-controls="nav-2"
 			   aria-selected="false">ՎԱՌԵԼԻՔ</a>
-			<a class="nav-item nav-link" id="nav-3-tab" data-toggle="tab" href="#nav-3" role="tab" aria-controls="nav-3"
+
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="3" id="nav-3-tab"
+			   data-toggle="tab"
+			   href="#nav-3"
+			   aria-controls="nav-3"
 			   aria-selected="false">ՏՈՒԳԱՆՔ</a>
-			<a class="nav-item nav-link" id="nav-4-tab" data-toggle="tab" href="#nav-4" role="tab" aria-controls="nav-4"
+
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="4"  id="nav-4-tab"
+			   data-toggle="tab"
+			   href="#nav-4"
+			   aria-controls="nav-4"
 			   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+
 			<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
 			   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+
 			<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
 			   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+
 			<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
 			   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+
+
+
+
 			<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
 			   aria-selected="false">ԱՆՎԱԴՈՂ</a>
 			<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
@@ -130,6 +162,9 @@
 			<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab"
 			   aria-controls="nav-12"
 			   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+
+
+
 			<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab"
 			   aria-controls="nav-13"
 			   aria-selected="false">ԱՀԱԶԱՆԳ</a>
@@ -139,74 +174,23 @@
 
 	<div class="tab-content" id="nav-tabContent">
 
-		<div class="tab-pane fade active show" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="tab-pane fade <?= $this->uri->segment(3) == 'inspection' ? 'active show' : '' ?>" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
 
 		</div>
 
 
-		<div class="tab-pane fade" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_2" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Ում Կողմից</th>
-							<th class="table_th">Վարորդ</th>
-							<th class="table_th">Քանակ Լիտր</th>
-							<th class="table_th">1 լիտր-արժեք</th>
-							<th class="table_th">Գումար</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_2"></tbody>
-					</table>
-				</div>
-			</div>
+		<div class="tab-pane fade <?= $this->uri->segment(3) == 'fuel' ? 'active show' : '' ?>" id="nav-2" data-tab="2" role="tabpanel" aria-labelledby="nav-2-tab">
+
 		</div>
 
-		<div class="tab-pane fade" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_3" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Տեասակ</th>
-							<th class="table_th">Վարորդ</th>
-							<th class="table_th">Այլ Ինֆորմացիա</th>
-							<th class="table_th">Գումար</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_3"></tbody>
-					</table>
-				</div>
-			</div>
+		<div class="tab-pane fade <?= $this->uri->segment(3) == 'fine' ? 'active show' : '' ?>" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+
 		</div>
-		<div class="tab-pane fade" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_4" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Ապահովագրական Ընկերություն</th>
-							<th class="table_th">Վարորդ</th>
-							<th class="table_th">Եզրակացության Համար</th>
-							<th class="table_th">Փոխարինման Ենթակա Դետալների Անվանում</th>
-							<th class="table_th">Հատուցվող գումար</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_4"></tbody>
-					</table>
-				</div>
-			</div>
+
+		<div class="tab-pane fade <?= $this->uri->segment(3) == 'accident' ? 'active show' : '' ?>" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+
 		</div>
+
 		<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
 			<div class="row col-sm-12 col-md-12 bpp_o">
 				<div class="container-fluid">
@@ -804,7 +788,7 @@
 					//	console.log(myDiagram.selection.Ca.key.Wd.key);
 
 					var arr = [];
-					var new_arr = [];
+					 new_arr = [];
 					myDiagram.selection.each(function (part) {
 
 
@@ -841,17 +825,24 @@
 					} else if($('a[data-id="2"]').hasClass('active')) {
 						$('.selectted_information').html('');
 
-						if($('.tab_nav').data('tab') == 1) {
-
-							vehicle_inspection(new_arr)
-						}
-
-						$(document).on('click', '.tab_nav', function () {
-							if($(this).data('tab') == 1) {
+						$('.tab_nav').each(function(){
+							if($(this).data('tab') == 1 && $(this).hasClass('active')) {
 								vehicle_inspection(new_arr)
+							} else if($(this).data('tab') == 2 && $(this).hasClass('active')) {
+								vehicle_fuel(new_arr)
+							} else if($(this).data('tab') == 3 && $(this).hasClass('active')) {
+								vehicle_fine(new_arr)
+							} else if($(this).data('tab') == 4 && $(this).hasClass('active')) {
+								vehicle_accident(new_arr)
 							}
-
 						});
+
+
+
+
+
+
+
 
 					} else {
 						$('.selectted_information').html('');
@@ -860,6 +851,20 @@
 					/*Remove BoxShadow From HighCharts Pie Diagram*/
 					$('.highcharts-text-outline').attr('stroke', '');
 				});
+
+
+
+			$('.tab_nav').click(function(){
+				if($(this).data('tab') == 1) {
+					vehicle_inspection(new_arr)
+				}else if($(this).data('tab') == 2) {
+					vehicle_fuel(new_arr)
+				} else if($(this).data('tab') == 3) {
+					vehicle_fine(new_arr)
+				} else if($(this).data('tab') == 4) {
+					vehicle_accident(new_arr)
+				}
+			})
 
 			//
 			// $('.info-type').click(function () {
@@ -1208,8 +1213,41 @@
 			});
 		}
 
+		function vehicle_fuel(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function(){
+					if($(this).data('tab') == 2) {
+						$(this).html(data);
+					}
+				});
+			});
+		}
 
-		//ex_1
+		function vehicle_fine(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function(){
+					if($(this).data('tab') == 3) {
+						$(this).html(data);
+					}
+				});
+			});
+		}
+
+		function vehicle_accident(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function(){
+					if($(this).data('tab') == 4) {
+						$(this).html(data);
+					}
+				});
+			});
+		}
+
+
+		//vehicle inspection
 		var i = 1;
 		$(document).on('click', '.ex_1_add_new_tr', function () {
 			i++;
@@ -1218,7 +1256,7 @@
 
 			$('.ex_1').append('<tr role="row">\n' +
 				'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="'+fleet+'"  class="form-control text-center"/></td>\n' +
-				'<td><input title="" readonly type="text" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title=""  type="date" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
 				'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="price[' + i + ']" min="0" class="form-control text-center"/></td>\n' +
@@ -1231,5 +1269,84 @@
 
 		});
 
+		//vehicle fuel
+		var j = 1;
+		$(document).on('click', '.ex_2_add_new_tr', function () {
+			j++;
+
+			var fleet = $('input[name="vehicle[1]"]').val();
+			var staff = $('input[name="staff[1]"]').val();
+			var staff_id = $('input[name="staff_id[1]"]').val();
+
+				$('.ex_2').append('<tr role="row">\n' +
+					'<td><input readonly title="" type="text" name="vehicle[' + j + ']" value="'+fleet+'" class="form-control text-center"/></td>\n' +
+					'<td><input  title="" type="text" name="date[' + j + ']" value="<?= mdate('%Y-%m-%d', now()) ?>" class="form-control text-center"/></td>\n' +
+					'<td><input readonly title="" type="text" name="user[' + j + ']" value="<?= $user['name'] ?>" class="form-control text-center"/></td>\n' +
+					'<td>' +
+					'<input readonly title="" type="text"  value="'+staff+'" class="form-control text-center"/>' +
+					'<input type="hidden" name="staff_id['+ j +']" value="'+staff_id+'">' +
+					'</td>\n' +
+					'<td><input title="" type="number" name="count_liter[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+					'<td><input title="" type="number" name="one_liter_price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+					'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
+					'</tr>' +
+					'<script>' +
+					'$(document).on(\'keyup\', \'input[name="count_liter['+j+']"]\', function () {\n' +
+					'\t\t\t\t\tvar count = $(this).val();\n' +
+					'\t\t\t\t\tvar one_liter_price = $(\'input[name="one_liter_price['+j+']"]\').val();\n' +
+					'\n' +
+					'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_liter_price);\n' +
+					'\n' +
+					'\t\t\t\t\t$(\'input[name="price['+j+']"]\').val(sum);\n' +
+					'\n' +
+					'\t\t\t\t});\n' +
+					'\n' +
+					'\t\t\t\t$(document).on(\'keyup\', \'input[name="one_liter_price['+j+']"]\', function () {\n' +
+					'\t\t\t\t\tvar count = $(\'input[name="count_liter['+j+']"]\').val();\n' +
+					'\t\t\t\t\tvar one_liter_price = $(this).val();\n' +
+					'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_liter_price);\n' +
+					'\n' +
+					'\t\t\t\t\t$(\'input[name="price['+j+']"]\').val(sum);\n' +
+					'\n' +
+					'\t\t\t\t});' +
+					'</' +
+					'script>'
+
+
+
+				);
+
+		});
+
+
+
+		//vehicle fine
+		var k = 1;
+		$(document).on('click', '.ex_3_add_new_tr', function () {
+			k++;
+
+			var fleet = $('input[name="vehicle[1]"]').val();
+			var staff = $('input[name="staff[1]"]').val();
+			var staff_id = $('input[name="staff_id[1]"]').val();
+
+			$('.ex_3').append('<tr role="row">\n' +
+				'<td><input title="" readonly type="text" name="vehicle[' + k + ']" value="'+fleet+'"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="date" name="date[' + k + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title=""  type="text" name="type[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
+				'<td>' +
+				'<input readonly title="" type="text"  value="'+staff+'" class="form-control text-center"/>\n' +
+				'<input type="hidden" name="staff_id['+ k +']" value="'+staff_id+'">' +
+				'</td>\n' +
+				'<td><input title=""  type="text" name="other_info[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="number" name="price[' + k + ']" min="0" class="form-control text-center"/></td>\n' +
+				'<td>' +
+				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+				'</span>' +
+				'</td>\n' +
+				'</tr>');
+
+		});
 
 	</script>

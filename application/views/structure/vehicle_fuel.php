@@ -1,22 +1,24 @@
-<form id="vehicle_inspection">
+<form id="vehicle_fuel">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
-		<table id="ex_1" class="table table-striped table-borderless w-100">
+		<table id="ex_2" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
 				<th class="table_th">Մեքենա</th>
 				<th class="table_th">Երբ</th>
 				<th class="table_th">Ում Կողմից</th>
-				<th class="table_th">Վերջնաժամկետ</th>
+				<th class="table_th">Վարորդ</th>
+				<th class="table_th">Քանակ Լիտր</th>
+				<th class="table_th">1 լիտր-արժեք</th>
 				<th class="table_th">Գումար</th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
-						  data-target="#vehicle_inspection_m"
-						  class=" btn btn-outline-secondary btn-sm " data-id="ex_1"
+						  data-target="#vehicle_fuel_m"
+						  class=" btn btn-outline-secondary btn-sm " data-id="ex_2"
 						  style="padding: .25rem .5rem !important;">
 				<? } else { ?>
-						<span class="ex_1_add_new_tr btn btn-outline-secondary btn-sm " data-id="ex_1"
+						<span class="ex_2_add_new_tr btn btn-outline-secondary btn-sm " data-id="ex_2"
 							  style="padding: .25rem .5rem !important;">
 				<? } ?>
 							<i class="fa fa-plus"> </i>
@@ -24,7 +26,7 @@
 				</th>
 			</tr>
 			</thead>
-			<tbody class="ex_1">
+			<tbody class="ex_2">
 			<?
 			if ($fleet_data) {
 				foreach ($fleet_data as $row) {
@@ -37,11 +39,18 @@
 						</td>
 						<td class="border">
 							<?= $row['add_date'] ?>
+						</td>
 						<td class="border">
 							<?= $row['user_name'] ?>
 						</td>
 						<td class="border">
-							<?= $row['end_date'] ?>
+							<?= $row['staff_name'] ?>
+						</td>
+						<td class="border">
+							<?= $row['count_liter'] ?>
+						</td>
+						<td class="border">
+							<?= $row['one_liter_price'] ?>
 						</td>
 						<td class="border">
 							<?= $row['price'] ?>
@@ -61,7 +70,7 @@
 						<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
 					</td>
 					<td class="border">
-						<input title="" type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
+						<input title=""  type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
 							   class="form-control text-center"/>
 					</td>
 					<td class="border">
@@ -69,7 +78,16 @@
 							   class="form-control text-center"/>
 					</td>
 					<td class="border">
-						<input title="" type="date" name="end_date[1]" max="3000-12-31" min="1000-01-01"
+						<input type="hidden" name="staff_id[1]" value="<?= $staff['id'] ?>">
+						<input title="" name="staff[1]" readonly type="text"  value="<?= $staff['name'] ?>"
+							   class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input title="" type="number" min="0" name="count_liter[1]" value=""
+							   class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input title="" type="number" min="0" name="one_liter_price[1]" value=""
 							   class="form-control text-center"/>
 					</td>
 					<td class="border">
@@ -87,7 +105,7 @@
 </form>
 
 <div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<span id="inspection" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
+	<span id="fuel" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
 	<span id="load" class="btn save_cancel_btn btn-success d-none">
 		<?=$this->load->loading_svg()?>
 	</span>
@@ -97,56 +115,54 @@
 </div>
 
 <!--   Modal Start -->
-<form id="vehicle_inspection_modal">
-	<div class="modal fade" tabindex="-1" role="dialog" id="vehicle_inspection_m"
+<form id="vehicle_fuel_modal">
+	<div class="modal fade " tabindex="-1" role="dialog" id="vehicle_fuel_m"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="max-width: 80% !important">
+		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">ՏԵԽ ԶՆՆՈՒՄ</h6>
+					<h6 class="text-white modal-title dar">ՎԱՌԵԼԻՔ</h6>
 
 				</div>
 				<div class="modal-body">
+					<input type="hidden" name="fleet_ids" value="<?=implode(',', $fleet['id'])?>">
 
 
+					<div class="form-group row mb-0">
+
+						<label class="col-sm-4 col-form-label">Երբ *</label>
+						<div class="col-sm-7">
+							<input type="date" name="date" class="form-control">
+						</div>
+					</div>
+
+					<div class="form-group row mb-0">
+
+						<label class="col-sm-4 col-form-label">Քանակ Լիտր *</label>
+						<div class="col-sm-7">
+							<input type="number" name="count_liter_m" placeholder="Քանակ Լիտր" class="form-control">
+						</div>
+					</div>
 
 
-					<table id="ex_1" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">Մեքենա</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Վերջնաժամկետ</th>
-							<th class="table_th">Գումար</th>
-						</tr>
-						</thead>
-						<tbody class="ex_1">
-						<? foreach ($fleet['name'] as $key => $name) { ?>
-							<tr class="">
-								<td class="border">
-									<?=$name?>
-									<input type="hidden" name="fl_id[<?=$key+1?>]" value="<?=$fleet['id'][$key]?>">
-								</td>
-								<td class="border">
-									<input title="" type="date" name="date[<?=$key+1?>]" value="<?= mdate('%Y-%m-%d', now()) ?>"
-										   class="form-control text-center"/>
-								</td>
-								<td class="border">
-									<input title="" type="date" name="end_date[<?=$key+1?>]" max="3000-12-31" min="1000-01-01"
-										   class="form-control text-center"/>
-								</td>
-								<td class="border">
-									<input title="" type="number" min="0" name="price[<?=$key+1?>]" value=""
-										   class="form-control text-center"/>
-								</td>
-							</tr>
-						<? } ?>
-						</tbody>
-					</table>
+					<div class="form-group row mb-0 mt-1">
+						<label class="col-sm-4 col-form-label">1 լիտր-արժեք *</label>
+						<div class="col-sm-7">
+							<input type="number" name="one_liter_price_m" placeholder="1 լիտր-արժեք" class="form-control">
+						</div>
+					</div>
+
+
+					<div class="form-group row mb-0 mt-1">
+						<label class="col-sm-4 col-form-label">Գումար *</label>
+						<div class="col-sm-7">
+							<input type="number" name="price_m" placeholder="Գումար" class="form-control">
+						</div>
+					</div>
 
 
 					<div class="modal-footer pb-0">
-						<button id="vehicle_inspection_add" type="button"
+						<button id="vehicle_fuel_add" type="button"
 								class="save_cancel_btn btn btn-success"><?= lang('save') ?>
 						</button>
 						<button id="load" class=" btn btn-success d-none"><?=$this->load->loading_svg()?></button>
@@ -165,6 +181,45 @@
 
 <script>
 
+
+
+		$(document).on('keyup', 'input[name="count_liter[1]"]', function () {
+			var count = $(this).val();
+			var one_liter_price = $('input[name="one_liter_price[1]"]').val();
+
+			sum =  parseFloat(count) * parseFloat(one_liter_price);
+
+			$('input[name="price[1]"]').val(sum);
+
+		});
+
+		$(document).on('keyup', 'input[name="one_liter_price[1]"]', function () {
+			var count = $('input[name="count_liter[1]"]').val();
+			var one_liter_price = $(this).val();
+			sum =  parseFloat(count) * parseFloat(one_liter_price);
+
+			$('input[name="price[1]"]').val(sum);
+
+		});
+
+
+		$(document).on('keyup', 'input[name="one_liter_price_m"],input[name="count_liter_m"]', function () {
+			var count = $('input[name="count_liter_m"]').val();
+			var one_liter_price = $('input[name="one_liter_price_m"]').val();
+			sum =  parseFloat(count) * parseFloat(one_liter_price);
+
+			$('input[name="price_m"]').val(sum);
+
+		});
+
+
+
+
+
+
+	$(".modal").on('hidden.bs.modal', function () {
+		location.reload();
+	});
 
 
 	<? if (count($fleet['id']) == 1) { ?>
@@ -190,14 +245,14 @@
 	<?}?>
 
 
-	ajax('form#vehicle_inspection', 'span#inspection');
+	ajax('form#vehicle_fuel', 'span#fuel');
 
-	ajax('form#vehicle_inspection_modal', '#vehicle_inspection_add');
+	ajax('form#vehicle_fuel_modal', '#vehicle_fuel_add');
 
 	function ajax(form, button) {
 
 		$(document).on('click', button, function (e) {
-			var url = '<?=base_url($this->uri->segment(1) . '/Structure/inspection_ax') ?>';
+			var url = '<?=base_url($this->uri->segment(1) . '/Structure/fuel_ax') ?>';
 			var me = $(this);
 			e.preventDefault();
 
@@ -223,7 +278,7 @@
 					if (data.success == '1') {
 
 						loading('stop', 'inspection');
-						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection')?>";
+						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/fuel')?>";
 						$(location).attr('href', url);
 
 					} else {

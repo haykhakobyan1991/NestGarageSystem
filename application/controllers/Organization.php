@@ -2768,7 +2768,7 @@ class Organization extends MX_Controller {
 		}
 
 
-		$this->db->update('fleet', array('total_value_1' => $total_value_1, 'total_value_2' =>  $total_value_2), array('id' => $data['fleet']['id']));
+		$this->db->update('fleet', array('total_value_1' => $total_value_1, 'total_value_2' =>  $total_value_2), array('id' => $data['fleet']['id'])); //todo mtacel
 
 
 		$this->layout->view('organization/edit_vehicles', $data);

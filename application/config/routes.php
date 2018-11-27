@@ -66,6 +66,7 @@ $route['^(ru|hy)/edit_vehicles/(:num)$'] = "Organization/edit_vehicles/$1";
 
 //structure
 $route['^(ru|hy)/structure1'] = "Structure/structure1";
+$route['^(ru|hy)/structure1/(:any)$'] = "Structure/structure1/$1";
 $route['^(ru|hy)/structure2'] = "Structure/structure2";
 $route['^(ru|hy)/structure3'] = "Structure/structure3";
 

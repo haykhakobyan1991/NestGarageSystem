@@ -896,7 +896,7 @@ $i = '';
 	});
 	/* Company logo uploade end */
 
-	$('input,select').on('change keyup textarea', function () {
+	$('input,select,textarea').on('change keyup', function () {
 		if (!$('.pos_abs_div').hasClass('animated')) {
 			$('.pos_abs_div').animate({
 				bottom: "+=60",

@@ -2145,6 +2145,8 @@ class Organization extends MX_Controller {
 		if($staff != '') {
 			$staff = implode(',', $this->input->post('staff'));
 		}
+		$registration_number = $this->input->post('fleet_plate_number');
+
 		$brand = $this->input->post('brand');
 		$model = $this->input->post('model');
 		$fleet_type = $this->input->post('fleet_type');
@@ -2505,6 +2507,7 @@ class Organization extends MX_Controller {
 					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
 					`other` = ".$this->load->db_value($other).",
 					`registrar_user_id` = ".$this->load->db_value($user_id).",
+					`registration_number` = ".$this->load->db_value($registration_number).",
 					`registration_date` = NOW(),
 					`owner_staff_id` = ".$this->load->db_value($owner_staff_id).",
 					`owner` = ".$this->load->db_value($owner).",

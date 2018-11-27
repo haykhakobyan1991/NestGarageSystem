@@ -94,10 +94,10 @@ class System_main extends CI_Controller {
 
 		if ($result->num_rows() > 0) {
 			if ($response_type == 'select') {
-				echo '<label class=" col-form-label">Մոդել *</label>
+				echo '<label class=" col-form-label col-sm-2">Մոդել *</label>
 
 						<select name="model"
-								class="col selectpicker form-control form-control-sm "
+								class="col selectpicker form-control form-control-sm col-sm-7"
 								data-size="5" id="model" 
 								data-live-search="true"
 								title="Select a model">';

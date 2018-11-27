@@ -186,7 +186,7 @@ $(document).on('click', '.langs > ul > li', function () {
 
 
 function scroll_top() {
-	$('.modal, body').animate({scrollTop: $('.modal, body').offset().top}, 700);
+	$('.modal, body').scrollTop('700');
 }
 
 function close_message() {

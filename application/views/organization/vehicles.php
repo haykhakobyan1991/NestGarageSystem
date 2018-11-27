@@ -13,7 +13,29 @@
 
 <script>
 	$(document).ready(function() {
-		$('#example3').DataTable();
+		$('#example3').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('showing')?> _START_ -ից _END_ -ը  _TOTAL_ <?=lang('record')?>",
+				infoEmpty: "<?=lang('showing')?> 0 -ից 0 -ը 0 <?=lang('record')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				},
+				buttons: {
+					copyTitle: 'Պատճենահանումը կատարվել է',
+					copySuccess: {
+						_: 'Պատճենվել է %d տող'
+					}
+				}
+			}
+		});
 	})
 </script>
 
@@ -93,11 +115,11 @@ color: #545b62;">
 						<tr>
 							<th style="font-size: 12px !important;font-weight: 500;">Հ/Հ</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Կցված</th>
-							<th style="font-size: 12px !important;font-weight: 500;">Status</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
 							<th style="font-size: 12px !important;font-weight: 500;">Տտեսակ մոդել*</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Գույն</th>
 							<th style="font-size: 12px !important;font-weight: 500;">Վին կոդ</th>
-							<th style="font-size: 12px !important;font-weight: 500;">Created date</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('Created_Date')?></th>
 							<th style="font-size: 12px !important;font-weight: 500;">Ում կողմից</th>
 							<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 						</tr>

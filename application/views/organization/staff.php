@@ -157,45 +157,43 @@ endforeach;
 												<div class="col-sm-6">
 													<div class="row">
 														<label
-															class="col-sm-4 col-form-label" style="font-size: 15px;">First
-															Name *</label>
+															class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('first_name')?> *</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="firstname"
-																   placeholder="First Name">
+																   placeholder="<?=lang('first_name')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label">Last
-															Name *</label>
+															class="col-sm-4 col-form-label"><?=lang('last_name')?> *</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="lastname"
-																   placeholder="Last Name">
+																   placeholder="<?=lang('last_name')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;">Email *</label>
+															style="font-size: 15px;"><?=lang('email')?> *</label>
 														<div class="col-sm-8">
 															<input type="email" class="form-control form-control-sm"
 																   name="email"
-																   placeholder="Email">
+																   placeholder="<?=lang('email')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;">Department</label>
+															style="font-size: 15px;"><?=lang('department')?></label>
 														<div class="col-sm-8">
 															<select name="department[]"
 																	class="col selectpicker form-control form-control-sm"
 																	multiple data-size="5" id="department"
 																	data-live-search="true"
-																	title="Select a Department">
-																<option value="">Select Department ...</option>
+																	title="<?=lang('select_department')?>">
+																<option value=""><?=lang('select_department')?> ...</option>
 																<? foreach ($department as $row) : ?>
 																	<option
 																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -204,19 +202,19 @@ endforeach;
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label class="col-sm-4 col-form-label">Position</label>
+														<label class="col-sm-4 col-form-label"><?=lang('position')?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="position"
-																   placeholder="Position">
+																   placeholder="<?=lang('position')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
-														<label class="col-sm-4 col-form-label">Nest Card ID</label>
+														<label class="col-sm-4 col-form-label"><?=lang('nest_card_id')?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="nest_card_id"
-																   placeholder="Nest Card ID">
+																   placeholder="<?=lang('nest_card_id')?>">
 														</div>
 													</div>
 												</div>
@@ -225,13 +223,13 @@ endforeach;
 												<div class="col-sm-6">
 													<div class="row">
 														<label
-															class="col-sm-4 col-form-label">Leave Country</label>
+															class="col-sm-4 col-form-label"><?=lang('country')?></label>
 														<div class="col-sm-8">
 															<select name="country"
 																	class="col selectpicker form-control form-control-sm"
 																	data-size="5" id="country" data-live-search="true"
-																	title="Select a Country">
-																<option value="">Select a Country ...</option>
+																	title="<?=lang('select_country')?>">
+																<option value=""><?=lang('select_country')?> ...</option>
 																<? foreach ($country as $row) : ?>
 																	<option
 																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -241,33 +239,28 @@ endforeach;
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
 														<label
-															class="col-sm-4 col-form-label" style="font-size: 15px;">Address
-															Leave</label>
+															class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('address')?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="address"
-																   placeholder="Address">
+																   placeholder="<?=lang('address')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label">Post
-															Code</label>
+															class="col-sm-4 col-form-label"><?=lang('post_code')?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="post_code"
-																   placeholder="Post Code">
+																   placeholder="<?=lang('post_code')?>">
 														</div>
 													</div>
 													<div class="row mt-1">
-														<label
-															class="col-sm-4 col-form-label" style="font-size: 15px;">Contact
-															Number
-														</label>
+														<label class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('contact_number')?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="contact_1"
-																   placeholder="Contact Number 1">
+																   placeholder="<?=lang('contact_number')?> 1">
 														</div>
 													</div>
 													<div class="row mt-1">
@@ -275,19 +268,16 @@ endforeach;
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="contact_2"
-																   placeholder="Contact Number 2">
+																   placeholder="<?=lang('contact_number')?> 2">
 														</div>
 													</div>
 
 												</div>
-												<div class="col-sm-12 ">
-													<div class="row ">
-														<label class="col-sm-12"
-															   for="exampleFormControlTextarea1">Other</label>
-													</div>
+												<div class="col-sm-12 mt-1 ">
+
 													<div class="row" style="    margin-right: -1px;
     margin-left: -1px;">
-															<textarea placeholder="Other"
+															<textarea placeholder="<?=lang('other')?>"
 																	  class="form-control col-sm-12"
 																	  id="exampleFormControlTextarea1"
 																	  name="other"
@@ -299,9 +289,7 @@ endforeach;
 
 												<div class="form-group row mt-1 ml-1">
 													<label
-														class="col-sm-10 col-form-label">Status make
-														a
-														Passive?</label>
+														class="col-sm-10 col-form-label"><?=lang('status_make_passive') ?></label>
 													<div class="col-sm-2 mt-2">
 														<input style="width:18px; height: 18px;" name="status"
 															   value="-1"
@@ -335,11 +323,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Document</label>
+																				<label><?=lang('document')?></label>
 																				<input type="text"
 																					   name="document_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Document">
+																					   placeholder="<?=lang('document')?>">
 																			</div>
 																		</div>
 
@@ -352,7 +340,7 @@ endforeach;
     font-weight: 500 !important;
     margin-left: -8px;"
 																					   class="btn btn-sm btn-outline-success">
-																					<span>Brows file</span>
+																					<span><?=lang('browse')?></span>
 																					<input class="btn_input"
 																						   name="file_1" type="file"
 																						   hidden style="display: none;"
@@ -363,15 +351,15 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Reference</label>
+																				<label><?=lang('reference')?></label>
 																				<input type="text"
 																					   name="reference_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Reference">
+																					   placeholder="<?=lang('reference')?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label>Epired Date</label>
+																			<label><?=lang('expired_date')?></label>
 																			<input type="date" name="expiration_1"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -380,11 +368,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Note</label>
+																				<label><?=lang('note')?></label>
 																				<input type="text"
 																					   name="note_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="Note">
+																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
 
@@ -418,11 +406,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Document</label>
+																				<label><?=lang('document')?></label>
 																				<input type="text"
 																					   name="document_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Document">
+																					   placeholder="<?=lang('document')?>">
 																			</div>
 																		</div>
 
@@ -435,7 +423,7 @@ endforeach;
     font-weight: 500 !important;
     margin-left: -8px;"
 																					   class="btn btn-sm btn-outline-success">
-																					<span>Brows file</span>
+																					<span><?=lang('browse')?></span>
 																					<input class="btn_input"
 																						   name="file_2" type="file"
 																						   hidden style="display: none;"
@@ -446,15 +434,15 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Reference</label>
+																				<label><?=lang('reference')?></label>
 																				<input type="text"
 																					   name="reference_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Reference">
+																					   placeholder="<?=lang('reference')?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label>Epired Date</label>
+																			<label><?=lang('expired_date')?></label>
 																			<input type="date" name="expiration_2"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -463,11 +451,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Note</label>
+																				<label><?=lang('note')?></label>
 																				<input type="text"
 																					   name="note_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="Note">
+																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
 
@@ -501,11 +489,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Document</label>
+																				<label><?=lang('document')?></label>
 																				<input type="text"
 																					   name="document_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Document">
+																					   placeholder="<?=lang('document')?>">
 																			</div>
 																		</div>
 
@@ -518,7 +506,7 @@ endforeach;
     font-weight: 500 !important;
     margin-left: -8px;"
 																					   class="btn btn-sm btn-outline-success">
-																					<span>Brows file</span>
+																					<span><?=lang('browse')?></span>
 																					<input class="btn_input"
 																						   name="file_3" type="file"
 																						   hidden style="display: none;"
@@ -529,15 +517,15 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Reference</label>
+																				<label><?=lang('reference')?></label>
 																				<input type="text"
 																					   name="reference_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Reference">
+																					   placeholder="<?=lang('reference')?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label>Epired Date</label>
+																			<label><?=lang('expired_date')?></label>
 																			<input type="date" name="expiration_3"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -546,11 +534,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Note</label>
+																				<label><?=lang('note')?></label>
 																				<input type="text"
 																					   name="note_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="Note">
+																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
 
@@ -583,11 +571,11 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Document</label>
+																				<label><?=lang('document')?></label>
 																				<input type="text"
 																					   name="document_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Document">
+																					   placeholder="<?=lang('document')?>">
 																			</div>
 																		</div>
 
@@ -600,7 +588,7 @@ endforeach;
     font-weight: 500 !important;
     margin-left: -8px;"
 																					   class="btn btn-sm btn-outline-success">
-																					<span>Brows file</span>
+																					<span><?=lang('browse')?></span>
 																					<input class="btn_input"
 																						   name="file_4" type="file"
 																						   hidden style="display: none;"
@@ -611,15 +599,15 @@ endforeach;
 
 																		<div class="col-md-2">
 																			<div class="form-group">
-																				<label>Reference</label>
+																				<label><?=lang('reference')?></label>
 																				<input type="text"
 																					   name="reference_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Reference">
+																					   placeholder="<?=lang('reference')?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label>Epired Date</label>
+																			<label><?=lang('expired_date')?></label>
 																			<input type="date" name="expiration_4"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -628,11 +616,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label>Note</label>
+																				<label><?=lang('note')?></label>
 																				<input type="text"
 																					   name="note_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="Note">
+																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
 
@@ -682,12 +670,12 @@ endforeach;
 					<thead style="background: #fff;
 color: #545b62;">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">Name Lastname</th>
-						<th style="font-size: 12px !important;font-weight:500;">Status</th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('name_lastname')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('status')?></th>
 						<th style="font-size: 12px !important;font-weight:500;">Պաշտոն</th>
 						<th style="font-size: 12px !important;font-weight:500;">Բաժին</th>
 						<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
-						<th style="font-size: 12px !important;font-weight:500;">Created date</th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
 						<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
 						<th style="font-size: 12px !important;font-weight:500;max-width: 400px">Փաստաթուղթ</th>
 						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
@@ -838,8 +826,7 @@ color: #545b62;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 15px;">are
-					you sure you want to delete ? </h6>
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 15px;"><?=lang('are_you_sure_you_want_to_delete')?></h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
@@ -873,7 +860,29 @@ color: #545b62;">
 
 
 	$(document).ready(function () {
-		$('#example2').DataTable();
+		$('#example2').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('showing')?> _START_ -ից _END_ -ը  _TOTAL_ <?=lang('record')?>",
+				infoEmpty: "<?=lang('showing')?> 0 -ից 0 -ը 0 <?=lang('record')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				},
+				buttons: {
+					copyTitle: 'Պատճենահանումը կատարվել է',
+					copySuccess: {
+						_: 'Պատճենվել է %d տող'
+					}
+				}
+			}
+		});
 	});
 
 

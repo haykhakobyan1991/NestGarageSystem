@@ -244,4 +244,35 @@ class MY_Loader extends MX_Loader
 	}
 
 
+	/**
+	 * @param $fleet_id
+	 * @return mixed
+	 */
+	public function get_drivers ($fleet_id)
+	{
+		$sql_add_staff = "
+				SELECT
+				   `staff`.`id`,
+				   CONCAT_WS(
+					  ' ',
+					  `staff`.`first_name`,
+					  `staff`.`last_name`
+				   ) AS `name`
+				FROM 
+				 `fleet`  
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+			   WHERE `fleet`.`id` = '" . $fleet_id . "'
+			    GROUP BY `staff`.`id`		
+			";
+
+		$query_add_staff = $this->db->query($sql_add_staff);
+
+		return $query_add_staff->result_array();
+	}
+
+
 }

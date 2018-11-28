@@ -1202,12 +1202,16 @@
 		});
 
 
+
+
+
 		function vehicle_inspection(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
 				$('.tab-pane').each(function(){
 					if($(this).data('tab') == 1) {
 						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
 					}
 				});
 			});
@@ -1219,6 +1223,7 @@
 				$('.tab-pane').each(function(){
 					if($(this).data('tab') == 2) {
 						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
 					}
 				});
 			});
@@ -1230,6 +1235,7 @@
 				$('.tab-pane').each(function(){
 					if($(this).data('tab') == 3) {
 						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
 					}
 				});
 			});
@@ -1241,6 +1247,7 @@
 				$('.tab-pane').each(function(){
 					if($(this).data('tab') == 4) {
 						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
 					}
 				});
 			});
@@ -1269,84 +1276,7 @@
 
 		});
 
-		//vehicle fuel
-		var j = 1;
-		$(document).on('click', '.ex_2_add_new_tr', function () {
-			j++;
-
-			var fleet = $('input[name="vehicle[1]"]').val();
-			var staff = $('input[name="staff[1]"]').val();
-			var staff_id = $('input[name="staff_id[1]"]').val();
-
-				$('.ex_2').append('<tr role="row">\n' +
-					'<td><input readonly title="" type="text" name="vehicle[' + j + ']" value="'+fleet+'" class="form-control text-center"/></td>\n' +
-					'<td><input  title="" type="text" name="date[' + j + ']" value="<?= mdate('%Y-%m-%d', now()) ?>" class="form-control text-center"/></td>\n' +
-					'<td><input readonly title="" type="text" name="user[' + j + ']" value="<?= $user['name'] ?>" class="form-control text-center"/></td>\n' +
-					'<td>' +
-					'<input readonly title="" type="text"  value="'+staff+'" class="form-control text-center"/>' +
-					'<input type="hidden" name="staff_id['+ j +']" value="'+staff_id+'">' +
-					'</td>\n' +
-					'<td><input title="" type="number" name="count_liter[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-					'<td><input title="" type="number" name="one_liter_price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-					'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-					'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
-					'</tr>' +
-					'<script>' +
-					'$(document).on(\'keyup\', \'input[name="count_liter['+j+']"]\', function () {\n' +
-					'\t\t\t\t\tvar count = $(this).val();\n' +
-					'\t\t\t\t\tvar one_liter_price = $(\'input[name="one_liter_price['+j+']"]\').val();\n' +
-					'\n' +
-					'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_liter_price);\n' +
-					'\n' +
-					'\t\t\t\t\t$(\'input[name="price['+j+']"]\').val(sum);\n' +
-					'\n' +
-					'\t\t\t\t});\n' +
-					'\n' +
-					'\t\t\t\t$(document).on(\'keyup\', \'input[name="one_liter_price['+j+']"]\', function () {\n' +
-					'\t\t\t\t\tvar count = $(\'input[name="count_liter['+j+']"]\').val();\n' +
-					'\t\t\t\t\tvar one_liter_price = $(this).val();\n' +
-					'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_liter_price);\n' +
-					'\n' +
-					'\t\t\t\t\t$(\'input[name="price['+j+']"]\').val(sum);\n' +
-					'\n' +
-					'\t\t\t\t});' +
-					'</' +
-					'script>'
 
 
-
-				);
-
-		});
-
-
-
-		//vehicle fine
-		var k = 1;
-		$(document).on('click', '.ex_3_add_new_tr', function () {
-			k++;
-
-			var fleet = $('input[name="vehicle[1]"]').val();
-			var staff = $('input[name="staff[1]"]').val();
-			var staff_id = $('input[name="staff_id[1]"]').val();
-
-			$('.ex_3').append('<tr role="row">\n' +
-				'<td><input title="" readonly type="text" name="vehicle[' + k + ']" value="'+fleet+'"  class="form-control text-center"/></td>\n' +
-				'<td><input title="" type="date" name="date[' + k + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
-				'<td><input title=""  type="text" name="type[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
-				'<td>' +
-				'<input readonly title="" type="text"  value="'+staff+'" class="form-control text-center"/>\n' +
-				'<input type="hidden" name="staff_id['+ k +']" value="'+staff_id+'">' +
-				'</td>\n' +
-				'<td><input title=""  type="text" name="other_info[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
-				'<td><input title="" type="number" name="price[' + k + ']" min="0" class="form-control text-center"/></td>\n' +
-				'<td>' +
-				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
-				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
-				'</span>' +
-				'</td>\n' +
-				'</tr>');
-
-		});
 
 	</script>

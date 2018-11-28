@@ -24,7 +24,7 @@
 				</th>
 			</tr>
 			</thead>
-			<tbody class="ex_1">
+			<tbody >
 			<?
 			if ($fleet_data) {
 				foreach ($fleet_data as $row) {
@@ -52,34 +52,36 @@
 					<?
 				}
 			}
-
+			echo '</tbody>';
 			if (count($fleet['id']) == 1) { ?>
-				<tr>
-					<td class="border">
-						<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
-							   class="form-control text-center"/>
-						<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
-					</td>
-					<td class="border">
-						<input title="" type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title="" readonly type="text" name="user[1]" value="<?= $user['name'] ?>"
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title="" type="date" name="end_date[1]" max="3000-12-31" min="1000-01-01"
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title="" type="number" min="0" name="price[1]" value=""
-							   class="form-control text-center"/>
-					</td>
-					<td class="border"></td>
-				</tr>
+			<tfoot class="ex_1">
+			<tr>
+				<td class="border">
+					<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
+						   class="form-control text-center"/>
+					<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
+				</td>
+				<td class="border">
+					<input title="" type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<input title="" readonly type="text" name="user[1]" value="<?= $user['name'] ?>"
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<input title="" type="date" name="end_date[1]" max="3000-12-31" min="1000-01-01"
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<input title="" type="number" min="0" name="price[1]" value=""
+						   class="form-control text-center"/>
+				</td>
+				<td class="border"></td>
+			</tr>
+			</tfoot>
 			<? } ?>
-			</tbody>
+
 		</table>
 	</div>
 </div>
@@ -120,7 +122,7 @@
 							<th class="table_th">Գումար</th>
 						</tr>
 						</thead>
-						<tbody class="ex_1">
+						<tbody>
 						<? foreach ($fleet['name'] as $key => $name) { ?>
 							<tr class="">
 								<td class="border">
@@ -164,6 +166,17 @@
 <!--modal end-->
 
 <script>
+
+
+	var table = $('#ex_1').DataTable({
+		"paging": false,
+		"info": false,
+		"columnDefs": [
+			{"orderable": false, "targets": 5}
+		]
+	});
+
+	table.order([0, 'asc']).draw();
 
 
 
@@ -223,7 +236,7 @@
 					if (data.success == '1') {
 
 						loading('stop', 'inspection');
-						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/inspection')?>";
+						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses')?>";
 						$(location).attr('href', url);
 
 					} else {

@@ -1461,12 +1461,10 @@ class Structure extends MX_Controller {
 
 
 
-
-
 		if($fleet_arr) {
 
 
-			echo $sql_add_staff = "
+			$sql_add_staff = "
 				SELECT
 				   `staff`.`id`,
 				   CONCAT_WS(
@@ -1487,7 +1485,7 @@ class Structure extends MX_Controller {
 
 			$query_add_staff = $this->db->query($sql_add_staff);
 
-			$data['staff'] = $query_add_staff->row_array();
+			$data['staff'] = $query_add_staff->result_array();
 
 
 			$data['fleet'] = $fleet_arr;
@@ -1528,6 +1526,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `fuel_consumption`.`status` = '1' 
 				AND FIND_IN_SET(`fuel_consumption`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				ORDER BY `brand_model`
 			";
 
 			$query = $this->db->query($sql);
@@ -1568,8 +1567,6 @@ class Structure extends MX_Controller {
 
 
 
-
-
 		if ($fleet_id != '') {
 
 
@@ -1600,6 +1597,12 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
+
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
 				endforeach;
 			endif;
@@ -1632,15 +1635,15 @@ class Structure extends MX_Controller {
 
 			foreach ($date as $key => $add_dte) {
 				$sql .= "(
-				" . $this->load->db_value($add_dte) . ",
-				" . $this->load->db_value($user_id) . ",
-				" . $this->load->db_value($staff_id[$key]) . ",
-				" . $this->load->db_value($count_liter[$key]) . ",
-				" . $this->load->db_value($one_liter_price[$key]) . ",
-				" . $this->load->db_value($price[$key]) . ",
-				" . $this->load->db_value($fleet_id) . ",
-				" . $this->load->db_value($status) . "
-			),";
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($staff_id[$key]) . ",
+					" . $this->load->db_value($count_liter[$key]) . ",
+					" . $this->load->db_value($one_liter_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
 			}
 
 			$sql = substr($sql, 0, -1);
@@ -1649,32 +1652,48 @@ class Structure extends MX_Controller {
 
 		} else {
 
-			$fleet_ids = explode(',', $this->input->post('fleet_ids'));
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$one_liter_price = $this->input->post('one_liter_price');
+			$count_liter = $this->input->post('count_liter');
+			$staff_id = $this->input->post('staff_id');
 			$date = $this->input->post('date');
-			$price = $this->input->post('price_m');
-			$one_liter_price = $this->input->post('one_liter_price_m');
-			$count_liter = $this->input->post('count_liter_m');
 			$status = '1';
 
+			if (is_array($one_liter_price)) :
+				foreach ($one_liter_price as $i => $one_liter_price_val) :
+					if ($one_liter_price_val == '') :
+						$n = 1;
+						$validation_errors = array('one_liter_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
 
-			$this->form_validation->set_rules('date', 'date', 'required');
-			$this->form_validation->set_rules('one_liter_price_m', 'one_liter_price', 'required');
-			$this->form_validation->set_rules('count_liter_m', 'count_liter', 'required');
-			$this->form_validation->set_rules('price_m', 'price', 'required');
+					if ($price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
-			if($this->form_validation->run() == false){
-				//validation errors
-				$n = 1;
+					if ($count_liter[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count_liter[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
-				$validation_errors = array(
-					'date' => form_error('date'),
-					'one_liter_price' => form_error('one_liter_price'),
-					'count_liter' => form_error('count_liter'),
-					'price' => form_error('price')
-				);
-				$messages['error']['elements'][] = $validation_errors;
-			}
+
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
 
 
 			if($n == 1) {
@@ -1698,35 +1717,18 @@ class Structure extends MX_Controller {
 			";
 
 
-			foreach ($fleet_ids as $key => $fl_id) {
-
-				$sql_s = "
-						SELECT 
-							`staff`.`id` 
-						FROM 
-						  `fleet`
-						LEFT JOIN `staff` 
-							ON FIND_IN_SET(
-							  `staff`.`id`,
-							  `fleet`.`staff_ids`
-							) 
-						WHERE `fleet`.`id` = '".$fl_id."'	
-				";
-
-				$query_s = $this->db->query($sql_s);
-
-				$staff = $query_s->row_array();
+			foreach ($fl_ids as $key => $fl_id) {
 
 				$sql .= "(
-				" . $this->load->db_value($date) . ",
-				" . $this->load->db_value($user_id) . ",
-				" . $this->load->db_value($staff['id']) . ",
-				" . $this->load->db_value($count_liter) . ",
-				" . $this->load->db_value($one_liter_price) . ",
-				" . $this->load->db_value($price) . ",
-				" . $this->load->db_value($fl_id) . ",
-				" . $this->load->db_value($status) . "
-			),";
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($staff_id[$key]) . ",
+					" . $this->load->db_value($count_liter[$key]) . ",
+					" . $this->load->db_value($one_liter_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
 			}
 
 			$sql = substr($sql, 0, -1);
@@ -1789,8 +1791,6 @@ class Structure extends MX_Controller {
 
 
 
-
-
 		if($fleet_arr) {
 
 
@@ -1809,12 +1809,13 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'			
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
 			";
 
 			$query_add_staff = $this->db->query($sql_add_staff);
 
-			$data['staff'] = $query_add_staff->row_array();
+			$data['staff'] = $query_add_staff->result_array();
 
 
 			$data['fleet'] = $fleet_arr;
@@ -1916,6 +1917,12 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
 
 					if ($price[$i] == '') :
 						$n = 1;
@@ -1976,25 +1983,34 @@ class Structure extends MX_Controller {
 			$price = $this->input->post('price');
 			$type = $this->input->post('type');
 			$other_info = $this->input->post('other_info');
+			$staff_id = $this->input->post('staff_id');
 			$status = '1';
 
+			if (is_array($type)) :
+				foreach ($type as $i => $type_val) :
+
+					if ($type_val == '') :
+						$n = 1;
+						$validation_errors = array('type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
 
-			$this->form_validation->set_rules('date', 'date', 'required');
-			$this->form_validation->set_rules('type', 'type', 'required');
-			$this->form_validation->set_rules('price', 'price', 'required');
+					if ($price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
 
-			if($this->form_validation->run() == false){
-				//validation errors
-				$n = 1;
-
-				$validation_errors = array(
-					'date' => form_error('date'),
-					'type' => form_error('type'),
-					'price' => form_error('price')
-				);
-				$messages['error']['elements'][] = $validation_errors;
-			}
+				endforeach;
+			endif;
+			// end of validation
 
 
 			if($n == 1) {
@@ -2020,33 +2036,362 @@ class Structure extends MX_Controller {
 
 			foreach ($fl_ids as $key => $fl_id) {
 
-				$sql_s = "
-						SELECT 
-							`staff`.`id` 
-						FROM 
-						  `fleet`
-						LEFT JOIN `staff` 
-							ON FIND_IN_SET(
-							  `staff`.`id`,
-							  `fleet`.`staff_ids`
-							) 
-						WHERE `fleet`.`id` = '".$fl_id."'	
-				";
-
-				$query_s = $this->db->query($sql_s);
-
-				$staff = $query_s->row_array();
-
 				$sql .= "(
-				" . $this->load->db_value($date) . ",
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($type[$key]) . ",
+					" . $this->load->db_value($staff_id[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function vehicle_accident() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+
+			$sql_add_staff = "
+				SELECT
+				   `staff`.`id`,
+				   CONCAT_WS(
+					  ' ',
+					  `staff`.`first_name`,
+					  `staff`.`last_name`
+				   ) AS `name`
+				FROM 
+				 `fleet`  
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
+			";
+
+			$query_add_staff = $this->db->query($sql_add_staff);
+
+			$data['staff'] = $query_add_staff->result_array();
+
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `accident`.`id`,
+				  `accident`.`add_date`,
+				  `accident`.`add_user_id`,
+				  `accident`.`staff_id`, /**/
+				  `accident`.`insurance_company`,
+				  `accident`.`conclusion_number`,
+				  `accident`.`replacement_parts`,
+				  `accident`.`return_amount`,
+				  `accident`.`fleet_id`, /**/
+				  CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+				  ) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  CONCAT_WS(
+					' ',
+					`staff`.`first_name`,
+					`staff`.`last_name`
+				  ) AS staff_name,
+				  `accident`.`status` 
+				FROM
+				  `accident` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `accident`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `accident`.`add_user_id`
+				LEFT JOIN `staff` 
+					ON `staff`.`id` = `accident`.`staff_id`		
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `accident`.`status` = '1' 
+				AND FIND_IN_SET(`accident`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_accident', $data);
+		}
+	}
+
+
+	public function accident_ax() {
+
+		//$this->load->authorisation('Structure', 'fuel');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+		if ($fleet_id != '') {
+
+
+			$conclusion_number = $this->input->post('conclusion_number');
+			$insurance_company = $this->input->post('insurance_company');
+			$replacement_parts = $this->input->post('replacement_parts');
+			$return_amount = $this->input->post('return_amount');
+			$staff_id = $this->input->post('staff_id');
+			$date = $this->input->post('date');
+
+			if (is_array($insurance_company)) :
+				foreach ($insurance_company as $i => $insurance_company_val) :
+
+					if ($insurance_company_val == '') :
+						$n = 1;
+						$validation_errors = array('insurance_company[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($replacement_parts[$i] == '') :
+						$n = 1;
+						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($conclusion_number[$i] == '') :
+						$n = 1;
+						$validation_errors = array('conclusion_number[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($return_amount[$i] == '') :
+						$n = 1;
+						$validation_errors = array('return_amount[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `accident` (
+				  `add_date`,
+				  `add_user_id`,
+				  `insurance_company`,
+				  `staff_id`,
+				  `conclusion_number`,
+				  `replacement_parts`,
+				  `return_amount`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+				" . $this->load->db_value($add_dte) . ",
 				" . $this->load->db_value($user_id) . ",
-				" . $this->load->db_value($type) . ",
-				" . $this->load->db_value($staff['id']) . ",
-				" . $this->load->db_value($price) . ",
-				" . $this->load->db_value($other_info) . ",
-				" . $this->load->db_value($fl_id) . ",
+				" . $this->load->db_value($insurance_company[$key]) . ",
+				" . $this->load->db_value($staff_id[$key]) . ",
+				" . $this->load->db_value($conclusion_number[$key]) . ",
+				" . $this->load->db_value($replacement_parts[$key]) . ",
+				" . $this->load->db_value($return_amount[$key]) . ",
+				" . $this->load->db_value($fleet_id) . ",
 				" . $this->load->db_value($status) . "
 			),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$conclusion_number = $this->input->post('conclusion_number');
+			$insurance_company = $this->input->post('insurance_company');
+			$replacement_parts = $this->input->post('replacement_parts');
+			$return_amount = $this->input->post('return_amount');
+			$staff_id = $this->input->post('staff_id');
+			$date = $this->input->post('date');
+			$status = '1';
+
+
+			if (is_array($insurance_company)) :
+				foreach ($insurance_company as $i => $insurance_company_val) :
+
+					if ($insurance_company_val == '') :
+						$n = 1;
+						$validation_errors = array('insurance_company[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($staff_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($replacement_parts[$i] == '') :
+						$n = 1;
+						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($conclusion_number[$i] == '') :
+						$n = 1;
+						$validation_errors = array('conclusion_number[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($return_amount[$i] == '') :
+						$n = 1;
+						$validation_errors = array('return_amount[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `accident` (
+				  `add_date`,
+				  `add_user_id`,
+				  `insurance_company`,
+				  `staff_id`,
+				  `conclusion_number`,
+				  `replacement_parts`,
+				  `return_amount`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($insurance_company[$key]) . ",
+					" . $this->load->db_value($staff_id[$key]) . ",
+					" . $this->load->db_value($conclusion_number[$key]) . ",
+					" . $this->load->db_value($replacement_parts[$key]) . ",
+					" . $this->load->db_value($return_amount[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
 			}
 
 			$sql = substr($sql, 0, -1);

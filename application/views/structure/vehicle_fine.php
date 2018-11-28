@@ -7,7 +7,7 @@
 				<th class="table_th">Մեքենա</th>
 				<th class="table_th">Երբ</th>
 				<th class="table_th">Տեասակ</th>
-				<th class="table_th">Վարորդ</th>
+				<th class="table_th" style="min-width: 150px;">Վարորդ</th>
 				<th class="table_th">Այլ Ինֆորմացիա</th>
 				<th class="table_th">Գումար</th>
 				<th class="">
@@ -25,7 +25,7 @@
 				</th>
 			</tr>
 			</thead>
-			<tbody class="ex_3">
+			<tbody>
 			<?
 			if ($fleet_data) {
 				foreach ($fleet_data as $row) {
@@ -57,39 +57,44 @@
 					<?
 				}
 			}
-
+			echo '</tbody>';
 			if (count($fleet['id']) == 1) { ?>
-				<tr>
-					<td class="border">
-						<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
-							   class="form-control text-center"/>
-						<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
-					</td>
-					<td class="border">
-						<input title=""  type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title=""  type="text" name="type[1]" value=""
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input type="hidden" name="staff_id[1]" value="<?= $staff['id'] ?>">
-						<input title="" name="staff[1]" readonly type="text"  value="<?= $staff['name'] ?>"
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title="" type="text" name="other_info[1]" value=""
-							   class="form-control text-center"/>
-					</td>
-					<td class="border">
-						<input title="" type="number" min="0" name="price[1]" value=""
-							   class="form-control text-center"/>
-					</td>
-					<td class="border"></td>
-				</tr>
+			<tfoot class="ex_3">
+			<tr>
+				<td class="border">
+					<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
+						   class="form-control text-center"/>
+					<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
+				</td>
+				<td class="border">
+					<input title="" type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<input title="" type="text" name="type[1]" value=""
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<select class="form-control selectpicker" data-size="5" name="staff_id[1]" title="Վարորդ">
+						<? foreach ($staff as $st) { ?>
+							<option value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
+						<? } ?>
+					</select>
+
+				</td>
+				<td class="border">
+					<input title="" type="text" name="other_info[1]" value=""
+						   class="form-control text-center"/>
+				</td>
+				<td class="border">
+					<input title="" type="number" min="0" name="price[1]" value=""
+						   class="form-control text-center"/>
+				</td>
+				<td class="border"></td>
+			</tr>
+			</tfoot>
 			<? } ?>
-			</tbody>
+
 		</table>
 	</div>
 </div>
@@ -110,47 +115,64 @@
 <form id="vehicle_fine_modal">
 	<div class="modal fade " tabindex="-1" role="dialog" id="vehicle_fine_m"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
+		<div class="modal-dialog" style="max-width: 80%">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
 					<h6 class="text-white modal-title dar">ՏՈւԳԱՆՔ</h6>
 
 				</div>
 				<div class="modal-body">
-					<input type="hidden" name="fleet_ids" value="<?=implode(',', $fleet['id'])?>">
 
+					<table class="table table-striped table-borderless w-100">
+						<thead class="thead_tables">
+						<tr>
+							<th class="table_th">Մեքենա</th>
+							<th class="table_th">Երբ</th>
+							<th class="table_th">Տեասակ</th>
+							<th class="table_th" style="min-width: 150px;">Վարորդ</th>
+							<th class="table_th">Այլ Ինֆորմացիա</th>
+							<th class="table_th">Գումար</th>
+						</tr>
+						</thead>
+						<tbody>
+						<? foreach ($fleet['name'] as $key => $name) { ?>
+							<tr class="">
+								<td class="border">
+									<?= $name ?>
+									<input type="hidden" name="fl_id[<?= $key + 1 ?>]"
+										   value="<?= $fleet['id'][$key] ?>">
+								</td>
+								<td class="border">
+									<input title="" type="date" name="date[<?= $key + 1 ?>]"
+										   value="<?= mdate('%Y-%m-%d', now()) ?>"
+										   class="form-control text-center"/>
+								</td>
+								<td class="border">
+									<input type="text" name="type[<?= $key + 1 ?>]"
+										   class="form-control">
+								</td>
+								<td>
+									<select class="form-control selectpicker" data-size="5"
+											name="staff_id[<?= $key + 1 ?>]" title="Վարորդ">
+										<? foreach ($this->load->get_drivers($fleet['id'][$key]) as $st) { ?>
+											<option value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
+										<? } ?>
+									</select>
+								</td>
+								<td class="border">
+									<input type="text" name="other_info[<?= $key + 1 ?>]"
+										   class="form-control">
+								</td>
 
-					<div class="form-group row mb-0">
+								<td class="border">
+									<input title="" type="number" min="0" name="price[<?= $key + 1 ?>]" value=""
+										   class="form-control text-center"/>
+								</td>
+							</tr>
 
-						<label class="col-sm-4 col-form-label">Երբ *</label>
-						<div class="col-sm-7">
-							<input type="date" name="date" class="form-control">
-						</div>
-					</div>
-
-					<div class="form-group row mb-0 mt-1 ">
-
-						<label class="col-sm-4 col-form-label">Տեասակ *</label>
-						<div class="col-sm-7">
-							<input type="text" name="type" placeholder="Տեասակ" class="form-control">
-						</div>
-					</div>
-
-
-					<div class="form-group row mb-0 mt-1">
-						<label class="col-sm-4 col-form-label">Այլ Ինֆորմացիա</label>
-						<div class="col-sm-7">
-							<input type="text" name="other_info" placeholder="Այլ Ինֆորմացիա" class="form-control">
-						</div>
-					</div>
-
-
-					<div class="form-group row mb-1 mt-1">
-						<label class="col-sm-4 col-form-label">Գումար *</label>
-						<div class="col-sm-7">
-							<input type="number" name="price" placeholder="Գումար" class="form-control">
-						</div>
-					</div>
+						<? } ?>
+						</tbody>
+					</table>
 
 
 					<div class="modal-footer pb-0">
@@ -174,13 +196,78 @@
 <script>
 
 
+	//vehicle fine
+	var k = 1;
+	$(document).on('click', '.ex_3_add_new_tr', function (e) {
+		k++;
+
+		var fleet = $('input[name="vehicle[1]"]').val();
 
 
+		var me = $(this);
+		e.preventDefault();
 
-	$(".modal").on('hidden.bs.modal', function () {
-		location.reload();
+		if (me.data('requestRunning')) {
+			return;
+		}
+
+		me.data('requestRunning', true);
+
+		$.when($('.ex_3').append('<tr role="row">\n' +
+			'<td><input title="" readonly type="text" name="vehicle[' + k + ']" value="' + fleet + '"  class="form-control text-center"/></td>\n' +
+			'<td><input title="" type="date" name="date[' + k + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+			'<td><input title=""  type="text" name="type[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
+			'<td>' +
+			'<select class="form-control selectpicker" data-size="5"  name="staff_id[' + k + ']" title="Վարորդ">\n' +
+			'\t\t\t\t<?foreach ($staff as $st) {?>\n' +
+			'\t\t\t\t<option value="<?=$st['id']?>"><?=$st['name']?></option>\n' +
+			'\t\t\t\t<?}?>\n' +
+			'\t\t\t\t</select>\n' +
+			'</td>\n' +
+			'<td><input title=""  type="text" name="other_info[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
+			'<td><input title="" type="number" name="price[' + k + ']" min="0" class="form-control text-center"/></td>\n' +
+			'<td>' +
+			'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+			'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+			'</span>' +
+			'</td>\n' +
+			'</tr>')).then(function () {
+			me.data('requestRunning', false);
+
+			$('select').selectpicker('refresh');
+
+
+			$('.selectpicker').parent('div').children('button').css({
+				'background': '#fff',
+				'color': '#000',
+				'border': '1px solid #ced4da'
+			});
+			$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+
+		});
+
 	});
 
+
+	$('select').selectpicker('refresh');
+
+
+	$('.selectpicker').parent('div').children('button').css({
+		'background': '#fff',
+		'color': '#000',
+		'border': '1px solid #ced4da'
+	});
+	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+
+	var table = $('#ex_3').DataTable({
+		"paging": false,
+		"info": false,
+		"columnDefs": [
+			{"orderable": false, "targets": 6}
+		]
+	});
+
+	table.order([0, 'asc']).draw();
 
 	<? if (count($fleet['id']) == 1) { ?>
 
@@ -223,6 +310,7 @@
 			me.data('requestRunning', true);
 			var form_data = new FormData($(form)[0]);
 			$('input').removeClass('border border-danger');
+			$('select').parent('div').children('button').removeClass('border border-danger');
 			$.ajax({
 				url: url,
 				type: 'POST',
@@ -238,7 +326,7 @@
 					if (data.success == '1') {
 
 						loading('stop', 'inspection');
-						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/fine')?>";
+						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses')?>";
 						$(location).attr('href', url);
 
 					} else {
@@ -251,6 +339,7 @@
 								$.each(data.error.elements[index], function (index, value) {
 									if (value != '') {
 										$('input[name="' + index + '"]').addClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 
 										if (value != tmp) {
 											errors += value;
@@ -259,6 +348,7 @@
 
 									} else {
 										$('input[name="' + index + '"]').removeClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 									}
 								});
 							});

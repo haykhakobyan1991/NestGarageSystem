@@ -382,6 +382,113 @@ class Structure extends MX_Controller {
 		$data = array();
 
 
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		$sql = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`head_staff`.`first_name`,
+				`head_staff`.`last_name`
+			  ) AS `head`,
+			  `head_staff`.`photo` AS `head_staff_photo`,
+			  `head_staff`.`id` AS `head_staff_id`,
+			  CONCAT_WS(
+				' ',
+				`staff`.`first_name`,
+				`staff`.`last_name`
+			  ) AS `driver`,
+			  `staff`.`photo` AS `driver_photo`,
+			  `staff`.`id` AS `driver_id`,
+			  `department`.`id` AS `department_id`,
+			  `department`.`title` AS `department`,
+			  `company`.`id` AS `company_id`,
+			  `company`.`name` AS `company`,
+			  `company`.`logo` AS `company_logo`,
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `model`,
+			  `fleet`.`id` AS `fleet_id`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
+			  LEFT JOIN staff AS head_staff 
+				ON department.`head_staff_id` = head_staff.id 
+				 AND `head_staff`.`status` = '1'
+			  LEFT JOIN staff 
+				ON FIND_IN_SET(
+				  department.id,
+				  staff.`department_ids`
+				) 
+				
+				AND `staff`.`status` = '1'
+				/*todo*/
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+				AND `fleet`.`status` = '1'
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 	
+			WHERE company.id = '" . $company_id . "' 
+			 AND `staff`.`id` <> `head_staff`.`id` 
+			ORDER BY `head_staff`.`id`,
+			  `staff`.`id`,
+			  `department`.`id`,
+			  `fleet`.`id` 
+		";
+
+
+		$result = $this->db->query($sql);
+
+		$structure_array = $result->result_array();
+
+		$structure_arr = array();
+		$cmp_id = '';
+		$department_id = '';
+		$driver_id = '';
+
+		foreach ($structure_array AS $key => $value) :
+
+			if ($value['company_id'] != $cmp_id) :
+				$structure_arr[] = array('key' => 'c' . $value['company_id'], 'name' => $value['company'], 'title' => 'Company');
+			endif;
+			$cmp_id = $value['company_id'];
+
+			if ($value['department_id'] != $department_id) :
+				$structure_arr[] = array('key' => 'h' . $value['department_id'], 'name' => $value['head'] . ' (' . $value['department'] . ')', 'parent' => 'c' . $value['company_id'], 'title' => 'Head staff');
+			endif;
+			$department_id = $value['department_id'];
+
+			if ($value['driver_id'] != $driver_id) :
+				$structure_arr[] = array('key' => 'd' . $value['driver_id'], 'name' => $value['driver'], 'parent' => 'h' . $value['department_id'], 'title' => 'Driver');
+			endif;
+			$driver_id = $value['driver_id'];
+
+			if ($value['fleet_id'] != '') :
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model'], 'parent' => 'd' . $value['driver_id'], 'title' => 'Fleet');
+			endif;
+
+		endforeach;
+
+		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
+
+
+		$data['structure'] = json_encode($structure_unique);
+
+
+
 		$this->layout->view('structure/structure3', $data);
 	}
 
@@ -1359,7 +1466,7 @@ class Structure extends MX_Controller {
 		if($fleet_arr) {
 
 
-			$sql_add_staff = "
+			echo $sql_add_staff = "
 				SELECT
 				   `staff`.`id`,
 				   CONCAT_WS(
@@ -1374,7 +1481,8 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'			
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
 			";
 
 			$query_add_staff = $this->db->query($sql_add_staff);

@@ -1,7 +1,7 @@
-<form id="vehicle_wheel">
+<form id="vehicle_brake">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
-		<table id="ex_8" class="table table-striped table-borderless w-100">
+		<table id="ex_9" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
 				<th class="table_th">Մեքենա</th>
@@ -10,7 +10,7 @@
 				<th class="table_th">Արտադրող</th>
 				<th class="table_th">Մոդել</th>
 				<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-				<th class="table_th" style="min-width: 150px;">Տեսակ (Ամառ, Ձմեռ, Բոլոր)</th>
+				<th class="table_th" style="min-width: 150px;">Տեսակ (Դիսկ, Բառաբան)</th>
 				<th class="table_th">Քանակ</th>
 				<th class="table_th">Միավորի Արժեք</th>
 				<th class="table_th">Գումար</th>
@@ -18,11 +18,11 @@
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
-						  data-target="#vehicle_wheel_m"
-						  class=" btn btn-outline-secondary btn-sm " data-id="ex_8"
+						  data-target="#vehicle_brake_m"
+						  class=" btn btn-outline-secondary btn-sm " data-id="ex_9"
 						  style="padding: .25rem .5rem !important;">
 				<? } else { ?>
-						<span class="ex_8_add_new_tr btn btn-outline-secondary btn-sm " data-id="ex_8"
+						<span class="ex_9_add_new_tr btn btn-outline-secondary btn-sm " data-id="ex_9"
 							  style="padding: .25rem .5rem !important;">
 				<? } ?>
 							<i class="fa fa-plus"> </i>
@@ -57,7 +57,7 @@
 							<?=($row['depreciation'] == 1 ? 'Նոր' : 'Օգտագործված')?>
 						</td>
 						<td class="border">
-							<?=($row['wheel_type'] == 1 ? 'Ամառ' : ($row['wheel_type'] == 2 ? 'Ձմեռ' : 'Բոլոր'))?>
+							<?=($row['brake_type'] == 1 ? 'Դիսկ' :  'Բառաբան')?>
 						</td>
 						<td class="border">
 							<?= $row['count'] ?>
@@ -80,7 +80,7 @@
 			echo '</tbody>';
 			if (count($fleet['id']) == 1) { ?>
 
-			<tfoot class="ex_8">
+			<tfoot class="ex_9">
 			<tr>
 				<td class="border">
 					<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
@@ -110,10 +110,9 @@
 					</select>
 				</td>
 				<td class="border">
-					<select class="form-control selectpicker" data-size="5" name="wheel_type[1]" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">
-						<option value="1">Ամառ</option>
-						<option value="2>">Զմեռ</option>
-						<option value="3>">Բոլոր</option>
+					<select class="form-control selectpicker" data-size="5" name="brake_type[1]" title="Տեսակ (Դիսկ, Բառաբան)">
+						<option value="1">Դիսկ</option>
+						<option value="2>">Բառաբան</option>
 					</select>
 				</td>
 				<td class="border">
@@ -145,7 +144,7 @@
 </form>
 
 <div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<span id="wheel" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
+	<span id="brake" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
 	<span id="load" class="btn save_cancel_btn btn-success d-none">
 		<?=$this->load->loading_svg()?>
 	</span>
@@ -156,19 +155,19 @@
 
 
 <!--   Modal Start -->
-<form id="vehicle_wheel_modal">
-	<div class="modal fade " tabindex="-1" role="dialog" id="vehicle_wheel_m"
+<form id="vehicle_brake_modal">
+	<div class="modal fade " tabindex="-1" role="dialog" id="vehicle_brake_m"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog" style="max-width: 80%;">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">Անվադող</h6>
+					<h6 class="text-white modal-title dar">Արգելակ</h6>
 
 				</div>
 				<div class="modal-body">
 
 
-					<table id="ex_8" class="table table-striped table-borderless w-100">
+					<table id="ex_9" class="table table-striped table-borderless w-100">
 						<thead class="thead_tables">
 						<tr>
 							<th class="table_th">Մեքենա</th>
@@ -177,7 +176,7 @@
 							<th class="table_th">Արտադրող</th>
 							<th class="table_th">Մոդել</th>
 							<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-							<th class="table_th" style="min-width: 150px;">Տեսակ (Ամառ, Ձմեռ, Բոլոր)</th>
+							<th class="table_th" style="min-width: 150px;">Տեսակ (Դիսկ, Բառաբան)</th>
 							<th class="table_th">Քանակ</th>
 							<th class="table_th">Միավորի Արժեք</th>
 							<th class="table_th">Գումար</th>
@@ -216,10 +215,9 @@
 									</select>
 								</td>
 								<td class="border">
-									<select class="form-control selectpicker" data-size="5" name="wheel_type[<?= $key + 1 ?>]" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">
-										<option value="1">Ամառ</option>
-										<option value="2>">Զմեռ</option>
-										<option value="3>">Բոլոր</option>
+									<select class="form-control selectpicker" data-size="5" name="brake_type[<?= $key + 1 ?>]" title="Տեսակ (Դիսկ, Բառաբան)">
+										<option value="1">Դիսկ</option>
+										<option value="2>">Բառաբան</option>
 									</select>
 								</td>
 								<td class="border">
@@ -267,7 +265,7 @@
 
 
 					<div class="modal-footer pb-0">
-						<button id="vehicle_wheel_add" type="button"
+						<button id="vehicle_brake_add" type="button"
 								class="save_cancel_btn btn btn-success"><?= lang('save') ?>
 						</button>
 						<button id="load" class=" btn btn-success d-none"><?=$this->load->loading_svg()?></button>
@@ -308,7 +306,7 @@
 		});
 
 
-		var table = $('#ex_8').DataTable({
+		var table = $('#ex_9').DataTable({
 			"paging":   false,
 			"info":     false,
 			"columnDefs": [
@@ -319,9 +317,9 @@
 		table.order([0, 'asc']).draw();
 
 
-		//vehicle wheel
+		//vehicle brake
 		var j = 1;
-		$(document).on('click', '.ex_8_add_new_tr', function (e) {
+		$(document).on('click', '.ex_9_add_new_tr', function (e) {
 			j++;
 
 
@@ -338,7 +336,7 @@
 			me.data('requestRunning', true);
 
 			$.when(
-				$('.ex_8').append('<tr role="row">\n' +
+				$('.ex_9').append('<tr role="row">\n' +
 				'<td><input readonly title="" type="text" name="vehicle[' + j + ']" value="' + fleet + '" class="form-control text-center"/></td>\n' +
 				'<td><input  title="" type="date" name="date[' + j + ']" value="<?= mdate('%Y-%m-%d', now()) ?>" class="form-control text-center"/></td>\n' +
 				'<td class="border">\n' +
@@ -360,10 +358,9 @@
 				'\t</select>\n' +
 				'</td>' +
 				'<td class="border">\n' +
-				'\t<select class="form-control selectpicker" data-size="5" name="wheel_type[' + j + ']" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">\n' +
-				'<option value="1">Ամառ</option>\n' +
-				'<option value="2>">Զմեռ</option>\n' +
-				'<option value="3>">Բոլոր</option>' +
+				'\t<select class="form-control selectpicker" data-size="5" name="brake_type[' + j + ']" title="Տեսակ (Դիսկ, Բառաբան)">\n' +
+				'<option value="1">Դիսկ</option>\n' +
+				'<option value="2>">Բառաբան</option>\n' +
 				'\t</select>\n' +
 				'</td>\n' +
 				'<td class="border">\n' +
@@ -458,14 +455,14 @@
 	<?}?>
 
 
-	ajax('form#vehicle_wheel', 'span#wheel');
+	ajax('form#vehicle_brake', 'span#brake');
 
-	ajax('form#vehicle_wheel_modal', '#vehicle_wheel_add');
+	ajax('form#vehicle_brake_modal', '#vehicle_brake_add');
 
 	function ajax(form, button) {
 
 		$(document).on('click', button, function (e) {
-			var url = '<?=base_url($this->uri->segment(1) . '/Structure/wheel_ax') ?>';
+			var url = '<?=base_url($this->uri->segment(1) . '/Structure/brake_ax') ?>';
 			var me = $(this);
 			e.preventDefault();
 

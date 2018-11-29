@@ -169,11 +169,22 @@
 			   aria-controls="nav-8"
 			   aria-selected="false">ԱՆՎԱԴՈՂ</a>
 
-			<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="9" id="nav-9-tab"
+			   data-toggle="tab"
+			   href="#nav-9"
+			   role="tab"
+			   aria-controls="nav-9"
 			   aria-selected="false">ԱՐԳԵԼԱԿ</a>
-			<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab"
+
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="10" id="nav-10-tab"
+			   data-toggle="tab"
+			   href="#nav-10"
+			   role="tab"
 			   aria-controls="nav-10"
 			   aria-selected="false">ՔՍՈՒՔ</a>
+
 			<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab"
 			   aria-controls="nav-11"
 			   aria-selected="false">ՖԻԼՏՐ</a>
@@ -192,12 +203,11 @@
 
 	<div class="tab-content" id="nav-tabContent">
 
-		<div class="tab-pane fade" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
 
 		</div>
 
-
-		<div class="tab-pane fade" id="nav-2" data-tab="2" role="tabpanel" aria-labelledby="nav-2-tab">
+		<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
 
 		</div>
 
@@ -225,55 +235,14 @@
 
 		</div>
 
-		<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_9" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Տեսակ Դիսկ Բառաբան</th>
-							<th class="table_th">Նոր-Օգտագործված</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">Այլ Ինֆորմաիա</th>
-							<th class="table_th">Միավորի Արժեք</th>
-							<th class="table_th">Ամբողջ</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_9"></tbody>
-					</table>
-				</div>
-			</div>
+		<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
+
 		</div>
-		<div class="tab-pane fade" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_10" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Տեսակ</th>
-							<th class="table_th">Այլ Ինֆորմացիա</th>
-							<th class="table_th">Քանակ լիտր Արժեք</th>
-							<th class="table_th">միավորի արժեք</th>
-							<th class="table_th">Ամբողջ</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_10"></tbody>
-					</table>
-				</div>
-			</div>
+
+		<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
+
 		</div>
+
 		<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
 			<div class="row col-sm-12 col-md-12 bpp_o">
 				<div class="container-fluid">
@@ -343,7 +312,10 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
+
+</div>
 
 
 	<script>
@@ -789,6 +761,10 @@
 								vehicle_repair(new_arr)
 							} else if($(this).data('tab') == 8 && $(this).hasClass('active')) {
 								vehicle_wheel(new_arr)
+							} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+								vehicle_brake(new_arr)
+							} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+								vehicle_grease(new_arr)
 							}
 						});
 
@@ -819,6 +795,10 @@
 					vehicle_repair(new_arr)
 				} else if($(this).data('tab') == 8) {
 					vehicle_wheel(new_arr)
+				} else if ($(this).data('tab') == 9) {
+					vehicle_brake(new_arr)
+				} else if ($(this).data('tab') == 10) {
+					vehicle_grease(new_arr)
 				}
 			})
 
@@ -1250,6 +1230,30 @@
 			$.post(url_1, {arr: new_arr}).done(function (data) {
 				$('.tab-pane').each(function () {
 					if ($(this).data('tab') == 8) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+		function vehicle_brake(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 9) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+		function vehicle_grease(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 10) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}

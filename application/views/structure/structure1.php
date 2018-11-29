@@ -74,8 +74,8 @@
 			</a>
 			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed"
 			   data-id="3"
-			   data-toggle="tab"
-			   href="#nav-info"
+			   data-toggle=""
+			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fleet_history') ?>"
 			   role="tab">
 				<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
 			</a>
@@ -131,7 +131,7 @@
 			   aria-selected="false">ՏՈՒԳԱՆՔ</a>
 
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="4"  id="nav-4-tab"
+			   data-tab="4" id="nav-4-tab"
 			   data-toggle="tab"
 			   href="#nav-4"
 			   aria-controls="nav-4"
@@ -180,7 +180,6 @@
 			<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab"
 			   aria-controls="nav-12"
 			   aria-selected="false">ՄԱՐՏԿՈՑ</a>
-
 
 
 			<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab"
@@ -735,7 +734,7 @@
 					//	console.log(myDiagram.selection.Ca.key.Wd.key);
 
 					var arr = [];
-					 new_arr = [];
+					new_arr = [];
 					myDiagram.selection.each(function (part) {
 
 
@@ -768,26 +767,37 @@
 								$('.selectted_information').html(data);
 								$('#nav-tabContent-car').fadeIn('slow');
 							});
+
+							var data = $.parseJSON(new_arr);
+
+							$(document).on('click', '#export', function () {
+								$(document).excelexportjs({
+									containerid: "dvjson",
+									datatype: 'json',
+									dataset: data,
+									columns: getColumns(data)
+								});
+							})
 						}
-					} else if($('a[data-id="2"]').hasClass('active')) {
+					} else if ($('a[data-id="2"]').hasClass('active')) {
 						$('.selectted_information').html('');
 
-						$('.tab_nav').each(function(){
-							if($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						$('.tab_nav').each(function () {
+							if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
 								vehicle_inspection(new_arr)
-							} else if($(this).data('tab') == 2 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
 								vehicle_fuel(new_arr)
-							} else if($(this).data('tab') == 3 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
 								vehicle_fine(new_arr)
-							} else if($(this).data('tab') == 4 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
 								vehicle_accident(new_arr)
-							} else if($(this).data('tab') == 5 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
 								vehicle_insurance(new_arr)
-							} else if($(this).data('tab') == 6 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
 								vehicle_spares(new_arr)
-							} else if($(this).data('tab') == 7 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
 								vehicle_repair(new_arr)
-							} else if($(this).data('tab') == 8 && $(this).hasClass('active')) {
+							} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
 								vehicle_wheel(new_arr)
 							}
 						});
@@ -801,23 +811,22 @@
 				});
 
 
-
-			$('.tab_nav').click(function(){
+			$('.tab_nav').click(function () {
 				if ($(this).data('tab') == 1) {
 					vehicle_inspection(new_arr)
-				} else if($(this).data('tab') == 2) {
+				} else if ($(this).data('tab') == 2) {
 					vehicle_fuel(new_arr)
-				} else if($(this).data('tab') == 3) {
+				} else if ($(this).data('tab') == 3) {
 					vehicle_fine(new_arr)
-				} else if($(this).data('tab') == 4) {
+				} else if ($(this).data('tab') == 4) {
 					vehicle_accident(new_arr)
-				} else if($(this).data('tab') == 5) {
+				} else if ($(this).data('tab') == 5) {
 					vehicle_insurance(new_arr)
-				} else if($(this).data('tab') == 6) {
+				} else if ($(this).data('tab') == 6) {
 					vehicle_spares(new_arr)
-				} else if($(this).data('tab') == 7) {
+				} else if ($(this).data('tab') == 7) {
 					vehicle_repair(new_arr)
-				} else if($(this).data('tab') == 8) {
+				} else if ($(this).data('tab') == 8) {
 					vehicle_wheel(new_arr)
 				}
 			})
@@ -1158,14 +1167,11 @@
 		});
 
 
-
-
-
 		function vehicle_inspection(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 1) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 1) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1176,8 +1182,8 @@
 		function vehicle_fuel(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 2) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 2) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1188,8 +1194,8 @@
 		function vehicle_fine(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 3) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 3) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1200,8 +1206,8 @@
 		function vehicle_accident(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 4) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 4) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1212,8 +1218,8 @@
 		function vehicle_insurance(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 5) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 5) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1224,8 +1230,8 @@
 		function vehicle_spares(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
-				$('.tab-pane').each(function(){
-					if($(this).data('tab') == 6) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 6) {
 						$(this).html(data);
 						$("td[valign='top']").parent('tr').remove();
 					}
@@ -1258,8 +1264,6 @@
 		}
 
 
-
-
 		//vehicle inspection
 		var i = 1;
 		$(document).on('click', '.ex_1_add_new_tr', function () {
@@ -1268,7 +1272,7 @@
 			var fleet = $('input[name="vehicle[1]"]').val();
 
 			$('.ex_1').append('<tr role="row">\n' +
-				'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="'+fleet+'"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="' + fleet + '"  class="form-control text-center"/></td>\n' +
 				'<td><input title=""  type="date" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
 				'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
@@ -1281,8 +1285,6 @@
 				'</tr>');
 
 		});
-
-
 
 
 	</script>

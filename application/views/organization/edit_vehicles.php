@@ -781,35 +781,52 @@
 			<div class="col-sm-4" style="margin-top: 0;margin-bottom: 4px;">
 				<h6 class="ml-2 mb-md-2 mb-2"><?= lang('kilometer_per_day'); ?></h6>
 				<div class="col-sm-12">
-					<label
-						class="col-form-label"
-						style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
-					<select name="value_1"
-							class="selectpicker form-control form-control-sm dif_meter"
-							data-size="5"
-							title="<?= lang('choose') ?>..."
-					>
-						<?
-						$title = '';
-						foreach ($value as $row) :
-							if ($row['type'] == 1) :
-								?>
-								<option
-									value="<?= $row['id'] ?>"
+					<div class="row">
+						<div class="col-sm-6">
+							<label
+								class="col-form-label"
+								style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
+							<select name="value_1"
+									class="selectpicker form-control form-control-sm dif_meter"
+									data-size="5"
+									title="<?= lang('choose') ?>..."
+							>
+								<?
+								$title = '';
+								foreach ($value as $row) :
+									if ($row['type'] == 1) :
+										?>
+										<option
+											value="<?= $row['id'] ?>"
+											<?
+											if ($fleet['value1_id'] == $row['id']) {
+												echo 'selected';
+												$title = $row['title'];
+											}
+											?>
+										>
+											<?= $row['title'] ?>
+										</option>
 									<?
-									if ($fleet['value1_id'] == $row['id']) {
-										echo 'selected';
-										$title = $row['title'];
-									}
-									?>
-								>
-									<?= $row['title'] ?>
-								</option>
-							<?
-							endif;
-						endforeach;
-						?>
-					</select>
+									endif;
+								endforeach;
+								?>
+							</select>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<input name="value1_day" type="number" class="orm-control form-control-sm col-sm-6 "
+									   placeholder="" value="<?= $fleet['value1_day'] ?>" style="margin-top: 30px !important;"/>
+								<div class="ml-3 mt-2 col-sm-3" style="display: inline-block;">
+									<p style="display: inline-block;margin-left: -3px;margin-top: 29px;font-size: 11px;">
+										<span class="dif_meter_text"><?= $title ?></span>/<?= lang('day') ?></p>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
 					<div class="form-group form-check mt-md-3 mt-3 mb-0">
 
 						<input <?= ($fleet['auto_increment'] == '1' ? 'checked' : '') ?> name="auto_increment"
@@ -819,24 +836,21 @@
 																						 id="exampleCheck1">
 						<label class="form-check-label"
 							   for="exampleCheck1"><?= lang('auto_increment'); ?></label>
-					</div>
-					<?
-					if ($fleet['auto_increment'] == '1') {
-						echo 'Total ' . round($fleet['total_value_1'], 2) . ' ' . $title;  //mi ban ara sirunana
-					}
-					?>
 
-					<input name="value1_day" type="number" class="orm-control form-control-sm"
-						   placeholder="" value="<?= $fleet['value1_day'] ?>"/>
-					<div class="ml-3 mt-2" style="display: inline-block;">
-						<p style="display: inline-block;margin-left: 15px;margin-top: -12px;">
-							<span class="dif_meter_text"><?= $title ?></span>/<?= lang('day') ?></p>
+						<?
+						if ($fleet['auto_increment'] == '1') {
+							echo '      <span class="ml-5">Total ' . round($fleet['total_value_1'], 2) . ' ' . $title .'</span>';  //mi ban ara sirunana
+						}
+						?>
 					</div>
+
+
+
 				</div>
 
 				<div class="col-sm-12">
 					<div class="card">
-						<h6 class="card-header"><?= lang('secondary_meter') ?></h6>
+						<h6 style="padding: 5px !important;" class="card-header"><?= lang('secondary_meter') ?></h6>
 						<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
 
 							<div class="form-group  mb-0">
@@ -849,12 +863,12 @@
 									<label class="form-check-label" for="exampleCheck11">Use of secondary
 										meter</label>
 								</div>
-								<div class="card-body">
+								<div class="card-body" style="padding: 0 !important;">
 									<div class="form-group row mb-0">
 										<label
 											class="col-sm-4 col-form-label"
 											style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
-										<div class="col-sm-6">
+										<div class="col-sm-3" style="margin-top: -8px">
 											<select name="value_2"
 													class="selectpicker form-control form-control-sm "
 													data-size="5"
@@ -883,13 +897,17 @@
 												?>
 											</select>
 											<?= $convert ?>
+
+										</div>
+										<div class="col-sm-4">
+											<?
+											if ($fleet['auto_increment'] == '1') {
+												echo 'Total ' . round($fleet['total_value_2'], 2) . ' ' . $title2;  //mi ban ara sirunana
+											}
+											?>
 										</div>
 									</div>
-									<?
-									if ($fleet['auto_increment'] == '1') {
-										echo 'Total ' . round($fleet['total_value_2'], 2) . ' ' . $title2;  //mi ban ara sirunana
-									}
-									?>
+
 								</div>
 							</div>
 						</div>
@@ -912,8 +930,7 @@
 						<th scope="col">More Info P\N</th>
 						<th scope="col">Remind Me days before</th>
 						<th scope="col">Start Alarm Date</th>
-						<th scope="col"><span class="btn bnt-sm btn-outline-success"><i style="margin: 0 !important;"
-																						class="add_new_item fa fa-plus"></i></span>
+						<th scope="col"><span class="btn bnt-sm btn-outline-success"><i style="margin: 0 !important;" class="add_new_item fa fa-plus"></i></span>
 						</th>
 					</tr>
 					</thead>

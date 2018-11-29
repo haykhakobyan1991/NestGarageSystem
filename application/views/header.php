@@ -181,7 +181,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<div class="loader"></div>
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 
-						<? } elseif ($controller == 'Structure') { ?>
+						<? } elseif ($controller == 'Structure') {  ?>
 
 
 							<div class="">

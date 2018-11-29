@@ -1,3 +1,5 @@
+<script src="<?= base_url() ?>assets/js/excelexportjs.js"></script>
+
 <?
 $folder = $this->session->folder;
 ?>
@@ -122,6 +124,9 @@ $folder = $this->session->folder;
 				}
 				?>
 			</div>
+			<div class="container-fluid">
+				<button id="export" class="btn btn-sm btn-outline-danger cancel_btn float-right mb-2 mt-2">Export</button>
+			</div>
 		</div>
 	</div>
 
@@ -170,128 +175,7 @@ $folder = $this->session->folder;
 		</div>
 	</div>
 </div>
-<script>
-	$(document).ready(function () {
-
-		// Highcharts.chart('container', {
-		// 	chart: {
-		// 		style: {color: '#FFFFFF'},
-		// 		type: 'area',
-		// 		width: 400,
-		// 		height: 250,
-		// 		backgroundColor: 'rgba(255, 255, 255, 0.0)'
-		// 	},
-		// 	title: {
-		// 		style: {color: '#FFFFFF', fontSize: '14px'},
-		// 		text: 'US and USSR nuclear stockpiles'
-		// 	},
-		// 	xAxis: {
-		//
-		// 		allowDecimals: false,
-		// 		labels: {
-		// 			style: {color: '#FFFFFF'},
-		// 			formatter: function () {
-		// 				return this.value;
-		// 			}
-		// 		}
-		// 	},
-		// 	yAxis: {
-		// 		title: {
-		// 			style: {color: '#FFFFFF'},
-		// 			text: 'Nuclear weapon states'
-		// 		},
-		// 		labels: {
-		// 			style: {color: '#FFFFFF'},
-		// 			formatter: function () {
-		// 				return this.value / 1000 + 'k';
-		// 			}
-		// 		}
-		// 	},
-		// 	tooltip: {
-		// 		pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
-		// 	},
-		// 	plotOptions: {
-		// 		style: {color: '#FFFFFF'},
-		// 		area: {
-		// 			pointStart: 1940,
-		// 			marker: {
-		// 				enabled: false,
-		// 				symbol: 'circle',
-		// 				radius: 2,
-		// 				states: {
-		// 					hover: {
-		// 						enabled: true
-		// 					}
-		// 				}
-		// 			}
-		// 		}
-		// 	},
-		// 	series: [{
-		// 		data: [
-		// 			8795, 8144, 6632, 8077, 523, 12725, 4752, 7558, 8126, 10280, 3512, 8791,
-		// 			250, 11963, 8156, 12983, 5740, 5963, 7815, 2310, 13466, 6526, 7994, 10768,
-		// 			12045, 12320, 9363, 13528, 7866, 9137, 3767, 10254, 4771, 12599, 10510, 8527,
-		// 			13692, 2995, 11461, 2459, 6232, 3123, 5165, 14504, 1722, 10490, 6102, 5571,
-		// 			3006, 1085, 9520, 29, 7933, 384, 8639, 2215, 2715, 2236, 6269, 5117, 9037,
-		// 			13819, 13910, 2070, 973, 4051, 3958, 4955, 9845, 7323, 565, 7653, 12746, 9398,
-		// 			4141, 5796, 610, 6198, 6481, 510, 2650, 6186, 13478, 8547, 6236, 2461, 2239,
-		// 			1469, 3190, 9629, 530, 1510, 13038, 10266, 2389, 6505, 14913, 14953, 4639,
-		// 			6403, 4715, 6623, 595, 12661, 10400, 7678, 6291, 12732, 6029, 7419, 1777,
-		// 			6106, 8617, 8671, 2717, 11073, 10631, 14098, 5766, 14528, 7314, 5004, 2014
-		// 		]
-		// 	}]
-		// });
-		// //Chart 2
-		// Highcharts.chart('container2', {
-		// 	chart: {
-		// 		style: {color: '#FFFFFF'},
-		// 		plotBackgroundColor: null,
-		// 		plotBorderWidth: null,
-		// 		plotShadow: false,
-		// 		type: 'pie',
-		// 		width: 350,
-		// 		height: 250,
-		// 		backgroundColor: 'rgba(255, 255, 255, 0.0)'
-		// 	},
-		// 	title: {
-		// 		style: {
-		// 			color: '#FFFFFF',
-		// 			fontSize: '14px'
-		// 		},
-		// 		text: 'Browser market shares in January'
-		// 	},
-		// 	tooltip: {
-		// 		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-		// 	},
-		// 	plotOptions: {
-		// 		style: {color: '#FFFFFF'},
-		// 		pie: {
-		// 			allowPointSelect: true,
-		// 			cursor: 'pointer',
-		// 			dataLabels: {
-		// 				enabled: true,
-		// 				style: {
-		// 					color: '#FFFFFF',
-		// 					fontSize: '10px,',
-		// 					fontWeight: '300'
-		// 				},
-		// 			}
-		// 		}
-		// 	},
-		// 	series: [{
-		// 		name: 'Brands',
-		// 		colorByPoint: true,
-		// 		data: [
-		// 			{name: 'Chrome', y: 61.41},
-		// 			{name: 'Internet Explorer', y: 11.84},
-		// 			{name: 'Firefox', y: 10.85},
-		// 			{name: 'Edge', y: 15.67},
-		// 			{name: 'Safari', y: 20.18}
-		// 		]
-		// 	}]
-		// });
 
 
-	});
 
-</script>
+

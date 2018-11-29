@@ -137,6 +137,20 @@ $lang['last_access'] = 'Վերջին մուտք / ամսաթիվը';
 $lang['name_lastname'] = 'Անուն Ազգանուն';
 
 
+$lang['month_1'] = 'Հունվար';
+$lang['month_2'] = 'Փետրվար';
+$lang['month_3'] = 'Մարտ';
+$lang['month_4'] = 'Ապրիլ';
+$lang['month_5'] = 'Մայիս';
+$lang['month_6'] = 'Հունիս';
+$lang['month_7'] = 'Հուլիս';
+$lang['month_8'] = 'Օգոստոս';
+$lang['month_9'] = 'Սեպտեմբեր';
+$lang['month_10'] = 'Հոկտեմբեր';
+$lang['month_11'] = 'Նոյեմբեր';
+$lang['month_12'] = 'Դեկտեմբեր';
+
+
 
 
 

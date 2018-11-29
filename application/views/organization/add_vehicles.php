@@ -650,37 +650,50 @@
 						<div class="col-sm-4">
 							<h6 class="ml-2 mb-md-2 mb-2"><?= lang('kilometer_per_day'); ?></h6>
 							<div class="col-sm-12">
-								<label
-									class="col-form-label"
-									style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
-								<select name="value_1"
-										class="selectpicker form-control form-control-sm dif_meter"
-										data-size="5"
-										title="<?= lang('choose') ?>..."
-								>
-									<?
-									foreach ($value as $row) :
-										if ($row['type'] == 1) :
+								<div class="row">
+									<div class="col-sm-6">
+										<label
+											class="col-form-label"
+											style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
+										<select name="value_1"
+												class="selectpicker form-control form-control-sm dif_meter"
+												data-size="5"
+												title="<?= lang('choose') ?>..."
+										>
+											<?
+											foreach ($value as $row) :
+												if ($row['type'] == 1) :
+													?>
+													<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+												<?
+												endif;
+											endforeach;
 											?>
-											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-										<?
-										endif;
-									endforeach;
-									?>
-								</select>
-								<div class="form-group form-check mt-md-3 mt-3 mb-0">
+										</select>
+									</div>
+
+									<div class="col-sm-4 mt-4">
+										<div class="row">
+											<input name="value1_day" type="number" class="mt-2 form-control form-control-sm col-sm-7" placeholder=""/>
+											<p style="margin-left: 10px;margin-top: 13px;" col-sm-4><span class="dif_meter_text"></span>/<?= lang('day') ?></p>
+										</div>
+
+
+									</div>
+								</div>
+
+								<div class="form-group form-check  mb-1">
 									<input name="auto_increment" value="1" type="checkbox" class="form-check-input"
 										   id="exampleCheck1">
 									<label class="form-check-label"
 										   for="exampleCheck1"><?= lang('auto_increment'); ?></label>
 								</div>
-								<input name="value1_day" type="number" class="mt-2 form-control form-control-sm"
-									   placeholder=""/>
-								<div class=" mt-3"><p
-										style="display: inline-block;margin-left: 15px;margin-top: -12px;"><span
-											class="dif_meter_text"></span>/<?= lang('day') ?></p>
-								</div>
+
+
 							</div>
+
+
+
 
 							<div class="col-sm-12">
 								<div class="card">
@@ -692,7 +705,7 @@
 										<label class="form-check-label"
 											   for="exampleCheck11"><?= lang('Use_of_secondary_meter') ?></label>
 									</div>
-									<div class="card-body pt-1">
+									<div class="card-body pt-0">
 										<div class="form-group  mb-0">
 
 											<label

@@ -2414,6 +2414,1443 @@ class Structure extends MX_Controller {
 	}
 
 
+	public function vehicle_insurance() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+		$sql_insurance_type = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+			    `insurance_type`
+			WHERE `status` = '1'    	
+		";
+
+		$query_insurance_type = $this->db->query($sql_insurance_type);
+
+		$data['insurance_type'] = $query_insurance_type->result_array();
+
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+
+			$sql_add_staff = "
+				SELECT
+				   `staff`.`id`,
+				   CONCAT_WS(
+					  ' ',
+					  `staff`.`first_name`,
+					  `staff`.`last_name`
+				   ) AS `name`
+				FROM 
+				 `fleet`  
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
+			";
+
+			$query_add_staff = $this->db->query($sql_add_staff);
+
+			$data['staff'] = $query_add_staff->result_array();
+
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `insurance`.`id`,
+				  `insurance`.`add_date`,
+				  `insurance`.`add_user_id`,
+				  `insurance`.`insurance_company`, 
+				  `insurance`.`end_date`,
+				  `insurance`.`price`,
+				  `insurance`.`fleet_id`, /**/
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `insurance_type`.`title_".$lng."` AS `insurance_type`,
+				  `insurance`.`status` 
+				FROM
+				  `insurance` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `insurance`.`fleet_id`
+				LEFT JOIN `insurance_type` 
+					ON `insurance_type`.`id` = `insurance`.`insurance_type_id`	
+				LEFT JOIN `user` 
+					ON `user`.`id` = `insurance`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `insurance`.`status` = '1' 
+				AND FIND_IN_SET(`insurance`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_insurance', $data);
+		}
+	}
+
+
+	public function insurance_ax() {
+
+		//$this->load->authorisation('Structure', 'insurance');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+
+			$price = $this->input->post('price');
+			$insurance_company = $this->input->post('insurance_company');
+			$insurance_type_id = $this->input->post('insurance_type_id');
+			$end_date = $this->input->post('end_date');
+			$date = $this->input->post('date');
+
+			if (is_array($insurance_company)) :
+				foreach ($insurance_company as $i => $insurance_company_val) :
+					if ($insurance_company_val == '') :
+						$n = 1;
+						$validation_errors = array('insurance_company[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('date[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($insurance_type_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('insurance_type_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($end_date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('end_date[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `insurance` (
+				  `add_date`,
+				  `add_user_id`,
+				  `insurance_company`,
+				  `insurance_type_id`,
+				  `end_date`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($insurance_company[$key]) . ",
+					" . $this->load->db_value($insurance_type_id[$key]) . ",
+					" . $this->load->db_value($end_date[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$insurance_company = $this->input->post('insurance_company');
+			$insurance_type_id = $this->input->post('insurance_type_id');
+			$end_date = $this->input->post('end_date');
+			$date = $this->input->post('date');
+			$status = '1';
+
+			if (is_array($insurance_company)) :
+				foreach ($insurance_company as $i => $insurance_company_val) :
+					if ($insurance_company_val == '') :
+						$n = 1;
+						$validation_errors = array('insurance_company[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('date[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($insurance_type_id[$i] == '') :
+						$n = 1;
+						$validation_errors = array('insurance_type_id[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($end_date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('end_date[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `insurance` (
+				  `add_date`,
+				  `add_user_id`,
+				  `insurance_company`,
+				  `insurance_type_id`,
+				  `end_date`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($insurance_company[$key]) . ",
+					" . $this->load->db_value($insurance_type_id[$key]) . ",
+					" . $this->load->db_value($end_date[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function vehicle_spares() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+		$sql_insurance_type = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+			    `insurance_type`
+			WHERE `status` = '1'    	
+		";
+
+		$query_insurance_type = $this->db->query($sql_insurance_type);
+
+		$data['insurance_type'] = $query_insurance_type->result_array();
+
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+
+			$sql_add_staff = "
+				SELECT
+				   `staff`.`id`,
+				   CONCAT_WS(
+					  ' ',
+					  `staff`.`first_name`,
+					  `staff`.`last_name`
+				   ) AS `name`
+				FROM 
+				 `fleet`  
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
+			";
+
+			$query_add_staff = $this->db->query($sql_add_staff);
+
+			$data['staff'] = $query_add_staff->result_array();
+
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `spares`.`id`,
+				  `spares`.`add_date`,
+				  `spares`.`add_user_id`,
+				  `spares`.`whence`,
+				  `spares`.`type`,
+				  `spares`.`producer`,
+				  `spares`.`model`,
+				  `spares`.`depreciation`,
+				  `spares`.`count`,
+				  `spares`.`one_price`,
+				  `spares`.`price`,
+				  `spares`.`fleet_id`,
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `spares`.`status` 
+				FROM
+				  `spares` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `spares`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `spares`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `spares`.`status` = '1' 
+				 AND FIND_IN_SET(`spares`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_spares', $data);
+		}
+	}
+
+
+	public function spares_ax() {
+
+		//$this->load->authorisation('Structure', 'spares');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$type = $this->input->post('type');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$depreciation = $this->input->post('depreciation');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($depreciation[$i] == '') :
+						$n = 1;
+						$validation_errors = array('depreciation[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `spares` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `type`,
+				  `producer`,
+				  `model`,
+				  `depreciation`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($type[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($depreciation[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$type = $this->input->post('type');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$depreciation = $this->input->post('depreciation');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$status = 1;
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($depreciation[$i] == '') :
+						$n = 1;
+						$validation_errors = array('depreciation[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `spares` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `type`,
+				  `producer`,
+				  `model`,
+				  `depreciation`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($type[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($depreciation[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function vehicle_repair() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+		$sql_insurance_type = "
+			SELECT
+				`id`,
+				`title_".$lng."` AS `title`
+			 FROM
+			    `insurance_type`
+			WHERE `status` = '1'    	
+		";
+
+		$query_insurance_type = $this->db->query($sql_insurance_type);
+
+		$data['insurance_type'] = $query_insurance_type->result_array();
+
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+
+			$sql_add_staff = "
+				SELECT
+				   `staff`.`id`,
+				   CONCAT_WS(
+					  ' ',
+					  `staff`.`first_name`,
+					  `staff`.`last_name`
+				   ) AS `name`
+				FROM 
+				 `fleet`  
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			    GROUP BY `staff`.`id`		
+			";
+
+			$query_add_staff = $this->db->query($sql_add_staff);
+
+			$data['staff'] = $query_add_staff->result_array();
+
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `repair`.`id`,
+				  `repair`.`add_date`,
+				  `repair`.`add_user_id`,
+				  `repair`.`repairer`, 
+				  `repair`.`necessary_parts`,
+				  `repair`.`price`,
+				  `repair`.`fleet_id`, /**/
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `repair`.`status` 
+				FROM
+				  `repair` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `repair`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `repair`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `repair`.`status` = '1' 
+				AND FIND_IN_SET(`repair`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_repair', $data);
+		}
+	}
+
+
+	public function repair_ax() {
+
+		//$this->load->authorisation('Structure', 'spares');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+
+			$price = $this->input->post('price');
+			$repairer = $this->input->post('repairer');
+			$necessary_parts = $this->input->post('necessary_parts');
+			$date = $this->input->post('date');
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($repairer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($necessary_parts[$i] == '') :
+						$n = 1;
+						$validation_errors = array('necessary_parts[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `repair` (
+				  `add_date`,
+				  `add_user_id`,
+				  `repairer`,
+				  `necessary_parts`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($repairer[$key]) . ",
+					" . $this->load->db_value($necessary_parts[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$repairer = $this->input->post('repairer');
+			$necessary_parts = $this->input->post('necessary_parts');
+			$date = $this->input->post('date');
+			$status = '1';
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($repairer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($necessary_parts[$i] == '') :
+						$n = 1;
+						$validation_errors = array('necessary_parts[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($date[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `repair` (
+				  `add_date`,
+				  `add_user_id`,
+				  `repairer`,
+				  `necessary_parts`,
+				  `price`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($repairer[$key]) . ",
+					" . $this->load->db_value($necessary_parts[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function vehicle_wheel() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `wheel`.`id`,
+				  `wheel`.`add_date`,
+				  `wheel`.`add_user_id`,
+				  `wheel`.`whence`,
+				  `wheel`.`wheel_type`,
+				  `wheel`.`producer`,
+				  `wheel`.`model`,
+				  `wheel`.`depreciation`,
+				  `wheel`.`count`,
+				  `wheel`.`one_price`,
+				  `wheel`.`other_info`,
+				  `wheel`.`price`,
+				  `wheel`.`fleet_id`,
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `wheel`.`status` 
+				FROM
+				  `wheel` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `wheel`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `wheel`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `wheel`.`status` = '1' 
+				 AND FIND_IN_SET(`wheel`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_wheel', $data);
+		}
+	}
+
+	public function wheel_ax() {
+
+		//$this->load->authorisation('Structure', 'spares');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$wheel_type = $this->input->post('wheel_type');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$depreciation = $this->input->post('depreciation');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('other_info');
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($wheel_type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('wheel_type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($depreciation[$i] == '') :
+						$n = 1;
+						$validation_errors = array('depreciation[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `wheel` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `wheel_type`,
+				  `producer`,
+				  `model`,
+				  `depreciation`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($wheel_type[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($depreciation[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$wheel_type = $this->input->post('wheel_type');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$depreciation = $this->input->post('depreciation');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('date');
+			$status = 1;
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($wheel_type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('wheel_type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($depreciation[$i] == '') :
+						$n = 1;
+						$validation_errors = array('depreciation[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `wheel` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `wheel_type`,
+				  `producer`,
+				  `model`,
+				  `depreciation`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($wheel_type[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($depreciation[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
 
 }
 //end of class

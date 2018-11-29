@@ -339,3 +339,7 @@ input.form-control.form-control-sm.st_inp::before{
 .btn {
 	box-shadow: none !important;
 }
+
+canvas:focus {
+	outline: none !important;
+}

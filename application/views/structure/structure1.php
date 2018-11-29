@@ -137,20 +137,38 @@
 			   aria-controls="nav-4"
 			   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
 
-			<a class="nav-item nav-link" id="nav-5-tab" data-toggle="tab" href="#nav-5" role="tab" aria-controls="nav-5"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="5" id="nav-5-tab"
+			   data-toggle="tab"
+			   href="#nav-5"
+			   role="tab"
+			   aria-controls="nav-5"
 			   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
 
-			<a class="nav-item nav-link" id="nav-6-tab" data-toggle="tab" href="#nav-6" role="tab" aria-controls="nav-6"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="6" id="nav-6-tab"
+			   data-toggle="tab"
+			   href="#nav-6"
+			   role="tab"
+			   aria-controls="nav-6"
 			   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
 
-			<a class="nav-item nav-link" id="nav-7-tab" data-toggle="tab" href="#nav-7" role="tab" aria-controls="nav-7"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="7" id="nav-7-tab"
+			   data-toggle="tab"
+			   href="#nav-7"
+			   role="tab"
+			   aria-controls="nav-7"
 			   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
 
-
-
-
-			<a class="nav-item nav-link" id="nav-8-tab" data-toggle="tab" href="#nav-8" role="tab" aria-controls="nav-8"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="8" id="nav-8-tab"
+			   data-toggle="tab"
+			   href="#nav-8"
+			   role="tab"
+			   aria-controls="nav-8"
 			   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+
 			<a class="nav-item nav-link" id="nav-9-tab" data-toggle="tab" href="#nav-9" role="tab" aria-controls="nav-9"
 			   aria-selected="false">ԱՐԳԵԼԱԿ</a>
 			<a class="nav-item nav-link" id="nav-10-tab" data-toggle="tab" href="#nav-10" role="tab"
@@ -174,111 +192,39 @@
 
 	<div class="tab-content" id="nav-tabContent">
 
-		<div class="tab-pane fade <?= $this->uri->segment(3) == 'inspection' ? 'active show' : '' ?>" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="tab-pane fade" id="nav-1" data-tab="1" role="tabpanel" aria-labelledby="nav-1-tab">
 
 		</div>
 
 
-		<div class="tab-pane fade <?= $this->uri->segment(3) == 'fuel' ? 'active show' : '' ?>" id="nav-2" data-tab="2" role="tabpanel" aria-labelledby="nav-2-tab">
+		<div class="tab-pane fade" id="nav-2" data-tab="2" role="tabpanel" aria-labelledby="nav-2-tab">
 
 		</div>
 
-		<div class="tab-pane fade <?= $this->uri->segment(3) == 'fine' ? 'active show' : '' ?>" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+		<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
 
 		</div>
 
-		<div class="tab-pane fade <?= $this->uri->segment(3) == 'accident' ? 'active show' : '' ?>" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+		<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
 
 		</div>
 
-		<div class="tab-pane fade" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_5" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Ապահովագրական Ընկերություն</th>
-							<th class="table_th">Տեսակ</th>
-							<th class="table_th">Վերջնաժամկետ</th>
-							<th class="table_th">Գումար</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_5"></tbody>
-					</table>
-				</div>
-			</div>
+		<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
+
 		</div>
-		<div class="tab-pane fade" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_6" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Տեսակ</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Նոր-Օգտագործված</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">Միավորի Արժեք</th>
-							<th class="table_th">Գումար</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_6"></tbody>
-					</table>
-				</div>
-			</div>
+
+		<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
+
 		</div>
-		<div class="tab-pane fade" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_7" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Վերանորոգող</th>
-							<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
-							<th class="table_th">Արժեք</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_7"></tbody>
-					</table>
-				</div>
-			</div>
+
+		<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
+
 		</div>
-		<div class="tab-pane fade" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_8" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Տեսակ Ամառ Ձմեռ Բոլոր</th>
-							<th class="table_th">Նոր-Օգտագործված</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">Այլ Ինֆորմաիա</th>
-							<th class="table_th">Միավորի Արժեք</th>
-							<th class="table_th">Ամբողջ</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_8"></tbody>
-					</table>
-				</div>
-			</div>
+
+		<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
+
 		</div>
+
 		<div class="tab-pane fade" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
 			<div class="row col-sm-12 col-md-12 bpp_o">
 				<div class="container-fluid">
@@ -764,6 +710,7 @@
 
 			}
 
+			var new_arr = [];
 			myDiagram.addDiagramListener("ObjectSingleClicked",
 				function (e) {
 
@@ -834,15 +781,16 @@
 								vehicle_fine(new_arr)
 							} else if($(this).data('tab') == 4 && $(this).hasClass('active')) {
 								vehicle_accident(new_arr)
+							} else if($(this).data('tab') == 5 && $(this).hasClass('active')) {
+								vehicle_insurance(new_arr)
+							} else if($(this).data('tab') == 6 && $(this).hasClass('active')) {
+								vehicle_spares(new_arr)
+							} else if($(this).data('tab') == 7 && $(this).hasClass('active')) {
+								vehicle_repair(new_arr)
+							} else if($(this).data('tab') == 8 && $(this).hasClass('active')) {
+								vehicle_wheel(new_arr)
 							}
 						});
-
-
-
-
-
-
-
 
 					} else {
 						$('.selectted_information').html('');
@@ -855,14 +803,22 @@
 
 
 			$('.tab_nav').click(function(){
-				if($(this).data('tab') == 1) {
+				if ($(this).data('tab') == 1) {
 					vehicle_inspection(new_arr)
-				}else if($(this).data('tab') == 2) {
+				} else if($(this).data('tab') == 2) {
 					vehicle_fuel(new_arr)
 				} else if($(this).data('tab') == 3) {
 					vehicle_fine(new_arr)
 				} else if($(this).data('tab') == 4) {
 					vehicle_accident(new_arr)
+				} else if($(this).data('tab') == 5) {
+					vehicle_insurance(new_arr)
+				} else if($(this).data('tab') == 6) {
+					vehicle_spares(new_arr)
+				} else if($(this).data('tab') == 7) {
+					vehicle_repair(new_arr)
+				} else if($(this).data('tab') == 8) {
+					vehicle_wheel(new_arr)
 				}
 			})
 
@@ -1252,6 +1208,56 @@
 				});
 			});
 		}
+
+		function vehicle_insurance(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function(){
+					if($(this).data('tab') == 5) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+		function vehicle_spares(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function(){
+					if($(this).data('tab') == 6) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+		function vehicle_repair(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 7) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+		function vehicle_wheel(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 8) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+
 
 
 		//vehicle inspection

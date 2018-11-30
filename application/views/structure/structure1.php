@@ -7,15 +7,6 @@
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-<script>
-	// $(document).ready(function () {
-	// 	for (i = 1; i < 14; i++) {
-	// 		$('#ex_' + i + '').DataTable();
-	// 		$('#ex_' + i + '_wrapper').append('<i class="add_new_tr fa fa-plus ml-1 mr-1 float-right" style="position:absolute;left:250px;bottom:12px;" data-id="ex_' + i + '"> </i>');
-	// 		$('#ex_' + i + '_wrapper').append('<button name="" class="btn btn-sm btn-success ml-1 mr-1 float-right" style="left:285px;position:absolute;bottom:13px;">Save</button>');
-	// 	}
-	// })
-</script>
 
 <style>
 	.row.bg-secondary {
@@ -66,12 +57,14 @@
 			   role="tab">
 				<i class="fas fa-info"></i> Ինֆորմացիա
 			</a>
+			
 			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) != '' ? 'active show' : '' ?> "
 			   data-id="2"
 			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses') ?>"
 			   role="tab">
 				<i class="fas fa-plus"></i> Ավելացնել ծախսեր
 			</a>
+			
 			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed"
 			   data-id="3"
 			   data-toggle=""
@@ -89,206 +82,125 @@
 		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 
-		<button name=""
-				data-toggle="modal"
-				data-target=".bd-example-modal-lg"
-				class="btn btn-sm btn-outline-secondary mt-1"
-				id="SaveButton"
-				style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;"
-				onclick="save('-1')">Save
-		</button>
+		<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;" onclick="save('-1')">Save</button>
 	</div>
 
-	<span class="selectted_information "></span>
+	<span class="selected_information "></span>
 
 </div>
-
 
 <div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
 	<nav class="mt-2">
 		<div class="nav nav-tabs" id="nav-tab" role="tablist">
 			<a class="nav-item nav-link tab_nav "
 			   data-tab="1" id="nav-1-tab"
-			   data-toggle="tab"
-			   href="#nav-1"
-			   role="tab"
-			   aria-controls="nav-1"
+			   data-toggle="tab" href="#nav-1"
+			   role="tab" aria-controls="nav-1"
 			   aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="2" id="nav-2-tab"
-			   data-toggle="tab"
-			   href="#nav-2"
-			   role="tab"
-			   aria-controls="nav-2"
+			   data-toggle="tab" href="#nav-2"
+			   role="tab" aria-controls="nav-2"
 			   aria-selected="false">ՎԱՌԵԼԻՔ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="3" id="nav-3-tab"
-			   data-toggle="tab"
-			   href="#nav-3"
-			   aria-controls="nav-3"
+			   data-toggle="tab" href="#nav-3"
+			   role="tab" aria-controls="nav-3"
 			   aria-selected="false">ՏՈՒԳԱՆՔ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="4" id="nav-4-tab"
-			   data-toggle="tab"
-			   href="#nav-4"
-			   aria-controls="nav-4"
+			   data-toggle="tab" href="#nav-4"
+			   role="tab" aria-controls="nav-4"
 			   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="5" id="nav-5-tab"
-			   data-toggle="tab"
-			   href="#nav-5"
-			   role="tab"
-			   aria-controls="nav-5"
+			   data-toggle="tab" href="#nav-5"
+			   role="tab" aria-controls="nav-5"
 			   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="6" id="nav-6-tab"
-			   data-toggle="tab"
-			   href="#nav-6"
-			   role="tab"
-			   aria-controls="nav-6"
+			   data-toggle="tab" href="#nav-6"
+			   role="tab" aria-controls="nav-6"
 			   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="7" id="nav-7-tab"
-			   data-toggle="tab"
-			   href="#nav-7"
-			   role="tab"
-			   aria-controls="nav-7"
+			   data-toggle="tab" href="#nav-7"
+			   role="tab" aria-controls="nav-7"
 			   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="8" id="nav-8-tab"
-			   data-toggle="tab"
-			   href="#nav-8"
-			   role="tab"
-			   aria-controls="nav-8"
+			   data-toggle="tab" href="#nav-8"
+			   role="tab" aria-controls="nav-8"
 			   aria-selected="false">ԱՆՎԱԴՈՂ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="9" id="nav-9-tab"
-			   data-toggle="tab"
-			   href="#nav-9"
-			   role="tab"
-			   aria-controls="nav-9"
+			   data-toggle="tab" href="#nav-9"
+			   role="tab" aria-controls="nav-9"
 			   aria-selected="false">ԱՐԳԵԼԱԿ</a>
 
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="10" id="nav-10-tab"
-			   data-toggle="tab"
-			   href="#nav-10"
-			   role="tab"
-			   aria-controls="nav-10"
+			   data-toggle="tab" href="#nav-10"
+			   role="tab" aria-controls="nav-10"
 			   aria-selected="false">ՔՍՈՒՔ</a>
 
-			<a class="nav-item nav-link" id="nav-11-tab" data-toggle="tab" href="#nav-11" role="tab"
-			   aria-controls="nav-11"
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="11" id="nav-11-tab"
+			   data-toggle="tab" href="#nav-11"
+			   role="tab" aria-controls="nav-11"
 			   aria-selected="false">ՖԻԼՏՐ</a>
-			<a class="nav-item nav-link" id="nav-12-tab" data-toggle="tab" href="#nav-12" role="tab"
-			   aria-controls="nav-12"
+
+			<a class="nav-item nav-link tab_nav"
+			   data-tab="12" id="nav-12-tab"
+			   data-toggle="tab" href="#nav-12"
+			   role="tab" aria-controls="nav-12"
 			   aria-selected="false">ՄԱՐՏԿՈՑ</a>
 
 
-			<a class="nav-item nav-link" id="nav-13-tab" data-toggle="tab" href="#nav-13" role="tab"
-			   aria-controls="nav-13"
+			<a class="nav-item nav-link tab_nav" 
+			   data-tab="12" id="nav-13-tab" 
+			   data-toggle="tab" href="#nav-13" 
+			   role="tab" aria-controls="nav-13"
 			   aria-selected="false">ԱՀԱԶԱՆԳ</a>
+
 		</div>
 	</nav>
 
 
 	<div class="tab-content" id="nav-tabContent">
 
-		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab">
+		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"></div>
 
-		<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab">
+		<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"></div>
 
-		<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab">
+		<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"></div>
 
-		<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab">
+		<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"></div>
 
-		<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab">
+		<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab"></div>
 
-		<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab">
+		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
 
-		</div>
+		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
 
-		<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab">
-
-		</div>
-
-		<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab">
-
-		</div>
-
-		<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab">
-
-		</div>
-
-		<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab">
-
-		</div>
-
-		<div class="tab-pane fade" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_11" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Տեսակ</th>
-							<th class="table_th">Այլ Ինֆորմացիա</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">միավորի արժեք</th>
-							<th class="table_th">Ամբողջ</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_11"></tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane fade" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_12" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th">Այլ Ինֆորմացիա</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">միավորի արժեք</th>
-							<th class="table_th">Ամբողջ</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_12"></tbody>
-					</table>
-				</div>
-			</div>
-		</div>
 		<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
 			<div class="row col-sm-12 col-md-12 bpp_o">
 				<div class="container-fluid">
@@ -315,7 +227,6 @@
 	</div>
 
 </div>
-
 
 	<script>
 		function init() {
@@ -732,11 +643,11 @@
 
 					if ($('a[data-id="1"]').hasClass('active')) {
 						if (new_arr.length !== 0) {
-							$('.selectted_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+							$('.selected_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
 							var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
 							$.post(url, {arr: new_arr}).done(function (data) {
 								$('#add-info').fadeOut('slow');
-								$('.selectted_information').html(data);
+								$('.selected_information').html(data);
 								$('#nav-tabContent-car').fadeIn('slow');
 							});
 
@@ -752,7 +663,7 @@
 							})
 						}
 					} else if ($('a[data-id="2"]').hasClass('active')) {
-						$('.selectted_information').html('');
+						$('.selected_information').html('');
 
 						$('.tab_nav').each(function () {
 							if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
@@ -775,11 +686,15 @@
 								vehicle_brake(new_arr)
 							} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
 								vehicle_grease(new_arr)
+							} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+								vehicle_filter(new_arr)
+							} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+								vehicle_battery(new_arr)
 							}
 						});
 
 					} else {
-						$('.selectted_information').html('');
+						$('.selected_information').html('');
 					}
 
 					/*Remove BoxShadow From HighCharts Pie Diagram*/
@@ -808,29 +723,12 @@
 					vehicle_brake(new_arr)
 				} else if ($(this).data('tab') == 10) {
 					vehicle_grease(new_arr)
+				} else if ($(this).data('tab') == 11) {
+					vehicle_filter(new_arr)
+				} else if ($(this).data('tab') == 12) {
+					vehicle_battery(new_arr)
 				}
 			})
-
-			//
-			// $('.info-type').click(function () {
-			//
-			// 	$('.tab-pane').each(function(){
-			// 		if($(this).data('tab') == 1) {
-			// 			$(this).html('');
-			// 		}
-			//
-			// 	});
-			//
-			// 	$('.nav-item').removeClass('active');
-			//
-			// 	if ($(this).data('id') == 2) {
-			// 		$('#nav-tabContent-car').fadeOut();
-			// 		$('#add-info').fadeIn('slow');
-			// 	} else if ($(this).data('id') == 1) {
-			// 		$('#add-info').fadeOut('slow');
-			// 	}
-			// });
-
 
 		});
 
@@ -909,244 +807,13 @@
 			var btn_value = $(this).data('value');
 			$('.more[data-value=' + btn_value + ']').toggle('slow');
 		});
-		// var ii = 1;
-		//
-		// $('.ex_1 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_2 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_3 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_4 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_5 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_6 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_7 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_8 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_9 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_10 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_11 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_12 tr').each(function () {
-		// 	ii++;
-		// });
-		// $('.ex_13 tr').each(function () {
-		// 	ii++;
-		// });
-		// $(document).on('click', '.add_new_tr', function () {
-		// 	var dt_id = $(this).data('id');
-		// 	if (dt_id == 'ex_2') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_2').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_3') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_3').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_4') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_4').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_5') {
-		// 		$$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_5').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_6') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_6').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_7') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_7').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_8') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_8').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_9') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_9').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_10') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_10').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_11') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_11').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (dt_id == 'ex_12') {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_12').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	if (ex_13 == dt_id) {
-		// 		$("td[valign='top']").parent('tr').remove();
-		// 		$('.ex_13').append('<tr role="row">\n' +
-		// 			'<td class="sorting_1"> ' + ii + '</td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><input title="" type="text" name="_' + ii + '" value="" class="in_row_input text-center"/></td>\n' +
-		// 			'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i></td>\n' +
-		// 			'</tr>');
-		// 	}
-		// 	ii++;
-		// 	$('.dataTables_wrapper.dt-bootstrap4.no-footer .row:first-child').css('display', 'none');
-		// 	$('th').unbind("click");
-		// 	// $('.pagination li').unbind("click");
-		// 	// $(function () {
-		// 	// 	$('[data-toggle="tooltip"]').tooltip()
-		// 	// })
-		//});
+
+		
 		$(document).on('click', '.del_row_ft', function () {
 			$(this).parent('td').parent('tr').remove();
 		});
-
-
+		
+		//ajax
 		function vehicle_inspection(new_arr) {
 			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
 			$.post(url_1, {arr: new_arr}).done(function (data) {
@@ -1267,7 +934,31 @@
 			});
 		}
 
+		function vehicle_filter(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 11) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
 
+		function vehicle_battery(new_arr) {
+			var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
+			$.post(url_1, {arr: new_arr}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == 12) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+		
+		
 		//vehicle inspection
 		var i = 1;
 		$(document).on('click', '.ex_1_add_new_tr', function () {
@@ -1289,6 +980,5 @@
 				'</tr>');
 
 		});
-
-
+		
 	</script>

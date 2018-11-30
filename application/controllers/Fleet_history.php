@@ -108,7 +108,6 @@ class Fleet_history extends MX_Controller {
 	public function fleet_history() {
 
 		// $this->load->authorisation();
-		//todo if not post redirect to 404
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -118,10 +117,151 @@ class Fleet_history extends MX_Controller {
 		$company_id = $row['company_id'];
 
 
+		//echo $this->get_history('2018-11-06', '2018-11-30', 'inspection', $company_id);
 
 
 
 		$this->layout->view('fleet_history/fleet_history', $data);
+	}
+
+
+	public function getHistory_ax () {
+
+		$user_id = $this->session->user_id;
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+		$table = $this->input->post('table');
+
+
+		$this->getHistory($date_from, $date_to, $table, $company_id);
+
+	}
+
+
+	public function getHistory($date_from, $date_to, $table_name, $company_id) {
+
+		$lng = $this->load->lng();
+
+		$add_sql = '';
+		$sql_add = '';
+
+		 $sql_fleets = "
+			SELECT 
+			  GROUP_CONCAT(DISTINCT  `fleet`.`id`) AS `fleet_ids`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
+			  LEFT JOIN `staff`
+				ON FIND_IN_SET(
+				  `department`.`id`,
+				  `staff`.`department_ids`
+				) 
+				AND `staff`.`status` = '1'
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+				AND `fleet`.`status` = '1'
+			 	
+			WHERE company.id = '" . $company_id . "' 
+		";
+
+		$query_fleets = $this->db->query($sql_fleets);
+		$row = $query_fleets->row_array();
+
+		if($table_name == 'inspection' || $table_name == 'insurance') {
+			$sql_add .= "".$table_name.".`end_date`,";
+			//$add_sql .= " AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`end_date` <= '".$date_to."')";
+		}
+
+		if($table_name == 'accident') {
+			$sql_add .= "SUM(".$table_name.".`return_amount`) AS `price`,";
+			$sql_add .= "".$table_name.".`return_amount` AS `count`,";
+		} else {
+			$sql_add .= "SUM(".$table_name.".`price`) AS `price`,";
+			$sql_add .= "".$table_name.".`price` AS `count`,";
+		}
+
+		$sql = "
+				SELECT 
+				  ".$table_name.".`id`,
+				  ".$table_name.".`add_date`,
+				  ".$table_name.".`add_user_id`,
+				  ".$sql_add."
+				  
+				  ".$table_name.".`fleet_id`,
+				  CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+				  ) AS `brand_model`
+				FROM
+				  ".$table_name." 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = ".$table_name.".`fleet_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE ".$table_name.".`status` = '1' 
+				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$row['fleet_ids']."')
+				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
+				 GROUP BY ".$table_name.".`fleet_id`
+			";
+
+			$query = $this->db->query($sql);
+
+			$result = $query->result_array();
+
+			$Arr = array();
+
+			foreach($result as $val) {
+
+				$Arr['data'][] = array(
+					'name' => $val['brand_model'],
+					'y' => intval($val['price'])
+				);
+			}
+
+
+		$sql1 = "
+				SELECT 
+				  ".$table_name.".`add_date`,
+				  ".$sql_add."
+				  ".$table_name.".`status`
+				FROM
+				  ".$table_name." 
+				WHERE ".$table_name.".`status` = '1' 
+				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$row['fleet_ids']."')
+				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
+				 GROUP BY ".$table_name.".`add_date`
+			";
+
+		$query1 = $this->db->query($sql1);
+
+		$result1 = $query1->result_array();
+
+
+		foreach($result1 as $val1) {
+
+
+			$Arr['date'][] = date($val1['add_date']);
+			$Arr['price'][] = intval($val1['price']);
+		}
+
+
+			echo json_encode($Arr);
+			return true;
+
+
 	}
 
 

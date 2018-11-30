@@ -4552,6 +4552,691 @@ class Structure extends MX_Controller {
 	}
 
 
+	public function vehicle_filter() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `filter`.`id`,
+				  `filter`.`add_date`,
+				  `filter`.`add_user_id`,
+				  `filter`.`whence`,
+				  `filter`.`model`,
+				  `filter`.`type`,
+				  `filter`.`count`,
+				  `filter`.`producer`,
+				  `filter`.`one_price`,
+				  `filter`.`other_info`,
+				  `filter`.`price`,
+				  `filter`.`fleet_id`,
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `filter`.`status` 
+				FROM
+				  `filter` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `filter`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `filter`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `filter`.`status` = '1' 
+				 AND FIND_IN_SET(`filter`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_filter', $data);
+		}
+	}
+
+
+	public function filter_ax() {
+
+		//$this->load->authorisation('Structure', 'grease');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$type = $this->input->post('type');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('other_info');
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `filter` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `producer`,
+				  `model`,
+				  `type`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($type[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$type = $this->input->post('type');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('other_info');
+			$status = 1;
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($type[$i] == '') :
+						$n = 1;
+						$validation_errors = array('type[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `filter` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `producer`,
+				  `model`,
+				  `type`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($type[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+
+	public function vehicle_battery() {
+
+		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
+		$data = array();
+		$arr = $this->input->post('arr');
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '".$user_id."'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
+
+		$fleet_arr = array();
+
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+					$fleet_arr['name'][] = $value['name'];
+				}
+			}
+		}
+
+
+
+
+		if($fleet_arr) {
+
+			$data['fleet'] = $fleet_arr;
+
+			$sql = "
+				SELECT 
+				  `battery`.`id`,
+				  `battery`.`add_date`,
+				  `battery`.`add_user_id`,
+				  `battery`.`whence`,
+				  `battery`.`model`,
+				  `battery`.`count`,
+				  `battery`.`producer`,
+				  `battery`.`one_price`,
+				  `battery`.`other_info`,
+				  `battery`.`price`,
+				  `battery`.`fleet_id`,
+				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
+				  `battery`.`status` 
+				FROM
+				  `battery` 
+				LEFT JOIN `fleet` 
+					ON `fleet`.`id` = `battery`.`fleet_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `battery`.`add_user_id`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 	
+				WHERE `battery`.`status` = '1' 
+				 AND FIND_IN_SET(`battery`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 ORDER BY `brand_model`
+			";
+
+			$query = $this->db->query($sql);
+
+			$data['fleet_data'] = $query->result_array();
+
+			$this->load->view('structure/vehicle_battery', $data);
+		}
+	}
+
+
+	public function battery_ax() {
+
+		//$this->load->authorisation('Structure', 'grease');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		$fleet_id = $this->input->post('fleet_id');
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+
+
+		if ($fleet_id != '') {
+
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('other_info');
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+			if ($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$status = 1;
+
+
+			$sql = "
+				INSERT INTO `battery` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `producer`,
+				  `model`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($date as $key => $add_dte) {
+				$sql .= "(
+					" . $this->load->db_value($add_dte) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+		} else {
+
+			$fl_ids = $this->input->post('fl_id');
+			$price = $this->input->post('price');
+			$whence = $this->input->post('whence');
+			$producer = $this->input->post('producer');
+			$model = $this->input->post('model');
+			$count = $this->input->post('count');
+			$one_price = $this->input->post('one_price');
+			$date = $this->input->post('date');
+			$other_info = $this->input->post('other_info');
+			$status = 1;
+
+			if (is_array($price)) :
+				foreach ($price as $i => $price_val) :
+					if ($price_val == '') :
+						$n = 1;
+						$validation_errors = array('price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($whence[$i] == '') :
+						$n = 1;
+						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($producer[$i] == '') :
+						$n = 1;
+						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($model[$i] == '') :
+						$n = 1;
+						$validation_errors = array('model[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($count[$i] == '') :
+						$n = 1;
+						$validation_errors = array('count[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+					if ($one_price[$i] == '') :
+						$n = 1;
+						$validation_errors = array('one_price[' . $i . ']' => lang('required'));
+						$messages['error']['elements'][] = $validation_errors;
+					endif;
+
+				endforeach;
+			endif;
+			// end of validation
+
+
+
+			if($n == 1) {
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$sql = "
+				INSERT INTO `battery` (
+				  `add_date`,
+				  `add_user_id`,
+				  `whence`,
+				  `producer`,
+				  `model`,
+				  `count`,
+				  `one_price`,
+				  `price`,
+				  `other_info`,
+				  `fleet_id`,
+				  `status`
+				) 
+				VALUES
+			";
+
+
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$sql .= "(
+					" . $this->load->db_value($date[$key]) . ",
+					" . $this->load->db_value($user_id) . ",
+					" . $this->load->db_value($whence[$key]) . ",
+					" . $this->load->db_value($producer[$key]) . ",
+					" . $this->load->db_value($model[$key]) . ",
+					" . $this->load->db_value($count[$key]) . ",
+					" . $this->load->db_value($one_price[$key]) . ",
+					" . $this->load->db_value($price[$key]) . ",
+					" . $this->load->db_value($other_info[$key]) . ",
+					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value($status) . "
+				),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$result = $this->db->query($sql);
+
+
+		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
 
 
 }

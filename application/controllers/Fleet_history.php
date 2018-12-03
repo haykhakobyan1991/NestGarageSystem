@@ -105,25 +105,6 @@ class Fleet_history extends MX_Controller {
 		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 	}
 
-	public function fleet_history() {
-
-		// $this->load->authorisation();
-
-		$user_id = $this->session->user_id;
-		$lng = $this->load->lng();
-		$data = array();
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-
-		//echo $this->get_history('2018-11-06', '2018-11-30', 'inspection', $company_id);
-
-
-
-		$this->layout->view('fleet_history/fleet_history', $data);
-	}
-
 
 	public function getHistory_ax () {
 
@@ -134,48 +115,34 @@ class Fleet_history extends MX_Controller {
 		$date_from = $this->input->post('date_from');
 		$date_to = $this->input->post('date_to');
 		$table = $this->input->post('table');
+		$arr = $this->input->post('arr');
 
 
-		$this->getHistory($date_from, $date_to, $table, $company_id);
+		$this->getHistory($date_from, $date_to, $table, $arr);
 
 	}
 
 
-	public function getHistory($date_from, $date_to, $table_name, $company_id) {
+	public function getHistory($date_from, $date_to, $table_name, $arr) {
 
 		$lng = $this->load->lng();
 
 		$add_sql = '';
 		$sql_add = '';
+		$fleet_arr = array();
 
-		 $sql_fleets = "
-			SELECT 
-			  GROUP_CONCAT(DISTINCT  `fleet`.`id`) AS `fleet_ids`
-			FROM
-			  `user` 
-			  LEFT JOIN company 
-				ON user.`company_id` = company.`id` 
-			  LEFT JOIN department 
-				ON department.`company_id` = company.id 
-				 AND `department`.`status` = '1'
-			  LEFT JOIN `staff`
-				ON FIND_IN_SET(
-				  `department`.`id`,
-				  `staff`.`department_ids`
-				) 
-				AND `staff`.`status` = '1'
-			  LEFT JOIN `fleet` 
-				ON FIND_IN_SET(
-				  `staff`.`id`,
-				  `fleet`.`staff_ids`
-				) 
-				AND `fleet`.`status` = '1'
-			 	
-			WHERE company.id = '" . $company_id . "' 
-		";
 
-		$query_fleets = $this->db->query($sql_fleets);
-		$row = $query_fleets->row_array();
+		if($arr) {
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+				}
+			}
+		}
+
+		$fleet_ids = implode(',', $fleet_arr['id']);
+
+
 
 		if($table_name == 'inspection' || $table_name == 'insurance') {
 			$sql_add .= "".$table_name.".`end_date`,";
@@ -212,7 +179,7 @@ class Fleet_history extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE ".$table_name.".`status` = '1' 
-				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$row['fleet_ids']."')
+				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
 				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
 				 GROUP BY ".$table_name.".`fleet_id`
 			";
@@ -240,7 +207,7 @@ class Fleet_history extends MX_Controller {
 				FROM
 				  ".$table_name." 
 				WHERE ".$table_name.".`status` = '1' 
-				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$row['fleet_ids']."')
+				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
 				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
 				 GROUP BY ".$table_name.".`add_date`
 			";

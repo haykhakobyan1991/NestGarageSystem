@@ -12,6 +12,9 @@
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
 	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
+	<? if ($this->router->fetch_class() == 'Structure') : ?>
+		<link rel="stylesheet" href="<?= base_url() ?>assets/css/structure1.css"/>
+	<? endif; ?>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
@@ -179,44 +182,75 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
 
 						<div class="loader"></div>
-						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
+						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/><?
 
-						<? } elseif ($controller == 'Structure') {  ?>
+						} elseif ($controller == 'Structure') { ?>
 
-
-							<div class="">
-								<div class="btn-group  mb-3 mb-md-3 <?= ($page == 'structure1' ? 'mt-5 mt-md-5' : 'mt-3 mt-md-3') ?> "
-									 style="<?= ($page == 'structure1' ? 'left: 30px;' : 'right: 46px;') ?> z-index: 999;position: absolute;">
-
-									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>">
-										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
-												class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
-											<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
-									</button>
-									</a>
-									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2') ?>">
-										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
-												class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
-											<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
-										</button>
-									</a>
-									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3') ?>">
-										<button type="button" style="width: 40px;height: 40px;padding: 0 !important;"
-												class="m-1 btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>"
-												style="">
-											<img width="20" src="<?= base_url('assets/images/trees3.svg') ?>">
-										</button>
+							<div class="content m-1">
+								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == '' ? 'active show' : '' ?> "
+									   data-id="1"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . $page) ?>"
+									   role="tab">
+										<i class="fas fa-info"></i> Ինֆորմացիա
 									</a>
 
-								</div><?
+									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
+									   data-id="2"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . $page . '/add_expenses') ?>"
+									   role="tab">
+										<i class="fas fa-plus"></i> Ավելացնել ծախսեր
+									</a>
+
+									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == 'fleet_history' ? 'active show' : '' ?> "
+									   data-id="3"
+									   data-toggle=""
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .  '/' . $page . '/fleet_history') ?>"
+									   role="tab">
+										<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
+									</a>
+
+									<div class="btn-group ml-auto">
+
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/'.$this->uri->segment(3)) ?>">
+											<button type="button"
+													style="width: 40px;height: 40px;padding: 0 !important;"
+													class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
+												<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
+											</button>
+										</a>
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/'.$this->uri->segment(3)) ?>">
+											<button type="button"
+													style="width: 40px;height: 40px;padding: 0 !important;"
+													class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
+												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
+											</button>
+										</a>
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/'.$this->uri->segment(3)) ?>">
+											<button type="button"
+													style="width: 40px;height: 40px;padding: 0 !important;"
+													class="m-1 btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>"
+													style="">
+												<img width="20" src="<?= base_url('assets/images/trees3.svg') ?>">
+											</button>
+										</a>
+
+									</div>
+
+								</div>
+
+
+							</div>
+
+
+							<div class=""><?
 								if($page == 'structure1') {
 									?>
-								<div class="row btn-group mt-5 mt-md-5"
-									 style=" right: 46px; z-index: 999;position: absolute;">
+									<div class="row btn-group mt-2 mt-md-2"
+										 style=" right: 46px; z-index: 999;position: absolute;">
 									<input class="form-control col-7" type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()">
 									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2" onclick="searchDiagram()">Search</a>
 								</div>
 								<?}?>
-							</div>
-
-						<? } ?>
+							</div><?
+						} ?>

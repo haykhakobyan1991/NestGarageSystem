@@ -51,26 +51,7 @@
 </div>
 <!--  Modal End -->
 <div class="content m-1">
-	<div class="content m-1">
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == '' ? 'active show' : '' ?> "
-			   data-id="1"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3') ?>"
-			   role="tab">
-				<i class="fas fa-info"></i> Ինֆորմացիա
-			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) != '' ? 'active show' : '' ?> "
-			   data-id="2"
-			   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/inspection') ?>"
-			   role="tab">
-				<i class="fas fa-plus"></i> Ավելացնել ծաղսեր
-			</a>
-			<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed" data-id="3"
-			   data-toggle="tab" href="#nav-info" role="tab">
-				<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
-			</a>
-		</div>
-	</div>
+
 	<div class="container-fluid">
 		<div class="row">
 

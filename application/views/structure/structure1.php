@@ -8,6 +8,17 @@
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
 
+
+
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/jquery.dataTables.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/dataTables.bootstrap4.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/dataTables.buttons.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.bootstrap4.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/jszip.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables//vfs_fonts.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.html5.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.colVis.min.js')?>"></script>
+
 <style>
 	.row.bg-secondary {
 		min-height: 194px;
@@ -164,13 +175,6 @@
 			   role="tab" aria-controls="nav-12"
 			   aria-selected="false">ՄԱՐՏԿՈՑ</a>
 
-
-			<a class="nav-item nav-link tab_nav" 
-			   data-tab="12" id="nav-13-tab" 
-			   data-toggle="tab" href="#nav-13" 
-			   role="tab" aria-controls="nav-13"
-			   aria-selected="false">ԱՀԱԶԱՆԳ</a>
-
 		</div>
 	</nav>
 
@@ -200,29 +204,6 @@
 		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
 
 		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
-
-		<div class="tab-pane fade" id="nav-13" role="tabpanel" aria-labelledby="nav-13-tab">
-			<div class="row col-sm-12 col-md-12 bpp_o">
-				<div class="container-fluid">
-					<table id="ex_13" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
-						<tr>
-							<th class="table_th">ID</th>
-							<th class="table_th">Service</th>
-							<th class="table_th">Service frequency</th>
-							<th class="table_th">Last performed</th>
-							<th class="table_th">Last Performed at (meter)</th>
-							<th class="table_th">Next services</th>
-							<th class="table_th">To go</th>
-							<th class="table_th">Create reminder</th>
-							<th class="table_th"><i class="fa fa-trash"> </i></th>
-						</tr>
-						</thead>
-						<tbody class="ex_13"></tbody>
-					</table>
-				</div>
-			</div>
-		</div>
 
 	</div>
 

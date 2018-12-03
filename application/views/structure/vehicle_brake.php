@@ -311,10 +311,28 @@
 			"info":     false,
 			"columnDefs": [
 				{ "orderable": false, "targets": 11 }
+			],
+			dom: 'Bfrtip',
+			buttons: [
+				{
+					extend: 'excelHtml5',
+					title: '',
+					filename: 'excel_file',
+					footer: true,
+					exportOptions: {
+						columns: ':visible'
+					}
+				},
+				'colvis'
 			]
 		});
 
 		table.order([0, 'asc']).draw();
+
+		table.buttons().container()
+			.appendTo( '#ex_9_wrapper #ex_9_filter:eq(0)' );
+
+		$('.dt-buttons').css('float', 'left');
 
 
 		//vehicle brake

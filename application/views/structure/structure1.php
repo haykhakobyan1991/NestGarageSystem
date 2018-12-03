@@ -15,7 +15,7 @@
 <script type="text/javascript" src="<?=base_url('assets/js/dataTables/dataTables.buttons.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.bootstrap4.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/js/dataTables/jszip.min.js')?>"></script>
-<script type="text/javascript" src="<?=base_url('assets/js/dataTables//vfs_fonts.js')?>"></script>
+<!--<script type="text/javascript" src="--><?//=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.html5.min.js')?>"></script>
 <script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.colVis.min.js')?>"></script>
 

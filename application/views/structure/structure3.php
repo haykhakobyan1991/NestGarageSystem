@@ -139,6 +139,12 @@
 		</div>
 	</div>
 
+	<span class="selected_information "></span>
+
+
+
+
+
 	<script>
 		/*Diagram Trees Start*/
 
@@ -396,12 +402,41 @@
 			}
 		});
 
+		var array = [];
 		$(document).on('click', '.added_lg_2', function () {
+			array = [];
 			if ($(this).hasClass('bg-info')) {
 				$(this).removeClass('bg-info text-white');
 			} else {
-				$(this).addClass('bg-info text-white')
+				$(this).addClass('bg-info text-white');
 			}
+			$('.added_lg_2').each(function () {
+				if ($(this).hasClass('bg-info')) {
+					arr = {'key': $(this).data('key')};
+					array.push(arr)
+				}
+			});
+			//console.table(array)
+
+			if ($('a[data-id="1"]').hasClass('active')) {
+				if (array.length !== 0) {
+					console.table(array);
+					$('.selected_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="<?=base_url('/assets/images/puff.svg')?>">');
+					var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
+					$.post(url, {arr: array}).done(function (data) {
+						console.log(data);
+						$('.selected_information').html(data);
+						$('#nav-tabContent-car').fadeIn('slow');
+					});
+
+
+				}
+			}
+
+
+
+
+
 		});
 
 		$(document).on('click', '.add_lg_2', function () {
@@ -429,6 +464,7 @@
 					$(this).remove('.lg_2');
 					$(this).removeClass('bg-info text-white added_lg_2');
 					$(this).addClass('sel_items');
+					$('#nav-tabContent-car').remove();
 				}
 			});
 
@@ -462,7 +498,7 @@
 
 		$('.delete_all_2').click(function () {
 			$('.added_lg_2').remove();
-
+			$('#nav-tabContent-car').remove();
 			$('.lg_2').append('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" >Move here to see the costs</h2>')
 		});
 

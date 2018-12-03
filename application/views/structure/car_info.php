@@ -8,9 +8,59 @@ $folder = $this->session->folder;
 	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
 		<div class="container-fluid ">
 			<div class="row"><?
+
 				if (!empty($result)) {
+					$staff_id = '';
 					foreach ($result as $row) {
-						?>
+						if($row['staff_id'] != $staff_id) :
+						?><div class="col-sm-12 p-0" >
+							<div class="col-sm-4" style="border: 5px solid #dee2e6 !important;">
+								<div class="row" style="background-color: #37474f">
+									<div class="col-sm-6 p-2  w-auto">
+										<p class="text-white-50 small driver_info">First name:
+											<span class="text-white ml-2"><?= $row['first_name'] ?></span>
+										</p>
+										<p class="text-white-50 small driver_info">Last Name:
+											<span class="text-white ml-2"><?= $row['last_name'] ?></span>
+										</p>
+
+										<p class="text-white-50 small driver_info">Contact Number 1:
+											<span class="text-white ml-2"><?= $row['contact_1'] ?></span>
+										</p>
+										<p class="small text-white-50 driver_info">Contact Number 2:
+											<span class="text-white ml-2"><?= $row['contact_2'] ?></span>
+										</p>
+										<p class="small text-white-50 driver_info">Email: <span
+												class="text-white ml-2"><?= $row['email'] ?></span></p>
+										<p class="small text-white-50 driver_info">Leave Country: <span
+												class="text-white ml-2"><?= $row['country'] ?></span></p>
+										<p class="small text-white-50 driver_info">Address: <span
+												class="text-white ml-2"><?= $row['address'] ?></span></p>
+										<p class="small text-white-50 driver_info">Post Code:
+											<span class="text-white ml-2"><?= $row['post_code'] ?></span>
+										</p>
+										<p class="small text-white-50 driver_info">Department: <span
+												class="text-white ml-2"><?= $row['department'] ?></span></p>
+									</div>
+									<div class="col-sm-6 p-2  w-auto">
+										<p class="small text-white-50 driver_info">Position:
+											<span class="text-white ml-2"><?= $row['position'] ?></span>
+										</p>
+										<p class="small text-white-50 driver_info">Nest Card ID:
+											<span class="text-white ml-2"><?= $row['nest_card_id'] ?></span>
+										</p>
+										<p class="small text-white-50 driver_info m-2">
+											<img width="100px"
+												 src="<?= base_url('uploads/' . $folder . '/staff/original/' . $row['photo']) ?>"
+												 alt="">
+										</p>
+									</div>
+								</div>
+								</div>
+							</div><?
+						endif;
+						$staff_id = $row['staff_id'];
+							?>
 						<div class="col-sm-4 " style="border: 5px solid #dee2e6 !important;">
 						<div class="row bg-secondary">
 							<div class="col-sm-4 p-2  w-auto">
@@ -73,60 +123,10 @@ $folder = $this->session->folder;
 						</div><?
 					}
 				}
-				if (!empty($result_driver)) {
-					foreach ($result_driver as $row_d) {
-						?>
 
-						<div class="col-sm-4" style="border: 5px solid #dee2e6 !important;">
-						<div class="row bg-secondary">
-							<div class="col-sm-6 p-2  w-auto">
-								<p class="text-white-50 small driver_info">First name:
-									<span class="text-white ml-2"><?= $row_d['first_name'] ?></span>
-								</p>
-								<p class="text-white-50 small driver_info">Last Name:
-									<span class="text-white ml-2"><?= $row_d['last_name'] ?></span>
-								</p>
-
-								<p class="text-white-50 small driver_info">Contact Number 1:
-									<span class="text-white ml-2"><?= $row_d['contact_1'] ?></span>
-								</p>
-								<p class="small text-white-50 driver_info">Contact Number 2:
-									<span class="text-white ml-2"><?= $row_d['contact_2'] ?></span>
-								</p>
-								<p class="small text-white-50 driver_info">Email: <span
-										class="text-white ml-2"><?= $row_d['email'] ?></span></p>
-								<p class="small text-white-50 driver_info">Leave Country: <span
-										class="text-white ml-2"><?= $row_d['country'] ?></span></p>
-								<p class="small text-white-50 driver_info">Address: <span
-										class="text-white ml-2"><?= $row_d['address'] ?></span></p>
-								<p class="small text-white-50 driver_info">Post Code:
-									<span class="text-white ml-2"><?= $row_d['post_code'] ?></span>
-								</p>
-								<p class="small text-white-50 driver_info">Department: <span
-										class="text-white ml-2"><?= $row_d['department'] ?></span></p>
-							</div>
-							<div class="col-sm-6 p-2  w-auto">
-								<p class="small text-white-50 driver_info">Position:
-									<span class="text-white ml-2"><?= $row_d['position'] ?></span>
-								</p>
-								<p class="small text-white-50 driver_info">Nest Card ID:
-									<span class="text-white ml-2"><?= $row_d['nest_card_id'] ?></span>
-								</p>
-								<p class="small text-white-50 driver_info m-2">
-									<img width="100px"
-										 src="<?= base_url('uploads/' . $folder . '/staff/original/' . $row_d['photo']) ?>"
-										 alt="">
-								</p>
-							</div>
-						</div>
-						</div><?
-					}
-				}
 				?>
 			</div>
-			<div class="container-fluid">
-				<button id="export" class="btn btn-sm btn-outline-danger cancel_btn float-right mb-2 mt-2">Export</button>
-			</div>
+
 		</div>
 	</div>
 

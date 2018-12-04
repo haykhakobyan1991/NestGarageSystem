@@ -899,6 +899,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						tooltip: {
 							pointFormat: '{series.name}: <b>{point.y:,.0f}</b>'
 						},
+
 						plotOptions: {
 							pie: {
 								allowPointSelect: true,
@@ -910,12 +911,55 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 									}
 								},
+								point: {
+									events: {
+										click: function (e) {
+
+											if(!this.selected) {
+
+												var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistorySingle_ax')?>';
+												var date_from = $('input[name="from"]').val();
+												var date_to = $('input[name="to"]').val();
+												var table = this.table;
+												var fleet_id = this.fleet_id;
+												var fleet_name = this.name;
+												$.ajax({
+													url: url,
+													type: 'POST',
+													data: {date_from: date_from, date_to: date_to, table: table, fleet_id: fleet_id, fleet_name: fleet_name},
+													async: true,
+													dataType: "json",
+													success: function (data) {
+														chart(data, fleet_name);
+													}
+												});
+											} else {
+
+												var date_from = $('input[name="from"]').val();
+												var date_to = $('input[name="to"]').val();
+												var table = this.table;
+												var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+
+												$.ajax({
+													url: url,
+													type: 'POST',
+													data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+													async: true,
+													dataType: "json",
+													success: function (data) {
+														chart(data, title);
+													}
+												});
+											}
+										}
+									}
+								},
 								showInLegend: true
 							}
 						},
 						series: [{
 							type: 'pie',
-							name: 'Browser share',
+							name: 'price',
 							data: data.data
 						}]
 					});

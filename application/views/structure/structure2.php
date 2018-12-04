@@ -723,9 +723,53 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 								}
 							},
+							point: {
+								events: {
+									click: function (e) {
+
+										if(!this.selected) {
+
+											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistorySingle_ax')?>';
+											var date_from = $('input[name="from"]').val();
+											var date_to = $('input[name="to"]').val();
+											var table = this.table;
+											var fleet_id = this.fleet_id;
+											var fleet_name = this.name;
+											$.ajax({
+												url: url,
+												type: 'POST',
+												data: {date_from: date_from, date_to: date_to, table: table, fleet_id: fleet_id, fleet_name: fleet_name},
+												async: true,
+												dataType: "json",
+												success: function (data) {
+													chart(data, fleet_name);
+												}
+											});
+										} else {
+
+											var date_from = $('input[name="from"]').val();
+											var date_to = $('input[name="to"]').val();
+											var table = this.table;
+											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+
+											$.ajax({
+												url: url,
+												type: 'POST',
+												data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+												async: true,
+												dataType: "json",
+												success: function (data) {
+													chart(data, title);
+												}
+											});
+										}
+									}
+								}
+							},
 							showInLegend: true
-						}
+						},
 					},
+
 					series: [{
 						type: 'pie',
 						name: 'Browser share',
@@ -838,143 +882,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 	//ajax
-	function vehicle_inspection(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 1) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
+	function vehicle_add(new_arr, url_1, dataTab) {
 
-	function vehicle_fuel(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
 		$.post(url_1, {arr: new_arr}).done(function (data) {
 			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 2) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_fine(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 3) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_accident(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 4) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_insurance(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 5) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_spares(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 6) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_repair(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 7) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_wheel(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 8) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_brake(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 9) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_grease(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 10) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_filter(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 11) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-				}
-			});
-		});
-	}
-
-	function vehicle_battery(new_arr) {
-		var url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
-		$.post(url_1, {arr: new_arr}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == 12) {
+				if ($(this).data('tab') == dataTab) {
 					$(this).html(data);
 					$("td[valign='top']").parent('tr').remove();
 				}

@@ -123,6 +123,7 @@ class Fleet_history extends MX_Controller {
 	}
 
 
+
 	public function getHistory($date_from, $date_to, $table_name, $arr) {
 
 		$lng = $this->load->lng();
@@ -130,106 +131,196 @@ class Fleet_history extends MX_Controller {
 		$add_sql = '';
 		$sql_add = '';
 		$fleet_arr = array();
+		$Arr = array();
 
-
-		if($arr) {
+		if($arr && $table_name != '') {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
 				}
 			}
-		}
-
-		$fleet_ids = implode(',', $fleet_arr['id']);
 
 
+			$fleet_ids = implode(',', $fleet_arr['id']);
 
-		if($table_name == 'inspection' || $table_name == 'insurance') {
-			$sql_add .= "".$table_name.".`end_date`,";
-			//$add_sql .= " AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`end_date` <= '".$date_to."')";
-		}
 
-		if($table_name == 'accident') {
-			$sql_add .= "SUM(".$table_name.".`return_amount`) AS `price`,";
-			$sql_add .= "".$table_name.".`return_amount` AS `count`,";
-		} else {
-			$sql_add .= "SUM(".$table_name.".`price`) AS `price`,";
-			$sql_add .= "".$table_name.".`price` AS `count`,";
-		}
 
-		$sql = "
-				SELECT 
-				  ".$table_name.".`id`,
-				  ".$table_name.".`add_date`,
-				  ".$table_name.".`add_user_id`,
-				  ".$sql_add."
-				  
-				  ".$table_name.".`fleet_id`,
-				  CONCAT_WS(
-					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
-				  ) AS `brand_model`
-				FROM
-				  ".$table_name." 
-				LEFT JOIN `fleet` 
-					ON `fleet`.`id` = ".$table_name.".`fleet_id`
-				LEFT JOIN `model` 
-					ON `model`.`id` = `fleet`.`model_id` 
-				LEFT JOIN `brand` 
-					ON `brand`.`id` = `model`.`brand_id` 	
-				WHERE ".$table_name.".`status` = '1' 
-				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
-				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
-				 GROUP BY ".$table_name.".`fleet_id`
-			";
-
-			$query = $this->db->query($sql);
-
-			$result = $query->result_array();
-
-			$Arr = array();
-
-			foreach($result as $val) {
-
-				$Arr['data'][] = array(
-					'name' => $val['brand_model'],
-					'y' => intval($val['price'])
-				);
+			if($table_name == 'inspection' || $table_name == 'insurance') {
+				$sql_add .= "".$table_name.".`end_date`,";
+				//$add_sql .= " AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`end_date` <= '".$date_to."')";
 			}
 
+			if($table_name == 'accident') {
+				$sql_add .= "SUM(".$table_name.".`return_amount`) AS `price`,";
+				$sql_add .= "".$table_name.".`return_amount` AS `count`,";
+			} else {
+				$sql_add .= "SUM(".$table_name.".`price`) AS `price`,";
+				$sql_add .= "".$table_name.".`price` AS `count`,";
+			}
 
-		$sql1 = "
-				SELECT 
-				  ".$table_name.".`add_date`,
-				  ".$sql_add."
-				  ".$table_name.".`status`
-				FROM
-				  ".$table_name." 
-				WHERE ".$table_name.".`status` = '1' 
-				 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
-				 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
-				 GROUP BY ".$table_name.".`add_date`
-			";
+			$sql = "
+					SELECT 
+					  ".$table_name.".`id`,
+					  ".$table_name.".`add_date`,
+					  ".$table_name.".`add_user_id`,
+					  ".$sql_add."
+					  
+					  ".$table_name.".`fleet_id`,
+					  CONCAT_WS(
+						' ',
+						`brand`.`title_".$lng."`,
+						`model`.`title_".$lng."`
+					  ) AS `brand_model`
+					FROM
+					  ".$table_name." 
+					LEFT JOIN `fleet` 
+						ON `fleet`.`id` = ".$table_name.".`fleet_id`
+					LEFT JOIN `model` 
+						ON `model`.`id` = `fleet`.`model_id` 
+					LEFT JOIN `brand` 
+						ON `brand`.`id` = `model`.`brand_id` 	
+					WHERE ".$table_name.".`status` = '1' 
+					 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
+					 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
+					 GROUP BY ".$table_name.".`fleet_id`
+				";
 
-		$query1 = $this->db->query($sql1);
+				$query = $this->db->query($sql);
 
-		$result1 = $query1->result_array();
+				$result = $query->result_array();
+
+				$Arr = array();
+
+				foreach($result as $val) {
+
+					$Arr['data'][] = array(
+						'name' => $val['brand_model'],
+						'y' => intval($val['price']),
+						'fleet_id' => $val['fleet_id'],
+						'table' => $table_name
+					);
+				}
 
 
-		foreach($result1 as $val1) {
+			$sql1 = "
+					SELECT 
+					  ".$table_name.".`add_date`,
+					  ".$sql_add."
+					  ".$table_name.".`status`
+					FROM
+					  ".$table_name." 
+					WHERE ".$table_name.".`status` = '1' 
+					 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
+					 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
+					 GROUP BY ".$table_name.".`add_date`
+				";
+
+			$query1 = $this->db->query($sql1);
+
+			$result1 = $query1->result_array();
 
 
-			$Arr['date'][] = date($val1['add_date']);
-			$Arr['price'][] = intval($val1['price']);
+			foreach($result1 as $val1) {
+
+
+				$Arr['date'][] = date($val1['add_date']);
+				$Arr['price'][] = intval($val1['price']);
+			}
+
 		}
 
-
-			echo json_encode($Arr);
-			return true;
+		echo json_encode($Arr);
+		return true;
 
 
 	}
+
+
+	public function getHistorySingle_ax () {
+
+
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+		$table = $this->input->post('table');
+		$fleet_id = $this->input->post('fleet_id');
+
+
+		$this->getHistorySingle($date_from, $date_to, $table, $fleet_id);
+
+	}
+
+
+
+	public function getHistorySingle($date_from, $date_to, $table_name, $fleet_id) {
+
+		$lng = $this->load->lng();
+
+		$add_sql = '';
+		$sql_add = '';
+		$Arr = array();
+
+		if($fleet_id && $table_name != '') {
+
+
+
+			if($table_name == 'inspection' || $table_name == 'insurance') {
+				$sql_add .= "".$table_name.".`end_date`,";
+				//$add_sql .= " AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`end_date` <= '".$date_to."')";
+			}
+
+			if($table_name == 'accident') {
+				$sql_add .= "SUM(".$table_name.".`return_amount`) AS `price`,";
+				$sql_add .= "".$table_name.".`return_amount` AS `count`,";
+			} else {
+				$sql_add .= "SUM(".$table_name.".`price`) AS `price`,";
+				$sql_add .= "".$table_name.".`price` AS `count`,";
+			}
+
+
+
+
+			$sql1 = "
+					SELECT 
+					  ".$table_name.".`add_date`,
+					  ".$sql_add."
+					  CONCAT_WS(
+						' ',
+						`brand`.`title_".$lng."`,
+						`model`.`title_".$lng."`
+					  ) AS `brand_model`
+					FROM
+					  ".$table_name." 
+					LEFT JOIN `fleet` 
+						ON `fleet`.`id` = ".$table_name.".`fleet_id`
+					LEFT JOIN `model` 
+						ON `model`.`id` = `fleet`.`model_id` 
+					LEFT JOIN `brand` 
+						ON `brand`.`id` = `model`.`brand_id` 	
+					WHERE ".$table_name.".`status` = '1' 
+					 AND ".$table_name.".`fleet_id` = '".$fleet_id."'
+					 AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`add_date` <= '".$date_to."')
+					 GROUP BY ".$table_name.".`add_date`
+				";
+
+			$query1 = $this->db->query($sql1);
+
+			$result1 = $query1->result_array();
+
+
+			foreach($result1 as $val1) {
+				$Arr['date'][] = date($val1['add_date']);
+				$Arr['price'][] = intval($val1['price']);
+				$Arr['fleet_name'] = $val1['brand_model'];
+			}
+
+		}
+
+		echo json_encode($Arr);
+		return true;
+
+
+	}
+
 
 
 }

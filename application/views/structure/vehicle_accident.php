@@ -363,8 +363,8 @@
 					if (data.success == '1') {
 
 						loading('stop', 'inspection');
-						var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses')?>";
-						$(location).attr('href', url);
+
+						location.reload();
 
 					} else {
 

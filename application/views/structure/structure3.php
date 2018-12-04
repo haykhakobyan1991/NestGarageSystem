@@ -23,9 +23,38 @@
 		color: gray;
 		background: #fff !important;
 	}
+
+	canvas{
+		background: #fff;
+	}
+
+	.row.bg-secondary {
+		min-height: 194px;
+	}
+
+	.modal {
+		top: 30% !important;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <script src="https://gojs.net/latest/extensions/Robot.js"></script>
+
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/jquery.dataTables.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/dataTables.bootstrap4.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/dataTables.buttons.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.bootstrap4.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/jszip.min.js')?>"></script>
+<!--<script type="text/javascript" src="--><?//=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.html5.min.js')?>"></script>
+<script type="text/javascript" src="<?=base_url('assets/js/dataTables/buttons.colVis.min.js')?>"></script>
+
+<?
+if ($this->uri->segment('3') == 'fleet_history') {
+	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
+}
+
+$time = strtotime(mdate('%Y-%m-%d', now()));
+?>
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
@@ -142,6 +171,156 @@
 	<span class="selected_information "></span>
 
 
+	<div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
+		<nav class="mt-2">
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<a class="nav-item nav-link tab_nav "
+				   data-tab="1" id="nav-1-tab"
+				   data-toggle="tab" href="#nav-1"
+				   role="tab" aria-controls="nav-1"
+				   aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="2" id="nav-2-tab"
+				   data-toggle="tab" href="#nav-2"
+				   role="tab" aria-controls="nav-2"
+				   aria-selected="false">ՎԱՌԵԼԻՔ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="3" id="nav-3-tab"
+				   data-toggle="tab" href="#nav-3"
+				   role="tab" aria-controls="nav-3"
+				   aria-selected="false">ՏՈՒԳԱՆՔ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="4" id="nav-4-tab"
+				   data-toggle="tab" href="#nav-4"
+				   role="tab" aria-controls="nav-4"
+				   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="5" id="nav-5-tab"
+				   data-toggle="tab" href="#nav-5"
+				   role="tab" aria-controls="nav-5"
+				   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="6" id="nav-6-tab"
+				   data-toggle="tab" href="#nav-6"
+				   role="tab" aria-controls="nav-6"
+				   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="7" id="nav-7-tab"
+				   data-toggle="tab" href="#nav-7"
+				   role="tab" aria-controls="nav-7"
+				   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="8" id="nav-8-tab"
+				   data-toggle="tab" href="#nav-8"
+				   role="tab" aria-controls="nav-8"
+				   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="9" id="nav-9-tab"
+				   data-toggle="tab" href="#nav-9"
+				   role="tab" aria-controls="nav-9"
+				   aria-selected="false">ԱՐԳԵԼԱԿ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="10" id="nav-10-tab"
+				   data-toggle="tab" href="#nav-10"
+				   role="tab" aria-controls="nav-10"
+				   aria-selected="false">ՔՍՈՒՔ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="11" id="nav-11-tab"
+				   data-toggle="tab" href="#nav-11"
+				   role="tab" aria-controls="nav-11"
+				   aria-selected="false">ՖԻԼՏՐ</a>
+
+				<a class="nav-item nav-link tab_nav"
+				   data-tab="12" id="nav-12-tab"
+				   data-toggle="tab" href="#nav-12"
+				   role="tab" aria-controls="nav-12"
+				   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+
+			</div>
+		</nav>
+
+
+		<div class="tab-content" id="nav-tabContent">
+
+			<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"></div>
+
+			<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"></div>
+
+			<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"></div>
+
+			<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"></div>
+
+			<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"></div>
+
+			<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"></div>
+
+			<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"></div>
+
+			<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"></div>
+
+			<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab"></div>
+
+			<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab"></div>
+
+			<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
+
+			<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
+
+		</div><?
+
+		if ($this->uri->segment('3') == 'fleet_history') { ?>
+
+			<hr class="my-2">
+
+			<div class="container-fluid" style="min-height: 35px;">
+
+
+				<div style="float: right;">
+					<span class="p-3">from</span>
+					<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
+						   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
+
+					<span class="p-3">to</span>
+					<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
+						   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
+
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;margin-top: -4px;min-height: 37px !important;" type="button" id="search"
+							class="ml-2 save_cancel_btn btn btn-success">Տեսնել
+					</button>
+				</div>
+
+
+			</div>
+
+			<hr class="my-2">
+
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-7">
+						<div id="container" style="width:100%; height:500px;"></div>
+					</div>
+					<div class="col-sm-5">
+						<div id="container_2" style="width:100%; height:500px;"></div>
+					</div>
+				</div>
+			</div><?
+
+		} ?>
+
+	</div>
 
 
 
@@ -381,7 +560,7 @@
 						var found2 = str2.match(re2);
 
 						if (found2 == 'f') {
-							lg_1 += '<li style="cursor: pointer" class="sel_items mt-1 list-group-item" data-key="' + value.key + '" data-parent="' + value.parent + '">' + value.name + '/' + value.title + '</li>';
+							lg_1 += '<li style="cursor: pointer" class="sel_items mt-1 list-group-item" data-key="' + value.key + '" data-parent="' + value.parent + '">' + value.name +'</li>';
 						}
 					});
 
@@ -404,6 +583,7 @@
 
 		var array = [];
 		$(document).on('click', '.added_lg_2', function () {
+
 			array = [];
 			if ($(this).hasClass('bg-info')) {
 				$(this).removeClass('bg-info text-white');
@@ -412,7 +592,10 @@
 			}
 			$('.added_lg_2').each(function () {
 				if ($(this).hasClass('bg-info')) {
-					arr = {'key': $(this).data('key')};
+					arr = {
+						'key': $(this).data('key'),
+						'name': $(this).text()
+					};
 					array.push(arr)
 				}
 			});
@@ -431,13 +614,378 @@
 
 
 				}
+			} else if ($('a[data-id="2"]').hasClass('active')) {
+				$('.selected_information').html('');
+
+				var url_1 = '';
+				$('.tab_nav').each(function () {
+					if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
+						vehicle_add(array, url_1, $(this).data('tab'))
+					}
+				});
+
+			}else if ($('a[data-id="3"]').hasClass('active')) {
+				$('.selected_information').html('');
+
+				var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+				var date_from = $('input[name="from"]').val();
+				var date_to = $('input[name="to"]').val();
+				var table = '';
+				var title = '';
+
+				$('.tab_nav').each(function () {
+
+					if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						table = 'inspection';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
+						table = 'fuel_consumption';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
+						table = 'fine';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
+						table = 'accident';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
+						table = 'insurance';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
+						table = 'spares';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
+						table = 'repair';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
+						table = 'wheel';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+						table = 'brake';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+						table = 'grease';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+						table = 'filter';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+						table = 'battery';
+						title = $(this).text();
+					}
+				});
+
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: {date_from: date_from, date_to: date_to, table: table, arr: array},
+					async: true,
+					dataType: "json",
+					success: function (data) {
+						chartCircle(data, title);
+						chart(data, title);
+					}
+				});
+			} else {
+				$('.selected_information').html('');
+			}
+
+		});
+
+		if ($('a[data-id="2"]').hasClass('active')) {
+
+			$('.tab_nav').click(function () {
+				if ($(this).data('tab') == 1) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 2) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 3) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 4) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 5) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 6) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 7) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 8) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 9) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 10) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 11) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				} else if ($(this).data('tab') == 12) {
+					url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
+					vehicle_add(array, url_1, $(this).data('tab'))
+				}
+			});
+		} else if ($('a[data-id="3"]').hasClass('active')) {
+
+
+			function chart(data, title) {
+
+				Highcharts.chart('container', {
+					chart: {
+						scrollablePlotArea: {
+							minWidth: 700
+						}
+					},
+					title: {
+						text: title
+					},
+					subtitle: {
+						text: ''
+					},
+					xAxis: {
+						categories: data.date
+					},
+					yAxis: {
+						main: 0,
+						title: {
+							text: 'AMD'
+						}
+					},
+
+					series: [{
+						name: title,
+						data: data.price
+					}]
+				});
+
+			}
+
+			/*
+            *
+            * Second Chart Start
+            *
+            */
+
+			Highcharts.setOptions({
+				colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+					return {
+						radialGradient: {
+							cx: 0.5,
+							cy: 0.3,
+							r: 0.7
+						},
+						stops: [
+							[0, color],
+							[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+						]
+					};
+				})
+			});
+
+			function chartCircle(data, title) {
+
+				// Build the chart
+				Highcharts.chart('container_2', {
+					chart: {
+						plotBackgroundColor: null,
+						plotBorderWidth: 1,//null,
+						plotShadow: false
+					},
+					title: {
+						text: title
+					},
+					tooltip: {
+						pointFormat: '{series.name}: <b>{point.y:,.0f}</b>'
+					},
+					plotOptions: {
+						pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+								enabled: true,
+								format: '<b>{point.name}</b>: {point.y:,.0f}',
+								style: {
+									color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+								}
+							},
+							point: {
+								events: {
+									click: function (e) {
+
+										if(!this.selected) {
+
+											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistorySingle_ax')?>';
+											var date_from = $('input[name="from"]').val();
+											var date_to = $('input[name="to"]').val();
+											var table = this.table;
+											var fleet_id = this.fleet_id;
+											var fleet_name = this.name;
+											$.ajax({
+												url: url,
+												type: 'POST',
+												data: {date_from: date_from, date_to: date_to, table: table, fleet_id: fleet_id, fleet_name: fleet_name},
+												async: true,
+												dataType: "json",
+												success: function (data) {
+													chart(data, fleet_name);
+												}
+											});
+										} else {
+
+											var date_from = $('input[name="from"]').val();
+											var date_to = $('input[name="to"]').val();
+											var table = this.table;
+											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+
+											$.ajax({
+												url: url,
+												type: 'POST',
+												data: {date_from: date_from, date_to: date_to, table: table, arr: array},
+												async: true,
+												dataType: "json",
+												success: function (data) {
+													chart(data, title);
+												}
+											});
+										}
+									}
+								}
+							},
+							showInLegend: true
+						}
+					},
+					series: [{
+						type: 'pie',
+						name: 'Browser share',
+						data: data.data
+					}]
+				});
 			}
 
 
+			$(document).on('click', '#search, .tab_nav', function (e) {
+				var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+				var date_from = $('input[name="from"]').val();
+				var date_to = $('input[name="to"]').val();
+				var table = '';
+				var title = '';
+				var ax = false;
 
 
+				$('.tab_nav').each(function () {
 
-		});
+					if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'inspection';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'fuel_consumption';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'fine';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'accident';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'insurance';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'spares';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'repair';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'wheel';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'brake';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'grease';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'filter';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+						ax = true;
+						table = 'battery';
+						title = $(this).text();
+					}
+				});
+
+
+				if (ax) {
+					$.ajax({
+						url: url,
+						type: 'POST',
+						data: {date_from: date_from, date_to: date_to, table: table, arr: array},
+						async: true,
+						dataType: "json",
+						success: function (data) {
+							chartCircle(data, title);
+							chart(data, title);
+						}
+					});
+				}
+
+
+			})
+		}
+
 
 		$(document).on('click', '.add_lg_2', function () {
 			$('.lg_2 h2').css('display','none');
@@ -465,6 +1013,7 @@
 					$(this).removeClass('bg-info text-white added_lg_2');
 					$(this).addClass('sel_items');
 					$('#nav-tabContent-car').remove();
+					$('.tab-pane').children('form').remove();
 				}
 			});
 
@@ -490,15 +1039,24 @@
 		/***************************************************************/
 		$('.select_all_2').on('change', function () {
 			if($('.select_all_2').is(':checked')){
-				$('.added_lg_2').addClass('bg-info text-white')
+				$('.added_lg_2').each(function () {
+					if (!$(this).hasClass('bg-info text-white')) {
+						$(this).trigger('click');
+					}
+				});
 			}else{
-				$('.added_lg_2').removeClass('bg-info text-white');
+				$('.added_lg_2').each(function () {
+					if ($(this).hasClass('bg-info text-white')) {
+						$(this).trigger('click');
+					}
+				});
 			}
 		});
 
 		$('.delete_all_2').click(function () {
 			$('.added_lg_2').remove();
 			$('#nav-tabContent-car').remove();
+			$('.tab-pane').children('form').remove();
 			$('.lg_2').append('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" >Move here to see the costs</h2>')
 		});
 
@@ -537,4 +1095,64 @@
 
 
 		/* Search End */
+
+
+
+
+		$(document).on('click', '.expand_tr', function () {
+			if ($(this).hasClass('fa-plus')) {
+				$(this).removeClass('fa-plus');
+				$(this).addClass('fa-minus');
+			} else {
+				$(this).addClass('fa-plus');
+				$(this).removeClass('fa-minus');
+			}
+			var btn_value = $(this).data('value');
+			$('.more[data-value=' + btn_value + ']').toggle('slow');
+		});
+
+
+		$(document).on('click', '.del_row_ft', function () {
+			$(this).parent('td').parent('tr').remove();
+		});
+
+		//ajax
+		function vehicle_add(array, url_1, dataTab) {
+
+			$.post(url_1, {arr: array}).done(function (data) {
+				$('.tab-pane').each(function () {
+					if ($(this).data('tab') == dataTab) {
+						$(this).html(data);
+						$("td[valign='top']").parent('tr').remove();
+					}
+				});
+			});
+		}
+
+
+		//vehicle inspection
+		var i = 1;
+		$(document).on('click', '.ex_1_add_new_tr', function () {
+			i++;
+
+			var fleet = $('input[name="vehicle[1]"]').val();
+
+			$('.ex_1').append('<tr role="row">\n' +
+				'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="' + fleet + '"  class="form-control text-center"/></td>\n' +
+				'<td><input title=""  type="date" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?//= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="number" name="price[' + i + ']" min="0" class="form-control text-center"/></td>\n' +
+				'<td>' +
+				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+				'</span>' +
+				'</td>\n' +
+				'</tr>');
+
+		});
+
+
+
+
 	</script>

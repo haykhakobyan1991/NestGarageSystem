@@ -168,7 +168,7 @@ class Fleet_history extends MX_Controller {
 				$sql_add .= "".$table_name.".`price` AS `count`,";
 			}
 
-			$sql = "
+				$sql = "
 					SELECT 
 					  ".$table_name.".`id`,
 					  ".$table_name.".`add_date`,
@@ -212,7 +212,7 @@ class Fleet_history extends MX_Controller {
 				}
 
 
-			$sql1 = "
+				$sql1 = "
 					SELECT 
 					  ".$table_name.".`add_date`,
 					  ".$sql_add."
@@ -225,18 +225,18 @@ class Fleet_history extends MX_Controller {
 					 GROUP BY ".$table_name.".`add_date`
 				";
 
-			$query1 = $this->db->query($sql1);
+				$query1 = $this->db->query($sql1);
 
-			$result1 = $query1->result_array();
-
-
-			foreach($result1 as $val1) {
+				$result1 = $query1->result_array();
 
 
-				$Arr['date'][] = date($val1['add_date']);
-				$Arr['price'][] = intval($val1['price']);
-				$Arr['table'] =  $table_name;
-			}
+				foreach($result1 as $val1) {
+
+
+					$Arr['date'][] = date($val1['add_date']);
+					$Arr['price'][] = intval($val1['price']);
+					$Arr['table'] =  $table_name;
+				}
 
 		}
 
@@ -429,9 +429,7 @@ class Fleet_history extends MX_Controller {
 	public function getHistoryAll_ax() {
 		$lng = $this->load->lng();
 
-		$add_sql = '';
-		$sql_add = '';
-		$fleet_arr = array();
+
 		$Arr = array();
 
 		$user_id = $this->session->user_id;
@@ -441,24 +439,137 @@ class Fleet_history extends MX_Controller {
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
 
-		$this->vehicle_info($from, $to, $company_id, 'inspection');
-		$this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
+		$new_array = array();
+
+		$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection');
+		$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
+		$fine = $this->vehicle_info($from, $to, $company_id, 'fine');
+		$accident = $this->vehicle_info($from, $to, $company_id, 'accident');
+		$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance');
+		$spares = $this->vehicle_info($from, $to, $company_id, 'spares');
+		$repair = $this->vehicle_info($from, $to, $company_id, 'repair');
+		$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel');
+		$brake = $this->vehicle_info($from, $to, $company_id, 'brake');
+		$grease = $this->vehicle_info($from, $to, $company_id, 'grease');
+		$filter = $this->vehicle_info($from, $to, $company_id, 'filter');
+		$battery = $this->vehicle_info($from, $to, $company_id, 'battery');
 
 
-		echo json_encode($Arr);
+
+		foreach ($inspection as $key => $value) {
+
+
+			$new_array[$value['date']]['inspection'] = $value['price'];
+			if(isset($fuel_consumption[$key])) {
+				$new_array[$fuel_consumption[$key]['date']]['fuel_consumption'] = $fuel_consumption[$key]['price'];
+			}
+			if(isset($fine[$key])) {
+				$new_array[$fine[$key]['date']]['fine'] = $fine[$key]['price'];
+			}
+			if(isset($accident[$key])) {
+				$new_array[$accident[$key]['date']]['accident'] = $accident[$key]['price'];
+			}
+			if(isset($insurance[$key])) {
+				$new_array[$insurance[$key]['date']]['insurance'] = $insurance[$key]['price'];
+			}
+			if(isset($spares[$key])) {
+				$new_array[$spares[$key]['date']]['spares'] = $spares[$key]['price'];
+			}
+			if(isset($repair[$key])) {
+				$new_array[$repair[$key]['date']]['repair'] = $repair[$key]['price'];
+			}
+			if(isset($wheel[$key])) {
+				$new_array[$wheel[$key]['date']]['wheel'] = $wheel[$key]['price'];
+			}
+			if(isset($brake[$key])) {
+				$new_array[$brake[$key]['date']]['brake'] = $brake[$key]['price'];
+			}
+			if(isset($grease[$key])) {
+				$new_array[$grease[$key]['date']]['grease'] = $grease[$key]['price'];
+			}
+			if(isset($filter[$key])) {
+				$new_array[$filter[$key]['date']]['filter'] = $filter[$key]['price'];
+			}
+			if(isset($battery[$key])) {
+				$new_array[$battery[$key]['date']]['battery'] = $battery[$key]['price'];
+			}
+
+		}
+
+		echo '<pre>';
+		print_r($new_array);
+
+
+
+		echo json_encode($new_array);
 		return true;
 	}
 
 
 	public function vehicle_info($from, $to, $company_id, $table) {
 
-		return $this->db->select('*')
-			->from($table)
-			->where('company_id', $company_id)
-			->where('add_date >= ', $from)
-			->where('add_date <= ', $to)
-			->get()
-			->result_array();
+		$lng = $this->load->lng();
+		$sql_add = '';
+
+		if($table == 'inspection' || $table == 'insurance') {
+			$sql_add .= "".$table.".`end_date`,";
+		}
+
+
+
+		if($table == 'accident') {
+			$sql_add .= "SUM(".$table.".`return_amount`) AS `price`,";
+			$sql_add .= "".$table.".`return_amount` AS `count`,";
+		} else {
+			$sql_add .= "SUM(".$table.".`price`) AS `price`,";
+			$sql_add .= "".$table.".`price` AS `count`,";
+		}
+
+		 $sql = "
+			SELECT 
+			  ".$table.".`id`,
+			  ".$table.".`add_date`,
+			  ".$table.".`add_user_id`,
+			  ".$sql_add."
+			  ".$table.".`fleet_id`,
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_".$lng."`,
+				`model`.`title_".$lng."`
+			  ) AS `brand_model`
+			FROM
+			  ".$table." 
+			LEFT JOIN `fleet` 
+				ON `fleet`.`id` = ".$table.".`fleet_id`
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id` 
+			LEFT JOIN `user` 
+				ON `user`.`id` = `fleet`.`registrar_user_id` 			
+			WHERE ".$table.".`status` = '1' 
+			 AND `user`.`company_id` = ".$this->load->db_value($company_id)."	
+			 AND (".$table.".`add_date` >= '".$from."' AND ".$table.".`add_date` <= '".$to."')
+		 	 GROUP BY ".$table.".`add_date`
+		 ";
+
+			$query = $this->db->query($sql);
+
+			$result = $query->result_array();
+
+		$Arr = array();
+
+		foreach($result as $val) {
+			$Arr[] = array(
+				'date' => date($val['add_date']),
+				'price' => intval($val['price']),
+				'fleet_name' => $val['brand_model']
+			);
+
+		}
+
+		return $Arr;
+
 
 
 	}

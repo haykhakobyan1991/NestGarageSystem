@@ -177,6 +177,7 @@ class Structure extends MX_Controller {
 				  `department`.`id`,
 				  `staff`.`department_ids`
 				) 
+				AND `staff`.`Id` <> `head_staff`.`Id` /*new*/
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
@@ -190,7 +191,7 @@ class Structure extends MX_Controller {
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 		
 			WHERE company.id = '" . $company_id . "' 
-			AND `staff`.`id` <> `head_staff`.`id` /*todo*/
+			/*AND `staff`.`id` <> `head_staff`.`id` todo*/
 			ORDER BY `head_staff`.`id`,
 			  `department`.`id`, /*todo*/
 			  `staff`.`id`,
@@ -307,7 +308,7 @@ class Structure extends MX_Controller {
 				  department.id,
 				  staff.`department_ids`
 				) 
-				
+				AND `staff`.`Id` <> `head_staff`.`Id` /*new*/
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
@@ -321,7 +322,7 @@ class Structure extends MX_Controller {
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 	
 			WHERE company.id = '" . $company_id . "' 
-			 AND `staff`.`id` <> `head_staff`.`id` 
+			/* AND `staff`.`id` <> `head_staff`.`id` todo */
 			ORDER BY `head_staff`.`id`,
 			  `staff`.`id`,
 			  `department`.`id`,
@@ -428,7 +429,7 @@ class Structure extends MX_Controller {
 				  department.id,
 				  staff.`department_ids`
 				) 
-				
+				AND `staff`.`id` <> `head_staff`.`id` /*new*/
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 
@@ -442,7 +443,7 @@ class Structure extends MX_Controller {
 			  LEFT JOIN `brand` 
 				ON `model`.`brand_id` = `brand`.`id` 	
 			WHERE company.id = '" . $company_id . "' 
-			 AND `staff`.`id` <> `head_staff`.`id` 
+			/* AND `staff`.`id` <> `head_staff`.`id` todo */
 			ORDER BY `head_staff`.`id`,
 			  `staff`.`id`,
 			  `department`.`id`,

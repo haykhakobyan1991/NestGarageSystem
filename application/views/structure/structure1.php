@@ -189,7 +189,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
 
-		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
+		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div><?
+
+		if ($this->uri->segment('3') == 'add_expenses') { ?>
 
 
 
@@ -216,7 +218,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						class="ml-2 save_cancel_btn btn btn-success">Տեսնել
 				</button>
 			</div>
-		</div>
+		</div><?
+
+		}?>
 
 	</div><?
 
@@ -801,8 +805,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							async: true,
 							dataType: "json",
 							success: function (data) {
-								chartCircle(data, title);
-								chart(data, title);
+								if(title != '') {
+									chartCircle(data, title);
+									chart(data, title);
+								}
 							}
 						});
 					} else {
@@ -1101,8 +1107,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							async: true,
 							dataType: "json",
 							success: function (data) {
-								chartCircle(data, title);
-								chart(data, title);
+								if(title != '') {
+									chartCircle(data, title);
+									chart(data, title);
+								}
 							}
 						});
 					}

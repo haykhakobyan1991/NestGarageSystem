@@ -1132,6 +1132,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -1158,7 +1161,6 @@ class Structure extends MX_Controller {
 				}
 			}
 		}
-
 
 
 
@@ -1192,6 +1194,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `inspection`.`status` = '1' 
 				AND FIND_IN_SET(`inspection`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`inspection`.`add_date` >= '".$date_from."' AND `inspection`.`add_date` <= '".$date_to."')
 				ORDER BY `inspection`.`fleet_id`
 			";
 
@@ -1381,6 +1384,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -1479,6 +1485,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `fuel_consumption`.`status` = '1' 
 				AND FIND_IN_SET(`fuel_consumption`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`fuel_consumption`.`add_date` >= '".$date_from."' AND `fuel_consumption`.`add_date` <= '".$date_to."')
 				ORDER BY `brand_model`
 			";
 
@@ -1711,6 +1718,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -1809,6 +1819,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `fine`.`status` = '1' 
 				AND FIND_IN_SET(`fine`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`fine`.`add_date` >= '".$date_from."' AND `fine`.`add_date` <= '".$date_to."')
 			";
 
 			$query = $this->db->query($sql);
@@ -2028,6 +2039,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -2127,6 +2141,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `accident`.`status` = '1' 
 				AND FIND_IN_SET(`accident`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`accident`.`add_date` >= '".$date_from."' AND `accident`.`add_date` <= '".$date_to."')
 			";
 
 			$query = $this->db->query($sql);
@@ -2374,6 +2389,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -2476,6 +2494,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `insurance`.`status` = '1' 
 				AND FIND_IN_SET(`insurance`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`insurance`.`add_date` >= '".$date_from."' AND `insurance`.`add_date` <= '".$date_to."')
 				ORDER BY `brand_model`
 			";
 
@@ -2718,6 +2737,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -2822,6 +2844,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `spares`.`status` = '1' 
 				 AND FIND_IN_SET(`spares`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`spares`.`add_date` >= '".$date_from."' AND `spares`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 
@@ -3119,6 +3142,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -3218,6 +3244,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `repair`.`status` = '1' 
 				AND FIND_IN_SET(`repair`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				AND (`repair`.`add_date` >= '".$date_from."' AND `repair`.`add_date` <= '".$date_to."')
 				ORDER BY `brand_model`
 			";
 
@@ -3442,6 +3469,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -3508,6 +3538,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `wheel`.`status` = '1' 
 				 AND FIND_IN_SET(`wheel`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`wheel`.`add_date` >= '".$date_from."' AND `wheel`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 
@@ -3810,6 +3841,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -3876,6 +3910,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `brake`.`status` = '1' 
 				 AND FIND_IN_SET(`brake`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`brake`.`add_date` >= '".$date_from."' AND `brake`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 
@@ -4180,6 +4215,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -4244,6 +4282,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `grease`.`status` = '1' 
 				 AND FIND_IN_SET(`grease`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`grease`.`add_date` >= '".$date_from."' AND `grease`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 
@@ -4512,6 +4551,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -4577,6 +4619,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `filter`.`status` = '1' 
 				 AND FIND_IN_SET(`filter`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`filter`.`add_date` >= '".$date_from."' AND `filter`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 
@@ -4865,6 +4908,9 @@ class Structure extends MX_Controller {
 		$data = array();
 		$arr = $this->input->post('arr');
 
+		$date_from = $this->input->post('date_from');
+		$date_to = $this->input->post('date_to');
+
 		$sql_add_user = "
 			SELECT
 				CONCAT_WS(
@@ -4929,6 +4975,7 @@ class Structure extends MX_Controller {
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `battery`.`status` = '1' 
 				 AND FIND_IN_SET(`battery`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
+				 AND (`battery`.`add_date` >= '".$date_from."' AND `battery`.`add_date` <= '".$date_to."')
 				 ORDER BY `brand_model`
 			";
 

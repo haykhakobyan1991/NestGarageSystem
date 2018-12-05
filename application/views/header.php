@@ -135,11 +135,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 </nav>
 <!-- Navbar End -->
 
-<div class="res_cont_fl container-fluid" style="margin-top: 5rem;">
-
-
-	<!-- Tab panes -->
-	<? if ($controller == 'Organization') { ?>
+<div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
+	if ($controller == 'Organization') { ?>
 	<div class="tab-content">
 
 		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
@@ -184,20 +181,20 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<div class="loader"></div>
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/><?
 
-						} elseif ($controller == 'Structure') { ?>
+						} elseif ($controller == 'Structure' || $controller == 'Fleet_history') { ?>
 
 							<div class="content m-1">
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == '' ? 'active show' : '' ?> "
+									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?=$controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "
 									   data-id="1"
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . $page) ?>"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1')) ?>"
 									   role="tab">
 										<i class="fas fa-info"></i> Ինֆորմացիա
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
 									   data-id="2"
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . $page . '/add_expenses') ?>"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/add_expenses') ?>"
 									   role="tab">
 										<i class="fas fa-plus"></i> Ավելացնել ծախսեր
 									</a>
@@ -205,12 +202,21 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == 'fleet_history' ? 'active show' : '' ?> "
 									   data-id="3"
 									   data-toggle=""
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .  '/' . $page . '/fleet_history') ?>"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .  '/' . ($controller == 'Structure' ? $page : 'structure1') . '/fleet_history') ?>"
 									   role="tab">
-										<i class="fas fa-clipboard-list"></i> Ծաղսերի պատմություն
+										<i class="fas fa-clipboard-list"></i> Ծախսերի պատմություն
 									</a>
 
-									<div class="btn-group ml-auto">
+									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $page == 'expenses_history' ? 'active show' : '' ?> "
+									   data-id="3"
+									   data-toggle=""
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/expenses_history') ?>"
+									   role="tab">
+										<i class="fas fa-history"></i> Կազմակերպությնա ընդհանուր ծախսեր
+									</a><?
+									if ($controller == 'Structure') {
+										?>
+										<div class="btn-group ml-auto">
 
 										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/'.$this->uri->segment(3)) ?>">
 											<button type="button"
@@ -235,7 +241,9 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 											</button>
 										</a>
 
-									</div>
+										</div><?
+									}
+									?>
 
 								</div>
 

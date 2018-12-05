@@ -1,6 +1,7 @@
 <form id="vehicle_inspection">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
+
 		<table id="ex_1" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
@@ -195,6 +196,8 @@
 
 	table.buttons().container()
 		.appendTo( '#ex_1_wrapper #ex_1_filter:eq(0)' );
+
+
 
 	$('.dt-buttons').css('float', 'left');
 

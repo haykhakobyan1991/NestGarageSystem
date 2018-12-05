@@ -106,6 +106,16 @@ class Fleet_history extends MX_Controller {
 	}
 
 
+	public function expenses_history() {
+
+		$this->layout->view('fleet_history/expenses_history');
+
+	}
+
+
+
+
+	//--------------
 	public function getHistory_ax () {
 
 		$user_id = $this->session->user_id;
@@ -225,6 +235,7 @@ class Fleet_history extends MX_Controller {
 
 				$Arr['date'][] = date($val1['add_date']);
 				$Arr['price'][] = intval($val1['price']);
+				$Arr['table'] =  $table_name;
 			}
 
 		}
@@ -318,8 +329,142 @@ class Fleet_history extends MX_Controller {
 		echo json_encode($Arr);
 		return true;
 
+	}
+
+
+	public function getHistoryCircle_ax() {
+
+		$date = $this->input->post('date');
+		$table = $this->input->post('table');
+		$arr = $this->input->post('arr');
+
+
+		$this->getHistoryCircle($date, $table, $arr);
+	}
+
+
+	public function getHistoryCircle($date, $table_name, $arr) {
+		$lng = $this->load->lng();
+
+		$add_sql = '';
+		$sql_add = '';
+		$fleet_arr = array();
+		$Arr = array();
+
+
+			foreach ($arr as $value) {
+				if (preg_match('/^(f)/', $value['key'])) {
+					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
+				}
+			}
+
+
+			$fleet_ids = implode(',', $fleet_arr['id']);
+
+
+
+			if($table_name == 'inspection' || $table_name == 'insurance') {
+				$sql_add .= "".$table_name.".`end_date`,";
+				//$add_sql .= " AND (".$table_name.".`add_date` >= '".$date_from."' AND ".$table_name.".`end_date` <= '".$date_to."')";
+			}
+
+			if($table_name == 'accident') {
+				$sql_add .= "SUM(".$table_name.".`return_amount`) AS `price`,";
+				$sql_add .= "".$table_name.".`return_amount` AS `count`,";
+			} else {
+				$sql_add .= "SUM(".$table_name.".`price`) AS `price`,";
+				$sql_add .= "".$table_name.".`price` AS `count`,";
+			}
+
+			 $sql = "
+					SELECT 
+					  ".$table_name.".`id`,
+					  ".$table_name.".`add_date`,
+					  ".$table_name.".`add_user_id`,
+					  ".$sql_add."
+					  
+					  ".$table_name.".`fleet_id`,
+					  CONCAT_WS(
+						' ',
+						`brand`.`title_".$lng."`,
+						`model`.`title_".$lng."`
+					  ) AS `brand_model`
+					FROM
+					  ".$table_name." 
+					LEFT JOIN `fleet` 
+						ON `fleet`.`id` = ".$table_name.".`fleet_id`
+					LEFT JOIN `model` 
+						ON `model`.`id` = `fleet`.`model_id` 
+					LEFT JOIN `brand` 
+						ON `brand`.`id` = `model`.`brand_id` 	
+					WHERE ".$table_name.".`status` = '1' 
+					 AND FIND_IN_SET(".$table_name.".`fleet_id`, '".$fleet_ids."')
+					 AND (".$table_name.".`add_date` = '".$date."')
+					 GROUP BY ".$table_name.".`fleet_id`
+				";
+
+			$query = $this->db->query($sql);
+
+			$result = $query->result_array();
+
+			$Arr = array();
+
+			foreach($result as $val) {
+
+				$Arr['data'][] = array(
+					'name' => $val['brand_model'],
+					'y' => intval($val['price']),
+					'fleet_id' => $val['fleet_id'],
+					'table' => $table_name
+				);
+			}
+
+
+
+		echo json_encode($Arr);
+		return true;
+	}
+
+
+	public function getHistoryAll_ax() {
+		$lng = $this->load->lng();
+
+		$add_sql = '';
+		$sql_add = '';
+		$fleet_arr = array();
+		$Arr = array();
+
+		$user_id = $this->session->user_id;
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+		$this->vehicle_info($from, $to, $company_id, 'inspection');
+		$this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
+
+
+		echo json_encode($Arr);
+		return true;
+	}
+
+
+	public function vehicle_info($from, $to, $company_id, $table) {
+
+		return $this->db->select('*')
+			->from($table)
+			->where('company_id', $company_id)
+			->where('add_date >= ', $from)
+			->where('add_date <= ', $to)
+			->get()
+			->result_array();
+
 
 	}
+
+
+
 
 
 

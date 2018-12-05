@@ -297,11 +297,12 @@
 		});
 
 
+
 		var table = $('#ex_11').DataTable({
-			"paging":   false,
-			"info":     false,
+			"paging": false,
+			"info": false,
 			"columnDefs": [
-				{ "orderable": false, "targets": 10 }
+				{"orderable": false, "targets": 10}
 			],
 			dom: 'Bfrtip',
 			buttons: [
@@ -321,7 +322,7 @@
 		table.order([0, 'asc']).draw();
 
 		table.buttons().container()
-			.appendTo( '#ex_10_wrapper #ex_10_filter:eq(0)' );
+			.appendTo( '#ex_11_wrapper #ex_11_filter:eq(0)' );
 
 		$('.dt-buttons').css('float', 'left');
 

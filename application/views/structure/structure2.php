@@ -156,7 +156,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	</nav>
 
 
-	<div class="tab-content" id="nav-tabContent">
+	<div class="tab-content" id="nav-tabContent" style="position: relative">
 
 		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"></div>
 
@@ -181,6 +181,32 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
 
 		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
+
+
+		<!--search-->
+		<div id="search_" style="min-height: 35px; display: none; position: absolute; top: 9px; left: 280px;">
+			<div style="float: right;">
+				<span class="p-3">from</span>
+				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
+					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
+
+				<span class="p-3">to</span>
+				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
+					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
+
+				<button style="min-width: 94px;
+					font-size: 14px !important;
+					line-height: 14px !important;
+					padding: 10px 24px !important;
+					font-weight: 500 !important;
+					margin-top: -4px;
+					min-height: 37px !important;"
+						type="button"
+						id="search"
+						class="ml-2 save_cancel_btn btn btn-success">Տեսնել
+				</button>
+			</div>
+		</div>
 
 	</div><?
 
@@ -640,6 +666,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				}
 			});
 
+
+			$(document).on('click', 'button#search', function () {
+				var url_2 = $(this).data('url');
+				var dataTab = $(this).data('tab');
+				vehicle_add(new_arr, url_2, dataTab);
+			});
+
 		} else if ($('a[data-id="3"]').hasClass('active')) {
 
 
@@ -651,6 +684,36 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							minWidth: 700
 						}
 					},
+
+					plotOptions: {
+						series: {
+							cursor: 'pointer',
+							point: {
+								events: {
+									click: function () {
+
+										var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryCircle_ax')?>';
+										var date = this.category;
+										var table = data.table;
+										var title = $('.tab_nav.active').text();
+
+										$.ajax({
+											url: url,
+											type: 'POST',
+											data: {date: date, table: table, arr: new_arr},
+											async: true,
+											dataType: "json",
+											success: function (data) {
+												chartCircle(data, title);
+											}
+										});
+
+									}
+								}
+							}
+						}
+					},
+
 					title: {
 						text: title
 					},
@@ -881,14 +944,23 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(this).parent('td').parent('tr').remove();
 	});
 
+
 	//ajax
 	function vehicle_add(new_arr, url_1, dataTab) {
 
-		$.post(url_1, {arr: new_arr}).done(function (data) {
+		var date_from = $('input[name="from"]').val();
+		var date_to = $('input[name="to"]').val();
+
+		$.post(url_1, {arr: new_arr, date_from: date_from, date_to: date_to}).done(function (data) {
 			$('.tab-pane').each(function () {
 				if ($(this).data('tab') == dataTab) {
 					$(this).html(data);
 					$("td[valign='top']").parent('tr').remove();
+					$('button#search').data('tab', dataTab);
+					$('button#search').data('url', url_1);
+
+					$('#search_').css('display', 'block');
+
 				}
 			});
 		});

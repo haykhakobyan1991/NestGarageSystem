@@ -73,7 +73,7 @@ $route['^(ru|hy)/structure3'] = "Structure/structure3";
 $route['^(ru|hy)/structure3/(:any)$'] = "Structure/structure3/$1";
 
 //fleet history
-$route['^(ru|hy)/fleet_history$'] = "Fleet_history/fleet_history";
+$route['^(ru|hy)/expenses_history$'] = "Fleet_history/expenses_history";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

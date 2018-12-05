@@ -696,7 +696,7 @@ class Organization extends MX_Controller {
 
 	public function edit_department_modal_ax() {
 
-		$id = $this->uri->segment(3);
+		$id = $this->uri->segment(4);
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$lng = $this->load->lng();

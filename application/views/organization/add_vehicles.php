@@ -20,6 +20,23 @@
 	i {
 		margin-left: 15px;
 	}
+
+	::-webkit-input-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+	::-moz-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+	:-ms-input-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+	::placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
 </style>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
@@ -48,7 +65,7 @@
 								<label class="pl-3 col-form-label col-sm-5" style="padding-left: 45px !important;
     font-size: 15px !important;">GNSS Tracker
 									?</label>
-								<input style="margin-top: 13px;width: 18px;height: 18px;" class="st_inp" type="checkbox"
+								<input style="margin-top: 13px;width: 18px;height: 18px;" class="" type="checkbox"
 									   name="gps_exist"  value="1" id="fleet_type"/>
 
 								<div class="col-sm-6">
@@ -83,7 +100,7 @@
 						<select name="brand"
 								class="col-sm-7 selectpicker form-control form-control-sm "
 								data-size="5" id="brand" data-live-search="true"
-								title="Select a brand">
+								title="<?=lang('select_car_brand')?>">
 							<? foreach ($brand as $row) : ?>
 								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
@@ -97,7 +114,7 @@
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"
 								data-size="5" id="model" data-live-search="true"
-								title="Select a model">
+								title="<?=lang('select_car_model')?>">
 
 						</select>
 					</div>
@@ -108,7 +125,7 @@
 						<select name="fleet_type"
 								class="col-sm-7 currency form-control form-control-sm selectpicker"
 								data-size="5" id="fleet_type" data-live-search="true"
-								title="Select a fleet type"
+								title="<?=lang('select_car_type')?>"
 						>
 							<? foreach ($fleet_type as $row) : ?>
 								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -122,7 +139,7 @@
 								class="currency form-control form-control-sm selectpicker col-sm-7"
 								data-size="5"
 								data-live-search="true"
-								title="Choose..."
+								title="<?=lang('choose')?>..."
 						>
 							<?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
 								<option value="<?= $i ?>"><?= $i ?></option>
@@ -144,7 +161,7 @@
 						<select name="fuel"
 								class="form-control form-control-sm selectpicker col-sm-7"
 								data-size="5" id="fleet_type" data-live-search="true"
-								title="Select a fuel"
+								title="<?=lang('fuel_type')?>"
 						>
 							<? foreach ($fuel as $row) : ?>
 								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -196,11 +213,10 @@
 									class="col  selectpicker form-control form-control-sm"
 									id="staff"
 									multiple data-live-search="true"
-									title="Select a Staff">
+									title="<?=lang('select_a_staff')?>">
 								<? foreach ($staff_for_select as $row) : ?>
 									<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 								<? endforeach; ?>
-
 							</select>
 						</div>
 					</div>
@@ -246,7 +262,7 @@
 					<label
 						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success">
-						<span>Brows file</span>
+						<span><?=lang('browse')?></span>
 						<input type="file"
 							   name="regitered_file"
 							   class="d-none form-control-file btn_input"
@@ -267,7 +283,7 @@
 				<div class="col-sm-1">
 					<input style="width: 18px;height: 18px;margin-left: -210px;margin-top: 7px;" value="-1"
 						   name="status" type="checkbox"
-						   class="form-control form-control-sm st_inp">
+						   class="form-control form-control-sm ">
 				</div>
 			</div>
 
@@ -278,7 +294,7 @@
 				<div class="col-sm-1">
 					<input style="width: 18px;height: 18px;margin-left: -90px;margin-top: 7px;" name="mail_to"
 						   value="1" type="checkbox"
-						   class="form-control form-control-sm st_inp">
+						   class="form-control form-control-sm ">
 				</div>
 			</div>
 			<hr class="my-2">
@@ -323,7 +339,7 @@
 														<input type="text"
 															   name="company[1]"
 															   class="form-control form-control-sm"
-															   placeholder="Company">
+															   placeholder="<?=lang('company')?>">
 													</div>
 												</div>
 
@@ -332,7 +348,7 @@
 														<label
 															style="margin-left: -22px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 															class="btn btn-sm btn-outline-secondary">
-															<span>Brows file</span>
+															<span><?=lang('browse')?></span>
 															<input class="btn_input"
 																   name="file_1" type="file"
 																   hidden style="display: none;"
@@ -347,7 +363,7 @@
 														<input type="text"
 															   name="reference[1]"
 															   class="form-control form-control-sm"
-															   placeholder="Reference">
+															   placeholder="<?=lang('reference')?>">
 													</div>
 												</div>
 
@@ -369,7 +385,7 @@
 																class="selectpicker form-control form-control-sm dif_meter"
 																data-live-search="true"
 																data-size="5"
-																title="Select a insurance type"
+																title="<?=lang('incurance_taype')?>"
 														>
 															<? foreach ($insurance_type as $row) : ?>
 																<option
@@ -409,7 +425,7 @@
 														<input type="text"
 															   name="company[2]"
 															   class="form-control form-control-sm"
-															   placeholder="Company">
+															   placeholder="<?=lang('company')?>">
 													</div>
 												</div>
 
@@ -418,7 +434,7 @@
 														<label
 															style="margin-left: -22px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 															class="btn btn-sm btn-outline-secondary">
-															<span>Brows file</span>
+															<span><?=lang('browse')?></span>
 															<input class="btn_input"
 																   name="file_2" type="file"
 																   hidden style="display: none;"
@@ -433,7 +449,7 @@
 														<input type="text"
 															   name="reference[2]"
 															   class="form-control form-control-sm"
-															   placeholder="Reference">
+															   placeholder="<?=lang('reference')?>">
 													</div>
 												</div>
 
@@ -455,7 +471,7 @@
 																class="selectpicker form-control form-control-sm dif_meter"
 																data-live-search="true"
 																data-size="5"
-																title="Select a insurance type"
+																title="<?=lang('incurance_taype')?>"
 														>
 															<? foreach ($insurance_type as $row) : ?>
 																<option
@@ -495,7 +511,7 @@
 														<input type="text"
 															   name="company[3]"
 															   class="form-control form-control-sm"
-															   placeholder="Company">
+															   placeholder="<?=lang('company')?>">
 													</div>
 												</div>
 
@@ -504,7 +520,7 @@
 														<label
 															style="margin-left: -22px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 															class="btn btn-sm btn-outline-secondary">
-															<span>Brows file</span>
+															<span><?=lang('browse')?></span>
 															<input class="btn_input"
 																   name="file_3" type="file"
 																   hidden style="display: none;"
@@ -519,7 +535,7 @@
 														<input type="text"
 															   name="reference[3]"
 															   class="form-control form-control-sm"
-															   placeholder="Reference">
+															   placeholder="<?=lang('reference')?>">
 													</div>
 												</div>
 
@@ -541,7 +557,7 @@
 																class="selectpicker form-control form-control-sm dif_meter"
 																data-live-search="true"
 																data-size="5"
-																title="Select a insurance type"
+																title="<?=lang('incurance_taype')?>"
 														>
 															<? foreach ($insurance_type as $row) : ?>
 																<option
@@ -581,7 +597,7 @@
 														<input type="text"
 															   name="company[4]"
 															   class="form-control form-control-sm"
-															   placeholder="Company">
+															   placeholder="<?=lang('company')?>">
 													</div>
 												</div>
 
@@ -590,7 +606,7 @@
 														<label
 															style="margin-left: -22px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 															class="btn btn-sm btn-outline-secondary">
-															<span>Brows file</span>
+															<span><?=lang('browse')?></span>
 															<input class="btn_input"
 																   name="file_4" type="file"
 																   hidden style="display: none;"
@@ -605,7 +621,7 @@
 														<input type="text"
 															   name="reference[4]"
 															   class="form-control form-control-sm"
-															   placeholder="Reference">
+															   placeholder="<?=lang('reference')?>">
 													</div>
 												</div>
 
@@ -627,7 +643,7 @@
 																class="selectpicker form-control form-control-sm dif_meter"
 																data-live-search="true"
 																data-size="5"
-																title="Select a insurance type"
+																title="<?=lang('incurance_taype')?>"
 														>
 															<? foreach ($insurance_type as $row) : ?>
 																<option
@@ -747,15 +763,15 @@
 						<table class="vehicle table table-striped table-hover">
 							<thead>
 							<tr>
-								<th scope="col">Item Name *</th>
-								<th scope="col">Value *
-									<small>(KM\Days\Months)</small>
+								<th scope="col"><?=lang('item_name')?> *</th>
+								<th scope="col"><?=lang('value')?> *
+									<small>(<?=lang('KM\Days\Months')?>)</small>
 								</th>
-								<th scope="col">Avg. exploitation *</th>
-								<th scope="col">Per Days *</th>
-								<th scope="col">More Info P\N</th>
-								<th scope="col">Remind days before *</th>
-								<th scope="col">Start Alarm Date *</th>
+								<th scope="col"><?=lang('explotation')?> *</th>
+								<th scope="col"><?=lang('per_day')?> *</th>
+								<th scope="col"><?=lang('more_info')?></th>
+								<th scope="col"><?=lang('day_before')?> *</th>
+								<th scope="col"><?=lang('start_alarm_day')?> *</th>
 								<th scope="col"></th>
 							</tr>
 							</thead>
@@ -763,7 +779,7 @@
 							<tr>
 								<td>
 									<input name="item[1]" class="form-control form-control-sm" type="text"
-										   placeholder="Item Name"
+										   placeholder="<?=lang('item_name')?>"
 										   value="">
 								</td>
 								<td>
@@ -771,7 +787,7 @@
 											class="selectpicker form-control form-control-sm dif_meter"
 											data-live-search="true"
 											data-size="5"
-											title="Select a value"
+											title="<?=lang('select_value')?>"
 									>
 										<? foreach ($value as $row) : ?>
 											<option
@@ -782,23 +798,23 @@
 								<td>
 									<input name="avg_exploitation[1]" class="form-control form-control-sm"
 										   type="number"
-										   placeholder="Avg. exploitation" value=""/>
+										   placeholder="<?=lang('explotation')?>" value=""/>
 								</td>
 
 								<td>
 									<input name="per_days[1]" class="form-control form-control-sm"
 										   type="number"
-										   placeholder="Per days" value=""/>
+										   placeholder="<?=lang('per_day')?>" value=""/>
 								</td>
 								<td>
 									<input name="more_info[1]" class="form-control form-control-sm"
 										   type="text"
-										   placeholder="More Info P\N" value=""/>
+										   placeholder="<?=lang('more_info')?>" value=""/>
 								</td>
 								<td>
 									<input name="remind_before[1]" class="form-control form-control-sm"
 										   type="number"
-										   placeholder="Remind Me  days before"/>
+										   placeholder="<?=lang('day_before')?>"/>
 								</td>
 								<td>
 									<input name="start_alarm_date[1]" class="form-control form-control-sm" type="date"
@@ -978,7 +994,7 @@
 			'<tr>\n' +
 			'<td>\n' +
 			'<input name="item[' + n + ']" class="form-control form-control-sm" type="text"\n' +
-			'   placeholder="Item Name"\n' +
+			'   placeholder="<?=lang('item_name')?>"\n' +
 			'   value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
@@ -996,23 +1012,23 @@
 			'<td>\n' +
 			'<input name="avg_exploitation[' + n + ']" class="form-control form-control-sm"\n' +
 			'type="number"\n' +
-			'placeholder="Avg. exploitation" />\n' +
+			'placeholder="Avg. <?=lang('explotation')?>" />\n' +
 			'</td>\n' +
 			'\n' +
 			'<td>\n' +
 			'<input name="per_days[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="number"\n' +
-			'   placeholder="Per days" value=""/>\n' +
+			'   placeholder="<?=lang('per_day')?>" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="more_info[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="text"\n' +
-			'   placeholder="More Info P\\N" value=""/>\n' +
+			'   placeholder="<?=lang('more_info')?> value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="number"\n' +
-			'   placeholder="Remind Me  days before" value=""/>\n' +
+			'   placeholder="<?=lang('day_before')?>" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="start_alarm_date[' + n + ']" class="form-control form-control-sm" type="date"\n' +
@@ -1072,7 +1088,7 @@
 		};
 
 		if (upload_file == '') {
-			$(this).parent('label').children('span').text('Brows file');
+			$(this).parent('label').children('span').text('<?=lang('browse')?>');
 		} else {
 			if (upload_file.length > 13) {
 				var short_text = text_truncate(upload_file, 13, ' ...');

@@ -93,7 +93,7 @@ endforeach;
 				</diiv>
 				<div class="col-sm-4 text-right">
 					<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
-					   class="text-capitalize btn btn-outline-success btn-sm float-right">Add Vehicle
+					   class="text-capitalize btn btn-outline-success btn-sm float-right"><?=lang('add_vehicles')?>
 					</a>
 				</div>
 			</div>

@@ -34,8 +34,8 @@
 		</div>
 	</div>
 
-	<div class="modal-footer pb-0 mb-0">
-		<button id="edit_department_btn" type="button" class="btn btn-outline-success"><?= lang('save') ?></button>
+	<div class="modal-footer pb-0 mb-0" style="margin-right: 22px;">
+		<button id="edit_department_btn" type="button" class="btn btn-outline-success cancel_btn"><?= lang('save') ?></button>
 		<span id="load" class="btn btn-sm btn-success d-none">
 			<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
 		</span>

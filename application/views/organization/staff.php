@@ -294,7 +294,7 @@ endforeach;
 														<input style="width:18px; height: 18px;" name="status"
 															   value="-1"
 															   type="checkbox"
-															   class="form-control form-control-sm st_inp">
+															   class="form-control form-control-sm">
 													</div>
 												</div>
 
@@ -635,11 +635,11 @@ endforeach;
 											</div>
 										</div>
 
-										<div class="modal-footer pb-0 col-sm-12">
+										<div class="modal-footer pb-0 col-sm-12" style="padding-right: 24px;">
 											<button id="add_staff" type="button"
-													class="btn btn-outline-success"><?= lang('save') ?>
+													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
-											<button id="load" class="btn btn-sm btn-success d-none"><img
+											<button id="load" class="btn btn-sm btn-success d-none "><img
 													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 											<button type="button" class="cancel_btn close btn btn-sm"
@@ -677,7 +677,7 @@ color: #545b62;">
 						<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
 						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
 						<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
-						<th style="font-size: 12px !important;font-weight:500;max-width: 400px">Փաստաթուղթ</th>
+						<th style="font-size: 12px !important;font-weight:500;">Փաստաթուղթ</th>
 						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 					</tr>
 					</thead>
@@ -715,79 +715,61 @@ color: #545b62;">
 							<td><?= $row['user_name'] ?></td>
 
 							<td>
-								<table class="table-bordered">
-									<tbody>
 
 									<? if ($row['document_1'] != '') { ?>
-										<tr>
-											<td>
-												<a style="color: #333;"
+												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 												   target="_blank"
+												   class="bg-info"
 												   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
 													<?= $row['document_1'] ?>
 												</a>
-											</td>
+<!--											<td>--><?//= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?><!--</td>-->
+<!--											<td style="word-break: break-word;">--><?//= ($row['note_1'] != '' ? $row['note_1'] : '-') ?><!--</td>-->
 
-											<td><?= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?></td>
-											<td><?= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?></td>
-											<td style="word-break: break-word;"><?= ($row['note_1'] != '' ? $row['note_1'] : '-') ?></td>
-										</tr>
 									<? }
 									if ($row['document_2'] != '') { ?>
-										<tr>
-
-											<td>
-
-												<a style="color: #333;"
+												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 												   target="_blank"
+												   class="bg-info"
 												   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
 													<?= $row['document_2'] ?>
 												</a>
-											</td>
-											<td><?= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?></td>
-											<td><?= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?></td>
-											<td><?= ($row['note_2'] != '' ? $row['note_2'] : '-') ?></td>
-										</tr>
+
+<!--											<td>--><?//= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['note_2'] != '' ? $row['note_2'] : '-') ?><!--</td>-->
+
 									<? }
 									if ($row['document_3'] != '') { ?>
-										<tr>
-											<td>
-												<a style="color: #333;"
+												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 												   target="_blank"
+												   class="bg-info"
 												   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
 													<?= $row['document_3'] ?>
 												</a>
-											</td>
-											<td><?= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?></td>
-											<td><?= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?></td>
-											<td><?= ($row['note_3'] != '' ? $row['note_3'] : '-') ?></td>
-											<td>
+
+<!--											<td>--><?//= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['note_3'] != '' ? $row['note_3'] : '-') ?><!--</td>-->
 
 
-											</td>
-										</tr>
 									<? }
 									if ($row['document_4'] != '') { ?>
-										<tr>
-											<td>
-												<a style="color: #333;"
+												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 												   target="_blank"
+												   class="bg-info"
 												   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
 													<?= $row['document_4'] ?>
-												</a></td>
-											<td><?= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?></td>
-											<td><?= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?></td>
-											<td><?= ($row['note_4'] != '' ? $row['note_4'] : '-') ?></td>
-											<td>
+												</a>
+<!--											<td>--><?//= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?><!--</td>-->
+<!--											<td>--><?//= ($row['note_4'] != '' ? $row['note_4'] : '-') ?><!--</td>-->
 
 
-											</td>
-										</tr>
+
 									<? } ?>
 
-
-									</tbody>
-								</table>
 							</td>
 
 							<td colspan="2">

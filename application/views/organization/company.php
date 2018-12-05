@@ -44,12 +44,12 @@ $i = '';
 							<div class="col-sm-7">
 								<div class="row">
 									<label
-										class="col-form-label col-sm-4"><?= lang('web_address') ?></label>
+										class="col-form-label col-sm-5"><?= lang('company_type') ?></label>
 
 									<select name="company_type"
-											class="selectpicker form-control form-control-sm selectpicker_1 col-sm-8"
+											class="selectpicker form-control form-control-sm selectpicker_1 col-sm-7"
 											data-size="5" id="company_type" data-live-search="true"
-											title="Select a Company type">
+											title="<?= lang('company_type') ?>">
 										<? foreach ($company_type as $item) : ?>
 											<option <?= ($company['company_type_id'] == $item['id'] ? 'selected' : '') ?>
 												value="<?= $item['id'] ?>">
@@ -76,11 +76,11 @@ $i = '';
 
 							<div class="col-sm-7">
 								<div class="row">
-									<label class="col-form-label col-sm-4"><?= lang('web_address') ?></label>
+									<label class="col-form-label col-sm-5"><?= lang('web_address') ?></label>
 
 									<input value="<?= $company['web_address'] ?>"
 										   name="web_address"
-										   type="text" class="form-control form-control-sm col-sm-8"
+										   type="text" class="form-control form-control-sm col-sm-7"
 										   placeholder="<?= lang('web_address') ?>">
 								</div>
 
@@ -134,7 +134,7 @@ $i = '';
 							<select name="activity_country"
 									class="col selectpicker form-control form-control-sm selectpicker_1"
 									data-size="5" id="country" data-live-search="true"
-									title="Select a country">
+									title="<?= lang('activity_address') ?>">
 								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['activity_country_id'] == $row['id'] ? 'selected' : '') ?>

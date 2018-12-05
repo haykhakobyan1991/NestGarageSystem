@@ -198,9 +198,9 @@ color: #545b62;">
 									</div>
 								</div>
 
-								<div class="modal-footer pb-0">
+								<div class="modal-footer pb-0" style="margin-right: 22px;">
 									<button id="add_department_btn" type="button"
-											class="btn btn-outline-success"><?= lang('save') ?>
+											class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
 									</button>
 									<button id="load" class="btn btn-sm btn-success d-none"><img
 											style="height: 20px;margin: 0 auto;display: block;text-align: center;"

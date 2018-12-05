@@ -196,7 +196,7 @@ $folder = $this->session->folder;
 							   value="-1"
 							<?= ($status == '-1' ? 'checked' : '') ?>
 							   type="checkbox"
-							   class="form-control form-control-sm st_inp">
+							   class="form-control form-control-sm">
 					</div>
 				</div>
 			</div>
@@ -573,9 +573,9 @@ $folder = $this->session->folder;
 			</div>
 		</div>
 	</div>
-	<div class="modal-footer pb-0 col-sm-12">
+	<div class="modal-footer pb-0 col-sm-12" style="padding-right: 9px !important;">
 		<button id="edit_staff_btn" type="button"
-				class="btn btn-outline-success"><?= lang('save') ?>
+				class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 		</button>
 		<button id="load" class="btn btn-sm btn-success d-none"><img
 				style="height: 20px;margin: 0 auto;display: block;text-align: center;"

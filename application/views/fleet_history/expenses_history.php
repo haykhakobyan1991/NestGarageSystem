@@ -213,23 +213,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		data.data
 
 
-		// series: [{
-		// 	name: 'John',
-		// 	data: [21, 221, 21, 12, 12],
-		// 	stack: 'male'
-		// }, {
-		// 	name: 'Joe',
-		// 	data: [21, 21, 21, 2, 21],
-		// 	stack: 'male'
-		// }, {
-		// 	name: 'Jane',
-		// 	data: [21, 21, 21, 21, 12],
-		// 	stack: 'female'
-		// }, {
-		// 	name: 'Janet',
-		// 	data: [21, 21, 21, 0, 21],
-		// 	stack: 'female'
-		// }]
 	});
 	}
 </script>

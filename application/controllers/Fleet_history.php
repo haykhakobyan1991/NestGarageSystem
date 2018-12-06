@@ -454,56 +454,129 @@ class Fleet_history extends MX_Controller {
 		$filter = $this->vehicle_info($from, $to, $company_id, 'filter');
 		$battery = $this->vehicle_info($from, $to, $company_id, 'battery');
 
+		$arr = array();
+		$data = array();
+		$data['data'] = array();
+
+		$big_arr = $this->get_big_array($inspection,$fuel_consumption,$fine,$accident,$insurance,$spares,$repair,$wheel,$brake,$grease,$filter,$battery);
 
 
-		foreach ($inspection as $key => $value) {
+		foreach ($big_arr as $key => $value) {
 
 
-			$new_array[$value['date']]['inspection'] = $value['price'];
+			if(isset($inspection[$key])) {
+				$new_array[$inspection[$key]['date']]['inspection'][$inspection[$key]['fleet_name']] = $inspection[$key]['price'];
+			}
 			if(isset($fuel_consumption[$key])) {
-				$new_array[$fuel_consumption[$key]['date']]['fuel_consumption'] = $fuel_consumption[$key]['price'];
+				$new_array[$fuel_consumption[$key]['date']]['fuel_consumption'][$fuel_consumption[$key]['fleet_name']] = $fuel_consumption[$key]['price'];
 			}
 			if(isset($fine[$key])) {
-				$new_array[$fine[$key]['date']]['fine'] = $fine[$key]['price'];
+				$new_array[$fine[$key]['date']]['fine'][$fine[$key]['fleet_name']] = $fine[$key]['price'];
 			}
 			if(isset($accident[$key])) {
-				$new_array[$accident[$key]['date']]['accident'] = $accident[$key]['price'];
+				$new_array[$accident[$key]['date']]['accident'][$accident[$key]['fleet_name']] = $accident[$key]['price'];
 			}
 			if(isset($insurance[$key])) {
-				$new_array[$insurance[$key]['date']]['insurance'] = $insurance[$key]['price'];
+				$new_array[$insurance[$key]['date']]['insurance'][$insurance[$key]['fleet_name']] = $insurance[$key]['price'];
 			}
 			if(isset($spares[$key])) {
-				$new_array[$spares[$key]['date']]['spares'] = $spares[$key]['price'];
+				$new_array[$spares[$key]['date']]['spares'][$spares[$key]['fleet_name']] = $spares[$key]['price'];
 			}
 			if(isset($repair[$key])) {
-				$new_array[$repair[$key]['date']]['repair'] = $repair[$key]['price'];
+				$new_array[$repair[$key]['date']]['repair'][$repair[$key]['fleet_name']] = $repair[$key]['price'];
 			}
 			if(isset($wheel[$key])) {
-				$new_array[$wheel[$key]['date']]['wheel'] = $wheel[$key]['price'];
+				$new_array[$wheel[$key]['date']]['wheel'][$wheel[$key]['fleet_name']] = $wheel[$key]['price'];
 			}
 			if(isset($brake[$key])) {
-				$new_array[$brake[$key]['date']]['brake'] = $brake[$key]['price'];
+				$new_array[$brake[$key]['date']]['brake'][$brake[$key]['fleet_name']] =  $brake[$key]['price'];
 			}
 			if(isset($grease[$key])) {
-				$new_array[$grease[$key]['date']]['grease'] = $grease[$key]['price'];
+				$new_array[$grease[$key]['date']]['grease'][$grease[$key]['fleet_name']] = $grease[$key]['price'];
 			}
 			if(isset($filter[$key])) {
-				$new_array[$filter[$key]['date']]['filter'] = $filter[$key]['price'];
+				$new_array[$filter[$key]['date']]['filter'][$filter[$key]['fleet_name']] = $filter[$key]['price'];
 			}
 			if(isset($battery[$key])) {
-				$new_array[$battery[$key]['date']]['battery'] = $battery[$key]['price'];
+				$new_array[$battery[$key]['date']]['battery'][$battery[$key]['fleet_name']] = $battery[$key]['price'];
 			}
 
 		}
 
-		echo '<pre>';
-		print_r($new_array);
+		ksort($new_array);
 
 
 
-		echo json_encode($new_array);
+		foreach ($new_array as $date => $types) {
+			$arr['inspection'][] = (isset($types['inspection']) ? array_sum($types['inspection']) : 0);
+			$arr['fuel_consumption'][] = (isset($types['fuel_consumption']) ? array_sum($types['fuel_consumption']) : 0);
+			$arr['fine'][] = (isset($types['fine']) ? array_sum($types['fine']) : 0);
+			$arr['accident'][] = (isset($types['accident']) ? array_sum($types['accident']) : 0);
+			$arr['insurance'][] = (isset($types['insurance']) ? array_sum($types['insurance']) : 0);
+			$arr['spares'][] = (isset($types['spares']) ? array_sum($types['spares']) : 0);
+			$arr['repair'][] = (isset($types['repair']) ? array_sum($types['repair']) : 0);
+			$arr['wheel'][] = (isset($types['wheel']) ? array_sum($types['wheel']) : 0);
+			$arr['brake'][] = (isset($types['brake']) ? array_sum($types['brake']) : 0);
+			$arr['grease'][] = (isset($types['grease']) ? array_sum($types['grease']) : 0);
+			$arr['filter'][] = (isset($types['filter']) ? array_sum($types['filter']) : 0);
+			$arr['battery'][] = (isset($types['battery']) ? array_sum($types['battery']) : 0);
+		}
+
+
+		$table = '<table id="example" class="table table-striped table-borderless w-100 dataTable no-footer">
+					<thead class="thead_tables">
+						<tr>
+							<th class="table_th">Date</th>
+							<th class="table_th">Type</th>
+							<th class="table_th">Fleet</th>
+							<th class="table_th">Price (AMD)</th>
+						</tr>
+					</thead>
+					<tbody>';
+
+		foreach ($new_array as $date => $types) {
+
+
+			foreach ($types as $type => $value) {
+				foreach ($value as $fleet => $price) {
+					$table .= '<tr>';
+					$table .= '<td class="border">'.$date.'</td>';
+					$table .= '<td class="border">'.$type.'</td>';
+					$table .= '<td class="border">'.$fleet.'</td>';
+					$table .= '<td class="border">'.$price.'</td>';
+					$table .= '</tr>';
+				}
+			}
+
+
+			$data['category'][] = date($date);
+
+			$data['data'][] = array('name' => 'ՏԵԽ ԶՆՆՈՒՄ', 'data' => $arr['inspection'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՎԱՌԵԼԻՔ', 'data' => $arr['fuel_consumption'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՏՈՒԳԱՆՔ', 'data' => $arr['fine'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՊԱՏԱՀԱՐՆԵՐ', 'data' => $arr['accident'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ', 'data' => $arr['insurance'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՊԱՀԵՍՏԱՄԱՍԵՐ', 'data' => $arr['spares'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՎԵՐԱՆՈՐՈԳՈՒՄ', 'data' => $arr['repair'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ԱՆՎԱԴՈՂ', 'data' => $arr['wheel'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ԱՐԳԵԼԱԿ', 'data' => $arr['brake'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՔՍՈՒՔ', 'data' => $arr['grease'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՖԻԼՏՐ', 'data' => $arr['filter'], 'stack' => '-');
+			$data['data'][] = array('name' => 'ՄԱՐՏԿՈՑ', 'data' => $arr['battery'], 'stack' => '-');
+
+		}
+
+		$table .= '</tbody></table>';
+
+
+		$data['data'] = $this->get_unique_associate_array($data['data']);
+		$data['table'] = $table;
+
+		echo json_encode($data);
 		return true;
 	}
+
+
 
 
 	public function vehicle_info($from, $to, $company_id, $table) {
@@ -550,7 +623,7 @@ class Fleet_history extends MX_Controller {
 			WHERE ".$table.".`status` = '1' 
 			 AND `user`.`company_id` = ".$this->load->db_value($company_id)."	
 			 AND (".$table.".`add_date` >= '".$from."' AND ".$table.".`add_date` <= '".$to."')
-		 	 GROUP BY ".$table.".`add_date`
+		 	 GROUP BY ".$table.".`fleet_id`
 		 ";
 
 			$query = $this->db->query($sql);
@@ -570,11 +643,50 @@ class Fleet_history extends MX_Controller {
 
 		return $Arr;
 
+	}
+
+
+
+
+	public function get_unique_associate_array($array) {
+
+		$serialized_array = array_map("serialize", $array);
+
+		foreach ($serialized_array as $key => $val) {
+
+			$result[$val] = true;
+
+		}
+
+		if (isset($result)) {
+			return array_map("unserialize", (array_keys($result)));
+		} else {
+			return array();
+		}
 
 
 	}
 
 
+	public function get_big_array($arr1, $arr2, $arr3, $arr4, $arr5, $arr6, $arr7, $arr8, $arr9, $arr10, $arr11, $arr12) {
+		$key = array_keys(
+			array(count($arr1), count($arr2), count($arr3), count($arr4), count($arr5), count($arr6), count($arr7), count($arr8), count($arr9), count($arr10), count($arr11), count($arr12)),
+			max(
+				array(count($arr1), count($arr2), count($arr3), count($arr4), count($arr5), count($arr6), count($arr7), count($arr8), count($arr9), count($arr10), count($arr11), count($arr12))
+			)
+		);
+
+		if (is_array(func_get_args())) {
+			foreach (func_get_args() as $k => $array) {
+				if ($k == $key[0]) {
+					return $array;
+				}
+			}
+		} else {
+			return array();
+		}
+
+	}
 
 
 

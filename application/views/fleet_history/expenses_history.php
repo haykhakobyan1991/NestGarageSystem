@@ -73,11 +73,54 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	</div>
 
+		<hr class="my-2">
+		<div id="ex" class="container-fluid"></div>
+
 </div>
 
 <script>
 
 	$(document).ready(function () {
+
+
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
+		var date_from = $('input[name="from"]').val();
+		var date_to = $('input[name="to"]').val();
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: {from: date_from, to: date_to},
+			async: true,
+			dataType: "json",
+			success: function (data) {
+				chart(data);
+				$('#ex').html(data.table);
+
+			}
+		}).done(function () {
+			var table = $('#example').DataTable({
+				"paging": false,
+				"info": false,
+				dom: 'Bfrtip',
+				buttons: [
+					{
+						extend: 'excelHtml5',
+						title: '',
+						filename: 'excel_file',
+						footer: true,
+						exportOptions: {
+							columns: ':visible'
+						}
+					},
+					'colvis'
+				]
+			});
+
+			table.buttons().container()
+				.appendTo('#example_wrapper #example_filter:eq(0)');
+			$('.dt-buttons').css('float', 'left');
+		});
 
 
 		$(document).on('click', '#search', function (e) {
@@ -93,8 +136,32 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				async: true,
 				dataType: "json",
 				success: function (data) {
-					$('#container').html(data);
+					chart(data);
+					$('#ex').html(data.table);
+
 				}
+			}).done(function () {
+				var table = $('#example').DataTable({
+					"paging": false,
+					"info": false,
+					dom: 'Bfrtip',
+					buttons: [
+						{
+							extend: 'excelHtml5',
+							title: '',
+							filename: 'excel_file',
+							footer: true,
+							exportOptions: {
+								columns: ':visible'
+							}
+						},
+						'colvis'
+					]
+				});
+
+				table.buttons().container()
+					.appendTo('#example_wrapper #example_filter:eq(0)');
+				$('.dt-buttons').css('float', 'left');
 			});
 
 
@@ -104,7 +171,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	});
 
-
+	function chart(data) {
 	Highcharts.chart('container', {
 
 		chart: {
@@ -116,14 +183,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		},
 
 		xAxis: {
-			categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+			categories: data.category
 		},
 
 		yAxis: {
 			allowDecimals: false,
 			min: 0,
 			title: {
-				text: 'Number of fruits'
+				text: 'AMD'
 			}
 		},
 
@@ -131,7 +198,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			formatter: function () {
 				return '<b>' + this.x + '</b><br/>' +
 					this.series.name + ': ' + this.y + '<br/>' +
-					'Total: ' + this.point.stackTotal;
+					'Ընդհանուր: ' + this.point.stackTotal;
 			}
 		},
 
@@ -141,23 +208,28 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}
 		},
 
-		series: [{
-			name: 'John',
-			data: [21, 21, 21, 12, 12],
-			stack: 'male'
-		}, {
-			name: 'Joe',
-			data: [21, 21, 21, 2, 21],
-			stack: 'male'
-		}, {
-			name: 'Jane',
-			data: [21, 21, 21, 21, 12],
-			stack: 'female'
-		}, {
-			name: 'Janet',
-			data: [21, 21, 21, 0, 21],
-			stack: 'female'
-		}]
-	});
 
+		series:
+		data.data
+
+
+		// series: [{
+		// 	name: 'John',
+		// 	data: [21, 221, 21, 12, 12],
+		// 	stack: 'male'
+		// }, {
+		// 	name: 'Joe',
+		// 	data: [21, 21, 21, 2, 21],
+		// 	stack: 'male'
+		// }, {
+		// 	name: 'Jane',
+		// 	data: [21, 21, 21, 21, 12],
+		// 	stack: 'female'
+		// }, {
+		// 	name: 'Janet',
+		// 	data: [21, 21, 21, 0, 21],
+		// 	stack: 'female'
+		// }]
+	});
+	}
 </script>

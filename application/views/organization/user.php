@@ -198,7 +198,7 @@ endforeach;
 													   onclick="this.focus();this.select()"
 													   readonly/>
 												<button type="button"
-														class="btn btn-sm btn-outline-secondary ml-1 hide_password"
+														class="btn btn-sm btn-outline-secondary  ml-1 hide_password"
 														style="border: none;outline: none;"><i class="fa fa-eye"></i>
 												</button>
 												<button id="generate-password-button" type="button"
@@ -235,7 +235,7 @@ endforeach;
 														style="width: 18px;height: 18px;margin-left: -45px;margin-top: 7px;"
 														value="-1"
 														name="status" type="checkbox"
-														class="form-control form-control-sm st_inp">
+														class="form-control form-control-sm">
 												</div>
 											</div>
 
@@ -247,7 +247,7 @@ endforeach;
 													<input
 														style="width: 18px;height: 18px;margin-left: 0;margin-top: 7px;"
 														name="mail_to" value="1" type="checkbox"
-														class="form-control form-control-sm st_inp">
+														class="form-control form-control-sm">
 												</div>
 											</div>
 
@@ -256,11 +256,11 @@ endforeach;
 									</div>
 								</div>
 							</div>
-							<div class="modal-footer pb-0 col-sm-12">
+							<div class="modal-footer pb-0 col-sm-12" style="padding-right: 141px !important;">
 								<button id="add_user" type="button"
-										class="btn btn-outline-success"><?= lang('save') ?>
+										class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 								</button>
-								<button id="load" class="btn btn-sm btn-success d-none"><img
+								<button id="load" class="btn btn-sm btn-success d-none "><img
 										style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 										src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 								<button type="button" class="cancel_btn close btn btn-sm"

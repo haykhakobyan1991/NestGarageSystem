@@ -82,9 +82,9 @@ $lang['day'] = 'օր';
 $lang['total_veichls'] = 'Ընդհանուր Փոխադրամիջոց';
 $lang['active_veichls'] = 'Ակտիվ Փոխադրամիջոց';
 $lang['passive_veichls'] = 'Պասիվ Փոխադրամիջոց';
-$lang['send_email_to_new_user'] = 'Ուղարկել Ծանուցման Փոստ Նոր Ստեղծված Օգտատիրոջը';
-$lang['send_email_to_new_driver'] = 'Ուղարկել Ծանուցման Փոստ Նոր Ստեղծված Վարորդին';
-$lang['are_you_sure_you_want_to_delete'] = 'Համոզված Եք, Որ Ցանկանում Եք Ջնջել:';
+$lang['send_email_to_new_user'] = 'Ուղարկել Էլ․ Ծանուցում Նոր Ստեղծված Օգտատիրոջը';
+$lang['send_email_to_new_driver'] = 'Ուղարկել Էլ․ Ծանուցում Նոր Ստեղծված Վարորդին';
+$lang['are_you_sure_you_want_to_delete'] = 'Համոզված Եք, Որ Ցանկանում Եք Ջնջել';
 $lang['new_user'] = 'Նոր Օգտատեր';
 $lang['user_information'] = 'Օգտատիրոջ Մասին Տեղեկատվություն';
 $lang['add_user'] = 'Ավելացնել Օգտատեր';
@@ -152,6 +152,7 @@ $lang['per_day'] = 'Օրական';
 $lang['more_info'] = 'Ավելին';
 $lang['day_before'] = 'Հիշեցնել';
 $lang['start_alarm_day'] = 'Առաջին Զգուշացման Օրը';
+$lang['appendix_copy'] = 'Ավտոմեքենայի Տեխանձնագրի Պատճեն';
 
 
 

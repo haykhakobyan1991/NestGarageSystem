@@ -163,7 +163,7 @@ $folder = $this->session->folder;
 								   placeholder="<?=lang('contact_number')?> 1">
 						</div>
 					</div>
-					<div class="row">
+					<div class="row mt-1">
 						<label
 							class="col-sm-4 col-form-label"></label>
 						<div class="col-sm-8">

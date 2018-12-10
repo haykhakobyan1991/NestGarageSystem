@@ -121,7 +121,7 @@
 						<div class="col-sm-1"></div>
 						<label class="col-sm-4 ml-0 pl-0 col-form-label"><?=lang('status_make_passive') ?></label>
 						<div class="col-sm-1">
-							<input style="width: 18px;height: 18px;margin-left: -45px;margin-top: 7px;" <?= ($status == '-1' ? 'checked' : '') ?> name="status" value="-1" type="checkbox" class="form-control form-control-sm st_inp">
+							<input style="width: 18px;height: 18px;margin-left: -45px;margin-top: 7px;" <?= ($status == '-1' ? 'checked' : '') ?> name="status" value="-1" type="checkbox" class="form-control form-control-sm">
 						</div>
 					</div>
 				</div>
@@ -132,9 +132,9 @@
 	</div>
 	<div class="modal-footer pb-0 col-sm-12">
 		<button id="edit_user_button" type="button"
-				class="btn btn-outline-success"><?= lang('save') ?>
+				class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 		</button>
-		<button id="load" class="btn btn-sm btn-success d-none"><img
+		<button id="load" class="btn btn-sm btn-outline-success cancel_btn d-none" style="max-height: 40px; min-width: 93px;"><img
 				style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 				src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 		<button type="button" class="cancel_btn close btn btn-sm"

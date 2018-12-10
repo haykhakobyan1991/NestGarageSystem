@@ -189,14 +189,14 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									   data-id="1"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1')) ?>"
 									   role="tab">
-										<i class="fas fa-info"></i> Ինֆորմացիա
+										<i class="fas fa-info"></i> <?=lang('information')?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
 									   data-id="2"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/add_expenses') ?>"
 									   role="tab">
-										<i class="fas fa-plus"></i> Ավելացնել ծախսեր
+										<i class="fas fa-plus"></i> <?=lang('add_expenses')?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == 'fleet_history' ? 'active show' : '' ?> "
@@ -204,7 +204,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									   data-toggle=""
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .  '/' . ($controller == 'Structure' ? $page : 'structure1') . '/fleet_history') ?>"
 									   role="tab">
-										<i class="fas fa-clipboard-list"></i> Ծախսերի պատմություն
+										<i class="fas fa-clipboard-list"></i> <?=lang('expenses_history')?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $page == 'expenses_history' ? 'active show' : '' ?> "
@@ -212,7 +212,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									   data-toggle=""
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/expenses_history') ?>"
 									   role="tab">
-										<i class="fas fa-history"></i> Կազմակերպությնա ընդհանուր ծախսեր
+										<i class="fas fa-history"></i> <?=lang('total_company_expenses')?>
 									</a><?
 									if ($controller == 'Structure') {
 										?>

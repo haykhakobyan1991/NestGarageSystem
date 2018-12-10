@@ -44,11 +44,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 		<div style="float: right;">
-			<span class="p-3">from</span>
+			<span class="p-3"><?=lang('from')?></span>
 			<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
 				   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
 
-			<span class="p-3">to</span>
+			<span class="p-3"><?=lang('to')?></span>
 			<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
 				   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
 
@@ -202,15 +202,81 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}
 		},
 
+
+
 		plotOptions: {
 			column: {
 				stacking: 'normal'
+			},
+
+			series: {
+				events: {
+					legendItemClick: function (e) {
+
+						$('#ex').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+
+						var hidden = [];
+
+						var chart = this.chart,
+							index = this.index,
+							tvis = this.visible;
+
+
+						if(tvis) {
+							hidden.push(this.userOptions.table);
+						}
+
+						$.each(chart.series,function(i,serie){
+
+							if((!serie.visible) && (serie.index != index)) {
+								hidden.push(serie.userOptions.table);
+							}
+
+						});
+
+						var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
+						var date_from = $('input[name="from"]').val();
+						var date_to = $('input[name="to"]').val();
+
+						$.ajax({
+							url: url,
+							type: 'POST',
+							data: {from: date_from, to: date_to, hidden: hidden},
+							async: true,
+							dataType: "json",
+							success: function (data) {
+								$('#ex').html(data.table);
+							}
+						}).done(function () {
+							var table = $('#example').DataTable({
+								"paging": false,
+								"info": false,
+								dom: 'Bfrtip',
+								buttons: [
+									{
+										extend: 'excelHtml5',
+										title: '',
+										filename: 'excel_file',
+										footer: true,
+										exportOptions: {
+											columns: ':visible'
+										}
+									},
+									'colvis'
+								]
+							});
+
+							table.buttons().container()
+								.appendTo('#example_wrapper #example_filter:eq(0)');
+							$('.dt-buttons').css('float', 'left');
+						});
+					}
+				}
 			}
 		},
 
 
-		series:
-		data.data
+		series: data.data
 
 
 	});

@@ -47,7 +47,7 @@ $i = '';
 										class="col-form-label col-sm-5"><?= lang('company_type') ?></label>
 
 									<select name="company_type"
-											class="selectpicker form-control form-control-sm selectpicker_1 col-sm-7"
+											class="selectpicker form-control form-control-sm  col-sm-7"
 											data-size="5" id="company_type" data-live-search="true"
 											title="<?= lang('company_type') ?>">
 										<? foreach ($company_type as $item) : ?>

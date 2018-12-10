@@ -27,7 +27,7 @@
 		</div>
 	</div>
 
-	<div class="form-group row mb-2 mt-1">
+	<div class="form-group row mb-2" style="margin-top: 0.4em;">
 		<label class="col-sm-3 col-form-label">Մանրամասն</label>
 		<div class="col-sm-8">
 			<textarea rows="3" value="" type="text" class=" form-control" name="description" placeholder="Մանրամասն"><?= $description ?></textarea>
@@ -36,7 +36,7 @@
 
 	<div class="modal-footer pb-0 mb-0" style="margin-right: 22px;">
 		<button id="edit_department_btn" type="button" class="btn btn-outline-success cancel_btn"><?= lang('save') ?></button>
-		<span id="load" class="btn btn-sm btn-success d-none">
+		<span id="load" class="btn btn-outline-success cancel_btn d-none" style="min-width: 93px; min-height: 40px;">
 			<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
 		</span>
 		<button type="button" class="cancel_btn close btn btn-sm" data-dismiss="modal" aria-label="Close">

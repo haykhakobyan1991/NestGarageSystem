@@ -17,8 +17,8 @@
 			language: {
 				search: "<?=lang('search')?>",
 				emptyTable: "<?=lang('no_data')?>",
-				info: "<?=lang('showing')?> _START_ -ից _END_ -ը  _TOTAL_ <?=lang('record')?>",
-				infoEmpty: "<?=lang('showing')?> 0 -ից 0 -ը 0 <?=lang('record')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
 				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
 				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
 				zeroRecords: "<?=lang('no_matching_records')?>",
@@ -27,12 +27,6 @@
 					last: "<?=lang('last')?>",
 					next: "<?=lang('next')?>",
 					previous: "<?=lang('prev')?>"
-				},
-				buttons: {
-					copyTitle: 'Պատճենահանումը կատարվել է',
-					copySuccess: {
-						_: 'Պատճենվել է %d տող'
-					}
 				}
 			}
 		});

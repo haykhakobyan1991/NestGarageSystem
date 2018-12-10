@@ -178,73 +178,73 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				   data-tab="1" id="nav-1-tab"
 				   data-toggle="tab" href="#nav-1"
 				   role="tab" aria-controls="nav-1"
-				   aria-selected="true">ՏԵԽ ԶՆՆՈՒՄ</a>
+				   aria-selected="true"><?=lang('inspection')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="2" id="nav-2-tab"
 				   data-toggle="tab" href="#nav-2"
 				   role="tab" aria-controls="nav-2"
-				   aria-selected="false">ՎԱՌԵԼԻՔ</a>
+				   aria-selected="false"><?=lang('fuel_consumption')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="3" id="nav-3-tab"
 				   data-toggle="tab" href="#nav-3"
 				   role="tab" aria-controls="nav-3"
-				   aria-selected="false">ՏՈՒԳԱՆՔ</a>
+				   aria-selected="false"><?=lang('fine')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="4" id="nav-4-tab"
 				   data-toggle="tab" href="#nav-4"
 				   role="tab" aria-controls="nav-4"
-				   aria-selected="false">ՊԱՏԱՀԱՐՆԵՐ</a>
+				   aria-selected="false"><?=lang('accident')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="5" id="nav-5-tab"
 				   data-toggle="tab" href="#nav-5"
 				   role="tab" aria-controls="nav-5"
-				   aria-selected="false">ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ</a>
+				   aria-selected="false"><?=lang('insurance')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="6" id="nav-6-tab"
 				   data-toggle="tab" href="#nav-6"
 				   role="tab" aria-controls="nav-6"
-				   aria-selected="false">ՊԱՀԵՍՏԱՄԱՍԵՐ</a>
+				   aria-selected="false"><?=lang('spares')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="7" id="nav-7-tab"
 				   data-toggle="tab" href="#nav-7"
 				   role="tab" aria-controls="nav-7"
-				   aria-selected="false">ՎԵՐԱՆՈՐՈԳՈՒՄ</a>
+				   aria-selected="false"><?=lang('repair')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="8" id="nav-8-tab"
 				   data-toggle="tab" href="#nav-8"
 				   role="tab" aria-controls="nav-8"
-				   aria-selected="false">ԱՆՎԱԴՈՂ</a>
+				   aria-selected="false"><?=lang('wheel')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="9" id="nav-9-tab"
 				   data-toggle="tab" href="#nav-9"
 				   role="tab" aria-controls="nav-9"
-				   aria-selected="false">ԱՐԳԵԼԱԿ</a>
+				   aria-selected="false"><?=lang('brake')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="10" id="nav-10-tab"
 				   data-toggle="tab" href="#nav-10"
 				   role="tab" aria-controls="nav-10"
-				   aria-selected="false">ՔՍՈՒՔ</a>
+				   aria-selected="false"><?=lang('grease')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="11" id="nav-11-tab"
 				   data-toggle="tab" href="#nav-11"
 				   role="tab" aria-controls="nav-11"
-				   aria-selected="false">ՖԻԼՏՐ</a>
+				   aria-selected="false"><?=lang('filter')?></a>
 
 				<a class="nav-item nav-link tab_nav"
 				   data-tab="12" id="nav-12-tab"
 				   data-toggle="tab" href="#nav-12"
 				   role="tab" aria-controls="nav-12"
-				   aria-selected="false">ՄԱՐՏԿՈՑ</a>
+				   aria-selected="false"><?=lang('battery')?></a>
 
 			</div>
 		</nav>

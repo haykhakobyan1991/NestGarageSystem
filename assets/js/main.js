@@ -132,9 +132,9 @@ $(document).ready(function () {
 		html: true
 	});
 
-	$(".modal").on('hidden.bs.modal', function () {
-		location.reload();
-	});
+	// $(".modal").on('hidden.bs.modal', function () {
+	// 	location.reload();
+	// });
 
 	$(function () {
 		$('[data-toggle2="tooltip"]').tooltip()

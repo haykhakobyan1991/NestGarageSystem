@@ -438,21 +438,83 @@ class Fleet_history extends MX_Controller {
 
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
+		$hidden = $this->input->post('hidden');
 
 		$new_array = array();
 
-		$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection');
-		$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
-		$fine = $this->vehicle_info($from, $to, $company_id, 'fine');
-		$accident = $this->vehicle_info($from, $to, $company_id, 'accident');
-		$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance');
-		$spares = $this->vehicle_info($from, $to, $company_id, 'spares');
-		$repair = $this->vehicle_info($from, $to, $company_id, 'repair');
-		$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel');
-		$brake = $this->vehicle_info($from, $to, $company_id, 'brake');
-		$grease = $this->vehicle_info($from, $to, $company_id, 'grease');
-		$filter = $this->vehicle_info($from, $to, $company_id, 'filter');
-		$battery = $this->vehicle_info($from, $to, $company_id, 'battery');
+		if(!empty($hidden) && in_array('inspection', $hidden)) {
+			$inspection = array();
+		} else {
+			$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection');
+		}
+
+		if(!empty($hidden) && in_array('fuel_consumption', $hidden)) {
+			$fuel_consumption = array();
+		} else {
+			$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
+		}
+
+		if(!empty($hidden) && in_array('fine', $hidden)) {
+			$fine = array();
+		} else {
+			$fine = $this->vehicle_info($from, $to, $company_id, 'fine');
+		}
+
+		if(!empty($hidden) && in_array('accident', $hidden)) {
+			$accident = array();
+		} else {
+			$accident = $this->vehicle_info($from, $to, $company_id, 'accident');
+		}
+
+		if(!empty($hidden) && in_array('insurance', $hidden)) {
+			$insurance = array();
+		} else {
+			$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance');
+		}
+
+		if(!empty($hidden) && in_array('spares', $hidden)) {
+			$spares = array();
+		} else {
+			$spares = $this->vehicle_info($from, $to, $company_id, 'spares');
+		}
+
+		if(!empty($hidden) && in_array('repair', $hidden)) {
+			$repair = array();
+		} else {
+			$repair = $this->vehicle_info($from, $to, $company_id, 'repair');
+		}
+
+		if(!empty($hidden) && in_array('wheel', $hidden)) {
+			$wheel = array();
+		} else {
+			$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel');
+		}
+
+		if(!empty($hidden) && in_array('brake', $hidden)) {
+			$brake = array();
+		} else {
+			$brake = $this->vehicle_info($from, $to, $company_id, 'brake');
+		}
+
+		if(!empty($hidden) && in_array('grease', $hidden)) {
+			$grease = array();
+		} else {
+			$grease = $this->vehicle_info($from, $to, $company_id, 'grease');
+		}
+
+		if(!empty($hidden) && in_array('filter', $hidden)) {
+			$filter = array();
+		} else {
+			$filter = $this->vehicle_info($from, $to, $company_id, 'filter');
+		}
+
+		if(!empty($hidden) && in_array('battery', $hidden)) {
+			$battery = array();
+		} else {
+			$battery = $this->vehicle_info($from, $to, $company_id, 'battery');
+		}
+
+
 
 		$arr = array();
 		$data = array();
@@ -526,10 +588,10 @@ class Fleet_history extends MX_Controller {
 		$table = '<table id="example" class="table table-striped table-borderless w-100 dataTable no-footer">
 					<thead class="thead_tables">
 						<tr>
-							<th class="table_th">Date</th>
-							<th class="table_th">Type</th>
-							<th class="table_th">Fleet</th>
-							<th class="table_th">Price (AMD)</th>
+							<th class="table_th">'.lang('date').'</th>
+							<th class="table_th">'.lang('type').'</th>
+							<th class="table_th">'.lang('vehicle').'</th>
+							<th class="table_th">'.lang('price').' (AMD)</th>
 						</tr>
 					</thead>
 					<tbody>';
@@ -540,10 +602,10 @@ class Fleet_history extends MX_Controller {
 			foreach ($types as $type => $value) {
 				foreach ($value as $fleet => $price) {
 					$table .= '<tr>';
-					$table .= '<td class="border">'.$date.'</td>';
-					$table .= '<td class="border">'.$type.'</td>';
-					$table .= '<td class="border">'.$fleet.'</td>';
-					$table .= '<td class="border">'.$price.'</td>';
+						$table .= '<td class="border">'.$date.'</td>';
+						$table .= '<td class="border">'.lang($type).'</td>';
+						$table .= '<td class="border">'.$fleet.'</td>';
+						$table .= '<td class="border">'.$price.'</td>';
 					$table .= '</tr>';
 				}
 			}
@@ -551,18 +613,18 @@ class Fleet_history extends MX_Controller {
 
 			$data['category'][] = date($date);
 
-			$data['data'][] = array('name' => 'ՏԵԽ ԶՆՆՈՒՄ', 'data' => $arr['inspection'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՎԱՌԵԼԻՔ', 'data' => $arr['fuel_consumption'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՏՈՒԳԱՆՔ', 'data' => $arr['fine'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՊԱՏԱՀԱՐՆԵՐ', 'data' => $arr['accident'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ', 'data' => $arr['insurance'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՊԱՀԵՍՏԱՄԱՍԵՐ', 'data' => $arr['spares'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՎԵՐԱՆՈՐՈԳՈՒՄ', 'data' => $arr['repair'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ԱՆՎԱԴՈՂ', 'data' => $arr['wheel'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ԱՐԳԵԼԱԿ', 'data' => $arr['brake'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՔՍՈՒՔ', 'data' => $arr['grease'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՖԻԼՏՐ', 'data' => $arr['filter'], 'stack' => '-');
-			$data['data'][] = array('name' => 'ՄԱՐՏԿՈՑ', 'data' => $arr['battery'], 'stack' => '-');
+			$data['data'][] = array('name' => lang('inspection'), 'data' => $arr['inspection'], 'table' => 'inspection', 'stack' => '-');
+			$data['data'][] = array('name' => lang('fuel_consumption'), 'data' => $arr['fuel_consumption'], 'table' => 'fuel_consumption', 'stack' => '-');
+			$data['data'][] = array('name' => lang('fine'), 'data' => $arr['fine'], 'table' => 'fine', 'stack' => '-');
+			$data['data'][] = array('name' => lang('accident'), 'data' => $arr['accident'], 'table' => 'accident', 'stack' => '-');
+			$data['data'][] = array('name' => lang('insurance'), 'data' => $arr['insurance'], 'table' => 'insurance', 'stack' => '-');
+			$data['data'][] = array('name' => lang('spares'), 'data' => $arr['spares'], 'table' => 'spares', 'stack' => '-');
+			$data['data'][] = array('name' => lang('repair'), 'data' => $arr['repair'], 'table' => 'repair', 'stack' => '-');
+			$data['data'][] = array('name' => lang('wheel'), 'data' => $arr['wheel'], 'table' => 'wheel', 'stack' => '-');
+			$data['data'][] = array('name' => lang('brake'), 'data' => $arr['brake'], 'table' => 'brake', 'stack' => '-');
+			$data['data'][] = array('name' => lang('grease'), 'data' => $arr['grease'], 'table' => 'grease', 'stack' => '-');
+			$data['data'][] = array('name' => lang('filter'), 'data' => $arr['filter'], 'table' => 'filter', 'stack' => '-');
+			$data['data'][] = array('name' => lang('battery'), 'data' => $arr['battery'], 'table' => 'battery', 'stack' => '-');
 
 		}
 

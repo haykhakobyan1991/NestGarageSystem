@@ -551,7 +551,7 @@ endforeach;
 	});
 
 
-	$(document).on('click', 'span#edit_user_button', function (e) {
+	$(document).on('click', 'button#edit_user_button', function (e) {
 
 		$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 

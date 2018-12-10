@@ -22,8 +22,8 @@
 			language: {
 				search: "<?=lang('search')?>",
 				emptyTable: "<?=lang('no_data')?>",
-				info: "<?=lang('showing')?> _START_ -ից _END_ -ը  _TOTAL_ <?=lang('record')?>",
-				infoEmpty: "<?=lang('showing')?> 0 -ից 0 -ը 0 <?=lang('record')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
 				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
 				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
 				zeroRecords: "<?=lang('no_matching_records')?>",
@@ -32,12 +32,6 @@
 					last: "<?=lang('last')?>",
 					next: "<?=lang('next')?>",
 					previous: "<?=lang('prev')?>"
-				},
-				buttons: {
-					copyTitle: 'Պատճենահանումը կատարվել է',
-					copySuccess: {
-						_: 'Պատճենվել է %d տող'
-					}
 				}
 			}
 		});
@@ -188,7 +182,7 @@ color: #545b62;">
 									</div>
 								</div>
 
-								<div class="form-group row mb-2 mt-1">
+								<div class="form-group row mb-2" style="margin-top: 0.4em;">
 									<label class="col-sm-3 col-form-label">Մանրամասն</label>
 									<div class="col-sm-8">
 											<textarea rows="3" value="" type="text"
@@ -236,12 +230,12 @@ color: #545b62;">
     line-height: 14px !important;
     padding: 12px 24px !important;
     font-weight: 500 !important;" type="button" id="delete_department"
-							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
+							class="btn btn-outline-danger  cancel_btn"><?= lang('yes') ?>
 					</button>
 					<button style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
+    font-weight: 500 !important;" type="button" class=" btn btn-outline-success yes_btn "
 							data-dismiss="modal"><?= lang('cancel') ?></button>
 
 					<input type="hidden" name="department_id">

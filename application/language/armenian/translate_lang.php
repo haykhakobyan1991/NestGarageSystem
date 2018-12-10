@@ -48,7 +48,7 @@ $lang['owner_firstname'] = 'Անունը';
 $lang['owner_lastname'] = 'Ազգանունը';
 $lang['owner_position'] = 'Պաշտոնը';
 $lang['position'] = 'Պաշտոն';
-$lang['nest_card_id'] = 'Nest Քարտի ID- ն';
+$lang['nest_card_id'] = 'Nest Քարտ ID';
 $lang['owner_email'] = 'Էլ․ Հասցեն';
 $lang['contact_number'] = 'Հեռախոսահամար';
 $lang['account_number'] = 'Հաշվեհամար';
@@ -124,13 +124,8 @@ $lang['showing'] = 'Ցույց է Տրվում';
 $lang['showing2'] = 'Ցույց Տալ';
 $lang['record'] = 'Գրառումից';
 $lang['record2'] = 'Գրառում';
-$lang['total_record'] = 'Ընդհանուր Գրառումներից';
-$lang['is_filtered'] = 'ֆիլտրված է';
-$lang['no_matching_records'] = 'Համապատասխան Արձանագրություններ Չեն Գտնվել';
-$lang['first'] = 'Առաջին';
-$lang['last'] = 'Վերջինը';
-$lang['next'] = 'Առաջ';
-$lang['prev'] = 'Հետ';
+
+
 $lang['Name/Email'] = 'Անուն/Էլ․ Հասցե';
 $lang['name'] = 'Անուն';
 $lang['Created_Date'] = 'Ստեղծման Ամսաթիվ';
@@ -155,7 +150,6 @@ $lang['start_alarm_day'] = 'Առաջին Զգուշացման Օրը';
 $lang['appendix_copy'] = 'Ավտոմեքենայի Տեխանձնագրի Պատճեն';
 
 
-
 $lang['month_1'] = 'Հունվար';
 $lang['month_2'] = 'Փետրվար';
 $lang['month_3'] = 'Մարտ';
@@ -168,6 +162,44 @@ $lang['month_9'] = 'Սեպտեմբեր';
 $lang['month_10'] = 'Հոկտեմբեր';
 $lang['month_11'] = 'Նոյեմբեր';
 $lang['month_12'] = 'Դեկտեմբեր';
+
+
+$lang['inspection'] = 'ՏԵԽ ԶՆՆՈՒՄ';
+$lang['fuel_consumption'] = 'ՎԱՌԵԼԻՔ';
+$lang['fine'] = 'ՏՈՒԳԱՆՔ';
+$lang['accident'] = 'ՊԱՏԱՀԱՐՆԵՐ';
+$lang['insurance'] = 'ԱՊԱՀՈՎԱԳՐՈՒԹՅՈՒՆ';
+$lang['spares'] = 'ՊԱՀԵՍՏԱՄԱՍԵՐ';
+$lang['repair'] = 'ՎԵՐԱՆՈՐՈԳՈՒՄ';
+$lang['wheel'] = 'ԱՆՎԱԴՈՂ';
+$lang['brake'] = 'ԱՐԳԵԼԱԿ';
+$lang['grease'] = 'ՔՍՈՒՔ';
+$lang['filter'] = 'ՖԻԼՏՐ';
+$lang['battery'] = 'ՄԱՐՏԿՈՑ';
+$lang['information'] = 'Ինֆորմացիա';
+$lang['add_expenses'] = 'Ավելացնել ծախսեր';
+$lang['expenses_history'] = 'Ծախսերի պատմություն';
+$lang['total_company_expenses'] = 'Կազմակերպությնա ընդհանուր ծախսեր';
+$lang['from'] = 'Սկսած';
+$lang['to'] = 'Մինչև';
+
+$lang['total'] = 'Ընդհանուր';
+$lang['data'] = 'տվյալ';
+$lang['no_matching_records'] = 'Համապատասխան Արձանագրություններ Չեն Գտնվել';
+$lang['first'] = 'Առաջին';
+$lang['last'] = 'Վերջինը';
+$lang['next'] = 'Առաջ';
+$lang['prev'] = 'Հետ';
+$lang['total_record'] = 'Ընդհանուր Գրառումներից';
+$lang['is_filtered'] = 'ֆիլտրված է';
+
+
+
+$lang['date'] = 'Ամսաթիվ';
+$lang['type'] = 'Տեսակ';
+$lang['price'] = 'Արժեք';
+
+
 
 
 

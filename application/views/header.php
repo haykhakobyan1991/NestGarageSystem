@@ -106,9 +106,11 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		<a class="nav_a mr-2 <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
 
-		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
+		<a class="nav_a btn btn-sm btn-outline-success2 mr-2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 
+		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
+		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>">Gps Tracking</a>
 
 	</div>
 

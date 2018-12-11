@@ -69,19 +69,19 @@
 	<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav mr-auto">
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg" />Trajectory</button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg" />Speed</button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg" />Fuel</button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/engine.svg" />Engine</button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/box.svg" />Cargo</button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/support.svg" />Sos</button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg" /><?=lang('trajectory')?></button>
+				<button style="color:#00000080 !important;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg" /><?=lang('speed')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg" /><?=lang('fuel')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/engine.svg" /><?=lang('engine')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/box.svg" /><?=lang('cargo')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/support.svg" /><?=lang('sos')?></button>
 
-				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1" href="#">Notification</button>
-				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">Events</button>
-				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">Statistics</button>
+				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1" href="#"><?=lang('notification')?></button>
+				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><?=lang('event')?></button>
+				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><?=lang('statistics')?></button>
 
 
-					<label style="padding: 10px 6px 0px 10px;">Update</label>
+					<label style="padding: 10px 6px 0px 10px;"><?=lang('update')?></label>
 					<select style="margin-top: 1px" class="form-control form-control-sml">
 						<option>1</option>
 						<option>2</option>
@@ -113,7 +113,7 @@
 
 		<div class="col-sm-3 pr-4">
 			<fieldset class="scheduler-border">
-				<legend class="scheduler-border">Group</legend>
+				<legend class="scheduler-border"><?=lang('group')?></legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker"  >
 						<div class="row">
@@ -136,7 +136,7 @@
 			</fieldset>
 
 			<fieldset class="scheduler-border">
-				<legend class="scheduler-border">Vehicles</legend>
+				<legend class="scheduler-border"><?=lang('vehicle')?></legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker" >
 						<div class="row">
@@ -164,38 +164,38 @@
 			</fieldset>
 
 			<fieldset class="scheduler-border">
-				<legend class="scheduler-border">Informaton</legend>
+				<legend class="scheduler-border"><?=lang('information')?></legend>
 				<div class="control-group">
 					<div class="controls bootstrap-timepicker" >
 						<div class="row">
 							<div class="col-sm-12" style="min-height: 170px;overflow-y: auto;">
 								<div class="row">
-									<div class="col-sm-4">Անուն</div>
+									<div class="col-sm-4"><?=lang('name')?></div>
 									<div class="col-sm-8">Maz_1</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4">Պետհամարանիշ</div>
+									<div class="col-sm-4"><?=lang('license_plate')?></div>
 									<div class="col-sm-8">452uu74</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4">Տեսակը</div>
+									<div class="col-sm-4"><?=lang('type')?></div>
 									<div class="col-sm-8">Բեռնատար</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4">ԻՀ։</div>
+									<div class="col-sm-4"><?=lang('ih')?>։</div>
 									<div class="col-sm-8">487871123597487</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4">Նկարագիր</div>
+									<div class="col-sm-4"><?=lang('description')?></div>
 									<div class="col-sm-8">Կորյուն Մարուքյան</div>
 								</div>
 
 								<div class="row">
-									<div class="col-sm-4">Հեռ․ Համար</div>
+									<div class="col-sm-4"><?=lang('contact_number')?></div>
 									<div class="col-sm-8">+37455554455</div>
 								</div>
 							</div>

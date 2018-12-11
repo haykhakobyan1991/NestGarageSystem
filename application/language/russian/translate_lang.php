@@ -271,6 +271,23 @@ $lang['send_email_to_new_user'] = 'Отправить E-Mail Уведомлен�
 $lang['send_email_to_new_driver'] = 'Отправить E-Mail Уведомление о новом  драйвере';
 
 
+//Gps Tracking
+$lang['trajectory'] = 'Траектория';
+$lang['speed'] = 'Скорость';
+$lang['fuel'] = 'Топливо';
+$lang['engine'] = 'Двигатель';
+$lang['cargo'] = 'Груз';
+$lang['sos'] = 'СОС';
+$lang['notification'] = 'Уведомление';
+$lang['event'] = 'Событие';
+$lang['statistics'] = 'Статистика';
+$lang['update'] = 'Обновление';
+$lang['group'] = 'Группа';
+$lang['license_plate'] = 'Номерной знак';
+$lang['ih'] = 'ԻՀ';//to do
+$lang['description'] = 'Описание';
+
+
 //other info
 $lang['activity'] = 'Активность';
 $lang['post_code'] = 'Почтовый индекс';

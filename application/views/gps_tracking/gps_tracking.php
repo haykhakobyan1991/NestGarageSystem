@@ -40,6 +40,30 @@
 		box-shadow:  0px 0px 0px 0px #000;
 	}
 
+	.fleets_ul li {
+		margin: 2px;
+		padding: 2px 8px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		-webkit-transition: all .3s ease-in-out;
+		-moz-transition: all .3s ease-in-out;
+		-ms-transition: all .3s ease-in-out;
+		-o-transition: all .3s ease-in-out;
+		transition: all .3s ease-in-out;
+	}
+
+	.fleets_ul li:hover{
+		background: #7c7c7d;
+		color: #fff;
+	}
+
+	.fleets_ul_active {
+		background: #7c7c7d;
+		color: #fff;
+	}
+
 </style>
 <div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
@@ -83,15 +107,15 @@
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-sm-8">
-			<div id="map" style="width: 100%; height: 500px;"></div>
+		<div class="col-sm-9">
+			<div id="map" style="width: 100%; height: 650px;"></div>
 		</div>
 
-		<div class="col-sm-4 pr-4">
+		<div class="col-sm-3 pr-4">
 			<fieldset class="scheduler-border">
 				<legend class="scheduler-border">Group</legend>
 				<div class="control-group">
-					<div class="controls bootstrap-timepicker">
+					<div class="controls bootstrap-timepicker"  >
 						<div class="row">
 							<div class="col-sm-6">
 								<select style="margin-top: 1px;max-width: 220px;" class="form-control form-control-sml">
@@ -110,9 +134,86 @@
 					</div>
 				</div>
 			</fieldset>
+
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Vehicles</legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker" >
+						<div class="row">
+							<div class="col-sm-12">
+								<ul style="margin-top: 1px;min-height: 170px;overflow-y: auto;" class="fleets_ul form-control form-control-sml">
+									<li>fleet 1</li>
+									<li>fleet 2</li>
+									<li>fleet 3</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+									<li>fleet 4</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="scheduler-border">
+				<legend class="scheduler-border">Informaton</legend>
+				<div class="control-group">
+					<div class="controls bootstrap-timepicker" >
+						<div class="row">
+							<div class="col-sm-12" style="min-height: 170px;overflow-y: auto;">
+								<div class="row">
+									<div class="col-sm-4">Անուն</div>
+									<div class="col-sm-8">Maz_1</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">Պետհամարանիշ</div>
+									<div class="col-sm-8">452uu74</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">Տեսակը</div>
+									<div class="col-sm-8">Բեռնատար</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">ԻՀ։</div>
+									<div class="col-sm-8">487871123597487</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">Նկարագիր</div>
+									<div class="col-sm-8">Կորյուն Մարուքյան</div>
+								</div>
+
+								<div class="row">
+									<div class="col-sm-4">Հեռ․ Համար</div>
+									<div class="col-sm-8">+37455554455</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
 		</div>
 	</div>
 </div>
+
+<script>
+
+	$(document).on('click', '.fleets_ul li', function() {
+		$(this).toggleClass('fleets_ul_active');
+	})
+
+</script>
 
 
 <script type="text/javascript">
@@ -220,12 +321,51 @@
 			});
 
 
+
+
+			// var pointA = [55.80, 37.50],
+			//     pointB = [55.80, 37.40],
+			//     pointC = [55.70, 37.50],
+			//     pointD = [55.70, 37.40];
+
+			//     var multiRoute = new ymaps.multiRouter.MultiRoute({
+			//         referencePoints: [
+			//                           '55.80, 37.50',
+			//                           '55.80, 37.40',
+			//                           '55.70, 37.50',
+			//                           '55.70, 37.40'
+			//                         ],
+			//         params: {
+			//             routingMode: ''
+			//         }
+			//         }, {
+			//             boundsAutoApply: false
+			//         });
+
+			// // Создаем карту с добавленной на нее кнопкой.
+			// var myMap = new ymaps.Map('map', {
+			//     center: [55.739625, 37.54120],
+			//     zoom: 12,
+			// }, {
+			//     buttonMaxWidth: 300
+			// });
+
+			// // Добавляем мультимаршрут на карту.
+			// myMap.geoObjects.add(multiRoute);
+
+
+
+
+
+
+
+
 			//Car Coordinates
 
 			var cord = firebase.database().ref("cord/");
 
 			console.log(cord)
-
+			var track = [];
 			cord.on("child_changed", function (data) {
 				var carCoordinate = '';
 				cordValue = data.val();
@@ -234,6 +374,29 @@
 
 				console.log(latitude);
 				console.log(longitude);
+
+				if(track.indexOf([latitude.toFixed(5), longitude.toFixed(5)]) === -1) {
+					track.push([latitude.toFixed(5), longitude.toFixed(5)]);
+
+				}
+
+				console.log(track);
+				var myGeoObject2 = new ymaps.GeoObject({
+					geometry: {
+						type: "LineString",
+						coordinates: track
+					},
+					properties: {
+						hintContent: "",
+						balloonContent: ""
+					}
+				}, {
+					draggable: false,
+					strokeColor: "#4285F4",
+					strokeWidth: 3
+				});
+				myMap.geoObjects.add(myGeoObject2);
+
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
 					balloonContent: latitude + '-' + longitude
@@ -250,48 +413,49 @@
 
 				myMap.geoObjects
 					.add(carCoordinate)
-					.add(myGeoObject);
+					.add(myGeoObject)
+					.add(myGeoObject2);
 
 
-				var i = 1;
-
-				$.each(arr, function (e, value) {
-
-					if (i == 1) {
-						myPlacemark = new ymaps.Placemark(value, {
-							balloonContentHeader: text_arr[e],
-							balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-							balloonContentFooter: "",
-							hintContent: value
-						}, {
-							preset: 'islands#greenDotIcon',
-						});
-					} else if (i > 1 && i < arr.length) {
-						myPlacemark = new ymaps.Placemark(value, {
-								balloonContentHeader: text_arr[e],
-								balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-								balloonContentFooter: "",
-								hintContent: value
-							},
-							{
-								preset: 'islands#blueCircleDotIconWithCaption',
-								iconCaptionMaxWidth: '50'
-							});
-					} else if (i == arr.length) {
-						myPlacemark = new ymaps.Placemark(value, {
-							balloonContentHeader: text_arr[e],
-							balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-							balloonContentFooter: "",
-							hintContent: value
-						}, {
-							preset: 'islands#redDotIcon',
-						});
-					}
-					myMap.geoObjects.add(myPlacemark);
-
-					i++;
-
-				})
+				// var i = 1;
+				//
+				// $.each(arr, function (e, value) {
+				//
+				// 	if (i == 1) {
+				// 		myPlacemark = new ymaps.Placemark(value, {
+				// 			balloonContentHeader: text_arr[e],
+				// 			balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
+				// 			balloonContentFooter: "",
+				// 			hintContent: value
+				// 		}, {
+				// 			preset: 'islands#greenDotIcon',
+				// 		});
+				// 	} else if (i > 1 && i < arr.length) {
+				// 		myPlacemark = new ymaps.Placemark(value, {
+				// 				balloonContentHeader: text_arr[e],
+				// 				balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
+				// 				balloonContentFooter: "",
+				// 				hintContent: value
+				// 			},
+				// 			{
+				// 				preset: 'islands#blueCircleDotIconWithCaption',
+				// 				iconCaptionMaxWidth: '50'
+				// 			});
+				// 	} else if (i == arr.length) {
+				// 		myPlacemark = new ymaps.Placemark(value, {
+				// 			balloonContentHeader: text_arr[e],
+				// 			balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
+				// 			balloonContentFooter: "",
+				// 			hintContent: value
+				// 		}, {
+				// 			preset: 'islands#redDotIcon',
+				// 		});
+				// 	}
+				// 	myMap.geoObjects.add(myPlacemark);
+				//
+				// 	i++;
+				//
+				// })
 
 			})
 

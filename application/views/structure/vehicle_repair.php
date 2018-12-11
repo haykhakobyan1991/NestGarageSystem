@@ -4,11 +4,11 @@
 		<table id="ex_7" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
-				<th class="table_th">Մեքենա</th>
-				<th class="table_th">Երբ</th>
-				<th class="table_th">Վերանորոգող</th>
-				<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
-				<th class="table_th">Արժեք</th>
+				<th class="table_th"><?=lang('vehicle')?></th>
+				<th class="table_th"><?=lang('when')?></th>
+				<th class="table_th"><?=lang('repairs')?></th>
+				<th class="table_th"><?=lang('repair_materials')?></th>
+				<th class="table_th"><?=lang('price')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -106,7 +106,7 @@
 		<div class="modal-dialog" style="max-width: 80% !important">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">ՎԵՐԱՆՈՐՈԳՈՒՄ</h6>
+					<h6 class="text-white modal-title dar"><?=lang('repair')?></h6>
 
 				</div>
 				<div class="modal-body">
@@ -117,11 +117,11 @@
 					<table id="ex_7" class="table table-striped table-borderless w-100">
 						<thead class="thead_tables">
 						<tr>
-							<th class="table_th">Մեքենա</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Վերանորոգող</th>
-							<th class="table_th">Վերանորոգման ենթակա աշխ․ նյութեր</th>
-							<th class="table_th">Արժեք</th>
+							<th class="table_th"><?=lang('vehicle')?></th>
+							<th class="table_th"><?=lang('when')?></th>
+							<th class="table_th"><?=lang('repairs')?></th>
+							<th class="table_th"><?=lang('repair_materials')?></th>
+							<th class="table_th"><?=lang('price')?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -177,6 +177,21 @@
 
 
 	var table = $('#ex_7').DataTable({
+		language: {
+			search: "<?=lang('search')?>",
+			emptyTable: "<?=lang('no_data')?>",
+			info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+			infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+			infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+			lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+			zeroRecords: "<?=lang('no_matching_records')?>",
+			paginate: {
+				first: "<?=lang('first')?>",
+				last: "<?=lang('last')?>",
+				next: "<?=lang('next')?>",
+				previous: "<?=lang('prev')?>"
+			}
+		},
 		"paging": false,
 		"info": false,
 		"columnDefs": [

@@ -155,12 +155,12 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
 						   role="tab" aria-controls="department"><?= lang('department') ?>
-							<span class="float-right">4</span>
+<!--							<span class="float-right">4</span>-->
 						</a>
 						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
 						   role="tab" aria-controls="staff"><?= lang('staff') ?>
-							<span class="float-right">2</span></a>
+<!--							<span class="float-right">2</span></a>-->
 						<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
 						   role="tab" aria-controls="settings"><?= lang('vehicle') ?>
@@ -259,7 +259,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									<div class="row btn-group mt-2 mt-md-2"
 										 style=" right: 46px; z-index: 999;position: absolute;">
 									<input class="form-control col-7" type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()">
-									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2" onclick="searchDiagram()">Search</a>
+									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2" onclick="searchDiagram()"><?=lang('search')?></a>
 								</div>
 								<?}?>
 							</div><?

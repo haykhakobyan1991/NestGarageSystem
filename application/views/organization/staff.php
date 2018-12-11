@@ -672,12 +672,12 @@ color: #545b62;">
 					<tr>
 						<th style="font-size: 12px !important;font-weight:500;"><?=lang('name_lastname')?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?=lang('status')?></th>
-						<th style="font-size: 12px !important;font-weight:500;">Պաշտոն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Բաժին</th>
-						<th style="font-size: 12px !important;font-weight:500;">ղեկավար</th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('position')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('section')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('head')?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
-						<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
-						<th style="font-size: 12px !important;font-weight:500;">Փաստաթուղթ</th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('by_whom')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('document')?></th>
 						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 					</tr>
 					</thead>

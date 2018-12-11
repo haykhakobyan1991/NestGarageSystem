@@ -4,12 +4,12 @@
 		<table id="ex_3" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
-				<th class="table_th">Մեքենա</th>
-				<th class="table_th">Երբ</th>
-				<th class="table_th">Տեասակ</th>
-				<th class="table_th" style="min-width: 150px;">Վարորդ</th>
-				<th class="table_th">Այլ Ինֆորմացիա</th>
-				<th class="table_th">Գումար</th>
+				<th class="table_th"><?=lang('vehicle')?></th>
+				<th class="table_th"><?=lang('when')?></th>
+				<th class="table_th"><?=lang('type')?></th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('driver')?></th>
+				<th class="table_th"><?=lang('other_info')?></th>
+				<th class="table_th"><?=lang('price')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -75,7 +75,7 @@
 						   class="form-control text-center"/>
 				</td>
 				<td class="border">
-					<select class="form-control selectpicker" data-size="5" name="staff_id[1]" title="Վարորդ">
+					<select class="form-control selectpicker" data-size="5" name="staff_id[1]" title="<?=lang('driver')?>">
 						<? foreach ($staff as $st) { ?>
 							<option value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
 						<? } ?>
@@ -118,7 +118,7 @@
 		<div class="modal-dialog" style="max-width: 80%">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">ՏՈւԳԱՆՔ</h6>
+					<h6 class="text-white modal-title dar"><?=lang('fine')?></h6>
 
 				</div>
 				<div class="modal-body">
@@ -126,12 +126,12 @@
 					<table class="table table-striped table-borderless w-100">
 						<thead class="thead_tables">
 						<tr>
-							<th class="table_th">Մեքենա</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Տեասակ</th>
-							<th class="table_th" style="min-width: 150px;">Վարորդ</th>
-							<th class="table_th">Այլ Ինֆորմացիա</th>
-							<th class="table_th">Գումար</th>
+							<th class="table_th"><?=lang('vehicle')?></th>
+							<th class="table_th"><?=lang('when')?></th>
+							<th class="table_th"><?=lang('type')?></th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('driver')?></th>
+							<th class="table_th"><?=lang('other_info')?></th>
+							<th class="table_th"><?=lang('price')?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -153,7 +153,7 @@
 								</td>
 								<td>
 									<select class="form-control selectpicker" data-size="5"
-											name="staff_id[<?= $key + 1 ?>]" title="Վարորդ">
+											name="staff_id[<?= $key + 1 ?>]" title="<?=lang('driver')?>">
 										<? foreach ($this->load->get_drivers($fleet['id'][$key]) as $st) { ?>
 											<option value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
 										<? } ?>
@@ -218,76 +218,91 @@
 			'<td><input title="" type="date" name="date[' + k + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
 			'<td><input title=""  type="text" name="type[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
 			'<td>' +
-			'<select class="form-control selectpicker" data-size="5"  name="staff_id[' + k + ']" title="Վարորդ">\n' +
-			'\t\t\t\t<?foreach ($staff as $st) {?>\n' +
-			'\t\t\t\t<option value="<?=$st['id']?>"><?=$st['name']?></option>\n' +
-			'\t\t\t\t<?}?>\n' +
-			'\t\t\t\t</select>\n' +
-			'</td>\n' +
-			'<td><input title=""  type="text" name="other_info[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
-			'<td><input title="" type="number" name="price[' + k + ']" min="0" class="form-control text-center"/></td>\n' +
-			'<td>' +
-			'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
-			'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
-			'</span>' +
-			'</td>\n' +
-			'</tr>')).then(function () {
-			me.data('requestRunning', false);
+			'<select class="form-control selectpicker" data-size="5"  name="staff_id[' + k + ']" title="<?=lang('driver')?>">\n' +
+                    '\t\t\t\t<?foreach ($staff as $st) {?>\n' +
+                    '\t\t\t\t<option value="<?=$st['id']?>"><?=$st['name']?></option>\n' +
+                    '\t\t\t\t<?}?>\n' +
+                    '\t\t\t\t</select>\n' +
+                    '</td>\n' +
+                    '<td><input title=""  type="text" name="other_info[' + k + ']" value=""  class="form-control text-center"/></td>\n' +
+                    '<td><input title="" type="number" name="price[' + k + ']" min="0" class="form-control text-center"/></td>\n' +
+                    '<td>' +
+                    '<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+                    '<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+                    '</span>' +
+                    '</td>\n' +
+                    '</tr>')).then(function () {
+                    me.data('requestRunning', false);
 
-			$('select').selectpicker('refresh');
-
-
-			$('.selectpicker').parent('div').children('button').css({
-				'background': '#fff',
-				'color': '#000',
-				'border': '1px solid #ced4da'
-			});
-			$('.selectpicker').parent('div').children('button').removeClass('btn-light');
-
-		});
-
-	});
+                    $('select').selectpicker('refresh');
 
 
-	$('select').selectpicker('refresh');
+                    $('.selectpicker').parent('div').children('button').css({
+                        'background': '#fff',
+                        'color': '#000',
+                        'border': '1px solid #ced4da'
+                    });
+                    $('.selectpicker').parent('div').children('button').removeClass('btn-light');
+
+                });
+
+            });
 
 
-	$('.selectpicker').parent('div').children('button').css({
-		'background': '#fff',
-		'color': '#000',
-		'border': '1px solid #ced4da'
-	});
-	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+            $('select').selectpicker('refresh');
 
-	var table = $('#ex_3').DataTable({
-		"paging": false,
-		"info": false,
-		"columnDefs": [
-			{"orderable": false, "targets": 6}
-		],
-		dom: 'Bfrtip',
-		buttons: [
-			{
-				extend: 'excelHtml5',
-				title: '',
-				filename: 'excel_file',
-				footer: true,
-				exportOptions: {
-					columns: ':visible'
-				}
-			},
-			'colvis'
-		]
-	});
 
-	table.order([0, 'asc']).draw();
+            $('.selectpicker').parent('div').children('button').css({
+                'background': '#fff',
+                'color': '#000',
+                'border': '1px solid #ced4da'
+            });
+            $('.selectpicker').parent('div').children('button').removeClass('btn-light');
 
-	table.buttons().container()
-		.appendTo( '#ex_3_wrapper #ex_3_filter:eq(0)' );
+            var table = $('#ex_3').DataTable({
+                language: {
+                    search: "<?=lang('search')?>",
+                    emptyTable: "<?=lang('no_data')?>",
+                    info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+                    infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+                    infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+                    lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+                    zeroRecords: "<?=lang('no_matching_records')?>",
+                    paginate: {
+                        first: "<?=lang('first')?>",
+                        last: "<?=lang('last')?>",
+                        next: "<?=lang('next')?>",
+                        previous: "<?=lang('prev')?>"
+                    }
+                },
+                "paging": false,
+                "info": false,
+                "columnDefs": [
+                    {"orderable": false, "targets": 6}
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    {
+                        extend: 'excelHtml5',
+                        title: '',
+                        filename: 'excel_file',
+                        footer: true,
+                        exportOptions: {
+                            columns: ':visible'
+                        }
+                    },
+                    'colvis'
+                ]
+            });
 
-	$('.dt-buttons').css('float', 'left');
+            table.order([0, 'asc']).draw();
 
-	<? if (count($fleet['id']) == 1) { ?>
+            table.buttons().container()
+                .appendTo( '#ex_3_wrapper #ex_3_filter:eq(0)' );
+
+            $('.dt-buttons').css('float', 'left');
+
+            <? if (count($fleet['id']) == 1) { ?>
 
 	$(document).on('change keyup', 'input,select,textarea', function () {
 		if (!$('.pos_abs_div').hasClass('animated')) {

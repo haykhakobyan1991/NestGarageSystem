@@ -37,6 +37,34 @@ $lang['browse'] = 'загружать';
 $lang['changed_property'] = 'Сохранить выполненные изменения';
 $lang['last_access'] = 'Последний логин / дата';
 $lang['status'] = 'Статус';
+$lang['owner'] = 'Владелец';
+$lang['when'] = 'Когда';
+
+$lang['insurance_company'] = 'Страховая Компания';
+$lang['driver'] = 'Водитель';
+$lang['conclusion_number'] = 'Номер заключения';
+$lang['replacement_subject_specs_name'] = 'Название сменяемого детала';
+$lang['refundable_amount'] = 'Возвращаемая сумма';
+$lang['whence'] = 'Откуда';
+$lang['producer'] = 'Продюсер';
+$lang['quantity'] = 'Количество';
+$lang['quantity_liter'] = 'Количество в литрах';
+$lang['unit_cost'] = 'Стоимость единицы';
+$lang['price'] = 'Цена';
+$lang['new_used'] = 'Новый - Б/У';
+$lang['new'] = 'Новый';
+$lang['used'] = 'Б/У';
+$lang['type_disc_biblical'] = 'Тип (Диск, Барабан)';
+$lang['disc'] = 'Диск';
+$lang['biblical'] = 'Барабан';
+$lang['one_liter_price'] = '1 литр стоимости';
+$lang['deadline'] = 'Крайний Срок';
+$lang['repairs'] = 'Ремонтник';
+$lang['repair_materials'] = 'Подлежащие ремонту материалы';
+$lang['type_summer_winter_all'] = 'Тип (Лето, Зима, Все)';
+$lang['summer'] = 'Лето';
+$lang['winter'] = 'Зима';
+$lang['all'] = 'Все';
 
 
 //select options
@@ -119,14 +147,16 @@ $lang['total_company_expenses'] = 'Общие расходы компании';
 
 
 //department
-$lang['New_Department'] = 'Новое подразделение';
+$lang['New_Department'] = 'Новое Отделение';
+$lang['count_departments'] = 'Количество Отделений';
+$lang['create_departments'] = 'Создать Отделение';
 
 
 //user
 $lang['email_or_login'] = 'Эл. адрес или Имя пользователя';
-$lang['login'] = 'Имя пользователя';//todo
+$lang['login'] = 'Логин';
 $lang['password'] = 'Пароль';
-$lang['username'] = 'Логин';//todo
+$lang['username'] = 'Имя пользователя';
 $lang['email'] = 'Эл. адрес';
 $lang['new_user'] = 'Новый пользователь';
 $lang['user_information'] = 'Информация о пользователе';
@@ -135,67 +165,73 @@ $lang['add_user'] = 'Добавить пользователя';
 
 //vehicles
 $lang['vehicles_information'] = 'Основные данные транспортного средства';
+$lang['expiry_date'] = 'Срок Действия';
 $lang['add_vehicles'] = 'Добавить транспортное средство';
 $lang['brand'] = 'Марка';
 $lang['model'] = 'Модель';
 $lang['color'] = 'Цвет';
 $lang['engine'] = 'Двигатель';
-$lang['year'] = 'Տարեթիվ';
+$lang['year'] = 'Год';
 $lang['vin'] = 'VIN';
-$lang['vehicle_type'] = 'Փոխադրամիջոցի տեսակը';
-$lang['attached'] = 'Կցված';
-$lang['car_number'] = 'Պետհամարանիշ';
-$lang['average_expense_100_km'] = 'Միջին ծաղսը 100 կմ․';
-$lang['in_day'] = 'Օրեկան';
-$lang['running'] = 'Վազք';
-$lang['odometer'] = 'Հոռոգռաֆ';
-$lang['GPS_Exist'] = 'GPS գոյություն ունի';
-$lang['GPS_Tracker_IMEI'] = 'GPS Tracker IMEI';
-$lang['registration_address'] = 'Հաշվառման Հասցե';
-$lang['in_force'] = 'Ուժի մեջ է';
-$lang['item_name'] = "Անվանում";
-$lang['KM\Days\Months'] = 'կմ\օր\ամիս';
-$lang['value'] = 'Միավոր';
-$lang['explotation'] = 'Շահագործում'; //todo
-$lang['per_day'] = 'Օրական';
-$lang['more_info'] = 'Ավելին';
-$lang['day_before'] = 'Հիշեցնել';
-$lang['start_alarm_day'] = 'Առաջին Զգուշացման Օրը';
-$lang['appendix_copy'] = 'Ավտոմեքենայի Տեխանձնագրի Պատճեն';
-$lang['kilometer_per_day'] = 'Օրական Կիլոմետր';
+$lang['vehicle_type'] = 'Тип транспортмого средства';
+$lang['attached'] = 'Прикреплен';
+$lang['car_number'] = 'Պետհամարանիշ'; //--
+$lang['average_expense_100_km'] = 'Средний Расход 100 Км';
+$lang['in_day'] = 'Ежедневно';
+$lang['running'] = 'Пробег';
+$lang['odometer'] = 'Одометр';
+$lang['GPS_Exist'] = 'GPS Существует';
+$lang['GPS_Tracker_IMEI'] = 'GPS-Трекер IMEI'; //--
+$lang['registration_address'] = 'Адрес Учета';
+$lang['in_force'] = 'В Силе';
+$lang['item_name'] = "Название";
+$lang['KM\Days\Months'] = 'Км\День\Месяц';
+$lang['value'] = 'Единица';
+$lang['explotation'] = 'Эксплуатация'; //todo
+$lang['per_day'] = 'Ежедневно';
+$lang['more_info'] = 'Более';
+$lang['day_before'] = 'Напоминать';
+$lang['start_alarm_day'] = 'Первый День Предупреждения';
+$lang['appendix_copy'] = 'Копия Техпаспорта';
+$lang['kilometer_per_day'] = 'Ежедневно Километр';
 $lang['select_car_type'] = 'Выберите тип';
+$lang['engine_power'] = 'Мощность Двигателя';
+$lang['fuel'] = 'Тепливо';
+$lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
 
 
 //address
-$lang['country'] = 'Երկիր';
-$lang['address'] = 'Հասցե';
+$lang['country'] = 'Страна';
+$lang['address'] = 'Адрес';
 
-$lang['Activity_Region'] = 'Գործունեության Երկիրը';
-$lang['Activity_City'] = 'Գործունեության Քաղաքը';
+$lang['Activity_Region'] = 'Страна Деятельности';
+$lang['Activity_City'] = 'Город Деятельности';
 $lang['Activity_address'] = 'Адрес деятельности';//todo
 $lang['activity_address'] = 'Адрес деятельности';//todo
 
-$lang['legal_region'] = 'իրական Երկիր';
+$lang['legal_region'] = 'Юридический Страна'; //todo
 $lang['legal_address'] = 'Юридический адрес';
 
 $lang['web_address'] = 'Интернет-адрес';
 
 
 //staff
-$lang['position'] = 'Պաշտոն';
-$lang['add_staff'] = 'Ավելացնել Աշխատող';
-$lang['new_staff'] = 'Նոր Աշխատող';
-$lang['staff1'] = 'Աշխատող';
-$lang['select_a_staff'] = 'Ընտրեք աշխատող';
-$lang['staff_information'] = 'Աշխատակցի Տեղեկություններ';
-$lang['upload_staff_picture'] = 'Բեռնեք Աշխատակցի Նկարը';
+$lang['position'] = 'Должность';
+$lang['add_staff'] = 'Добавот работник';
+$lang['new_staff'] = 'Новый работник';
+$lang['staff1'] = 'Работник';
+$lang['select_a_staff'] = 'Выбирайте работник';
+$lang['staff_information'] = 'Информация о сотруднике';
+$lang['upload_staff_picture'] = 'Загрузить изображение работника';
+$lang['section'] = 'Раздел';
+$lang['head'] = 'Руководитель';
 
 
 //owner
-$lang['owner_firstname'] = 'Անունը';
-$lang['owner_lastname'] = 'Ազգանունը';
-$lang['owner_position'] = 'Պաշտոնը';
-$lang['owner_email'] = 'Адрес электронной почты владельца';
+$lang['owner_firstname'] = 'Имя';
+$lang['owner_lastname'] = 'Фамилия';
+$lang['owner_position'] = 'Должность';
+$lang['owner_email'] = 'Адрес эл. почты ';
 
 
 
@@ -209,11 +245,11 @@ $lang['next'] = 'Вперед';
 $lang['prev'] = 'Назад';
 $lang['total_record'] = 'Записей';
 $lang['is_filtered'] = 'Отфильтрован от';
-$lang['no_data'] = 'Տվյալներ Չկան Աղյուսակում';
-$lang['showing'] = 'Ցույց է Տրվում';
-$lang['showing2'] = 'Показать';
-$lang['record2'] = 'Запись';
-$lang['record'] = 'Գրառումից';
+$lang['no_data'] = 'Нет данных в таблице';
+$lang['showing'] = 'Отображение результатов';
+$lang['showing2'] = 'показать';
+$lang['record2'] = 'запись';
+$lang['record'] = 'записей';
 
 
 
@@ -222,46 +258,49 @@ $lang['record'] = 'Գրառումից';
 $lang['date'] = 'Дата';
 $lang['from'] = 'От';
 $lang['to'] = 'До';
-$lang['Created_Date'] = 'Ստեղծման Ամսաթիվ';
-$lang['expired_date'] = 'Ավարտման Ամսաթիվը';
+$lang['Created_Date'] = 'Дата создания';
+$lang['expired_date'] = 'Дата создания';
 
 
 //notification
-$lang['send_email_to_new_user'] = 'Ուղարկել Էլ․ Ծանուցում Նոր Ստեղծված Օգտատիրոջը';
-$lang['send_email_to_new_driver'] = 'Ուղարկել Էլ․ Ծանուցում Նոր Ստեղծված Վարորդին';
+$lang['send_email_to_new_user'] = 'Отправить E-Mail Уведомление о новом  пользователе';
+$lang['send_email_to_new_driver'] = 'Отправить E-Mail Уведомление о новом  драйвере';
 
 
 //other info
-$lang['activity'] = 'Ակտիվություն';
-$lang['post_code'] = 'Փոստային Կոդը';
-$lang['tin'] = 'ՀՎՀՀ';
+$lang['activity'] = 'Активность';
+$lang['post_code'] = 'Почтовый индекс';
+$lang['tin'] = 'TIN';
 $lang['general_information'] = 'Основная информация';
-$lang['status_make_passive'] = 'Կարգավիճակ Դարձնել Պասիվ';
-$lang['type_of_meter'] = 'Չափման Միավոր';
-$lang['secondary_meter'] = 'երկրորդական Չափման Միավոր';
-$lang['Use_of_secondary_meter'] = 'Օգտագործել Երկրորդական Չափման Միավոր';
-$lang['account_type'] = 'Հաշվի Տեսակը';
-$lang['Same_as'] = 'Նույնը';
-$lang['nest_card_id'] = 'Nest Քարտ ID';
-$lang['contact_number'] = 'Հեռախոսահամար';
-$lang['account_number'] = 'Հաշվեհամար';
-$lang['Correspondent_Bank'] = 'Կորեսպոնդենտ բանկ';
-$lang['swift_code'] = 'Սվիֆտ Կոդ';
-$lang['account'] = 'Հաշիվ';
-$lang['zip_code'] = 'Զիպ Կոդ';
-$lang['type'] = 'Տեսակ';
-$lang['auto_increment'] = 'Ավտոմատ Ավելացում';
-$lang['are_you_sure_you_want_to_delete'] = 'Համոզված Եք, Որ Ցանկանում Եք Ջնջել';
-$lang['account_type'] = 'Հաշվի Տեսակը';
-$lang['other'] = 'Այլ';
-$lang['document'] = 'Փաստաթուղթը';
-$lang['reference'] = 'Հղում';
-$lang['note'] = 'Նշում';
-$lang['by_whom'] = 'Ում Կողմից';
-$lang['fuel_type'] = 'Վառելիքի Տեսակը';
-$lang['incurance_taype'] = 'Ապահովագրոություն'; //todo
-$lang['type'] = 'Տեսակ';
+$lang['status_make_passive'] = 'Статус сделать пассивным';
+$lang['type_of_meter'] = 'Единица измерения';
+$lang['secondary_meter'] = 'Вторичный измерительный единица';
+$lang['Use_of_secondary_meter'] = 'Исползовать вторичный измерительный единица';
+$lang['account_type'] = 'Тип учетной записи';
+$lang['Same_as'] = 'То же самое';
+$lang['nest_card_id'] = 'Nest Card ID';
+$lang['contact_number'] = 'Номер телефона';
+$lang['account_number'] = 'Номер счета';
+$lang['Correspondent_Bank'] = 'Консолидированный банк';
+$lang['swift_code'] = 'Свифт Код';
+$lang['account'] = 'Счет';
+$lang['zip_code'] = 'Почтовый индекс';
+$lang['type'] = 'Тип';
+$lang['auto_increment'] = 'Автоматическое добавление';
+$lang['are_you_sure_you_want_to_delete'] = 'Вы уверены, что хотите удалить?';
+$lang['account_type'] = 'Тип счета';
+$lang['other'] = 'Другое';
+$lang['document'] = 'Документ';
+$lang['reference'] = 'Ссылка';
+$lang['note'] = 'Примечание';
+$lang['by_whom'] = 'От кого';
+$lang['fuel_type'] = 'Тип Топлива';
+$lang['incurance_taype'] = 'Страхование'; //todo
+$lang['type'] = 'Тип';
 $lang['price'] = 'Цена';
+$lang['more_info'] = 'Больше Информации';
+$lang['other_info'] = 'Другая Информация';
+$lang['see'] = 'Увидеть';
 
 
 

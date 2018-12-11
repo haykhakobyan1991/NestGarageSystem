@@ -107,21 +107,19 @@ endforeach;
 						<thead style="background: #fff;
 color: #545b62;">
 						<tr>
-							<th style="font-size: 12px !important;font-weight: 500;">Հ/Հ</th>
-							<th style="font-size: 12px !important;font-weight: 500;">Կցված</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('attached')?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;">Տտեսակ մոդել*</th>
-							<th style="font-size: 12px !important;font-weight: 500;">Գույն</th>
-							<th style="font-size: 12px !important;font-weight: 500;">Վին կոդ</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('brand'). ' ' .lang('model')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('color')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('vin')?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('Created_Date')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;">Ում կողմից</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('by_whom')?></th>
 							<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
 						<tbody>
 						<? foreach ($result_array as $row) : ?>
 							<tr>
-								<td><?= $row['id'] ?></td>
 								<td><?= $row['staff'] ?></td>
 								<td style="text-align: center; vertical-align: middle;">
 									<? if ($row['status'] == '1') { ?>

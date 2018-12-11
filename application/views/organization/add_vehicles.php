@@ -63,15 +63,14 @@
 
 							<div class="row">
 								<label class="pl-3 col-form-label col-sm-5" style="padding-left: 45px !important;
-    font-size: 15px !important;">GNSS Tracker
-									?</label>
+    font-size: 15px !important;"><?=lang('GPS_Exist')?><label>
 								<input style="margin-top: 13px;width: 18px;height: 18px;" class="" type="checkbox"
 									   name="gps_exist"  value="1" id="fleet_type"/>
 
 								<div class="col-sm-6">
 									<input value="" name="gps_tracker_imei" type="text"
 										   class="form-control form-control-sm"
-										   placeholder="GPS Tracker IMEI">
+										   placeholder="<?=lang('GPS_Tracker_IMEI')?>">
 								</div>
 
 							</div>
@@ -96,7 +95,7 @@
 						 data-lang="<?= $lang ?>"
 						 id="brand">
 
-						<label class="col-sm-4 col-form-label">Տ/մ տեսակ * </label>
+						<label class="col-sm-4 col-form-label"><?=lang('brand')?> * </label>
 						<select name="brand"
 								class="col-sm-7 selectpicker form-control form-control-sm "
 								data-size="5" id="brand" data-live-search="true"
@@ -109,7 +108,7 @@
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
 						<label
-							class=" col-form-label col-sm-2">Մեդել*</label>
+							class=" col-form-label col-sm-2"><?=lang('model')?> *</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"
@@ -120,7 +119,7 @@
 					</div>
 
 					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-sm-4 col-form-label">Տիպար *</label>
+						<label class="col-sm-4 col-form-label"><?=lang('type')?> *</label>
 
 						<select name="fleet_type"
 								class="col-sm-7 currency form-control form-control-sm selectpicker"
@@ -133,7 +132,7 @@
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-form-label col-sm-4">տարեթիվ *</label>
+						<label class="col-form-label col-sm-4"><?=lang('year')?> *</label>
 
 						<select name="production_date"
 								class="currency form-control form-control-sm selectpicker col-sm-7"
@@ -148,16 +147,16 @@
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
-						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">Շարժիչի հզորություն</label>
+						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?=lang('engine_power')?></label>
 						<input value="" min="0" step="0.1" name="engine_power" type="number"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Շարժիչի հզորություն">
+							   placeholder="<?=lang('engine_power')?>">
 					</div>
 				</div>
 
 				<div class="col-sm-4">
 					<div class="row">
-						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">Վառելիք</label>
+						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?=lang('fuel')?></label>
 						<select name="fuel"
 								class="form-control form-control-sm selectpicker col-sm-7"
 								data-size="5" id="fleet_type" data-live-search="true"
@@ -169,23 +168,23 @@
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-sm-4 pl-3 col-form-label" style="font-size: 15px;">Միջ. ծախս 100կմ</label>
+						<label class="col-sm-4 pl-3 col-form-label" style="font-size: 15px;"><?=lang('average_expense_100_km')?></label>
 						<input value="" min="0" name="fuel_avg_consumption" type="number"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Միջին ծախս 100 կմ">
+							   placeholder="<?=lang('average_expense_100_km')?>">
 					</div>
 					<div class="row mt-1">
 						<label
-							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">Վազք</label>
+							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?=lang('running')?></label>
 						<input value="" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Վազք">
+							   placeholder="<?=lang('running')?>">
 					</div>
 					<div class="row mt-1">
 						<label
-							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">Հոդոգռաֆ</label>
+							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?=lang('odometer')?></label>
 						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"
-							   placeholder="Հոդոգռաֆ">
+							   placeholder="<?=lang('odometer')?>">
 					</div>
 
 				</div>
@@ -194,20 +193,20 @@
 					<div class="row">
 						<div id="cp2" class="input-group colorpicker-component col-sm-12">
 							<label class="pl-3 col-form-label col-sm-2"
-								   style="font-size: 15px;padding: 6px;margin-left: -9px;">Գույն</label>
+								   style="font-size: 15px;padding: 6px;margin-left: -9px;"><?=lang('color')?></label>
 							<input name="color" type="text" value="#00AABB" class="form-control selected_color_value"/>
 							<span class="input-group-addon col-sm-5"><i
 									style="padding: 18px;margin-left: 10px;border-radius: 50%;"></i></span>
 						</div>
 					</div>
 					<div class="row mt-1">
-						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;">VIN</label>
+						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;"><?=lang('vin')?></label>
 						<input value="" name="vin" type="text" class="form-control form-control-sm col-sm-7"
 							   placeholder="VIN">
 					</div>
 
 					<div class="row mt-1">
-						<label class=" col-form-label col-sm-2">Կցված*</label>
+						<label class=" col-form-label col-sm-2"><?=lang('attached')?> *</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"
@@ -233,28 +232,27 @@
 				<div class="col-sm-2">
 					<div class="row">
 						<label
-							class="col-sm-3 col-form-label pl-3 text-center" style="font-size: 15px;padding-top: 10px;">ՀՀ</label>
+							class="col-sm-3 col-form-label pl-3 text-center" style="font-size: 15px;padding-top: 10px;"><?=lang('car_number_abbr')?></label>
 						<input value="" name="fleet_plate_number" type="text"
 							   class="form-control form-control-sm col-sm-9"
-							   placeholder="Հաշվառման համարանիշ">
+							   placeholder="<?=lang('car_number')?>">
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="row">
 						<label
-							class="col-form-label col-sm-5 text-right" style="font-size: 15px;padding-top: 10px;">Հաշվառման
-							հասցե</label>
+							class="col-form-label col-sm-5 text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('registration_address')?></label>
 						<input value="" name="regitered_address" type="text"
 							   class="col-sm-7 form-control form-control-sm"
-							   placeholder="Հաշվառման հասցե">
+							   placeholder="<?=lang('registration_address')?>">
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="row">
-						<label class="col-sm-5 col-form-label text-right" style="font-size: 15px;padding-top: 10px;">Սեփականատեր</label>
+						<label class="col-sm-5 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('owner')?></label>
 						<input style="" value="" name="owner" type="text"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Սեփականատեր">
+							   placeholder="<?=lang('owner')?>">
 						<input name="owner_id" type="hidden">
 					</div>
 				</div>
@@ -276,7 +274,7 @@
 		</div>
 
 		<div class="container-fluid">
-			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12" placeholder="Այլ"></textarea>
+			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12" placeholder="<?=lang('other')?>"></textarea>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
@@ -336,7 +334,7 @@
 
 												<div class="col-md-2">
 													<div class="form-group">
-														<label>Company</label>
+														<label><?=lang('company')?></label>
 														<input type="text"
 															   name="company[1]"
 															   class="form-control form-control-sm"
@@ -360,7 +358,7 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Reference</label>
+														<label><?=lang('reference')?></label>
 														<input type="text"
 															   name="reference[1]"
 															   class="form-control form-control-sm"
@@ -369,7 +367,7 @@
 												</div>
 
 												<div class="col-md-3">
-													<label>Epired Date</label>
+													<label><?=lang('expiry_date')?></label>
 													<input type="date" name="expiration[1]"
 														   max="3000-12-31"
 														   min="1000-01-01"
@@ -380,7 +378,7 @@
 												<div class="col-sm-3">
 													<label
 														class="col-form-label"
-														style="font-size: 12px;margin-top: -10px;">Type</label>
+														style="font-size: 12px;margin-top: -10px;"><?=lang('type')?></label>
 													<div class="">
 														<select name="type[1]"
 																class="selectpicker form-control form-control-sm dif_meter"
@@ -422,7 +420,7 @@
 
 												<div class="col-md-2">
 													<div class="form-group">
-														<label>Company</label>
+														<label><?=lang('company')?></label>
 														<input type="text"
 															   name="company[2]"
 															   class="form-control form-control-sm"
@@ -455,7 +453,7 @@
 												</div>
 
 												<div class="col-md-3">
-													<label>Epired Date</label>
+													<label><?=lang('expiry_date')?></label>
 													<input type="date" name="expiration[2]"
 														   max="3000-12-31"
 														   min="1000-01-01"
@@ -466,7 +464,7 @@
 												<div class="col-sm-3">
 													<label
 														class="col-form-label"
-														style="font-size: 12px;margin-top: -10px;">Type</label>
+														style="font-size: 12px;margin-top: -10px;"><?=lang('type')?></label>
 													<div class="">
 														<select name="type[2]"
 																class="selectpicker form-control form-control-sm dif_meter"
@@ -508,7 +506,7 @@
 
 												<div class="col-md-2">
 													<div class="form-group">
-														<label>Company</label>
+														<label><?=lang('company')?></label>
 														<input type="text"
 															   name="company[3]"
 															   class="form-control form-control-sm"
@@ -532,7 +530,7 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Reference</label>
+														<label><?=lang('reference')?></label>
 														<input type="text"
 															   name="reference[3]"
 															   class="form-control form-control-sm"
@@ -541,7 +539,7 @@
 												</div>
 
 												<div class="col-md-3">
-													<label>Epired Date</label>
+													<label><?=lang('expiry_date')?></label>
 													<input type="date" name="expiration[3]"
 														   max="3000-12-31"
 														   min="1000-01-01"
@@ -552,7 +550,7 @@
 												<div class="col-sm-3">
 													<label
 														class="col-form-label"
-														style="font-size: 12px;margin-top: -10px;">Type</label>
+														style="font-size: 12px;margin-top: -10px;"><?=lang('type')?></label>
 													<div class="">
 														<select name="type[3]"
 																class="selectpicker form-control form-control-sm dif_meter"
@@ -594,7 +592,7 @@
 
 												<div class="col-md-2">
 													<div class="form-group">
-														<label>Company</label>
+														<label><?=lang('company')?></label>
 														<input type="text"
 															   name="company[4]"
 															   class="form-control form-control-sm"
@@ -618,7 +616,7 @@
 
 												<div class="col-md-3">
 													<div class="form-group">
-														<label>Reference</label>
+														<label><?=lang('reference')?></label>
 														<input type="text"
 															   name="reference[4]"
 															   class="form-control form-control-sm"
@@ -627,7 +625,7 @@
 												</div>
 
 												<div class="col-md-3">
-													<label>Epired Date</label>
+													<label><?=lang('expiry_date')?></label>
 													<input type="date" name="expiration[4]"
 														   max="3000-12-31"
 														   min="1000-01-01"
@@ -638,7 +636,7 @@
 												<div class="col-sm-3">
 													<label
 														class="col-form-label"
-														style="font-size: 12px;margin-top: -10px;">Type</label>
+														style="font-size: 12px;margin-top: -10px;"><?=lang('type')?></label>
 													<div class="">
 														<select name="type[4]"
 																class="selectpicker form-control form-control-sm dif_meter"
@@ -760,7 +758,7 @@
 
 					<div class="container-fluid">
 						<hr class="my-2">
-						<h5 class="mt-2 mb-1">Այլ տվյալներ</h5>
+						<h5 class="mt-2 mb-1"><?=lang('other_info')?></h5>
 						<table class="vehicle table table-striped table-hover">
 							<thead>
 							<tr>

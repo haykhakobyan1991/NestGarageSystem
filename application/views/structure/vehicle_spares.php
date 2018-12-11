@@ -4,16 +4,16 @@
 		<table id="ex_6" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
-				<th class="table_th">Մեքենա</th>
-				<th class="table_th">Երբ</th>
-				<th class="table_th">Որտեղից</th>
-				<th class="table_th">Տեսակ</th>
-				<th class="table_th">Արտադրող</th>
-				<th class="table_th">Մոդել</th>
-				<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-				<th class="table_th">Քանակ</th>
-				<th class="table_th">Միավորի Արժեք</th>
-				<th class="table_th">Գումար</th>
+				<th class="table_th"><?=lang('vehicle')?></th>
+				<th class="table_th"><?=lang('when')?></th>
+				<th class="table_th"><?=lang('whence')?></th>
+				<th class="table_th"><?=lang('type')?></th>
+				<th class="table_th"><?=lang('producer')?></th>
+				<th class="table_th"><?=lang('model')?></th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
+				<th class="table_th"><?=lang('quantity')?> </th>
+				<th class="table_th"><?=lang('unit_cost')?></th>
+				<th class="table_th"><?=lang('price')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -56,7 +56,7 @@
 							<?= $row['model'] ?>
 						</td>
 						<td class="border">
-							<?=($row['depreciation'] == 1 ? 'Նոր' : 'Օգտագործված')?>
+							<?=($row['depreciation'] == 1 ? lang('new') : lang('used'))?>
 						</td>
 						<td class="border">
 							<?= $row['count'] ?>
@@ -104,9 +104,9 @@
 						   class="form-control text-center"/>
 				</td>
 				<td class="border">
-					<select class="form-control selectpicker" data-size="5" name="depreciation[1]" title="նոր-Օգտագործված">
-							<option value="1">Նոր</option>
-							<option value="2>">Օգտագործված</option>
+					<select class="form-control selectpicker" data-size="5" name="depreciation[1]" title="<?=lang('new_used')?>">
+							<option value="1"><?=lang('new')?></option>
+							<option value="2>"><?=lang('used')?></option>
 					</select>
 				</td>
 				<td class="border">
@@ -150,7 +150,7 @@
 		<div class="modal-dialog" style="max-width: 80%;">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">ՊԱՀԵՍՏԱՄԱՍԵՐ</h6>
+					<h6 class="text-white modal-title dar"><?=lang('spares')?></h6>
 
 				</div>
 				<div class="modal-body">
@@ -159,16 +159,16 @@
 					<table id="ex_6" class="table table-striped table-borderless w-100">
 						<thead class="thead_tables">
 						<tr>
-							<th class="table_th">Մեքենա</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Տեսակ</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">Միավորի Արժեք</th>
-							<th class="table_th">Գումար</th>
+							<th class="table_th"><?=lang('vehicle')?></th>
+							<th class="table_th"><?=lang('when')?></th>
+							<th class="table_th"><?=lang('whence')?></th>
+							<th class="table_th"><?=lang('type')?></th>
+							<th class="table_th"><?=lang('producer')?></th>
+							<th class="table_th"><?=lang('model')?></th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
+							<th class="table_th"><?=lang('quantity')?> </th>
+							<th class="table_th"><?=lang('unit_cost')?></th>
+							<th class="table_th"><?=lang('price')?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -201,9 +201,9 @@
 										   class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<select class="form-control selectpicker" data-size="5" name="depreciation[<?= $key + 1 ?>]" title="նոր-Օգտագործված">
-										<option value="1">Նոր</option>
-										<option value="2>">Օգտագործված</option>
+									<select class="form-control selectpicker" data-size="5" name="depreciation[<?= $key + 1 ?>]" title="<?=lang('new_used')?>">
+										<option value="1"><?=lang('new')?></option>
+										<option value="2>"><?=lang('used')?></option>
 									</select>
 								</td>
 								<td class="border">
@@ -289,6 +289,21 @@
 
 
 		var table = $('#ex_6').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				}
+			},
 			"paging":   false,
 			"info":     false,
 			"columnDefs": [
@@ -356,9 +371,9 @@
 				'\t\t   class="form-control text-center"/>\n' +
 				'</td>\n' +
 				'<td class="border">\n' +
-				'\t<select class="form-control selectpicker" data-size="5" name="depreciation[' + j + ']" title="նոր-Օգտագործված">\n' +
-				'\t\t<option value="1">Նոր</option>\n' +
-				'\t\t<option value="2>">Օգտագործված</option>\n' +
+				'\t<select class="form-control selectpicker" data-size="5" name="depreciation[' + j + ']" title="<?=lang('new_used')?>">\n' +
+				'\t\t<option value="1"><?=lang('new')?></option>\n' +
+				'\t\t<option value="2>"><?=lang('used')?></option>\n' +
 				'\t</select>\n' +
 				'</td>\n' +
 				'<td class="border">\n' +

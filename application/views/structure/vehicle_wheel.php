@@ -4,17 +4,17 @@
 		<table id="ex_8" class="table table-striped table-borderless w-100">
 			<thead class="thead_tables">
 			<tr>
-				<th class="table_th">Մեքենա</th>
-				<th class="table_th">Երբ</th>
-				<th class="table_th">Որտեղից</th>
-				<th class="table_th">Արտադրող</th>
-				<th class="table_th">Մոդել</th>
-				<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-				<th class="table_th" style="min-width: 150px;">Տեսակ (Ամառ, Ձմեռ, Բոլոր)</th>
-				<th class="table_th">Քանակ</th>
-				<th class="table_th">Միավորի Արժեք</th>
-				<th class="table_th">Գումար</th>
-				<th class="table_th">Այլ Ինֆորմաիա</th>
+				<th class="table_th"><?=lang('vehicle')?></th>
+				<th class="table_th"><?=lang('when')?></th>
+				<th class="table_th"><?=lang('whence')?></th>
+				<th class="table_th"><?=lang('producer')?></th>
+				<th class="table_th"><?=lang('model')?></th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('type_summer_winter_all')?></th>
+				<th class="table_th"><?=lang('quantity')?> </th>
+				<th class="table_th"><?=lang('unit_cost')?></th>
+				<th class="table_th"><?=lang('price')?></th>
+				<th class="table_th"><?=lang('other_info')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -54,10 +54,10 @@
 							<?= $row['model'] ?>
 						</td>
 						<td class="border">
-							<?=($row['depreciation'] == 1 ? 'Նոր' : 'Օգտագործված')?>
+							<?=($row['depreciation'] == 1 ? lang('new') : lang('used'))?>
 						</td>
 						<td class="border">
-							<?=($row['wheel_type'] == 1 ? 'Ամառ' : ($row['wheel_type'] == 2 ? 'Ձմեռ' : 'Բոլոր'))?>
+							<?=($row['wheel_type'] == 1 ? lang('summer') : ($row['wheel_type'] == 2 ? lang('winter') : lang('all')))?>
 						</td>
 						<td class="border">
 							<?= $row['count'] ?>
@@ -104,16 +104,16 @@
 						   class="form-control text-center"/>
 				</td>
 				<td class="border">
-					<select class="form-control selectpicker" data-size="5" name="depreciation[1]" title="նոր-Օգտագործված">
-						<option value="1">Նոր</option>
-						<option value="2>">Օգտագործված</option>
+					<select class="form-control selectpicker" data-size="5" name="depreciation[1]" title="<?=lang('new_used')?>">
+						<option value="1"><?=lang('new')?></option>
+						<option value="2>"><?=lang('used')?></option>
 					</select>
 				</td>
 				<td class="border">
-					<select class="form-control selectpicker" data-size="5" name="wheel_type[1]" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">
-						<option value="1">Ամառ</option>
-						<option value="2>">Զմեռ</option>
-						<option value="3>">Բոլոր</option>
+					<select class="form-control selectpicker" data-size="5" name="wheel_type[1]" title="<?=lang('type_summer_winter_all')?>">
+						<option value="1"><?=lang('summer')?></option>
+						<option value="2>"><?=lang('winter')?></option>
+						<option value="3>"><?=lang('all')?></option>
 					</select>
 				</td>
 				<td class="border">
@@ -162,7 +162,7 @@
 		<div class="modal-dialog" style="max-width: 80%;">
 			<div class="modal-content">
 				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar">Քսուք</h6>
+					<h6 class="text-white modal-title dar"><?=lang('wheel')?></h6>
 
 				</div>
 				<div class="modal-body">
@@ -171,17 +171,17 @@
 					<table id="ex_8" class="table table-striped table-borderless w-100">
 						<thead class="thead_tables">
 						<tr>
-							<th class="table_th">Մեքենա</th>
-							<th class="table_th">Երբ</th>
-							<th class="table_th">Որտեղից</th>
-							<th class="table_th">Արտադրող</th>
-							<th class="table_th">Մոդել</th>
-							<th class="table_th" style="min-width: 150px;">Նոր-Օգտագործված</th>
-							<th class="table_th" style="min-width: 150px;">Տեսակ (Ամառ, Ձմեռ, Բոլոր)</th>
-							<th class="table_th">Քանակ</th>
-							<th class="table_th">Միավորի Արժեք</th>
-							<th class="table_th">Գումար</th>
-							<th class="table_th">Այլ Ինֆորմաիա</th>
+							<th class="table_th"><?=lang('vehicle')?></th>
+							<th class="table_th"><?=lang('when')?></th>
+							<th class="table_th"><?=lang('whence')?></th>
+							<th class="table_th"><?=lang('producer')?></th>
+							<th class="table_th"><?=lang('model')?></th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('type_summer_winter_all')?></th>
+							<th class="table_th"><?=lang('quantity')?> </th>
+							<th class="table_th"><?=lang('unit_cost')?></th>
+							<th class="table_th"><?=lang('price')?></th>
+							<th class="table_th"><?=lang('other_info')?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -210,16 +210,16 @@
 										   class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<select class="form-control selectpicker" data-size="5" name="depreciation[<?= $key + 1 ?>]" title="նոր-Օգտագործված">
-										<option value="1">Նոր</option>
-										<option value="2>">Օգտագործված</option>
+									<select class="form-control selectpicker" data-size="5" name="depreciation[<?= $key + 1 ?>]" title="<?=lang('new_used')?>">
+										<option value="1"><?=lang('new')?></option>
+										<option value="2>"><?=lang('used')?></option>
 									</select>
 								</td>
 								<td class="border">
-									<select class="form-control selectpicker" data-size="5" name="wheel_type[<?= $key + 1 ?>]" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">
-										<option value="1">Ամառ</option>
-										<option value="2>">Զմեռ</option>
-										<option value="3>">Բոլոր</option>
+									<select class="form-control selectpicker" data-size="5" name="wheel_type[<?= $key + 1 ?>]" title="<?=lang('type_summer_winter_all')?>">
+										<option value="1"><?=lang('summer')?></option>
+										<option value="2>"><?=lang('winter')?></option>
+										<option value="3>"><?=lang('all')?></option>
 									</select>
 								</td>
 								<td class="border">
@@ -309,6 +309,21 @@
 
 
 		var table = $('#ex_8').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				}
+			},
 			"paging":   false,
 			"info":     false,
 			"columnDefs": [
@@ -372,88 +387,88 @@
 				'\t\t   class="form-control text-center"/>\n' +
 				'</td>\n' +
 				'<td class="border">\n' +
-				'<select class="form-control selectpicker" data-size="5" name="depreciation[' + j + ']" title="նոր-Օգտագործված">\n' +
-				'\t\t<option value="1">Նոր</option>\n' +
-				'\t\t<option value="2>">Օգտագործված</option>\n' +
+				'<select class="form-control selectpicker" data-size="5" name="depreciation[' + j + ']" title="<?=lang('new_used')?>">\n' +
+				'\t\t<option value="1"><?=lang('new')?></option>\n' +
+				'\t\t<option value="2>"><?=lang('used')?></option>\n' +
 				'\t</select>\n' +
 				'</td>' +
 				'<td class="border">\n' +
-				'\t<select class="form-control selectpicker" data-size="5" name="wheel_type[' + j + ']" title="Տեսակ (Ամառ, Ձմեռ, Բոլոր)">\n' +
-				'<option value="1">Ամառ</option>\n' +
-				'<option value="2>">Զմեռ</option>\n' +
-				'<option value="3>">Բոլոր</option>' +
-				'\t</select>\n' +
-				'</td>\n' +
-				'<td class="border">\n' +
-				'\t<input title="" type="number" min="0" name="count[' + j + ']"\n' +
-				'\t\t   class="form-control text-center"/>\n' +
-				'</td>\n' +
-				'<td class="border">\n' +
-				'\t<input title="" type="number" min="0" name="one_price[' + j + ']"\n' +
-				'\t\t   class="form-control text-center"/>\n' +
-				'</td>\n' +
-				'<td class="border">\n' +
-				'\t<input title="" type="number" min="0" name="price[' + j + ']"\n' +
-				'\t\tclass="form-control text-center"/>\n' +
-				'\t</td>' +
-				'<td class="border">\n' +
-				'\t<input title="" type="text" name="other_info[' + j + ']"\n' +
-				'\t\tclass="form-control text-center"/>\n' +
-				'\t</td>' +
-				'<td>' +
-				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
-				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
-				'</span>' +
-				'</td>\n'+
-				'</tr>' +
-				'\n' +
-				'<script>' +
-				'$(\'select\').selectpicker(\'refresh\');' +
-				'$(\'.selectpicker\').parent(\'div\').children(\'button\').css({\n' +
-				'\t\t\t\'background\': \'#fff\',\n' +
-				'\t\t\t\'color\': \'#000\',\n' +
-				'\t\t\t\'border\': \'1px solid #ced4da\'\n' +
-				'\t\t});\n' +
-				'\t\t$(\'.selectpicker\').parent(\'div\').children(\'button\').removeClass(\'btn-light\');' +
-				'$(document).on(\'keyup\', \'input[name="count[' + j + ']"]\', function () {\n' +
-				'\t\t\t\t\tvar count = $(this).val();\n' +
-				'\t\t\t\t\tvar one_price = $(\'input[name="one_price[' + j + ']"]\').val();\n' +
-				'\n' +
-				'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_price);\n' +
-				'\n' +
-				'\t\t\t\t\t$(\'input[name="price[' + j + ']"]\').val(sum);\n' +
-				'\n' +
-				'\t\t\t\t});\n' +
-				'\n' +
-				'\t\t\t\t$(document).on(\'keyup\', \'input[name="one_price[' + j + ']"]\', function () {\n' +
-				'\t\t\t\t\tvar count = $(\'input[name="count[' + j + ']"]\').val();\n' +
-				'\t\t\t\t\tvar one_price = $(this).val();\n' +
-				'\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_price);\n' +
-				'\n' +
-				'\t\t\t\t\t$(\'input[name="price[' + j + ']"]\').val(sum);\n' +
-				'\n' +
-				'\t\t\t\t});' +
-				'</' +
-				'script>')).then(function () {
-					me.data('requestRunning', false);
-				});
+				'\t<select class="form-control selectpicker" data-size="5" name="wheel_type[' + j + ']" title="<?=lang('type_summer_winter_all')?>">\n' +
+				'<option value="1"><?=lang('summer')?></option>\n'+
+               '<option value="2>"><?=lang('winter')?></option>\n'+
+               '<option value="3>"><?=lang('all')?></option>' +
+               '\t</select>\n' +
+               '</td>\n' +
+               '<td class="border">\n' +
+               '\t<input title="" type="number" min="0" name="count[' + j + ']"\n' +
+               '\t\t   class="form-control text-center"/>\n' +
+               '</td>\n' +
+               '<td class="border">\n' +
+               '\t<input title="" type="number" min="0" name="one_price[' + j + ']"\n' +
+               '\t\t   class="form-control text-center"/>\n' +
+               '</td>\n' +
+               '<td class="border">\n' +
+               '\t<input title="" type="number" min="0" name="price[' + j + ']"\n' +
+               '\t\tclass="form-control text-center"/>\n' +
+               '\t</td>' +
+               '<td class="border">\n' +
+               '\t<input title="" type="text" name="other_info[' + j + ']"\n' +
+               '\t\tclass="form-control text-center"/>\n' +
+               '\t</td>' +
+               '<td>' +
+               '<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+               '<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+               '</span>' +
+               '</td>\n'+
+               '</tr>' +
+               '\n' +
+               '<script>' +
+               '$(\'select\').selectpicker(\'refresh\');' +
+               '$(\'.selectpicker\').parent(\'div\').children(\'button\').css({\n' +
+               '\t\t\t\'background\': \'#fff\',\n' +
+               '\t\t\t\'color\': \'#000\',\n' +
+               '\t\t\t\'border\': \'1px solid #ced4da\'\n' +
+               '\t\t});\n' +
+               '\t\t$(\'.selectpicker\').parent(\'div\').children(\'button\').removeClass(\'btn-light\');' +
+               '$(document).on(\'keyup\', \'input[name="count[' + j + ']"]\', function () {\n' +
+               '\t\t\t\t\tvar count = $(this).val();\n' +
+               '\t\t\t\t\tvar one_price = $(\'input[name="one_price[' + j + ']"]\').val();\n' +
+               '\n' +
+               '\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_price);\n' +
+               '\n' +
+               '\t\t\t\t\t$(\'input[name="price[' + j + ']"]\').val(sum);\n' +
+               '\n' +
+               '\t\t\t\t});\n' +
+               '\n' +
+               '\t\t\t\t$(document).on(\'keyup\', \'input[name="one_price[' + j + ']"]\', function () {\n' +
+               '\t\t\t\t\tvar count = $(\'input[name="count[' + j + ']"]\').val();\n' +
+               '\t\t\t\t\tvar one_price = $(this).val();\n' +
+               '\t\t\t\t\tsum =  parseFloat(count) * parseFloat(one_price);\n' +
+               '\n' +
+               '\t\t\t\t\t$(\'input[name="price[' + j + ']"]\').val(sum);\n' +
+               '\n' +
+               '\t\t\t\t});' +
+               '</' +
+               'script>')).then(function () {
+                   me.data('requestRunning', false);
+               });
 
 
 
-		});
+                    });
 
 
-		$('select').selectpicker('refresh');
+                    $('select').selectpicker('refresh');
 
 
-		$('.selectpicker').parent('div').children('button').css({
-			'background': '#fff',
-			'color': '#000',
-			'border': '1px solid #ced4da'
-		});
-		$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+                    $('.selectpicker').parent('div').children('button').css({
+                        'background': '#fff',
+                        'color': '#000',
+                        'border': '1px solid #ced4da'
+                    });
+                    $('.selectpicker').parent('div').children('button').removeClass('btn-light');
 
-		<? if (count($fleet['id']) == 1) { ?>
+                    <? if (count($fleet['id']) == 1) { ?>
 
 		$(document).on('change keyup', 'input,select,textarea', function () {
 			if (!$('.pos_abs_div').hasClass('animated')) {

@@ -37,6 +37,34 @@ $lang['browse'] = 'Բեռնել';
 $lang['changed_property'] = 'Պահպանել Կատարված Փոփոխությունները';
 $lang['last_access'] = 'Վերջին Մուտք / Ամսաթիվը';
 $lang['status'] = 'Կարգավիճակ';
+$lang['owner'] = 'Սեփականատեր';
+$lang['when'] = 'Երբ';
+
+$lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
+$lang['driver'] = 'Վարորդ';
+$lang['conclusion_number'] = 'Եզրակացության Համար';
+$lang['replacement_subject_specs_name'] = 'Փոխարինման Ենթակա Դետալների Անվանում';
+$lang['refundable_amount'] = 'Հատուցվող գումար';
+$lang['whence'] = 'Որտեղից';
+$lang['producer'] = 'Արտադրող';
+$lang['quantity'] = 'Քանակ';
+$lang['quantity_liter'] = 'Քանակ Լիտր';
+$lang['unit_cost'] = 'Միավորի Արժեք';
+$lang['price'] = 'Գումար';
+$lang['new_used'] = 'Նոր Օգտագործված';
+$lang['new'] = 'Նոր';
+$lang['used'] = 'Օգտագործված';
+$lang['type_disc_biblical'] = 'Տեսակ (Դիսկ, Բառաբան)';
+$lang['disc'] = 'Դիսկ';
+$lang['biblical'] = 'Բառաբան';
+$lang['one_liter_price'] = '1 լիտր-արժեք';
+$lang['repairs'] = 'Վերանորոգող';
+$lang['repair_materials'] = 'Վերանորոգման ենթակա աշխ․ նյութեր';
+$lang['type_summer_winter_all)'] = 'Տեսակ (Ամառ, Ձմեռ, Բոլոր)';
+$lang['summer'] = 'Ամառ';
+$lang['winter'] = 'Ձմեռ';
+$lang['all'] = 'Բոլոր';
+
 
 
 //select options
@@ -78,6 +106,7 @@ $lang['battery'] = 'ՄԱՐՏԿՈՑ';
 $lang['information'] = 'Ինֆորմացիա';
 $lang['add_expenses'] = 'Ավելացնել ծախսեր';
 $lang['expenses_history'] = 'Ծախսերի պատմություն';
+$lang['deadline'] = 'Վերջնաժամկետ';
 
 
 //statuses
@@ -119,6 +148,8 @@ $lang['total_company_expenses'] = 'Կազմակերպությնա ընդհանո
 
 //department
 $lang['New_Department'] = 'Նոր Ստորաբաժանում';
+$lang['count_departments'] = 'Ստորաբաժանումների քանակ';
+$lang['create_departments'] = 'Ստեղծել Ստորաբաժանում';
 
 
 //user
@@ -134,6 +165,7 @@ $lang['add_user'] = 'Ավելացնել Օգտատեր';
 
 //vehicles
 $lang['vehicles_information'] = 'Փոխադրամիջոցի Հիմնական Տվյալներ';
+$lang['expiry_date'] = 'Վավերական Է Մինչեւ';
 $lang['add_vehicles'] = 'Ավելացնել Փոխադրամիջոց';
 $lang['brand'] = 'Մակնիշ';
 $lang['model'] = 'Մոդել';
@@ -143,7 +175,7 @@ $lang['year'] = 'Տարեթիվ';
 $lang['vin'] = 'VIN';
 $lang['vehicle_type'] = 'Փոխադրամիջոցի տեսակը';
 $lang['attached'] = 'Կցված';
-$lang['car_number'] = 'Պետհամարանիշ';
+$lang['car_number'] = 'Հաշվառման համարանիշ';
 $lang['average_expense_100_km'] = 'Միջին ծաղսը 100 կմ․';
 $lang['in_day'] = 'Օրեկան';
 $lang['running'] = 'Վազք';
@@ -162,6 +194,10 @@ $lang['day_before'] = 'Հիշեցնել';
 $lang['start_alarm_day'] = 'Առաջին Զգուշացման Օրը';
 $lang['appendix_copy'] = 'Ավտոմեքենայի Տեխանձնագրի Պատճեն';
 $lang['kilometer_per_day'] = 'Օրական Կիլոմետր';
+$lang['engine_power'] = 'Շարժիչի հզորություն';
+$lang['fuel'] = 'Վառելիք';
+$lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
+
 
 
 //address
@@ -187,6 +223,8 @@ $lang['staff1'] = 'Աշխատող';
 $lang['select_a_staff'] = 'Ընտրեք աշխատող';
 $lang['staff_information'] = 'Աշխատակցի Տեղեկություններ';
 $lang['upload_staff_picture'] = 'Բեռնեք Աշխատակցի Նկարը';
+$lang['section'] = 'Բաժին';
+$lang['head'] = 'Ղեկավար';
 
 
 //owner
@@ -219,7 +257,7 @@ $lang['date'] = 'Ամսաթիվ';
 $lang['from'] = 'Սկսած';
 $lang['to'] = 'Մինչև';
 $lang['Created_Date'] = 'Ստեղծման Ամսաթիվ';
-$lang['expired_date'] = 'Ավարտման Ամսաթիվը';
+$lang['expired_date'] = 'Ավարտման Ամսաթիվ';
 
 
 //notification
@@ -229,7 +267,7 @@ $lang['send_email_to_new_driver'] = 'Ուղարկել Էլ․ Ծանուցում
 
 //other info
 $lang['activity'] = 'Ակտիվություն';
-$lang['post_code'] = 'Փոստային Կոդը';
+$lang['post_code'] = 'Փոստային Կոդ';
 $lang['tin'] = 'ՀՎՀՀ';
 $lang['general_information'] = 'Սեփականատիրոջ Հիմնական Տվյալներ';
 $lang['status_make_passive'] = 'Կարգավիճակ Դարձնել Պասիվ';
@@ -250,7 +288,7 @@ $lang['auto_increment'] = 'Ավտոմատ Ավելացում';
 $lang['are_you_sure_you_want_to_delete'] = 'Համոզված Եք, Որ Ցանկանում Եք Ջնջել';
 $lang['account_type'] = 'Հաշվի Տեսակը';
 $lang['other'] = 'Այլ';
-$lang['document'] = 'Փաստաթուղթը';
+$lang['document'] = 'Փաստաթուղթ';
 $lang['reference'] = 'Հղում';
 $lang['note'] = 'Նշում';
 $lang['by_whom'] = 'Ում Կողմից';
@@ -258,3 +296,7 @@ $lang['fuel_type'] = 'Վառելիքի Տեսակը';
 $lang['incurance_taype'] = 'Ապահովագրոություն'; //todo
 $lang['type'] = 'Տեսակ';
 $lang['price'] = 'Արժեք';
+$lang['more_info'] = 'Մանրամասն';
+$lang['other_info'] = 'Այլ տվյալներ';
+$lang['see'] = 'Տեսնել';
+

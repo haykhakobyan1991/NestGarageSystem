@@ -52,8 +52,7 @@
 
 							<div class="row">
 								<label class="pl-3 col-form-label col-sm-5" style="padding-left: 45px !important;
-    font-size: 15px !important;">GNSS Tracker
-									?</label>
+    font-size: 15px !important;"><?=lang('GPS_Exist')?></label>
 								<input style="margin-top: 13px;width: 18px;height: 18px;" class="st_inp" type="checkbox"
 									   name="gps_exist"
 									   value="1" <?= $fleet['gps_tracker_exists'] == 1 ? 'checked' : '' ?>
@@ -62,7 +61,7 @@
 								<div class="col-sm-6">
 									<input value="<?= $fleet['gps_tracker_imei'] ?>" name="gps_tracker_imei" type="text"
 										   class="form-control form-control-sm"
-										   placeholder="GPS Tracker IMEI">
+										   placeholder="<?=lang('GPS_Tracker_IMEI')?>">
 								</div>
 
 							</div>
@@ -85,11 +84,11 @@
 							 data-lang="<?= $lang ?>"
 							 id="brand"
 						>
-							<label class="col-sm-4 col-form-label">Տ/մ տեսակ * </label>
+							<label class="col-sm-4 col-form-label"><?=lang('brand')?> * </label>
 							<select name="brand"
 									class="col-sm-7 selectpicker form-control form-control-sm "
 									data-size="5" id="brand" data-live-search="true"
-									title="Select a brand">
+									title="<?=lang('select_car_brand')?>">
 								<? foreach ($brand as $row) : ?>
 									<option
 										value="<?= $row['id'] ?>"
@@ -104,12 +103,12 @@
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
 						<label
-							class=" col-form-label col-sm-2">Մեդել*</label>
+							class=" col-form-label col-sm-2"><?=lang('model')?> *</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"
 								data-size="5" id="model" data-live-search="true"
-								title="Select a model">
+								title="<?=lang('select_car_model')?>">
 							<? foreach ($model as $row) : ?>
 								<option
 									value="<?= $row['id'] ?>"
@@ -122,12 +121,12 @@
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 						<label
-							class="col-sm-4 col-form-label">Տիպար *</label>
+							class="col-sm-4 col-form-label"><?=lang('type')?> *</label>
 
 						<select name="fleet_type"
 								class="currency form-control form-control-sm selectpicker col-sm-7"
 								data-size="5" id="fleet_type" data-live-search="true"
-								title="Select a fleet type"
+								title="<?=lang('select_car_type')?>"
 						>
 							<? foreach ($fleet_type as $row) : ?>
 								<option
@@ -141,14 +140,13 @@
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 						<label
-							class="col-form-label col-sm-4">Թողարկման
-							տարեթիվ *</label>
+							class="col-form-label col-sm-4"><?=lang('year')?> *</label>
 
 						<select name="production_date"
 								class="currency form-control form-control-sm selectpicker col-sm-7"
 								data-size="5"
 								data-live-search="true"
-								title="Choose..."
+								title="<?=lang('choose')?>..."
 						>
 							<?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
 								<option
@@ -164,12 +162,12 @@
 					<div class="row" style="margin-top: .75rem!important;">
 
 						<label
-							class="col-sm-4 col-form-label">Շարժիչի հզորություն</label>
+							class="col-sm-4 col-form-label"><?=lang('engine_power')?></label>
 
 						<input value="<?= $fleet['engine_power'] ?>" min="0" step="0.1" name="engine_power"
 							   type="number"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Շարժիչի հզորություն">
+							   placeholder="<?=lang('engine_power')?>">
 
 					</div>
 				</div>
@@ -177,12 +175,12 @@
 					<div class="row">
 
 						<label
-							class="col-sm-4 col-form-label">Վառելիք</label>
+							class="col-sm-4 col-form-label"><?=lang('fuel')?></label>
 
 						<select name="fuel"
 								class="form-control form-control-sm selectpicker col-sm-7"
 								data-size="5" id="fleet_type" data-live-search="true"
-								title="Select a fuel"
+								title="<?=lang('fuel_type')?>"
 						>
 							<? foreach ($fuel as $row) : ?>
 								<option
@@ -197,30 +195,30 @@
 					<div class="row" style="margin-top: .75rem!important;">
 
 						<label
-							class="col-sm-4 col-form-label">Միջին ծախս 100 կմ</label>
+							class="col-sm-4 col-form-label"><?=lang('average_expense_100_km')?></label>
 
 						<input value="<?= $fleet['fuel_avg_consumption'] ?>" min="0" name="fuel_avg_consumption"
 							   type="number" class="form-control form-control-sm col-sm-7"
-							   placeholder="Միջին ծախս 100 կմ">
+							   placeholder="<?=lang('average_expense_100_km')?>">
 
 					</div>
 					<div class="row mt-1">
 
 						<label
-							class="col-sm-4 col-form-label">Վազք</label>
+							class="col-sm-4 col-form-label"><?=lang('running')?></label>
 
 						<input value="<?= $fleet['mileage'] ?>" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Վազք">
+							   placeholder="<?=lang('running')?>">
 
 
 					</div>
 					<div class="row mt-1">
 						<label
-							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">Հոդոգռաֆ</label>
+							class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?=lang('odometer')?></label>
 						<input value="<?= $fleet['odometer'] ?>" name="odometer" type="text"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Հոդոգռաֆ">
+							   placeholder="<?=lang('odometer')?>">
 					</div>
 
 				</div>
@@ -229,7 +227,7 @@
 					<div class="row">
 						<div id="cp2" class="input-group colorpicker-component col-sm-12">
 							<label class="pl-3 col-form-label col-sm-2"
-								   style="font-size: 15px;padding: 6px;margin-left: -9px;">Գույն</label>
+								   style="font-size: 15px;padding: 6px;margin-left: -9px;"><?=lang('color')?></label>
 							<input name="color" type="text" value="<?= $fleet['color'] ?>"
 								   class="form-control selected_color_value"/>
 							<span class="input-group-addon col-sm-5"><i
@@ -237,20 +235,20 @@
 						</div>
 					</div>
 					<div class="row mt-1">
-						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;">VIN</label>
+						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;"><?=lang('vin')?></label>
 						<input value="<?= $fleet['vin_code'] ?>" name="vin" type="text"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="VIN">
+							   placeholder="<?=lang('vin')?>">
 					</div>
 
 					<div class="row mt-1">
-						<label class=" col-form-label col-sm-2">Կցված*</label>
+						<label class=" col-form-label col-sm-2"><?=lang('attached')?> *</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"
 									id="staff"
 									multiple data-live-search="true"
-									title="Select a Staff">
+									title="<?=lang('select_a_staff')?>">
 								<? foreach ($staff_for_select as $row) : ?>
 									<option
 										value="<?= $row['id'] ?>"
@@ -276,41 +274,41 @@
 				<div class="col-sm-2">
 					<div class="row">
 						<label
-							class="col-sm-3 col-form-label pl-3 text-center" style="font-size: 15px;padding-top: 10px;">ՀՀ</label>
+							class="col-sm-3 col-form-label pl-3 text-center" style="font-size: 15px;padding-top: 10px;"><?=lang('car_number_abbr')?></label>
 						<input value="<?= $fleet['fleet_plate_number'] ?>" name="fleet_plate_number" type="text"
 							   class="form-control form-control-sm col-sm-9"
-							   placeholder="Հաշվառման համարանիշ">
+							   placeholder="<?=lang('car_number')?>">
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="row">
 						<label
-							class="col-form-label col-sm-5 text-right" style="font-size: 15px;padding-top: 10px;">Հաշվառման
-							հասցե</label>
+							class="col-form-label col-sm-5 text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('registration_address')?></label>
 						<input value="<?= $fleet['regitered_address'] ?>" name="regitered_address"
 							   type="text"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Հաշվառման հասցե">
+							   placeholder="<?=lang('registration_address')?>">
 					</div>
 				</div>
 				<div class="col-sm-3">
 					<div class="row">
-						<label class="col-sm-5 col-form-label text-right" style="font-size: 15px;padding-top: 10px;">Սեփականատեր</label>
+						<label class="col-sm-5 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('owner')?></label>
 						<input style="" value="<?= $fleet['owner'] ?>" name="owner" type="text"
 							   class="form-control form-control-sm col-sm-7"
-							   placeholder="Սեփականատեր">
+							   placeholder="<?=lang('owner')?>">
 						<input value="<?= $fleet['owner_staff_id'] ?>" name="owner_id" type="hidden">
 					</div>
 				</div>
 				<div class="col-sm-4">
+					<label class="col-sm-6 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('appendix_copy')?></label>
 					<label
 						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success">
-						<span>Brows file</span>
+						<span><?=lang('browse')?></span>
 						<input type="file"
 							   name="regitered_file"
-							   class="form-control-file"
-							   style="display: none;"
+							   class="d-none form-control-file btn_input"
+							   hidden style="display: none;"
 							   id="exampleFormControlFile1">
 					</label>
 				</div>
@@ -320,11 +318,11 @@
 
 		<div class="container-fluid">
 			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12"
-					  placeholder="Այլ"><?= $fleet['other'] ?></textarea>
+					  placeholder="<?=lang('other')?>">"><?= $fleet['other'] ?></textarea>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
-				<label class="col-sm-2 col-form-label">Status make a Passive?</label>
+				<label class="col-sm-2 col-form-label"><?=lang('status_make_passive') ?></label>
 				<div class="col-sm-1">
 					<input style="width: 18px;height: 18px;margin-left: -130px;margin-top: 7px;"
 						   value="-1" <?= ($fleet['status'] == '-1' ? 'checked' : '') ?> name="status" type="checkbox"
@@ -362,12 +360,12 @@
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label>Company</label>
+											<label><?=lang('company')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_company_1'] ?>"
 												   name="company[1]"
 												   class="form-control form-control-sm"
-												   placeholder="Company">
+												   placeholder="<?=lang('company')?>">
 										</div>
 									</div>
 
@@ -376,15 +374,15 @@
 											<label
 												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 												class="btn btn-sm btn-outline-secondary">
-												<span>Brows file</span>
+												<span><?=lang('browse')?></span>
 												<input class="btn_input"
 													   name="file_1" type="file"
 													   hidden style="display: none;"
 													   value="">
 											</label>
 										</div>
-										<div class="ml-2 float-left">
-											<? if ($fleet['insurance_ext_1'] != '') : ?>
+										<div class="ml-2 float-left"><?
+											if ($fleet['insurance_ext_1'] != '') : ?>
 												<a
 													target=""
 													download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
@@ -400,18 +398,18 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label>Reference</label>
+											<label><?=lang('reference')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_referance_1'] ?>"
 												   name="reference[1]"
 												   class="form-control form-control-sm"
-												   placeholder="Reference">
+												   placeholder="<?=lang('reference')?>">
 										</div>
 									</div>
 
 									<div
 										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-3' : 'col-md-2') ?>">
-										<label>Epired Date</label>
+										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_1'] ?>"
 											   name="expiration[1]"
@@ -423,7 +421,7 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;">Type</label>
+											style="font-size: 12px;"><?=lang('type')?></label>
 										<div class="">
 											<select name="type[1]"
 													class="selectpicker form-control form-control-sm dif_meter"
@@ -469,12 +467,12 @@
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label>Company</label>
+											<label><?=lang('company')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_company_2'] ?>"
 												   name="company[2]"
 												   class="form-control form-control-sm"
-												   placeholder="Company">
+												   placeholder="<?=lang('company')?>">
 										</div>
 									</div>
 
@@ -483,7 +481,7 @@
 											<label
 												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 												class="btn btn-sm btn-outline-secondary">
-												<span>Brows file</span>
+												<span><?=lang('browse')?></span>
 												<input class="btn_input"
 													   name="file_2" type="file"
 													   hidden style="display: none;"
@@ -508,7 +506,7 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label>Reference</label>
+											<label><?=lang('reference')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_referance_2'] ?>"
 												   name="reference[2]"
@@ -519,7 +517,7 @@
 
 									<div
 										class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-3' : 'col-md-2') ?>">
-										<label>Epired Date</label>
+										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_2'] ?>"
 											   name="expiration[2]"
@@ -531,13 +529,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;">Type</label>
+											style="font-size: 12px;"><?=lang('type')?></label>
 										<div class="">
 											<select name="type[2]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="Select a insurance type"
+													title="<?=lang('incurance_taype')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -577,12 +575,12 @@
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label>Company</label>
+											<label><?=lang('company')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_company_3'] ?>"
 												   name="company[3]"
 												   class="form-control form-control-sm"
-												   placeholder="Company">
+												   placeholder="<?=lang('company')?>">
 										</div>
 									</div>
 
@@ -591,7 +589,7 @@
 											<label
 												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 												class="btn btn-sm btn-outline-secondary">
-												<span>Brows file</span>
+												<span><?=lang('browse')?></span>
 												<input class="btn_input"
 													   name="file_3" type="file"
 													   hidden style="display: none;"
@@ -617,18 +615,18 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label>Reference</label>
+											<label><?=lang('reference')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_referance_3'] ?>"
 												   name="reference[3]"
 												   class="form-control form-control-sm"
-												   placeholder="Reference">
+												   placeholder="<?=lang('reference')?>">
 										</div>
 									</div>
 
 									<div
 										class="<?= ($fleet['insurance_ext_3'] == '' ? 'col-md-3' : 'col-md-2') ?>">
-										<label>Epired Date</label>
+										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_3'] ?>"
 											   name="expiration[3]"
@@ -640,13 +638,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;">Type</label>
+											style="font-size: 12px;"><?=lang('type')?></label>
 										<div class="">
 											<select name="type[3]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="Select a insurance type"
+													title="<?=lang('incurance_taype')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -686,12 +684,12 @@
 
 									<div class="col-md-2">
 										<div class="form-group">
-											<label>Company</label>
+											<label><?=lang('company')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_company_4'] ?>"
 												   name="company[4]"
 												   class="form-control form-control-sm"
-												   placeholder="Company">
+												   placeholder="<?=lang('company')?>">
 										</div>
 									</div>
 
@@ -700,7 +698,7 @@
 											<label
 												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 												class="btn btn-sm btn-outline-secondary">
-												<span>Brows file</span>
+												<span><?=lang('browse')?></span>
 												<input class="btn_input"
 													   name="file_4" type="file"
 													   hidden style="display: none;"
@@ -725,18 +723,18 @@
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label>Reference</label>
+											<label><?=lang('reference')?></label>
 											<input type="text"
 												   value="<?= $fleet['insurance_referance_4'] ?>"
 												   name="reference[4]"
 												   class="form-control form-control-sm"
-												   placeholder="Reference">
+												   placeholder="<?=lang('reference')?>">
 										</div>
 									</div>
 
 									<div
 										class="<?= ($fleet['insurance_ext_4'] == '' ? 'col-md-3' : 'col-md-2') ?>">
-										<label>Epired Date</label>
+										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_4'] ?>"
 											   name="expiration[4]"
@@ -748,13 +746,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;">Type</label>
+											style="font-size: 12px;"><?=lang('type')?></label>
 										<div class="">
 											<select name="type[4]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="Select a insurance type"
+													title="<?=lang('incurance_taype')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -917,21 +915,21 @@
 			</div>
 			<hr class="my-2">
 			<div class="container-fluid">
-
+				<hr class="my-2">
+				<h5 class="mt-2 mb-1"><?=lang('other_info')?></h5>
 				<table class="vehicle table table-striped table-hover">
 					<thead>
 					<tr>
-						<th scope="col">Item Name</th>
-						<th scope="col">Value
-							<small>(KM\Days\Months)</small>
+						<th scope="col"><?=lang('item_name')?> *</th>
+						<th scope="col"><?=lang('value')?> *
+							<small>(<?=lang('KM\Days\Months')?>)</small>
 						</th>
-						<th scope="col">Avg. exploitation</th>
-						<th scope="col">Per Days</th>
-						<th scope="col">More Info P\N</th>
-						<th scope="col">Remind Me days before</th>
-						<th scope="col">Start Alarm Date</th>
-						<th scope="col"><span class="btn bnt-sm btn-outline-success"><i style="margin: 0 !important;" class="add_new_item fa fa-plus"></i></span>
-						</th>
+						<th scope="col"><?=lang('explotation')?> *</th>
+						<th scope="col"><?=lang('per_day')?> *</th>
+						<th scope="col"><?=lang('more_info')?></th>
+						<th scope="col"><?=lang('day_before')?> *</th>
+						<th scope="col"><?=lang('start_alarm_day')?> *</th>
+						<th scope="col"><span class="btn bnt-sm btn-outline-success"><i style="margin: 0 !important;" class="add_new_item fa fa-plus"></i></th>
 					</tr>
 					</thead>
 					<tbody class="new_items_tbody">
@@ -943,7 +941,7 @@
 						<tr>
 							<td>
 								<input name="item[<?= $count ?>]" class="form-control form-control-sm" type="text"
-									   placeholder="Item Name"
+									   placeholder="<?=lang('item_name')?>"
 									   value="<?= $values['items'] ?>">
 							</td>
 							<td>
@@ -951,7 +949,7 @@
 										class="selectpicker form-control form-control-sm dif_meter"
 										data-live-search="true"
 										data-size="5"
-										title="Select a value"
+										title="<?=lang('select_value')?>"
 								>
 									<? foreach ($value as $row) : ?>
 										<option
@@ -966,25 +964,25 @@
 							<td>
 								<input name="avg_exploitation[<?= $count ?>]" class="form-control form-control-sm"
 									   type="number"
-									   placeholder="Avg. exploitation"
+									   placeholder="<?=lang('explotation')?>"
 									   value="<?= $values['avg_exploitation'] ?>"/>
 							</td>
 
 							<td>
 								<input name="per_days[<?= $count ?>]" class="form-control form-control-sm"
 									   type="number"
-									   placeholder="Per days"
+									   placeholder="<?=lang('per_day')?>"
 									   value="<?= $values['per_days'] ?>"/>
 							</td>
 							<td>
 								<input name="more_info[<?= $count ?>]" class="form-control form-control-sm"
 									   type="text"
-									   placeholder="More Info P\N" value="<?= $values['more_info'] ?>"/>
+									   placeholder="<?=lang('more_info')?>" value="<?= $values['more_info'] ?>"/>
 							</td>
 							<td>
 								<input name="remind_before[<?= $count ?>]" class="form-control form-control-sm"
 									   type="number"
-									   placeholder="Remind Me  days before"
+									   placeholder="<?=lang('day_before')?>"
 									   value="<?= $values['reminde_me'] ?>"/>
 							</td>
 							<td>

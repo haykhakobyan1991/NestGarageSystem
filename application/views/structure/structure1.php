@@ -78,7 +78,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 
-		<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;" onclick="save('-1')">Save</button>
+		<button name="" data-toggle="modal" data-target=".bd-example-modal-lg" class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton" style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;" onclick="save('-1')"><?= lang('save') ?></button>
 	</div>
 
 	<span class="selected_information "></span>
@@ -198,11 +198,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<!--search-->
 		<div id="search_" style="min-height: 35px; display: none; position: absolute; top: 9px; left: 280px;">
 			<div style="float: right;">
-				<span class="p-3">from</span>
+				<span class="p-3"><?=lang('from')?></span>
 				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
 
-				<span class="p-3">to</span>
+				<span class="p-3"><?=lang('to')?></span>
 				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
 
@@ -215,7 +215,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					min-height: 37px !important;"
 						type="button"
 						id="search"
-						class="ml-2 save_cancel_btn btn btn-success">Տեսնել
+						class="ml-2 save_cancel_btn btn btn-success"><?=lang('see')?>
 				</button>
 			</div>
 		</div><?
@@ -232,11 +232,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 			<div style="float: right;">
-				<span class="p-3">from</span>
+				<span class="p-3"><?=lang('from')?></span>
 				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
 
-				<span class="p-3">to</span>
+				<span class="p-3"><?=lang('to')?></span>
 				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
 
@@ -244,7 +244,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 500 !important;margin-top: -4px;min-height: 37px !important;" type="button" id="search"
-						class="ml-2 save_cancel_btn btn btn-success">Տեսնել
+						class="ml-2 save_cancel_btn btn btn-success"><?=lang('see')?>
 				</button>
 			</div>
 

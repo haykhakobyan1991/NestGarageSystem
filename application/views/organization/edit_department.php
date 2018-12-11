@@ -7,9 +7,9 @@
 
 	<div class="form-group row mb-0">
 
-		<label class="col-sm-3 col-form-label">Անվանում *</label>
+		<label class="col-sm-3 col-form-label"><?=lang('item_name')?> *</label>
 		<div class="col-sm-8">
-			<input type="text" name="title" class="form-control" placeholder="Անվանում" value="<?= $title ?>">
+			<input type="text" name="title" class="form-control" placeholder="<?=lang('item_name')?>" value="<?= $title ?>">
 		</div>
 	</div>
 
@@ -17,7 +17,7 @@
 
 
 	<div class="form-group row mb-0 mt-1">
-		<label class="col-sm-3 form-label">Ղեկավար *</label>
+		<label class="col-sm-3 form-label"><?=lang('head')?> *</label>
 		<div class="col-sm-8">
 			<select name="head_staff" id="model_select" class="form-control selectpicker" data-size="5" id="head_staff" data-live-search="true" title="<?= lang('select_staff') ?>">
 				<? foreach ($staff_for_select as $val) : ?>
@@ -28,9 +28,9 @@
 	</div>
 
 	<div class="form-group row mb-2" style="margin-top: 0.4em;">
-		<label class="col-sm-3 col-form-label">Մանրամասն</label>
+		<label class="col-sm-3 col-form-label"><?=lang('more_info')?></label>
 		<div class="col-sm-8">
-			<textarea rows="3" value="" type="text" class=" form-control" name="description" placeholder="Մանրամասն"><?= $description ?></textarea>
+			<textarea rows="3" value="" type="text" class=" form-control" name="description" placeholder="<?=lang('more_info')?>"><?= $description ?></textarea>
 		</div>
 	</div>
 

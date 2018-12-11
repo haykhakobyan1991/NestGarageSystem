@@ -54,11 +54,11 @@
 			</div>
 
 			<div class="container-fluid">
-				<p class="display-5 font-weight-bold float-left">Ստորաբաժանումների քանակ</p>
+				<p class="display-5 font-weight-bold float-left"><?=lang('count_departments')?></p>
 				<span
 					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span>
 				<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
-					  data-target="#add_department">Ստեղծել Ստորաբաժանում
+					  data-target="#add_department"><?=lang('create_departments')?>
 					</span>
 				<hr class="my-4">
 			</div>
@@ -73,14 +73,14 @@
 					<thead style="background: #fff;
 color: #545b62;">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;">Ստորաբաժանում</th>
-						<th style="font-size: 12px !important;font-weight:500;">Մանրամասն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Անուն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ազգանուն</th>
-						<th style="font-size: 12px !important;font-weight:500;">Հեռ․</th>
-						<th style="font-size: 12px !important;font-weight:500;">Էլ․ հասցե</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ստեղծվել է</th>
-						<th style="font-size: 12px !important;font-weight:500;">Ում կողմից</th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('department')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('more_info')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('first_name')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('last_name')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('phone_number')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('email')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?=lang('by_whom')?></th>
 						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 					</tr>
 					</thead>
@@ -159,15 +159,15 @@ color: #545b62;">
 
 								<div class="form-group row mb-0">
 
-									<label class="col-sm-3 col-form-label">Անվանում *</label>
+									<label class="col-sm-3 col-form-label"><?=lang('item_name')?> *</label>
 									<div class="col-sm-8">
-										<input type="text" name="title" class="form-control" placeholder="Անվանում">
+										<input type="text" name="title" class="form-control" placeholder="<?=lang('item_name')?>">
 									</div>
 								</div>
 
 
 								<div class="form-group row mb-0 mt-1">
-									<label class="col-sm-3 col-form-label">Ղեկավար *</label>
+									<label class="col-sm-3 col-form-label"><?=lang('head')?> *</label>
 									<div class="col-sm-8">
 										<select name="head_staff"
 												class="form-control selectpicker"
@@ -183,12 +183,12 @@ color: #545b62;">
 								</div>
 
 								<div class="form-group row mb-2" style="margin-top: 0.4em;">
-									<label class="col-sm-3 col-form-label">Մանրամասն</label>
+									<label class="col-sm-3 col-form-label"><?=lang('more_info')?></label>
 									<div class="col-sm-8">
 											<textarea rows="3" value="" type="text"
 													  class=" form-control"
 													  name="description"
-													  placeholder="Մանրամասն"></textarea>
+													  placeholder="<?=lang('more_info')?>"></textarea>
 									</div>
 								</div>
 

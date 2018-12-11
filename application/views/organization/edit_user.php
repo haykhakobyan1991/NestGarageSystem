@@ -66,7 +66,7 @@
 				<div class="form-group row">
 					<div class="col-sm-1"></div>
 					<label
-						class="col-sm-2 col-form-label"><?=lang('username')?> *</label>
+						class="col-sm-2 col-form-label"><?=lang('login')?> *</label>
 					<div class="col-sm-7">
 						<input type="text" class="form-control form-control-sm"
 							   name="username"

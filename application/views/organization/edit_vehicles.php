@@ -302,8 +302,8 @@
 				<div class="col-sm-4">
 					<label class="col-sm-6 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?=lang('appendix_copy')?></label>
 					<label
-						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
-						class="btn btn-sm btn-outline-success">
+						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
+						class="btn btn-sm btn-outline-success mb-0">
 						<span><?=lang('browse')?></span>
 						<input type="file"
 							   name="regitered_file"
@@ -421,13 +421,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;"><?=lang('type')?></label>
+											style="font-size: 12px;"><?=lang('insurance_type')?></label>
 										<div class="">
 											<select name="type[1]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="Select a insurance type"
+													title="<?=lang('insurance_type')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -511,7 +511,7 @@
 												   value="<?= $fleet['insurance_referance_2'] ?>"
 												   name="reference[2]"
 												   class="form-control form-control-sm"
-												   placeholder="Reference">
+												   placeholder="<?=lang('reference')?>">
 										</div>
 									</div>
 
@@ -529,13 +529,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;"><?=lang('type')?></label>
+											style="font-size: 12px;"><?=lang('insurance_type')?></label>
 										<div class="">
 											<select name="type[2]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="<?=lang('incurance_taype')?>"
+													title="<?=lang('insurance_type')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -596,8 +596,8 @@
 													   value="">
 											</label>
 										</div>
-										<div class="ml-2 float-left">
-											<? if ($fleet['insurance_ext_3'] != '') : ?>
+										<div class="ml-2 float-left"><?
+											if ($fleet['insurance_ext_3'] != '') : ?>
 												<a class=""
 
 												   target=""
@@ -638,13 +638,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;"><?=lang('type')?></label>
+											style="font-size: 12px;"><?=lang('insurance_type')?></label>
 										<div class="">
 											<select name="type[3]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="<?=lang('incurance_taype')?>"
+													title="<?=lang('insurance_type')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -746,13 +746,13 @@
 									<div class="col-sm-3" style="margin-top: -10px;">
 										<label
 											class="col-form-label"
-											style="font-size: 12px;"><?=lang('type')?></label>
+											style="font-size: 12px;"><?=lang('insurance_type')?></label>
 										<div class="">
 											<select name="type[4]"
 													class="selectpicker form-control form-control-sm dif_meter"
 													data-live-search="true"
 													data-size="5"
-													title="<?=lang('incurance_taype')?>"
+													title="<?=lang('insurance_type')?>"
 											>
 												<? foreach ($insurance_type as $row) : ?>
 													<option
@@ -1177,7 +1177,7 @@
 			'<tr>\n' +
 			'<td>\n' +
 			'<input name="item[' + n + ']" class="form-control form-control-sm" type="text"\n' +
-			'   placeholder="Item Name"\n' +
+			'   placeholder="<?=lang('item_name')?>"\n' +
 			'   value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
@@ -1185,7 +1185,7 @@
 			'class="selectpicker form-control form-control-sm dif_meter"\n' +
 			'data-live-search="true"\n' +
 			'data-size="5"\n' +
-			'title="Select a value">\n' +
+			'title="<?=lang('select_value')?>">\n' +
 			'<? foreach ($value as $row) : ?>\n' +
 			'<option\n' +
 			'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n' +
@@ -1195,23 +1195,23 @@
 			'<td>\n' +
 			'<input name="avg_exploitation[' + n + ']" class="form-control form-control-sm"\n' +
 			'type="number"\n' +
-			'placeholder="Avg. exploitation" />\n' +
+			'placeholder="<?=lang('explotation')?>" />\n' +
 			'</td>\n' +
 			'\n' +
 			'<td>\n' +
 			'<input name="per_days[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="number"\n' +
-			'   placeholder="Per days" value=""/>\n' +
+			'   placeholder="<?=lang('per_day')?>" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="more_info[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="text"\n' +
-			'   placeholder="More Info P\\N" value=""/>\n' +
+			'   placeholder="<?=lang('more_info')?>" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="remind_before[' + n + ']" class="form-control form-control-sm"\n' +
 			'   type="number"\n' +
-			'   placeholder="Remind Me  days before" value=""/>\n' +
+			'   placeholder="<?=lang('day_before')?>" value=""/>\n' +
 			'</td>\n' +
 			'<td>\n' +
 			'<input name="start_alarm_date[' + n + ']" class="form-control form-control-sm" type="date"\n' +

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //validation
-$lang['required'] = '* - Ով Դաշտերը Պարտադիր Են';
+$lang['required'] = '* - ով դաշտերը պարտադիր են';
 $lang['email_is_not_unique'] = 'Այս էլ․ Հասցեն Արդեն գրանցված է';
 $lang['username_is_not_unique'] = 'Այս Մուտքանունը Արդեն Գոյություն Ունի';
 $lang['field_required'] = 'Այս Դաշտը Պարտադիր է';
@@ -39,6 +39,8 @@ $lang['last_access'] = 'Վերջին Մուտք / Ամսաթիվը';
 $lang['status'] = 'Կարգավիճակ';
 $lang['owner'] = 'Սեփականատեր';
 $lang['when'] = 'Երբ';
+$lang['select_all'] = 'Ըմտրել բոլորը';
+$lang['delete'] = 'Ջնջել';
 
 $lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
 $lang['driver'] = 'Վարորդ';
@@ -197,6 +199,8 @@ $lang['kilometer_per_day'] = 'Օրական Կիլոմետր';
 $lang['engine_power'] = 'Շարժիչի հզորություն';
 $lang['fuel'] = 'Վառելիք';
 $lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
+$lang['select_fleets_from_list'] = 'Ընտրեք Տրանսպորտային Միջոցներ Ցանկից';
+$lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղեկատվությունը տեսնելու համար';
 
 
 

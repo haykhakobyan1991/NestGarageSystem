@@ -91,7 +91,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div class="col-sm-4">
 				<div class="row">
 					<div class="input-group mb-3 col-sm-7">
-						<input id="sb_s" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+						<input id="sb_s" type="text" class="form-control" placeholder="<?=lang('search')?>" aria-label="Search" aria-describedby="basic-addon2">
 						<div class="input-group-append">
 							<span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
 						</div>
@@ -100,11 +100,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<div class="row">
 							<div class="col-sm-56 form-group form-check pt-1">
 								<input type="checkbox" class="select_all form-check-input" id="exampleCheck1">
-								<label class="form-check-label" for="exampleCheck1">Select all</label>
+								<label class="form-check-label" for="exampleCheck1"><?=lang('select_all')?></label>
 							</div>
 							<div class="col-sm-6 form-group form-check pt-1 text-center">
 								<button class="btn btn-sm btn-outline-secondary p-1 delete_all"><i class="fas fa-trash"></i></button>
-								<label class="form-check-label" for="">delete</label>
+								<label class="form-check-label" for=""><?=lang('delete')?></label>
 							</div>
 						</div>
 					</div>
@@ -114,7 +114,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div class="col-sm-4" >
 				<div class="row">
 					<div class="input-group mb-3 col-sm-7">
-						<input id="sb_s_2" type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+						<input id="sb_s_2" type="text" class="form-control" placeholder="<?=lang('search')?>" aria-label="Search" aria-describedby="basic-addon2">
 						<div class="input-group-append">
 							<span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
 						</div>
@@ -123,11 +123,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<div class="row">
 							<div class="col-sm-56 form-group form-check pt-1">
 								<input type="checkbox" class="select_all_2 form-check-input" id="exampleCheck2">
-								<label class="form-check-label" for="exampleCheck2">Select all</label>
+								<label class="form-check-label" for="exampleCheck2"><?=lang('select_all')?></label>
 							</div>
 							<div class="col-sm-6 form-group form-check pt-1 text-center">
 								<button class="btn btn-sm btn-outline-secondary p-1 delete_all_2"><i class="fas fa-trash"></i></button>
-								<label class="form-check-label" for="exampleCheck1-2">delete</label>
+								<label class="form-check-label" for="exampleCheck1-2"><?=lang('delete')?></label>
 							</div>
 						</div>
 					</div>
@@ -149,7 +149,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div class="col-sm-4"
 				 style="border: 10px solid #00000040;border-left: none; border-right: none;max-height: 520px; overflow-y: scroll;">
 				<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
-					<h2 class="text-center" style="opacity: .5;color: gray;margin-top: 40%;" >Select Fleets from list</h2>
+					<h2 class="text-center" style="opacity: .5;color: gray;margin-top: 40%;" ><?=lang('select_fleets_from_list')?></h2>
 				</ul>
 			</div>
 			<div class="col-sm-1 text-center" style="border: 10px solid #00000040;">
@@ -162,7 +162,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div class="col-sm-4"
 				 style="border: 10px solid #00000040; border-left: none;max-height: 520px; overflow-y: scroll;">
 				<ul style="list-style-type: decimal;" class="list-group lg_2 mt-1">
-					<h2 class="text-center" style="opacity: .5;color: gray;margin-top: 40%;" >Move here to see the costs</h2>
+					<h2 class="text-center" style="opacity: .5;color: gray;margin-top: 40%;" ><?=lang('move_here_to_see_the_costs')?></h2>
 				</ul>
 			</div>
 		</div>
@@ -312,11 +312,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 				<div style="float: right;">
-					<span class="p-3">from</span>
+					<span class="p-3"><?=lang('from')?></span>
 					<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
 						   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
 
-					<span class="p-3">to</span>
+					<span class="p-3"><?=lang('to')?></span>
 					<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
 						   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
 
@@ -324,7 +324,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 500 !important;margin-top: -4px;min-height: 37px !important;" type="button" id="search"
-							class="ml-2 save_cancel_btn btn btn-success">Տեսնել
+							class="ml-2 save_cancel_btn btn btn-success"><?=lang('see')?>
 					</button>
 				</div>
 
@@ -1098,7 +1098,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$('.delete_all').click(function () {
 			$('.sel_items').remove();
 
-			$('.lg_1').append('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" >Select Fleets from list</h2>');
+			$('.lg_1').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?=lang('select_fleets_from_list')?></h2>');
 		});
 
 		/***************************************************************/
@@ -1122,7 +1122,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			$('.added_lg_2').remove();
 			$('#nav-tabContent-car').remove();
 			$('.tab-pane').children('form').remove();
-			$('.lg_2').append('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" >Move here to see the costs</h2>')
+			$('.lg_2').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?=lang('move_here_to_see_the_costs')?></h2>')
 		});
 
 

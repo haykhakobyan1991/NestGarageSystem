@@ -20,8 +20,8 @@
 			language: {
 				search: "<?=lang('search')?>",
 				emptyTable: "<?=lang('no_data')?>",
-				info: "<?=lang('showing')?> _START_ -ից _END_ -ը  _TOTAL_ <?=lang('record')?>",
-				infoEmpty: "<?=lang('showing')?> 0 -ից 0 -ը 0 <?=lang('record')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
 				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
 				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
 				zeroRecords: "<?=lang('no_matching_records')?>",
@@ -30,12 +30,6 @@
 					last: "<?=lang('last')?>",
 					next: "<?=lang('next')?>",
 					previous: "<?=lang('prev')?>"
-				},
-				buttons: {
-					copyTitle: 'Պատճենահանումը կատարվել է',
-					copySuccess: {
-						_: 'Պատճենվել է %d տող'
-					}
 				}
 			}
 		});
@@ -169,8 +163,8 @@ endforeach;
 										<div class="form-group row">
 											<div class="col-sm-1"></div>
 											<label
-												class="col-sm-2 col-form-label"><?= lang('contact_number') ?>*</label>
-											<div class="col-sm-7">
+												class="col-sm-3 col-form-label"><?= lang('contact_number') ?>*</label>
+											<div class="col-sm-7" style="margin-left: -61px;">
 												<input type="text" class="form-control form-control-sm"
 													   name="contact_number"
 													   placeholder="<?= lang('contact_number') ?>">
@@ -191,18 +185,18 @@ endforeach;
 											<label class="col-sm-2 col-form-label"><?= lang('password') ?> *</label>
 											<div class="col-sm-7">
 												<input type="text"
-													   class="form-control form-control-sm col-sm-6 float-left"
+													   class="form-control form-control-sm col-sm-5 float-left"
 													   name="password"
 													   placeholder="<?= lang('password') ?>"
 													   id="password-input"
 													   onclick="this.focus();this.select()"
 													   readonly/>
 												<button type="button"
-														class="btn btn-sm btn-outline-secondary  ml-1 hide_password"
+														class="btn btn-sm btn-outline-secondary  ml-3 hide_password"
 														style="border: none;outline: none;"><i class="fa fa-eye"></i>
 												</button>
 												<button id="generate-password-button" type="button"
-														class="save_cancel_btn btn btn-success"
+														class="save_cancel_btn btn btn-success ml-3"
 														style="font-size: 12px !important;line-height: 14px !important;padding: 12px 17px !important;font-weight: 500 !important;">
 													<i
 														class="fas fa-sync-alt"

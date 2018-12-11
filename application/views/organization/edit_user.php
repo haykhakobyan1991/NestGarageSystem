@@ -55,8 +55,8 @@
 				<div class="form-group row">
 					<div class="col-sm-1"></div>
 					<label
-						class="col-sm-2 col-form-label"><?=lang('contact_number')?>*</label>
-					<div class="col-sm-7">
+						class="col-sm-3 col-form-label"><?=lang('contact_number')?>*</label>
+					<div class="col-sm-7" style="margin-left: -61px;">
 						<input type="text" class="form-control form-control-sm "
 							   name="contact_number"
 							   value="<?= $phone_number ?>"
@@ -81,7 +81,7 @@
 						class="col-sm-2 col-form-label"><?=lang('password')?> *</label>
 					<div class="col-sm-7">
 						<input type="text"
-							   class="form-control form-control-sm col-sm-6 float-left"
+							   class="form-control form-control-sm col-sm-5 float-left"
 							   name="password"
 							   placeholder="<?=lang('password')?>"
 							   id="password_edit"
@@ -90,11 +90,11 @@
 							   readonly
 						/>
 						<button type="button"
-								class="btn btn-sm btn-outline-secondary ml-1 hide_password_edit"
+								class="btn btn-sm btn-outline-secondary ml-3 hide_password_edit"
 								style="border: none;outline: none;"><i class="fa fa-eye"></i>
 						</button>
 						<button id="generate-password-button_edit" type="button"
-								class="save_cancel_btn btn btn-success" style="font-size: 12px !important;line-height: 14px !important;padding: 12px 17px !important;font-weight: 500 !important;"><i
+								class="save_cancel_btn btn btn-success  ml-3" style="font-size: 12px !important;line-height: 14px !important;padding: 12px 17px !important;font-weight: 500 !important;"><i
 								class="fas fa-sync-alt" style="margin-right: 8px;"></i><?=lang('generate')?>
 						</button>
 					</div>
@@ -130,7 +130,7 @@
 
 		</div>
 	</div>
-	<div class="modal-footer pb-0 col-sm-12">
+	<div class="modal-footer pb-0 col-sm-12" style="padding-right: 141px !important;">
 		<button id="edit_user_button" type="button"
 				class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 		</button>

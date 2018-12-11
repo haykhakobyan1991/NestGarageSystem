@@ -835,7 +835,7 @@
 <div id="scripts"></div>
 
 <div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<span id="submit" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
+	<button id="submit" class="save_cancel_btn btn btn-success"><?= lang('save') ?></button>
 	<span id="load" class="btn save_cancel_btn btn-success d-none"><svg id="loading_svg" width="80" height="20"
 																		viewBox="0 0 135 140"
 																		xmlns="http://www.w3.org/2000/svg"
@@ -1141,8 +1141,6 @@ $(window).on('load', function () {
 		$('.pos_abs_div').removeClass('animated');
 		$('.pos_abs_div').animate({
 			bottom: "-=60"
-		}, function () {
-			location.reload();
 		})
 	});
 })

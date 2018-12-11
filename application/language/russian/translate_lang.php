@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 //validation
-$lang['required'] = 'Поля с *, являются обязательными';
+$lang['required'] = 'Поля с *, являются обязательными.';
 $lang['email_is_not_unique'] = 'Этот Эл. адрес уже зарегистрирован';
 $lang['username_is_not_unique'] = 'Этот Эл. адрес уже зарегистрирован';
 $lang['field_required'] = 'Это поле обязательно для заполнения';
@@ -21,7 +21,7 @@ $lang['last_name'] = 'Фамоля';
 $lang['generate'] = 'генерировать';
 $lang['logout'] = 'Выйти';
 $lang['save'] = 'Сохранить';
-$lang['cancel'] = 'отменить';
+$lang['cancel'] = 'Отменить';
 $lang['phone_number'] = 'Номер телефона';
 $lang['welcome'] = 'Добро пожаловать';
 $lang['yes'] = 'Да';
@@ -65,6 +65,8 @@ $lang['type_summer_winter_all'] = 'Тип (Лето, Зима, Все)';
 $lang['summer'] = 'Лето';
 $lang['winter'] = 'Зима';
 $lang['all'] = 'Все';
+$lang['select_all'] = 'Выбрать все';
+$lang['delete'] = 'Удалить';
 
 
 //select options
@@ -198,6 +200,8 @@ $lang['select_car_type'] = 'Выберите тип';
 $lang['engine_power'] = 'Мощность Двигателя';
 $lang['fuel'] = 'Тепливо';
 $lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
+$lang['select_fleets_from_list'] = 'Выберите из списка транспортных средств';
+$lang['move_here_to_see_the_costs'] = 'Переместите сюда, чтобы увидеть информацию';
 
 
 //address

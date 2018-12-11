@@ -144,11 +144,11 @@ color: #545b62;">
 											  data-placement="top"
 											  title="edit"><i class="fas fa-edit"></i></span></a>
 
-									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"
-										  class="btn text-secondary"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete"><i class="fas fa-trash"></i></span></td>
+<!--									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"-->
+<!--										  class="btn text-secondary"-->
+<!--										  data-toggle2="tooltip"-->
+<!--										  data-placement="top"-->
+<!--										  title="delete"><i class="fas fa-trash"></i></span>--></td>
 							</tr>
 						<? endforeach; ?>
 						</tbody>

@@ -1332,8 +1332,6 @@
 			$('.pos_abs_div').removeClass('animated');
 			$('.pos_abs_div').animate({
 				bottom: "-=60"
-			}, function () {
-				location.reload();
 			})
 		});
 	})

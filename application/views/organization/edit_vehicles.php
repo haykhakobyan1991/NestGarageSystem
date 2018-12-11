@@ -41,19 +41,19 @@
 		<input type="hidden" name="fleet_id" value="<?= $fleet['id'] ?>">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-9">
+				<div class="col-sm-8">
 					<h5><?= lang('vehicles_information') ?></h5>
 					<p><?= lang('fill_followings_fields') ?></p>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="row">
 
 						<div class="col-sm-12">
 
 							<div class="row">
-								<label class="pl-3 col-form-label col-sm-5" style="padding-left: 45px !important;
+								<label class="pl-3 col-form-label col-sm-5 text-right" style="padding-left: 45px !important;
     font-size: 15px !important;"><?=lang('GPS_Exist')?></label>
-								<input style="margin-top: 13px;width: 18px;height: 18px;" class="st_inp" type="checkbox"
+								<input style="margin-top: 13px;width: 18px;height: 18px;" type="checkbox"
 									   name="gps_exist"
 									   value="1" <?= $fleet['gps_tracker_exists'] == 1 ? 'checked' : '' ?>
 									   id="fleet_type"/>
@@ -226,7 +226,7 @@
 				<div class="col-sm-3">
 					<div class="row">
 						<div id="cp2" class="input-group colorpicker-component col-sm-12">
-							<label class="pl-3 col-form-label col-sm-2"
+							<label class="pl-3 col-form-label col-sm-3"
 								   style="font-size: 15px;padding: 6px;margin-left: -9px;"><?=lang('color')?></label>
 							<input name="color" type="text" value="<?= $fleet['color'] ?>"
 								   class="form-control selected_color_value"/>
@@ -235,14 +235,14 @@
 						</div>
 					</div>
 					<div class="row mt-1">
-						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;"><?=lang('vin')?></label>
+						<label class="pl-4 col-form-label col-sm-3" style="font-size: 15px;"><?=lang('vin')?></label>
 						<input value="<?= $fleet['vin_code'] ?>" name="vin" type="text"
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?=lang('vin')?>">
 					</div>
 
 					<div class="row mt-1">
-						<label class=" col-form-label col-sm-2"><?=lang('attached')?> *</label>
+						<label class=" col-form-label col-sm-3"><?=lang('attached')?>*</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"
@@ -318,15 +318,15 @@
 
 		<div class="container-fluid">
 			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12"
-					  placeholder="<?=lang('other')?>">"><?= $fleet['other'] ?></textarea>
+					  placeholder="<?=lang('other')?>"><?= $fleet['other'] ?></textarea>
 		</div>
 		<div class="container-fluid">
 			<div class="row">
 				<label class="col-sm-2 col-form-label"><?=lang('status_make_passive') ?></label>
 				<div class="col-sm-1">
-					<input style="width: 18px;height: 18px;margin-left: -130px;margin-top: 7px;"
+					<input style="width: 18px;height: 18px;margin-left: -115px;margin-top: 7px;"
 						   value="-1" <?= ($fleet['status'] == '-1' ? 'checked' : '') ?> name="status" type="checkbox"
-						   class="form-control form-control-sm st_inp">
+						   class="form-control form-control-sm">
 				</div>
 			</div>
 
@@ -408,7 +408,7 @@
 									</div>
 
 									<div
-										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-3' : 'col-md-2') ?>">
+										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_1'] ?>"
@@ -516,7 +516,7 @@
 									</div>
 
 									<div
-										class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-3' : 'col-md-2') ?>">
+										class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_2'] ?>"
@@ -625,7 +625,7 @@
 									</div>
 
 									<div
-										class="<?= ($fleet['insurance_ext_3'] == '' ? 'col-md-3' : 'col-md-2') ?>">
+										class="<?= ($fleet['insurance_ext_3'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_3'] ?>"
@@ -733,7 +733,7 @@
 									</div>
 
 									<div
-										class="<?= ($fleet['insurance_ext_4'] == '' ? 'col-md-3' : 'col-md-2') ?>">
+										class="<?= ($fleet['insurance_ext_4'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 										<label><?=lang('expiry_date')?></label>
 										<input type="date"
 											   value="<?= $fleet['insurance_expiration_4'] ?>"
@@ -813,7 +813,7 @@
 						</div>
 						<div class="col-sm-6">
 							<div class="row">
-								<input name="value1_day" type="number" class="orm-control form-control-sm col-sm-6 "
+								<input name="value1_day" type="number" class="orm-control form-control form-control-sm col-sm-6 "
 									   placeholder="" value="<?= $fleet['value1_day'] ?>" style="margin-top: 30px !important;"/>
 								<div class="ml-3 mt-2 col-sm-3" style="display: inline-block;">
 									<p style="display: inline-block;margin-left: -3px;margin-top: 29px;font-size: 11px;">
@@ -837,7 +837,7 @@
 
 						<?
 						if ($fleet['auto_increment'] == '1') {
-							echo '      <span class="ml-5">Total ' . round($fleet['total_value_1'], 2) . ' ' . $title .'</span>';  //mi ban ara sirunana
+							echo '      <span class="ml-5 font-weight-bold">'.lang('total').' ' . round($fleet['total_value_1'], 2) . ' ' . $title .'</span>';  //mi ban ara sirunana
 						}
 						?>
 					</div>
@@ -849,65 +849,63 @@
 				<div class="col-sm-12">
 					<div class="card">
 						<h6 style="padding: 5px !important;" class="card-header"><?= lang('secondary_meter') ?></h6>
-						<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
 
-							<div class="form-group  mb-0">
-
-
-								<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">
-									<input name="use_of_secondary_meter" value="1" type="checkbox"
-										   class="form-check-input"
-										   id="exampleCheck11" <?= ($fleet['value2_id'] != '' ? 'checked' : '') ?> >
-									<label class="form-check-label" for="exampleCheck11">Use of secondary
-										meter</label>
-								</div>
-								<div class="card-body" style="padding: 0 !important;">
+								<div class="card-body pb-0 pt-0 pl-0">
+									<div class="form-group form-check mt-md-2 mt-2">
+									<div class="form-group form-check mt-md-1 mt-1">
+										<input name="use_of_secondary_meter" value="1" type="checkbox"
+											   class="form-check-input"
+											   id="exampleCheck11" <?= ($fleet['value2_id'] != '' ? 'checked' : '') ?> >
+										<label class="form-check-label" for="exampleCheck11"><?= lang('Use_of_secondary_meter') ?></label>
+									</div>
 									<div class="form-group row mb-0">
 										<label
-											class="col-sm-4 col-form-label"
+											class="col-sm-12 col-form-label"
 											style="font-size: 12px;"><?= lang('type_of_meter') ?></label>
-										<div class="col-sm-3" style="margin-top: -8px">
-											<select name="value_2"
-													class="selectpicker form-control form-control-sm "
-													data-size="5"
-													title="Choose..."
-											>
-												<?
-												$convert = '';
-												foreach ($value as $row) :
-													if ($row['type'] == 1) :
-														$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
-														?>
-														<option
-															value="<?= $row['id'] ?>"
-															<?
-															if ($fleet['value2_id'] == $row['id']) {
-																echo 'selected';
-																$title2 = $row['title'];
-															} ?>
-														>
-															<?= $row['title'] ?>
-														</option>
 
+											<div class="col-sm-12">
+												<select name="value_2"
+														class="selectpicker form-control form-control-sm mr-1"
+														data-size="5"
+														title="<?=lang('choose')?>..."
+												>
 													<?
-													endif;
-												endforeach;
-												?>
-											</select>
-											<?= $convert ?>
+													$convert = '';
+													foreach ($value as $row) :
+														if ($row['type'] == 1) :
+															$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
+															?>
+															<option
+																value="<?= $row['id'] ?>"
+																<?
+																if ($fleet['value2_id'] == $row['id']) {
+																	echo 'selected';
+																	$title2 = $row['title'];
+																} ?>
+															>
+																<?= $row['title'] ?>
+															</option>
 
+														<?
+														endif;
+													endforeach;
+													?>
+												</select>
+												<?= $convert ?>
+
+											</div>
 										</div>
-										<div class="col-sm-4">
-											<?
-											if ($fleet['auto_increment'] == '1') {
-												echo 'Total ' . round($fleet['total_value_2'], 2) . ' ' . $title2;  //mi ban ara sirunana
-											}
-											?>
-										</div>
-									</div>
+
+
 
 								</div>
-							</div>
+						</div>
+						<div class="card-footer text-muted">
+							<?
+							if ($fleet['auto_increment'] == '1') {
+								echo '<p class="mb-0">'.lang('total').' ' . round($fleet['total_value_2'], 2) . ' ' . $title2 .'</p>';  //mi ban ara sirunana
+							}
+							?>
 						</div>
 					</div>
 					<!-- Info End -->

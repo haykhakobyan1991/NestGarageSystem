@@ -52,32 +52,25 @@
 		<!-- Error Message -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-sm-9">
+
+				<div class="col-sm-8">
 					<h5><?= lang('vehicles_information') ?></h5>
 					<p><?= lang('fill_followings_fields')   ?></p>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="row">
-
 						<div class="col-sm-12">
-
 							<div class="row">
-								<label class="pl-3 col-form-label col-sm-5" style="padding-left: 45px !important;
-    font-size: 15px !important;"><?=lang('GPS_Exist')?><label>
-								<input style="margin-top: 13px;width: 18px;height: 18px;" class="" type="checkbox"
-									   name="gps_exist"  value="1" id="fleet_type"/>
+								<label class="pl-3 col-form-label col-sm-5 text-right" style="padding-left: 45px !important;
+	font-size: 15px !important;"><?=lang('GPS_Exist')?></label>
+								<input style="margin-top: 13px;width: 18px;height: 18px;" class="" type="checkbox" name="gps_exist"  value="1" id="fleet_type"/>
 
 								<div class="col-sm-6">
-									<input value="" name="gps_tracker_imei" type="text"
-										   class="form-control form-control-sm"
-										   placeholder="<?=lang('GPS_Tracker_IMEI')?>">
+									<input value="" name="gps_tracker_imei" type="text" class="form-control form-control-sm" placeholder="<?=lang('GPS_Tracker_IMEI')?>">
 								</div>
-
 							</div>
 
-
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -192,7 +185,7 @@
 				<div class="col-sm-3">
 					<div class="row">
 						<div id="cp2" class="input-group colorpicker-component col-sm-12">
-							<label class="pl-3 col-form-label col-sm-2"
+							<label class="pl-3 col-form-label col-sm-3"
 								   style="font-size: 15px;padding: 6px;margin-left: -9px;"><?=lang('color')?></label>
 							<input name="color" type="text" value="#00AABB" class="form-control selected_color_value"/>
 							<span class="input-group-addon col-sm-5"><i
@@ -200,13 +193,13 @@
 						</div>
 					</div>
 					<div class="row mt-1">
-						<label class="pl-3 col-form-label col-sm-2" style="font-size: 15px;"><?=lang('vin')?></label>
+						<label class="pl-4 col-form-label col-sm-3" style="font-size: 15px;"><?=lang('vin')?></label>
 						<input value="" name="vin" type="text" class="form-control form-control-sm col-sm-7"
 							   placeholder="VIN">
 					</div>
 
 					<div class="row mt-1">
-						<label class=" col-form-label col-sm-2"><?=lang('attached')?> *</label>
+						<label class="pl-4 col-form-label col-sm-3"><?=lang('attached')?>*</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"

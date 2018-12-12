@@ -32,6 +32,16 @@
 	.modal {
 		top: 30% !important;
 	}
+
+	#fleet_filter {
+		border: 1px solid;
+		position: absolute;
+		z-index: 999;
+		right: 60px;
+		top: 20px;
+		padding: 10px 15px 10px 30px;
+		border-radius: 5px;
+	}
 </style>
 
 
@@ -41,7 +51,25 @@ if ($this->uri->segment('3') == 'fleet_history') {
 }
 
 $time = strtotime(mdate('%Y-%m-%d', now()));
+
+
+//filter structure (only cars)
+$structure_array = json_decode($structure, true);
+
+foreach ($structure_array as $key => $info) {
+
+	if (preg_match("/^(d)/", $info['key']) || preg_match("/^(c)/", $info['key']) || preg_match("/^(h)/", $info['key'])) {
+		unset($structure_array[$key]);
+	}
+
+
+}
+
+$structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
+
+
 ?>
+
 
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
@@ -49,7 +77,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0">
 
 
-		<div id="sample">
+		<div id="sample" style="position:relative;">
+			<div id="fleet_filter" class="form-group form-check">
+				<input style="margin-top: 4px" type="checkbox" class="form-check-input" id="filter_vehicles">
+				<label class="form-check-label" for="exampleCheck1">Check me out</label>
+			</div>
 			<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
 			<div>
 				<div id="myInspector">
@@ -327,6 +359,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 	function init() {
+
 		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 		var $ = go.GraphObject.make;  // for conciseness in defining templates
 
@@ -351,6 +384,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								setsChildPortSpot: false
 							})
 				});
+
 
 		myDiagram.nodeTemplate =
 			$(go.Node,
@@ -427,15 +461,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					"comments": {}
 				}
 			});
-
 	}
 
-	function load() {
-		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
-	}
 
-	$(document).ready(function () {
+	function get_diagram() {
+		myDiagram.div = null;
 		init();
+	}
+
+
+	function diagramListener() {
 
 		robot = new Robot(myDiagram);
 
@@ -623,6 +658,28 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				/*Remove BoxShadow From HighCharts Pie Diagram*/
 				$('.highcharts-text-outline').attr('stroke', '');
 			});
+	}
+
+
+
+
+
+	function load() {
+		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+	}
+
+	function load_new() {
+
+		myDiagram.model = go.Model.fromJson('{"class": "go.TreeModel","nodeDataArray": <?=json_encode($structure_array)?>}');
+	}
+
+	$(document).ready(function () {
+		init();
+
+
+
+
+		diagramListener();
 
 		if ($('a[data-id="2"]').hasClass('active')) {
 
@@ -988,6 +1045,132 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			'</tr>');
 
 	});
+
+	function replaceDiagram() {
+
+
+		myDiagram.div = null;
+
+		if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
+		var $ = go.GraphObject.make;  // for conciseness in defining templates
+
+		myDiagram =
+			$(go.Diagram, "myDiagramDiv",
+				{
+					allowMove: false,
+					allowCopy: false,
+					allowDelete: false,
+					allowHorizontalScroll: false,
+					layout:
+						$(go.TreeLayout,
+							{
+								alignment: go.TreeLayout.AlignmentStart,
+								angle: 0,
+								compaction: go.TreeLayout.CompactionNone,
+								layerSpacing: 16,
+								layerSpacingParentOverlap: 1,
+								nodeIndentPastParent: 1.0,
+								nodeSpacing: 0,
+								setsPortSpot: false,
+								setsChildPortSpot: false
+							})
+				});
+
+		myDiagram.nodeTemplate =
+			$(go.Node,
+				{ // no Adornment: instead change panel background color by binding to Node.isSelected
+					selectionAdorned: false,
+					// a custom function to allow expanding/collapsing on double-click
+					// this uses similar logic to a TreeExpanderButton
+					doubleClick: function (e, node) {
+						var cmd = myDiagram.commandHandler;
+						if (node.isTreeExpanded) {
+							if (!cmd.canCollapseTree(node)) return;
+						} else {
+							if (!cmd.canExpandTree(node)) return;
+						}
+						e.handled = true;
+						if (node.isTreeExpanded) {
+							cmd.collapseTree(node);
+						} else {
+							cmd.expandTree(node);
+						}
+					}
+				},
+				$("TreeExpanderButton",
+					{
+						width: 14,
+						"ButtonBorder.fill": "whitesmoke",
+						"ButtonBorder.stroke": "lightgray",
+						"_buttonFillOver": "rgba(0,128,255,0.25)",
+						"_buttonStrokeOver": null
+					}),
+				$(go.Panel, "Horizontal",
+					{
+						padding: 3,
+						position: new go.Point(16, 0),
+						margin: new go.Margin(0, 2, 0, 0),
+						defaultAlignment: go.Spot.Center
+					},
+					new go.Binding("background", "isSelected", function (s) {
+						return (s ? "lightblue" : "white");
+					}).ofObject(),
+					$("TriStateCheckBoxButton"),
+					$(go.TextBlock,
+						{font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 2, 0, 2)},
+						new go.Binding("text", "name", function (s) {
+							return " " + s;
+						})),
+					$(go.TextBlock,
+						{
+							font: 'bold ,9pt Verdana, sans-serif',
+							margin: new go.Margin(0, 5, 0, 2),
+							stroke: "#607d8b"
+						},
+
+						new go.Binding("text", "title", function (s) {
+							return " " + s;
+						}))
+				)  // end Horizontal Panel
+			);  // end Node
+
+		// without lines
+		//myDiagram.linkTemplate = $(go.Link);
+
+		// with lines
+		myDiagram.linkTemplate =
+			$(go.Link,
+				{
+					selectable: false,
+					routing: go.Link.Orthogonal,
+					fromEndSegmentLength: 4,
+					toEndSegmentLength: 4,
+					fromSpot: new go.Spot(0.001, 1, 7, 0),
+					toSpot: go.Spot.Left
+				},
+				$(go.Shape,
+					{stroke: 'gray', strokeDashArray: [1, 2]}));
+		load_new();
+
+		// support editing the properties of the selected person in HTML
+		if (window.Inspector) myInspector = new Inspector("myInspector", myDiagram,
+			{
+				properties: {
+					"key": {readOnly: true},
+					"comments": {}
+				}
+			});
+
+		diagramListener();
+	}
+
+	$(document).on('change', '#filter_vehicles', function () {
+		if ($(this).is(':checked')) {
+			replaceDiagram();
+		} else {
+			get_diagram();
+		}
+	})
 
 </script>
 

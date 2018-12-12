@@ -119,7 +119,6 @@
 						<tr>
 							<th class="table_th"><?=lang('vehicle')?></th>
 							<th class="table_th"><?=lang('when')?></th>
-							<th class="table_th"><?=lang('by_whom')?></th>
 							<th class="table_th"><?=lang('deadline')?></th>
 							<th class="table_th"><?=lang('price')?></th>
 						</tr>

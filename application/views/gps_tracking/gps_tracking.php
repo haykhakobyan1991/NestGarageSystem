@@ -1,4 +1,10 @@
+<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script src="<?= base_url() ?>assets/js/table.js"></script>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
+		type="text/javascript"></script>
 <script>
 	// Initialize Firebase
 	var config = {
@@ -11,94 +17,81 @@
 	};
 	firebase.initializeApp(config);
 </script>
-<script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU" type="text/javascript"></script>
-<style>
-	.settings_btn,.print-btn,.plus_btn,.set_btn,.delete_btn {
-		border: none !important;
-		outline: none !important;
-		cursor: pointer;
-	}
 
-	.settings_btn,.print-btn:hover,.settings_btn,.print-btn:focus,.plus_btn:hover,.plus_btn:focus,.set_btn:hover,.set_btn:focus,.delete_btn:focus,.delete_btn:hover {
-		border: none !important;
-		outline: none !important;
-		cursor: pointer;
-		background: #fff !important;
-	}
-
-	legend.scheduler-border {
-		width:inherit; /* Or auto */
-		padding:0 10px; /* To give a bit of padding on the left and right */
-		border-bottom:none;
-	}
-
-	fieldset.scheduler-border {
-		border: 1px groove #ddd !important;
-		padding: 0 1.4em 1.4em 1.4em !important;
-		margin: 0 0 1.5em 0 !important;
-		-webkit-box-shadow:  0px 0px 0px 0px #000;
-		box-shadow:  0px 0px 0px 0px #000;
-	}
-
-	.fleets_ul li {
-		margin: 2px;
-		padding: 2px 8px;
-		-webkit-border-radius: 5px;
-		-moz-border-radius: 5px;
-		border-radius: 5px;
-		cursor: pointer;
-		-webkit-transition: all .3s ease-in-out;
-		-moz-transition: all .3s ease-in-out;
-		-ms-transition: all .3s ease-in-out;
-		-o-transition: all .3s ease-in-out;
-		transition: all .3s ease-in-out;
-	}
-
-	.fleets_ul li:hover{
-		background: #7c7c7d;
-		color: #fff;
-	}
-
-	.fleets_ul_active {
-		background: #7c7c7d;
-		color: #fff;
-	}
-
-</style>
 <div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
 	<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
 		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 			<div class="navbar-nav mr-auto">
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg" /><?=lang('trajectory')?></button>
-				<button style="color:#00000080 !important;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg" /><?=lang('speed')?></button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg" /><?=lang('fuel')?></button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/engine.svg" /><?=lang('engine')?></button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/box.svg" /><?=lang('cargo')?></button>
-				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/support.svg" /><?=lang('sos')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/><?= lang('trajectory') ?>
+				</button>
+				<button style="color:#00000080 !important;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/><?= lang('speed') ?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/><?= lang('fuel') ?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/><?= lang('engine') ?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/><?= lang('cargo') ?></button>
+				<button style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/><?= lang('sos') ?></button>
 
-				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1" href="#"><?=lang('notification')?></button>
-				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><?=lang('event')?></button>
-				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;" class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><?=lang('statistics')?></button>
+				<button style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1"
+						href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?></button>
+				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 "
+						href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/><?= lang('event') ?></button>
+				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+						class="btn btn-outline-secondary  nav-item nav-link mr-1 "
+						href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?></button>
 
 
-					<label style="padding: 10px 6px 0px 10px;"><?=lang('update')?></label>
-					<select style="margin-top: 1px" class="form-control form-control-sml">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>5</option>
-						<option>10</option>
-						<option>15</option>
-						<option>20</option>
-						<option>25</option>
-					</select>
+				<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+				<select style="margin-top: 1px" class="form-control form-control-sml">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+					<option>5</option>
+					<option>10</option>
+					<option>15</option>
+					<option>20</option>
+					<option>25</option>
+				</select>
 
 
 			</div>
 
 			<div class="navbar-nav ml-auto">
-				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;" class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg" class="ml-0 mr-0 " /></button>
-				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;" class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn" href="#"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/print.svg" class="ml-0 mr-0 "/></button>
+				<button
+					style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+					class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn" href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg" class="ml-0 mr-0 "/>
+				</button>
+				<button
+					style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+					class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn" href="#"><img
+						style="margin-right: 5px;margin-left: -15px;"
+						src="<?= base_url() ?>assets/images/gps_tracking/print.svg" class="ml-0 mr-0 "/></button>
 			</div>
 		</div>
 	</nav>
@@ -107,109 +100,921 @@
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-sm-9">
+		<div class="col-sm-5">
+			<div class="row">
+				<div class="col-sm-12 m-2">
+
+					<fieldset class="scheduler-border" style="width: 50%;">
+						<legend class="scheduler-border" style="font-size: 16px;"><?= lang('group') ?></legend>
+						<div class="control-group">
+							<div class="controls bootstrap-timepicker">
+								<div class="row">
+									<div class="col-sm-6">
+										<select style="margin-top: 1px;max-width: 220px;"
+												class="form-control form-control-sml">
+											<option>group 1</option>
+											<option>group 2</option>
+											<option>group 3</option>
+											<option>group 4</option>
+										</select>
+									</div>
+									<div class="col-sm-6" style="padding-top: 4px;">
+										<button class="btn btn-sm btn-outline-secondary plus_btn mr-3"
+												data-toggle="modal" data-target=".bd-example-modal-lg"
+												style="width: 20px;padding: 2px !important;"><img
+												style="margin-right: 5px;margin-left: -15px;"
+												src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
+												class="ml-0 mr-0 "/></button>
+										<button class="btn btn-sm btn-outline-secondary set_btn mr-3"
+												style="width: 20px;padding: 2px !important;"><img
+												style="margin-right: 5px;margin-left: -15px;"
+												src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
+												class="ml-0 mr-0 "/></button>
+										<button class="btn btn-sm btn-outline-secondary delete_btn"
+												style="width: 20px;padding: 2px !important;"><img
+												style="margin-right: 5px;margin-left: -15px;"
+												src="<?= base_url() ?>assets/images/gps_tracking/delete.svg"
+												class="ml-0 mr-0 "/></button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+					<table id="example11" class="table table-bordered" style="width:100%">
+						<thead>
+						<tr>
+							<th style="font-size: 12px !important;font-weight: 500;">
+								<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
+							</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i
+									class="fas fa-sort-alpha-down"></i></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i
+									class="fas fa-map-marker-alt"></i></th>
+							<th class="text-center" style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-user"></i></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('department')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-gas-pump"></i>
+							</th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-wifi"></i></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('last_activity')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-ellipsis-v"></i>
+							</th>
+
+						</tr>
+						</thead>
+						<tbody>
+
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+
+								<div class="border-danger fuel_wrapper">
+									<div class="fuel_first"></div>
+								</div>
+								<div class="border-danger fuel_wrapper ">
+									<div class="fuel_seccond bg-danger"></div>
+								</div>
+
+
+							</td>
+							<td>
+								<div class="bg-warning"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-100 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-danger"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-danger fas fa-stop-circle"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-75 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								bmw
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								mercedes benz
+								<small class="form-text text-muted">433xx33</small>
+							</td>
+							<td>street 34/56</td>
+							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
+							<td>
+								anun azganun
+								<small class="form-text text-muted">+37444443344</small>
+							</td>
+							<td>
+								department
+							</td>
+							<td>
+								<div class="border-success fuel_wrapper">
+									<div class="h-50 bg_full fuel_first"></div>
+								</div>
+								<div class="border-success fuel_wrapper ">
+									<div class="h-100 fuel_seccond bg_full"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-success"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td>
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+
+						</tr>
+
+
+						</tbody>
+					</table>
+
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-sm-7">
 			<div id="map" style="width: 100%; height: 650px;"></div>
 		</div>
 
-		<div class="col-sm-3 pr-4">
-			<fieldset class="scheduler-border">
-				<legend class="scheduler-border"><?=lang('group')?></legend>
-				<div class="control-group">
-					<div class="controls bootstrap-timepicker"  >
-						<div class="row">
-							<div class="col-sm-6">
-								<select style="margin-top: 1px;max-width: 220px;" class="form-control form-control-sml">
-									<option>group 1</option>
-									<option>group 2</option>
-									<option>group 3</option>
-									<option>group 4</option>
-								</select>
-							</div>
-							<div class="col-sm-6" style="padding-top: 4px;">
-								<button class="btn btn-sm btn-outline-secondary plus_btn mr-3" style="width: 20px;padding: 2px !important;"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg" class="ml-0 mr-0 " /></button>
-								<button class="btn btn-sm btn-outline-secondary set_btn mr-3" style="width: 20px;padding: 2px !important;"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg" class="ml-0 mr-0 " /></button>
-								<button class="btn btn-sm btn-outline-secondary delete_btn" style="width: 20px;padding: 2px !important;"><img style="margin-right: 5px;margin-left: -15px;" src="<?= base_url() ?>assets/images/gps_tracking/delete.svg" class="ml-0 mr-0 " /></button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</fieldset>
 
-			<fieldset class="scheduler-border">
-				<legend class="scheduler-border"><?=lang('vehicle')?></legend>
-				<div class="control-group">
-					<div class="controls bootstrap-timepicker" >
-						<div class="row">
-							<div class="col-sm-12">
-								<ul style="margin-top: 1px;min-height: 170px;overflow-y: auto;" class="fleets_ul form-control form-control-sml">
-									<li>fleet 1</li>
-									<li>fleet 2</li>
-									<li>fleet 3</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-									<li>fleet 4</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-
-			<fieldset class="scheduler-border">
-				<legend class="scheduler-border"><?=lang('information')?></legend>
-				<div class="control-group">
-					<div class="controls bootstrap-timepicker" >
-						<div class="row">
-							<div class="col-sm-12" style="min-height: 170px;overflow-y: auto;">
-								<div class="row">
-									<div class="col-sm-4"><?=lang('name')?></div>
-									<div class="col-sm-8">Maz_1</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4"><?=lang('license_plate')?></div>
-									<div class="col-sm-8">452uu74</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4"><?=lang('type')?></div>
-									<div class="col-sm-8">Բեռնատար</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4"><?=lang('ih')?>։</div>
-									<div class="col-sm-8">487871123597487</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4"><?=lang('description')?></div>
-									<div class="col-sm-8">Կորյուն Մարուքյան</div>
-								</div>
-
-								<div class="row">
-									<div class="col-sm-4"><?=lang('contact_number')?></div>
-									<div class="col-sm-8">+37455554455</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
 	</div>
 </div>
 
-<script>
 
-	$(document).on('click', '.fleets_ul li', function() {
+<!-- Create Group Modal  Start -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	 aria-hidden="true">
+
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-secondary " style="border-radius: unset;">
+				<h5 class="modal-title text-white"><?= lang('create_group') ?></h5>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group row">
+						<div class="col-sm-1"></div>
+						<label class="col-sm-2 col-form-label"><?= lang('company_name') ?></label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" placeholder="<?= lang('company_name') ?>">
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-1"></div>
+						<label class="col-sm-2 col-form-label"><?= lang('more_info') ?></label>
+						<div class="col-sm-8">
+							<textarea type="text" class="form-control"
+									  placeholder="<?= lang('more_info') ?>"></textarea>
+						</div>
+					</div>
+				</form>
+				<hr class="my-2">
+				<div class="row mt-1">
+					<input id="sb_s" type="text" class="form-control" placeholder="<?= lang('search') ?>"
+						   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
+					<div class="col-sm-6"
+						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+
+						<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">fffff</li>
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">gggg</li>
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">rrrr</li>
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">wwwww</li>
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">qqqqq</li>
+							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">ccccc</li>
+						</ul>
+					</div>
+					<div class="col-sm-1 text-center">
+
+						<button class="save_cancel_btn btn btn-success mb-1 p-0 add_lg_2"
+								style="margin-top: 100px;min-height: 30px !important;min-width: 35px !important;">
+							<i style="font-size: 16px;" class="fas fa-long-arrow-alt-right"> </i>
+						</button>
+
+						<button class="save_cancel_btn btn btn-success p-0 remove_lg_2"
+								style="min-height: 30px !important;min-width: 35px !important;">
+							<i style="font-size: 16px;" class="fas fa-long-arrow-alt-left"> </i>
+						</button>
+
+					</div>
+					<div class="col-sm-5"
+						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+						<ul class="list-group lg_2 mt-1">
+
+						</ul>
+					</div>
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button id="add_group" type="button"
+						class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
+				</button>
+				<button id="load" class="btn btn-sm btn-success d-none "><img
+						style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+						src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+				<button type="button" class="cancel_btn close btn btn-sm"
+						data-dismiss="modal"
+						aria-label="Close">
+					<?= lang('cancel') ?>
+				</button>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Create Group Modal End -->
+
+
+<script>
+	$('.sel_all_checkbox').on('change', function () {
+		if ($('input.sel_all_checkbox').is(':checked')) {
+
+			$('td input').each(function () {
+				$(this).prop('checked', true);
+			});
+		} else {
+			$('td input').each(function () {
+				$(this).prop('checked', false);
+			});
+		}
+	});
+
+
+	$(document).ready(function () {
+
+
+		$('#example11').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				}
+			},
+			"columnDefs": [{
+				"targets": [0, 2, 3, 4, 5, 6, 7, 8, 9],
+				"orderable": false
+			}],
+			dom: 'Bfrtip',
+			"bPaginate": false,
+			"scrollY": "500",
+			"scrollCollapse": true,
+			"paging": false,
+			"order": [[1, "desc"]]
+		});
+
+	})
+
+
+	$(document).on('click', '.sel_items', function () {
+		if ($(this).hasClass('bg-info')) {
+			$(this).removeClass('bg-info text-white');
+		} else {
+			$(this).addClass('bg-info text-white')
+		}
+	});
+
+	$(document).on('click', '.added_lg_2', function () {
+
+		array = [];
+		if ($(this).hasClass('bg-info')) {
+			$(this).removeClass('bg-info text-white');
+		} else {
+			$(this).addClass('bg-info text-white');
+		}
+		$('.added_lg_2').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				arr = {
+					'key': $(this).data('key'),
+					'name': $(this).text()
+				};
+				array.push(arr)
+			}
+		});
+	});
+
+	$(document).on('click', '.add_lg_2', function () {
+
+
+		$('.sel_items').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				$('.lg_2').append(this);
+				$(this).addClass('added_lg_2');
+				$(this).remove('.list-group');
+				$(this).removeClass('bg-info text-white sel_items');
+			}
+		});
+
+
+		//$('.select_all').prop('checked', false);
+
+	});
+
+
+	$(document).on('click', '.remove_lg_2', function () {
+		$('.added_lg_2').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				$('.lg_1').append(this);
+				$(this).remove('.lg_2');
+				$(this).removeClass('bg-info text-white added_lg_2');
+				$(this).addClass('sel_items');
+				$('#nav-tabContent-car').remove();
+				$('.tab-pane').children('form').remove();
+			}
+		});
+
+		//$('.select_all_2').prop('checked', false);
+
+	});
+
+
+	$('.select_all').on('change', function () {
+		if ($('.select_all').is(':checked')) {
+			$('.sel_items').addClass('bg-info text-white')
+		} else {
+			$('.sel_items').removeClass('bg-info text-white');
+		}
+	});
+
+	$('.delete_all').click(function () {
+		$('.sel_items').remove();
+
+		//$('.lg_1').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?//=lang('select_fleets_from_list')?>//</h2>');
+	});
+
+	/***************************************************************/
+	$('.select_all_2').on('change', function () {
+		if ($('.select_all_2').is(':checked')) {
+			$('.added_lg_2').each(function () {
+				if (!$(this).hasClass('bg-info text-white')) {
+					$(this).trigger('click');
+				}
+			});
+		} else {
+			$('.added_lg_2').each(function () {
+				if ($(this).hasClass('bg-info text-white')) {
+					$(this).trigger('click');
+				}
+			});
+		}
+	});
+
+	$('.delete_all_2').click(function () {
+		$('.added_lg_2').remove();
+		$('#nav-tabContent-car').remove();
+		$('.tab-pane').children('form').remove();
+		//$('.lg_2').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?//=lang('move_here_to_see_the_costs')?>//</h2>')
+	});
+
+
+	$(function () {
+		$('#sb_s').keyup(function () {
+			var val = $(this).val().toLowerCase();
+			$(".sel_items ").hide();
+			$(".sel_items").each(function () {
+				var text = $(this).text().toLowerCase();
+				if (text.indexOf(val) != -1) {
+					$(this).show();
+				}
+			});
+		});
+
+	});
+
+	$(document).on('click', '.fleets_ul li', function () {
 		$(this).toggleClass('fleets_ul_active');
 	})
 
@@ -321,7 +1126,19 @@
 			});
 
 
+			$(document).ready(function () {
 
+				counter += 1;
+
+				var cord = {
+					lat: 44.454545,
+					long: 43.4545454,
+					id: counter
+				}
+
+				let db = firebase.database().ref("cord/" + counter);
+				db.set(cord);
+			});
 
 			// var pointA = [55.80, 37.50],
 			//     pointB = [55.80, 37.40],
@@ -354,12 +1171,6 @@
 			// myMap.geoObjects.add(multiRoute);
 
 
-
-
-
-
-
-
 			//Car Coordinates
 
 			var cord = firebase.database().ref("cord/");
@@ -375,7 +1186,7 @@
 				console.log(latitude);
 				console.log(longitude);
 
-				if(track.indexOf([latitude.toFixed(5), longitude.toFixed(5)]) === -1) {
+				if (track.indexOf([latitude.toFixed(5), longitude.toFixed(5)]) === -1) {
 					track.push([latitude.toFixed(5), longitude.toFixed(5)]);
 
 				}

@@ -286,6 +286,8 @@ $lang['group'] = 'Группа';
 $lang['license_plate'] = 'Номерной знак';
 $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Описание';
+$lang['create_group'] = 'Создать Группу';
+$lang['last_activity'] = 'Последняя активность';
 
 
 //other info

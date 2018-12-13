@@ -284,6 +284,8 @@ $lang['group'] = 'Խումբ';
 $lang['license_plate'] = 'Պետհամարանիշ';
 $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Նկարագր';
+$lang['create_group'] = 'Ստեղծել Խումբ';
+$lang['last_activity'] = 'Վերջին ակտիվությունը';
 
 
 //other info

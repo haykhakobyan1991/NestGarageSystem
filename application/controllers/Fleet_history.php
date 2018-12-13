@@ -439,79 +439,80 @@ class Fleet_history extends MX_Controller {
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
 		$hidden = $this->input->post('hidden');
+		$search_car = $this->input->post('search_car');
 
 		$new_array = array();
 
 		if(!empty($hidden) && in_array('inspection', $hidden)) {
 			$inspection = array();
 		} else {
-			$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection');
+			$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('fuel_consumption', $hidden)) {
 			$fuel_consumption = array();
 		} else {
-			$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption');
+			$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('fine', $hidden)) {
 			$fine = array();
 		} else {
-			$fine = $this->vehicle_info($from, $to, $company_id, 'fine');
+			$fine = $this->vehicle_info($from, $to, $company_id, 'fine', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('accident', $hidden)) {
 			$accident = array();
 		} else {
-			$accident = $this->vehicle_info($from, $to, $company_id, 'accident');
+			$accident = $this->vehicle_info($from, $to, $company_id, 'accident', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('insurance', $hidden)) {
 			$insurance = array();
 		} else {
-			$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance');
+			$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('spares', $hidden)) {
 			$spares = array();
 		} else {
-			$spares = $this->vehicle_info($from, $to, $company_id, 'spares');
+			$spares = $this->vehicle_info($from, $to, $company_id, 'spares', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('repair', $hidden)) {
 			$repair = array();
 		} else {
-			$repair = $this->vehicle_info($from, $to, $company_id, 'repair');
+			$repair = $this->vehicle_info($from, $to, $company_id, 'repair', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('wheel', $hidden)) {
 			$wheel = array();
 		} else {
-			$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel');
+			$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('brake', $hidden)) {
 			$brake = array();
 		} else {
-			$brake = $this->vehicle_info($from, $to, $company_id, 'brake');
+			$brake = $this->vehicle_info($from, $to, $company_id, 'brake', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('grease', $hidden)) {
 			$grease = array();
 		} else {
-			$grease = $this->vehicle_info($from, $to, $company_id, 'grease');
+			$grease = $this->vehicle_info($from, $to, $company_id, 'grease', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('filter', $hidden)) {
 			$filter = array();
 		} else {
-			$filter = $this->vehicle_info($from, $to, $company_id, 'filter');
+			$filter = $this->vehicle_info($from, $to, $company_id, 'filter', $search_car);
 		}
 
 		if(!empty($hidden) && in_array('battery', $hidden)) {
 			$battery = array();
 		} else {
-			$battery = $this->vehicle_info($from, $to, $company_id, 'battery');
+			$battery = $this->vehicle_info($from, $to, $company_id, 'battery', $search_car);
 		}
 
 
@@ -641,10 +642,11 @@ class Fleet_history extends MX_Controller {
 
 
 
-	public function vehicle_info($from, $to, $company_id, $table) {
+	public function vehicle_info($from, $to, $company_id, $table, $search_car) {
 
 		$lng = $this->load->lng();
 		$sql_add = '';
+		$add_sql = '';
 
 		if($table == 'inspection' || $table == 'insurance') {
 			$sql_add .= "".$table.".`end_date`,";
@@ -658,6 +660,14 @@ class Fleet_history extends MX_Controller {
 		} else {
 			$sql_add .= "SUM(".$table.".`price`) AS `price`,";
 			$sql_add .= "".$table.".`price` AS `count`,";
+		}
+
+		if($search_car != '') {
+			$add_sql = 'AND CONCAT_WS(
+				\' \',
+				`brand`.`title_'.$lng.'`,
+				`model`.`title_'.$lng.'`
+			  ) LIKE "%'.$search_car.'%"';
 		}
 
 		 $sql = "
@@ -685,6 +695,7 @@ class Fleet_history extends MX_Controller {
 			WHERE ".$table.".`status` = '1' 
 			 AND `user`.`company_id` = ".$this->load->db_value($company_id)."	
 			 AND (".$table.".`add_date` >= '".$from."' AND ".$table.".`add_date` <= '".$to."')
+			 ".$add_sql."
 		 	 GROUP BY ".$table.".`fleet_id`
 		 ";
 

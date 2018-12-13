@@ -142,12 +142,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
 			var date_from = $('input[name="from"]').val();
 			var date_to = $('input[name="to"]').val();
-
+			var search_car = $('input[type="search"]').val();
 
 			$.ajax({
 				url: url,
 				type: 'POST',
-				data: {from: date_from, to: date_to},
+				data: {from: date_from, to: date_to, search_car: search_car},
 				async: true,
 				dataType: "json",
 				success: function (data) {
@@ -188,6 +188,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						'colvis'
 					]
 				});
+
 
 				table.buttons().container()
 					.appendTo('#example_wrapper #example_filter:eq(0)');
@@ -267,11 +268,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
 						var date_from = $('input[name="from"]').val();
 						var date_to = $('input[name="to"]').val();
+						var search_car = $('input[type="search"]').val();
 
 						$.ajax({
 							url: url,
 							type: 'POST',
-							data: {from: date_from, to: date_to, hidden: hidden},
+							data: {from: date_from, to: date_to, hidden: hidden, search_car: search_car},
 							async: true,
 							dataType: "json",
 							success: function (data) {
@@ -311,4 +313,25 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	});
 	}
+
+	$(document).on('keyup', 'input[type="search"]', function () {
+
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
+		var date_from = $('input[name="from"]').val();
+		var date_to = $('input[name="to"]').val();
+		var search_car = $(this).val();
+
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: {from: date_from, to: date_to, search_car: search_car},
+			async: true,
+			dataType: "json",
+			success: function (data) {
+				chart(data);
+			}
+		})
+	})
+
 </script>

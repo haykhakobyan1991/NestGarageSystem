@@ -66,6 +66,7 @@ $lang['type_summer_winter_all'] = 'Տեսակ (Ամառ, Ձմեռ, Բոլոր)';
 $lang['summer'] = 'Ամառ';
 $lang['winter'] = 'Ձմեռ';
 $lang['all'] = 'Բոլոր';
+$lang['only_vehicles'] = 'Միայն Փոխադրամիջոցներ';
 
 
 

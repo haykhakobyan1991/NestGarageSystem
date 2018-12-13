@@ -67,6 +67,7 @@ $lang['winter'] = 'Зима';
 $lang['all'] = 'Все';
 $lang['select_all'] = 'Выбрать все';
 $lang['delete'] = 'Удалить';
+$lang['only_vehicles'] = 'Только транспортные средства';
 
 
 //select options

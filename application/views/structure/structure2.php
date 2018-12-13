@@ -80,7 +80,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 		<div id="sample" style="position:relative;">
 			<div id="fleet_filter" class="form-group form-check">
 				<input style="margin-top: 4px" type="checkbox" class="form-check-input" id="filter_vehicles">
-				<label class="form-check-label" for="exampleCheck1">Check me out</label>
+				<label class="form-check-label" for="exampleCheck1"><?=lang('only_vehicles')?></label>
 			</div>
 			<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
 			<div>

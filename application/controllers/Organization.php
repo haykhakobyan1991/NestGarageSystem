@@ -171,9 +171,7 @@ class Organization extends MX_Controller {
 		$lng = $this->load->lng();
 
 
-
-
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->limit(1)->get()->row_array();
 		$company_id = $row['company_id'];
 
 

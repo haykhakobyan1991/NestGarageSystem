@@ -35,6 +35,10 @@
 	.modal {
 		top: 30% !important;
 	}
+
+	.dataTables_filter>label {
+		margin-right: 70%;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <script src="https://gojs.net/latest/extensions/Robot.js"></script>
@@ -278,7 +282,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 			<!--search-->
-			<div id="search_" style="min-height: 35px; display: none; position: absolute; top: 9px; left: 280px;">
+			<div id="search_" style="min-height: 35px;position: absolute;top: 9px;left: 66%;display: none">
 				<div style="float: right;">
 					<span class="p-3"><?=lang('from')?></span>
 					<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
@@ -1187,6 +1191,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var date_from = $('input[name="from"]').val();
 			var date_to = $('input[name="to"]').val();
 
+			$('.tab-pane').each(function () {
+				if ($(this).data('tab') == dataTab) {
+					$(this).html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+				}
+			});
+
 			$.post(url_1, {arr: new_arr, date_from: date_from, date_to: date_to}).done(function (data) {
 				$('.tab-pane').each(function () {
 					if ($(this).data('tab') == dataTab) {
@@ -1195,7 +1205,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						$('button#search').data('tab', dataTab);
 						$('button#search').data('url', url_1);
 
-						$('#search_').css('display', 'block');
+						if(data != '') {
+							$('#search_').css('display', 'block');
+						}
 
 					}
 				});

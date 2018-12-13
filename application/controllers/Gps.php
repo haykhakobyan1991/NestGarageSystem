@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
 class Gps extends MX_Controller {
 
 	/**
@@ -59,32 +58,6 @@ class Gps extends MX_Controller {
 		return hash('sha256', $data);
 	}
 
-	/**
-	 * @param int $start
-	 * @param int $length
-	 * @return bool|string
-	 * Ex: 45f7fd76
-	 */
-	private function uname($start = 3, $length = 2) {
-
-		return substr(md5(time() . rand()), $start, $length);
-
-	}
-
-	/**
-	 * @param $text
-	 * @return string
-	 */
-	public function get_first_character($text) {
-		return mb_substr($text,0,1, 'utf-8');
-	}
-
-	/**
-	 * @return string
-	 */
-	public function rand_color() {
-		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
-	}
 
 
 	public function gps_tracking() {

@@ -274,10 +274,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-7">
-					<div id="container" style="width:100%; height:500px;"></div>
+					<div id="container" style="width:100%; "></div>
 				</div>
 				<div class="col-sm-5">
-					<div id="container_2" style="width:100%; height:500px;"></div>
+					<div id="container_2" style="width:100%; "></div>
 				</div>
 			</div>
 		</div><?
@@ -462,13 +462,6 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 				}
 			});
 	}
-
-
-	function get_diagram() {
-		myDiagram.div = null;
-		init();
-	}
-
 
 	function diagramListener() {
 
@@ -658,28 +651,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 				/*Remove BoxShadow From HighCharts Pie Diagram*/
 				$('.highcharts-text-outline').attr('stroke', '');
 			});
-	}
 
-
-
-
-
-	function load() {
-		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
-	}
-
-	function load_new() {
-
-		myDiagram.model = go.Model.fromJson('{"class": "go.TreeModel","nodeDataArray": <?=json_encode($structure_array)?>}');
-	}
-
-	$(document).ready(function () {
-		init();
-
-
-
-
-		diagramListener();
 
 		if ($('a[data-id="2"]').hasClass('active')) {
 
@@ -801,23 +773,25 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
             *
             */
 
-			Highcharts.setOptions({
-				colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-					return {
-						radialGradient: {
-							cx: 0.5,
-							cy: 0.3,
-							r: 0.7
-						},
-						stops: [
-							[0, color],
-							[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-						]
-					};
-				})
-			});
+			// Highcharts.setOptions({
+			// 	colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+			// 		return {
+			// 			radialGradient: {
+			// 				cx: 0.5,
+			// 				cy: 0.3,
+			// 				r: 0.7
+			// 			},
+			// 			stops: [
+			// 				[0, color],
+			// 				[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+			// 			]
+			// 		};
+			// 	})
+			// });
 
 			function chartCircle(data, title) {
+
+				console.log(data.data);
 
 				// Build the chart
 				Highcharts.chart('container_2', {
@@ -847,7 +821,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 								events: {
 									click: function (e) {
 
-										if(!this.selected) {
+										if (!this.selected) {
 
 											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistorySingle_ax')?>';
 											var date_from = $('input[name="from"]').val();
@@ -858,7 +832,13 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 											$.ajax({
 												url: url,
 												type: 'POST',
-												data: {date_from: date_from, date_to: date_to, table: table, fleet_id: fleet_id, fleet_name: fleet_name},
+												data: {
+													date_from: date_from,
+													date_to: date_to,
+													table: table,
+													fleet_id: fleet_id,
+													fleet_name: fleet_name
+												},
 												async: true,
 												dataType: "json",
 												success: function (data) {
@@ -875,7 +855,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 											$.ajax({
 												url: url,
 												type: 'POST',
-												data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+												data: {
+													date_from: date_from,
+													date_to: date_to,
+													table: table,
+													arr: new_arr
+												},
 												async: true,
 												dataType: "json",
 												success: function (data) {
@@ -979,72 +964,13 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 			})
 		}
-
-
-	});
-
-
-	$(document).on('click', '.expand_tr', function () {
-		if ($(this).hasClass('fa-plus')) {
-			$(this).removeClass('fa-plus');
-			$(this).addClass('fa-minus');
-		} else {
-			$(this).addClass('fa-plus');
-			$(this).removeClass('fa-minus');
-		}
-		var btn_value = $(this).data('value');
-		$('.more[data-value=' + btn_value + ']').toggle('slow');
-	});
-
-
-	$(document).on('click', '.del_row_ft', function () {
-		$(this).parent('td').parent('tr').remove();
-	});
-
-
-	//ajax
-	function vehicle_add(new_arr, url_1, dataTab) {
-
-		var date_from = $('input[name="from"]').val();
-		var date_to = $('input[name="to"]').val();
-
-		$.post(url_1, {arr: new_arr, date_from: date_from, date_to: date_to}).done(function (data) {
-			$('.tab-pane').each(function () {
-				if ($(this).data('tab') == dataTab) {
-					$(this).html(data);
-					$("td[valign='top']").parent('tr').remove();
-					$('button#search').data('tab', dataTab);
-					$('button#search').data('url', url_1);
-
-					$('#search_').css('display', 'block');
-
-				}
-			});
-		});
 	}
 
 
-	//vehicle inspection
-	var i = 1;
-	$(document).on('click', '.ex_1_add_new_tr', function () {
-		i++;
-
-		var fleet = $('input[name="vehicle[1]"]').val();
-
-		$('.ex_1').append('<tr role="row">\n' +
-			'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="' + fleet + '"  class="form-control text-center"/></td>\n' +
-			'<td><input title=""  type="date" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
-			'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?//= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
-			'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
-			'<td><input title="" type="number" name="price[' + i + ']" min="0" class="form-control text-center"/></td>\n' +
-			'<td>' +
-			'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
-			'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
-			'</span>' +
-			'</td>\n' +
-			'</tr>');
-
-	});
+	function get_diagram() {
+		myDiagram.div = null;
+		init();
+	}
 
 	function replaceDiagram() {
 
@@ -1170,7 +1096,92 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 		} else {
 			get_diagram();
 		}
-	})
+		diagramListener();
+	});
+
+
+
+	function load() {
+		myDiagram.model = go.Model.fromJson(document.getElementById("mySavedModel").value);
+	}
+
+	function load_new() {
+
+		myDiagram.model = go.Model.fromJson('{"class": "go.TreeModel","nodeDataArray": <?=json_encode($structure_array)?>}');
+	}
+
+
+	$(document).ready(function () {
+		init();
+
+		diagramListener();
+	});
+
+
+	$(document).on('click', '.expand_tr', function () {
+		if ($(this).hasClass('fa-plus')) {
+			$(this).removeClass('fa-plus');
+			$(this).addClass('fa-minus');
+		} else {
+			$(this).addClass('fa-plus');
+			$(this).removeClass('fa-minus');
+		}
+		var btn_value = $(this).data('value');
+		$('.more[data-value=' + btn_value + ']').toggle('slow');
+	});
+
+
+	$(document).on('click', '.del_row_ft', function () {
+		$(this).parent('td').parent('tr').remove();
+	});
+
+
+	//ajax
+	function vehicle_add(new_arr, url_1, dataTab) {
+
+		var date_from = $('input[name="from"]').val();
+		var date_to = $('input[name="to"]').val();
+
+		$.post(url_1, {arr: new_arr, date_from: date_from, date_to: date_to}).done(function (data) {
+			$('.tab-pane').each(function () {
+				if ($(this).data('tab') == dataTab) {
+					$(this).html(data);
+					$("td[valign='top']").parent('tr').remove();
+					$('button#search').data('tab', dataTab);
+					$('button#search').data('url', url_1);
+
+					if(data != '') {
+						$('#search_').css('display', 'block');
+					}
+				}
+			});
+		});
+	}
+
+
+	//vehicle inspection
+	var i = 1;
+	$(document).on('click', '.ex_1_add_new_tr', function () {
+		i++;
+
+		var fleet = $('input[name="vehicle[1]"]').val();
+
+		$('.ex_1').append('<tr role="row">\n' +
+			'<td><input title="" readonly type="text" name="vehicle[' + i + ']" value="' + fleet + '"  class="form-control text-center"/></td>\n' +
+			'<td><input title=""  type="date" name="date[' + i + ']" value="<?= mdate('%Y-%m-%d', now()) ?>"  class="form-control text-center"/></td>\n' +
+			'<td><input title="" readonly type="text" name="user[' + i + ']" value="<?//= $user['name'] ?>"  class="form-control text-center"/></td>\n' +
+			'<td><input title="" type="date" name="end_date[' + i + ']" max="3000-12-31" min="1000-01-01"  class="form-control text-center"/></td>\n' +
+			'<td><input title="" type="number" name="price[' + i + ']" min="0" class="form-control text-center"/></td>\n' +
+			'<td>' +
+			'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
+			'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
+			'</span>' +
+			'</td>\n' +
+			'</tr>');
+
+	});
+
+
 
 </script>
 

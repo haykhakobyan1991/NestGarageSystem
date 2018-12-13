@@ -52,7 +52,8 @@
 						class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1"
 						href="#"><img
 						style="margin-right: 5px;margin-left: -15px;"
-						src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?></button>
+						src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?>
+				</button>
 				<button style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 						class="btn btn-outline-secondary  nav-item nav-link mr-1 "
 						href="#"><img
@@ -62,7 +63,8 @@
 						class="btn btn-outline-secondary  nav-item nav-link mr-1 "
 						href="#"><img
 						style="margin-right: 5px;margin-left: -15px;"
-						src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?></button>
+						src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?>
+				</button>
 
 
 				<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
@@ -151,13 +153,14 @@
 									class="fas fa-sort-alpha-down"></i></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><i
 									class="fas fa-map-marker-alt"></i></th>
-							<th class="text-center" style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
+							<th class="text-center"
+								style="font-size: 12px !important;font-weight: 500;"><?= lang('status') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-user"></i></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('department')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-gas-pump"></i>
 							</th>
 							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-wifi"></i></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('last_activity')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-ellipsis-v"></i>
 							</th>
 
@@ -1125,20 +1128,20 @@
 				strokeWidth: 5
 			});
 
-
-			$(document).ready(function () {
-
-				counter += 1;
-
-				var cord = {
-					lat: 44.454545,
-					long: 43.4545454,
-					id: counter
-				}
-
-				let db = firebase.database().ref("cord/" + counter);
-				db.set(cord);
-			});
+			//
+			// $(document).ready(function () {
+			//
+			// 	counter += 1;
+			//
+			// 	var cord = {
+			// 		lat: 44.454545,
+			// 		long: 43.4545454,
+			// 		id: counter
+			// 	}
+			//
+			// 	let db = firebase.database().ref("cord/" + counter);
+			// 	db.set(cord);
+			// });
 
 			// var pointA = [55.80, 37.50],
 			//     pointB = [55.80, 37.40],
@@ -1210,7 +1213,16 @@
 
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
-					balloonContent: latitude + '-' + longitude
+					balloonContentHeader: "",
+					balloonContentBody: "<p class='mb-0'>object:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+						"<p class='mb-0'>Պետհամարանիշ:<span class='ml-1'>441xs26</span></p>" +
+						"<p class='mb-0'>message time:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+						"<p class='mb-0'>speed<span class='ml-1'>55 km/h</span></p>" +
+						"<p class='mb-0'>engine:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+						"<p class='mb-0'>driver: <span class='ml-1'>Name Lastname</span></p>" +
+						"<p class='mb-0'>fuel:<span class='ml-1'>25l</span></p>" +
+						"<p class='mb-0'>place:<span class='ml-1'>Lenigradian 16</span></p>",
+					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
 					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
@@ -1280,7 +1292,16 @@
 				console.log(longitude);
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
-					balloonContent: latitude + '-' + longitude
+					balloonContentHeader: "",
+					balloonContentBody: "<p class='mb-0'>object:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+						"<p class='mb-0'>Պետհամարանիշ:<span class='ml-1'>441xs26</span></p>" +
+						"<p class='mb-0'>message time:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+						"<p class='mb-0'>speed<span class='ml-1'>55 km/h</span></p>" +
+						"<p class='mb-0'>engine:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+						"<p class='mb-0'>driver: <span class='ml-1'>Name Lastname</span></p>" +
+						"<p class='mb-0'>fuel:<span class='ml-1'>25l</span></p>" +
+						"<p class='mb-0'>place:<span class='ml-1'>Lenigradian 16</span></p>",
+					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
 					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',

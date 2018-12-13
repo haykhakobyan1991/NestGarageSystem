@@ -14,7 +14,7 @@ $folder = $this->session->folder;
 					foreach ($result as $row) {
 						if($row['staff_id'] != $staff_id) :
 						?><div class="col-sm-12 p-0" >
-							<div class="col-sm-3" style="border: 1px solid #dee2e6 !important; min-width: 30%;">
+							<div class="col-sm-3" style="border: 1px solid #dee2e6 !important; min-width: 32%;">
 								<div class="row bg-white">
 									<div class="p-2  w-auto " style="min-width: 45%;">
 										<p class="text-black small driver_info"><?=lang('first_name')?>:
@@ -66,7 +66,7 @@ $folder = $this->session->folder;
 						$staff_id = $row['staff_id'];
 						?>
 
-						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 30%;">
+						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32%;">
 						<div class="row bg-white">
 							<div class=" p-2 mt-1 w-auto" style="min-width: 45%">
 								<p class="text-black small driver_info"><?=lang('brand')?>: <span

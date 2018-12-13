@@ -793,21 +793,22 @@
 									  placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
 					</div>
+
+
 				</form>
 				<hr class="my-2">
-				<div class="row mt-1">
+				<div class="row mt-1 pl-1 pr-1">
 					<input id="sb_s" type="text" class="form-control" placeholder="<?= lang('search') ?>"
 						   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
-					<div class="col-sm-6"
-						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+					<div class="col-sm-6 scroll_style" style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 
 						<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">fffff</li>
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">gggg</li>
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">rrrr</li>
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">wwwww</li>
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">qqqqq</li>
-							<li style="cursor: pointer" class="sel_items mt-1 list-group-item">ccccc</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">fffff</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">gggg</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">rrrr</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">wwwww</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">qqqqq</li>
+							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
 						</ul>
 					</div>
 					<div class="col-sm-1 text-center">
@@ -823,8 +824,7 @@
 						</button>
 
 					</div>
-					<div class="col-sm-5"
-						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+					<div class="col-sm-5 scroll_style" style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 						<ul class="list-group lg_2 mt-1">
 
 						</ul>

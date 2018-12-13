@@ -96,3 +96,14 @@ div.fuel_seccond {
 .bg_full{
 	background: rgba(40, 167, 69, 1);
 }
+
+.dataTables_scrollBody::-webkit-scrollbar,.col-sm-6.scroll_style::-webkit-scrollbar,.col-sm-5.scroll_style::-webkit-scrollbar {
+	width: .25em;
+}
+.dataTables_scrollBody::-webkit-scrollbar-track,.col-sm-6.scroll_style::-webkit-scrollbar-track,.col-sm-5.scroll_style::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+.dataTables_scrollBody::-webkit-scrollbar-thumb,.col-sm-6.scroll_style::-webkit-scrollbar-thumb,.col-sm-5.scroll_style::-webkit-scrollbar-thumb {
+	background-color: darkgrey;outline: 1px solid slategrey;
+}
+

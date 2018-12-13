@@ -364,6 +364,8 @@ class Structure extends MX_Controller {
 
 		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
 
+//		$this->pre($structure_unique);
+
 
 		$data['structure'] = json_encode($structure_unique);
 

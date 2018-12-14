@@ -67,7 +67,7 @@ $lang['summer'] = 'Ամառ';
 $lang['winter'] = 'Ձմեռ';
 $lang['all'] = 'Բոլոր';
 $lang['only_vehicles'] = 'Միայն Փոխադրամիջոցներ';
-
+$lang['edit'] = 'Խմբագրել';
 
 
 //select options

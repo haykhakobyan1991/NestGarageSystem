@@ -642,8 +642,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		function rightClick() { //---
 			$(".highcharts-point").contextmenu(function (e) {
 
+				count =  $(window).height() - $('body').height();
+
+				//alert(count);
+
 				var left = arguments[0].clientX;
-				var top = arguments[0].clientY;
+				var top = arguments[0].clientY + 2 * count;
 
 				menuBox = window.document.querySelector(".dropdown-menu");
 				menuBox.style.left = left + "px";

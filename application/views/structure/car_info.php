@@ -196,7 +196,7 @@ $folder = $this->session->folder;
 		</div>
 	</div>
 </div>
-<button id="dd">fff</button>
+
 <script>
 	$(".open_menu").contextmenu(function (e) {
 

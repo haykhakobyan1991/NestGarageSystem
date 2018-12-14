@@ -64,7 +64,7 @@ $folder = $this->session->folder;
 											   class="open_menu text-white fas fa-ellipsis-h"></i>
 
 											<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
-												<a class="dropdown-item" href="#"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
+												<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/staff/?id='.$row['staff_id'])?>"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
 											</div>
 										</div>
 									</div>
@@ -135,8 +135,8 @@ $folder = $this->session->folder;
 								   class="open_menu text-white fas fa-ellipsis-h"></i>
 
 								<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
-									<a class="dropdown-item" href="#"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
-									<a class="dropdown-item" href="#"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>
+									<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/edit_vehicles/'.$row['id'])?>"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
+									<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/gps_tracking')?>"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>
 
 								</div>
 							</div>
@@ -200,7 +200,7 @@ $folder = $this->session->folder;
 <script>
 	$(".open_menu").contextmenu(function (e) {
 
-		$('.dropdown-menu').fadeOut(200)
+		$('.dropdown-menu').fadeOut(200);
 		$(this).parent('div').children('div').css('display', 'block');
 
 		e.preventDefault(e)

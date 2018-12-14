@@ -69,6 +69,7 @@ $lang['select_all'] = 'Выбрать все';
 $lang['delete'] = 'Удалить';
 $lang['only_vehicles'] = 'Только транспортные средства';
 $lang['edit'] = 'Редактировать';
+$lang['details'] = 'Детали';
 
 
 //select options

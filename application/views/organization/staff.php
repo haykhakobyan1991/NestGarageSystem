@@ -45,7 +45,7 @@ endforeach;
 			<div class="container-fluid">
 
 				<div class="row">
-					<diiv class="col-sm-5 pt-2">
+					<div class="col-sm-5 pt-2">
 						<div class="row">
 							<div class="col-sm-4">
 								<p class="display-5 font-weight-bold float-left"
@@ -63,7 +63,7 @@ endforeach;
 									class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
 							</div>
 						</div>
-					</diiv>
+					</div>
 					<div class="col-sm-7 text-right">
 						<span class="text-capitalize btn btn-outline-success btn-sm float-right" data-toggle="modal"
 							  data-target=".add_staff_modal"><?= lang('add_staff') ?>
@@ -1056,6 +1056,14 @@ color: #545b62;">
 
 	});
 
+
+	$(window).on('load', function () {
+		<?if($this->input->get('id') != '') {?>
+			$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
+		<?}?>
+	});
+
+
 	/* Staff image Uploade Start*/
 	function readURL2(input) {
 
@@ -1064,7 +1072,7 @@ color: #545b62;">
 
 			reader.onload = function (e) {
 				$('#img-upload2').attr('src', e.target.result);
-			}
+			};
 
 			reader.readAsDataURL(input.files[0]);
 		}

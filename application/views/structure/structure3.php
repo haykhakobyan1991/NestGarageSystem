@@ -877,21 +877,21 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
             *
             */
 
-			Highcharts.setOptions({
-				colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-					return {
-						radialGradient: {
-							cx: 0.5,
-							cy: 0.3,
-							r: 0.7
-						},
-						stops: [
-							[0, color],
-							[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-						]
-					};
-				})
-			});
+			// Highcharts.setOptions({
+			// 	colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+			// 		return {
+			// 			radialGradient: {
+			// 				cx: 0.5,
+			// 				cy: 0.3,
+			// 				r: 0.7
+			// 			},
+			// 			stops: [
+			// 				[0, color],
+			// 				[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+			// 			]
+			// 		};
+			// 	})
+			// });
 
 			function chartCircle(data, title) {
 
@@ -1194,6 +1194,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			$('.tab-pane').each(function () {
 				if ($(this).data('tab') == dataTab) {
 					$(this).html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+					$('#search_').css('display', 'none');
 				}
 			});
 

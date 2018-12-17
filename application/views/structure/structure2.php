@@ -467,6 +467,20 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			});
 	}
 
+	// trigger click ---
+	function clickFleet(val) {
+		var fleet = myDiagram.findNodeForKey(val);
+		if (fleet === null) return;
+		var loc = fleet.location;
+
+		// click on fleet
+		robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
+		robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
+
+		// Clicking is just a sequence of input events.
+		// There is no command in CommandHandler for such a basic gesture.
+	}
+
 	function diagramListener() {
 
 		robot = new Robot(myDiagram);
@@ -480,31 +494,16 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 		}
 
 
-		// trigger click ---
-		function clickFleet(val) {
-			var fleet = myDiagram.findNodeForKey(val);
-			if (fleet === null) return;
-			var loc = fleet.location;
-
-			// click on fleet
-			robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
-			robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
-
-			// Clicking is just a sequence of input events.
-			// There is no command in CommandHandler for such a basic gesture.
-		}
-
 
 
 		function rightClick() { //---
 			$(".highcharts-point").contextmenu(function (e) {
 
-				count =  $(window).height() - $('body').height();
-
-				//alert(count);
+				var doc = document.documentElement;
+				var count = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
 
 				var left = arguments[0].clientX;
-				var top = arguments[0].clientY + 2 * count;
+				var top = arguments[0].clientY + count;
 
 				menuBox = window.document.querySelector(".dropdown-menu");
 				menuBox.style.left = left + "px";

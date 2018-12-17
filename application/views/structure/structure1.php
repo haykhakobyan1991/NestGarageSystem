@@ -623,7 +623,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 		}
 
-		// trigger click ---
+		// trigger click ---;
 		function clickFleet(val) {
 			var fleet = myDiagram.findNodeForKey(val);
 			if (fleet === null) return;
@@ -638,16 +638,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}
 
 
-
 		function rightClick() { //---
 			$(".highcharts-point").contextmenu(function (e) {
 
-				count =  $(window).height() - $('body').height();
-
-				//alert(count);
+				var doc = document.documentElement;
+				var count = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
 				var left = arguments[0].clientX;
-				var top = arguments[0].clientY + 2 * count;
+				var top = arguments[0].clientY + count;
 
 				menuBox = window.document.querySelector(".dropdown-menu");
 				menuBox.style.left = left + "px";
@@ -660,15 +658,29 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					}
 				});
 
-
-				document.getElementById('more_info').
-					href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/structure1/add_expenses/?from=')?>"
-					+$('input[name="from"]').val()
-					+'&to='+$('input[name="to"]').val()
-					+'&tab='+menuBox.getAttribute('data-tab')
-					+'&fleet='+e.target.point.fleet_id;
-
 				e.preventDefault(e);
+
+				//---;
+				if ($(this).hasClass('line')) {
+
+					var fleets = $('input[name="selecteds"]').val();
+					var date = chart1.series[0].data[0].category; // todo
+					console.log(e);
+
+					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+						+ date
+						+ '&to=' + date
+						+ '&tab=' + menuBox.getAttribute('data-tab')
+						+ '&fleets=' + fleets;
+
+				} else {
+					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+						+ $('input[name="from"]').val()
+						+ '&to=' + $('input[name="to"]').val()
+						+ '&tab=' + menuBox.getAttribute('data-tab')
+						+ '&fleet=' + e.target.point.fleet_id;
+
+				}
 
 			});
 
@@ -710,15 +722,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					var linkDataArray = <?=$from_to?>;
 					$.each(linkDataArray, function (key, value) {
-						// console.log(value.from + '----' +part.Wd.key);
+
 						if (value.from == myDiagram.selection.Ca.key.Wd.key) {
-							console.log(linkDataArray[key].to);
+							console.log('+' + linkDataArray[key].to);
 							dragSelectNodes(linkDataArray[key].to);
 
 							$.each(linkDataArray, function (ky, val) {
 								if (val.from == value.to) {
 									dragSelectNodes(val.to);
-									console.log(val.to);
+									console.log('-' + val.to);
 								}
 							})
 						}
@@ -729,6 +741,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					var arr = [];
 					new_arr = [];
+					selecteds = [];
 					myDiagram.selection.each(function (part) {
 
 
@@ -747,9 +760,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							if (found1 == 'f' || found2 == 'd') {
 								new_arr.push(arr);
 							}
-							// console.log(new_arr);
+
+							if(found1 == 'f') {
+								selecteds.push(arr.key);
+							}
+
 						}
 					});
+
+					//---;
+					$('input[name="selecteds"]').val(selecteds);
 
 
 					if ($('a[data-id="1"]').hasClass('active')) {
@@ -945,7 +965,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 				function chart(data, title) {
 
-					Highcharts.chart('container', {
+					chart1 = Highcharts.chart('container', {
 						chart: {
 							scrollablePlotArea: {
 								minWidth: 700
@@ -1003,6 +1023,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							data: data.price
 						}]
 					});
+
+
+					$('#container path').addClass('line'); //---;
 
 				}
 
@@ -1350,7 +1373,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 </div>
 
 
-<script>
+<script>//---;
 	$(window).on('load', function () {
 		if ($('a[data-id="2"]').hasClass('active')) {
 			<?if($this->input->get('tab') != '') {?>
@@ -1362,9 +1385,30 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				});
 
 
-				setTimeout(function(){
-					clickFleet('f<?=$this->input->get('fleet')?>');
-				}, 500);
+			<?if($this->input->get('fleet') != '') {?>
+
+			setTimeout(function () {
+				clickFleet('f<?=$this->input->get('fleet')?>');
+			}, 500);
+
+			<?} elseif($this->input->get('fleets') != '') {?>
+
+			setTimeout(function () {
+
+				var coll = new go.Set();
+				<?foreach (explode(',', $this->input->get('fleets')) as $value) : ?>
+				coll.add(myDiagram.findNodeForKey("<?=$value?>"));
+				<?endforeach;?>
+
+				var area = myDiagram.computePartsBounds(coll);
+
+				robot.mouseDown(area.x, area.y, 0);
+				robot.mouseMove(area.centerX, area.centerY, 200);
+				robot.mouseUp(area.right, area.bottom, 250);
+
+			}, 500);
+
+			<?}?>
 
 
 				$('input[name="from"]').val('<?=$this->input->get('from')?>');
@@ -1377,5 +1421,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 </script>
+
+<input type="hidden" name="selecteds">
 
 

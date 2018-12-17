@@ -410,6 +410,71 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			return button;
 		});
 
+		// trigger click ---
+		function clickFleet(val) {
+			var fleet = myDiagram.findNodeForKey(val);
+			if (fleet === null) return;
+			var loc = fleet.location;
+
+			// click on fleet
+			robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
+			robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
+
+			// Clicking is just a sequence of input events.
+			// There is no command in CommandHandler for such a basic gesture.
+		}
+
+
+
+		function rightClick() { //---
+			$(".highcharts-point").contextmenu(function (e) {
+
+
+				var doc = document.documentElement;
+				var count = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+
+				//alert(count);
+
+				var left = arguments[0].clientX;
+				var top = arguments[0].clientY + count;
+
+				menuBox = window.document.querySelector(".dropdown-menu");
+				menuBox.style.left = left + "px";
+				menuBox.style.top = top + "px";
+				menuBox.style.display = "block";
+
+				$('.tab_nav').each(function () {
+					if ($(this).hasClass('active')) {
+						menuBox.setAttribute('data-tab', $(this).data('tab'));
+					}
+				});
+
+
+				document.getElementById('more_info').
+					href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/structure1/add_expenses/?from=')?>"
+					+$('input[name="from"]').val()
+					+'&to='+$('input[name="to"]').val()
+					+'&tab='+menuBox.getAttribute('data-tab')
+					+'&fleet='+e.target.point.fleet_id;
+
+				e.preventDefault(e);
+
+			});
+
+			function closeMenu() {
+				$('.dropdown-menu').fadeOut(200);
+			}
+
+			$(document.body).click(function (e) {
+				closeMenu();
+			});
+
+			$(".dropdown-menu").click(function (e) {
+				menuBox.style.display = "none";
+				e.stopPropagation();
+			});
+		}
+
 		function init() {
 			if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
 			var $ = go.GraphObject.make;  // for conciseness in defining templates
@@ -749,6 +814,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						chartCircle(data, title);
 						chart(data, title);
 					}
+				}).done(function () {
+					rightClick();
 				});
 			} else {
 				$('.selected_information').html('');
@@ -839,7 +906,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											success: function (data) {
 												chartCircle(data, title);
 											}
-										});
+										}).done(function () {
+											rightClick();
+										});;
 
 									}
 								}
@@ -940,6 +1009,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												success: function (data) {
 													chart(data, fleet_name);
 												}
+											}).done(function () {
+												rightClick();
 											});
 										} else {
 
@@ -957,6 +1028,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												success: function (data) {
 													chart(data, title);
 												}
+											}).done(function () {
+												rightClick();
 											});
 										}
 									}
@@ -1048,6 +1121,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							chartCircle(data, title);
 							chart(data, title);
 						}
+					}).done(function () {
+						rightClick();
 					});
 				}
 
@@ -1240,5 +1315,39 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 
+
+	</script>
+
+
+	<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px; z-index: 9999">
+		<a id="more_info" class="dropdown-item" target="_blank" href=""><i class="pr-2 fas fa-info-circle"></i><?=lang('details')?></a>
+	</div>
+
+
+	<script>
+		$(window).on('load', function () {
+			if ($('a[data-id="2"]').hasClass('active')) {
+				<?if($this->input->get('tab') != '') {?>
+
+				$('.tab_nav').each(function () {
+					if ($(this).data('tab') == '<?=$this->input->get('tab')?>') {
+						$(this).trigger('click');
+					}
+				});
+
+
+				setTimeout(function(){
+					clickFleet('f<?=$this->input->get('fleet')?>');
+				}, 500);
+
+
+				$('input[name="from"]').val('<?=$this->input->get('from')?>');
+				$('input[name="to"]').val('<?=$this->input->get('to')?>');
+
+				$('#search').trigger('click');
+
+				<?}?>
+			}
+		});
 
 	</script>

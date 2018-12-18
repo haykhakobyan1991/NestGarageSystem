@@ -55,6 +55,8 @@
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
 	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
+	//---;
+	echo '<script src="'.base_url('assets/js/custom-events.js').'"></script>';
 }
 
 $time = strtotime(mdate('%Y-%m-%d', now()));
@@ -410,7 +412,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			return button;
 		});
 
-		// trigger click ---
+		// trigger click ---;
 		function clickFleet(val) {
 			var fleet = myDiagram.findNodeForKey(val);
 			if (fleet === null) return;
@@ -426,14 +428,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 
-		function rightClick() { //---
+
+		function rightClick() { //---;
 			$(".highcharts-point").contextmenu(function (e) {
 
-
 				var doc = document.documentElement;
-				var count = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
-
-				//alert(count);
+				var count = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
 				var left = arguments[0].clientX;
 				var top = arguments[0].clientY + count;
@@ -449,15 +449,33 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					}
 				});
 
-
-				document.getElementById('more_info').
-					href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/structure1/add_expenses/?from=')?>"
-					+$('input[name="from"]').val()
-					+'&to='+$('input[name="to"]').val()
-					+'&tab='+menuBox.getAttribute('data-tab')
-					+'&fleet='+e.target.point.fleet_id;
-
 				e.preventDefault(e);
+
+				//---;
+				if ($(this).hasClass('line')) {
+
+					setTimeout(function () {
+						var fleets = $('input[name="selecteds"]').val();
+						var date = $('input[name="line_date"]').val();
+						console.log(e);
+
+
+						document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+							+ date
+							+ '&to=' + date
+							+ '&tab=' + menuBox.getAttribute('data-tab')
+							+ '&fleets=' + fleets;
+					}, 200);
+
+				} else {
+					console.log(e.target);
+					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+						+ $('input[name="from"]').val()
+						+ '&to=' + $('input[name="to"]').val()
+						+ '&tab=' + menuBox.getAttribute('data-tab')
+						+ '&fleet=' + e.target.point.fleet_id;
+
+				}
 
 			});
 
@@ -623,6 +641,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					var arr = [];
 					new_arr = [];
+					selecteds = [];
 					myDiagram.selection.each(function (part) {
 
 						if (part instanceof go.Node) {
@@ -633,11 +652,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								"parent": part.Wd.parent
 							};
 							new_arr.push(arr);
+
+							//---;
+							selecteds.push(arr.key);
+
+
 						}
 
 
 					});
-
+					//---;
+					$('input[name="selecteds"]').val(selecteds);
 					console.table(new_arr);
 
 					var lg_1 = '';
@@ -875,27 +900,29 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		} else if ($('a[data-id="3"]').hasClass('active')) {
 
 
+
+			//---;
 			function chart(data, title) {
 
-				Highcharts.chart('container', {
+				chart1 = Highcharts.chart('container', {
 					chart: {
 						scrollablePlotArea: {
 							minWidth: 700
 						}
 					},
 
-
 					plotOptions: {
 						series: {
 							cursor: 'pointer',
 							point: {
 								events: {
-									click: function () {
+
+									click: function (e) {
+
 
 										var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryCircle_ax')?>';
 										var date = this.category;
 										var table = data.table;
-										var title = $('.tab_nav.active').text();
 
 										$.ajax({
 											url: url,
@@ -908,8 +935,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											}
 										}).done(function () {
 											rightClick();
-										});;
+										});
 
+									},
+									contextmenu: function () {
+										$('input[name="line_date"]').val(this.category);
 									}
 								}
 							}
@@ -922,6 +952,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					subtitle: {
 						text: ''
 					},
+
 					xAxis: {
 						categories: data.date
 					},
@@ -937,6 +968,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						data: data.price
 					}]
 				});
+
+
+				$('#container path').addClass('line'); //---;
 
 			}
 
@@ -1324,8 +1358,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	</div>
 
 
-	<script>
+	<script>//---;
 		$(window).on('load', function () {
+
+
 			if ($('a[data-id="2"]').hasClass('active')) {
 				<?if($this->input->get('tab') != '') {?>
 
@@ -1336,14 +1372,41 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				});
 
 
-				setTimeout(function(){
+				<?if($this->input->get('fleet') != '') {?>
+
+				setTimeout(function () {
 					clickFleet('f<?=$this->input->get('fleet')?>');
 				}, 500);
+
+				<?} elseif($this->input->get('fleets') != '') {?>
+
+				var fleet = '<?=$this->input->get('fleets')?>';
+				var fleet_arr = fleet.split(',');
+
+				setTimeout(function () {
+					var el;
+					$.each(fleet_arr, function (e, value) {
+						el = myDiagram.findNodeForKey(value);
+						if (el === null) return;
+						el.isSelected = true;
+
+						console.log(el.location);
+						var loc = el.location;
+
+						// click on fleet
+						robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
+						robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
+					});
+
+
+
+				}, 700);
+
+				<?}?>
 
 
 				$('input[name="from"]').val('<?=$this->input->get('from')?>');
 				$('input[name="to"]').val('<?=$this->input->get('to')?>');
-
 				$('#search').trigger('click');
 
 				<?}?>
@@ -1351,3 +1414,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 	</script>
+
+	<input type="hidden" name="selecteds">
+	<input type="hidden" name="line_date">

@@ -52,6 +52,8 @@
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
 	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
+	//---;
+	echo '<script src="'.base_url('assets/js/custom-events.js').'"></script>';
 }
 
 $time = strtotime(mdate('%Y-%m-%d', now()));
@@ -467,7 +469,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			});
 	}
 
-	// trigger click ---
+	// trigger click ---;
 	function clickFleet(val) {
 		var fleet = myDiagram.findNodeForKey(val);
 		if (fleet === null) return;
@@ -496,11 +498,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 
 
-		function rightClick() { //---
+
+		function rightClick() { //---;
 			$(".highcharts-point").contextmenu(function (e) {
 
 				var doc = document.documentElement;
-				var count = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+				var count = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
 
 				var left = arguments[0].clientX;
 				var top = arguments[0].clientY + count;
@@ -516,15 +519,33 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					}
 				});
 
-
-				document.getElementById('more_info').
-					href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/structure1/add_expenses/?from=')?>"
-					+$('input[name="from"]').val()
-					+'&to='+$('input[name="to"]').val()
-					+'&tab='+menuBox.getAttribute('data-tab')
-					+'&fleet='+e.target.point.fleet_id;
-
 				e.preventDefault(e);
+
+				//---;
+				if ($(this).hasClass('line')) {
+
+					setTimeout(function () {
+						var fleets = $('input[name="selecteds"]').val();
+						var date = $('input[name="line_date"]').val();
+						console.log(e);
+
+
+						document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+							+ date
+							+ '&to=' + date
+							+ '&tab=' + menuBox.getAttribute('data-tab')
+							+ '&fleets=' + fleets;
+					}, 200);
+
+				} else {
+					console.log(e.target);
+					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+						+ $('input[name="from"]').val()
+						+ '&to=' + $('input[name="to"]').val()
+						+ '&tab=' + menuBox.getAttribute('data-tab')
+						+ '&fleet=' + e.target.point.fleet_id;
+
+				}
 
 			});
 
@@ -562,6 +583,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 				var arr = [];
 				new_arr = [];
+				selecteds = [];
 				myDiagram.selection.each(function (part) {
 
 					if (part instanceof go.Node) {
@@ -580,10 +602,17 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 						if (found1 == 'f' || found2 == 'd') {
 							new_arr.push(arr);
 						}
+
+						//---;
+						if(found1 == 'f') {
+							selecteds.push(arr.key);
+						}
 					}
 
 				});
 
+				//---;
+				$('input[name="selecteds"]').val(selecteds);
 
 				if ($('a[data-id="1"]').hasClass('active')) {
 					if (new_arr.length !== 0) {
@@ -775,9 +804,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 		} else if ($('a[data-id="3"]').hasClass('active')) {
 
 
+			//---;
 			function chart(data, title) {
 
-				Highcharts.chart('container', {
+				chart1 = Highcharts.chart('container', {
 					chart: {
 						scrollablePlotArea: {
 							minWidth: 700
@@ -789,12 +819,13 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 							cursor: 'pointer',
 							point: {
 								events: {
-									click: function () {
+
+									click: function (e) {
+
 
 										var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryCircle_ax')?>';
 										var date = this.category;
 										var table = data.table;
-										var title = $('.tab_nav.active').text();
 
 										$.ajax({
 											url: url,
@@ -805,10 +836,13 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 											success: function (data) {
 												chartCircle(data, title);
 											}
-										}).done(function () { //---
+										}).done(function () {
 											rightClick();
 										});
 
+									},
+									contextmenu: function () {
+										$('input[name="line_date"]').val(this.category);
 									}
 								}
 							}
@@ -821,6 +855,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					subtitle: {
 						text: ''
 					},
+
 					xAxis: {
 						categories: data.date
 					},
@@ -836,6 +871,9 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 						data: data.price
 					}]
 				});
+
+
+				$('#container path').addClass('line'); //---;
 
 			}
 
@@ -1275,8 +1313,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 </div>
 
 
-<script>
+
+
+<script>//---;
 	$(window).on('load', function () {
+
+
 		if ($('a[data-id="2"]').hasClass('active')) {
 			<?if($this->input->get('tab') != '') {?>
 
@@ -1287,14 +1329,41 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			});
 
 
-			setTimeout(function(){
+			<?if($this->input->get('fleet') != '') {?>
+
+			setTimeout(function () {
 				clickFleet('f<?=$this->input->get('fleet')?>');
 			}, 500);
+
+			<?} elseif($this->input->get('fleets') != '') {?>
+
+			var fleet = '<?=$this->input->get('fleets')?>';
+			var fleet_arr = fleet.split(',');
+
+			setTimeout(function () {
+				var el;
+				$.each(fleet_arr, function (e, value) {
+					el = myDiagram.findNodeForKey(value);
+					if (el === null) return;
+					el.isSelected = true;
+
+					console.log(el.location);
+					var loc = el.location;
+
+					// click on fleet
+					robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
+					robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
+				});
+
+
+
+			}, 700);
+
+			<?}?>
 
 
 			$('input[name="from"]').val('<?=$this->input->get('from')?>');
 			$('input[name="to"]').val('<?=$this->input->get('to')?>');
-
 			$('#search').trigger('click');
 
 			<?}?>
@@ -1302,4 +1371,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 	});
 
 </script>
+
+<input type="hidden" name="selecteds">
+<input type="hidden" name="line_date">
+
+
+
 

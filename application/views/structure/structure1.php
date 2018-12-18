@@ -22,6 +22,8 @@
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
 	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
+	//---;
+	echo '<script src="'.base_url('assets/js/custom-events.js').'"></script>';
 }
 
 $time = strtotime(mdate('%Y-%m-%d', now()));
@@ -273,7 +275,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 </div>
 
 	<script>
-		// ---
+		// ---;
 		function init() {
 			if (window.goSamples) goSamples();
 			var $ = go.GraphObject.make;
@@ -638,7 +640,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}
 
 
-		function rightClick() { //---
+		function rightClick() { //---;
 			$(".highcharts-point").contextmenu(function (e) {
 
 				var doc = document.documentElement;
@@ -663,17 +665,21 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				//---;
 				if ($(this).hasClass('line')) {
 
-					var fleets = $('input[name="selecteds"]').val();
-					var date = chart1.series[0].data[0].category; // todo
-					console.log(e);
+					setTimeout(function () {
+						var fleets = $('input[name="selecteds"]').val();
+						var date = $('input[name="line_date"]').val();
+						console.log(e);
 
-					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
-						+ date
-						+ '&to=' + date
-						+ '&tab=' + menuBox.getAttribute('data-tab')
-						+ '&fleets=' + fleets;
+
+						document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
+							+ date
+							+ '&to=' + date
+							+ '&tab=' + menuBox.getAttribute('data-tab')
+							+ '&fleets=' + fleets;
+					}, 200);
 
 				} else {
+					console.log(e.target);
 					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
 						+ $('input[name="from"]').val()
 						+ '&to=' + $('input[name="to"]').val()
@@ -760,7 +766,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							if (found1 == 'f' || found2 == 'd') {
 								new_arr.push(arr);
 							}
-
+							//---;
 							if(found1 == 'f') {
 								selecteds.push(arr.key);
 							}
@@ -962,7 +968,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 			} else if ($('a[data-id="3"]').hasClass('active')) {
 
-
+				//---;
 				function chart(data, title) {
 
 					chart1 = Highcharts.chart('container', {
@@ -977,7 +983,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								cursor: 'pointer',
 								point: {
 									events: {
-										click: function () {
+
+										click: function (e) {
+
 
 											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryCircle_ax')?>';
 											var date = this.category;
@@ -996,6 +1004,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												rightClick();
 											});
 
+										},
+										contextmenu: function () {
+											$('input[name="line_date"]').val(this.category);
 										}
 									}
 								}
@@ -1008,6 +1019,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						subtitle: {
 							text: ''
 						},
+
 						xAxis: {
 							categories: data.date
 						},
@@ -1375,6 +1387,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <script>//---;
 	$(window).on('load', function () {
+
+
 		if ($('a[data-id="2"]').hasClass('active')) {
 			<?if($this->input->get('tab') != '') {?>
 
@@ -1385,35 +1399,41 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				});
 
 
-			<?if($this->input->get('fleet') != '') {?>
+				<?if($this->input->get('fleet') != '') {?>
 
-			setTimeout(function () {
-				clickFleet('f<?=$this->input->get('fleet')?>');
-			}, 500);
+					setTimeout(function () {
+						clickFleet('f<?=$this->input->get('fleet')?>');
+					}, 500);
 
-			<?} elseif($this->input->get('fleets') != '') {?>
+				<?} elseif($this->input->get('fleets') != '') {?>
 
-			setTimeout(function () {
+					var fleet = '<?=$this->input->get('fleets')?>';
+					var fleet_arr = fleet.split(',');
 
-				var coll = new go.Set();
-				<?foreach (explode(',', $this->input->get('fleets')) as $value) : ?>
-				coll.add(myDiagram.findNodeForKey("<?=$value?>"));
-				<?endforeach;?>
+					setTimeout(function () {
+							var el;
+							$.each(fleet_arr, function (e, value) {
+								el = myDiagram.findNodeForKey(value);
+								if (el === null) return;
 
-				var area = myDiagram.computePartsBounds(coll);
+								el.isSelected = true;
 
-				robot.mouseDown(area.x, area.y, 0);
-				robot.mouseMove(area.centerX, area.centerY, 200);
-				robot.mouseUp(area.right, area.bottom, 250);
+								var loc = el.location;
 
-			}, 500);
+								// click on fleet
+								robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
+								robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
+							});
 
-			<?}?>
+
+
+					}, 700);
+
+				<?}?>
 
 
 				$('input[name="from"]').val('<?=$this->input->get('from')?>');
 				$('input[name="to"]').val('<?=$this->input->get('to')?>');
-
 				$('#search').trigger('click');
 
 			<?}?>
@@ -1423,5 +1443,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 </script>
 
 <input type="hidden" name="selecteds">
+<input type="hidden" name="line_date">
 
 

@@ -108,7 +108,25 @@ class Fleet_history extends MX_Controller {
 
 	public function expenses_history() {
 
-		$this->layout->view('fleet_history/expenses_history');
+		$data = array();
+		$lng = $this->load->lng();
+
+		 $sql = "
+			SELECT 
+			  `fleet_group`.`title` 
+			FROM
+			  `fleet_group` 
+			WHERE `fleet_group`.`status` = 1
+			 GROUP BY `fleet_group`.`title` 
+		";
+
+		$query = $this->db->query($sql);
+
+		$data['result'] = $query->result_array();
+
+		//$this->pre($data['result']);
+
+		$this->layout->view('fleet_history/expenses_history', $data);
 
 	}
 

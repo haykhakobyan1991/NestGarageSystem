@@ -108,15 +108,24 @@ class Fleet_history extends MX_Controller {
 
 	public function expenses_history() {
 
+		$user_id = $this->session->user_id;
+
 		$data = array();
+
 		$lng = $this->load->lng();
 
-		 $sql = "
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql = "
 			SELECT 
+			  GROUP_CONCAT(`fleet_group`.`fleet_id`) AS `fleet_id`,
 			  `fleet_group`.`title` 
 			FROM
 			  `fleet_group` 
 			WHERE `fleet_group`.`status` = 1
+			 AND `fleet_group`.`company_id` = ".$this->load->db_value($company_id)."
 			 GROUP BY `fleet_group`.`title` 
 		";
 
@@ -124,7 +133,32 @@ class Fleet_history extends MX_Controller {
 
 		$data['result'] = $query->result_array();
 
-		//$this->pre($data['result']);
+
+		 $sql_fleets = "
+			SELECT 
+				`fleet`.`id`,
+				CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+				) AS `brand_model`
+			FROM
+			   `fleet`
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id`
+			LEFT JOIN `user` 
+				ON `user`.`id` = `fleet`.`registrar_user_id` 	
+			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."		
+			 AND `fleet`.`status` = '1'	   
+		";
+
+
+		$query_fleets = $this->db->query($sql_fleets);
+
+		$data['result_fleets'] = $query_fleets->result_array();
+
 
 		$this->layout->view('fleet_history/expenses_history', $data);
 
@@ -458,79 +492,80 @@ class Fleet_history extends MX_Controller {
 		$to = $this->input->post('to');
 		$hidden = $this->input->post('hidden');
 		$search_car = $this->input->post('search_car');
+		$search_car_ids = $this->input->post('search_car_ids');
 
 		$new_array = array();
 
 		if(!empty($hidden) && in_array('inspection', $hidden)) {
 			$inspection = array();
 		} else {
-			$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection', $search_car);
+			$inspection = $this->vehicle_info($from, $to, $company_id, 'inspection', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('fuel_consumption', $hidden)) {
 			$fuel_consumption = array();
 		} else {
-			$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption', $search_car);
+			$fuel_consumption = $this->vehicle_info($from, $to, $company_id, 'fuel_consumption', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('fine', $hidden)) {
 			$fine = array();
 		} else {
-			$fine = $this->vehicle_info($from, $to, $company_id, 'fine', $search_car);
+			$fine = $this->vehicle_info($from, $to, $company_id, 'fine', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('accident', $hidden)) {
 			$accident = array();
 		} else {
-			$accident = $this->vehicle_info($from, $to, $company_id, 'accident', $search_car);
+			$accident = $this->vehicle_info($from, $to, $company_id, 'accident', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('insurance', $hidden)) {
 			$insurance = array();
 		} else {
-			$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance', $search_car);
+			$insurance = $this->vehicle_info($from, $to, $company_id, 'insurance', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('spares', $hidden)) {
 			$spares = array();
 		} else {
-			$spares = $this->vehicle_info($from, $to, $company_id, 'spares', $search_car);
+			$spares = $this->vehicle_info($from, $to, $company_id, 'spares', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('repair', $hidden)) {
 			$repair = array();
 		} else {
-			$repair = $this->vehicle_info($from, $to, $company_id, 'repair', $search_car);
+			$repair = $this->vehicle_info($from, $to, $company_id, 'repair', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('wheel', $hidden)) {
 			$wheel = array();
 		} else {
-			$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel', $search_car);
+			$wheel = $this->vehicle_info($from, $to, $company_id, 'wheel', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('brake', $hidden)) {
 			$brake = array();
 		} else {
-			$brake = $this->vehicle_info($from, $to, $company_id, 'brake', $search_car);
+			$brake = $this->vehicle_info($from, $to, $company_id, 'brake', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('grease', $hidden)) {
 			$grease = array();
 		} else {
-			$grease = $this->vehicle_info($from, $to, $company_id, 'grease', $search_car);
+			$grease = $this->vehicle_info($from, $to, $company_id, 'grease', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('filter', $hidden)) {
 			$filter = array();
 		} else {
-			$filter = $this->vehicle_info($from, $to, $company_id, 'filter', $search_car);
+			$filter = $this->vehicle_info($from, $to, $company_id, 'filter', $search_car, $search_car_ids);
 		}
 
 		if(!empty($hidden) && in_array('battery', $hidden)) {
 			$battery = array();
 		} else {
-			$battery = $this->vehicle_info($from, $to, $company_id, 'battery', $search_car);
+			$battery = $this->vehicle_info($from, $to, $company_id, 'battery', $search_car, $search_car_ids);
 		}
 
 
@@ -660,7 +695,7 @@ class Fleet_history extends MX_Controller {
 
 
 
-	public function vehicle_info($from, $to, $company_id, $table, $search_car) {
+	public function vehicle_info($from, $to, $company_id, $table, $search_car, $search_car_ids) {
 
 		$lng = $this->load->lng();
 		$sql_add = '';
@@ -673,19 +708,26 @@ class Fleet_history extends MX_Controller {
 
 
 		if($table == 'accident') {
-			$sql_add .= "SUM(".$table.".`return_amount`) AS `price`,";
+			$sql_add .= "@price := SUM(".$table.".`return_amount`) AS `price`,";
 			$sql_add .= "".$table.".`return_amount` AS `count`,";
 		} else {
-			$sql_add .= "SUM(".$table.".`price`) AS `price`,";
+			$sql_add .= "@price := SUM(".$table.".`price`) AS `price`,";
 			$sql_add .= "".$table.".`price` AS `count`,";
 		}
 
-		if($search_car != '') {
-			$add_sql = 'AND CONCAT_WS(
+		if($search_car_ids != '') {
+			$add_sql .= 'AND FIND_IN_SET(`fleet`.`id`, "'.$search_car_ids.'")';
+		}
+
+		if($search_car != '') { //todo ԼՕՌԻԱ
+			$add_sql .= 'AND CONCAT_WS(
 				\' \',
 				`brand`.`title_'.$lng.'`,
 				`model`.`title_'.$lng.'`
-			  ) LIKE "%'.$search_car.'%"';
+			  ) LIKE '.$this->load->db_value('%'.$search_car.'%').'
+			  OR `add_date` LIKE '.$this->load->db_value('%'.$search_car.'%').'
+			  /*OR @price = '.$this->load->db_value('%'.$search_car.'%').'*/
+			';
 		}
 
 		 $sql = "
@@ -727,7 +769,7 @@ class Fleet_history extends MX_Controller {
 			$Arr[] = array(
 				'date' => date($val['add_date']),
 				'price' => intval($val['price']),
-				'fleet_name' => $val['brand_model']
+				'fleet_name' => $val['brand_model'].'<span class="f" style="font-size: 0.2px" >f'.$val['fleet_id'].'</span>'
 			);
 
 		}
@@ -777,6 +819,114 @@ class Fleet_history extends MX_Controller {
 			return array();
 		}
 
+	}
+
+
+
+
+	public function add_group_ax() {
+
+		// $this->load->authorisation('Organization', 'add_group');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('groups', 'groups', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'groups' =>  form_error('groups')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+		$row_l = $this->db->select('group_id')->from('fleet_group')->where('company_id', $company_id)->order_by("group_id", "desc")->limit(1)->get()->row_array();
+		$group_id = $row_l['group_id'] + 1;
+
+
+
+
+		$title = $this->input->post('title');
+		$groups = $this->input->post('groups');
+		$description = $this->input->post('description');
+		$status = 1;
+
+		$groups_arr = explode(',', $groups);
+
+		$sql = "
+			INSERT INTO `fleet_group`
+				(`title`,
+				 `details`,
+				 `fleet_id`,
+				 `group_id`,
+				 `company_id`,
+				 `status`)
+			VALUES
+		";
+
+		foreach ($groups_arr as $fleet_id) {
+			$sql .= "(
+					".$this->load->db_value($title).",
+					".$this->load->db_value($description).",
+					".$this->load->db_value($fleet_id).",
+					".$this->load->db_value($group_id).",
+					".$this->load->db_value($company_id).",
+					1
+				),";
+		}
+
+
+		$sql = substr($sql, 0, -1);
+
+		$result = $this->db->query($sql);
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
 	}
 
 

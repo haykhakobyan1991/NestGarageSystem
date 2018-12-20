@@ -89,7 +89,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<hr class="my-2">
 
 
-		<div style="position: absolute; left: 20%;">
+		<div id="group" class="d-none" style="position: absolute; left: 20%; ">
 			<span class="p-3"><?= lang('group') ?></span>
 			<select title="<?= lang('group') ?>"
 					name="group"
@@ -137,6 +137,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			data: {from: date_from, to: date_to},
 			async: true,
 			dataType: "json",
+			beforeSend: function () {
+				$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+			},
 			success: function (data) {
 				chart(data);
 				$('#ex').html(data.table);
@@ -184,6 +188,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				.appendTo('#example_wrapper #example_filter:eq(0)');
 			$('.dt-buttons').css('float', 'left');
 
+			$('#group').removeClass('d-none');
+
 
 		});
 
@@ -201,6 +207,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				data: {from: date_from, to: date_to, search_car: search_car, search_car_ids: search_car_ids},
 				async: true,
 				dataType: "json",
+				beforeSend: function () {
+					$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+				},
 				success: function (data) {
 					chart(data);
 					$('#ex').html(data.table);
@@ -330,6 +339,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							data: {from: date_from, to: date_to, hidden: hidden, search_car: search_car, search_car_ids: search_car_ids},
 							async: true,
 							dataType: "json",
+							beforeSend: function () {
+								$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+							},
 							success: function (data) {
 								$('#ex').html(data.table);
 							}
@@ -385,6 +397,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			data: {from: date_from, to: date_to, search_car: search_car, search_car_ids: search_car_ids},
 			async: true,
 			dataType: "json",
+			beforeSend: function () {
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+			},
 			success: function (data) {
 				chart(data);
 			}
@@ -422,6 +437,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			data: {from: date_from, to: date_to, search_car_ids: search_car_ids, search_car: search_car},
 			async: true,
 			dataType: "json",
+			beforeSend: function () {
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+			},
 			success: function (data) {
 				chart(data);
 			}

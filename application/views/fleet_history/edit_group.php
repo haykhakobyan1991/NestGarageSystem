@@ -5,19 +5,21 @@
 			<label class="col-sm-2 col-form-label"><?= lang('company_name') ?></label>
 			<div class="col-sm-8">
 				<input name="title" type="text" class="form-control"
-					   placeholder="<?= lang('company_name') ?>">
+					   placeholder="<?= lang('company_name') ?>"
+					   value="<?=$result_selected_fleets[0]['title']?>"
+				>
 			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-1"></div>
 			<label class="col-sm-2 col-form-label"><?= lang('more_info') ?></label>
 			<div class="col-sm-8">
-							<textarea name="description" type="text" class="form-control"
-									  placeholder="<?= lang('more_info') ?>"></textarea>
+				<textarea name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"><?=$result_selected_fleets[0]['details']?></textarea>
 			</div>
 		</div>
 
-		<input type="hidden" name="edit_groups">
+		<input type="hidden" name="edit_groups" value="<?=$selected_fleet_ids?>">
+		<input type="hidden" name="group_id" value="<?=$group_id?>">
 
 	</form>
 	<hr class="my-2">
@@ -25,7 +27,7 @@
 		<input id="sb_s2" type="text" class="form-control" placeholder="<?= lang('search') ?>"
 			   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
 		<div class="col-sm-6 scroll_style"
-			 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+			 style="border: 5px solid #00000040; max-height: 300px; min-height: 300px; overflow-y: scroll;">
 
 			<ul style="list-style: decimal;" class="list-group lg_11 mt-1">
 				<? foreach ($result_fleets as $row_fleet) : ?>
@@ -48,9 +50,13 @@
 
 		</div>
 		<div class="col-sm-5 scroll_style"
-			 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+			 style="border: 5px solid #00000040; max-height: 300px; min-height: 300px; overflow-y: scroll;">
 			<ul class="list-group lg_22 mt-1">
 
+				<? foreach ($result_selected_fleets as $row_fleet) : ?>
+					<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
+						class="p-1 added_lg_22 mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+				<? endforeach; ?>
 			</ul>
 
 		</div>
@@ -58,7 +64,7 @@
 	</div>
 </div>
 <div class="modal-footer">
-	<button id="edit_group" type="button"
+	<button id="edit_group_btn" type="button"
 			class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 	</button>
 	<button id="load" class="btn btn-sm btn-success d-none "><img

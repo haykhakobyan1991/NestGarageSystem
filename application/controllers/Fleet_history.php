@@ -934,6 +934,7 @@ class Fleet_history extends MX_Controller {
 	public function edit_group_modal_ax() {
 
 		$id = $this->uri->segment(4);
+
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$lng = $this->load->lng();
@@ -947,6 +948,48 @@ class Fleet_history extends MX_Controller {
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
 		$company_id = $row['company_id'];
+
+		$sql_selected_fleets = "
+			SELECT 
+			    `fleet`.`id`,
+			    `fleet_group`.`title`,
+			    `fleet_group`.`details`,
+			    CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+			    ) AS `brand_model`
+			FROM
+			   `fleet_group`
+			LEFT JOIN `fleet` 
+				ON `fleet`.`id` = `fleet_group`.`fleet_id`
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 	
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id`	
+			WHERE `group_id` = 	'".$id."'		
+		";
+
+		$query_selected_fleets = $this->db->query($sql_selected_fleets);
+
+		if($query_selected_fleets->num_rows() == 0) {
+			echo '<h1 class="text-center">Please select a group</h1>'; // todo ml
+			return false;
+		}
+
+		$data['result_selected_fleets'] = $query_selected_fleets->result_array();
+
+
+
+
+		$choose_fleet_arr = array();
+
+		foreach ($data['result_selected_fleets'] as $row) {
+			$choose_fleet_arr[] = $row['id'];
+		}
+
+		$data['selected_fleet_ids'] = implode(',', $choose_fleet_arr);
+		$data['group_id'] = $id;
 
 
 		$sql_fleets = "
@@ -965,7 +1008,8 @@ class Fleet_history extends MX_Controller {
 				ON `brand`.`id` = `model`.`brand_id`
 			LEFT JOIN `user` 
 				ON `user`.`id` = `fleet`.`registrar_user_id` 	
-			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."		
+			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."	
+			 AND NOT FIND_IN_SET(`fleet`.`id`, '".$data['selected_fleet_ids']."')	
 			 AND `fleet`.`status` = '1'	   
 		";
 
@@ -974,27 +1018,116 @@ class Fleet_history extends MX_Controller {
 
 		$data['result_fleets'] = $query_fleets->result_array();
 
-
-//		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
-//			->from('staff')
-//			->join('user', 'staff.registrar_user_id = user.id', 'left')
-//			->where('user.company_id', $row['company_id'])
-//			->where('staff.status', 1)
-//			->get()
-//			->result_array();
-//
-//
-//
-//		$data['id'] = $row['id'];
-//		$data['company_id'] = $row['company_id'];
-//		$data['title'] = $row['title'];
-//		$data['description'] = $row['description'];
-//		$data['head_staff_id'] = $row['head_staff_id'];
-
-
-
 		$this->load->view('fleet_history/edit_group', $data);
 
+	}
+
+
+	public function edit_group_ax() {
+
+		// $this->load->authorisation('Organization', 'edit_group');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('edit_groups', 'edit_groups', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'edit_groups' =>  form_error('edit_groups')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$group_id = $this->input->post('group_id');
+
+		$this->db->delete('fleet_group', array('group_id' => $group_id));
+
+
+
+
+		$title = $this->input->post('title');
+		$groups = $this->input->post('edit_groups');
+		$description = $this->input->post('description');
+		$status = 1;
+
+		$groups_arr = explode(',', $groups);
+
+		$sql = "
+			INSERT INTO `fleet_group`
+				(`title`,
+				 `details`,
+				 `fleet_id`,
+				 `group_id`,
+				 `company_id`,
+				 `status`)
+			VALUES
+		";
+
+		foreach ($groups_arr as $fleet_id) {
+			$sql .= "(
+					".$this->load->db_value($title).",
+					".$this->load->db_value($description).",
+					".$this->load->db_value($fleet_id).",
+					".$this->load->db_value($group_id).",
+					".$this->load->db_value($company_id).",
+					1
+				),";
+		}
+
+
+		$sql = substr($sql, 0, -1);
+
+		$result = $this->db->query($sql);
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
 	}
 
 

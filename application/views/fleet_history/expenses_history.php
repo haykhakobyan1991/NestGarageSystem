@@ -728,6 +728,89 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 
+	$(document).on('click', '#edit_group_btn', function (e) {
+
+
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#group_edit')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+
+
+				loading('start', 'edit_group_btn');
+
+			},
+			success: function (data) {
+				if (data.success == '1') {
+
+
+					loading('stop', 'edit_group_btn');
+
+
+					var url = "<?=current_url()?>";
+
+					$(location).attr('href', url);
+
+
+				} else {
+					close_message();
+					loading('stop', 'edit_group_btn');
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						loading('stop', 'edit_group_btn');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+
+					$('.alert-danger').html(errors);
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
 
 </script>
 

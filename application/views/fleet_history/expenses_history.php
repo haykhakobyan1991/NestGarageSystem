@@ -138,8 +138,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			async: true,
 			dataType: "json",
 			beforeSend: function () {
-				$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
-				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+				$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; margin-top: 100px" src="<?= base_url() ?>assets/images/puff.svg" />');
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; margin-top: 100px" src="<?= base_url() ?>assets/images/puff.svg" />');
 			},
 			success: function (data) {
 				chart(data);
@@ -201,6 +201,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var search_car = $('input[type="search"]').val();
 			var search_car_ids = $('select[name="group"]').val();
 
+
 			$.ajax({
 				url: url,
 				type: 'POST',
@@ -208,7 +209,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				async: true,
 				dataType: "json",
 				beforeSend: function () {
-					$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+					$('#group').addClass('d-none');
+					$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center;  margin-top: 100px;" src="<?= base_url() ?>assets/images/puff.svg" />');
 				},
 				success: function (data) {
 					chart(data);
@@ -255,6 +257,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				table.buttons().container()
 					.appendTo('#example_wrapper #example_filter:eq(0)');
 				$('.dt-buttons').css('float', 'left');
+
+				$('#group').removeClass('d-none');
 			});
 
 
@@ -306,7 +310,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				events: {
 					legendItemClick: function (e) {
 
-						$('#ex').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+						$('#ex').html('<img style="z-index: 999; position: fixed;  margin-top: 100px; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
 
 						var hidden = [];
 
@@ -333,6 +337,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						var search_car = $('input[type="search"]').val();
 						var search_car_ids = $('select[name="group"]').val();
 
+
 						$.ajax({
 							url: url,
 							type: 'POST',
@@ -340,7 +345,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							async: true,
 							dataType: "json",
 							beforeSend: function () {
-								$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+								$('#group').addClass('d-none');
+								$('#ex').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center;  margin-top: 100px;" src="<?= base_url() ?>assets/images/puff.svg" />');
 							},
 							success: function (data) {
 								$('#ex').html(data.table);
@@ -369,6 +375,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							table.buttons().container()
 								.appendTo('#example_wrapper #example_filter:eq(0)');
 							$('.dt-buttons').css('float', 'left');
+
+							$('#group').removeClass('d-none');
 						});
 					}
 				}
@@ -398,7 +406,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			async: true,
 			dataType: "json",
 			beforeSend: function () {
-				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center;  margin-top: 100px;" src="<?= base_url() ?>assets/images/puff.svg" />');
 			},
 			success: function (data) {
 				chart(data);
@@ -438,7 +446,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			async: true,
 			dataType: "json",
 			beforeSend: function () {
-				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center; top: 50%" src="<?= base_url() ?>assets/images/puff.svg" />');
+				$('#container').html('<img style="height: 10em; margin: 0 auto;display: block;text-align: center;  margin-top: 100px;" src="<?= base_url() ?>assets/images/puff.svg" />');
 			},
 			success: function (data) {
 				chart(data);

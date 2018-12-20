@@ -121,7 +121,8 @@ class Fleet_history extends MX_Controller {
 		$sql = "
 			SELECT 
 			  GROUP_CONCAT(`fleet_group`.`fleet_id`) AS `fleet_id`,
-			  `fleet_group`.`title` 
+			  `fleet_group`.`title`,
+			  `fleet_group`.`group_id`
 			FROM
 			  `fleet_group` 
 			WHERE `fleet_group`.`status` = 1
@@ -927,6 +928,73 @@ class Fleet_history extends MX_Controller {
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
+	}
+
+
+	public function edit_group_modal_ax() {
+
+		$id = $this->uri->segment(4);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+		$user_id = $this->session->user_id;
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		$sql_fleets = "
+			SELECT 
+				`fleet`.`id`,
+				CONCAT_WS(
+					' ',
+					`brand`.`title_".$lng."`,
+					`model`.`title_".$lng."`
+				) AS `brand_model`
+			FROM
+			   `fleet`
+			LEFT JOIN `model` 
+				ON `model`.`id` = `fleet`.`model_id` 
+			LEFT JOIN `brand` 
+				ON `brand`.`id` = `model`.`brand_id`
+			LEFT JOIN `user` 
+				ON `user`.`id` = `fleet`.`registrar_user_id` 	
+			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."		
+			 AND `fleet`.`status` = '1'	   
+		";
+
+
+		$query_fleets = $this->db->query($sql_fleets);
+
+		$data['result_fleets'] = $query_fleets->result_array();
+
+
+//		$data['staff_for_select'] = $this->db->select('staff.id, CONCAT_WS(" ", staff.first_name, staff.last_name) AS name, staff.status')
+//			->from('staff')
+//			->join('user', 'staff.registrar_user_id = user.id', 'left')
+//			->where('user.company_id', $row['company_id'])
+//			->where('staff.status', 1)
+//			->get()
+//			->result_array();
+//
+//
+//
+//		$data['id'] = $row['id'];
+//		$data['company_id'] = $row['company_id'];
+//		$data['title'] = $row['title'];
+//		$data['description'] = $row['description'];
+//		$data['head_staff_id'] = $row['head_staff_id'];
+
+
+
+		$this->load->view('fleet_history/edit_group', $data);
+
 	}
 
 

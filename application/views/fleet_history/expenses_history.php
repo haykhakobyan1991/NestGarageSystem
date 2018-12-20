@@ -45,6 +45,23 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		cursor: pointer;
 	}
 
+
+	.dataTables_scrollBody::-webkit-scrollbar,
+	.col-sm-6.scroll_style::-webkit-scrollbar,
+	.col-sm-5.scroll_style::-webkit-scrollbar {
+		width: .25em;
+	}
+	.dataTables_scrollBody::-webkit-scrollbar-track,
+	.col-sm-6.scroll_style::-webkit-scrollbar-track,
+	.col-sm-5.scroll_style::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	}
+	.dataTables_scrollBody::-webkit-scrollbar-thumb,
+	.col-sm-6.scroll_style::-webkit-scrollbar-thumb,
+	.col-sm-5.scroll_style::-webkit-scrollbar-thumb {
+		background-color: darkgrey;outline: 1px solid slategrey;
+	}
+
 </style>
 
 
@@ -97,17 +114,22 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					class="selectpicker">
 				<option value=""><?= lang('all') ?></option>
 				<? foreach ($result as $row) { ?>
-					<option value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
+					<option data-id="<?= $row['group_id']?>" value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
 				<? } ?>
 			</select>
 
 			<button class="btn btn-sm btn-outline-secondary plus_btn mr-3"
-					data-toggle="modal" data-target=".bd-example-modal-lg"
+					data-toggle="modal" data-target=".add_group"
 					style="width: 20px;padding: 2px !important;"><img
 					style="margin-right: 5px;margin-left: -15px;"
 					src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
 					class="ml-0 mr-0 "/></button>
 			<button class="btn btn-sm btn-outline-secondary set_btn mr-3"
+					id="edit_group_modal"
+					data-toggle="modal"
+					data-target="#edit_group"
+					data-toggle2="tooltip"
+					data-placement="top"
 					style="width: 20px;padding: 2px !important;"><img
 					style="margin-right: 5px;margin-left: -15px;"
 					src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
@@ -526,6 +548,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}
 		});
 
+
 		// group input
 
 		var group = '';
@@ -543,7 +566,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 
-	$('.select_all').on('change', function () {
+	$(document).on('change', '.select_all', function () {
 		if ($('.select_all').is(':checked')) {
 			$('.sel_items').addClass('bg-info text-white')
 		} else {
@@ -551,14 +574,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}
 	});
 
-	$('.delete_all').click(function () {
+	$(document).on('click', '.delete_all', function () {
 		$('.sel_items').remove();
 
 		//$('.lg_1').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?//=lang('select_fleets_from_list')?>//</h2>');
 	});
 
 	/***************************************************************/
-	$('.select_all_2').on('change', function () {
+	$(document).on('change', '.select_all_2', function () {
 		if ($('.select_all_2').is(':checked')) {
 			$('.added_lg_2').each(function () {
 				if (!$(this).hasClass('bg-info text-white')) {
@@ -574,7 +597,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}
 	});
 
-	$('.delete_all_2').click(function () {
+	$(document).on('click', '.delete_all_2', function () {
 		$('.added_lg_2').remove();
 		$('#nav-tabContent-car').remove();
 		$('.tab-pane').children('form').remove();
@@ -690,14 +713,46 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 	});
 
+	// get edit modal
+	$(document).on('click', '#edit_group_modal', function () {
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id');
+		$.get(url, function (result) {
+
+			// update modal content
+			$('.body-m').html(result);
+
+			// show modal
+			$('#myModal').modal('show');
+		});
+
+	});
+
 
 
 </script>
 
+	<!-- Edit Group Modal  Start -->
+
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+		 aria-hidden="true" id="edit_group">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-secondary " style="border-radius: unset;">
+					<h6 class="text-white modal-title dar"><?=lang('EditGroup')?></h6>
+				</div>
+				<div class="body-m">
+					<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+						 src="<?= base_url() ?>assets/images/bars.svg"/>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Edit Group Modal end -->
 
 	<!-- Create Group Modal  Start -->
 
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	<div class="modal fade bd-example-modal-lg add_group" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 		 aria-hidden="true">
 
 		<div class="modal-dialog modal-lg" role="document">

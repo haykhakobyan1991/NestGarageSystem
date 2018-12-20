@@ -184,7 +184,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/><?
 
 						} elseif ($controller == 'Structure' || $controller == 'Fleet_history') { ?>
-
+							<div class="loader"></div>
+							<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 							<div class="content m-1">
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?=$controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "

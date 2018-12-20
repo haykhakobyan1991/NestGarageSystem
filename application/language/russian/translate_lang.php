@@ -39,6 +39,7 @@ $lang['last_access'] = 'Последний логин / дата';
 $lang['status'] = 'Статус';
 $lang['owner'] = 'Владелец';
 $lang['when'] = 'Когда';
+$lang['settings'] = 'Настройки';
 
 $lang['insurance_company'] = 'Страховая Компания';
 $lang['driver'] = 'Водитель';
@@ -291,6 +292,14 @@ $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Описание';
 $lang['create_group'] = 'Создать Группу';
 $lang['last_activity'] = 'Последняя активность';
+$lang['object'] = 'Объект';
+$lang['message_time'] = 'Время сообщения';
+$lang['place'] = 'Местоположения';
+$lang['analog_input'] = "Аналог Вход";
+$lang['titles'] = "Наименования";
+$lang['coefficient'] = 'Коэффициент';
+$lang['default_speed'] = 'Скорость по умолчанию';
+$lang['readout_time'] = 'Время счит: остановка более';
 
 
 //other info

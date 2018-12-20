@@ -41,6 +41,9 @@ $lang['owner'] = 'Սեփականատեր';
 $lang['when'] = 'Երբ';
 $lang['select_all'] = 'Ըմտրել բոլորը';
 $lang['delete'] = 'Ջնջել';
+$lang['settings'] = 'Կարգավորումներ';
+$lang['titles'] = 'Վերնագրեր';
+$lang['coefficient'] = 'Գործակիցը';
 
 $lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
 $lang['driver'] = 'Վարորդ';
@@ -288,6 +291,15 @@ $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Նկարագր';
 $lang['create_group'] = 'Ստեղծել Խումբ';
 $lang['last_activity'] = 'Վերջին ակտիվությունը';
+$lang['object'] = 'Օբյեկտ';
+$lang['message_time'] = 'Հաղորդագրության ժամանակը';
+$lang['place'] = 'Գտնվելու վայր';
+$lang['titles'] = "Վերնագիր";
+$lang['coefficient'] = 'Գործակից';
+$lang['default_speed'] = 'Նախնական արագություն';
+$lang['readout_time'] = 'Հաշվի ժամանակը: դադարեցնել ավելին';
+$lang['analog_input'] = 'Մուտքի Անալոգ';
+
 
 
 //other info

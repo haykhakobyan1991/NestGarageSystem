@@ -66,6 +66,12 @@ class Gps extends MX_Controller {
 
 	}
 
+	public function speed() {
+
+		$this->layout->view('gps_tracking/speed');
+
+	}
+
 
 }
 //end of class

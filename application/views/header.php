@@ -110,7 +110,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 
 		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
-		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>">Gps Tracking</a>
+		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>">Gps
+			Tracking</a>
 
 	</div>
 
@@ -155,22 +156,22 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<a class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
 						   role="tab" aria-controls="department"><?= lang('department') ?>
-<!--							<span class="float-right">4</span>-->
+							<!--							<span class="float-right">4</span>-->
 						</a>
 						<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
 						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
 						   role="tab" aria-controls="staff"><?= lang('staff') ?>
-<!--							<span class="float-right">2</span></a>-->
-						<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-						   role="tab" aria-controls="settings"><?= lang('vehicle') ?>
-							<span class="float-right"></span>
-						</a>
-						<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
-						   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-						   role="tab" aria-controls="user"><?= lang('user') ?>
-							<span class="float-right"></span>
-						</a>
+							<!--							<span class="float-right">2</span></a>-->
+							<a class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
+							   role="tab" aria-controls="settings"><?= lang('vehicle') ?>
+								<span class="float-right"></span>
+							</a>
+							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
+							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
+							   role="tab" aria-controls="user"><?= lang('user') ?>
+								<span class="float-right"></span>
+							</a>
 					</div>
 				</div>
 				<!-- Vertical Tabs End-->
@@ -188,26 +189,26 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
 							<div class="content m-1">
 								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?=$controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "
+									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "
 									   data-id="1"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1')) ?>"
 									   role="tab">
-										<i class="fas fa-info"></i> <?=lang('information')?>
+										<i class="fas fa-info"></i> <?= lang('information') ?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
 									   data-id="2"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/add_expenses') ?>"
 									   role="tab">
-										<i class="fas fa-plus"></i> <?=lang('add_expenses')?>
+										<i class="fas fa-plus"></i> <?= lang('add_expenses') ?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == 'fleet_history' ? 'active show' : '' ?> "
 									   data-id="3"
 									   data-toggle=""
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .  '/' . ($controller == 'Structure' ? $page : 'structure1') . '/fleet_history') ?>"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/fleet_history') ?>"
 									   role="tab">
-										<i class="fas fa-clipboard-list"></i> <?=lang('expenses_history')?>
+										<i class="fas fa-clipboard-list"></i> <?= lang('expenses_history') ?>
 									</a>
 
 									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $page == 'expenses_history' ? 'active show' : '' ?> "
@@ -215,27 +216,27 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									   data-toggle=""
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/expenses_history') ?>"
 									   role="tab">
-										<i class="fas fa-history"></i> <?=lang('total_company_expenses')?>
+										<i class="fas fa-history"></i> <?= lang('total_company_expenses') ?>
 									</a><?
 									if ($controller == 'Structure') {
 										?>
 										<div class="btn-group ml-auto">
 
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/'.$this->uri->segment(3)) ?>">
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/' . $this->uri->segment(3)) ?>">
 											<button type="button"
 													style="width: 40px;height: 40px;padding: 0 !important;"
 													class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
 												<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
 											</button>
 										</a>
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/'.$this->uri->segment(3)) ?>">
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/' . $this->uri->segment(3)) ?>">
 											<button type="button"
 													style="width: 40px;height: 40px;padding: 0 !important;"
 													class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
 												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
 											</button>
 										</a>
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/'.$this->uri->segment(3)) ?>">
+										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?>">
 											<button type="button"
 													style="width: 40px;height: 40px;padding: 0 !important;"
 													class="m-1 btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>"
@@ -255,13 +256,128 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 
 							<div class=""><?
-								if($page == 'structure1') {
-									?>
-									<div class="row btn-group mt-2 mt-md-2"
-										 style=" right: 46px; z-index: 999;position: absolute;">
-									<input class="form-control col-7" type="search" id="mySearch" onkeypress="if (event.keyCode === 13) searchDiagram()">
-									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2" onclick="searchDiagram()"><?=lang('search')?></a>
+							if ($page == 'structure1') {
+								?>
+								<div class="row btn-group mt-2 mt-md-2"
+									 style=" right: 46px; z-index: 999;position: absolute;">
+									<input class="form-control col-7" type="search" id="mySearch"
+										   onkeypress="if (event.keyCode === 13) searchDiagram()">
+									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2"
+									   onclick="searchDiagram()"><?= lang('search') ?></a>
 								</div>
-								<?}?>
+							<? } ?>
 							</div><?
-						} ?>
+						} elseif ($controller == 'Gps') { ?>
+
+							<div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
+								<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
+									<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+										<div class="navbar-nav mr-auto">
+											<button
+												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/><?= lang('trajectory') ?>
+											</button>
+											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
+												<button style="color:#00000080 !important;max-height: 40px;"
+														class="btn btn-outline-secondary  nav-item nav-link mr-1"
+														href="#"><img
+														style="margin-right: 5px;margin-left: -15px;"
+														src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/><?= lang('speed') ?>
+												</button>
+											</a>
+											<button
+												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/><?= lang('fuel') ?>
+											</button>
+											<button
+												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/><?= lang('engine') ?>
+											</button>
+											<button
+												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/><?= lang('cargo') ?>
+											</button>
+											<button
+												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/><?= lang('sos') ?>
+											</button>
+
+											<button
+												style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1"
+												href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?>
+											</button>
+											<button
+												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 "
+												href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/><?= lang('event') ?>
+											</button>
+											<button
+												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 "
+												href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?>
+											</button>
+
+
+											<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+											<select style="margin-top: 1px" class="form-control form-control-sml">
+												<option>1</option>
+												<option>2</option>
+												<option>3</option>
+												<option>5</option>
+												<option>10</option>
+												<option>15</option>
+												<option>20</option>
+												<option>25</option>
+											</select>
+
+
+										</div>
+
+										<div class="navbar-nav ml-auto">
+											<button
+												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"
+												href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/set-square.svg"
+													class="ml-0 mr-0 "/>
+											</button>
+											<button
+												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
+												data-toggle="modal"
+												data-target=".settings_modal" href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
+													 class="ml-0 mr-0 "/>
+											</button>
+											<button
+												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn"
+												href="#"><img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/print.svg"
+													class="ml-0 mr-0 "/></button>
+										</div>
+									</div>
+								</nav>
+							</div>
+
+						<? } ?>

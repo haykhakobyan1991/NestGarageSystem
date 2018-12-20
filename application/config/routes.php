@@ -77,6 +77,7 @@ $route['^(ru|hy)/expenses_history$'] = "Fleet_history/expenses_history";
 
 //gps tracking
 $route['^(ru|hy)/gps_tracking$'] = "Gps/gps_tracking";
+$route['^(ru|hy)/speed'] = "Gps/speed";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

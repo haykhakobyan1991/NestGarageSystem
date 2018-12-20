@@ -59,11 +59,23 @@
 	#captchaDiv {
 		margin: 0 auto;
 	}
+	.abcRioButtonContentWrapper span span:first-child{
+		font-size: 12px !important;
+	}
+
+	.signIn:hover,#sign_up:hover {
+		background: rgb(255, 122, 89) !important;
+		color: #fff !important;
+	}
 
 </style>
 
 
-
+<script>
+	$(window).on('load', function() {
+		$('.abcRioButtonContentWrapper span span:first-child').text('<?=lang('sign_in_with_google')?>')
+	})
+</script>
 
 
 <div class="container">
@@ -75,10 +87,10 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-			<p class="lead text-success left">Have an Account? <span style="cursor:pointer;"
+			<p class="lead text-success left"><?=lang('have_an_account')?>? <span style="cursor:pointer;"
 																	 class="text-warning" data-toggle="modal"
 																	 data-target="#exampleModal"
-																	 data-whatever="@mdo">Sign In</span>
+																	 data-whatever="@mdo"><?=lang('sign_in')?></span>
 
 			<div class="langs mr-5" style="margin-top: -52px;text-align: right;">
 				<ul class="" data-url="<?= base_url('change_lang') ?>">
@@ -98,21 +110,19 @@
 				<p class="lead">Join 2,776,007 Founders & Startups Always free - connect now</p>
 				<hr class="my-4">
 				<div class="text-center">
-
 					<div id="fb" class="mb-2 mb-md-2"
 						 style="background: #3d5a98; cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(61, 90, 152, 0.67), 0 3px 6px rgba(27, 53, 104, 0.88);">
 						<img style="float: left; margin: 4px;" src="<?=base_url('assets/img/fb.png')?>">
-						<span style="color: #fff; font-size: 14px;  line-height: 38px;">Continue with Facebook</span>
+						<span style="color: #fff; font-size: 12px;  line-height: 38px;"><?=lang('continue_width_facebook')?></span>
 					</div>
-
-
-					<div id="my-signin2" onclick="ClickLogin()" class="mt-2 mt-md-2 g-signin2" data-width="240"
-						 style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"></div>
+					<div id="my-signin2"
+						 onclick="ClickLogin()"
+						 class="mt-2 mt-md-2 g-signin2"
+						 data-width="240"
+						 style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
+					></div>
 				</div>
-
-
-				<p style="cursor:pointer;" class="text-center  small text-success mt-md-2 mt-3 ml-2" data-toggle="modal"
-				   data-target=".bd-example-modal-lg">Or use Email</p>
+				<p style="cursor:pointer;" class="text-center  small text-success mt-md-2 mt-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg"><?=lang('or_us_email')?></p>
 			</div>
 
 
@@ -139,9 +149,6 @@
 
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel"><?= lang('register') ?></h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
 				</div>
 
 
@@ -180,81 +187,48 @@
 
 							<form id="register">
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm firstname"
-										   placeholder="First Name" name="firstname" value="">
-
+									<input type="text" class="form-control form-control-sm firstname" placeholder="<?=lang('first_name')?>" name="firstname" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm lastname"
-										   placeholder="Last Name" name="lastname" value="">
-
+									<input type="text" class="form-control form-control-sm lastname" placeholder="<?=lang('last_name')?>" name="lastname" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="email" class="form-control form-control-sm email"
-										   placeholder="Email Address" name="up_email" value="">
-
+									<input type="email" class="form-control form-control-sm email" placeholder="<?=lang('email')?>" name="up_email" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm country_code"
-										   placeholder="Country Code" name="country_code" value="">
-
+									<input type="text" class="form-control form-control-sm country_code" placeholder="<?=lang('country_code')?>" name="country_code" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm phone_number"
-										   placeholder="Phone Number" name="phone_number" value="">
-
+									<input type="text" class="form-control form-control-sm phone_number" placeholder="<?=lang('phone_number')?>" name="phone_number" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password"
-										   placeholder="Password" name="up_password" value="">
-
+									<input type="password" class="form-control form-control-sm password" placeholder="<?=lang('password')?>" name="up_password" value="">
 								</div>
-
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm confirm_password"
-										   placeholder="Confirm Password" name="confirm_password" value="">
-
+									<input type="password" class="form-control form-control-sm confirm_password" placeholder="<?=lang('confirm_password')?>" name="confirm_password" value="">
 								</div>
-
 								<div class="form-group">
-
 									<select name="up_country" class="selectpicker form-control form-control-sm"
 											id="country" data-container="body" data-live-search="true"
-											title="Select a country">
-										<option value="">Select Country ...</option>
+											title="<?=lang('select_country')?>">
+										<option value=""><?=lang('select_country')?> ...</option>
 										<? foreach ($country as $row) : ?>
 											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
-
-
 								</div>
-
-
 							</form>
 
-							<button id="sign_up" type="submit" class="btn btn-success btn-block signUp">Join
-							</button>
-
-							<button id="load" class="btn btn-block  btn-success d-none"><img
-									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-
+							<button id="sign_up" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;" type="submit" class="btn btn-success btn-block signUp"><?=lang('join')?></button>
+							<button id="load" class="btn btn-block  btn-success d-none"><img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 		</div>
 	</div>
 </div>
-
 <!-- Sign In Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 	 aria-hidden="true">
@@ -262,81 +236,59 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel"><?= lang('sign_in') ?></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
 			</div>
 			<div class="modal-body">
-
 				<div class="jumbotron pt-3 pb-3 my_jumbotron">
-
-
 					<div class="jumbotron pt-3 pb-3 my_jumbotron" style="margin-bottom: 0;">
 						<h1 class="text-left text-success" style="font-size: 1.25em;">Wellcome to F6S</h1>
 						<p class="lead">F6S is where help eachother grow with deals, programs, founding and
 							jobs. </p>
 						<hr class="my-4">
-						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used
-							to create a profile.
-							we will never post without your permission.</p>
-
-
+						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used to create a profile. we will never post without your permission.</p>
 					</div>
-
-
-					<p style="cursor:pointer;" class="text-center text-warning mt-2 mt-md-2" data-toggle="collapse"
-					   data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Or use
-						Email</p>
-
-
 					<div class="collapse active show" id="collapseExample">
 						<div class="card card-body">
 							<form id="login">
-
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="email" value="">
-									<small id="email" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="email" class="form-text text-muted d-none"><p class="text-danger">Field must be filled in</p></small>
 								</div>
-
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password"
-										   placeholder="Password" name="password" value="">
+									<input type="password" class="form-control form-control-sm password" placeholder="Password" name="password" value="">
 									<small id="password" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
-
 								<div class="form-group">
 									<input placeholder="Captcha" name="captcha" class="form-control form-control-sm"
 										   type="text"/>
-									<small id="captcha" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
-									<div id = "captchaDiv"
-										 class="w-50 text-center mt-3 bg-secondary"><span id="captImg" ><?= $captcha['image'] ?></span><a
-											href="javascript:void(0);" title="Can't read the image? click to refresh." class="text-white refreshCaptcha"><i
-												class="fas fa-redo-alt"></i></a></div>
-
+									<small id="captcha" class="form-text text-muted d-none">
+										<p class="text-danger">Field must be filled in</p>
+									</small>
+									<div id = "captchaDiv" class="w-50 text-center mt-3 bg-secondary">
+										<span id="captImg" ><?= $captcha['image'] ?></span>
+										<a href="javascript:void(0);" title="Can't read the image? click to refresh." class="text-white refreshCaptcha">
+											<i class="fas fa-redo-alt"></i>
+										</a>
+									</div>
 								</div>
 							</form>
-							<button id="signIn" type="submit" class="btn btn-outline-success btn-block signIn">Sign In</button>
+							<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;" id="signIn" type="submit" class="btn btn-sm btn-block signIn"><?=lang('sign_in')?></button>
 							<button id="load2" class="btn btn-block  btn-success d-none"><img
 									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 						</div>
 					</div>
-
-
-					<p style="font-size: 0.9em;" class="lead mt-2 mt-md-2">By Joining F6S and providing your personal
+					<p style="font-size: 0.9em;" class="lead mt-2 mt-md-2">
+						By Joining F6S and providing your personal
 						information, you
 						confirm your agree to us using it to provide our services and to
 						keep in touch regarding information we think may interest you.
 						You also confirm agreement to the Terms Service and Privacy Policy. You can change mind about
-						receiving information from us as se out polices.</p>
-
+						receiving information from us as se out polices.
+					</p>
 				</div>
-
-
 			</div>
 		</div>
 	</div>

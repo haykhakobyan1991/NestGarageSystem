@@ -17,31 +17,31 @@
 			</div>
 		</div>
 
-		<input type="hidden" name="groups">
+		<input type="hidden" name="edit_groups">
 
 	</form>
 	<hr class="my-2">
 	<div class="row mt-1 pl-1 pr-1">
-		<input id="sb_s" type="text" class="form-control" placeholder="<?= lang('search') ?>"
+		<input id="sb_s2" type="text" class="form-control" placeholder="<?= lang('search') ?>"
 			   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
 		<div class="col-sm-6 scroll_style"
 			 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 
-			<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
+			<ul style="list-style: decimal;" class="list-group lg_11 mt-1">
 				<? foreach ($result_fleets as $row_fleet) : ?>
 					<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
-						class="p-1 sel_items mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+						class="p-1 sel_items2 mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
 				<? endforeach; ?>
 			</ul>
 		</div>
 		<div class="col-sm-1 text-center">
 
-			<button class="save_cancel_btn btn btn-success mb-1 p-0 add_lg_2"
+			<button class="save_cancel_btn btn btn-success mb-1 p-0 add_lg_22"
 					style="margin-top: 100px;min-height: 30px !important;min-width: 35px !important;">
 				<i style="font-size: 16px;" class="fas fa-long-arrow-alt-right"> </i>
 			</button>
 
-			<button class="save_cancel_btn btn btn-success p-0 remove_lg_2"
+			<button class="save_cancel_btn btn btn-success p-0 remove_lg_22"
 					style="min-height: 30px !important;min-width: 35px !important;">
 				<i style="font-size: 16px;" class="fas fa-long-arrow-alt-left"> </i>
 			</button>
@@ -49,7 +49,7 @@
 		</div>
 		<div class="col-sm-5 scroll_style"
 			 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
-			<ul class="list-group lg_2 mt-1">
+			<ul class="list-group lg_22 mt-1">
 
 			</ul>
 
@@ -71,4 +71,104 @@
 	</button>
 </div>
 
+<script>
+	$(document).on('click', '.sel_items2', function () {
+		if ($(this).hasClass('bg-info')) {
+			$(this).removeClass('bg-info text-white');
+		} else {
+			$(this).addClass('bg-info text-white')
+		}
+	});
 
+	$(document).on('click', '.added_lg_22', function () {
+
+		array = [];
+		if ($(this).hasClass('bg-info')) {
+			$(this).removeClass('bg-info text-white');
+		} else {
+			$(this).addClass('bg-info text-white');
+		}
+		$('.added_lg_22').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				arr = {
+					'key': $(this).data('key'),
+					'name': $(this).text()
+				};
+				array.push(arr)
+			}
+		});
+	});
+
+	$(document).on('click', '.add_lg_22', function () {
+
+
+		$('.sel_items2').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				$('.lg_22').append(this);
+				$(this).addClass('added_lg_22');
+				$(this).remove('.list-group');
+				$(this).removeClass('bg-info text-white sel_items2');
+			}
+		});
+
+		// group input
+
+		var group = '';
+
+		$('.lg_22  li').each(function (e) {
+			group += $(this).data('id') + ','
+		});
+
+		var groups = group.substring(0, group.length - 1);
+
+		$('input[name="edit_groups"]').val(groups);
+
+		// end group input
+
+	});
+
+
+	$(document).on('click', '.remove_lg_22', function () {
+
+
+		$('.added_lg_22').each(function () {
+			if ($(this).hasClass('bg-info')) {
+				$('.lg_11').append(this);
+				$(this).remove('.lg_22');
+				$(this).removeClass('bg-info text-white added_lg_22');
+				$(this).addClass('sel_items2');
+				$('#nav-tabContent-car').remove();
+				$('.tab-pane').children('form').remove();
+			}
+		});
+
+
+		// group input
+
+		var group = '';
+
+		$('.lg_22  li').each(function (e) {
+			group += $(this).data('id') + ','
+		});
+
+		var groups = group.substring(0, group.length - 1);
+
+		$('input[name="edit_groups"]').val(groups);
+
+		// end group input
+
+	});
+
+
+		$(document).on('keyup','#sb_s2', function () {
+			var val = $(this).val().toLowerCase();
+			$('.sel_items2').hide();
+			$('.sel_items2').each(function () {
+				var text = $(this).text().toLowerCase();
+				if (text.indexOf(val) != -1) {
+					$(this).show();
+				}
+			});
+		});
+
+</script>

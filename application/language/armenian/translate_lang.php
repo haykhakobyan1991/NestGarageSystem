@@ -73,6 +73,11 @@ $lang['only_vehicles'] = 'Միայն Փոխադրամիջոցներ';
 $lang['edit'] = 'Խմբագրել';
 $lang['details'] = 'Մանրամասներ';
 
+$lang['have_an_account'] = 'Արդեն գրանցված եք';
+$lang['continue_width_facebook'] = 'Շարունակեք Facebook- ի միջոցով';
+$lang['sign_in_with_google'] = 'Մուտք գործեք google- ով';
+$lang['or_us_email'] = 'օգտագործեք էլ․ հասցեն';
+
 
 //select options
 $lang['choose'] = 'Ընտրել';
@@ -84,6 +89,7 @@ $lang['select_staff'] = 'Ընտրեք Աշխատակազմ';
 $lang['select_car_brand'] = 'Ընտրեք Բրենդը';
 $lang['select_car_model'] = 'Ընտրեք Մոդելը';
 $lang['select_car_type'] = 'Ընտրեք Տեսակը';
+$lang['join'] = 'Միանալ';
 
 
 //menus
@@ -163,6 +169,7 @@ $lang['create_departments'] = 'Ստեղծել Ստորաբաժանում';
 $lang['email_or_login'] = 'Էլ․ Հասցե Կամ Մուտքանուն';
 $lang['login'] = 'Մուտքանուն';
 $lang['password'] = 'Գաղտնաբառ';//todo
+$lang['confirm_password'] = 'Հաստատել գաղտնաբառը';
 $lang['username'] = 'Մուտքանուն';//todo
 $lang['email'] = 'Էլ․ Հասցե';
 $lang['new_user'] = 'Նոր Օգտատեր';
@@ -336,4 +343,5 @@ $lang['price'] = 'Արժեք';
 $lang['more_info'] = 'Մանրամասն';
 $lang['other_info'] = 'Այլ տվյալներ';
 $lang['see'] = 'Տեսնել';
+$lang['country_code'] = 'Երկրի Կոդը';
 

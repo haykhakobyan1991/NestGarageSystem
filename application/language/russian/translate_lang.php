@@ -72,6 +72,11 @@ $lang['only_vehicles'] = 'Только транспортные средства
 $lang['edit'] = 'Редактировать';
 $lang['details'] = 'Детали';
 
+$lang['have_an_account'] = 'Иметь аккаунт';
+$lang['continue_width_facebook'] = 'Продолжить с Facebook';
+$lang['sign_in_with_google'] = 'войти с помощью Google';
+$lang['or_us_email'] = 'Используйте электронную почту';
+
 
 //select options
 $lang['choose'] = 'выбирать';
@@ -162,11 +167,13 @@ $lang['create_departments'] = 'Создать Отделение';
 $lang['email_or_login'] = 'Эл. адрес или Имя пользователя';
 $lang['login'] = 'Логин';
 $lang['password'] = 'Пароль';
+$lang['confirm_password'] = 'Подтвердите Пароль';
 $lang['username'] = 'Имя пользователя';
 $lang['email'] = 'Эл. адрес';
 $lang['new_user'] = 'Новый пользователь';
 $lang['user_information'] = 'Информация о пользователе';
 $lang['add_user'] = 'Добавить пользователя';
+$lang['join'] = 'присоединиться';
 
 
 //vehicles
@@ -336,6 +343,7 @@ $lang['price'] = 'Цена';
 $lang['more_info'] = 'Больше Информации';
 $lang['other_info'] = 'Другая Информация';
 $lang['see'] = 'Увидеть';
+$lang['country_code'] = 'Код Страны';
 
 
 

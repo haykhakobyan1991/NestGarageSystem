@@ -196,7 +196,7 @@ color: #545b62;">
 									<button id="add_department_btn" type="button"
 											class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
 									</button>
-									<button id="load" class="btn btn-sm btn-success d-none"><img
+									<button id="load" style="height: 40px !important; width: 90px !important;" class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 											style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 											src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 									<button type="button" class="cancel_btn close btn btn-sm"

@@ -639,7 +639,7 @@ endforeach;
 											<button id="add_staff" type="button"
 													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
-											<button id="load" class="btn btn-sm btn-success d-none "><img
+											<button style="height: 40px !important; width: 93px !important;" id="load" class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 											<button type="button" class="cancel_btn close btn btn-sm"
@@ -816,12 +816,12 @@ color: #545b62;">
     line-height: 14px !important;
     padding: 12px 24px !important;
     font-weight: 500 !important;" type="button" id="delete_staff"
-							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
+							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
 					</button>
 					<button style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
 							data-dismiss="modal"><?= lang('cancel') ?></button>
 
 					<input type="hidden" name="staff_id">

@@ -133,10 +133,7 @@
 
 	});
 
-
 	$(document).on('click', '.remove_lg_22', function () {
-
-
 		$('.added_lg_22').each(function () {
 			if ($(this).hasClass('bg-info')) {
 				$('.lg_11').append(this);
@@ -147,7 +144,6 @@
 				$('.tab-pane').children('form').remove();
 			}
 		});
-
 
 		// group input
 

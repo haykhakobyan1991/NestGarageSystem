@@ -161,3 +161,9 @@ div.fuel_seccond {
 	padding: 2px 10px;
 }
 
+
+.generate:hover {
+	background: rgb(255, 122, 89) !important;
+	color: #fff !important;
+}
+

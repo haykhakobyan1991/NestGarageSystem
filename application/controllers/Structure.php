@@ -29,6 +29,13 @@ class Structure extends MX_Controller {
 
 	}
 
+	private function my_lang($line, $args = array()) {
+		$CI =& get_instance();
+		$lang = $CI->lang->line($line);
+		// $lang = '%s %s were %s';// this would be the language line
+		return vsprintf($lang, $args);
+	}
+
 
 	/**
 	 * @return mixed
@@ -579,16 +586,16 @@ class Structure extends MX_Controller {
 		if ($this->input->post('value') == '-1') {
 
 			if (isset($array['deleted'])) {
-				$return['result'][] = '<b>Deleted</b>'.hr();
+				$return['result'][] = '<b>'.lang('deleted').'</b>'.hr();
 				foreach ($array['deleted'] as $f_t => $value) {
 					foreach ($value as $from_to) {
 
 						if($f_t == 'd_f') {
-							 $return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
+							 $return['result'][] = $this->my_lang('from_driver_vehicle', array($structure_arr['d'.$from_to['from']],$structure_arr['f'.$from_to['to']])). br();
 						} elseif($f_t == 'h_d') {
-							 $return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
+							 $return['result'][] = $this->my_lang('from_department_driver', array($structure_arr['h'.$from_to['from']],$structure_arr['d'.$from_to['to']]) ) . br();
 						} elseif($f_t == 'c_h') {
-							 $return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department</b> ' . $structure_arr['h'.$from_to['to']] . br();
+							 $return['result'][] = $this->my_lang('from_company_department', array($structure_arr['c'.$from_to['from']],$structure_arr['h'.$from_to['to']])). br();
 						}
 
 					}
@@ -596,19 +603,18 @@ class Structure extends MX_Controller {
 			}
 
 			if(isset($array['added'])) {
-				$return['result'][] = (isset($array['deleted']) ? hr().'<b>Added</b>'.hr() : '<b>Added</b>'.hr());
+				$return['result'][] = (isset($array['deleted']) ? hr().'<b>'.lang('added').'</b>'.hr() : '<b>'.lang('added').'</b>'.hr());
 				foreach ($array['added'] as $f_t => $value) {
 					foreach ($value as $from_to) {
-
 						if($f_t == 'd_f' && isset($structure_arr['d'.$from_to['from']]) && isset($structure_arr['f'.$from_to['to']])) {
-							$return['result'][] = '<b>From driver:</b> ' . $structure_arr['d'.$from_to['from']] . ' <b>To fleet:</b> ' . $structure_arr['f'.$from_to['to']] . br();
+							$return['result'][] = $this->my_lang('from_driver_to_vehicle', array($structure_arr['d'.$from_to['from']], $structure_arr['f'.$from_to['to']])).br();
 						} elseif($f_t == 'h_d' && isset($structure_arr['h'.$from_to['from']]) && isset($structure_arr['d'.$from_to['to']])) {
-							$return['result'][] = '<b>From department:</b> ' . $structure_arr['h'.$from_to['from']] . ' <b>To driver:</b> ' . $structure_arr['d'.$from_to['to']] . br();
+							$return['result'][] = $this->my_lang('from_department_to_driver', array($structure_arr['h'.$from_to['from']],$structure_arr['d'.$from_to['to']])). br();
 						} elseif($f_t == 'c_h' && isset($structure_arr['c'.$from_to['from']]) && isset($structure_arr['h'.$from_to['to']])) {
-							$return['result'][] = '<b>From company:</b> ' . $structure_arr['c'.$from_to['from']] . ' <b>To department:</b> ' . $structure_arr['h'.$from_to['to']] . br();
+							$return['result'][] = $this->my_lang('from_company_to_department',array($structure_arr['c'.$from_to['from']],$structure_arr['h'.$from_to['to']])). br();
 						} else {
 							$return['result'] = false;
-							$return['error'] = 'Անհնար միացում'; //todo
+							$return['error'] = lang('impossible_connectivity'); //todo
 						}
 
 					}

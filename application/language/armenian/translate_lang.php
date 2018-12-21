@@ -74,13 +74,30 @@ $lang['all1'] = 'Բոլորը';
 $lang['only_vehicles'] = 'Միայն Փոխադրամիջոցներ';
 $lang['edit'] = 'Խմբագրել';
 $lang['details'] = 'Մանրամասներ';
+$lang['close'] = 'Փակել';
+$lang['information_is_empty'] = 'Տեղեկատվությունը դատարկ է';
+
+$lang['added'] = 'ավելացվածներ';
+$lang['deleted'] = 'ջնջվածներ';
+$lang['impossible_connectivity'] = 'Անհնար միացում';
+
+//Add
+$lang['from_driver_to_vehicle'] = '<b>Վարորդ</b> %s - <b>ից դեպի Փոխադրամիջոց</b> %s';
+$lang['from_department_to_driver'] = '<b>Ստորաբաժանում</b> %s - <b>ից դեպի Վարորդ</b> %s';
+$lang['from_company_to_department'] = '<b>Ընկերություն</b> %s - <b>ից դեպի Ստորաբաժանում</b> %s';
+
+//Delete
+$lang['from_driver_vehicle'] = '<b>Վարորդ</b> %s - <b>ից Փոխադրամիջոց</b> %s';
+$lang['from_department_driver'] = '<b>Ստորաբաժանում</b> %s - <b>ից Վարորդ</b> %s';
+$lang['from_company_department'] = '<b>Ընկերություն</b> %s - <b>ից Ստորաբաժանում</b> %s';
 
 $lang['have_an_account'] = 'Արդեն գրանցված եք';
 $lang['continue_width_facebook'] = 'Շարունակեք Facebook- ի միջոցով';
 $lang['sign_in_with_google'] = 'Մուտք գործեք google- ով';
 $lang['or_us_email'] = 'օգտագործեք էլ․ հասցեն';
 $lang['Select_a_group'] = 'Ընտրեք խումբ';
-
+$lang['changes'] = 'Փոփոխություններ';
+$lang['save_changes'] = 'Պահպանել Փոփոխությունները';
 
 //select options
 $lang['choose'] = 'Ընտրել';

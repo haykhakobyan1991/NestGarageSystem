@@ -51,6 +51,29 @@
     transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block ">Գեներացնել</button>
 				</div>
 			</div>
+
+			<div class="card mt-3">
+				<div class="card-header">
+					Ինֆորմացիա
+				</div>
+				<div class="card-body text-justify">
+					<div class="text">
+						<span style="font-size: 13px;">Անուն:</span><span>  Maz_1</span>
+					</div>
+					<div class="text">
+						<span style="font-size: 13px;">Մեքենայի համար:</span><span>  455dd54</span>
+					</div>
+					<div class="text">
+						<span style="font-size: 13px;">Տեսակ:</span><span>  Բեռնատար</span>
+					</div>
+					<div class="text">
+						<span style="font-size: 13px;">Նկարագիր:</span><span>  Koryun Maruqyan</span>
+					</div>
+					<div class="text">
+						<span style="font-size: 13px;">Հեռախոսահամար:</span><span>  +(374) 55 554 443</span>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="col-sm-10">
 			<div id="container"></div>

@@ -73,12 +73,32 @@ $lang['delete'] = 'Удалить';
 $lang['only_vehicles'] = 'Только транспортные средства';
 $lang['edit'] = 'Редактировать';
 $lang['details'] = 'Детали';
+$lang['close'] = 'Закрыт';
+$lang['information_is_empty'] = 'Информация пуста';
+$lang['added'] = 'добавленные';
+$lang['deleted'] = 'удаленные';
+$lang['impossible_connectivity'] = 'Невозможное подключение';
+
+//Add
+$lang['from_driver_to_vehicle'] = '<b>вадителю </b> %s - <b> добавлен транспортное средство</b> %s';
+$lang['from_department_to_driver'] = '<b>отделу</b> %s - <b>добавлен водител</b> %s';
+$lang['from_company_to_department'] = '<b>компанию </b> %s - <b>добавлен отдел</b> %s';
+
+//Delete
+$lang['from_driver_vehicle'] = '<b>из водитела</b> %s - <b>удален транспортное средство</b> %s';
+$lang['from_department_driver'] = '<b>из отдела</b> %s - <b>удален водител</b> %s';
+$lang['from_company_department'] = '<b>из компании</b> %s - <b>удален отдел</b> %s';
+
+
+
 
 $lang['have_an_account'] = 'Иметь аккаунт';
 $lang['continue_width_facebook'] = 'Продолжить с Facebook';
 $lang['sign_in_with_google'] = 'войти с помощью Google';
 $lang['or_us_email'] = 'Используйте электронную почту';
 $lang['Select_a_group'] = 'Выберите группу';
+$lang['changes'] = 'Изменения';
+$lang['save_changes'] = 'Сохранить Изменения';
 
 
 //select options

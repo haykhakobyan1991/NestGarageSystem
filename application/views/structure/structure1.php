@@ -52,22 +52,18 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-secondary" id="exampleModalLabel">Changes</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<h5 class="modal-title text-secondary" id="exampleModalLabel"><?=lang('changes')?></h5>
+
 			</div>
 			<div id="result" class="modal-body">
-				<div class="alert alert-info">
+				<div class="alert alert-secondary">
 					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 						 src="<?= base_url() ?>assets/images/load.svg"/>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" id="save_changes" class="btn btn-outline-success" onclick="save('1')">Save
-					changes
-				</button>
-				<button type="button" class="btn btn-outline-danger " data-dismiss="modal">Close</button>
+				<button type="button" id="save_changes" class="btn btn-outline-success yes_btn" onclick="save('1')"><?=lang('save_changes')?></button>
+				<button type="button" class="btn btn-outline-success cancel_btn" data-dismiss="modal"><?=lang('close')?></button>
 			</div>
 		</div>
 	</div>
@@ -1268,7 +1264,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 			myDiagram.isModified = false;
 			console.log(myDiagram.model.linkDataArray);
-			var url = '<?=base_url('Structure/change_from_to_ax')?>';
+			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/change_from_to_ax')?>';
 			var data = myDiagram.model.linkDataArray;
 			var old_data = '<?=$from_to?>';
 			var structure = '<?=$structure?>';
@@ -1284,10 +1280,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							$.each(return_data.result, function (index, val) {
 								res += val
 							});
-							$('#result').html('<div class="alert alert-info">' + res + '</div>');
+							$('#save_changes').removeClass('d-none');
+							$('#result').html('<div class="alert alert-secondary">' + res + '</div>');
 						} else {
 							$('#save_changes').addClass('d-none');
-							$('#result').html('<h2 class="text-center alert alert-info">Information is empty</h2>');
+							$('#result').html('<h2 class="text-center alert alert-secondary"><?=lang('information_is_empty')?></h2>');
 						}
 					} else if (value == '1') {
 						if (return_data.result) {

@@ -175,7 +175,8 @@ endforeach;
 											<label
 												class="col-sm-2 col-form-label"><?= lang('login') ?> *</label>
 											<div class="col-sm-7">
-												<input type="text" class="form-control form-control-sm"
+												<input type="text"
+													   class="form-control form-control-sm"
 													   name="username"
 													   placeholder="<?= lang('username') ?>">
 											</div>
@@ -195,11 +196,11 @@ endforeach;
 														class="btn btn-sm btn-outline-secondary  ml-3 hide_password"
 														style="border: none;outline: none;"><i class="fa fa-eye"></i>
 												</button>
-												<button id="generate-password-button" type="button"
+												<button id="generate-password-button"
+														type="button"
 														class="save_cancel_btn btn btn-success ml-3"
 														style="font-size: 12px !important;line-height: 14px !important;padding: 12px 17px !important;font-weight: 500 !important;">
-													<i
-														class="fas fa-sync-alt"
+													<i  class="fas fa-sync-alt"
 														style="margin-right: 8px;"></i><?= lang('generate') ?>
 												</button>
 											</div>

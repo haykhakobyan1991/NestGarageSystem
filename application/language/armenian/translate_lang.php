@@ -300,6 +300,7 @@ $lang['license_plate'] = 'Պետհամարանիշ';
 $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Նկարագր';
 $lang['create_group'] = 'Ստեղծել Խումբ';
+$lang['EditGroup'] = 'Խմբագրել Խումբը';
 $lang['last_activity'] = 'Վերջին ակտիվությունը';
 $lang['object'] = 'Օբյեկտ';
 $lang['message_time'] = 'Հաղորդագրության ժամանակը';

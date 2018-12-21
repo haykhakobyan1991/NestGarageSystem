@@ -301,6 +301,7 @@ $lang['license_plate'] = 'Номерной знак';
 $lang['ih'] = 'ԻՀ';//to do
 $lang['description'] = 'Описание';
 $lang['create_group'] = 'Создать Группу';
+$lang['EditGroup'] = 'Редактировать Группу';
 $lang['last_activity'] = 'Последняя активность';
 $lang['object'] = 'Объект';
 $lang['message_time'] = 'Время сообщения';

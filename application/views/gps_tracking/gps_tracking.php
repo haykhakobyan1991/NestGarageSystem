@@ -46,26 +46,32 @@
 			<div class="row">
 				<div class="col-sm-12 m-2">
 
-					<div class="form-group row">
+					<div class="form-group row ml-2">
 						<label style="margin-left: 18px;margin-top: 10px;"><?= lang('group') ?></label>
 						<div class="col-sm-4">
-							<select style="margin-top: 1px;max-width: 220px;"
-									class="form-control form-control-sml">
-								<option>group 1</option>
-								<option>group 2</option>
-								<option>group 3</option>
-								<option>group 4</option>
+							<select style="margin-top: 1px;max-width: 220px; z-index: 999;"
+									name="group"
+									class="form-control form-control-sml ">
+								<option selected value=""><?= lang('all1') ?></option>
+								<? foreach ($result as $row) { ?>
+									<option data-id="<?= $row['group_id']?>" value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
+								<? } ?>
 							</select>
 						</div>
 
 						<div class="col-sm-4" style="padding-top: 4px;">
 							<button class="btn btn-sm btn-outline-secondary plus_btn mr-3"
-									data-toggle="modal" data-target=".bd-example-modal-lg"
+									data-toggle="modal" data-target=".add_group"
 									style="width: 20px;padding: 2px !important;"><img
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
 									class="ml-0 mr-0 "/></button>
 							<button class="btn btn-sm btn-outline-secondary set_btn mr-3"
+									id="edit_group_modal"
+									data-toggle="modal"
+									data-target="#edit_group"
+									data-toggle2="tooltip"
+									data-placement="top"
 									style="width: 20px;padding: 2px !important;"><img
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
@@ -711,9 +717,59 @@
 </div>
 
 
-<!-- Create Group Modal  Start -->
+<!-- Delete Modal start -->
+<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" id="delete_group"
+							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+					</button>
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger   yes_btn"
+							data-dismiss="modal"><?= lang('cancel') ?></button>
+
+					<input type="hidden" name="group_id">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Delete modal End -->
+
+<!-- Edit Group Modal  Start -->
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	 aria-hidden="true" id="edit_group">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-secondary " style="border-radius: unset;">
+				<h6 class="text-white modal-title dar"><?=lang('EditGroup')?></h6>
+			</div>
+			<div class="body-m">
+				<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+					 src="<?= base_url() ?>assets/images/bars.svg"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--Edit Group Modal end -->
+
+<!-- Create Group Modal  Start -->
+
+<div class="modal fade bd-example-modal-lg add_group" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
 	 aria-hidden="true">
 
 	<div class="modal-dialog modal-lg" role="document">
@@ -722,50 +778,39 @@
 				<h5 class="modal-title text-white"><?= lang('create_group') ?></h5>
 			</div>
 			<div class="modal-body">
-				<form>
+				<form id="group_add">
 					<div class="form-group row">
 						<div class="col-sm-1"></div>
 						<label class="col-sm-2 col-form-label"><?= lang('company_name') ?></label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" placeholder="<?= lang('company_name') ?>">
+							<input name="title" type="text" class="form-control"
+								   placeholder="<?= lang('company_name') ?>">
 						</div>
 					</div>
 					<div class="form-group row">
 						<div class="col-sm-1"></div>
 						<label class="col-sm-2 col-form-label"><?= lang('more_info') ?></label>
 						<div class="col-sm-8">
-							<textarea type="text" class="form-control"
+							<textarea name="description" type="text" class="form-control"
 									  placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
 					</div>
 
+					<input type="hidden" name="groups">
 
 				</form>
 				<hr class="my-2">
-				<div class="row pl-1 pr-1">
-					<input id="sb_s" type="text" class="form-control col-sm-6" placeholder="<?= lang('search') ?>"
-						   aria-label="Search" aria-describedby="basic-addon2">
-					<div class="col-sm-1"></div>
-					<input id="sb_s2" type="text" class="form-control col-sm-5" placeholder="<?= lang('search') ?>"
-						   aria-label="Search" aria-describedby="basic-addon2">
-				</div>
 				<div class="row mt-1 pl-1 pr-1">
-
+					<input id="sb_s" type="text" class="form-control" placeholder="<?= lang('search') ?>"
+						   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
 					<div class="col-sm-6 scroll_style"
 						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 
 						<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">fffff</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">gggg</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">rrrr</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">wwwww</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">qqqqq</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
-							<li style="cursor: pointer" class="p-1 sel_items mt-1 list-group-item">ccccc</li>
+							<? foreach ($result_fleets as $row_fleet) : ?>
+								<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
+									class="p-1 sel_items mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+							<? endforeach; ?>
 						</ul>
 					</div>
 					<div class="col-sm-1 text-center">
@@ -781,14 +826,12 @@
 						</button>
 
 					</div>
-
-
 					<div class="col-sm-5 scroll_style"
 						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 						<ul class="list-group lg_2 mt-1">
 
-
 						</ul>
+
 					</div>
 
 				</div>
@@ -797,7 +840,7 @@
 				<button id="add_group" type="button"
 						class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 				</button>
-				<button id="load" class="btn btn-sm btn-success d-none "><img
+				<button id="load" class="btn btn-sm btn-success d-none cancel_btn"><img
 						style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 						src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 				<button type="button" class="cancel_btn close btn btn-sm"
@@ -1437,4 +1480,201 @@
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
 	})
+
+
+
+
+
+	// add group
+	$(document).on('click', '#add_group', function (e) {
+
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/add_group_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#group_add')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+		loading('start', 'add_group');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+				scroll_top();
+				close_message();
+				loading('start', 'add_group');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
+			success: function (data) {
+				if (data.success == '1') {
+					close_message();
+
+
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').text(data.message);
+
+					loading('stop', 'add_group');
+
+
+					var url = "<?=current_url()?>";
+
+					$(location).attr('href', url);
+
+
+				} else {
+					close_message();
+					loading('stop', 'add_group');
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						loading('stop', 'add_group');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+
+					$('.alert-danger').html(errors);
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+	// get edit modal
+	$(document).on('click', '#edit_group_modal', function () {
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id');
+		$.get(url, function (result) {
+
+			// update modal content
+			$('.body-m').html(result);
+
+			// show modal
+			$('#myModal').modal('show');
+		});
+
+	});
+
+
+	$(document).on('click', '#edit_group_btn', function (e) {
+
+
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
+		e.preventDefault();
+		var form_data = new FormData($('form#group_edit')[0]);
+
+		$('input').removeClass('border border-danger');
+		$('input').parent('td').removeClass('border border-danger');
+		$('select').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+
+
+				loading('start', 'edit_group_btn');
+
+			},
+			success: function (data) {
+				if (data.success == '1') {
+					loading('stop', 'edit_group_btn');
+					var url = "<?=current_url()?>";
+					$(location).attr('href', url);
+				} else {
+					close_message();
+					loading('stop', 'edit_group_btn');
+
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						loading('stop', 'edit_group_btn');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+
+					$('.alert-danger').html(errors);
+
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				$('p#success').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+
+			}
+		});
+	});
+
+
+	$(document).on('click', '.delete_btn', function () {
+		group_id = $('select[name="group"] option:selected').data('id');
+		$('input[name="group_id"]').val(group_id);
+	});
+
+	$(document).on('click', '#delete_group', function () {
+		var id = $('input[name="group_id"]').val();
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Fleet_history/delete_group/')?>';
+
+		$.post(url, {group_id, id}, function (result) {
+			location.reload();
+		});
+	});
 </script>

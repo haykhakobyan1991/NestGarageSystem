@@ -720,14 +720,12 @@ class Fleet_history extends MX_Controller {
 			$add_sql .= 'AND FIND_IN_SET(`fleet`.`id`, "'.$search_car_ids.'")';
 		}
 
-		if($search_car != '') { //todo ԼՕՌԻԱ
+		if($search_car != '') {
 			$add_sql .= 'AND CONCAT_WS(
 				\' \',
 				`brand`.`title_'.$lng.'`,
 				`model`.`title_'.$lng.'`
 			  ) LIKE '.$this->load->db_value('%'.$search_car.'%').'
-			  OR `add_date` LIKE '.$this->load->db_value('%'.$search_car.'%').'
-			  /*OR @price = '.$this->load->db_value('%'.$search_car.'%').'*/
 			';
 		}
 
@@ -973,7 +971,7 @@ class Fleet_history extends MX_Controller {
 		$query_selected_fleets = $this->db->query($sql_selected_fleets);
 
 		if($query_selected_fleets->num_rows() == 0) {
-			echo '<h1 class="text-center">Please select a group</h1>'; // todo ml
+			echo '<h1 class="text-center">'.lang('Select_a_group').'</h1>';
 			return false;
 		}
 
@@ -1128,6 +1126,26 @@ class Fleet_history extends MX_Controller {
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
+	}
+
+	public function delete_group() {
+
+		//$this->load->authorisation('Fleet_history', 'delete_group');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$group_id = $this->input->post('group_id');
+
+
+		$this->db->delete('fleet_group', array('group_id' => $group_id));
+
+		return true;
+
 	}
 
 

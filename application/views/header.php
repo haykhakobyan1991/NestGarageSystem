@@ -78,6 +78,10 @@
 			font-weight: 700;
 		}
 
+		sub {
+			font-size: 50% !important;
+		}
+
 
 	</style>
 	<!-- Some CSS end -->
@@ -100,7 +104,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 <!-- Navbar Start -->
 <nav class="navbar navbar-light bg-light fixed-top"
 	 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
-	<a class="navbar-brand" href="#">NestGarageSystem</a>
+	<a class="navbar-brand" href="#">NestGarageSystem<sub>beta</sub></a>
 	<div class="ml-4">
 
 		<a class="nav_a mr-2 <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"

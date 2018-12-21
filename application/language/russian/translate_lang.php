@@ -27,6 +27,7 @@ $lang['welcome'] = 'Добро пожаловать';
 $lang['yes'] = 'Да';
 $lang['no'] = 'Нет';
 $lang['search'] = 'Искать';
+$lang['search_fleet'] = 'Искать (Транспортное средство)';
 $lang['name_lastname'] = 'Имя Фамоля';
 $lang['success'] = 'Удалось!';
 $lang['error'] = 'Ошибка!';
@@ -66,6 +67,7 @@ $lang['type_summer_winter_all'] = 'Тип (Лето, Зима, Все)';
 $lang['summer'] = 'Лето';
 $lang['winter'] = 'Зима';
 $lang['all'] = 'Все';
+$lang['all1'] = 'Все';
 $lang['select_all'] = 'Выбрать все';
 $lang['delete'] = 'Удалить';
 $lang['only_vehicles'] = 'Только транспортные средства';
@@ -76,6 +78,7 @@ $lang['have_an_account'] = 'Иметь аккаунт';
 $lang['continue_width_facebook'] = 'Продолжить с Facebook';
 $lang['sign_in_with_google'] = 'войти с помощью Google';
 $lang['or_us_email'] = 'Используйте электронную почту';
+$lang['Select_a_group'] = 'Выберите группу';
 
 
 //select options

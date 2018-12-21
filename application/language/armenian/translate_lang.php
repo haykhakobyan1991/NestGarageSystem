@@ -27,6 +27,7 @@ $lang['welcome'] = 'Բարի Գալուստ';
 $lang['yes'] = 'Այո';
 $lang['no'] = 'Ոչ';
 $lang['search'] = 'Որոնում';
+$lang['search_fleet'] = 'Որոնում (փոխադրամիջոց)';
 $lang['name_lastname'] = 'Անուն Ազգանուն';
 $lang['success'] = 'Հաջողվեց!';
 $lang['error'] = 'Սխալ';
@@ -69,6 +70,7 @@ $lang['type_summer_winter_all'] = 'Տեսակ (Ամառ, Ձմեռ, Բոլոր)';
 $lang['summer'] = 'Ամառ';
 $lang['winter'] = 'Ձմեռ';
 $lang['all'] = 'Բոլոր';
+$lang['all1'] = 'Բոլորը';
 $lang['only_vehicles'] = 'Միայն Փոխադրամիջոցներ';
 $lang['edit'] = 'Խմբագրել';
 $lang['details'] = 'Մանրամասներ';
@@ -77,6 +79,7 @@ $lang['have_an_account'] = 'Արդեն գրանցված եք';
 $lang['continue_width_facebook'] = 'Շարունակեք Facebook- ի միջոցով';
 $lang['sign_in_with_google'] = 'Մուտք գործեք google- ով';
 $lang['or_us_email'] = 'օգտագործեք էլ․ հասցեն';
+$lang['Select_a_group'] = 'Ընտրեք խումբ';
 
 
 //select options

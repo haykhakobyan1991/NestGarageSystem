@@ -112,7 +112,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					name="group"
 					style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"
 					class="selectpicker">
-				<option value=""><?= lang('all') ?></option>
+				<option selected value=""><?= lang('all1') ?></option>
 				<? foreach ($result as $row) { ?>
 					<option data-id="<?= $row['group_id']?>" value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
 				<? } ?>
@@ -134,7 +134,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					style="margin-right: 5px;margin-left: -15px;"
 					src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
 					class="ml-0 mr-0 "/></button>
-			<button class="btn btn-sm btn-outline-secondary delete_btn"
+			<button class="btn btn-sm btn-outline-secondary delete_btn" data-toggle="modal" data-target=".del_group_modal"
 					style="width: 20px;padding: 2px !important;"><img
 					style="margin-right: 5px;margin-left: -15px;"
 					src="<?= base_url() ?>assets/images/gps_tracking/delete.svg"
@@ -171,7 +171,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}).done(function () {
 			var table = $('#example').DataTable({
 				language: {
-					search: "<?=lang('search')?>",
+					search: "<?=lang('search_fleet')?>",
 					emptyTable: "<?=lang('no_data')?>",
 					info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
 					infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
@@ -190,6 +190,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				"search": {regex: true},
 				"iDisplayLength": 100,
 				dom: 'Bfrtip',
+				"columnDefs": [
+					{ "searchable": false, "targets": [0,1,3] }
+				],
 				buttons: [
 					{
 						extend: 'excelHtml5',
@@ -242,7 +245,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}).done(function () {
 				var table = $('#example').DataTable({
 					language: {
-						search: "<?=lang('search')?>",
+						search: "<?=lang('search_fleet')?>",
 						emptyTable: "<?=lang('no_data')?>",
 						info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
 						infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
@@ -261,6 +264,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					"paging": false,
 					"info": false,
 					dom: 'Bfrtip',
+					"columnDefs": [
+						{ "searchable": false, "targets": [0,1,3] }
+					],
 					buttons: [
 						{
 							extend: 'excelHtml5',
@@ -380,6 +386,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								"search": {regex: true},
 								"iDisplayLength": 100,
 								dom: 'Bfrtip',
+								"columnDefs": [
+									{ "searchable": false, "targets": [0,1,3] }
+								],
 								buttons: [
 									{
 										extend: 'excelHtml5',
@@ -804,8 +813,54 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 
+	$(document).on('click', '.delete_btn', function () {
+		group_id = $('select[name="group"] option:selected').data('id');
+		$('input[name="group_id"]').val(group_id);
+	});
+
+	$(document).on('click', '#delete_group', function () {
+		var id = $('input[name="group_id"]').val();
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Fleet_history/delete_group/')?>';
+
+		$.post(url, {group_id, id}, function (result) {
+			location.reload();
+		});
+	});
+
+
 
 </script>
+
+	<!-- Delete Modal start -->
+	<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+		 aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+						style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+				</div>
+				<div class="modal-footer text-center">
+					<div style="margin: 0 auto;">
+						<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" id="delete_group"
+								class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+						</button>
+						<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger   yes_btn"
+								data-dismiss="modal"><?= lang('cancel') ?></button>
+
+						<input type="hidden" name="group_id">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Delete modal End -->
 
 	<!-- Edit Group Modal  Start -->
 

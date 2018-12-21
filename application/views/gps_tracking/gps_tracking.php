@@ -998,6 +998,7 @@
 	</div>
 </div>
 <!-- Settings Modal End -->
+
 <!-- Delete Modal start -->
 <div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
@@ -1028,6 +1029,7 @@
 	</div>
 </div>
 <!-- Delete modal End -->
+
 <script>
 	$('.sel_all_checkbox').on('change', function () {
 		if ($('input.sel_all_checkbox').is(':checked')) {

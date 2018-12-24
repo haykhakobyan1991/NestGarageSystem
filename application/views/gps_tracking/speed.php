@@ -49,7 +49,6 @@
 					</button>
 				</div>
 			</div>
-
 			<div class="card mt-3">
 				<div class="card-header">
 					Ինֆորմացիա
@@ -131,10 +130,12 @@
 		},
 		series: [{
 			name: 'speed',
-			data: [15, 20, 25, 35, null, null, null, 35, 25, 20, 15]
+			data: [null, 1, 2, 3, 5, 10, 15, 20, 25, 35, null, null, null, 35, 25, 20, 15, 20, 25, 30, 35, null, null, null, 35, 30, 20, 15, 10, 5, 3, 2, 1,null],
+			color: 'rgb(144, 237, 125)'
 		}, {
 			name: 'speed',
-			data: [null, null, null, 35, 45, 55, 45, 35]
+			data: [null, null, null, null, null, null, null, null, null, 35, 45, 55, 45, 35, null, null, null, null, null, null, 35, 45, 55, 45, 35],
+			color: '#f45b5b',
 		}],
 		responsive: {
 			rules: [{

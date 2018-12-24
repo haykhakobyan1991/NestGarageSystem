@@ -316,7 +316,7 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('passport') ?></label>
-																				<span style="width: 100%;min-width: 111px;
+																				<label style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
@@ -328,7 +328,7 @@ endforeach;
 																						   name="file_1" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</span>
+																				</label>
 																			</div>
 																		</div>
 
@@ -387,7 +387,7 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('social_card') ?></label>
-																				<span style="width: 100%;min-width: 111px;
+																				<label style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
@@ -399,7 +399,7 @@ endforeach;
 																						   name="file_2" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</span>
+																				</label>
 																			</div>
 																		</div>
 																		<div class="col-md-3">
@@ -457,7 +457,7 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('driving_license') ?></label>
-																				<span style="width: 100%;min-width: 111px;
+																				<label style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
@@ -469,7 +469,7 @@ endforeach;
 																						   name="file_3" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</span>
+																				</label>
 																			</div>
 																		</div>
 
@@ -529,7 +529,7 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('technical_passport') ?></label>
-																				<span style="width: 100%;min-width: 111px;
+																				<label style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
@@ -541,7 +541,7 @@ endforeach;
 																						   name="file_4" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</span>
+																				</label>
 																			</div>
 																		</div>
 

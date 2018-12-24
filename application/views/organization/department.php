@@ -147,7 +147,7 @@ color: #545b62;">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header bg-dark"><?
-								if($this->load->authorisation('Organization', 'add_department')) :
+								if($this->load->authorisation('Organization', 'add_department', 1)) :
 								?>
 								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6><?
 								endif;

@@ -790,14 +790,11 @@ class Organization extends MX_Controller {
 //		$company_id = $row['company_id'];
 
 
-
-
 		$id = $this->input->post('department_id');
 		$title = $this->input->post('title');
 		$head_staff = $this->input->post('head_staff');
 		$description = $this->input->post('description');
 		$status = 1;
-
 
 
 
@@ -811,7 +808,6 @@ class Organization extends MX_Controller {
 				  `status` = ".$this->load->db_value($status)."
 				WHERE `id` =   ".$this->load->db_value($id)."
 			";
-
 
 		$result = $this->db->query($sql);
 

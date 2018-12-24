@@ -315,7 +315,7 @@ $lang['update'] = 'Թարմացնել';
 $lang['group'] = 'Խումբ';
 $lang['license_plate'] = 'Պետհամարանիշ';
 $lang['ih'] = 'ԻՀ';//to do
-$lang['description'] = 'Նկարագր';
+$lang['description'] = 'Նկարագիր';
 $lang['create_group'] = 'Ստեղծել Խումբ';
 $lang['EditGroup'] = 'Խմբագրել Խումբը';
 $lang['last_activity'] = 'Վերջին ակտիվությունը';
@@ -327,6 +327,9 @@ $lang['coefficient'] = 'Գործակից';
 $lang['default_speed'] = 'Նախնական արագություն';
 $lang['readout_time'] = 'Հաշվի ժամանակը: դադարեցնել ավելին';
 $lang['analog_input'] = 'Մուտքի Անալոգ';
+$lang['fleets'] = 'Տրանսպորտային Միջոցներ';
+$lang['max_speed'] = 'Առավելագույն արագություն';
+$lang['get_information'] = 'Ստացված ինֆորմացիան';
 
 
 

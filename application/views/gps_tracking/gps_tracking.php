@@ -1351,7 +1351,8 @@
 					strokeColor: "#4285F4",
 					strokeWidth: 3
 				});
-				myMap.geoObjects.add(myGeoObject2);
+				myMap.geoObjects
+					.add(myGeoObject2);
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
 					balloonContentHeader: "",
 					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
@@ -1367,10 +1368,12 @@
 					iconLayout: 'default#image',
 					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
 					iconImageSize: [35, 30],
-					iconImageOffset: [-10, -30]
+					iconImageOffset: [-15, -15]
 				});
-				myMap.geoObjects.removeAll();
-				myMap.geoObjects.add(carCoordinate);
+				myMap.geoObjects
+					.removeAll();
+				myMap.geoObjects
+					.add(carCoordinate);
 				myMap.geoObjects
 					.add(carCoordinate)
 					.add(myGeoObject)
@@ -1419,15 +1422,15 @@
 				console.log(latitude);
 				console.log(longitude);
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
-					balloonContentHeader: "",
-					balloonContentBody: "<p class='mb-0'>object:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
-						"<p class='mb-0'>Պետհամարանիշ:<span class='ml-1'>441xs26</span></p>" +
-						"<p class='mb-0'>message time:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
-						"<p class='mb-0'>speed<span class='ml-1'>55 km/h</span></p>" +
-						"<p class='mb-0'>engine:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-						"<p class='mb-0'>driver: <span class='ml-1'>Name Lastname</span></p>" +
-						"<p class='mb-0'>fuel:<span class='ml-1'>25l</span></p>" +
-						"<p class='mb-0'>place:<span class='ml-1'>Lenigradian 16</span></p>",
+					balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
+					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
+						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
 					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
@@ -1438,7 +1441,8 @@
 				myMap.geoObjects
 					.add(carCoordinate);
 			})
-			myMap.geoObjects.add(myGeoObject);
+			myMap.geoObjects
+				.add(myGeoObject);
 			var i = 1;
 			$.each(arr, function (e, value) {
 				if (i == 1) {
@@ -1471,8 +1475,10 @@
 						preset: 'islands#redDotIcon',
 					});
 				}
-				myMap.geoObjects.add(myPlacemark);
-				myMap.geoObjects.add(myPlacemark);
+				myMap.geoObjects
+					.add(myPlacemark);
+				myMap.geoObjects
+					.add(myPlacemark);
 				i++;
 			})
 		});

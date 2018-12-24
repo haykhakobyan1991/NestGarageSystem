@@ -285,16 +285,15 @@ endforeach;
 												</div>
 
 
-												<div class="form-group row mt-1 ml-1">
-													<label
-														class="col-sm-10 col-form-label"><?=lang('status_make_passive') ?></label>
-													<div class="col-sm-2 mt-2">
-														<input style="width:18px; height: 18px;" name="status"
-															   value="-1"
-															   type="checkbox"
-															   class="form-control form-control-sm">
-													</div>
-												</div>
+													<!--<div class="form-group row mt-1 ml-1">-->
+													<!--<label class="col-sm-10 col-form-label">--><?//=lang('status_make_passive') ?><!--</label>-->
+													<!--<div class="col-sm-2 mt-2">-->
+													<!--<input style="width:18px; height: 18px;" name="status"-->
+													<!--value="-1"-->
+													<!--type="checkbox"-->
+													<!--class="form-control form-control-sm">-->
+													<!--</div>-->
+													<!--</div>-->
 
 
 												<div class="accordion col-sm-12" id="accordionExample1">

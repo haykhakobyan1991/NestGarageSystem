@@ -17,9 +17,7 @@
 	<div class="row">
 		<div class="col-sm-2">
 			<div class="card">
-				<div class="card-header">
-					Տրանսպորտային միջոցներ
-				</div>
+				<div class="card-header"><?=lang('fleets')?></div>
 				<div class="card-body" style="max-height: 280px;overflow-y: scroll;">
 					<p class="card-text fleet_name">Fleet 1</p>
 					<p class="card-text fleet_name">Fleet 2</p>
@@ -34,21 +32,20 @@
 				</div>
 			</div>
 			<div class="form-group row mt-2">
-				<label class="col-sm-4 mt-2">Սկսած:</label>
+				<label class="col-sm-4 mt-2"><?=lang('from')?>:</label>
 				<input class="form-control form-control-sm col-sm-7" type="date">
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-4 mt-2">Մինչև:</label>
+				<label class="col-sm-4 mt-2"><?=lang('to')?>:</label>
 				<input type="date" class="col-sm-7 form-control form-control-sm">
 			</div>
 			<div class="form-group">
-				<label class="">Առավելագույն Արագությունը:</label>
+				<label class=""><?=lang('max_speed')?>:</label>
 				<input type="number" class="form-control form-control-sm">
 			</div>
 			<div class="row">
 				<div class="container-fluid">
-					<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block ">Գեներացնել
+					<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block "><?=lang('generate')?>
 					</button>
 				</div>
 			</div>
@@ -59,19 +56,19 @@
 				</div>
 				<div class="card-body text-justify">
 					<div class="text">
-						<span style="font-size: 13px;">Անուն:</span><span>  Maz_1</span>
+						<span style="font-size: 13px;"><?=lang('name')?>:</span><span>  Maz_1</span>
 					</div>
 					<div class="text">
-						<span style="font-size: 13px;">Մեքենայի համար:</span><span>  455dd54</span>
+						<span style="font-size: 13px;"><?=lang('license_plate')?>:</span><span>  455dd54</span>
 					</div>
 					<div class="text">
-						<span style="font-size: 13px;">Տեսակ:</span><span>  Բեռնատար</span>
+						<span style="font-size: 13px;"><?=lang('type')?>:</span><span>  Բեռնատար</span>
 					</div>
 					<div class="text">
-						<span style="font-size: 13px;">Նկարագիր:</span><span>  Koryun Maruqyan</span>
+						<span style="font-size: 13px;"><?=lang('description')?>:</span><span>  Koryun Maruqyan</span>
 					</div>
 					<div class="text">
-						<span style="font-size: 13px;">Հեռախոսահամար:</span><span>  +(374) 55 554 443</span>
+						<span style="font-size: 13px;"><?=lang('contact_number')?>:</span><span>  +(374) 55 554 443</span>
 					</div>
 				</div>
 			</div>
@@ -81,14 +78,14 @@
 
 			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2" >
 				<div class="container">
-					<h5>Ստացված Ինֆորմացիան</h5>
+					<h5><?=lang('get_information')?></h5>
 
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="card mt-3">
 								<div class="card-body text-justify">
-									<label>Սկսած ։  </label><span>  02-12-2018 / 18:30</span><br>
-									<label>մինչև ։  </label><span>  22-12-2018 / 17:30</span>
+									<label><?=lang('from')?> ։  </label><span>  02-12-2018 / 18:30</span><br>
+									<label><?=lang('to')?> ։  </label><span>  22-12-2018 / 17:30</span>
 								</div>
 							</div>
 

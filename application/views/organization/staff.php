@@ -274,9 +274,7 @@ endforeach;
 
 												</div>
 												<div class="col-sm-12 mt-1 ">
-
-													<div class="row" style="margin-right: -1px;
-    margin-left: -1px;">
+													<div class="row" style="margin-right: -1px;margin-left: -1px;">
 															<textarea placeholder="<?=lang('other')?>"
 																	  class="form-control col-sm-12"
 																	  id="exampleFormControlTextarea1"
@@ -375,10 +373,7 @@ endforeach;
 																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
-
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -403,7 +398,6 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label><?=lang('document')?></label>
@@ -413,7 +407,6 @@ endforeach;
 																					   placeholder="<?=lang('document')?>">
 																			</div>
 																		</div>
-
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label style="margin-top: 25px;max-width: 111px;min-width: 111px;
@@ -431,7 +424,6 @@ endforeach;
 																				</label>
 																			</div>
 																		</div>
-
 																		<div class="col-md-2">
 																			<div class="form-group">
 																				<label><?=lang('reference')?></label>
@@ -446,7 +438,6 @@ endforeach;
 																			<input type="date" name="expiration_2"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
-
 																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
@@ -458,10 +449,7 @@ endforeach;
 																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
-
 																	</div>
-
-
 																</div>
 															</div>
 														</div>
@@ -541,7 +529,6 @@ endforeach;
 																					   placeholder="<?=lang('note')?>">
 																			</div>
 																		</div>
-
 																	</div>
 																</div>
 															</div>

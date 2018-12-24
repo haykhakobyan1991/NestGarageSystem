@@ -312,7 +312,7 @@
 							<div class="card">
 								<div class="card-header p-0" id="heading_info1">
 									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button"
+										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info1"
 												aria-expanded="false" aria-controls="collapse_info1">
 											N/D
@@ -386,10 +386,7 @@
 														</select>
 													</div>
 												</div>
-
 											</div>
-
-
 										</div>
 									</div>
 								</div>
@@ -398,7 +395,7 @@
 							<div class="card">
 								<div class="card-header p-0" id="heading_info2">
 									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button"
+										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info2"
 												aria-expanded="false" aria-controls="collapse_info2">
 											N/D
@@ -484,7 +481,7 @@
 							<div class="card">
 								<div class="card-header p-0" id="heading_info3">
 									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button"
+										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info3"
 												aria-expanded="false" aria-controls="collapse_info3">
 											N/D
@@ -570,7 +567,7 @@
 							<div class="card">
 								<div class="card-header p-0" id="heading_info4">
 									<h5 class="mb-0">
-										<button class="btn btn-link collapsed" type="button"
+										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info4"
 												aria-expanded="false" aria-controls="collapse_info4">
 											N/D

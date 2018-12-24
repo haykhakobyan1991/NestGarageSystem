@@ -59,11 +59,12 @@
 	#captchaDiv {
 		margin: 0 auto;
 	}
-	.abcRioButtonContentWrapper span span:first-child{
+
+	.abcRioButtonContentWrapper span span:first-child {
 		font-size: 12px !important;
 	}
 
-	.signIn:hover,#sign_up:hover {
+	.signIn:hover, #sign_up:hover {
 		background: rgb(255, 122, 89) !important;
 		color: #fff !important;
 	}
@@ -72,7 +73,7 @@
 
 
 <script>
-	$(window).on('load', function() {
+	$(window).on('load', function () {
 		$('.abcRioButtonContentWrapper span span:first-child').text('<?=lang('sign_in_with_google')?>')
 	})
 </script>
@@ -87,10 +88,11 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
 
-			<p class="lead text-success left"><?=lang('have_an_account')?>? <span style="cursor:pointer;"
-																	 class="text-warning" data-toggle="modal"
-																	 data-target="#exampleModal"
-																	 data-whatever="@mdo"><?=lang('sign_in')?></span>
+			<p class="lead text-success left"><?= lang('have_an_account') ?>? <span style="cursor:pointer;"
+																					class="text-warning"
+																					data-toggle="modal"
+																					data-target="#exampleModal"
+																					data-whatever="@mdo"><?= lang('sign_in') ?></span>
 
 			<div class="langs mr-5" style="margin-top: -52px;text-align: right;">
 				<ul class="" data-url="<?= base_url('change_lang') ?>">
@@ -112,8 +114,9 @@
 				<div class="text-center">
 					<div id="fb" class="mb-2 mb-md-2"
 						 style="background: #3d5a98; cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(61, 90, 152, 0.67), 0 3px 6px rgba(27, 53, 104, 0.88);">
-						<img style="float: left; margin: 4px;" src="<?=base_url('assets/img/fb.png')?>">
-						<span style="color: #fff; font-size: 12px;  line-height: 38px;"><?=lang('continue_width_facebook')?></span>
+						<img style="float: left; margin: 4px;" src="<?= base_url('assets/img/fb.png') ?>">
+						<span
+							style="color: #fff; font-size: 12px;  line-height: 38px;"><?= lang('continue_width_facebook') ?></span>
 					</div>
 					<div id="my-signin2"
 						 onclick="ClickLogin()"
@@ -122,7 +125,8 @@
 						 style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
 					></div>
 				</div>
-				<p style="cursor:pointer;" class="text-center  small text-success mt-md-2 mt-3 ml-2" data-toggle="modal" data-target=".bd-example-modal-lg"><?=lang('or_us_email')?></p>
+				<p style="cursor:pointer;" class="text-center  small text-success mt-md-2 mt-3 ml-2" data-toggle="modal"
+				   data-target=".bd-example-modal-lg"><?= lang('or_us_email') ?></p>
 			</div>
 
 
@@ -133,16 +137,13 @@
 					You also confirm agreement to the Terms Service and Privacy Policy. You can change mind about
 					receiving information from us as se out polices.</p>
 				<hr class="my-4">
-
-
 			</div>
-
 		</div>
-
 	</div>
 
 	<!--Sign up modal-->
-	<div id="reg_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+	<div id="reg_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+		 aria-labelledby="myLargeModalLabel"
 		 aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -153,65 +154,60 @@
 
 
 				<div class="row content_area">
-
 					<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
-
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff;">
 							<h1 class="text-left text-success" style="font-size: 1.5em;">Wellcome to F6S</h1>
 							<p class="lead">F6S is where help eachother grow with deals, programs, founding and
 								jobs.</p>
 							<hr class="my-4">
-							<p>For new users, your public profile/basic information will be used to create a profile.
-								we will never post without your permission.</p>
-
+							<p>For new users, your public profile/basic information will be used to create a profile. we
+								will never post without your permission.</p>
 							<hr class="my-4">
-
 							<p style="font-size: 1em;" class="lead">By Joining F6S and providing your personal
-								information, you
-								confirm your agree to us using it to provide our services and to
-								keep in touch regarding information we think may interest you.
-								You also confirm agreement to the Terms Service and Privacy Policy. You can change mind
-								about
-								receiving information from us as se out polices.</p>
+								information, you confirm your agree to us using it to provide our services and to keep
+								in touch regarding information we think may interest you. You also confirm agreement to
+								the Terms Service and Privacy Policy. You can change mind about receiving information
+								from us as se out polices.</p>
 						</div>
-
-
 					</div>
-
-
 					<div class="col-md-6 mt-md-3 mt-3">
 						<div class="alert-danger mb-2 p-2 mr-2 d-none">fsdfd fsd s fsd fsddfd</div>
 						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
-
-
-
 							<form id="register">
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm firstname" placeholder="<?=lang('first_name')?>" name="firstname" value="">
+									<input type="text" class="form-control form-control-sm firstname"
+										   placeholder="<?= lang('first_name') ?>" name="firstname" value="">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm lastname" placeholder="<?=lang('last_name')?>" name="lastname" value="">
+									<input type="text" class="form-control form-control-sm lastname"
+										   placeholder="<?= lang('last_name') ?>" name="lastname" value="">
 								</div>
 								<div class="form-group">
-									<input type="email" class="form-control form-control-sm email" placeholder="<?=lang('email')?>" name="up_email" value="">
+									<input type="email" class="form-control form-control-sm email"
+										   placeholder="<?= lang('email') ?>" name="up_email" value="">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm country_code" placeholder="<?=lang('country_code')?>" name="country_code" value="">
+									<input type="text" class="form-control form-control-sm country_code"
+										   placeholder="<?= lang('country_code') ?>" name="country_code" value="">
 								</div>
 								<div class="form-group">
-									<input type="text" class="form-control form-control-sm phone_number" placeholder="<?=lang('phone_number')?>" name="phone_number" value="">
+									<input type="text" class="form-control form-control-sm phone_number"
+										   placeholder="<?= lang('phone_number') ?>" name="phone_number" value="">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password" placeholder="<?=lang('password')?>" name="up_password" value="">
+									<input type="password" class="form-control form-control-sm password"
+										   placeholder="<?= lang('password') ?>" name="up_password" value="">
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm confirm_password" placeholder="<?=lang('confirm_password')?>" name="confirm_password" value="">
+									<input type="password" class="form-control form-control-sm confirm_password"
+										   placeholder="<?= lang('confirm_password') ?>" name="confirm_password"
+										   value="">
 								</div>
 								<div class="form-group">
 									<select name="up_country" class="selectpicker form-control form-control-sm"
 											id="country" data-container="body" data-live-search="true"
-											title="<?=lang('select_country')?>">
-										<option value=""><?=lang('select_country')?> ...</option>
+											title="<?= lang('select_country') ?>">
+										<option value=""><?= lang('select_country') ?> ...</option>
 										<? foreach ($country as $row) : ?>
 											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
@@ -220,8 +216,11 @@
 							</form>
 
 							<button id="sign_up" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" type="submit" class="btn btn-success btn-block signUp"><?=lang('join')?></button>
-							<button id="load" class="btn btn-block  btn-success d-none"><img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+    transition: all .3s ease-in-out;background: #fff;" type="submit"
+									class="btn btn-success btn-block signUp"><?= lang('join') ?></button>
+							<button id="load" class="btn btn-block  btn-success d-none"><img
+									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 						</div>
 					</div>
 				</div>
@@ -244,7 +243,8 @@
 						<p class="lead">F6S is where help eachother grow with deals, programs, founding and
 							jobs. </p>
 						<hr class="my-4">
-						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used to create a profile. we will never post without your permission.</p>
+						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used
+							to create a profile. we will never post without your permission.</p>
 					</div>
 					<div class="collapse active show" id="collapseExample">
 						<div class="card card-body">
@@ -252,10 +252,12 @@
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="email" value="">
-									<small id="email" class="form-text text-muted d-none"><p class="text-danger">Field must be filled in</p></small>
+									<small id="email" class="form-text text-muted d-none"><p class="text-danger">Field
+											must be filled in</p></small>
 								</div>
 								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password" placeholder="Password" name="password" value="">
+									<input type="password" class="form-control form-control-sm password"
+										   placeholder="Password" name="password" value="">
 									<small id="password" class="form-text text-muted d-none"><p class="text-danger">
 											Field must be filled in</p></small>
 								</div>
@@ -265,16 +267,18 @@
 									<small id="captcha" class="form-text text-muted d-none">
 										<p class="text-danger">Field must be filled in</p>
 									</small>
-									<div id = "captchaDiv" class="w-50 text-center mt-3 bg-secondary">
-										<span id="captImg" ><?= $captcha['image'] ?></span>
-										<a href="javascript:void(0);" title="Can't read the image? click to refresh." class="text-white refreshCaptcha">
+									<div id="captchaDiv" class="w-50 text-center mt-3 bg-secondary">
+										<span id="captImg"><?= $captcha['image'] ?></span>
+										<a href="javascript:void(0);" title="Can't read the image? click to refresh."
+										   class="text-white refreshCaptcha">
 											<i class="fas fa-redo-alt"></i>
 										</a>
 									</div>
 								</div>
 							</form>
 							<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" id="signIn" type="submit" class="btn btn-sm btn-block signIn"><?=lang('sign_in')?></button>
+    transition: all .3s ease-in-out;background: #fff;" id="signIn" type="submit"
+									class="btn btn-sm btn-block signIn"><?= lang('sign_in') ?></button>
 							<button id="load2" class="btn btn-block  btn-success d-none"><img
 									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
@@ -297,9 +301,6 @@
 <script src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/bootstrap/bootstrap.min.js') ?>"></script>
 <script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
-
-
-
 
 
 <!-- Sign In With FACEBOOK  -->
@@ -519,7 +520,7 @@
 			data: form_data,
 			cache: false,
 			dataType: 'json',
-			beforeSend : function (){
+			beforeSend: function () {
 
 				loading('start', 'sign_up');
 
@@ -560,7 +561,7 @@
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
-									if(value != tmp) {
+									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
@@ -609,7 +610,7 @@
 			beforeSend: function () {
 
 				close_message();
-				loading('start', 'signIn','load2');
+				loading('start', 'signIn', 'load2');
 
 			},
 			success: function (data) {
@@ -669,11 +670,11 @@
 
 	$(document).on('keypress', function (e) {
 		var key = e.which;
-		if(key == 13) {
-			if($('#collapseExample').hasClass('show')) {
+		if (key == 13) {
+			if ($('#collapseExample').hasClass('show')) {
 				$('#signIn').trigger('click');
 			}
-			if($('#reg_modal').hasClass('show')) {
+			if ($('#reg_modal').hasClass('show')) {
 				$('#sign_up').trigger('click');
 			}
 		}

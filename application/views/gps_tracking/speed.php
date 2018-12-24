@@ -48,7 +48,8 @@
 			<div class="row">
 				<div class="container-fluid">
 					<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block ">Գեներացնել</button>
+    transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block ">Գեներացնել
+					</button>
 				</div>
 			</div>
 
@@ -77,6 +78,42 @@
 		</div>
 		<div class="col-sm-10">
 			<div id="container"></div>
+
+			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2" >
+				<div class="container">
+					<h5>Ստացված Ինֆորմացիան</h5>
+
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<label>Սկսած ։  </label><span>  02-12-2018 / 18:30</span><br>
+									<label>մինչև ։  </label><span>  22-12-2018 / 17:30</span>
+								</div>
+							</div>
+
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<p>Maz_1</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-8">
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item">1. Միջին արագությունը 50 կմ/ժամ</li>
+										<li class="list-group-item">2. Առավելագույն արագությունը 75 կմ/ժամ</li>
+										<li class="list-group-item">3. Գերազանցումների քանակը 0</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

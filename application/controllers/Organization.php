@@ -586,7 +586,7 @@ class Organization extends MX_Controller {
 
 	public function add_department_ax() {
 
-		$this->load->authorisation('Organization', 'department');
+		$this->load->authorisation('Organization', 'add_department');
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -607,9 +607,6 @@ class Organization extends MX_Controller {
 
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
-
-
 
 
 
@@ -618,8 +615,7 @@ class Organization extends MX_Controller {
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title'),
-				'head_staff' =>  form_error('head_staff')
+				'title' =>  form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -641,8 +637,6 @@ class Organization extends MX_Controller {
 		$head_staff = $this->input->post('head_staff');
 		$description = $this->input->post('description');
 		$status = 1;
-
-
 
 
 		$sql = "
@@ -678,7 +672,6 @@ class Organization extends MX_Controller {
 
 
 
-
 		if ($result){
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
@@ -693,6 +686,8 @@ class Organization extends MX_Controller {
 	}
 
 	public function edit_department_modal_ax() {
+
+		$this->load->authorisation('Organization', 'edit_department');
 
 		$id = $this->uri->segment(4);
 		$this->load->helper('url');
@@ -748,7 +743,7 @@ class Organization extends MX_Controller {
 
 	public function edit_department_ax() {
 
-		$this->load->authorisation('Organization', 'department');
+		$this->load->authorisation('Organization', 'edit_department');
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -769,7 +764,6 @@ class Organization extends MX_Controller {
 		// $this->config->set_item('language', 'armenian');
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('head_staff', 'head_staff', 'required');
 
 
 
@@ -780,8 +774,7 @@ class Organization extends MX_Controller {
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title'),
-				'head_staff' =>  form_error('head_staff')
+				'title' =>  form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}

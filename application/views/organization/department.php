@@ -95,24 +95,26 @@ color: #545b62;">
 							<td><?= $item['email'] ?></td>
 							<td><?= $item['registration_date'] ?></td>
 							<td><?= $item['user_name'] ?></td>
-							<td colspan="2">
+							<td colspan="2"><?
+								if ($this->load->authorisation('Organization', 'edit_department', 1)) :
+								?>
+									<span style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
+										  data-id="<?= $item['id'] ?>" id="edit_department_modal"
+										  data-toggle="modal" class="float-left text-success"
+										  data-target="#edit_department"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="edit"><i class="fas fa-edit"></i></span>
+								<?endif;?>
 
-										<span
-											style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
-											data-id="<?= $item['id'] ?>" id="edit_department_modal"
-											data-toggle="modal" class="float-left text-success"
-											data-target="#edit_department"
-											data-toggle2="tooltip"
-											data-placement="top"
-											title="edit"><i class="fas fa-edit"></i></span>
-
+								<?if ($this->load->authorisation('Organization', 'delete_department', 1)) :?>
 								<span style="border: none; cursor:pointer;" data-toggle="modal"
 									  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
 									  id="delete_department_modal" class="text-secondary"
 									  data-toggle2="tooltip"
 									  data-placement="top"
 									  title="delete"><i class="fas fa-trash"></i></span></td>
-
+								<?endif;?>
 						</tr>
 
 
@@ -144,9 +146,12 @@ color: #545b62;">
 					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header bg-dark">
-								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6>
-
+							<div class="modal-header bg-dark"><?
+								if($this->load->authorisation('Organization', 'add_department')) :
+								?>
+								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6><?
+								endif;
+								?>
 							</div>
 							<div class="modal-body">
 								<!-- Error Message -->
@@ -167,7 +172,7 @@ color: #545b62;">
 
 
 								<div class="form-group row mb-0 mt-1">
-									<label class="col-sm-3 col-form-label"><?=lang('head')?> *</label>
+									<label class="col-sm-3 col-form-label"><?=lang('head')?> </label>
 									<div class="col-sm-8">
 										<select name="head_staff"
 												class="form-control selectpicker"

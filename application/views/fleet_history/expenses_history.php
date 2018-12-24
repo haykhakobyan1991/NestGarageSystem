@@ -816,6 +816,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	$(document).on('click', '.delete_btn', function () {
 		group_id = $('select[name="group"] option:selected').data('id');
 		$('input[name="group_id"]').val(group_id);
+
+		var url_0 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Fleet_history/group_type/')?>';
+
+		$.post(url_0, {group_id: id}, function (result) {
+
+		})
+
 	});
 
 	$(document).on('click', '#delete_group', function () {

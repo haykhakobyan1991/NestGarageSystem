@@ -96,7 +96,7 @@ $lang['have_an_account'] = 'Иметь аккаунт';
 $lang['continue_width_facebook'] = 'Продолжить с Facebook';
 $lang['sign_in_with_google'] = 'войти с помощью Google';
 $lang['or_us_email'] = 'Используйте электронную почту';
-$lang['Select_a_group'] = 'Выберите группу';
+$lang['You_can_not_edit_this_group'] = 'Вы не можете редактировать эту группу';
 $lang['changes'] = 'Изменения';
 $lang['save_changes'] = 'Сохранить Изменения';
 

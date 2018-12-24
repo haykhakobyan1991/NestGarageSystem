@@ -965,13 +965,14 @@ class Fleet_history extends MX_Controller {
 				ON `model`.`id` = `fleet`.`model_id` 	
 			LEFT JOIN `brand` 
 				ON `brand`.`id` = `model`.`brand_id`	
-			WHERE `group_id` = 	'".$id."'		
+			WHERE `group_id` = 	'".$id."'	
+			 AND `default` = '1'	
 		";
 
 		$query_selected_fleets = $this->db->query($sql_selected_fleets);
 
 		if($query_selected_fleets->num_rows() == 0) {
-			echo '<h1 class="text-center">'.lang('Select_a_group').'</h1>';
+			echo '<h1 class="h2 p-2 alert-secondary m-2 text-center">'.lang('You_can_not_edit_this_group').'</h1>';
 			return false;
 		}
 
@@ -1147,6 +1148,33 @@ class Fleet_history extends MX_Controller {
 		return true;
 
 	}
+
+
+
+
+	public function group_type() {
+
+		$group_id = $this->input->post('group_id');
+
+		$sql_selected_fleets = "
+			SELECT 
+			    `fleet_group`.`id`
+			FROM
+			   `fleet_group`	
+			WHERE `group_id` = 	'".$group_id."'	
+			 AND `default` = '1'	
+		";
+
+		$query_selected_fleets = $this->db->query($sql_selected_fleets);
+
+		if($query_selected_fleets->num_rows() == 0) {
+			echo '<h1 class="h2 p-2 alert-secondary m-2 text-center">'.lang('You_can_not_edit_this_group').'</h1>';
+			return false;
+		}
+
+	}
+
+
 
 
 

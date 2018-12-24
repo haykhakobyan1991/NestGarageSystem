@@ -17,7 +17,7 @@
 
 
 	<div class="form-group row mb-0 mt-1">
-		<label class="col-sm-3 form-label"><?=lang('head')?> *</label>
+		<label class="col-sm-3 form-label"><?=lang('head')?> </label>
 		<div class="col-sm-8">
 			<select name="head_staff" id="model_select" class="form-control selectpicker" data-size="5" id="head_staff" data-live-search="true" title="<?= lang('select_staff') ?>">
 				<? foreach ($staff_for_select as $val) : ?>

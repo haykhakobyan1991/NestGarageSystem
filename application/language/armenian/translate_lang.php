@@ -97,7 +97,7 @@ $lang['have_an_account'] = 'Արդեն գրանցված եք';
 $lang['continue_width_facebook'] = 'Շարունակեք Facebook- ի միջոցով';
 $lang['sign_in_with_google'] = 'Մուտք գործեք google- ով';
 $lang['or_us_email'] = 'օգտագործեք էլ․ հասցեն';
-$lang['Select_a_group'] = 'Ընտրեք խումբ';
+$lang['You_can_not_edit_this_group'] = 'Դուք չեք կարող խմբագրել այս խումբը';
 $lang['changes'] = 'Փոփոխություններ';
 $lang['save_changes'] = 'Պահպանել Փոփոխությունները';
 

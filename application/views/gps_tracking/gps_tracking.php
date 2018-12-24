@@ -1487,10 +1487,6 @@
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
 	})
 
-
-
-
-
 	// add group
 	$(document).on('click', '#add_group', function (e) {
 
@@ -1521,19 +1517,11 @@
 			success: function (data) {
 				if (data.success == '1') {
 					close_message();
-
-
 					$('.alert-success').removeClass('d-none');
 					$('.alert-success').text(data.message);
-
 					loading('stop', 'add_group');
-
-
 					var url = "<?=current_url()?>";
-
 					$(location).attr('href', url);
-
-
 				} else {
 					close_message();
 					loading('stop', 'add_group');
@@ -1583,10 +1571,8 @@
 	$(document).on('click', '#edit_group_modal', function () {
 		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id');
 		$.get(url, function (result) {
-
 			// update modal content
 			$('.body-m').html(result);
-
 			// show modal
 			$('#myModal').modal('show');
 		});
@@ -1645,7 +1631,6 @@
 										errors += value;
 									}
 									tmp = value;
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');

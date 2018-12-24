@@ -68,6 +68,9 @@
 		background: rgb(255, 122, 89) !important;
 		color: #fff !important;
 	}
+	#load2:hover{
+		background-color: #fff !important;
+	}
 
 </style>
 
@@ -279,9 +282,10 @@
 							<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
     transition: all .3s ease-in-out;background: #fff;" id="signIn" type="submit"
 									class="btn btn-sm btn-block signIn"><?= lang('sign_in') ?></button>
-							<button id="load2" class="btn btn-block  btn-success d-none"><img
-									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+							<button id="load2" class="btn btn-block  btn-success cancel_btn d-none" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;">
+								<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
+							</button>
 						</div>
 					</div>
 					<p style="font-size: 0.9em;" class="lead mt-2 mt-md-2">

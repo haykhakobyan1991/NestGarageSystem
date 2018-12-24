@@ -17,7 +17,7 @@
 	<div class="row">
 		<div class="col-sm-2">
 			<div class="card">
-				<div class="card-header"><?=lang('fleets')?></div>
+				<div class="card-header"><?= lang('fleets') ?></div>
 				<div class="card-body" style="max-height: 280px;overflow-y: scroll;">
 					<p class="card-text fleet_name">Fleet 1</p>
 					<p class="card-text fleet_name">Fleet 2</p>
@@ -32,48 +32,47 @@
 				</div>
 			</div>
 			<div class="form-group row mt-2">
-				<label class="col-sm-4 mt-2"><?=lang('from')?>:</label>
+				<label class="col-sm-4 mt-2"><?= lang('from') ?>:</label>
 				<input class="form-control form-control-sm col-sm-7" type="date">
 			</div>
 			<div class="form-group row">
-				<label for="start_date"  class="col-sm-4 mt-2"><?=lang('to')?>:</label>
+				<label for="start_date" class="col-sm-4 mt-2"><?= lang('to') ?>:</label>
 				<input name="start_date" type="date" class="col-sm-7 form-control form-control-sm">
 			</div>
 			<div class="form-group">
-				<label for="end_date" class=""><?=lang('max_speed')?>:</label>
+				<label for="end_date" class=""><?= lang('max_speed') ?>:</label>
 				<input name="end_date" type="number" class="form-control form-control-sm">
 			</div>
 			<div class="row">
 				<div class="container-fluid">
-					<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;" class="generate btn btn-sm btn-block "><?=lang('generate')?>
+					<button
+						style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
+						class="generate btn btn-sm btn-block "><?= lang('generate') ?>
 					</button>
 				</div>
 			</div>
 			<div class="card mt-3">
-				<div class="card-header">
-					Ինֆորմացիա
-				</div>
+				<div class="card-header">Ինֆորմացիա</div>
 				<div class="card-body text-justify">
-					<div class="text"><span style="font-size: 13px;"><?=lang('name')?>:</span><span>  Maz_1</span></div>
-					<div class="text"><span style="font-size: 13px;"><?=lang('license_plate')?>:</span><span>  455dd54</span></div>
-					<div class="text"><span style="font-size: 13px;"><?=lang('type')?>:</span><span>  Բեռնատար</span></div>
-					<div class="text"><span style="font-size: 13px;"><?=lang('description')?>:</span><span>  Koryun Maruqyan</span></div>
-					<div class="text"><span style="font-size: 13px;"><?=lang('contact_number')?>:</span><span>  +(374) 55 554 443</span></div>
+					<div class="text"><span style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span></div>
+					<div class="text"><span style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span></div>
+					<div class="text"><span style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span></div>
+					<div class="text"><span style="font-size: 13px;"><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span></div>
+					<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span></div>
 				</div>
 			</div>
 		</div>
 		<div class="col-sm-10">
 			<div id="container"></div>
-
-			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2" >
+			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2">
 				<div class="container">
-					<h5><?=lang('get_information')?></h5>
+					<h5><?= lang('get_information') ?></h5>
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="card mt-3">
 								<div class="card-body text-justify">
-									<label><?=lang('from')?> ։  </label><span>  02-12-2018 / 18:30</span><br>
-									<label><?=lang('to')?> ։  </label><span>  22-12-2018 / 17:30</span>
+									<label><?= lang('from') ?> ։ </label><span>  02-12-2018 / 18:30</span><br>
+									<label><?= lang('to') ?> ։ </label><span>  22-12-2018 / 17:30</span>
 								</div>
 							</div>
 							<div class="card mt-3">
@@ -103,17 +102,7 @@
 <script>
 	Highcharts.chart('container', {
 		title: {
-			text: 'Solar Employment Growth by Sector, 2010-2016'
-		},
-
-		subtitle: {
-			text: 'Source: thesolarfoundation.com'
-		},
-
-		yAxis: {
-			title: {
-				text: 'Number of Employees'
-			}
+			text: 'Speed tracking'
 		},
 		legend: {
 			layout: 'vertical',
@@ -130,9 +119,10 @@
 		},
 		series: [{
 			name: 'speed',
-			data: [null, 1, 2, 3, 5, 10, 15, 20, 25, 35, null, null, null, 35, 25, 20, 15, 20, 25, 30, 35, null, null, null, 35, 30, 20, 15, 10, 5, 3, 2, 1,null],
+			data: [null, 1, 2, 3, 5, 10, 15, 20, 25, 35, null, null, null, 35, 25, 20, 15, 20, 25, 30, 35, null, null, null, 35, 30, 20, 15, 10, 5, 3, 2, 1, null],
 			color: 'rgb(144, 237, 125)'
-		}, {
+		},
+		{
 			name: 'speed',
 			data: [null, null, null, null, null, null, null, null, null, 35, 45, 55, 45, 35, null, null, null, null, null, null, 35, 45, 55, 45, 35],
 			color: '#f45b5b',

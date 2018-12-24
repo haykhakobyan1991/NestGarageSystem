@@ -44,6 +44,11 @@ $lang['settings'] = 'Настройки';
 $lang['download_requisite'] = 'Загрузить Реквизиты';
 $lang['requisite'] = 'Реквизит';
 
+$lang['passport'] = 'Паспорт';
+$lang['social_card'] = 'Социальная карта';
+$lang['driving_license'] = 'Водительские права';
+$lang['technical_passport'] = 'Тех паспорт';
+
 
 $lang['insurance_company'] = 'Страховая Компания';
 $lang['driver'] = 'Водитель';

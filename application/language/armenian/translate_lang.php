@@ -45,6 +45,8 @@ $lang['delete'] = 'Ջնջել';
 $lang['settings'] = 'Կարգավորումներ';
 $lang['titles'] = 'Վերնագրեր';
 $lang['coefficient'] = 'Գործակիցը';
+$lang['download_requisite'] = 'Բեռնել ռեքվեզիտ';
+$lang['requisite'] = 'Ռեքվեզիտ';
 
 $lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
 $lang['driver'] = 'Վարորդ';

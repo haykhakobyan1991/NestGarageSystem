@@ -42,7 +42,7 @@ $i = '';
 							</div>
 
 							<div class="col-sm-7">
-								<div class="row">
+								<div class="row" style="margin-top: -2px;">
 									<label
 										class="col-form-label col-sm-5"><?= lang('company_type') ?></label>
 
@@ -75,9 +75,8 @@ $i = '';
 							</div>
 
 							<div class="col-sm-7">
-								<div class="row">
+								<div class="row" style="margin-top: 1px;">
 									<label class="col-form-label col-sm-5"><?= lang('web_address') ?></label>
-
 									<input value="<?= $company['web_address'] ?>"
 										   name="web_address"
 										   type="text" class="form-control form-control-sm col-sm-7"
@@ -340,6 +339,22 @@ $i = '';
 											   name="owner_contact_number" type="text"
 											   class="form-control form-control-sm"
 											   placeholder="<?= lang('contact_number') ?>">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?=lang('requisite')?></label>
+									<div class="form-group col-sm-8" style="margin-top: -22px;margin-left: 22px;">
+										<label
+											style="margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+											class="btn btn-sm btn-outline-secondary">
+											<span><?=lang('download_requisite')?></span>
+											<input class="btn_input" name="file_1" type="file" hidden
+												   style="display: none;" value="">
+										</label>
 									</div>
 								</div>
 							</div>
@@ -909,9 +924,41 @@ $i = '';
 		$('.pos_abs_div').removeClass('animated');
 		$('.pos_abs_div').animate({
 			bottom: "-=60"
-		}, function () {
-			location.reload();
 		})
+	});
+
+	// Input type File Staff
+	$(document).on('change', '.btn_input', function () {
+
+		var upload_file = $(this).val();
+		var upload_file = upload_file.split("\\");
+		var upload_file = upload_file[upload_file.length - 1];
+
+		var text_truncate = function (str, length, ending) {
+			if (length == null) {
+				length = 100;
+			}
+			if (ending == null) {
+				ending = '...';
+			}
+			if (str.length > length) {
+				return str.substring(0, length - ending.length) + ending;
+			} else {
+				return str;
+			}
+		};
+
+		if (upload_file == '') {
+			$(this).parent('label').children('span').text('<?=lang('download_requisite')?>');
+		} else {
+			if (upload_file.length > 18) {
+				var short_text = text_truncate(upload_file, 18, ' ...');
+				$(this).parent('label').children('span').text(short_text);
+			} else {
+				$(this).parent('label').children('span').text(upload_file);
+			}
+		}
+
 	});
 
 </script>

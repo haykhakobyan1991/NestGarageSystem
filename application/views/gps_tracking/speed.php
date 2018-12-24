@@ -36,12 +36,12 @@
 				<input class="form-control form-control-sm col-sm-7" type="date">
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-4 mt-2"><?=lang('to')?>:</label>
-				<input type="date" class="col-sm-7 form-control form-control-sm">
+				<label for="start_date"  class="col-sm-4 mt-2"><?=lang('to')?>:</label>
+				<input name="start_date" type="date" class="col-sm-7 form-control form-control-sm">
 			</div>
 			<div class="form-group">
-				<label class=""><?=lang('max_speed')?>:</label>
-				<input type="number" class="form-control form-control-sm">
+				<label for="end_date" class=""><?=lang('max_speed')?>:</label>
+				<input name="end_date" type="number" class="form-control form-control-sm">
 			</div>
 			<div class="row">
 				<div class="container-fluid">
@@ -55,21 +55,11 @@
 					Ինֆորմացիա
 				</div>
 				<div class="card-body text-justify">
-					<div class="text">
-						<span style="font-size: 13px;"><?=lang('name')?>:</span><span>  Maz_1</span>
-					</div>
-					<div class="text">
-						<span style="font-size: 13px;"><?=lang('license_plate')?>:</span><span>  455dd54</span>
-					</div>
-					<div class="text">
-						<span style="font-size: 13px;"><?=lang('type')?>:</span><span>  Բեռնատար</span>
-					</div>
-					<div class="text">
-						<span style="font-size: 13px;"><?=lang('description')?>:</span><span>  Koryun Maruqyan</span>
-					</div>
-					<div class="text">
-						<span style="font-size: 13px;"><?=lang('contact_number')?>:</span><span>  +(374) 55 554 443</span>
-					</div>
+					<div class="text"><span style="font-size: 13px;"><?=lang('name')?>:</span><span>  Maz_1</span></div>
+					<div class="text"><span style="font-size: 13px;"><?=lang('license_plate')?>:</span><span>  455dd54</span></div>
+					<div class="text"><span style="font-size: 13px;"><?=lang('type')?>:</span><span>  Բեռնատար</span></div>
+					<div class="text"><span style="font-size: 13px;"><?=lang('description')?>:</span><span>  Koryun Maruqyan</span></div>
+					<div class="text"><span style="font-size: 13px;"><?=lang('contact_number')?>:</span><span>  +(374) 55 554 443</span></div>
 				</div>
 			</div>
 		</div>
@@ -79,7 +69,6 @@
 			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2" >
 				<div class="container">
 					<h5><?=lang('get_information')?></h5>
-
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="card mt-3">
@@ -88,14 +77,12 @@
 									<label><?=lang('to')?> ։  </label><span>  22-12-2018 / 17:30</span>
 								</div>
 							</div>
-
 							<div class="card mt-3">
 								<div class="card-body text-justify">
 									<p>Maz_1</p>
 								</div>
 							</div>
 						</div>
-
 						<div class="col-sm-8">
 							<div class="card mt-3">
 								<div class="card-body text-justify">
@@ -108,7 +95,6 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>

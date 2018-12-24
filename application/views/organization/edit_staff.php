@@ -53,43 +53,43 @@ $folder = $this->session->folder;
 				<div class="col-sm-6">
 					<div class="row">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('first_name')?>*</label>
+							class="col-sm-4 col-form-label"><?= lang('first_name') ?>*</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="firstname"
 								   value="<?= $first_name ?>"
-								   placeholder="<?=lang('first_name')?>">
+								   placeholder="<?= lang('first_name') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('last_name')?>*</label>
+							class="col-sm-4 col-form-label"><?= lang('last_name') ?>*</label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="lastname"
 								   value="<?= $last_name ?>"
-								   placeholder="<?=lang('last_name')?>">
+								   placeholder="<?= lang('last_name') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('email')?> *</label>
+							class="col-sm-4 col-form-label"><?= lang('email') ?> *</label>
 						<div class="col-sm-8">
 							<input type="email" class="form-control form-control-sm"
 								   name="email"
 								   value="<?= $email ?>"
-								   placeholder="<?=lang('email')?>">
+								   placeholder="<?= lang('email') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('department')?></label>
+							class="col-sm-4 col-form-label"><?= lang('department') ?></label>
 						<div class="col-sm-8">
 							<select name="department[]"
 									class="col  selectpicker form-control form-control-sm"
 									id="department"
 									multiple data-live-search="true"
-									title="<?=lang('select_department')?>">
+									title="<?= lang('select_department') ?>">
 								<? foreach ($department as $row) : ?>
 									<option <?= (in_array($row['id'], $department_id) ? 'selected' : '') ?>
 										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -98,20 +98,20 @@ $folder = $this->session->folder;
 						</div>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-sm-4 col-form-label"><?=lang('position')?></label>
+						<label class="col-sm-4 col-form-label"><?= lang('position') ?></label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="position"
 								   value="<?= $position ?>"
-								   placeholder="<?=lang('position')?>">
+								   placeholder="<?= lang('position') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
-						<label class="col-sm-4 col-form-label"><?=lang('nest_card_id')?></label>
+						<label class="col-sm-4 col-form-label"><?= lang('nest_card_id') ?></label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="nest_card_id"
-								   placeholder="<?=lang('nest_card_id')?>">
+								   placeholder="<?= lang('nest_card_id') ?>">
 						</div>
 					</div>
 				</div>
@@ -119,13 +119,13 @@ $folder = $this->session->folder;
 				<div class="col-sm-6">
 					<div class="row">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('country')?></label>
+							class="col-sm-4 col-form-label"><?= lang('country') ?></label>
 						<div class="col-sm-8">
 							<select name="country"
 									class="col selectpicker form-control form-control-sm"
 									data-size="5" id="country" data-live-search="true"
-									title="<?=lang('select_country')?>">
-								<option value=""><?=lang('select_country')?> ...</option>
+									title="<?= lang('select_country') ?>">
+								<option value=""><?= lang('select_country') ?> ...</option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($country_id == $row['id'] ? 'selected' : '') ?>
 										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -135,32 +135,32 @@ $folder = $this->session->folder;
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('address')?></label>
+							class="col-sm-4 col-form-label"><?= lang('address') ?></label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="address"
 								   value="<?= $address ?>"
-								   placeholder="<?=lang('address')?>">
+								   placeholder="<?= lang('address') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('post_code')?></label>
+							class="col-sm-4 col-form-label"><?= lang('post_code') ?></label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="post_code"
 								   value="<?= $post_code ?>"
-								   placeholder="<?=lang('post_code')?>">
+								   placeholder="<?= lang('post_code') ?>">
 						</div>
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?=lang('contact_number')?></label>
+							class="col-sm-4 col-form-label"><?= lang('contact_number') ?></label>
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="contact_1"
 								   value="<?= $contact_1 ?>"
-								   placeholder="<?=lang('contact_number')?> 1">
+								   placeholder="<?= lang('contact_number') ?> 1">
 						</div>
 					</div>
 					<div class="row mt-1">
@@ -170,7 +170,7 @@ $folder = $this->session->folder;
 							<input type="text" class="form-control form-control-sm"
 								   name="contact_2"
 								   value="<?= $contact_2 ?>"
-								   placeholder="<?=lang('contact_number')?> 2">
+								   placeholder="<?= lang('contact_number') ?> 2">
 						</div>
 					</div>
 				</div>
@@ -178,7 +178,7 @@ $folder = $this->session->folder;
 				<div class="col-sm-12 mt-1">
 					<div class="row" style="    margin-right: -1px;
     margin-left: -1px;">
-															<textarea placeholder="<?=lang('other') ?>"
+															<textarea placeholder="<?= lang('other') ?>"
 																	  class="form-control"
 																	  id="exampleFormControlTextarea1"
 																	  name="other"
@@ -186,23 +186,10 @@ $folder = $this->session->folder;
 
 					</div>
 				</div>
-
-
-				<div class="form-group row mt-1 ml-1">
-					<label
-						class="col-sm-10 col-form-label"><?=lang('status_make_passive')?></label>
-					<div class="col-sm-2 mt-2">
-						<input style="width: 18px; height: 18px;" name="status"
-							   value="-1"
-							<?= ($status == '-1' ? 'checked' : '') ?>
-							   type="checkbox"
-							   class="form-control form-control-sm">
-					</div>
-				</div>
 			</div>
 
 
-			<div class="accordion" id="accordionExample1">
+			<div class="accordion mt-1" id="accordionExample1">
 				<div class="card">
 					<div class="card-header p-0" id="headingOne">
 						<h5 class="mb-0">
@@ -211,7 +198,7 @@ $folder = $this->session->folder;
 									data-target="#collapseOne"
 									aria-expanded="true"
 									aria-controls="collapseOne">
-								<?= ($document_1 != '' ? $document_1 : 'N/D') ?>
+								<?= lang('passport') ?>
 							</button>
 						</h5>
 					</div>
@@ -222,32 +209,20 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('document')?></label>
-											<input type="text"
-												   name="document_1"
-												   value="<?= $document_1 ?>"
-												   class="form-control form-control-sm"
-												   placeholder="<?=lang('document')?>">
-										</div>
-									</div>
-
-									<div class="col-md-2">
-										<div class="form-group">
-
-											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+											<label for=""><?= lang('passport') ?></label>
+											<label style="width: 90%;min-width: 85px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 10px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;""
-											class="btn btn-sm btn-outline-success">
-											<span><?=lang('browse')?></span>
-											<input class="btn_input"
-												   name="file_1" type="file"
-												   hidden style="display: none;"
-												   value="">
+    font-weight: 400 !important;"
+												   class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_1" type="file"
+													   hidden style="display: none;"
+													   value="">
 
 
 											</label>
@@ -261,18 +236,18 @@ $folder = $this->session->folder;
 										</div>
 									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('reference')?></label>
+											<label><?= lang('reference') ?></label>
 											<input type="text"
 												   name="reference_1"
 												   value="<?= $reference_1 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('reference')?>">
+												   placeholder="<?= lang('reference') ?>">
 										</div>
 									</div>
 									<div class="col-md-3">
-										<label><?=lang('expired_date')?></label>
+										<label><?= lang('expired_date') ?></label>
 										<input type="date" name="expiration_1"
 											   max="3000-12-31"
 											   min="1000-01-01"
@@ -281,12 +256,12 @@ $folder = $this->session->folder;
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('note')?></label>
+											<label><?= lang('note') ?></label>
 											<input type="text"
 												   name="note_1"
 												   value="<?= $note_1 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('note')?>">
+												   placeholder="<?= lang('note') ?>">
 										</div>
 									</div>
 								</div>
@@ -303,7 +278,7 @@ $folder = $this->session->folder;
 									data-target="#collapseTwo"
 									aria-expanded="false"
 									aria-controls="collapseTwo">
-								<?= ($document_2 != '' ? $document_2 : 'N/D') ?>
+								<?= lang('social_card') ?>
 							</button>
 						</h5>
 					</div>
@@ -314,32 +289,20 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('document')?></label>
-											<input type="text"
-												   name="document_2"
-												   value="<?= $document_2 ?>"
-												   class="form-control form-control-sm"
-												   placeholder="<?=lang('document')?>">
-										</div>
-									</div>
-
-									<div class="col-md-2">
-										<div class="form-group">
-
-											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+											<label for=""><?= lang('social_card') ?></label>
+											<label style="width: 90%;min-width: 85px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 10px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;""
-											class="btn btn-sm btn-outline-success">
-											<span><?=lang('browse')?></span>
-											<input class="btn_input"
-												   name="file_2" type="file"
-												   hidden style="display: none;"
-												   value="">
+    font-weight: 400 !important;"
+												   class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_2" type="file"
+													   hidden style="display: none;"
+													   value="">
 
 
 											</label>
@@ -353,18 +316,18 @@ $folder = $this->session->folder;
 										</div>
 									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('reference')?></label>
+											<label><?= lang('reference') ?></label>
 											<input type="text"
 												   name="reference_2"
 												   value="<?= $reference_2 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('reference')?>">
+												   placeholder="<?= lang('reference') ?>">
 										</div>
 									</div>
 									<div class="col-md-3">
-										<label><?=lang('expired_date')?></label>
+										<label><?= lang('expired_date') ?></label>
 										<input type="date" name="expiration_2"
 											   max="3000-12-31"
 											   min="1000-01-01"
@@ -373,12 +336,12 @@ $folder = $this->session->folder;
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('note')?></label>
+											<label><?= lang('note') ?></label>
 											<input type="text"
 												   name="note_2"
 												   value="<?= $note_2 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('note')?>">
+												   placeholder="<?= lang('note') ?>">
 										</div>
 									</div>
 								</div>
@@ -395,7 +358,7 @@ $folder = $this->session->folder;
 									data-target="#collapseThree"
 									aria-expanded="false"
 									aria-controls="collapseThree">
-								<?= ($document_3 != '' ? $document_3 : 'N/D') ?>
+								<?= lang('driving_license') ?>
 							</button>
 						</h5>
 					</div>
@@ -406,32 +369,21 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-									<div class="col-md-2">
-										<div class="form-group">
-											<label><?=lang('document')?></label>
-											<input type="text"
-												   name="document_3"
-												   value="<?= $document_3 ?>"
-												   class="form-control form-control-sm"
-												   placeholder="<?=lang('document')?>">
-										</div>
-									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-
-											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+											<label for=""><?= lang('driving_license') ?></label>
+											<label style="width: 90%;min-width: 85px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 10px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;""
-											class="btn btn-sm btn-outline-success">
-											<span><?=lang('browse')?></span>
-											<input class="btn_input"
-												   name="file_3" type="file"
-												   hidden style="display: none;"
-												   value="">
+    font-weight: 400 !important;"
+												   class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_3" type="file"
+													   hidden style="display: none;"
+													   value="">
 
 
 											</label>
@@ -443,18 +395,18 @@ $folder = $this->session->folder;
 										</div>
 									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('reference')?></label>
+											<label><?= lang('reference') ?></label>
 											<input type="text"
 												   name="reference_3"
 												   value="<?= $reference_3 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('reference')?>">
+												   placeholder="<?= lang('reference') ?>">
 										</div>
 									</div>
 									<div class="col-md-3">
-										<label><?=lang('expired_date')?></label>
+										<label><?= lang('expired_date') ?></label>
 										<input type="date" name="expiration_3"
 											   max="3000-12-31"
 											   min="1000-01-01"
@@ -463,12 +415,12 @@ $folder = $this->session->folder;
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('note')?></label>
+											<label><?= lang('note') ?></label>
 											<input type="text"
 												   name="note_3"
 												   value="<?= $note_3 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('note')?>">
+												   placeholder="<?= lang('note') ?>">
 										</div>
 									</div>
 
@@ -487,7 +439,7 @@ $folder = $this->session->folder;
 									data-target="#collapseFour"
 									aria-expanded="false"
 									aria-controls="collapseThree">
-								<?= ($document_4 != '' ? $document_4 : 'N/D') ?>
+								<?= lang('technical_passport') ?>
 							</button>
 						</h5>
 					</div>
@@ -498,32 +450,21 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-									<div class="col-md-2">
-										<div class="form-group">
-											<label><?=lang('document')?></label>
-											<input type="text"
-												   name="document_4"
-												   value="<?= $document_4 ?>"
-												   class="form-control form-control-sm"
-												   placeholder="<?=lang('document')?>">
-										</div>
-									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-
-											<label style="margin-top: 25px;max-width: 85px;min-width: 85px;
+											<label><?= lang('technical_passport') ?></label>
+											<label style="width: 90%;min-width: 85px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 10px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;""
-											class="btn btn-sm btn-outline-success">
-											<span><?=lang('browse')?></span>
-											<input class="btn_input"
-												   name="file_4" type="file"
-												   hidden style="display: none;"
-												   value="">
+    font-weight: 400 !important;"
+												   class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_4" type="file"
+													   hidden style="display: none;"
+													   value="">
 
 
 											</label>
@@ -537,18 +478,18 @@ $folder = $this->session->folder;
 										</div>
 									</div>
 
-									<div class="col-md-2">
+									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('reference')?></label>
+											<label><?= lang('reference') ?></label>
 											<input type="text"
 												   name="reference_4"
 												   value="<?= $reference_4 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('reference')?>">
+												   placeholder="<?= lang('reference') ?>">
 										</div>
 									</div>
 									<div class="col-md-3">
-										<label><?=lang('expired_date')?></label>
+										<label><?= lang('expired_date') ?></label>
 										<input type="date" name="expiration_4"
 											   max="3000-12-31"
 											   min="1000-01-01"
@@ -557,12 +498,12 @@ $folder = $this->session->folder;
 									</div>
 									<div class="col-md-3">
 										<div class="form-group">
-											<label><?=lang('note')?></label>
+											<label><?= lang('note') ?></label>
 											<input type="text"
 												   name="note_4"
 												   value="<?= $note_4 ?>"
 												   class="form-control form-control-sm"
-												   placeholder="<?=lang('note')?>">
+												   placeholder="<?= lang('note') ?>">
 										</div>
 									</div>
 								</div>
@@ -573,7 +514,7 @@ $folder = $this->session->folder;
 			</div>
 		</div>
 	</div>
-	<div class="modal-footer pb-0 col-sm-12" style="padding-right: 9px !important;">
+	<div class="modal-footer pb-0 col-sm-12 mt-1" style="padding-right: 9px !important;">
 		<button id="edit_staff_btn" type="button"
 				class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 		</button>

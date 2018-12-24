@@ -56,10 +56,14 @@
 			<div class="container-fluid">
 				<p class="display-5 font-weight-bold float-left"><?=lang('count_departments')?></p>
 				<span
-					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span>
-				<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
-					  data-target="#add_department"><?=lang('create_departments')?>
-					</span>
+					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span><?
+					if($this->load->authorisation('Organization', 'add_department', 1)) :
+					?>
+					<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
+						  data-target="#add_department"><?=lang('create_departments')?>
+					</span><?
+					endif;
+					?>
 				<hr class="my-4">
 			</div>
 
@@ -146,12 +150,8 @@ color: #545b62;">
 					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header bg-dark"><?
-								if($this->load->authorisation('Organization', 'add_department', 1)) :
-								?>
-								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6><?
-								endif;
-								?>
+							<div class="modal-header bg-dark">
+								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6>
 							</div>
 							<div class="modal-body">
 								<!-- Error Message -->

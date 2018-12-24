@@ -41,6 +41,9 @@ $lang['status'] = 'Статус';
 $lang['owner'] = 'Владелец';
 $lang['when'] = 'Когда';
 $lang['settings'] = 'Настройки';
+$lang['download_requisite'] = 'Загрузить Реквизиты';
+$lang['requisite'] = 'Реквизит';
+
 
 $lang['insurance_company'] = 'Страховая Компания';
 $lang['driver'] = 'Водитель';
@@ -269,7 +272,7 @@ $lang['head'] = 'Руководитель';
 $lang['owner_firstname'] = 'Имя';
 $lang['owner_lastname'] = 'Фамилия';
 $lang['owner_position'] = 'Должность';
-$lang['owner_email'] = 'Адрес эл. почты ';
+$lang['owner_email'] = 'Эл. почта';
 
 
 
@@ -346,6 +349,7 @@ $lang['account_type'] = 'Тип учетной записи';
 $lang['Same_as'] = 'То же самое';
 $lang['nest_card_id'] = 'Nest Card ID';
 $lang['contact_number'] = 'Номер телефона';
+$lang['p_number'] = 'Телефон';
 $lang['account_number'] = 'Номер счета';
 $lang['Correspondent_Bank'] = 'Консолидированный банк';
 $lang['swift_code'] = 'Свифт Код';

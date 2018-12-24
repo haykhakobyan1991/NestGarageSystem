@@ -333,7 +333,7 @@ $i = '';
 							<div class="col-sm-5">
 								<div class="row">
 									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?= lang('contact_number') ?></label>
+										   style="font-size: 15px;"><?= lang('p_number') ?></label>
 									<div class="col-sm-8">
 										<input value="<?= $company['owner_contact_number'] ?>"
 											   name="owner_contact_number" type="text"
@@ -349,7 +349,7 @@ $i = '';
 										   style="font-size: 15px;"><?=lang('requisite')?></label>
 									<div class="form-group col-sm-8" style="margin-top: -22px;margin-left: 22px;">
 										<label
-											style="margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+											style="color: #000;font-size:13px;font-weight: 300 !important;margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;border-color: #ced4da;"
 											class="btn btn-sm btn-outline-secondary">
 											<span><?=lang('download_requisite')?></span>
 											<input class="btn_input" name="file_1" type="file" hidden
@@ -417,8 +417,8 @@ $i = '';
 
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-6 col-form-label text-right"><?= lang('Correspondent_Bank') ?></label>
-												<div class="col-sm-6">
+													class="col-sm-7 col-form-label text-right"><?= lang('Correspondent_Bank') ?></label>
+												<div class="col-sm-5">
 													<input type="text"
 														   name="correspondent_bank_1"
 														   class="form-control form-control-sm correspondent_bank"
@@ -432,11 +432,7 @@ $i = '';
 												<label
 													class="col-sm-5 col-form-label text-right"><?= lang('swift_code') ?></label>
 												<div class="col-sm-7">
-													<input type="text"
-														   name="swift_code_1"
-														   class="form-control form-control-sm swift_code"
-														   value="<?= $company['swift_code_1'] ?>"
-														   placeholder="<?= lang('swift_code') ?>">
+													<input type="text" name="swift_code_1" class="form-control form-control-sm swift_code" value="<?= $company['swift_code_1'] ?>" placeholder="<?= lang('swift_code') ?>">
 												</div>
 											</div>
 

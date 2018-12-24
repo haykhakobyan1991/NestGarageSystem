@@ -48,6 +48,11 @@ $lang['coefficient'] = 'Գործակիցը';
 $lang['download_requisite'] = 'Բեռնել ռեքվեզիտ';
 $lang['requisite'] = 'Ռեքվեզիտ';
 
+$lang['passport'] = 'Անձնագիր';
+$lang['social_card'] = 'Սոց քարտ';
+$lang['driving_license'] = 'Վարորդական Իրավունք';
+$lang['technical_passport'] = 'Տեխ անձնագիր';
+
 $lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
 $lang['driver'] = 'Վարորդ';
 $lang['conclusion_number'] = 'Եզրակացության Համար';

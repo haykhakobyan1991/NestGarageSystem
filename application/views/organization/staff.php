@@ -11,11 +11,7 @@ foreach ($staff as $row) :
 
 	$total++;
 
-	if ($row['status'] == 1) {
-		$active++;
-	} elseif ($row['status'] == -1) {
-		$passive++;
-	}
+
 
 endforeach;
 ?>
@@ -51,16 +47,6 @@ endforeach;
 								<p class="display-5 font-weight-bold float-left"
 								   style="font-size: 12px;"><?= lang('total_staff') ?></p> <span
 									class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
-							</div>
-							<div class="col-sm-4">
-								<p class="display-5 font-weight-bold float-left"
-								   style="font-size: 12px;"><?= lang('active_staff') ?></p> <span
-									class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
-							</div>
-							<div class="col-sm-4">
-								<p class="display-5 font-weight-bold float-left"
-								   style="font-size: 12px;"><?= lang('passive_staff') ?></p> <span
-									class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
 							</div>
 						</div>
 					</div>
@@ -157,43 +143,46 @@ endforeach;
 												<div class="col-sm-6">
 													<div class="row">
 														<label
-															class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('first_name')?> *</label>
+															class="col-sm-4 col-form-label"
+															style="font-size: 15px;"><?= lang('first_name') ?> *</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="firstname"
-																   placeholder="<?=lang('first_name')?>">
+																   placeholder="<?= lang('first_name') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label"><?=lang('last_name')?> *</label>
+															class="col-sm-4 col-form-label"><?= lang('last_name') ?>
+															*</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="lastname"
-																   placeholder="<?=lang('last_name')?>">
+																   placeholder="<?= lang('last_name') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?=lang('email')?> *</label>
+															style="font-size: 15px;"><?= lang('email') ?> *</label>
 														<div class="col-sm-8">
 															<input type="email" class="form-control form-control-sm"
 																   name="email"
-																   placeholder="<?=lang('email')?>">
+																   placeholder="<?= lang('email') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?=lang('department')?></label>
+															style="font-size: 15px;"><?= lang('department') ?></label>
 														<div class="col-sm-8">
 															<select name="department[]"
 																	class="col selectpicker form-control form-control-sm"
 																	multiple data-size="5" id="department"
 																	data-live-search="true"
-																	title="<?=lang('select_department')?>">
-																<option value=""><?=lang('select_department')?> ...</option>
+																	title="<?= lang('select_department') ?>">
+																<option value=""><?= lang('select_department') ?>...
+																</option>
 																<? foreach ($department as $row) : ?>
 																	<option
 																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -202,19 +191,21 @@ endforeach;
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label class="col-sm-4 col-form-label"><?=lang('position')?></label>
+														<label
+															class="col-sm-4 col-form-label"><?= lang('position') ?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="position"
-																   placeholder="<?=lang('position')?>">
+																   placeholder="<?= lang('position') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
-														<label class="col-sm-4 col-form-label"><?=lang('nest_card_id')?></label>
+														<label
+															class="col-sm-4 col-form-label"><?= lang('nest_card_id') ?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="nest_card_id"
-																   placeholder="<?=lang('nest_card_id')?>">
+																   placeholder="<?= lang('nest_card_id') ?>">
 														</div>
 													</div>
 												</div>
@@ -223,13 +214,14 @@ endforeach;
 												<div class="col-sm-6">
 													<div class="row">
 														<label
-															class="col-sm-4 col-form-label"><?=lang('country')?></label>
+															class="col-sm-4 col-form-label"><?= lang('country') ?></label>
 														<div class="col-sm-8">
 															<select name="country"
 																	class="col selectpicker form-control form-control-sm"
 																	data-size="5" id="country" data-live-search="true"
-																	title="<?=lang('select_country')?>">
-																<option value=""><?=lang('select_country')?> ...</option>
+																	title="<?= lang('select_country') ?>">
+																<option value=""><?= lang('select_country') ?>...
+																</option>
 																<? foreach ($country as $row) : ?>
 																	<option
 																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -239,28 +231,30 @@ endforeach;
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
 														<label
-															class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('address')?></label>
+															class="col-sm-4 col-form-label"
+															style="font-size: 15px;"><?= lang('address') ?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="address"
-																   placeholder="<?=lang('address')?>">
+																   placeholder="<?= lang('address') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label"><?=lang('post_code')?></label>
+															class="col-sm-4 col-form-label"><?= lang('post_code') ?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="post_code"
-																   placeholder="<?=lang('post_code')?>">
+																   placeholder="<?= lang('post_code') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
-														<label class="col-sm-4 col-form-label" style="font-size: 15px;"><?=lang('contact_number')?></label>
+														<label class="col-sm-4 col-form-label"
+															   style="font-size: 15px;"><?= lang('contact_number') ?></label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="contact_1"
-																   placeholder="<?=lang('contact_number')?> 1">
+																   placeholder="<?= lang('contact_number') ?> 1">
 														</div>
 													</div>
 													<div class="row mt-1">
@@ -268,14 +262,14 @@ endforeach;
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="contact_2"
-																   placeholder="<?=lang('contact_number')?> 2">
+																   placeholder="<?= lang('contact_number') ?> 2">
 														</div>
 													</div>
 
 												</div>
-												<div class="col-sm-12 mt-1 ">
+												<div class="col-sm-12 mt-1">
 													<div class="row" style="margin-right: -1px;margin-left: -1px;">
-															<textarea placeholder="<?=lang('other')?>"
+															<textarea placeholder="<?= lang('other') ?>"
 																	  class="form-control col-sm-12"
 																	  id="exampleFormControlTextarea1"
 																	  name="other"
@@ -285,18 +279,19 @@ endforeach;
 												</div>
 
 
-													<!--<div class="form-group row mt-1 ml-1">-->
-													<!--<label class="col-sm-10 col-form-label">--><?//=lang('status_make_passive') ?><!--</label>-->
-													<!--<div class="col-sm-2 mt-2">-->
-													<!--<input style="width:18px; height: 18px;" name="status"-->
-													<!--value="-1"-->
-													<!--type="checkbox"-->
-													<!--class="form-control form-control-sm">-->
-													<!--</div>-->
-													<!--</div>-->
+												<!--<div class="form-group row mt-1 ml-1">-->
+												<!--<label class="col-sm-10 col-form-label">-->
+												<? //=lang('status_make_passive') ?><!--</label>-->
+												<!--<div class="col-sm-2 mt-2">-->
+												<!--<input style="width:18px; height: 18px;" name="status"-->
+												<!--value="-1"-->
+												<!--type="checkbox"-->
+												<!--class="form-control form-control-sm">-->
+												<!--</div>-->
+												<!--</div>-->
 
 
-												<div class="accordion col-sm-12" id="accordionExample1">
+												<div class="accordion col-sm-12 mt-1" id="accordionExample1">
 													<div class="card">
 														<div class="card-header p-0" id="headingOne">
 															<h5 class="mb-0">
@@ -306,7 +301,7 @@ endforeach;
 																		data-target="#collapseOne"
 																		aria-expanded="true"
 																		aria-controls="collapseOne">
-																	N/D
+																	<?= lang('passport') ?>
 																</button>
 															</h5>
 														</div>
@@ -318,45 +313,36 @@ endforeach;
 																<div class="add_new_items">
 																	<div class="row">
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('document')?></label>
-																				<input type="text"
-																					   name="document_1"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('document')?>">
-																			</div>
-																		</div>
-
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label style="margin-top: 25px;max-width: 111px;min-width: 111px;
+																				<label><?= lang('passport') ?></label>
+																				<span style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;"
-																					   class="btn btn-sm btn-outline-success">
-																					<span><?=lang('browse')?></span>
+    font-weight: 400 !important;
+    border-color: #ced4da !important;"
+																					  class="btn btn-sm btn-outline-secondary">
+																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_1" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</label>
+																				</span>
 																			</div>
 																		</div>
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('reference')?></label>
+																				<label><?= lang('reference') ?></label>
 																				<input type="text"
 																					   name="reference_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('reference')?>">
+																					   placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label><?=lang('expired_date')?></label>
+																			<label><?= lang('expired_date') ?></label>
 																			<input type="date" name="expiration_1"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -365,11 +351,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('note')?></label>
+																				<label><?= lang('note') ?></label>
 																				<input type="text"
 																					   name="note_1"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('note')?>">
+																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -387,7 +373,7 @@ endforeach;
 																	data-target="#collapseTwo"
 																	aria-expanded="false"
 																	aria-controls="collapseTwo">
-																	N/D
+																	<?= lang('social_card') ?>
 																</button>
 															</h5>
 														</div>
@@ -397,43 +383,36 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<div class="col-md-2">
+
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('document')?></label>
-																				<input type="text"
-																					   name="document_2"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('document')?>">
-																			</div>
-																		</div>
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label style="margin-top: 25px;max-width: 111px;min-width: 111px;
+																				<label><?= lang('social_card') ?></label>
+																				<span style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;"
-																					   class="btn btn-sm btn-outline-success">
-																					<span><?=lang('browse')?></span>
+    font-weight: 400 !important;
+    border-color: #ced4da !important;"
+																					  class="btn btn-sm btn-outline-secondary">
+																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_2" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</label>
-																			</div>
-																		</div>
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label><?=lang('reference')?></label>
-																				<input type="text"
-																					   name="reference_2"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('reference')?>">
+																				</span>
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label><?=lang('expired_date')?></label>
+																			<div class="form-group">
+																				<label><?= lang('reference') ?></label>
+																				<input type="text"
+																					   name="reference_2"
+																					   class="form-control form-control-sm"
+																					   placeholder="<?= lang('reference') ?>">
+																			</div>
+																		</div>
+																		<div class="col-md-3">
+																			<label><?= lang('expired_date') ?></label>
 																			<input type="date" name="expiration_2"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -441,11 +420,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('note')?></label>
+																				<label><?= lang('note') ?></label>
 																				<input type="text"
 																					   name="note_2"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('note')?>">
+																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -463,7 +442,7 @@ endforeach;
 																	data-target="#collapseThree"
 																	aria-expanded="false"
 																	aria-controls="collapseThree">
-																	N/D
+																	<?= lang('driving_license') ?>
 																</button>
 															</h5>
 														</div>
@@ -474,45 +453,37 @@ endforeach;
 																<div class="add_new_items">
 																	<div class="row">
 
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label><?=lang('document')?></label>
-																				<input type="text"
-																					   name="document_3"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('document')?>">
-																			</div>
-																		</div>
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label style="margin-top: 25px;max-width: 111px;min-width: 111px;
+																				<label><?= lang('driving_license') ?></label>
+																				<span style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;"
-																					   class="btn btn-sm btn-outline-success">
-																					<span><?=lang('browse')?></span>
+    font-weight: 400 !important;
+    border-color: #ced4da !important;"
+																					  class="btn btn-sm btn-outline-secondary">
+																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_3" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</label>
+																				</span>
 																			</div>
 																		</div>
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('reference')?></label>
+																				<label><?= lang('reference') ?></label>
 																				<input type="text"
 																					   name="reference_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('reference')?>">
+																					   placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label><?=lang('expired_date')?></label>
+																			<label><?= lang('expired_date') ?></label>
 																			<input type="date" name="expiration_3"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -521,11 +492,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('note')?></label>
+																				<label><?= lang('note') ?></label>
 																				<input type="text"
 																					   name="note_3"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('note')?>">
+																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -544,7 +515,7 @@ endforeach;
 																	data-target="#collapseFour"
 																	aria-expanded="false"
 																	aria-controls="collapseThree">
-																	N/D
+																	<?= lang('technical_passport') ?>
 																</button>
 															</h5>
 														</div>
@@ -555,45 +526,36 @@ endforeach;
 																<div class="add_new_items">
 																	<div class="row">
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('document')?></label>
-																				<input type="text"
-																					   name="document_4"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('document')?>">
-																			</div>
-																		</div>
-
-																		<div class="col-md-2">
-																			<div class="form-group">
-																				<label style="margin-top: 25px;max-width: 111px;min-width: 111px;
+																				<label><?= lang('technical_passport') ?></label>
+																				<span style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
-    font-weight: 500 !important;
-    margin-left: -8px;"
-																					   class="btn btn-sm btn-outline-success">
-																					<span><?=lang('browse')?></span>
+    font-weight: 400 !important;
+    border-color: #ced4da !important;"
+																					  class="btn btn-sm btn-outline-secondary">
+																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_4" type="file"
 																						   hidden style="display: none;"
 																						   value="">
-																				</label>
+																				</span>
 																			</div>
 																		</div>
 
-																		<div class="col-md-2">
+																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('reference')?></label>
+																				<label><?= lang('reference') ?></label>
 																				<input type="text"
 																					   name="reference_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('reference')?>">
+																					   placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
-																			<label><?=lang('expired_date')?></label>
+																			<label><?= lang('expired_date') ?></label>
 																			<input type="date" name="expiration_4"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
@@ -602,11 +564,11 @@ endforeach;
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
-																				<label><?=lang('note')?></label>
+																				<label><?= lang('note') ?></label>
 																				<input type="text"
 																					   name="note_4"
 																					   class="form-control form-control-sm"
-																					   placeholder="<?=lang('note')?>">
+																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 
@@ -621,11 +583,12 @@ endforeach;
 											</div>
 										</div>
 
-										<div class="modal-footer pb-0 col-sm-12" style="padding-right: 24px;">
+										<div class="modal-footer pb-0 col-sm-12 mt-1" style="padding-right: 24px;">
 											<button id="add_staff" type="button"
 													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
-											<button style="height: 40px !important; width: 93px !important;" id="load" class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+											<button style="height: 40px !important; width: 93px !important;" id="load"
+													class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 											<button type="button" class="cancel_btn close btn btn-sm"
@@ -656,14 +619,14 @@ endforeach;
 					<thead style="background: #fff;
 color: #545b62;">
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('name_lastname')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('status')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('position')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('section')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('head')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('by_whom')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('document')?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('status') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('position') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('section') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('head') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('Created_Date') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('by_whom') ?></th>
+						<th style="font-size: 12px !important;font-weight:500;"><?= lang('document') ?></th>
 						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 					</tr>
 					</thead>
@@ -702,59 +665,59 @@ color: #545b62;">
 
 							<td>
 
-									<? if ($row['document_1'] != '') { ?>
-												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-												   target="_blank"
-												   class="bg-info"
-												   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
-													<?= $row['document_1'] ?>
-												</a>
-<!--											<td>--><?//= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?><!--</td>-->
-<!--											<td style="word-break: break-word;">--><?//= ($row['note_1'] != '' ? $row['note_1'] : '-') ?><!--</td>-->
+								<? if ($row['document_1'] != '') { ?>
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									   target="_blank"
+									   class="bg-info"
+									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
+										<?= $row['document_1'] ?>
+									</a>
+									<!--											<td>--><?//= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?><!--</td>-->
+									<!--											<td style="word-break: break-word;">--><?//= ($row['note_1'] != '' ? $row['note_1'] : '-') ?><!--</td>-->
 
-									<? }
-									if ($row['document_2'] != '') { ?>
-												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-												   target="_blank"
-												   class="bg-info"
-												   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
-													<?= $row['document_2'] ?>
-												</a>
+								<? }
+								if ($row['document_2'] != '') { ?>
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									   target="_blank"
+									   class="bg-info"
+									   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
+										<?= $row['document_2'] ?>
+									</a>
 
-<!--											<td>--><?//= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['note_2'] != '' ? $row['note_2'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['note_2'] != '' ? $row['note_2'] : '-') ?><!--</td>-->
 
-									<? }
-									if ($row['document_3'] != '') { ?>
-												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-												   target="_blank"
-												   class="bg-info"
-												   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
-													<?= $row['document_3'] ?>
-												</a>
+								<? }
+								if ($row['document_3'] != '') { ?>
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									   target="_blank"
+									   class="bg-info"
+									   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
+										<?= $row['document_3'] ?>
+									</a>
 
-<!--											<td>--><?//= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['note_3'] != '' ? $row['note_3'] : '-') ?><!--</td>-->
-
-
-									<? }
-									if ($row['document_4'] != '') { ?>
-												<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-												   target="_blank"
-												   class="bg-info"
-												   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
-													<?= $row['document_4'] ?>
-												</a>
-<!--											<td>--><?//= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?><!--</td>-->
-<!--											<td>--><?//= ($row['note_4'] != '' ? $row['note_4'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?><!--</td>-->
+									<!--											<td>--><?//= ($row['note_3'] != '' ? $row['note_3'] : '-') ?><!--</td>-->
 
 
+								<? }
+								if ($row['document_4'] != '') { ?>
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									   target="_blank"
+									   class="bg-info"
+									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
+										<?= $row['document_4'] ?>
+									</a>
+									<!--											<td>--><? //= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?><!--</td>-->
+									<!--											<td>--><? //= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?><!--</td>-->
+									<!--											<td>--><? //= ($row['note_4'] != '' ? $row['note_4'] : '-') ?><!--</td>-->
 
-									<? } ?>
+
+
+								<? } ?>
 
 							</td>
 
@@ -794,7 +757,8 @@ color: #545b62;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 15px;"><?=lang('are_you_sure_you_want_to_delete')?></h6>
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
@@ -1045,7 +1009,7 @@ color: #545b62;">
 
 	$(window).on('load', function () {
 		<?if($this->input->get('id') != '') {?>
-			$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
+		$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
 		<?}?>
 	});
 

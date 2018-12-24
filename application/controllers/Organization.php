@@ -845,7 +845,7 @@ class Organization extends MX_Controller {
 
 	public function delete_department() {
 
-		$this->load->authorisation('Organization', 'department');
+		$this->load->authorisation('Organization', 'delete_department');
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
 			// Return error

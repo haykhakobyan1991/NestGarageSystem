@@ -49,6 +49,13 @@ $lang['social_card'] = 'Социальная карта';
 $lang['driving_license'] = 'Водительские права';
 $lang['technical_passport'] = 'Тех паспорт';
 
+$lang['passenger_car'] = 'Легковой';
+$lang['truck'] = 'Грузовой';
+$lang['special—equipment'] = 'Спецтехника';
+$lang['heavy_machinery'] = 'Тяжелая Техника';
+$lang['bus'] = 'Автобус';
+$lang['minivan'] = 'Микроавтобус';
+$lang['trailer'] = 'Прицеп';
 
 $lang['insurance_company'] = 'Страховая Компания';
 $lang['driver'] = 'Водитель';
@@ -378,6 +385,26 @@ $lang['other_info'] = 'Другая Информация';
 $lang['see'] = 'Увидеть';
 $lang['country_code'] = 'Код Страны';
 
+
+//colors
+$lang['white'] = 'Белый';
+$lang['black'] = 'Черный';
+$lang['silver'] = 'Серебристость';
+$lang['blue'] = 'Синий';
+$lang['red'] = 'Красный';
+$lang['green'] = 'Зеленый';
+$lang['gray'] = 'Серый';
+$lang['light_blue'] = 'Голубой';
+$lang['pink'] = 'Розовый';
+$lang['yellow'] = 'Желтый';
+$lang['gold'] = 'Золотой';
+$lang['chestnut'] = 'Коричневый';
+$lang['purple'] = 'Фиолетовый';
+$lang['orange'] = 'Оранжевый';
+$lang['beige'] = 'Бежевый';
+$lang['aubergine'] = 'Баклажан';
+$lang['cherry'] = 'Вишневый';
+$lang['other_colors'] = 'Другие цвета';
 
 
 

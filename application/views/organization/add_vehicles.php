@@ -53,6 +53,7 @@
 	.btn.dropdown-toggle {
 		height: 37px !important;
 	}
+
 </style>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
@@ -120,9 +121,18 @@
 						<select name="fleet_type" class="col-sm-7 currency form-control form-control-sm selectpicker"
 								data-size="5" id="fleet_type" data-live-search="true"
 								title="<?= lang('select_car_type') ?>">
-							<? foreach ($fleet_type as $row) : ?>
-								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-							<? endforeach; ?>
+									<?// foreach ($fleet_type as $row) : ?>
+									<!--<option value="--><?//= $row['id'] ?><!--">--><?//= $row['title'] ?><!--</option>-->
+									<?// endforeach; ?>
+
+							<option class="car_type"><?=lang('passenger_car')?></option>
+							<option class="car_type"><?=lang('truck')?></option>
+							<option class="car_type"><?=lang('special—equipment')?></option>
+							<option class="car_type"><?=lang('heavy_machinery')?></option>
+							<option class="car_type"><?=lang('bus')?></option>
+							<option class="car_type"><?=lang('minivan')?></option>
+							<option class="car_type"><?=lang('trailer')?></option>
+
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
@@ -180,26 +190,26 @@
 					<div class="row">
 						<label class="pl-4 col-form-label col-sm-3"
 							   style="font-size: 15px;"><?= lang('color') ?></label>
-						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
+						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff" data-size="5"
 								data-live-search="true" title="<?= lang('color') ?>">
-							<option data-color="#ffffff" value=""> Սպիտակ</option>
-							<option data-color="#000000" value=""><span></span> Սև</option>
-							<option data-color="#bbbfc7" value=""><span></span> Արծաթագույն</option>
-							<option data-color="#2e56a6" value=""><span></span> Կապույտ</option>
-							<option data-color="#f20024" value=""><span></span> Կարմիր</option>
-							<option data-color="#12a30d" value=""><span></span> Կանաչ</option>
-							<option data-color="#c7c7c7" value=""><span></span> Մոխրագույն</option>
-							<option data-color="#8fcdff" value=""><span></span> Երկնագույն</option>
-							<option data-color="#ff3b79" value=""><span></span> Վարդագույն</option>
-							<option data-color="#f5f500" value=""><span></span> Դեղին</option>
-							<option data-color="#d6ab00" value=""><span></span> Ոսկեգույն</option>
-							<option data-color="#592f00" value=""><span></span> Շագանակագույն</option>
-							<option data-color="#c70e99" value=""><span></span> Մանուշակագույն</option>
-							<option data-color="#fac000" value=""><span></span> Նարնջագույն</option>
-							<option data-color="#ccb486" value=""><span></span> Բեժ</option>
-							<option data-color="#4d3b15" value=""><span></span> Սմբկագույն</option>
-							<option data-color="#e80049" value=""><span></span> Բալագույն</option>
-							<option data-color="#c7c7c7" value=""><span></span> Այլ Գույն</option>
+							<option data-color="#ffffff" value=""> <?=lang('white')?></option>
+							<option data-color="#000000" value=""><span></span> <?=lang('black')?></option>
+							<option data-color="#bbbfc7" value=""><span></span> <?=lang('silver')?></option>
+							<option data-color="#2e56a6" value=""><span></span> <?=lang('blue')?></option>
+							<option data-color="#f20024" value=""><span></span> <?=lang('red')?></option>
+							<option data-color="#12a30d" value=""><span></span> <?=lang('green')?></option>
+							<option data-color="#c7c7c7" value=""><span></span> <?=lang('gray')?></option>
+							<option data-color="#8fcdff" value=""><span></span> <?=lang('light_blue')?></option>
+							<option data-color="#ff3b79" value=""><span></span> <?=lang('pink')?></option>
+							<option data-color="#f5f500" value=""><span></span> <?=lang('yellow')?></option>
+							<option data-color="#d6ab00" value=""><span></span> <?=lang('gold')?></option>
+							<option data-color="#592f00" value=""><span></span> <?=lang('chestnut')?></option>
+							<option data-color="#c70e99" value=""><span></span> <?=lang('purple')?></option>
+							<option data-color="#fac000" value=""><span></span> <?=lang('orange')?></option>
+							<option data-color="#ccb486" value=""><span></span> <?=lang('beige')?></option>
+							<option data-color="#4d3b15" value=""><span></span> <?=lang('aubergine')?></option>
+							<option data-color="#e80049" value=""><span></span> <?=lang('cherry')?></option>
+							<option data-color="#c7c7c7" value=""><span></span> <?=lang('other_colors')?></option>
 						</select>
 
 					</div>
@@ -1034,14 +1044,29 @@
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
-
 			$(this).addClass(li_class + i);
-
 			i++;
-
 		})
+	});
+
+	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
+		var ul = $('select[name="fleet_type"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
+		var j = 1;
+		ul.each(function (e) {
+			$(this).addClass('fleet_type_' + j);
+			j++;
+		});
+
+		$('.fleet_type_1 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car.png">');
+		$('.fleet_type_2 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/delivery-truck.png">');
+		$('.fleet_type_3 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/construction-tool-vehicle-with-crane-lifting-materials.png">');
+		$('.fleet_type_4 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/construction-truck.png">');
+		$('.fleet_type_5 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/bus-side-view.png">');
+		$('.fleet_type_6 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/minivan.png">');
+		$('.fleet_type_7 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car-with-trailer.png">');
 
 	})
+
 
 
 </script>

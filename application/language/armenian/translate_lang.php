@@ -53,6 +53,14 @@ $lang['social_card'] = 'Սոց քարտ';
 $lang['driving_license'] = 'Վարորդական Իրավունք';
 $lang['technical_passport'] = 'Տեխ անձնագիր';
 
+$lang['passenger_car'] = 'մարդատար';
+$lang['truck'] = 'Բեռնատար';
+$lang['special—equipment'] = 'Հատուկ տեխնիկա';
+$lang['heavy_machinery'] = 'Ծանր տեխնիկա';
+$lang['bus'] = 'Ավտոբուս';
+$lang['minivan'] = 'Միկրոավտոբուս';
+$lang['trailer'] = 'Կցորդ';
+
 $lang['insurance_company'] = 'Ապահովագրական Ընկերություն';
 $lang['driver'] = 'Վարորդ';
 $lang['conclusion_number'] = 'Եզրակացության Համար';
@@ -375,4 +383,25 @@ $lang['more_info'] = 'Մանրամասն';
 $lang['other_info'] = 'Այլ տվյալներ';
 $lang['see'] = 'Տեսնել';
 $lang['country_code'] = 'Երկրի Կոդը';
+
+//colors
+$lang['white'] = 'Սպիտակ';
+$lang['black'] = 'Սև';
+$lang['silver'] = 'Արծաթագույն';
+$lang['blue'] = 'Կապույտ';
+$lang['red'] = 'Կարմիր';
+$lang['green'] = 'Կանաչ';
+$lang['gray'] = 'Մոխրագույն';
+$lang['light_blue'] = 'Երկնագույն';
+$lang['pink'] = 'Վարդագույն';
+$lang['yellow'] = 'Դեղին';
+$lang['gold'] = 'Ոսկեգույն';
+$lang['chestnut'] = 'Շագանակագույն';
+$lang['purple'] = 'Մանուշակագույն';
+$lang['orange'] = 'Նարնջագույն';
+$lang['beige'] = 'Բեժ';
+$lang['aubergine'] = 'Սմբկագույն';
+$lang['cherry'] = 'Բալագույն';
+$lang['other_colors'] = 'Այլ Գույն';
+
 

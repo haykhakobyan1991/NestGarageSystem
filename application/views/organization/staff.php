@@ -1,6 +1,8 @@
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
+<script src="<?= base_url('assets/js/bootstrap/typeahead.bundle.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/examples.css"/>
 <?
 $user_id = $this->session->user_id;
 $folder = $this->session->folder;
@@ -23,6 +25,10 @@ endforeach;
 
 	table#example2 thead tr th:last-child:before {
 		content: '';
+	}
+
+	li.no-results {
+		cursor: pointer;
 	}
 </style>
 <!-- Staff Start -->
@@ -77,7 +83,8 @@ endforeach;
 					</div>
 				</div>
 				<!-- Edit staff modal end -->
-				<!-- Add User Modal Start  -->
+
+				<!-- Add staff Modal Start  -->
 				<form id="staff" enctype="multipart/form-data">
 					<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -144,7 +151,7 @@ endforeach;
 													<div class="row">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('first_name') ?> *</label>
+															style="font-size: 15px;"><?= lang('first_name') ?>*</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="firstname"
@@ -153,8 +160,7 @@ endforeach;
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label"><?= lang('last_name') ?>
-															*</label>
+															class="col-sm-4 col-form-label"><?= lang('last_name') ?>*</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="lastname"
@@ -164,7 +170,7 @@ endforeach;
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('email') ?> *</label>
+															style="font-size: 15px;"><?= lang('email') ?>*</label>
 														<div class="col-sm-8">
 															<input type="email" class="form-control form-control-sm"
 																   name="email"
@@ -174,18 +180,15 @@ endforeach;
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('department') ?></label>
+															style="font-size: 15px;"><?= lang('department') ?>*</label>
 														<div class="col-sm-8">
-															<select name="department[]"
+															<select name="department"
 																	class="col selectpicker form-control form-control-sm"
-																	multiple data-size="5" id="department"
+																	data-size="5" id="department"
 																	data-live-search="true"
 																	title="<?= lang('select_department') ?>">
-																<option value=""><?= lang('select_department') ?>...
-																</option>
 																<? foreach ($department as $row) : ?>
-																	<option
-																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+																	<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 																<? endforeach; ?>
 															</select>
 														</div>
@@ -193,10 +196,11 @@ endforeach;
 													<div class="row" style="margin-top: .75rem!important;">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('position') ?></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
+														<div id="default-suggestions"  class="col-sm-8">
+															<input type="text" class="typeahead form-control form-control-sm"
 																   name="position"
 																   placeholder="<?= lang('position') ?>">
+															<input type="hidden" name="head">
 														</div>
 													</div>
 													<div class="row mt-1">
@@ -277,19 +281,6 @@ endforeach;
 
 													</div>
 												</div>
-
-
-												<!--<div class="form-group row mt-1 ml-1">-->
-												<!--<label class="col-sm-10 col-form-label">-->
-												<? //=lang('status_make_passive') ?><!--</label>-->
-												<!--<div class="col-sm-2 mt-2">-->
-												<!--<input style="width:18px; height: 18px;" name="status"-->
-												<!--value="-1"-->
-												<!--type="checkbox"-->
-												<!--class="form-control form-control-sm">-->
-												<!--</div>-->
-												<!--</div>-->
-
 
 												<div class="accordion col-sm-12 mt-1" id="accordionExample1">
 													<div class="card">
@@ -672,9 +663,6 @@ color: #545b62;">
 									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
 										<?= $row['document_1'] ?>
 									</a>
-									<!--											<td>--><?//= ($row['reference_1'] != '' ? $row['reference_1'] : '-') ?><!--</td>-->
-									<!--											<td>--><?//= ($row['expiration_1'] != '' ? $row['expiration_1'] : '-') ?><!--</td>-->
-									<!--											<td style="word-break: break-word;">--><?//= ($row['note_1'] != '' ? $row['note_1'] : '-') ?><!--</td>-->
 
 								<? }
 								if ($row['document_2'] != '') { ?>
@@ -685,10 +673,6 @@ color: #545b62;">
 										<?= $row['document_2'] ?>
 									</a>
 
-									<!--											<td>--><?//= ($row['reference_2'] != '' ? $row['reference_2'] : '-') ?><!--</td>-->
-									<!--											<td>--><?//= ($row['expiration_2'] != '' ? $row['expiration_2'] : '-') ?><!--</td>-->
-									<!--											<td>--><?//= ($row['note_2'] != '' ? $row['note_2'] : '-') ?><!--</td>-->
-
 								<? }
 								if ($row['document_3'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
@@ -698,11 +682,6 @@ color: #545b62;">
 										<?= $row['document_3'] ?>
 									</a>
 
-									<!--											<td>--><?//= ($row['reference_3'] != '' ? $row['reference_3'] : '-') ?><!--</td>-->
-									<!--											<td>--><?//= ($row['expiration_3'] != '' ? $row['expiration_3'] : '-') ?><!--</td>-->
-									<!--											<td>--><?//= ($row['note_3'] != '' ? $row['note_3'] : '-') ?><!--</td>-->
-
-
 								<? }
 								if ($row['document_4'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
@@ -711,11 +690,6 @@ color: #545b62;">
 									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
 										<?= $row['document_4'] ?>
 									</a>
-									<!--											<td>--><? //= ($row['reference_4'] != '' ? $row['reference_4'] : '-') ?><!--</td>-->
-									<!--											<td>--><? //= ($row['expiration_4'] != '' ? $row['expiration_4'] : '-') ?><!--</td>-->
-									<!--											<td>--><? //= ($row['note_4'] != '' ? $row['note_4'] : '-') ?><!--</td>-->
-
-
 
 								<? } ?>
 
@@ -1011,6 +985,10 @@ color: #545b62;">
 		<?if($this->input->get('id') != '') {?>
 		$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
 		<?}?>
+
+		$('#department').selectpicker({
+			noneResultsText: '<?=lang('add')?> {0}'
+		});
 	});
 
 
@@ -1062,4 +1040,46 @@ color: #545b62;">
 
 	});
 
+
+
+
+	function nflTeamsWithDefaults(q, sync) {
+		if (q === '') {
+			var text = [{'team' :'<?=lang('head')?>'}];
+			sync(text);
+		} else if(q != '<?=lang('head')?>'){
+			$('input[name="head"]').val('');
+		} else if (q == '<?=lang('head')?>') {
+			$('input[name="head"]').val('1');
+		}
+	}
+
+	$('#default-suggestions .typeahead').typeahead({
+			minLength: 0,
+			highlight: true
+		},
+		{
+			name: 'nfl-teams',
+			display: 'team',
+			source: nflTeamsWithDefaults
+		});
+
+	$('#default-suggestions .typeahead').on('typeahead:selected', function(evt, item) {
+		$('input[name="head"]').val('1');
+	});
+
+
+	$(document).on('click', 'li.no-results', function () {
+		var new_option = $(this).text().split('"')[1];
+
+		if(new_option != '') {
+			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/add_department_select_ax') ?>';
+			$.post(url, {title: new_option}, function(e) {
+				$("#department")
+					.append('<option value="'+e+'" selected>'+ new_option +'</option>')
+					.selectpicker('refresh');
+			});
+		}
+
+	});
 </script>

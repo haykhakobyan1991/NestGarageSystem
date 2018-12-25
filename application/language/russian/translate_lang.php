@@ -384,6 +384,7 @@ $lang['more_info'] = 'Больше Информации';
 $lang['other_info'] = 'Другая Информация';
 $lang['see'] = 'Увидеть';
 $lang['country_code'] = 'Код Страны';
+$lang['add'] = 'Добавит: ';
 
 
 //colors

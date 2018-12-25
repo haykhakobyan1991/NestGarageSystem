@@ -954,6 +954,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_rules('firstname', 'firstname', 'required');
 		$this->form_validation->set_rules('lastname', 'lastname', 'required');
 		$this->form_validation->set_rules('email', 'lang:email', 'required|valid_email');
+		$this->form_validation->set_rules('department', 'department', 'required');
 
 
 
@@ -967,6 +968,7 @@ class Organization extends MX_Controller {
 				'firstname' => form_error('firstname'),
 				'lastname' => form_error('lastname'),
 				'email' => form_error('email'),
+				'department' => form_error('department')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -988,7 +990,7 @@ class Organization extends MX_Controller {
 		$country = $this->input->post('country');
 		$address = $this->input->post('address');
 		$post_code = $this->input->post('post_code');
-		$department = $department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
+		$department = $this->input->post('department');
 		$position = $this->input->post('position');
 		$other = $this->input->post('other');
 
@@ -1246,10 +1248,8 @@ class Organization extends MX_Controller {
 
 			$file_4 = $file_4_array[0];
 			$ext_4 = $file_4_array[1];
-
-
-
 		}
+
 
 		$sql = "
 				INSERT INTO 
@@ -1301,7 +1301,12 @@ class Organization extends MX_Controller {
 
 		$result = $this->db->query($sql);
 
+		$staff_id = $this->db->insert_id();
 
+		// head staff
+		if($this->input->post('head') == '1') {
+			$this->db->query("UPDATE `department` SET `head_staff_id` = '".$staff_id."' WHERE `id` = '".$department."'");
+		}
 
 
 		if ($result){
@@ -3856,6 +3861,67 @@ class Organization extends MX_Controller {
 
 		return true;
 
+	}
+
+
+	//department select option
+	public function add_department_select_ax() {
+
+		$this->load->authorisation('Organization', 'add_department');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
+		$title = $this->input->post('title');
+		$head_staff = $this->input->post('head_staff');
+		$description = $this->input->post('description');
+		$status = 1;
+
+
+		$sql = "
+				INSERT INTO 
+				  `department`
+				SET
+				  `title` = ".$this->load->db_value($title).",
+				  `registrar_user_id` = ".$this->load->db_value($user_id).",
+				  `registration_date` = NOW(),
+				  `company_id` = ".$this->load->db_value($company_id).",
+				  `head_staff_id` = ".$this->load->db_value($head_staff).",
+				  `description` = ".$this->load->db_value($description).",
+				  `status` = ".$this->load->db_value($status)."
+			";
+
+
+		$result = $this->db->query($sql);
+
+		$department_id = $this->db->insert_id();
+
+
+		if ($result){
+			echo $department_id;
+		} else {
+			// todo
+		}
+
+		// Return success or error message
+		//echo json_encode($messages);
+		return true;
 	}
 
 

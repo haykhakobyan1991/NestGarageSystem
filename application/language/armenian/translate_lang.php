@@ -383,6 +383,8 @@ $lang['more_info'] = 'Մանրամասն';
 $lang['other_info'] = 'Այլ տվյալներ';
 $lang['see'] = 'Տեսնել';
 $lang['country_code'] = 'Երկրի Կոդը';
+$lang['add'] = 'Ավելացնել`';
+
 
 //colors
 $lang['white'] = 'Սպիտակ';

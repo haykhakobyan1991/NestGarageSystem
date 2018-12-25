@@ -303,7 +303,7 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-
+																		<input type="hidden" name="document_1" value="<?= lang('passport') ?>" />
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('passport') ?></label>
@@ -374,7 +374,7 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-
+																		<input type="hidden" name="document_2" value="<?= lang('social_card') ?>" />
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('social_card') ?></label>
@@ -443,7 +443,7 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-
+																		<input type="hidden" name="document_3" value="<?= lang('driving_license') ?>" />
 
 																		<div class="col-md-3">
 																			<div class="form-group">
@@ -516,7 +516,7 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-
+																		<input type="hidden" name="document_4" value="<?= lang('technical_passport') ?>" />
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('technical_passport') ?></label>
@@ -535,7 +535,6 @@ endforeach;
 																				</label>
 																			</div>
 																		</div>
-
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('reference') ?></label>
@@ -562,18 +561,14 @@ endforeach;
 																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
-
 																	</div>
 																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-
-
 											</div>
 										</div>
-
 										<div class="modal-footer pb-0 col-sm-12 mt-1" style="padding-right: 24px;">
 											<button id="add_staff" type="button"
 													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
@@ -589,11 +584,8 @@ endforeach;
 											</button>
 										</div>
 									</div>
-
-
 								</div>
 							</div>
-
 						</div>
 				</form>
 				<!-- Add User Modal End -->

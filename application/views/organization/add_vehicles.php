@@ -881,10 +881,8 @@
 			'border': '1px solid rgb(206, 212, 218)'
 		});
 
-
 		n++;
 	});
-
 
 	$(document).on('click', '.del_items_from_table', function () {
 		$(this).parent('td').parent('tr').remove();
@@ -959,8 +957,7 @@
 		$(function () {
 			$('#cp2').colorpicker();
 		});
-
-	})
+	});
 
 
 	$(window).on('load', function () {

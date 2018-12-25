@@ -208,7 +208,7 @@ $folder = $this->session->folder;
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
+									<input type="hidden" name="document_1" value="<?= lang('passport') ?>" />
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('passport') ?></label>
@@ -288,7 +288,7 @@ $folder = $this->session->folder;
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
+									<input type="hidden" name="document_2" value="<?= lang('social_card') ?>" />
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('social_card') ?></label>
@@ -368,8 +368,8 @@ $folder = $this->session->folder;
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
-
+									<input type="hidden" name="document_3" value="<?= lang('driving_license') ?>" />
+									social_card
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('driving_license') ?></label>
@@ -450,7 +450,7 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-
+									<input type="hidden" name="document_4" value="<?= lang('technical_passport') ?>" />
 									<div class="col-md-3">
 										<div class="form-group">
 											<label><?= lang('technical_passport') ?></label>

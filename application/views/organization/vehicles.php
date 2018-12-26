@@ -73,16 +73,6 @@ endforeach;
 							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('total_vehicles')?></p> <span
 								class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 						</div>
-						<div class="col-sm-4 text-center">
-							<p class="display-5 font-weight-bold" style="font-size: 13px;display: inline-block;"><?=lang('active_vehicles')?></p>
-							<span
-								class="ml-2 mt-1 badge badge-success badge-pill"><?= $active ?></span>
-						</div>
-						<div class="col-sm-4">
-							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('passive_vehicles')?></p>
-							<span
-								class="ml-2 mt-1 badge badge-warning badge-pill"><?= $passive ?></span>
-						</div>
 					</div>
 				</diiv>
 				<div class="col-sm-4 text-right">

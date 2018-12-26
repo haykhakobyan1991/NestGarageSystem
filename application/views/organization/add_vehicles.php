@@ -827,8 +827,8 @@
 		if (upload_file == '') {
 			$(this).parent('label').children('span').text('<?=lang('browse')?>');
 		} else {
-			if (upload_file.length > 13) {
-				var short_text = text_truncate(upload_file, 13, ' ...');
+			if (upload_file.length > 10) {
+				var short_text = text_truncate(upload_file, 10, ' ...');
 				$(this).parent('label').children('span').text(short_text);
 			} else {
 				$(this).parent('label').children('span').text(upload_file);

@@ -349,7 +349,6 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 									<input type="hidden" name="document_3" value="<?= lang('driving_license') ?>" />
-									social_card
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('driving_license') ?></label>

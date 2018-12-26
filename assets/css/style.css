@@ -372,7 +372,12 @@ button.btn.btn-primary:hover {
 	transition: all .3s ease-in-out;
 }
 
-.cancel_btn:hover {
+.cancel_btn:hover, .cancel_btn:active {
+	background: rgb(255, 122, 89) !important;
+	color: #fff !important;
+}
+
+.cancel_btn:not(:disabled):not(.disabled).active, .cancel_btn:not(:disabled):not(.disabled):active, .show > .cancel_btn.dropdown-toggle {
 	background: rgb(255, 122, 89) !important;
 	color: #fff !important;
 }

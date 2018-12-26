@@ -272,7 +272,7 @@ class User extends CI_Controller {
             $password = $this->hash($password);
         } else {
             $n = 1;
-            $validation_errors = array('confirm_password' => "passwords do not mach");
+            $validation_errors = array('confirm_password' => lang('passwords_not_mach'));
             $messages['error']['elements'][] = $validation_errors;
         }
 
@@ -285,7 +285,7 @@ class User extends CI_Controller {
 
         if($num_rows == 1) {
             $n = 1;
-            $validation_errors = array('up_email' => "Email is not unique"); //todo ml
+            $validation_errors = array('up_email' => lang('email_not_unique')); //todo ml
             $messages['error']['elements'][] = $validation_errors;
         }
 
@@ -362,12 +362,10 @@ class User extends CI_Controller {
 			$messages['error'] = 'Error';
 		}
 
-
         // Return success or error message
         echo json_encode($messages);
         return true;
 	}
-
 
 	/**
 	 * @return bool
@@ -407,7 +405,7 @@ class User extends CI_Controller {
 
 		if (strtolower($code) != strtolower($word)) {
 			$n = 1;
-			$validation_errors = array('captcha' =>  'Captcha is incorrect');
+			$validation_errors = array('captcha' =>  lang('captcha_incorrect'));
 			$messages['error']['elements'][] = $validation_errors;
 
 		}

@@ -411,5 +411,8 @@ $lang['invalid_email'] = 'Դուք մուտք չեք գործել, քանի որ
 $lang['invalid_password'] = 'Դուք մուտք չեք գործել, քանի որ մուտքագրել եք սխալ գաղտնաբառ';
 $lang['your_account_suspended'] = 'Ձեր հաշիվը արգելափակվել է';
 $lang['account_not_active'] = 'Ձեր հաշիվը ակտիվ չէ';
+$lang['captcha_incorrect'] = 'Captcha- ն սխալ է';
+$lang['email_not_unique'] = 'Էլ․ հասցեն կրկնվում է';
+$lang['password_not_match'] = 'Գաղտնաբառերը չեն համապատասխանում';
 
 

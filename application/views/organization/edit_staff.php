@@ -2,6 +2,12 @@
 $user_id = $this->session->user_id;
 $folder = $this->session->folder;
 ?>
+<style>
+	.a_ext>i {
+		font-size: 27px;
+		padding-top: 5px !important;
+	}
+</style>
 <form id="staff_edit" enctype="multipart/form-data">
 	<input type="hidden" name="staff_id" value="<?= $id ?>">
 	<div class="for_message">
@@ -208,7 +214,7 @@ $folder = $this->session->folder;
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('passport') ?></label>
-											<label style="width: 90%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
+											<label style="width: 80%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
 												   class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>
 												<input class="btn_input"
@@ -219,6 +225,7 @@ $folder = $this->session->folder;
 
 											</label>
 											<a style="margin-top: 4px"
+											   class="a_ext"
 											   target="_blank"
 											   href="<?= ($ext_1 != '' ? base_url('uploads/' . $folder . '/staff/files/') . $file_1 . '.' . $ext_1 : 'javascript:void(0)') ?>">
 												<?= $this->select_ext($ext_1); ?>
@@ -284,7 +291,7 @@ $folder = $this->session->folder;
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('social_card') ?></label>
-											<label style="width: 90%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
+											<label style="width: 80%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
 												   class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>
 												<input class="btn_input"
@@ -295,6 +302,7 @@ $folder = $this->session->folder;
 
 											</label>
 											<a style="margin-top: 4px"
+											   class="a_ext"
 											   target="_blank"
 											   href="<?= ($ext_2 != '' ? base_url('uploads/' . $folder . '/staff/files/') . $file_2 . '.' . $ext_2 : 'javascript:void(0)') ?>">
 												<?= $this->select_ext($ext_2); ?>
@@ -353,12 +361,13 @@ $folder = $this->session->folder;
 									<div class="col-md-3">
 										<div class="form-group">
 											<label for=""><?= lang('driving_license') ?></label>
-											<label style="width: 90%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
+											<label style="width: 80%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
 												   class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>
 												<input class="btn_input" name="file_3" type="file" hidden style="display: none;" value="">
 											</label>
 											<a style="margin-top: 4px"
+											   class="a_ext"
 											   target="_blank"
 											   href="<?= ($ext_3 != '' ? base_url('uploads/' . $folder . '/staff/files/') . $file_3 . '.' . $ext_3 : 'javascript:void(0)') ?>">
 												<?= $this->select_ext($ext_3); ?>
@@ -407,12 +416,12 @@ $folder = $this->session->folder;
 									<div class="col-md-3">
 										<div class="form-group">
 											<label><?= lang('technical_passport') ?></label>
-											<label style="width: 90%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
+											<label style="width: 80%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
 												   class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>
 												<input class="btn_input" name="file_4" type="file" hidden style="display: none;" value="">
 											</label>
-											<a style="margin-top: 4px" target="_blank" href="<?= ($ext_4 != '' ? base_url('uploads/' . $folder . '/staff/files/') . $file_4 . '.' . $ext_4 : 'javascript:void(0)') ?>">
+											<a style="margin-top: 4px" class="a_ext" target="_blank" href="<?= ($ext_4 != '' ? base_url('uploads/' . $folder . '/staff/files/') . $file_4 . '.' . $ext_4 : 'javascript:void(0)') ?>">
 												<?= $this->select_ext($ext_4); ?>
 											</a>
 										</div>

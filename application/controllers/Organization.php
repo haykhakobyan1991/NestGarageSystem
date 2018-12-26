@@ -909,8 +909,8 @@ class Organization extends MX_Controller {
 
 		$data['staff'] = $this->db->select('
 			staff.*, 
-			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
-			GROUP_CONCAT(CONCAT("<span class=\"m-1 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 p-2 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
+			GROUP_CONCAT(CONCAT("<span class=\"m-1 p-2 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
 			CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')

@@ -1,3 +1,4 @@
+<?$folder = $this->session->folder;?>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 <style>
 	label {
@@ -37,6 +38,17 @@
 
 	.btn.dropdown-toggle {
 		height: 37px !important;
+	}
+
+	.a_ext>i {
+		font-size: 27px;
+		padding-top: 5px !important;
+		margin-right: 40px !important;
+	}
+
+	.a_ext1>i {
+		font-size: 27px;
+		padding-top: 27px !important;
 	}
 </style>
 
@@ -325,7 +337,21 @@
 							   class="d-none form-control-file btn_input"
 							   hidden style="display: none;"
 							   id="exampleFormControlFile1">
-					</label>
+					</label><?
+					if ($fleet['regitered_file'] != '') : ?>
+					<a
+						target=""
+						class="a_ext"
+						download="<?= $fleet['regitered_file'] ?>"
+						href="<?= base_url('uploads/'.$folder.'/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
+						<?
+
+						$ext = explode('.', $fleet['regitered_file']);
+						echo $this->select_ext($ext[1]);
+
+						?>
+						</a><?
+					endif; ?>
 				</div>
 			</div>
 			<hr class="my-2">
@@ -388,6 +414,7 @@
 										<div class="ml-2 float-left"><?
 											if ($fleet['insurance_ext_1'] != '') : ?>
 												<a
+													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
 													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
@@ -422,7 +449,7 @@
 											   class="form-control form-control-sm">
 									</div>
 
-									<div class="col-sm-3" style="margin-top: -10px;">
+									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
 											class="col-form-label"
 											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
@@ -495,6 +522,7 @@
 										<div class="ml-2 float-left">
 											<? if ($fleet['insurance_ext_2'] != '') : ?>
 												<a
+													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_2'] . '.' . $fleet['insurance_ext_2'] ?>"
 													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_2'] . '.' . $fleet['insurance_ext_2'] ?>">
@@ -530,7 +558,7 @@
 											   class="form-control form-control-sm">
 									</div>
 
-									<div class="col-sm-3" style="margin-top: -10px;">
+									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
 											class="col-form-label"
 											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
@@ -602,8 +630,7 @@
 										</div>
 										<div class="ml-2 float-left"><?
 											if ($fleet['insurance_ext_3'] != '') : ?>
-												<a class=""
-
+												<a class="a_ext1"
 												   target=""
 												   download="<?= $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>"
 												   href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>">
@@ -639,7 +666,7 @@
 											   class="form-control form-control-sm">
 									</div>
 
-									<div class="col-sm-3" style="margin-top: -10px;">
+									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
 											class="col-form-label"
 											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
@@ -712,14 +739,12 @@
 										<div class="ml-2 float-left">
 											<? if ($fleet['insurance_ext_4'] != '') : ?>
 												<a
+													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>"
 													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>">
 													<?
-
-
 													echo $this->select_ext($fleet['insurance_ext_4']);
-
 													?>
 												</a>
 											<? endif; ?>
@@ -747,7 +772,7 @@
 											   class="form-control form-control-sm">
 									</div>
 
-									<div class="col-sm-3" style="margin-top: -10px;">
+									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
 											class="col-form-label"
 											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
@@ -1197,8 +1222,7 @@
 
 	$(document).on('click', '.btn.dropdown-toggle', function () {
 		var ul = $('select[name="color"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
-		console.log(ul);
-		alert();
+
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {

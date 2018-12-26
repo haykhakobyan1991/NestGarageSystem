@@ -649,7 +649,7 @@ color: #545b62;">
 							<td>
 
 								<? if ($row['document_1'] != '' && $row['ext_1'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
@@ -658,7 +658,7 @@ color: #545b62;">
 
 								<? }
 								if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
@@ -667,7 +667,7 @@ color: #545b62;">
 
 								<? }
 								if ($row['document_3'] != '' && $row['ext_3'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
@@ -676,7 +676,7 @@ color: #545b62;">
 
 								<? }
 								if ($row['document_4'] != '' && $row['ext_4'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">

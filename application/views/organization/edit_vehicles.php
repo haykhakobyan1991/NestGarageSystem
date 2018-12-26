@@ -28,6 +28,18 @@
 		padding: 0 !important;
 	}
 
+	button.btn.dropdown-toggle.bs-placeholder {
+		height: 39px;
+		background: rgb(255, 255, 255);
+		color: rgb(108, 117, 125);
+		border: 1px solid rgb(206, 212, 218);
+		margin-top: 4px;
+	}
+
+	.btn.dropdown-toggle {
+		height: 37px !important;
+		margin-top: 4px;
+	}
 </style>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>

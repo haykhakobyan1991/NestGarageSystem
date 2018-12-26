@@ -48,11 +48,12 @@
 		background: rgb(255, 255, 255);
 		color: rgb(108, 117, 125);
 		border: 1px solid rgb(206, 212, 218);
-		margin-top: -4px;
+		margin-top: -2px;
 	}
 
 	.btn.dropdown-toggle {
 		height: 37px !important;
+		margin-top: -1px;
 	}
 
 </style>

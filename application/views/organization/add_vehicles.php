@@ -1,14 +1,60 @@
 <style>
-	label {font-size: 11px !important;}
-	.st_inp::before {content: "";margin-left: -3px;margin-top: -3px;height: 23px;width: 23px;border: 3px solid #8c8c8c;border-radius: 50%;display: inline-block;opacity: 1 !important;}
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {margin-left: 87px;}
-	i {margin-left: 15px;}
-	::-webkit-input-placeholder {color: peachpuff;font-size: 13px;}
-	::-moz-placeholder {color: peachpuff;font-size: 13px;}
-	:-ms-input-placeholder {color: peachpuff;font-size: 13px;}
-	::placeholder {color: peachpuff;font-size: 13px;}
-	button.btn.dropdown-toggle.bs-placeholder {height: 39px;background: rgb(255, 255, 255);color: rgb(108, 117, 125);border: 1px solid rgb(206, 212, 218);margin-top: -2px;}
-	.btn.dropdown-toggle {height: 37px !important;margin-top: -1px;}
+	label {
+		font-size: 11px !important;
+	}
+
+	.st_inp::before {
+		content: "";
+		margin-left: -3px;
+		margin-top: -3px;
+		height: 23px;
+		width: 23px;
+		border: 3px solid #8c8c8c;
+		border-radius: 50%;
+		display: inline-block;
+		opacity: 1 !important;
+	}
+
+	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
+		margin-left: 87px;
+	}
+
+	i {
+		margin-left: 15px;
+	}
+
+	::-webkit-input-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+
+	::-moz-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+
+	:-ms-input-placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+
+	::placeholder {
+		color: peachpuff;
+		font-size: 13px;
+	}
+
+	button.btn.dropdown-toggle.bs-placeholder {
+		height: 39px;
+		background: rgb(255, 255, 255);
+		color: rgb(108, 117, 125);
+		border: 1px solid rgb(206, 212, 218);
+		margin-top: -2px;
+	}
+
+	.btn.dropdown-toggle {
+		height: 37px !important;
+		margin-top: -1px;
+	}
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -77,17 +123,9 @@
 						<select name="fleet_type" class="col-sm-7 currency form-control form-control-sm selectpicker"
 								data-size="5" id="fleet_type" data-live-search="true"
 								title="<?= lang('select_car_type') ?>">
-							<? // foreach ($fleet_type as $row) : ?>
-							<!--<option value="--><? //= $row['id'] ?><!--">--><? //= $row['title'] ?><!--</option>-->
-							<? // endforeach; ?>
-
-							<option class="car_type"><?= lang('passenger_car') ?></option>
-							<option class="car_type"><?= lang('truck') ?></option>
-							<option class="car_type"><?= lang('special—equipment') ?></option>
-							<option class="car_type"><?= lang('heavy_machinery') ?></option>
-							<option class="car_type"><?= lang('bus') ?></option>
-							<option class="car_type"><?= lang('minivan') ?></option>
-							<option class="car_type"><?= lang('trailer') ?></option>
+							<? foreach ($fleet_type as $row) : ?>
+							<option class="car_type" value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+							<? endforeach; ?>
 
 						</select>
 					</div>

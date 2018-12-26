@@ -419,7 +419,6 @@
 <script>
 
 	var clicked = false;
-
 	function ClickLogin() {
 		clicked = true;
 	}
@@ -441,14 +440,12 @@
 		}
 		console.log(0);
 	}
-
 	function onFailure(error) {
 		console.log(error);
 	}
 
 
 	function update_user_data(profile) {
-
 		var post_url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/User/login_google_ax')?>';
 		var request_method = 'POST';
 		var form_data = {
@@ -458,24 +455,17 @@
 			'google_photo': profile.image.url,
 			'email': profile.emails[0].value
 		};
-
-
 		$.ajax({
 			url: post_url,
 			type: request_method,
 			dataType: "json",
 			data: form_data
 		}).done(function (e) {
-
 			if (e.success == '1') {
-
 				var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/company')?>";
 				$(location).attr('href', url);
-
 			} else {
-
 				console.log(e.error)
-
 			}
 		});
 	}
@@ -506,17 +496,14 @@
 
 </script>
 
-
 <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
 
 <script>
 	// sign up
 	$(document).on('click', '#sign_up', function () {
-
 		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/User/signUp_ax')?>';
 		var form_data = $('#register').serialize();
 		$('small.text-muted').addClass('d-none');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -524,17 +511,11 @@
 			cache: false,
 			dataType: 'json',
 			beforeSend: function () {
-
 				loading('start', 'sign_up');
-
 			},
 			success: function (data) {
-
 				if (data.success == '1') {
-
-
 					loading('stop', 'sign_up');
-
 					$('.modal-header h5').text('your registration is successful');
 					$('.modal-header h5').addClass('text-success');
 					$('.content_area').removeClass('row');
@@ -544,13 +525,8 @@
 						'  Your Username and password we will send to Your email address\n' +
 						'    </div>\n' +
 						'    </div>');
-
 					$('input, select').val('');
-
-
 				} else {
-
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'sign_up');
@@ -576,9 +552,7 @@
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -586,13 +560,9 @@
 				$('p#success').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
-			complete: function () {
-
-			}
+			complete: function () {}
 		});
 	});
-
-
 </script>
 
 

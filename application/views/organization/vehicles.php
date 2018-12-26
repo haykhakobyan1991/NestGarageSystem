@@ -12,7 +12,7 @@
 </style>
 
 <script>
-	$(document).ready(function() {
+	$(document).ready(function () {
 		$('#example3').DataTable({
 			language: {
 				search: "<?=lang('search')?>",
@@ -60,7 +60,7 @@ endforeach;
 		 aria-labelledby="list-staff-list">
 
 		<div class="container-fluid">
-			<p class="display-5 font-weight-bold mb-0"><?=lang('Veichls')?></p>
+			<p class="display-5 font-weight-bold mb-0"><?= lang('Veichls') ?></p>
 			<hr class="my-2">
 		</div>
 
@@ -70,14 +70,15 @@ endforeach;
 				<diiv class="col-sm-8 pt-2">
 					<div class="row">
 						<div class="col-sm-3">
-							<p class="display-5 font-weight-bold float-left" style="font-size: 13px;"><?=lang('total_vehicles')?></p> <span
+							<p class="display-5 font-weight-bold float-left"
+							   style="font-size: 13px;"><?= lang('total_vehicles') ?></p> <span
 								class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 						</div>
 					</div>
 				</diiv>
 				<div class="col-sm-4 text-right">
 					<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/add_vehicles') ?>"
-					   class="text-capitalize btn btn-outline-success btn-sm float-right"><?=lang('add_vehicles')?>
+					   class="text-capitalize btn btn-outline-success btn-sm float-right"><?= lang('add_vehicles') ?>
 					</a>
 				</div>
 			</div>
@@ -93,17 +94,17 @@ endforeach;
 
 
 					<table id="example3" class="table table-striped table-borderless"
-						   style="width:100%" >
+						   style="width:100%">
 						<thead style="background: #fff;
 color: #545b62;">
 						<tr>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('attached')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('brand'). ' ' .lang('model')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('color')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('vin')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('Created_Date')?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('by_whom')?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('attached') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('status') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') . ' ' . lang('model') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('color') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('vin') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('Created_Date') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('by_whom') ?></th>
 							<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 						</tr>
 						</thead>
@@ -120,25 +121,29 @@ color: #545b62;">
 											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 									<? } ?>
 								</td>
-								<td><?=$row['brand_model']?></td>
-								<td><span style="display: none">Spitak</span><span class="p-3 m-2 text-white" style="border-radius: 50%; border: 1px solid #000; background: <?=$row['color']?>; display: inline-block;"></span></td>
-								<td><?=$row['vin_code']?></td>
-								<td><?=$row['creation_date']?></td>
-								<td><?=$row['user_name']?></td>
+								<td><?= $row['brand_model'] ?></td>
+								<td><span style="display: none">Spitak</span><span class="p-3 m-2 text-white"
+																				   style="border-radius: 50%; border: 1px solid #000; background: <?= $row['color'] ?>; display: inline-block;"></span>
+								</td>
+								<td><?= $row['vin_code'] ?></td>
+								<td><?= $row['creation_date'] ?></td>
+								<td><?= $row['user_name'] ?></td>
 								<td colspan="2">
-									<a href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/edit_vehicles/'.$row['id'])?>"><span style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
-											  id="edit_vehicles_modal"
-											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_vehicles"
-											  data-toggle2="tooltip"
-											  data-placement="top"
-											  title="edit"><i class="fas fa-edit"></i></span></a>
+									<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->default_lang()) . '/edit_vehicles/' . $row['id']) ?>"><span
+											style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
+											id="edit_vehicles_modal"
+											data-toggle="modal" class="float-left text-success"
+											data-target="#edit_vehicles"
+											data-toggle2="tooltip"
+											data-placement="top"
+											title="edit"><i class="fas fa-edit"></i></span></a>
 
-<!--									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"-->
-<!--										  class="btn text-secondary"-->
-<!--										  data-toggle2="tooltip"-->
-<!--										  data-placement="top"-->
-<!--										  title="delete"><i class="fas fa-trash"></i></span>--></td>
+									<!--									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"-->
+									<!--										  class="btn text-secondary"-->
+									<!--										  data-toggle2="tooltip"-->
+									<!--										  data-placement="top"-->
+									<!--										  title="delete"><i class="fas fa-trash"></i></span>-->
+								</td>
 							</tr>
 						<? endforeach; ?>
 						</tbody>

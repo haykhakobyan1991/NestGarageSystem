@@ -1,12 +1,45 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 <style>
-	label {font-size: 11px !important;}
-	.st_inp::before {content: "";margin-left: -3px;margin-top: -3px;height: 23px;width: 23px;border: 3px solid #8c8c8c;border-radius: 50%;display: inline-block;opacity: 1 !important;}
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {margin-left: 87px;}
-	i {margin-left: 15px;}
-	.card-header {padding: 0 !important;}
-	button.btn.dropdown-toggle.bs-placeholder {height: 39px;background: rgb(255, 255, 255);color: rgb(108, 117, 125);border: 1px solid rgb(206, 212, 218);margin-top: 4px;}
-	.btn.dropdown-toggle {height: 37px !important;margin-top: 4px;}
+	label {
+		font-size: 11px !important;
+	}
+
+	.st_inp::before {
+		content: "";
+		margin-left: -3px;
+		margin-top: -3px;
+		height: 23px;
+		width: 23px;
+		border: 3px solid #8c8c8c;
+		border-radius: 50%;
+		display: inline-block;
+		opacity: 1 !important;
+	}
+
+	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
+		margin-left: 87px;
+	}
+
+	i {
+		margin-left: 15px;
+	}
+
+	.card-header {
+		padding: 0 !important;
+	}
+
+	button.btn.dropdown-toggle.bs-placeholder {
+		height: 39px;
+		background: rgb(255, 255, 255);
+		color: rgb(108, 117, 125);
+		border: 1px solid rgb(206, 212, 218);
+		margin-top: 4px;
+	}
+
+	.btn.dropdown-toggle {
+		height: 37px !important;
+		margin-top: 4px;
+	}
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -39,13 +72,11 @@
 									   name="gps_exist"
 									   value="1" <?= $fleet['gps_tracker_exists'] == 1 ? 'checked' : '' ?>
 									   id="fleet_type"/>
-
 								<div class="col-sm-6">
 									<input value="<?= $fleet['gps_tracker_imei'] ?>" name="gps_tracker_imei" type="text"
 										   class="form-control form-control-sm"
 										   placeholder="<?= lang('GPS_Tracker_IMEI') ?>">
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -84,8 +115,7 @@
 					</div>
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
-						<label
-							class=" col-form-label col-sm-2"><?= lang('model') ?> *</label>
+						<label class=" col-form-label col-sm-2"><?= lang('model') ?> *</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"
@@ -110,21 +140,15 @@
 								data-size="5" id="fleet_type" data-live-search="true"
 								title="<?= lang('select_car_type') ?>"
 						>
-							<option class="car_type"><?= lang('passenger_car') ?></option>
-							<option class="car_type"><?= lang('truck') ?></option>
-							<option class="car_type"><?= lang('special—equipment') ?></option>
-							<option class="car_type"><?= lang('heavy_machinery') ?></option>
-							<option class="car_type"><?= lang('bus') ?></option>
-							<option class="car_type"><?= lang('minivan') ?></option>
-							<option class="car_type"><?= lang('trailer') ?></option>
-							<!----><? // foreach ($fleet_type as $row) : ?>
-							<!--<option-->
-							<!--value="--><? //= $row['id'] ?><!--"-->
-							<!----><? //= ($fleet['fleet_type_id'] == $row['id'] ? 'selected' : '') ?>
-							<!--> -->
-							<!----><? //= $row['title'] ?>
-							<!--</option>-->
-							<!----><? // endforeach; ?>
+
+							<?  foreach ($fleet_type as $row) : ?>
+							<option class="fleet_type"
+							value="<?= $row['id'] ?>"
+							<?= ($fleet['fleet_type_id'] == $row['id'] ? 'selected' : '') ?>
+							>
+							<?= $row['title'] ?>
+							</option>
+							<? endforeach; ?>
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
@@ -137,7 +161,7 @@
 								data-live-search="true"
 								title="<?= lang('choose') ?>..."
 						>
-							<?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
+							<?php for ($i = 1985; $i <= date('Y'); $i++) : ?>
 								<option
 									value="<?= $i ?>"
 									<?= ($fleet['production_date'] == $i ? 'selected' : '') ?>
@@ -149,15 +173,8 @@
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
-
-						<label
-							class="col-sm-4 col-form-label"><?= lang('engine_power') ?></label>
-
-						<input value="<?= $fleet['engine_power'] ?>" min="0" step="0.1" name="engine_power"
-							   type="number"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('engine_power') ?>">
-
+						<label class="col-sm-4 col-form-label"><?= lang('engine_power') ?></label>
+						<input value="<?= $fleet['engine_power'] ?>" min="0" step="0.1" name="engine_power" type="number" class="form-control form-control-sm col-sm-7" placeholder="<?= lang('engine_power') ?>">
 					</div>
 				</div>
 				<div class="col-sm-4">
@@ -183,8 +200,7 @@
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 
-						<label
-							class="col-sm-4 col-form-label"><?= lang('average_expense_100_km') ?></label>
+						<label class="col-sm-4 col-form-label"><?= lang('average_expense_100_km') ?></label>
 
 						<input value="<?= $fleet['fuel_avg_consumption'] ?>" min="0" name="fuel_avg_consumption"
 							   type="number" class="form-control form-control-sm col-sm-7"
@@ -193,8 +209,7 @@
 					</div>
 					<div class="row mt-1">
 
-						<label
-							class="col-sm-4 col-form-label"><?= lang('running') ?></label>
+						<label class="col-sm-4 col-form-label"><?= lang('running') ?></label>
 
 						<input value="<?= $fleet['mileage'] ?>" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-7"
@@ -203,12 +218,8 @@
 
 					</div>
 					<div class="row mt-1">
-						<label
-							class="pl-3 col-form-label col-sm-4"
-							style="font-size: 15px;"><?= lang('odometer') ?></label>
-						<input value="<?= $fleet['odometer'] ?>" name="odometer" type="text"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('odometer') ?>">
+						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?= lang('odometer') ?></label>
+						<input value="<?= $fleet['odometer'] ?>" name="odometer" type="text" class="form-control form-control-sm col-sm-7" placeholder="<?= lang('odometer') ?>">
 					</div>
 
 				</div>
@@ -217,9 +228,7 @@
 					<div class="row">
 						<label class="pl-4 col-form-label col-sm-3"
 							   style="font-size: 15px;"><?= lang('color') ?></label>
-						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
-								data-size="5"
-								data-live-search="true" title="<?= lang('color') ?>">
+						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff" data-size="5" data-live-search="true" title="<?= lang('color') ?>">
 							<option data-color="#ffffff" value=""> <?= lang('white') ?></option>
 							<option data-color="#000000" value=""><span></span> <?= lang('black') ?></option>
 							<option data-color="#bbbfc7" value=""><span></span> <?= lang('silver') ?></option>
@@ -320,8 +329,7 @@
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<label class="col-sm-6 col-form-label text-right"
-						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
+					<label class="col-sm-6 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
 					<label
 						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success mb-0">
@@ -343,15 +351,14 @@
 		</div>
 
 
-
 		<div class="row">
 
-			<!-- Main End -->
 
 
 			<!-- Acardion -->
 
-			<div class="accordion col-sm-12 mt-2" id="accordionExample_info" style="padding-left: 30px; padding-right: 30px;">
+			<div class="accordion col-sm-12 mt-2" id="accordionExample_info"
+				 style="padding-left: 30px; padding-right: 30px;">
 
 				<div class="card">
 					<div class="card-header" id="heading_info1">
@@ -889,8 +896,44 @@
 	<span id="submit" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
 	<span id="load" class="btn save_cancel_btn btn-success d-none">
 
-		<svg id="loading_svg" width="80" height="20" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg" fill="rgb(255, 122, 89)">
-			<rect y="10" width="15" height="120" rx="6"><animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/></rect><rect x="30" y="10" width="15" height="120" rx="6"><animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/></rect><rect x="60" width="15" height="140" rx="6"><animate attributeName="height" begin="0s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/></rect><rect x="90" y="10" width="15" height="120" rx="6"><animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/></rect><rect x="120" y="10" width="15" height="120" rx="6"><animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120" calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear" repeatCount="indefinite"/></rect>
+		<svg id="loading_svg" width="80" height="20" viewBox="0 0 135 140" xmlns="http://www.w3.org/2000/svg"
+			 fill="rgb(255, 122, 89)">
+			<rect y="10" width="15" height="120" rx="6"><animate attributeName="height" begin="0.5s" dur="1s"
+																 values="120;110;100;90;80;70;60;50;40;140;120"
+																 calcMode="linear" repeatCount="indefinite"/><animate
+					attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
+					repeatCount="indefinite"/></rect><rect x="30" y="10" width="15" height="120" rx="6"><animate
+					attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
+					calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.25s" dur="1s"
+																		 values="10;15;20;25;30;35;40;45;50;0;10"
+																		 calcMode="linear"
+																		 repeatCount="indefinite"/></rect><rect x="60"
+																												width="15"
+																												height="140"
+																												rx="6"><animate
+					attributeName="height" begin="0s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
+					calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0s" dur="1s"
+																		 values="10;15;20;25;30;35;40;45;50;0;10"
+																		 calcMode="linear"
+																		 repeatCount="indefinite"/></rect><rect x="90"
+																												y="10"
+																												width="15"
+																												height="120"
+																												rx="6"><animate
+					attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
+					calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.25s" dur="1s"
+																		 values="10;15;20;25;30;35;40;45;50;0;10"
+																		 calcMode="linear"
+																		 repeatCount="indefinite"/></rect><rect x="120"
+																												y="10"
+																												width="15"
+																												height="120"
+																												rx="6"><animate
+					attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
+					calcMode="linear" repeatCount="indefinite"/><animate attributeName="y" begin="0.5s" dur="1s"
+																		 values="10;15;20;25;30;35;40;45;50;0;10"
+																		 calcMode="linear"
+																		 repeatCount="indefinite"/></rect>
 		</svg>
 
 	</span>
@@ -1145,7 +1188,7 @@
 		$(function () {
 			$('#cp2').colorpicker();
 		});
-	})
+	});
 
 
 	$(window).on('load', function () {
@@ -1162,22 +1205,21 @@
 			$('.pos_abs_div').removeClass('animated');
 			$('.pos_abs_div').animate({
 				bottom: "-=60"
-			})
+			});
 		});
-	})
+	});
 
 	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
-
 		var ul = $('select[name="color"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
 			$(this).addClass(li_class + i);
 			i++;
-		})
+		});
 	});
 
-	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
+	$(document).on('click', 'button.btn.dropdown-toggle', function () {
 		var ul = $('select[name="fleet_type"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
 		var j = 1;
 		ul.each(function (e) {

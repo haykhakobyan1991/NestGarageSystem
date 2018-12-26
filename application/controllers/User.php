@@ -730,7 +730,6 @@ class User extends CI_Controller {
 		}
 
 
-
 		$session = array(
 			'fb_id'  => $fb_id,
 			'fb_photo'  => $fb_photo,
@@ -738,9 +737,7 @@ class User extends CI_Controller {
 			'user_id' => $user_id
 		);
 
-
 		$this->session->set_userdata($session);
-
 
 		echo json_encode($messages);
 		return true;

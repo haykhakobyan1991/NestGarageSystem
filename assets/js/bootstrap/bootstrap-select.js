@@ -896,8 +896,10 @@
        * @param [optgroup]
        * @returns {HTMLElement}
        */
-      var generateLI = function (content, index, classes, optgroup) {
+      var generateLI = function (content, index, classes, optgroup, value) {
         var li = elementTemplates.li.cloneNode(false);
+
+
 
         if (content) {
           if (content.nodeType === 1 || content.nodeType === 11) {
@@ -907,8 +909,11 @@
           }
         }
 
-        if (typeof classes !== 'undefined' && '' !== classes) li.className = classes;
+        if (typeof classes !== 'undefined' && '' !== classes) li.className = classes+index;
         if (typeof optgroup !== 'undefined' && null !== optgroup) li.classList.add('optgroup-' + optgroup);
+//custom ---
+		if (typeof index !== 'undefined' && '' !== index) li.setAttribute('data-value', value);
+ //end ---
 
         return li;
       };
@@ -1042,6 +1047,7 @@
             inline = htmlEscape(this.style.cssText),
             optionContent = thisData.content,
             text = this.textContent,
+            optionValue = this.value,
             tokens = thisData.tokens,
             subtext = thisData.subtext,
             icon = thisData.icon,
@@ -1227,7 +1233,8 @@
             optionIcon: icon
           });
 
-          mainElements.push(generateLI(generateA(textElement, optionClass, inline), index));
+
+          mainElements.push(generateLI(generateA(textElement, optionClass, inline), index, null, false, optionValue));
           mainData.push({
             content: text,
             subtext: subtext,

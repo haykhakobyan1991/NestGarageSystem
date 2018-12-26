@@ -1499,6 +1499,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_rules('firstname', 'firstname', 'required');
 		$this->form_validation->set_rules('lastname', 'lastname', 'required');
 		$this->form_validation->set_rules('email', 'email', 'required|valid_email');
+		$this->form_validation->set_rules('department', 'department', 'required');
 
 
 
@@ -1512,6 +1513,7 @@ class Organization extends MX_Controller {
 				'firstname' => form_error('firstname'),
 				'lastname' => form_error('lastname'),
 				'email' => form_error('email'),
+				'department' => form_error('department')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -1581,9 +1583,6 @@ class Organization extends MX_Controller {
 
 
 		$add_sql_image = '';
-
-
-		$department = $department = ($this->input->post('department') != '' ? implode(',', $this->input->post('department')) : '');
 
 
 		//upload config
@@ -1810,6 +1809,14 @@ class Organization extends MX_Controller {
 
 		}
 
+		// head staff
+		if($this->input->post('head') == '1') {
+			$this->db->query("UPDATE `department` SET `head_staff_id` = '".$id."' WHERE `id` = '".$department."'");
+		} else {
+			//todo
+			$this->db->query("UPDATE `department` SET `head_staff_id` = '' WHERE `id` = '".$department."'");
+		}
+
 		$sql = "
 				UPDATE 
 				  `staff` 
@@ -2032,6 +2039,20 @@ class Organization extends MX_Controller {
 		$result_fleet_type = $this->db->query($sql_fleet_type);
 
 		$data['fleet_type'] = $result_fleet_type->result_array();
+
+		$sql_fleet_color = "
+			SELECT 
+				`id`,
+				`color_code`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_color`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_color = $this->db->query($sql_fleet_color);
+
+		$data['fleet_color'] = $result_fleet_color->result_array();
 
 		$sql_fuel = "
 			SELECT 

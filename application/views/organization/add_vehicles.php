@@ -187,24 +187,10 @@
 						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
 								data-size="5"
 								data-live-search="true" title="<?= lang('color') ?>">
-							<option data-color="#ffffff" value=""> <?= lang('white') ?></option>
-							<option data-color="#000000" value=""><span></span> <?= lang('black') ?></option>
-							<option data-color="#bbbfc7" value=""><span></span> <?= lang('silver') ?></option>
-							<option data-color="#2e56a6" value=""><span></span> <?= lang('blue') ?></option>
-							<option data-color="#f20024" value=""><span></span> <?= lang('red') ?></option>
-							<option data-color="#12a30d" value=""><span></span> <?= lang('green') ?></option>
-							<option data-color="#c7c7c7" value=""><span></span> <?= lang('gray') ?></option>
-							<option data-color="#8fcdff" value=""><span></span> <?= lang('light_blue') ?></option>
-							<option data-color="#ff3b79" value=""><span></span> <?= lang('pink') ?></option>
-							<option data-color="#f5f500" value=""><span></span> <?= lang('yellow') ?></option>
-							<option data-color="#d6ab00" value=""><span></span> <?= lang('gold') ?></option>
-							<option data-color="#592f00" value=""><span></span> <?= lang('chestnut') ?></option>
-							<option data-color="#c70e99" value=""><span></span> <?= lang('purple') ?></option>
-							<option data-color="#fac000" value=""><span></span> <?= lang('orange') ?></option>
-							<option data-color="#ccb486" value=""><span></span> <?= lang('beige') ?></option>
-							<option data-color="#4d3b15" value=""><span></span> <?= lang('aubergine') ?></option>
-							<option data-color="#e80049" value=""><span></span> <?= lang('cherry') ?></option>
-							<option data-color="#c7c7c7" value=""><span></span> <?= lang('other_colors') ?></option>
+							<? foreach ($fleet_color as $row) : ?>
+								<option
+									value="<?= $row['color_code'] ?>"><?= $row['title'] ?></option>
+							<? endforeach; ?>
 						</select>
 
 					</div>
@@ -927,15 +913,63 @@
 		});
 	});
 
+	var UID = {
+		_current: 0,
+		getNew: function(){
+			this._current++;
+			return this._current;
+		}
+	};
+
+	HTMLElement.prototype.pseudoStyle = function(element,prop,value){
+		var _this = this;
+		var _sheetId = "pseudoStyles";
+		var _head = document.head || document.getElementsByTagName('head')[0];
+		var _sheet = document.getElementById(_sheetId) || document.createElement('style');
+		_sheet.id = _sheetId;
+		var className = "pseudoStyle" + UID.getNew();
+
+		_this.className +=  " "+className;
+
+		_sheet.innerHTML += " ."+className+":"+element+"{"+prop+":"+value+"}";
+		_head.appendChild(_sheet);
+		return this;
+	};
+
+	var li = document.querySelectorAll('[data-value]');
+	//div.pseudoStyle("before","color","purple");
+
 
 	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
 		var ul = $('select[name="color"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
-			$(this).addClass(li_class + i);
+			$(this).addClass('el_'+i);
+			$(this).append('<style>.el_'+i+':before{\n' +
+				'\tcontent: \'\';\n' +
+				'\tborder: 2px solid '+$(this).data('value')+';\n'+
+				'\tdisplay: inline-block;\n' +
+				'\twidth: 15px;\n' +
+				'\theight: 15px;\n' +
+				'\t-webkit-border-radius: 50%;\n' +
+				'\t-moz-border-radius: 50%;\n' +
+				'\tborder-radius: 50%;\n' +
+				'\tposition: absolute;\n' +
+				'\ttop: 9px;\n' +
+				'\tleft: 5px;\n' +
+				'\t-webkit-transition: all .3s ease-in-out;\n' +
+				'\t-moz-transition: all .3s ease-in-out;\n' +
+				'\t-ms-transition: all .3s ease-in-out;\n' +
+				'\t-o-transition: all .3s ease-in-out;\n' +
+				'\ttransition: all .3s ease-in-out;\n' +
+				'}\n' +
+				'.el_'+i+':hover:before {\n' +
+				 '\tbackground: '+$(this).data('value')+';\n'+
+				'}' +
+				'</style>');
 			i++;
-		})
+		});
 	});
 
 	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {

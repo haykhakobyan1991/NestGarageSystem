@@ -387,26 +387,6 @@ $lang['country_code'] = 'Код Страны';
 $lang['add'] = 'Добавит: ';
 
 
-//colors
-$lang['white'] = 'Белый';
-$lang['black'] = 'Черный';
-$lang['silver'] = 'Серебристость';
-$lang['blue'] = 'Синий';
-$lang['red'] = 'Красный';
-$lang['green'] = 'Зеленый';
-$lang['gray'] = 'Серый';
-$lang['light_blue'] = 'Голубой';
-$lang['pink'] = 'Розовый';
-$lang['yellow'] = 'Желтый';
-$lang['gold'] = 'Золотой';
-$lang['chestnut'] = 'Коричневый';
-$lang['purple'] = 'Фиолетовый';
-$lang['orange'] = 'Оранжевый';
-$lang['beige'] = 'Бежевый';
-$lang['aubergine'] = 'Баклажан';
-$lang['cherry'] = 'Вишневый';
-$lang['other_colors'] = 'Другие цвета';
-
 $lang['Field_must_be_filled_in'] = 'Поле должно быть заполнено';
 $lang['invalid_email'] = 'Вы не вошли в систему, потому что вы ввели неверный адрес электронной почты';
 $lang['invalid_password'] = 'Вы не вошли в систему, потому что вы ввели неверный пароль';

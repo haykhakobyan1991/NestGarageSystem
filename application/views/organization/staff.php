@@ -648,7 +648,7 @@ color: #545b62;">
 
 							<td>
 
-								<? if ($row['document_1'] != '') { ?>
+								<? if ($row['document_1'] != '' && $row['ext_1'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
@@ -657,7 +657,7 @@ color: #545b62;">
 									</a>
 
 								<? }
-								if ($row['document_2'] != '') { ?>
+								if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
@@ -666,7 +666,7 @@ color: #545b62;">
 									</a>
 
 								<? }
-								if ($row['document_3'] != '') { ?>
+								if ($row['document_3'] != '' && $row['ext_3'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
@@ -675,7 +675,7 @@ color: #545b62;">
 									</a>
 
 								<? }
-								if ($row['document_4'] != '') { ?>
+								if ($row['document_4'] != '' && $row['ext_4'] != '') { ?>
 									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 1px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
@@ -780,7 +780,7 @@ color: #545b62;">
 
 	$(document).on('click', '#delete_staff', function () {
 		var id = $('input[name="staff_id"]').val();
-		var url = '<?=base_url('Organization/delete_staff/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Organization/delete_staff/')?>';
 
 		$.post(url, {staff_id: id}, function (result) {
 			location.reload();

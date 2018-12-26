@@ -73,7 +73,7 @@ $folder = $this->session->folder;
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?= lang('email') ?> *</label>
+							class="col-sm-4 col-form-label"><?= lang('email') ?>*</label>
 						<div class="col-sm-8">
 							<input type="email" class="form-control form-control-sm"
 								   name="email"
@@ -83,12 +83,12 @@ $folder = $this->session->folder;
 					</div>
 					<div class="row mt-1">
 						<label
-							class="col-sm-4 col-form-label"><?= lang('department') ?></label>
+							class="col-sm-4 col-form-label"><?= lang('department') ?>*</label>
 						<div class="col-sm-8">
-							<select name="department[]"
+							<select name="department"
 									class="col  selectpicker form-control form-control-sm"
 									id="department"
-									multiple data-live-search="true"
+									 data-live-search="true"
 									title="<?= lang('select_department') ?>">
 								<? foreach ($department as $row) : ?>
 									<option <?= (in_array($row['id'], $department_id) ? 'selected' : '') ?>
@@ -99,11 +99,12 @@ $folder = $this->session->folder;
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 						<label class="col-sm-4 col-form-label"><?= lang('position') ?></label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control form-control-sm"
+						<div  id="default-suggestions"  class="col-sm-8">
+							<input type="text" class="typeahead form-control form-control-sm"
 								   name="position"
 								   value="<?= $position ?>"
 								   placeholder="<?= lang('position') ?>">
+							<input type="hidden" name="head" value="<?=($position == lang('head') ? '1' : '')?>">
 						</div>
 					</div>
 					<div class="row mt-1">
@@ -467,5 +468,36 @@ $folder = $this->session->folder;
 		'border': '1px solid #ced4da'
 	});
 	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+
+
+	$('#department').selectpicker({
+		noneResultsText: '<?=lang('add')?> {0}'
+	});
+
+	function nflTeamsWithDefaults(q, sync) {
+		if (q === '') {
+			var text = [{'team' :'<?=lang('head')?>'}];
+			sync(text);
+		} else if(q != '<?=lang('head')?>'){
+			$('input[name="head"]').val('');
+		} else if (q == '<?=lang('head')?>') {
+			$('input[name="head"]').val('1');
+		}
+	}
+
+	$('#default-suggestions .typeahead').typeahead({
+			minLength: 0,
+			highlight: true
+		},
+		{
+			name: 'nfl-teams',
+			display: 'team',
+			source: nflTeamsWithDefaults
+		});
+
+	$('#default-suggestions .typeahead').on('typeahead:selected', function(evt, item) {
+		$('input[name="head"]').val('1');
+	});
+
 </script>
 

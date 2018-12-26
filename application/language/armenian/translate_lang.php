@@ -386,26 +386,6 @@ $lang['country_code'] = 'Երկրի Կոդը';
 $lang['add'] = 'Ավելացնել`';
 
 
-//colors
-$lang['white'] = 'Սպիտակ';
-$lang['black'] = 'Սև';
-$lang['silver'] = 'Արծաթագույն';
-$lang['blue'] = 'Կապույտ';
-$lang['red'] = 'Կարմիր';
-$lang['green'] = 'Կանաչ';
-$lang['gray'] = 'Մոխրագույն';
-$lang['light_blue'] = 'Երկնագույն';
-$lang['pink'] = 'Վարդագույն';
-$lang['yellow'] = 'Դեղին';
-$lang['gold'] = 'Ոսկեգույն';
-$lang['chestnut'] = 'Շագանակագույն';
-$lang['purple'] = 'Մանուշակագույն';
-$lang['orange'] = 'Նարնջագույն';
-$lang['beige'] = 'Բեժ';
-$lang['aubergine'] = 'Սմբկագույն';
-$lang['cherry'] = 'Բալագույն';
-$lang['other_colors'] = 'Այլ Գույն';
-
 $lang['Field_must_be_filled_in'] = 'Դաշտը պետք է լցվի';
 $lang['invalid_email'] = 'Դուք մուտք չեք գործել, քանի որ սխալ էլ․ փոստի հասցե եք մուտքագրել';
 $lang['invalid_password'] = 'Դուք մուտք չեք գործել, քանի որ մուտքագրել եք սխալ գաղտնաբառ';

@@ -1,62 +1,16 @@
 <style>
-	label {
-		font-size: 11px !important;
-	}
-
-	.st_inp::before {
-		content: "";
-		margin-left: -3px;
-		margin-top: -3px;
-		height: 23px;
-		width: 23px;
-		border: 3px solid #8c8c8c;
-		border-radius: 50%;
-		display: inline-block;
-		opacity: 1 !important;
-	}
-
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 87px;
-	}
-
-	i {
-		margin-left: 15px;
-	}
-
-	::-webkit-input-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	::-moz-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	:-ms-input-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	::placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	button.btn.dropdown-toggle.bs-placeholder {
-		height: 39px;
-		background: rgb(255, 255, 255);
-		color: rgb(108, 117, 125);
-		border: 1px solid rgb(206, 212, 218);
-		margin-top: -2px;
-	}
-
-	.btn.dropdown-toggle {
-		height: 37px !important;
-		margin-top: -1px;
-	}
-
+	label {font-size: 11px !important;}
+	.st_inp::before {content: "";margin-left: -3px;margin-top: -3px;height: 23px;width: 23px;border: 3px solid #8c8c8c;border-radius: 50%;display: inline-block;opacity: 1 !important;}
+	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {margin-left: 87px;}
+	i {margin-left: 15px;}
+	::-webkit-input-placeholder {color: peachpuff;font-size: 13px;}
+	::-moz-placeholder {color: peachpuff;font-size: 13px;}
+	:-ms-input-placeholder {color: peachpuff;font-size: 13px;}
+	::placeholder {color: peachpuff;font-size: 13px;}
+	button.btn.dropdown-toggle.bs-placeholder {height: 39px;background: rgb(255, 255, 255);color: rgb(108, 117, 125);border: 1px solid rgb(206, 212, 218);margin-top: -2px;}
+	.btn.dropdown-toggle {height: 37px !important;margin-top: -1px;}
 </style>
+
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
 

@@ -1,46 +1,14 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 <style>
-	label {
-		font-size: 11px !important;
-	}
-
-	.st_inp::before {
-		content: "";
-		margin-left: -3px;
-		margin-top: -3px;
-		height: 23px;
-		width: 23px;
-		border: 3px solid #8c8c8c;
-		border-radius: 50%;
-		display: inline-block;
-		opacity: 1 !important;
-	}
-
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 87px;
-	}
-
-	i {
-		margin-left: 15px;
-	}
-
-	.card-header {
-		padding: 0 !important;
-	}
-
-	button.btn.dropdown-toggle.bs-placeholder {
-		height: 39px;
-		background: rgb(255, 255, 255);
-		color: rgb(108, 117, 125);
-		border: 1px solid rgb(206, 212, 218);
-		margin-top: 4px;
-	}
-
-	.btn.dropdown-toggle {
-		height: 37px !important;
-		margin-top: 4px;
-	}
+	label {font-size: 11px !important;}
+	.st_inp::before {content: "";margin-left: -3px;margin-top: -3px;height: 23px;width: 23px;border: 3px solid #8c8c8c;border-radius: 50%;display: inline-block;opacity: 1 !important;}
+	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {margin-left: 87px;}
+	i {margin-left: 15px;}
+	.card-header {padding: 0 !important;}
+	button.btn.dropdown-toggle.bs-placeholder {height: 39px;background: rgb(255, 255, 255);color: rgb(108, 117, 125);border: 1px solid rgb(206, 212, 218);margin-top: 4px;}
+	.btn.dropdown-toggle {height: 37px !important;margin-top: 4px;}
 </style>
+
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;padding-bottom: 10px;"

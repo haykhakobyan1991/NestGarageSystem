@@ -287,22 +287,14 @@
 			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12"
 					  placeholder="<?= lang('other') ?>"></textarea>
 		</div>
-		<!--<div class="container-fluid">-->
-		<!--<div class="row">-->
-		<!--<label class="col-sm-3 col-form-label">--><? //= lang('status_make_passive') ?><!--</label>-->
-		<!--<div class="col-sm-1">-->
-		<!--<input style="width: 18px;height: 18px;margin-left: -210px;margin-top: 7px;" value="-1"-->
-		<!--name="status" type="checkbox" class="form-control form-control-sm ">-->
-		<!--</div>-->
-		<!--</div>-->
-		<!--</div>-->
+
 		<div class="row">
 			<div class="col-md-12 col-md-6 ">
 				<!-- Info Star -->
 				<div>
 					<!-- Acardion -->
 					<div class="row mt-1">
-						<div class="accordion  col-sm-12" id="accordionExample_info" style="padding-left: 30px;">
+						<div class="accordion  col-sm-12" id="accordionExample_info" style="padding: 30px;">
 							<div class="card">
 								<div class="card-header p-0" id="heading_info1">
 									<h5 class="mb-0">
@@ -537,84 +529,6 @@
 								</div>
 							</div>
 						</div>
-
-						<!--<div class="col-sm-4">-->
-						<!--<h6 class="ml-2 mb-md-2 mb-2">--><? //= lang('kilometer_per_day'); ?><!--</h6>-->
-						<!--<div class="col-sm-12">-->
-						<!--<div class="row">-->
-						<!--<div class="col-sm-6">-->
-						<!--<label class="col-form-label"-->
-						<!--style="font-size: 12px;">--><? //= lang('type_of_meter') ?><!--</label>-->
-						<!--<select name="value_1"-->
-						<!--class="selectpicker form-control form-control-sm dif_meter"-->
-						<!--data-size="5" title="--><? //= lang('choose') ?><!--...">-->
-						<!----><? //
-						//foreach ($value as $row) :
-						//if ($row['type'] == 1) :
-						//?>
-						<!--<option value="--><? //= $row['id'] ?><!--">--><? //= $row['title'] ?><!--</option>-->
-						<!----><? //
-						//endif;
-						//endforeach;
-						//?>
-						<!--</select>-->
-						<!--</div>-->
-						<!---->
-						<!--<div class="col-sm-4 mt-4">-->
-						<!--<div class="row">-->
-						<!--<input name="value1_day" type="number"-->
-						<!--class="mt-2 form-control form-control-sm col-sm-7" placeholder=""/>-->
-						<!--<p style="margin-left: 10px;margin-top: 13px;"><span-->
-						<!--class="dif_meter_text"></span>/--><? //= lang('day') ?><!--</p>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--<div class="form-group form-check  mb-1">-->
-						<!--<input name="auto_increment" value="1" type="checkbox" class="form-check-input"-->
-						<!--id="exampleCheck1">-->
-						<!--<label class="form-check-label"-->
-						<!--for="exampleCheck1">--><? //= lang('auto_increment'); ?><!--</label>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--<div class="col-sm-12">-->
-						<!--<div class="card">-->
-						<!--<h6 class="card-header">--><? //= lang('secondary_meter') ?><!--</h6>-->
-						<!--<div class="form-group form-check ml-md-3 ml-3 mt-md-2 mt-2">-->
-						<!--<input name="use_of_secondary_meter" value="1" type="checkbox"-->
-						<!--class="form-check-input" id="exampleCheck11">-->
-						<!--<label class="form-check-label"-->
-						<!--for="exampleCheck11">--><? //= lang('Use_of_secondary_meter') ?><!--</label>-->
-						<!--</div>-->
-						<!--<div class="card-body pt-0">-->
-						<!--<div class="form-group  mb-0">-->
-						<!--<label class="col-form-label"-->
-						<!--style="font-size: 12px;">--><? //= lang('type_of_meter') ?><!--</label>-->
-						<!--<div>-->
-						<!--<select name="value_2"-->
-						<!--class="selectpicker form-control form-control-sm " data-size="5"-->
-						<!--title="--><? //= lang('choose') ?><!--...">-->
-						<!----><? //
-						//$convert = '';
-						//foreach ($value as $row) :
-						//if ($row['type'] == 1) :
-						//$convert .= '<input type="hidden" name="convert[' . $row['id'] . ']" value="' . $row['convert'] . '">';
-						//?>
-						<!--<option value="--><? //= $row['id'] ?><!--">-->
-						<!----><? //= $row['title'] ?>
-						<!--</option>-->
-						<!---->
-						<!----><? //
-						//endif;
-						//endforeach;
-						//?>
-						<!--</select>-->
-						<!----><? //= $convert ?>
-						<!--</div>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--</div>-->
-						<!--</div>-->
 					</div>
 
 					<div class="container-fluid">
@@ -868,7 +782,7 @@
 			'</button>\n' +
 			'</td>\n' +
 			'<script>' +
-			'$(\'select[name="value[' + n + ']"]\').selectpicker(\'refresh\');' +
+			'$(\'select[name="value[' + n + ']"]\').selectpickeclass="accordion  col-sm-12"r(\'refresh\');' +
 			'</' +
 			'script>\n' +
 			'</tr>'
@@ -976,9 +890,7 @@
 				bottom: "-=60"
 			})
 		});
-
-
-	})
+	});
 
 
 	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
@@ -1008,6 +920,5 @@
 		$('.fleet_type_7 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car-with-trailer.png">');
 
 	});
-
 
 </script>

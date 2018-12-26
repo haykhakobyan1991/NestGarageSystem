@@ -407,7 +407,11 @@ $lang['aubergine'] = 'Баклажан';
 $lang['cherry'] = 'Вишневый';
 $lang['other_colors'] = 'Другие цвета';
 
-
+$lang['Field_must_be_filled_in'] = 'Поле должно быть заполнено';
+$lang['invalid_email'] = 'Вы не вошли в систему, потому что вы ввели неверный адрес электронной почты';
+$lang['invalid_password'] = 'Вы не вошли в систему, потому что вы ввели неверный пароль';
+$lang['your_account_suspended'] = 'Ваш аккаунт заблокирован';
+$lang['account_not_active'] = 'Ваш аккаунт не активен';
 
 
 

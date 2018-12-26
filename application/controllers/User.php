@@ -479,7 +479,7 @@ class User extends CI_Controller {
 
 
 		if ($email != $account['email'] && $email != $account['username']) {
-			$validation_errors = array('email' => "You were not logged in because you entered an invalid email");
+			$validation_errors = array('email' => lang('invalid_email'));
 			$messages['error']['elements'][] = $validation_errors;
 			echo json_encode($messages);
 			return false;
@@ -487,7 +487,7 @@ class User extends CI_Controller {
 
 
 		if ($password != $account['password']) {
-			$validation_errors = array('password' => "You were not logged in because you entered an invalid password");
+			$validation_errors = array('password' => lang('invalid_password'));
 			$messages['error']['elements'][] = $validation_errors;
 			echo json_encode($messages);
 			return false;
@@ -498,7 +498,7 @@ class User extends CI_Controller {
 
 
 			if ($account['status'] == -2) {
-				$validation_errors = array('password' => 'Your account suspended');
+				$validation_errors = array('password' => lang('your_account_suspended'));
 				$messages['error']['elements'][] = $validation_errors;
 				echo json_encode($messages);
 				return false;
@@ -506,7 +506,7 @@ class User extends CI_Controller {
 			}
 
 			if ($account['status'] == -1) {
-				$validation_errors = array('password' => 'Your account is not active');
+				$validation_errors = array('password' => lang('account_not_active'));
 				$messages['error']['elements'][] = $validation_errors;
 				echo json_encode($messages);
 				return false;
@@ -801,19 +801,6 @@ class User extends CI_Controller {
 		// Display captcha image
 		echo $captcha['image'];
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

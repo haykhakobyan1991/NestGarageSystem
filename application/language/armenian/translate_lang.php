@@ -406,4 +406,10 @@ $lang['aubergine'] = 'Սմբկագույն';
 $lang['cherry'] = 'Բալագույն';
 $lang['other_colors'] = 'Այլ Գույն';
 
+$lang['Field_must_be_filled_in'] = 'Դաշտը պետք է լցվի';
+$lang['invalid_email'] = 'Դուք մուտք չեք գործել, քանի որ սխալ էլփոստի հասցե եք մուտքագրել';
+$lang['invalid_password'] = 'Դուք մուտք չեք գործել, քանի որ մուտքագրել եք սխալ գաղտնաբառ';
+$lang['your_account_suspended'] = 'Ձեր հաշիվը արգելափակվել է';
+$lang['account_not_active'] = 'Ձեր հաշիվը ակտիվ չէ';
+
 

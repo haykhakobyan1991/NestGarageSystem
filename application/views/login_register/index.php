@@ -255,20 +255,18 @@
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
 										   placeholder="Email Address" name="email" value="">
-									<small id="email" class="form-text text-muted d-none"><p class="text-danger">Field
-											must be filled in</p></small>
+									<small id="email" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
 										   placeholder="Password" name="password" value="">
-									<small id="password" class="form-text text-muted d-none"><p class="text-danger">
-											Field must be filled in</p></small>
+									<small id="password" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
 								</div>
 								<div class="form-group">
 									<input placeholder="Captcha" name="captcha" class="form-control form-control-sm"
 										   type="text"/>
 									<small id="captcha" class="form-text text-muted d-none">
-										<p class="text-danger">Field must be filled in</p>
+										<p class="text-danger"><?=lang('Field_must_be_filled_in')?></p>
 									</small>
 									<div id="captchaDiv" class="w-50 text-center mt-3 bg-secondary">
 										<span id="captImg"><?= $captcha['image'] ?></span>

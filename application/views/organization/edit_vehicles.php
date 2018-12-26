@@ -361,17 +361,7 @@
 			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12"
 					  placeholder="<?= lang('other') ?>"><?= $fleet['other'] ?></textarea>
 		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<label class="col-sm-2 col-form-label"><?= lang('status_make_passive') ?></label>
-				<div class="col-sm-1">
-					<input style="width: 18px;height: 18px;margin-left: -115px;margin-top: 7px;"
-						   value="-1" <?= ($fleet['status'] == '-1' ? 'checked' : '') ?> name="status" type="checkbox"
-						   class="form-control form-control-sm">
-				</div>
-			</div>
 
-		</div>
 
 
 		<div class="row">
@@ -381,7 +371,7 @@
 
 			<!-- Acardion -->
 
-			<div class="accordion col-sm-12 mt-1" id="accordionExample_info" style="padding-left: 30px; padding-right: 30px;">
+			<div class="accordion col-sm-12 mt-2" id="accordionExample_info" style="padding-left: 30px; padding-right: 30px;">
 
 				<div class="card">
 					<div class="card-header" id="heading_info1">

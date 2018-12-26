@@ -2702,6 +2702,20 @@ class Organization extends MX_Controller {
 		$data['model'] = $result_model->result_array();
 
 
+		$sql_fleet_color = "
+			SELECT 
+				`id`,
+				`color_code`,
+				`title_".$lng."` AS `title`
+			  FROM
+			    `fleet_color`
+			WHERE `status` = '1'	
+		";
+
+		$result_fleet_color = $this->db->query($sql_fleet_color);
+
+		$data['fleet_color'] = $result_fleet_color->result_array();
+
 
 		$sql_fleet_type = "
 			SELECT 

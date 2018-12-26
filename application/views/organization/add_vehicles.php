@@ -140,7 +140,7 @@
 							<?php endfor; ?>
 						</select>
 					</div>
-					<div class="row" style="margin-top: .5rem!important;">
+					<div class="row" style="margin-top: .6rem!important;">
 						<label class="pl-3 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('engine_power') ?></label>
 						<input value="" min="0" step="0.1" name="engine_power" type="number"
@@ -158,25 +158,26 @@
 							<? endforeach; ?>
 						</select>
 					</div>
-					<div class="row" style="margin-top: .5rem!important;">
+					<div class="row" style="margin-top: .6rem!important;">
 						<label class="col-sm-4 pl-3 col-form-label"
 							   style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
 						<input value="" min="0" name="fuel_avg_consumption" type="number"
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
-					<div class="row mt-1">
+					<div class="row" style="margin-top: .4rem !important;">
 						<label class="pl-3 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-7" placeholder="<?= lang('running') ?>">
 					</div>
-					<div class="row mt-1">
-						<label class="pl-3 col-form-label col-sm-4"
-							   style="font-size: 15px;"><?= lang('odometer') ?></label>
-						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('odometer') ?>">
-					</div>
+<!--					<div class="row" style="margin-top: .6rem;">-->
+<!--						<label class="pl-3 col-form-label col-sm-4"-->
+<!--							   style="font-size: 15px;">--><?//= lang('odometer') ?><!--</label>-->
+<!--						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"-->
+<!--							   placeholder="--><?//= lang('odometer') ?><!--">-->
+<!--					</div>-->
+<!--					todo-->
 
 				</div>
 
@@ -194,7 +195,7 @@
 						</select>
 
 					</div>
-					<div class="row mt-1" style="margin-top: .5rem !important;">
+					<div class="row" style="margin-top: .6rem !important;">
 						<label class="pl-4 col-form-label col-sm-3" style="font-size: 15px;"><?= lang('vin') ?></label>
 						<input value="" name="vin" type="text" class="form-control form-control-sm col-sm-7"
 							   placeholder="VIN">
@@ -224,7 +225,7 @@
 				<div class="col-sm-2 mt-2">
 					<div class="row">
 						<label class="col-sm-3 col-form-label pl-3 text-center"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?></label>
+							   style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?>*</label>
 						<input value="" name="fleet_plate_number" type="text"
 							   class="form-control form-control-sm col-sm-9" placeholder="<?= lang('car_number') ?>">
 					</div>
@@ -912,33 +913,6 @@
 			})
 		});
 	});
-
-	var UID = {
-		_current: 0,
-		getNew: function(){
-			this._current++;
-			return this._current;
-		}
-	};
-
-	HTMLElement.prototype.pseudoStyle = function(element,prop,value){
-		var _this = this;
-		var _sheetId = "pseudoStyles";
-		var _head = document.head || document.getElementsByTagName('head')[0];
-		var _sheet = document.getElementById(_sheetId) || document.createElement('style');
-		_sheet.id = _sheetId;
-		var className = "pseudoStyle" + UID.getNew();
-
-		_this.className +=  " "+className;
-
-		_sheet.innerHTML += " ."+className+":"+element+"{"+prop+":"+value+"}";
-		_head.appendChild(_sheet);
-		return this;
-	};
-
-	var li = document.querySelectorAll('[data-value]');
-	//div.pseudoStyle("before","color","purple");
-
 
 	$(document).on('click', '.btn.dropdown-toggle.bs-placeholder', function () {
 		var ul = $('select[name="color"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');

@@ -1246,7 +1246,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				// search four different data properties for the string, any of which may match for success
 				// create a case insensitive RegExp from what the user typed
 				var regex = new RegExp(input.value, "i");
-				var results = myDiagram.findNodesByExample({text: regex});
+				var results = myDiagram.findNodesByExample({title: regex}, { text: regex });
 
 				myDiagram.highlightCollection(results);
 				// try to center the diagram at the first node that was found

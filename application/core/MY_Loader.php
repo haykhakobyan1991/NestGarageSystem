@@ -55,7 +55,9 @@ class MY_Loader extends MX_Loader
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 
-		$this->layout->set_title($row['title']);
+		if($type == '2') {
+			$this->layout->set_title($row['title']);
+		}
 
 		if ($query->num_rows() != 1) {
 			if ($type == '1') {

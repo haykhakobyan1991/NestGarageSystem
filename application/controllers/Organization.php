@@ -1813,8 +1813,17 @@ class Organization extends MX_Controller {
 		if($this->input->post('head') == '1') {
 			$this->db->query("UPDATE `department` SET `head_staff_id` = '".$id."' WHERE `id` = '".$department."'");
 		} else {
-			//todo
-			$this->db->query("UPDATE `department` SET `head_staff_id` = '' WHERE `id` = '".$department."'");
+			$sql_get_head = "
+				SELECT `head_staff_id` FROM `department` WHERE `head_staff_id` =  '".$id."' LIMIT 1
+			";
+
+			$query_get_head = $this->db->query($sql_get_head);
+
+			$num_rows = $query_get_head->num_rows();
+
+			if($num_rows == 1) {
+				$this->db->query("UPDATE `department` SET `head_staff_id` = NULL WHERE `id` = '".$department."'");
+			}
 		}
 
 		$sql = "

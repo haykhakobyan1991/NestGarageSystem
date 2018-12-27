@@ -455,9 +455,9 @@ $folder = $this->session->folder;
 		<button id="edit_staff_btn" type="button"
 				class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 		</button>
-		<button id="load" class="btn btn-sm btn-success d-none"><img
-				style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-				src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+		<button style="max-height: 40px; height: 40px !important; " id="load" class="cancel_btn close btn btn-sm d-none">
+			<img style="height: 25px; padding-bottom: 10px; margin-bottom: 10px; display: block; text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
+		</button>
 		<button type="button" class="cancel_btn close btn btn-sm"
 				data-dismiss="modal"
 				aria-label="Close">

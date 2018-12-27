@@ -299,7 +299,7 @@
 					<div class="row">
 						<label
 							class="col-sm-3 col-form-label pl-3 text-center"
-							style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?></label>
+							style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?>*</label>
 						<input value="<?= $fleet['fleet_plate_number'] ?>" name="fleet_plate_number" type="text"
 							   class="form-control form-control-sm col-sm-9"
 							   placeholder="<?= lang('car_number') ?>">

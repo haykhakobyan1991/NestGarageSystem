@@ -56,10 +56,14 @@ endforeach;
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-7 text-right">
-						<span class="text-capitalize btn btn-outline-success btn-sm float-right" data-toggle="modal"
+					<div class="col-sm-7 text-right"><?
+						if($this->load->authorisation('Organization', 'add_staff', 1)) :
+						?>
+							<span class="text-capitalize btn btn-outline-success btn-sm float-right" data-toggle="modal"
 							  data-target=".add_staff_modal"><?= lang('add_staff') ?>
-							</span>
+							</span><?
+						endif;
+						?>
 					</div>
 				</div>
 
@@ -573,9 +577,13 @@ endforeach;
 											<button id="add_staff" type="button"
 													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
-											<button style="height: 40px !important; width: 93px !important;" id="load"
-													class="btn btn-sm btn-outline-success cancel_btn d-none"><img
-													style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+											<button style="max-height: 40px; height: 40px !important; width: 93px !important;" id="load"
+													class="cancel_btn close btn btn-sm d-none">
+												<img style="height: 24px;
+														   margin: 0 auto;
+														   padding-bottom: 5px;
+														   display: block;
+														   text-align: center;"
 													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 											<button type="button" class="cancel_btn close btn btn-sm"
 													data-dismiss="modal"
@@ -687,22 +695,27 @@ color: #545b62;">
 
 							</td>
 
-							<td colspan="2">
-										<span style="border: none;padding-top: 5px;cursor: pointer;"
-											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_staff"
-											  data-toggle2="tooltip"
-											  data-placement="top"
-											  title="edit"><i class="fas fa-edit"></i></span>
+							<td colspan="2"><?
+								if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
+								?>
+								<span style="border: none;padding-top: 5px;cursor: pointer;"
+									  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+									  data-toggle="modal" class="float-left text-success"
+									  data-target="#edit_staff"
+									  data-toggle2="tooltip"
+									  data-placement="top"
+									  title="edit"><i class="fas fa-edit"></i></span>
+								<?endif;?>
 
+								<?if ($this->load->authorisation('Organization', 'delete_staff', 1)) :?>
 								<span style="border: none; cursor:pointer;" data-toggle="modal"
 									  id="delete_staff_modal"
 									  class="text-secondary btn"
 									  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
 									  data-toggle2="tooltip"
 									  data-placement="top"
-									  title="delete"><i class="fas fa-trash"></i></span></td>
+									  title="delete"><i class="fas fa-trash"></i></span>
+								<?endif;?>
 							</td>
 						</tr>
 					<? endforeach; ?>

@@ -351,9 +351,7 @@ $i = '';
 										<label
 											style="color: #000;font-size:13px;font-weight: 300 !important;margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;border-color: #ced4da;"
 											class="btn btn-sm btn-outline-secondary">
-											<span><?=lang('download_requisite')?></span>
-											<input class="btn_input" name="file_1" type="file" hidden
-												   style="display: none;" value="">
+											<a style="text-decoration: none; color: #1b1e21" target="_blank" href="http://localhost/NestGarageSystem/System_main/reference"><?=lang('download_requisite')?></a>
 										</label>
 									</div>
 								</div>

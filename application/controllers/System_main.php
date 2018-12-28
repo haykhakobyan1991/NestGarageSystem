@@ -150,6 +150,250 @@ class System_main extends CI_Controller {
 	}
 
 
+	public function reference () {
+
+		// Include the main TCPDF library (search for installation path).
+		require_once realpath('application/libraries/pdf.php');
+
+		// create new PDF document
+		$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+		// set document information
+		$pdf->SetCreator(PDF_CREATOR);
+
+		// set default header data
+		$pdf->setPrintHeader(false);
+		$pdf->setPrintFooter(false);
+
+		// set default monospaced font
+		$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+		// set margins
+		$pdf->SetMargins(STANDART_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+		$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+		// set auto page breaks
+		$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+		// set image scale factor
+		$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+
+		// set default font subsetting mode
+		$pdf->setFontSubsetting(true);
+
+		// Set font
+		// dejavusans is a UTF-8 Unicode font, if you only need to
+		// print standard ASCII chars, you can use core fonts like
+		// helvetica or times to reduce file size.
+		$pdf->SetFont('dejavusans', '', 10, '', true);
+
+		// add a page
+		$pdf->AddPage();
+
+		$pdf->setCellHeightRatio(2);
+
+		// set text shadow effect
+		$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.0000001, 'depth_h'=>0.0000001, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
+
+		$logo = base_url('logo.png');
+		$address = 'RA, Yerevan, 0022, Avan Arindj, 1 microreg., 2/13b., App. 17';
+		$phone = '+(374)77-21-21-93';
+		$web_page = 'www.10x.am';
+		$email = 'info@10x.am';
+		$ITN = '00883969';
+		$Director = 'Davit Zargaryan';
+		$BeneficiaryBank = 'Ameria Bank CJSC';
+		$Address_1 = '9 G. Lusavorich str., Yerevan, 0015, RA';
+		$SwiftCode = 'ARMIAM22';
+		$Account_type_1 = 'For transfers in Drams (AMD)';
+		$Account_number_1 = '1570017261060100';
+		$Account_type_2 = 'For transfers in Rubles (RUB)';
+		$Account_number_2 = '1570017261060158';
+		$Account_2 = '30111810900000000371';
+		$CorrespondentBank_2 = 'SBERBANK RF, MOSCOW';
+		$SwiftCode_2 = 'SABRRUMM';
+		$Account_type_3 = 'For transfers in US Dollars (USD)';
+		$Account_number_3 = '1570017261060101';
+		$CorrespondentBank_3 = 'CITIBANK N.A., NEW YORK';
+		$SwiftCode_3 = 'SABRRUMM';
+		$Account_3 = '30111810900000000371';
+
+		// create some HTML content
+		$html = '
+		<table>
+			<tr>
+				<td><img src="'.$logo.'" alt=""></td>
+				<td style="line-height: 80%;"><h1  align="center" style="color: #365f8f; "><br>Reference</h1></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td width="15%" style="line-height: 90%;  "></td>
+				<td width="75%" style="line-height: 90%; "></td>
+				<td width="10%" style="line-height: 90%;  "></td>
+			</tr>
+			<br>
+			<tr>
+				<td>Address</td>
+				<td >'.$address.'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Tel.</td>
+				<td >'.$phone.'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Web page</td>
+				<td >'.$web_page.'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>E-mail</td>
+				<td >'.$email.'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>ITN</td>
+				<td >'.$ITN.'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Director</td>
+				<td >'.$Director.'</td>
+				<td></td>
+			</tr>
+			<br>
+			<tr>
+				<td colspan="3" style="line-height: 7%; background-color: #c7c7c7; "></td>
+			</tr>
+			<tr>
+				<br><td width="20%" style="color: #0f427a; " >Beneficiary bank</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" style="color: #0f427a; ">'.$BeneficiaryBank.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Address</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%">'.$Address_1.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >SWIFT code</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$SwiftCode.'</td>
+			</tr>
+			<br>
+			<tr>
+				<td width="100%" colspan="3" style="line-height: 7%; background-color: #c7c7c7; "></td>
+			</tr>
+			<br>
+			<tr>
+				<td width="40%" style="color: #0f427a; " >'.$Account_type_1.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Account number</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td width="10%"></td>
+				<td width="40%" >'.$Account_number_1.'</td>
+			</tr>
+			<br>
+			<tr>
+				<td width="40%" style="color: #0f427a; " >'.$Account_type_2.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Account number</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$Account_number_2.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Account</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$Account_2.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Correspondent bank</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$CorrespondentBank_2.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >SWIFT code</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$SwiftCode_2.'</td>
+			</tr>
+			<br>
+			<tr>
+				<td width="40%" style="color: #0f427a; " >'.$Account_type_3.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Account number</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$Account_number_3.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Correspondent bank</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$CorrespondentBank_3.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >SWIFT code</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$SwiftCode_3.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >Account</td>
+				
+				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td></td>
+				<td width="40%" >'.$Account_3.'</td>
+			</tr>
+		</table>';
+
+		// output the HTML content
+		$pdf->writeHTMLCell(0, 0, 10, 20, $html, 0, 1, 0, true, '', true);
+
+		// reset pointer to the last page
+		$pdf->lastPage();
+
+		// ---------------------------------------------------------
+
+		//Close and output PDF document
+		$file = $pdf->Output('example_021.pdf', 'I');
+
+		//============================================================+
+		// END OF FILE
+		//============================================================+
+
+		// Generate file
+		$doc_file = base64_encode($file);
+		// return $file;
+
+
+		echo 'data: application/pdf;base64,'.$doc_file;
+
+	}
+
+
 
 
 

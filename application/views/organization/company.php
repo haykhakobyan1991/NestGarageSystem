@@ -198,7 +198,7 @@ $i = '';
 							<select name="legal_country"
 									class="col selectpicker form-control form-control-sm selectpicker_2"
 									data-size="5" id="country" data-live-search="true"
-									title="Select a country">
+									title="<?=lang('select_country');?>">
 								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['legal_country_id'] == $row['id'] ? 'selected' : '') ?>
@@ -217,7 +217,7 @@ $i = '';
 							<div class="col">
 								<input name="legal_city"
 									   value="<?= $company['legal_city'] ?>" type="text"
-									   class="form-control form-control-sm" placeholder="Legal City">
+									   class="form-control form-control-sm" placeholder="<?=lang('Activity_Region')?>">
 							</div>
 							<div class="col">
 								<input name="legal_zip_code"
@@ -232,7 +232,7 @@ $i = '';
 								<input name="legal_address"
 									   value="<?= $company['legal_address'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="Legal Address">
+									   placeholder="<?=lang('Activity_address')?>">
 							</div>
 						</div>
 
@@ -248,17 +248,6 @@ $i = '';
 						</div>
 					</div>
 
-
-				</div>
-
-
-				<div class="row">
-
-
-					<div class="form-group col-sm-12 col-md-6" style="margin-left: 25px;margin-top: -25px;">
-
-
-					</div>
 
 				</div>
 
@@ -333,7 +322,7 @@ $i = '';
 							<div class="col-sm-5">
 								<div class="row">
 									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?= lang('p_number') ?></label>
+										   style="font-size: 15px;"><?=lang('phone_number')?></label>
 									<div class="col-sm-8">
 										<input value="<?= $company['owner_contact_number'] ?>"
 											   name="owner_contact_number" type="text"

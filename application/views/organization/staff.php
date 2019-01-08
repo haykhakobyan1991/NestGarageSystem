@@ -482,7 +482,6 @@ endforeach;
 																			<input type="date" name="expiration_3"
 																				   max="3000-12-31"
 																				   min="1000-01-01"
-
 																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
@@ -570,11 +569,6 @@ endforeach;
 															</div>
 														</div>
 													</div>
-
-
-
-
-
 												</div>
 											</div>
 										</div>
@@ -606,14 +600,11 @@ endforeach;
 			</div>
 			<hr class="my-2">
 
-			<div class="row  m-0 col-sm-12 col-md-12"
-				 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
+			<div class="row  m-0 col-sm-12 col-md-12" style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
 
 
-				<table id="example2" class="table table-striped table-borderless"
-					   style="width:100%">
-					<thead style="background: #fff;
-color: #545b62;">
+				<table id="example2" class="table table-striped table-borderless" style="width:100%">
+					<thead style="background: #fff;color: #545b62;">
 					<tr>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('status') ?></th>
@@ -646,8 +637,7 @@ color: #545b62;">
 							</td>
 							<td class="text-center">
 								<? if ($row['status'] == 1) { ?>
-									<div class="bg-success"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+									<div class="bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 								<? } else { ?>
 									<div class="bg-danger"
 										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>

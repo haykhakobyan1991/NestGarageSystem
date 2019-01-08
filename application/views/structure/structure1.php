@@ -664,7 +664,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					setTimeout(function () {
 						var fleets = $('input[name="selecteds"]').val();
 						var date = $('input[name="line_date"]').val();
-						console.log(e);
+						//console.log(e);
 
 
 						document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
@@ -675,7 +675,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					}, 200);
 
 				} else {
-					console.log(e.target);
+					//console.log(e.target);
 					document.getElementById('more_info').href = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/add_expenses/?from=')?>"
 						+ $('input[name="from"]').val()
 						+ '&to=' + $('input[name="to"]').val()
@@ -716,34 +716,46 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 			var new_arr = [];
 
+			// $('canvas').click(function () {
+			// 	myDiagram.clearSelection();
+			// });
+
 			myDiagram.addDiagramListener( "ObjectSingleClicked",
 
 				function (e) {
+
 					var linkDataArray = <?=$from_to?>;
 					$.each(linkDataArray, function (key, value) {
 
+
 						if (value.from == myDiagram.selection.Ca.key.Wd.key) {
-							console.log('+' + linkDataArray[key].to);
+							//console.log('+' + linkDataArray[key].to);
 							dragSelectNodes(linkDataArray[key].to);
 
 							$.each(linkDataArray, function (ky, val) {
+
 								if (val.from == value.to) {
+
 									dragSelectNodes(val.to);
-									console.log('-' + val.to);
+									//console.log('-' + val.to);
 								}
+
 							})
 						}
 
 					});
 
-					//console.log(myDiagram.selection.Ca.key.Wd.key);
 
 					var arr = [];
 					new_arr = [];
 					selecteds = [];
 
 					myDiagram.selection.each(function (part) {
+
 						if (part instanceof go.Node) {
+
+							console.log(part);
+
 							arr = {
 								"key": part.Wd.key,
 								"name": part.Wd.text,
@@ -1246,13 +1258,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		function save(value) {
 			document.getElementById("mySavedModel").value = myDiagram.model.toJson();
 			myDiagram.isModified = false;
-			console.log(myDiagram.model.linkDataArray);
+			//console.log(myDiagram.model.linkDataArray);
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/change_from_to_ax')?>';
 			var data = myDiagram.model.linkDataArray;
 			var old_data = '<?=$from_to?>';
 			var structure = '<?=$structure?>';
 			$.post(url, {data: data, old_data: old_data, structure: structure, value: value}).done(function (data) {
-				console.log("Data Loaded: " + data);
+				//console.log("Data Loaded: " + data);
 				var return_data = JSON.parse(data);
 				var res = '';
 				if (return_data.error != '') {

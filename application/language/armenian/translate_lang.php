@@ -255,9 +255,9 @@ $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղե�
 $lang['country'] = 'Երկիր';
 $lang['address'] = 'Հասցե';
 
-$lang['Activity_Region'] = 'Գործունեության Երկիրը';
-$lang['Activity_City'] = 'Գործունեության Քաղաքը';
-$lang['Activity_address'] = 'Գործունեության Հասցե';//todo
+$lang['Activity_Region'] = 'Երկիրը';
+$lang['Activity_City'] = 'Քաղաքը';
+$lang['Activity_address'] = 'Հասցե';//todo
 $lang['activity_address'] = 'Գործունեության Հասցե';//todo
 
 $lang['legal_region'] = 'իրական Երկիր';

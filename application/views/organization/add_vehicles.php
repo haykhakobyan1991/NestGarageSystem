@@ -281,7 +281,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info1"
 												aria-expanded="false" aria-controls="collapse_info1">
-											N/D
+											Ապահովագրություն։
 										</button>
 									</h5>
 								</div>
@@ -290,41 +290,6 @@
 									<div class="card-body">
 										<div class="add_new_items">
 											<div class="row">
-												<div class="col-md-2">
-													<div class="form-group">
-														<label><?= lang('company') ?></label>
-														<input type="text" name="company[1]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
-
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_1" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<div class="form-group">
-														<label><?= lang('reference') ?></label>
-														<input type="text" name="reference[1]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[1]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
 												<div class="col-sm-3">
 													<label for="type[1]" class="col-form-label"
 														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('insurance_type') ?></label>
@@ -340,6 +305,41 @@
 														</select>
 													</div>
 												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label><?= lang('company') ?></label>
+														<input type="text" name="company[1]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('company') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label><?= lang('reference') ?></label>
+														<input type="text" name="reference[1]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('reference') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label><?= lang('expiry_date') ?></label>
+													<input type="date" name="expiration[1]" max="3000-12-31"
+														   min="1000-01-01" class="form-control form-control-sm">
+												</div>
+												<div class="col-md-2">
+													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+												</div>
+												<div class="col-1">
+													<div class="form-group">
+														<label
+															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+															class="btn btn-sm btn-outline-secondary">
+															<span><?= lang('browse') ?></span>
+															<input class="btn_input" name="file_1" type="file" hidden
+																   style="display: none;" value="">
+														</label>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -352,7 +352,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info2"
 												aria-expanded="false" aria-controls="collapse_info2">
-											N/D
+											Ապահովագրություն։
 										</button>
 									</h5>
 								</div>
@@ -361,39 +361,6 @@
 									<div class="card-body">
 										<div class="add_new_items">
 											<div class="row">
-												<div class="col-md-2">
-													<div class="form-group">
-														<label><?= lang('company') ?></label>
-														<input type="text" name="company[2]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_2" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
-												<div class="col-md-3">
-													<div class="form-group">
-														<label>Reference</label>
-														<input type="text" name="reference[2]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[2]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
 												<div class="col-sm-3">
 													<label for="type[2]" class="col-form-label"
 														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
@@ -409,6 +376,41 @@
 														</select>
 													</div>
 												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label><?= lang('company') ?></label>
+														<input type="text" name="company[2]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('company') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label>Reference</label>
+														<input type="text" name="reference[2]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('reference') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label><?= lang('expiry_date') ?></label>
+													<input type="date" name="expiration[2]" max="3000-12-31"
+														   min="1000-01-01" class="form-control form-control-sm">
+												</div>
+												<div class="col-md-2">
+													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+												</div>
+												<div class="col-1">
+													<div class="form-group">
+														<label
+															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+															class="btn btn-sm btn-outline-secondary">
+															<span><?= lang('browse') ?></span>
+															<input class="btn_input" name="file_2" type="file" hidden
+																   style="display: none;" value="">
+														</label>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -420,7 +422,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info3"
 												aria-expanded="false" aria-controls="collapse_info3">
-											N/D
+											Ապահովագրություն։
 										</button>
 									</h5>
 								</div>
@@ -429,38 +431,6 @@
 									<div class="card-body">
 										<div class="add_new_items">
 											<div class="row">
-												<div class="col-md-2">
-													<div class="form-group">
-														<label for="company[3]"><?= lang('company') ?></label>
-														<input type="text" name="company[3]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label for="file_3"
-															   style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															   class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_3" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
-												<div class="col-md-3">
-													<div class="form-group">
-														<label for="reference[3]"><?= lang('reference') ?></label>
-														<input type="text" name="reference[3]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-												<div class="col-md-3">
-													<label for="expiration[3]"><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[3]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
 												<div class="col-sm-3">
 													<label for="type[3]" class="col-form-label"
 														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
@@ -476,6 +446,43 @@
 														</select>
 													</div>
 												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label for="company[3]"><?= lang('company') ?></label>
+														<input type="text" name="company[3]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('company') ?>">
+													</div>
+												</div>
+
+												<div class="col-md-2">
+													<div class="form-group">
+														<label for="reference[3]"><?= lang('reference') ?></label>
+														<input type="text" name="reference[3]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('reference') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label for="expiration[3]"><?= lang('expiry_date') ?></label>
+													<input type="date" name="expiration[3]" max="3000-12-31"
+														   min="1000-01-01" class="form-control form-control-sm">
+												</div>
+												<div class="col-md-2">
+													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+												</div>
+												<div class="col-1">
+													<div class="form-group">
+														<label for="file_3"
+															   style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+															   class="btn btn-sm btn-outline-secondary">
+															<span><?= lang('browse') ?></span>
+															<input class="btn_input" name="file_3" type="file" hidden
+																   style="display: none;" value="">
+														</label>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
@@ -487,7 +494,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info4"
 												aria-expanded="false" aria-controls="collapse_info4">
-											N/D
+											Ապահովագրություն։
 										</button>
 									</h5>
 								</div>
@@ -496,40 +503,6 @@
 									<div class="card-body">
 										<div class="add_new_items">
 											<div class="row">
-												<div class="col-md-2">
-													<div class="form-group">
-														<label><?= lang('company') ?></label>
-														<input type="text" name="company[4]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_4" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
-												<div class="col-md-3">
-													<div class="form-group">
-														<label><?= lang('reference') ?></label>
-														<input type="text" name="reference[4]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-
-												<div class="col-md-3">
-													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[4]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
-
 												<div class="col-sm-3">
 													<label class="col-form-label"
 														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
@@ -545,6 +518,42 @@
 														</select>
 													</div>
 												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label><?= lang('company') ?></label>
+														<input type="text" name="company[4]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('company') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<div class="form-group">
+														<label><?= lang('reference') ?></label>
+														<input type="text" name="reference[4]"
+															   class="form-control form-control-sm"
+															   placeholder="<?= lang('reference') ?>">
+													</div>
+												</div>
+												<div class="col-md-2">
+													<label><?= lang('expiry_date') ?></label>
+													<input type="date" name="expiration[4]" max="3000-12-31"
+														   min="1000-01-01" class="form-control form-control-sm">
+												</div>
+												<div class="col-md-2">
+													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+												</div>
+												<div class="col-1">
+													<div class="form-group">
+														<label
+															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+															class="btn btn-sm btn-outline-secondary">
+															<span><?= lang('browse') ?></span>
+															<input class="btn_input" name="file_4" type="file" hidden
+																   style="display: none;" value="">
+														</label>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
@@ -961,6 +970,7 @@
 		$('.fleet_type_5 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/bus-side-view.png">');
 		$('.fleet_type_6 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/minivan.png">');
 		$('.fleet_type_7 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car-with-trailer.png">');
+		$('.fleet_type_8 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/ellipsis.png">');
 
 	});
 

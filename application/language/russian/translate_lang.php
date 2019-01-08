@@ -395,6 +395,7 @@ $lang['account_not_active'] = 'Ваш аккаунт не активен';
 $lang['captcha_incorrect'] = 'Captcha Неверный';
 $lang['email_not_unique'] = 'Электронная почта не уникальна';
 $lang['password_not_match'] = 'Пароли не совпадают';
+$lang['health_insurance'] = 'Медицинское страхование';
 
 
 

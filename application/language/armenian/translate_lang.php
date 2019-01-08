@@ -394,5 +394,6 @@ $lang['account_not_active'] = 'Ձեր հաշիվը ակտիվ չէ';
 $lang['captcha_incorrect'] = 'Captcha - ն սխալ է';
 $lang['email_not_unique'] = 'Էլ․ հասցեն կրկնվում է';
 $lang['password_not_match'] = 'Գաղտնաբառերը չեն համապատասխանում';
+$lang['health_insurance'] = 'Առողջապահության ապահովագրություն';
 
 

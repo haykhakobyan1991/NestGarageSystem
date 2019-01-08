@@ -895,10 +895,7 @@
 					<? endforeach; ?>
 					</tbody>
 				</table>
-
 			</div>
-
-
 	</form>
 </div>
 
@@ -986,18 +983,13 @@
 			},
 			success: function (data) {
 				if (data.success == '1') {
-
 					close_message();
-					// scroll_top();
 					$('.alert-success').removeClass('d-none');
-
 					$('.alert-success').html(data.message);
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles')?>";
 					$(location).attr('href', url);
-
 				} else {
 					$('.alert-info').addClass('d-none');
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'submit');
@@ -1010,12 +1002,10 @@
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (value != tmp) {
 										errors += value + '<br>';
 									}
 									tmp = value;
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -1023,7 +1013,6 @@
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
 				}
 			},

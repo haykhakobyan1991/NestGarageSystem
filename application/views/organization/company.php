@@ -110,6 +110,8 @@ $i = '';
 															</span>
 									<input type="text" class="form-control form-control-sm" readonly
 										   style="display: none;" title=""/>
+									<input type="hidden" name="u_logo"
+										   value="<?= ($company['logo'] != '' ? base_url('uploads/' . $folder . '/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
 
 								</div>
 							</div>
@@ -336,12 +338,16 @@ $i = '';
 								<div class="row">
 									<label class="col-sm-3 col-form-label"
 										   style="font-size: 15px;"><?=lang('requisite')?></label>
-									<div class="form-group col-sm-8" style="margin-top: -22px;margin-left: 22px;">
-										<label
-											style="color: #000;font-size:13px;font-weight: 300 !important;margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;border-color: #ced4da;"
-											class="btn btn-sm btn-outline-secondary">
-											<a style="text-decoration: none; color: #1b1e21" target="_blank" href="http://localhost/NestGarageSystem/System_main/reference"><?=lang('download_requisite')?></a>
-										</label>
+									<div class="form-group col-sm-8" style="margin-top: -22px;margin-left: 22px;"
+										 id="requisite">
+										<a style="text-decoration: none; color: #1b1e21" target="_blank"
+										   href="javascript:void(0)">
+											<label
+												style="color: #000;font-weight: 400 !important;margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;border-color: #ced4da;"
+												class="btn btn-sm btn-outline-secondary">
+												<?= lang('download_requisite') ?>
+											</label>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -946,6 +952,42 @@ $i = '';
 
 </script>
 
+<!--reference/-->
+<script>
+
+	$(document).on('click', '#requisite', function (e) {
+
+		var url = '<?=base_url($this->uri->segment(1) . '/System_main/reference') ?>';
+		e.preventDefault();
+		var data = new FormData($('form#company')[0]);
+
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'html',
+			data: data,
+			processData: false,
+			contentType: false,
+			success: function (data, textStatus, jQxhr) {
+				window.downloadPDF = function downloadPDF() {
+					var dlnk = document.getElementById('dwnldLnk');
+					dlnk.href = data;
+					dlnk.click();
+				};
+
+				downloadPDF();
+			},
+			error: function (jqXhr, textStatus, errorThrown) {
+				console.log('/*/' + errorThrown);
+			}
+		})
+
+	})
+
+</script>
+<a id="dwnldLnk" download="reference.pdf" target="_blank" style="display:none;"/>
+<!--end /-->
 
 
 

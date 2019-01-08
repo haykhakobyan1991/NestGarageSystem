@@ -41,7 +41,7 @@ $lang['status'] = 'Статус';
 $lang['owner'] = 'Владелец';
 $lang['when'] = 'Когда';
 $lang['settings'] = 'Настройки';
-$lang['download_requisite'] = 'Загрузить Реквизиты';
+$lang['download_requisite'] = 'Скачать Реквизит';
 $lang['requisite'] = 'Реквизит';
 
 $lang['passport'] = 'Паспорт';

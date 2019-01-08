@@ -45,7 +45,7 @@ $lang['delete'] = 'Ջնջել';
 $lang['settings'] = 'Կարգավորումներ';
 $lang['titles'] = 'Վերնագրեր';
 $lang['coefficient'] = 'Գործակիցը';
-$lang['download_requisite'] = 'Բեռնել ռեքվեզիտ';
+$lang['download_requisite'] = 'Ներբեռնել ռեքվեզիտ';
 $lang['requisite'] = 'Ռեքվեզիտ';
 
 $lang['passport'] = 'Անձնագիր';

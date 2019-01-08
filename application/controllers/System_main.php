@@ -196,28 +196,38 @@ class System_main extends CI_Controller {
 		// set text shadow effect
 		$pdf->setTextShadow(array('enabled'=>true, 'depth_w'=>0.0000001, 'depth_h'=>0.0000001, 'color'=>array(196,196,196), 'opacity'=>1, 'blend_mode'=>'Normal'));
 
-		$logo = base_url('logo.png');
-		$address = 'RA, Yerevan, 0022, Avan Arindj, 1 microreg., 2/13b., App. 17';
-		$phone = '+(374)77-21-21-93';
-		$web_page = 'www.10x.am';
-		$email = 'info@10x.am';
-		$ITN = '00883969';
-		$Director = 'Davit Zargaryan';
-		$BeneficiaryBank = 'Ameria Bank CJSC';
-		$Address_1 = '9 G. Lusavorich str., Yerevan, 0015, RA';
-		$SwiftCode = 'ARMIAM22';
-		$Account_type_1 = 'For transfers in Drams (AMD)';
-		$Account_number_1 = '1570017261060100';
-		$Account_type_2 = 'For transfers in Rubles (RUB)';
-		$Account_number_2 = '1570017261060158';
-		$Account_2 = '30111810900000000371';
-		$CorrespondentBank_2 = 'SBERBANK RF, MOSCOW';
-		$SwiftCode_2 = 'SABRRUMM';
-		$Account_type_3 = 'For transfers in US Dollars (USD)';
-		$Account_number_3 = '1570017261060101';
-		$CorrespondentBank_3 = 'CITIBANK N.A., NEW YORK';
-		$SwiftCode_3 = 'SABRRUMM';
-		$Account_3 = '30111810900000000371';
+
+		//print_r($_REQUEST);
+
+
+		$logo = $this->input->post('u_logo');
+		$address = 'RA, Yerevan, 0022, Avan Arindj, 1 microreg., 2/13b., App. 17'; // ?
+		$phone = $this->input->post('phone_number');
+		$web_page = $this->input->post('web_address');
+		$email = $this->input->post('email');
+		$ITN = $this->input->post('tin');
+		$Director = $this->input->post('owner_firstname').' '.$this->input->post('owner_lastname');
+		$BeneficiaryBank = 'Ameria Bank CJSC'; //?
+		$Address_1 = '9 G. Lusavorich str., Yerevan, 0015, RA'; //?
+		$SwiftCode = 'ARMIAM22'; //?
+
+		$Account_type_1 = $this->input->post('account_name_1');
+		$Account_number_1 = $this->input->post('account_number_1');
+		$Account_1 = $this->input->post('account_1');
+		$CorrespondentBank_1 = $this->input->post('correspondent_bank_1');
+		$SwiftCode_1 = $this->input->post('swift_code_1');
+
+		$Account_type_2 = $this->input->post('account_name_2');
+		$Account_number_2 = $this->input->post('account_number_2');
+		$Account_2 = $this->input->post('account_2');
+		$CorrespondentBank_2 = $this->input->post('correspondent_bank_2');
+		$SwiftCode_2 = $this->input->post('swift_code_2');
+
+		$Account_type_3 = $this->input->post('account_name_3');
+		$Account_number_3 = $this->input->post('account_number_3');
+		$CorrespondentBank_3 = $this->input->post('correspondent_bank_3');
+		$SwiftCode_3 = $this->input->post('correspondent_bank_3');
+		$Account_3 = $this->input->post('account_3');
 
 		// create some HTML content
 		$html = '
@@ -228,9 +238,9 @@ class System_main extends CI_Controller {
 				<td></td>
 			</tr>
 			<tr>
-				<td width="15%" style="line-height: 90%;  "></td>
+				<td width="15%" style="line-height: 90%; "></td>
 				<td width="75%" style="line-height: 90%; "></td>
-				<td width="10%" style="line-height: 90%;  "></td>
+				<td width="10%" style="line-height: 90%; "></td>
 			</tr>
 			<br>
 			<tr>
@@ -293,80 +303,107 @@ class System_main extends CI_Controller {
 				<td width="100%" colspan="3" style="line-height: 7%; background-color: #c7c7c7; "></td>
 			</tr>
 			<br>
+			
 			<tr>
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_1.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Account number</td>
+				<td width="20%" >'.($Account_number_1 != '' ? 'Account number' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($Account_number_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td width="10%"></td>
 				<td width="40%" >'.$Account_number_1.'</td>
 			</tr>
+			<tr>
+				<td width="20%" >'.($Account_1 != '' ? 'Account' : '').'</td>
+				
+				<td align="center" width="10%" style="'.($Account_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$Account_1.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($CorrespondentBank_1 != '' ? 'Correspondent bank' : '').'</td>
+				
+				<td align="center" width="10%" style="'.($CorrespondentBank_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$CorrespondentBank_1.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($SwiftCode_1 != '' ? 'SWIFT code' : '').'</td>
+				
+				<td align="center" width="10%" style="'.($SwiftCode_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$SwiftCode_1.'</td>
+			</tr>
+			
 			<br>
+			
 			<tr>
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Account number</td>
+				<td width="20%" >'.($Account_number_2 != '' ? 'Account number' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($Account_number_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'" ></td>
 				<td></td>
 				<td width="40%" >'.$Account_number_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Account</td>
+				<td width="20%" >'.($Account_2 != '' ? 'Account' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($Account_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$Account_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Correspondent bank</td>
+				<td width="20%" >'.($CorrespondentBank_2 != '' ? 'Correspondent bank' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($CorrespondentBank_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$CorrespondentBank_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >SWIFT code</td>
+				<td width="20%" >'.($SwiftCode_2 != '' ? 'SWIFT code' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($SwiftCode_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$SwiftCode_2.'</td>
 			</tr>
+			
 			<br>
+			
 			<tr>
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Account number</td>
+				<td width="20%" >'.($Account_number_3 != '' ? 'Account number' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($Account_number_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'" ></td>
 				<td></td>
 				<td width="40%" >'.$Account_number_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Correspondent bank</td>
+				<td width="20%" >'.($CorrespondentBank_3 != '' ? 'Correspondent bank' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($CorrespondentBank_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$CorrespondentBank_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >SWIFT code</td>
+				<td width="20%" >'.($SwiftCode_3!= '' ? 'SWIFT code' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($SwiftCode_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$SwiftCode_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >Account</td>
+				<td width="20%" >'.($Account_3 != '' ? 'Account' : '').'</td>
 				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
+				<td align="center" width="10%" style="'.($Account_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$Account_3.'</td>
 			</tr>
+			
 		</table>';
 
 		// output the HTML content
@@ -378,7 +415,7 @@ class System_main extends CI_Controller {
 		// ---------------------------------------------------------
 
 		//Close and output PDF document
-		$file = $pdf->Output('example_021.pdf', 'I');
+		$file = $pdf->Output('example.pdf', 'S');
 
 		//============================================================+
 		// END OF FILE
@@ -390,6 +427,8 @@ class System_main extends CI_Controller {
 
 
 		echo 'data: application/pdf;base64,'.$doc_file;
+		unset($pdf);
+		return;
 
 	}
 

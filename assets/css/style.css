@@ -437,12 +437,12 @@ canvas:focus {
 }
 
 
-.fleet_type_1 a span:nth-child(2), .fleet_type_2 a span:nth-child(2), .fleet_type_3 a span:nth-child(2), .fleet_type_4 a span:nth-child(2), .fleet_type_5 a span:nth-child(2), .fleet_type_6 a span:nth-child(2), .fleet_type_7 a span:nth-child(2) {
+.fleet_type_1 a span:nth-child(2), .fleet_type_2 a span:nth-child(2), .fleet_type_3 a span:nth-child(2), .fleet_type_4 a span:nth-child(2), .fleet_type_5 a span:nth-child(2), .fleet_type_6 a span:nth-child(2), .fleet_type_7 a span:nth-child(2), .fleet_type_8 a span:nth-child(2) {
 	position: relative;
 	padding-left: 25px;
 }
 
-.fleet_type_1 a span:nth-child(2) img, .fleet_type_2 a span:nth-child(2) img, .fleet_type_3 a span:nth-child(2) img, .fleet_type_4 a span:nth-child(2) img, .fleet_type_5 a span:nth-child(2) img, .fleet_type_6 a span:nth-child(2) img, .fleet_type_7 a span:nth-child(2) img {
+.fleet_type_1 a span:nth-child(2) img, .fleet_type_2 a span:nth-child(2) img, .fleet_type_3 a span:nth-child(2) img, .fleet_type_4 a span:nth-child(2) img, .fleet_type_5 a span:nth-child(2) img, .fleet_type_6 a span:nth-child(2) img, .fleet_type_7 a span:nth-child(2) img, .fleet_type_8 a span:nth-child(2) img {
 	position: absolute;
 	left: -8px;
 }

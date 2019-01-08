@@ -80,11 +80,11 @@ $folder = $this->session->folder;
 							<div class=" p-2 mt-1 w-auto" style="min-width: 47%">
 								<p class="text-black small driver_info"><?= lang('brand') ?>: <span
 										class="text-black ml-2"><?= $row['brand'] ?></span></p>
-								<p class="text-black small driver_info"><?= lang('color') ?>: <span
+								<p class="text-black small driver_info"><span style="float: left;"><?= lang('color') ?>:</span> <span
 										class="ml-2 text-black"
-										style="width: 25px;height: 10px;background: <?= $row['color'] ?>;border: 1px solid #efefef;display: inline-block;"> </span>
+										style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 15px;height: 15px;background: <?= $row['color'] ?>;border: 1px solid #efefef;display: inline-block;"> </span>
 								</p>
-								<p class="small text-black driver_info"><?= lang('engine') ?>: <span
+								<p class="small text-black driver_info" style="clear: both;"><?= lang('engine') ?>: <span
 										class="text-black ml-2"><?= $row['engine_power'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('model') ?>: <span
 										class="text-black ml-2"><?= $row['model'] ?></span></p>

@@ -707,21 +707,18 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 			function dragSelectNodes(dd) {
+
 				var alpha = myDiagram.findNodeForKey(dd);
 				if (alpha === null) return;
-
 				alpha.isSelected = true;
 
 			}
 
-
-
-
 			var new_arr = [];
-			myDiagram.addDiagramListener("ObjectSingleClicked",
+
+			myDiagram.addDiagramListener( "ObjectSingleClicked",
+
 				function (e) {
-
-
 					var linkDataArray = <?=$from_to?>;
 					$.each(linkDataArray, function (key, value) {
 
@@ -739,14 +736,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					});
 
-					//	console.log(myDiagram.selection.Ca.key.Wd.key);
+					//console.log(myDiagram.selection.Ca.key.Wd.key);
 
 					var arr = [];
 					new_arr = [];
 					selecteds = [];
+
 					myDiagram.selection.each(function (part) {
-
-
 						if (part instanceof go.Node) {
 							arr = {
 								"key": part.Wd.key,
@@ -954,39 +950,30 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						vehicle_add(new_arr, url_1, $(this).data('tab'))
 					}
 				});
-
 				$(document).on('click', 'button#search', function () {
 					var url_2 = $(this).data('url');
 					var dataTab = $(this).data('tab');
 					vehicle_add(new_arr, url_2, dataTab);
 				});
-
-
 			} else if ($('a[data-id="3"]').hasClass('active')) {
 
 				//---;
 				function chart(data, title) {
-
 					chart1 = Highcharts.chart('container', {
 						chart: {
 							scrollablePlotArea: {
 								minWidth: 700
 							}
 						},
-
 						plotOptions: {
 							series: {
 								cursor: 'pointer',
 								point: {
 									events: {
-
 										click: function (e) {
-
-
 											var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryCircle_ax')?>';
 											var date = this.category;
 											var table = data.table;
-
 											$.ajax({
 												url: url,
 												type: 'POST',
@@ -999,7 +986,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											}).done(function () {
 												rightClick();
 											});
-
 										},
 										contextmenu: function () {
 											$('input[name="line_date"]').val(this.category);
@@ -1008,14 +994,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								}
 							}
 						},
-
 						title: {
 							text: title
 						},
 						subtitle: {
 							text: ''
 						},
-
 						xAxis: {
 							categories: data.date
 						},
@@ -1025,7 +1009,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								text: 'AMD'
 							}
 						},
-
 						series: [{
 							name: title,
 							data: data.price
@@ -1409,7 +1392,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					setTimeout(function () {
 							var el;
+
 							$.each(fleet_arr, function (e, value) {
+
 								el = myDiagram.findNodeForKey(value);
 								if (el === null) return;
 
@@ -1418,11 +1403,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								var loc = el.location;
 
 								// click on fleet
+
 								robot.mouseDown(loc.x + 10, loc.y + 10, 0, { });
 								robot.mouseUp(loc.x + 10, loc.y + 10, 100, { });
 							});
-
-
 
 					}, 700);
 

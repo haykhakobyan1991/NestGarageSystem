@@ -510,7 +510,7 @@ endforeach;
 																	data-target="#collapseFour"
 																	aria-expanded="false"
 																	aria-controls="collapseThree">
-																	<?= lang('technical_passport') ?>
+																	<?=lang('health_insurance')?>
 																</button>
 															</h5>
 														</div>
@@ -570,6 +570,11 @@ endforeach;
 															</div>
 														</div>
 													</div>
+
+
+
+
+
 												</div>
 											</div>
 										</div>

@@ -238,7 +238,6 @@ $i = '';
 							</div>
 						</div>
 
-
 						<div class="row mt-1">
 							<label
 								class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
@@ -260,7 +259,6 @@ $i = '';
 						<hr class="my-2">
 
 						<div class="row">
-
 							<div class="col-sm-5">
 								<div class="row">
 									<label class="col-sm-3 col-form-label"
@@ -271,7 +269,6 @@ $i = '';
 											   placeholder="<?= lang('owner_firstname') ?>">
 									</div>
 								</div>
-
 							</div>
 							<div class="col-sm-4">
 								<div class="row">
@@ -283,10 +280,7 @@ $i = '';
 											   placeholder="<?= lang('owner_position') ?>">
 									</div>
 								</div>
-
 							</div>
-
-
 						</div>
 
 						<div class="row mt-1">

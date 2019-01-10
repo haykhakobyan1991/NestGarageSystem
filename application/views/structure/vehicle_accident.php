@@ -35,29 +35,55 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="accident_vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
+							<span style="display: none"><?= $row['brand_model'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
+							<input class="form-control text-center" title="" type="date" disabled name="accident_date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
+							<span style="display: none"><?= $row['add_date'] ?></span>
 						</td>
 
 						<td class="border">
-							<?= $row['insurance_company'] ?>
+							<input disabled title="" type="text" name="accident_insurance_company[<?= $row['id'] ?>]" value="<?= $row['insurance_company'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['insurance_company'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['staff_name'] ?>
+							<select disabled class="form-control selectpicker" data-size="5" name="accident_staff_id[<?= $row['id'] ?>]" title="<?=lang('driver')?>">
+								<? foreach ($this->load->get_drivers($row['fleet_id']) as $st) { ?>
+									<option <?= ($row['staff_id'] == $st['id'] ? 'selected' : '') ?>  value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
+								<? } ?>
+							</select>
+							<span style="display: none"><?= $row['staff_name'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['conclusion_number'] ?>
+							<input disabled title="" type="text" name="accident_conclusion_number[<?= $row['id'] ?>]" value="<?= $row['conclusion_number'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['conclusion_number'] ?></span>
+
 						</td>
 						<td class="border">
-							<?= $row['replacement_parts'] ?>
+							<input disabled title="" type="text" name="accident_replacement_parts[<?= $row['id'] ?>]" value="<?= $row['replacement_parts'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['replacement_parts'] ?></span>
+
 						</td>
 						<td class="border">
-							<?= $row['return_amount'] ?>
+							<input disabled title="" type="text" name="accident_return_amount[<?= $row['id'] ?>]" value="<?= $row['return_amount'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['return_amount'] ?></span>
+
 						</td>
 
-						<td class="border"></td>
+						<td class="border">
+							<span
+								id="edit_accident"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
+						</td>
 					</tr>
 
 					<?

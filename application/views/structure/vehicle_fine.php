@@ -34,24 +34,43 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
+							<span style="display: none"><?= $row['brand_model'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
+							<input class="form-control text-center" title="" type="date" disabled name="fine_date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
+							<span style="display: none"><?= $row['add_date'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['type'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="fine_type[<?= $row['id'] ?>]" value="<?= $row['type'] ?>" >
+							<span style="display: none"><?= $row['type'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['staff_name'] ?>
+							<select disabled class="form-control selectpicker" data-size="5" name="fine_staff_id[<?= $row['id'] ?>]" title="<?=lang('driver')?>">
+								<? foreach ($this->load->get_drivers($row['fleet_id']) as $st) { ?>
+									<option <?= ($row['staff_id'] == $st['id'] ? 'selected' : '') ?>  value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
+								<? } ?>
+							</select>
+							<span style="display: none"><?= $row['staff_name'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['other_info'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="fine_other_info[<?= $row['id'] ?>]" value="<?= $row['other_info'] ?>" >
+							<span style="display: none"><?= $row['other_info'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['price'] ?>
+							<input disabled title="" type="number" min="0" name="fine_price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['price'] ?></span>
 						</td>
-						<td class="border"></td>
+						<td class="border">
+							<span
+								id="edit_fine"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
+						</td>
 					</tr>
 
 					<?
@@ -403,6 +422,111 @@
 		});
 
 	}
+
+	//edit
+	$(document).on('click', '#edit_fine', function() {
+		var id = $(this).data('id');
+		$('input[name="fine_date['+id+']"]').prop('disabled', false);
+		$('select[name="fine_staff_id['+id+']"]').prop('disabled', false);
+		$('select[name="fine_staff_id['+id+']"]').parent('div').children('button').removeClass('disabled');
+		$('input[name="fine_type['+id+']"]').prop('disabled', false);
+		$('input[name="fine_other_info['+id+']"]').prop('disabled', false);
+		$('input[name="fine_price['+id+']"]').prop('disabled', false);
+
+		$(this).parent('td').html('<button\n' +
+			'\t\t\t\t\tdata-id="'+id+'"\n' +
+			'\t\t\t\t\tid="edit_fine_btn"\n' +
+			'\t\t\t\t\tstyle="min-width: 94px;\n' +
+			'\t\t\t\t\tfont-size: 14px !important;\n' +
+			'\t\t\t\t\tline-height: 14px !important;\n' +
+			'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+			'\t\t\t\t\tfont-weight: 500 !important;\n' +
+			'\t\t\t\t\tmargin-top: -4px;\n' +
+			'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+	});
+
+
+	$(document).on('click', '#edit_fine_btn', function (e) {
+		var td = $(this).parent('td');
+		var id = $(this).data('id');
+
+		var fine_add_date = $('input[name="fine_date['+id+']"]').val();
+		var fine_staff_id = $('select[name="fine_staff_id['+id+']"]').val();
+		var fine_type = $('input[name="fine_type['+id+']"]').val();
+		var fine_other_info = $('input[name="fine_other_info['+id+']"]').val();
+		var fine_price = $('input[name="fine_price['+id+']"]').val();
+
+		var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_fine_ax') ?>';
+		var me = $(this);
+		e.preventDefault();
+
+		if (me.data('requestRunning')) {
+			return;
+		}
+
+		me.data('requestRunning', true);
+
+		$('input').removeClass('border border-danger');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: {fine_id: id, fine_add_date: fine_add_date, fine_staff_id: fine_staff_id, fine_type: fine_type, fine_other_info: fine_other_info, fine_price: fine_price},
+			success: function (data) {
+				if (data.success == '1') {
+
+					td.html('<span\n'+
+						'\t\t\t\t\t\t\t\tid="edit_fine"\n'+
+						'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+						'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+						'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+						'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+						'\t\t\t\t\t\t\t</span>');
+
+					$('input[name="fine_date['+id+']"]').prop('disabled', true);
+					$('select[name="fine_staff_id['+id+']"]').prop('disabled', true);
+					$('select[name="fine_staff_id['+id+']"]').parent('div').children('button').removeClass('disabled');
+					$('input[name="fine_type['+id+']"]').prop('disabled', true);
+					$('input[name="fine_other_info['+id+']"]').prop('disabled', true);
+					$('input[name="fine_price['+id+']"]').prop('disabled', true);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						// loading('stop', 'inspection');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+								}
+							});
+						});
+					} else {
+						alert();
+					}
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				console.log('ERRORS: ' + textStatus);
+				// loading('stop', 'inspection');
+			},
+			complete: function () {
+				me.data('requestRunning', false);
+			}
+		});
+	});
+
 </script>
 
 

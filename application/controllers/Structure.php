@@ -2225,6 +2225,104 @@ class Structure extends MX_Controller {
 	}
 
 
+	public function edit_fine_ax() {
+
+		//$this->load->authorisation('Structure', 'fine');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+		$this->form_validation->set_rules('fine_add_date', 'fine_add_date', 'required');
+		$this->form_validation->set_rules('fine_price', 'fine_price', 'required');
+		$this->form_validation->set_rules('fine_type', 'fine_type', 'required');
+		$this->form_validation->set_rules('fine_staff_id', 'fine_staff_id', 'required');
+
+
+		$fine_id = $this->input->post('fine_id');
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'fine_add_date['.$fine_id.']' => form_error('fine_add_date'),
+				'fine_price['.$fine_id.']' => form_error('fine_price'),
+				'fine_type['.$fine_id.']' => form_error('fine_type'),
+				'fine_staff_id['.$fine_id.']' => form_error('fine_staff_id')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+
+
+		$price = $this->input->post('fine_price');
+		$type = $this->input->post('fine_type');
+		$other_info = $this->input->post('fine_other_info');
+		$staff_id = $this->input->post('fine_staff_id');
+		$date = $this->input->post('fine_add_date');
+
+
+		// end of validation
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$sql = "
+			UPDATE `fine` SET
+				`add_date` = " . $this->load->db_value($date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`type` = " . $this->load->db_value($type) . ",
+				`staff_id` = " . $this->load->db_value($staff_id) . ",
+				`price` = " . $this->load->db_value($price) . ",
+				`other_info` = " . $this->load->db_value($other_info) . "
+			WHERE `id` = " . $this->load->db_value($fine_id) . "
+		";
+
+
+		$result = $this->db->query($sql);
+
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = $fine_id;
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+
+
+
 	public function vehicle_accident() {
 
 		$user_id = $this->session->user_id;

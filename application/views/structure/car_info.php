@@ -56,8 +56,7 @@ $folder = $this->session->folder;
 													 alt="">
 											</p>
 										</div>
-										<div class="text-center"
-											 style="background: #c3c3c3;min-width: 6%; position:relative;">
+										<div class="text-center" style="background: #c3c3c3;min-width: 6%; position:relative;">
 											<img class="open_menu" style="padding-top: 10px;width: 22px;"
 												 src="<?= base_url('assets/img/staff.svg') ?>" alt="" title=""/>
 											<i style="display: block;"

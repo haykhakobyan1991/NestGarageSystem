@@ -217,15 +217,20 @@
 							   placeholder="<?= lang('average_expense_100_km') ?>">
 
 					</div>
+
 					<div class="row" style="margin-top: .4rem !important;">
-
-						<label class="col-sm-4 col-form-label"><?= lang('running') ?></label>
-
+						<label class="pl-3 col-form-label col-sm-4"
+							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="<?= $fleet['mileage'] ?>" min="0" name="mileage" type="number"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('running') ?>">
-
-
+							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
+						<select name="mileage_value" class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2"  data-size="5"><?
+							foreach ($value as $row) :
+								if ($row['type'] == 1) :?>
+									<option <?= $fleet['mileage_value_id'] == $row['id'] ? 'selected' : '' ?> value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<?
+								endif;
+							endforeach; ?>
+						</select>
 					</div>
 <!--					<div class="row mt-1">-->
 <!--						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">--><?//= lang('odometer') ?><!--</label>-->
@@ -238,7 +243,7 @@
 				<div class="col-sm-3">
 					<div class="row">
 						<label class="pl-4 col-form-label col-sm-3"
-							   style="font-size: 15px;"><?= lang('color') ?></label>
+							   style="font-size: 15px;"><?= lang('color') ?> *</label>
 						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
 								data-size="5"
 								data-live-search="true" title="<?= lang('color') ?>">
@@ -266,7 +271,7 @@
 					</div>
 
 					<div class="row" style="margin-top: .4rem !important;">
-						<label class=" col-form-label col-sm-3"><?= lang('attached') ?>*</label>
+						<label class=" col-form-label col-sm-3"><?= lang('attached') ?> *</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"

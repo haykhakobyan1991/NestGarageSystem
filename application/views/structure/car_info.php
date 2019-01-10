@@ -75,7 +75,7 @@ $folder = $this->session->folder;
 						$staff_id = $row['staff_id'];
 						?>
 
-						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32%;">
+						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32.4%;">
 						<div class="row bg-white">
 							<div class=" p-2 mt-1 w-auto" style="min-width: 47%">
 								<p class="text-black small driver_info"><?= lang('brand') ?>: <span
@@ -111,12 +111,11 @@ $folder = $this->session->folder;
 										class="text-black ml-2"><?= $row['fuel'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('average_expense_100_km') ?> ։<span
 										class="text-black ml-2"><?= $row['fuel_avg_consumption'] ?></span></p>
-								<p class="small text-black driver_info"><?= lang('in_day') ?> ։<span
-										class="text-black ml-2"><?= $row['value1_day'] ?> կմ․</span></p>
+<!--								<p class="small text-black driver_info">--><?//= lang('in_day') ?><!-- ։<span-->
+<!--										class="text-black ml-2">--><?//= $row['value1_day'] ?><!-- կմ․</span></p>-->
 								<p class="small text-black driver_info"><?= lang('running') ?>։<span
-										class="text-black ml-2"><?= $row['mileage'] ?></span></p>
-								<p class="small text-black driver_info"><?= lang('odometer') ?>։<span
-										class="text-black ml-2"><?= $row['odometer'] ?></span></p>
+										class="text-black ml-2"><?= $row['mileage'].' '.($row['mileage'] != '' ? $row['value'] : '')?></span></p>
+
 								<p class="small text-black driver_info"><?= lang('GPS_Exist') ?>։<span
 										class="text-black ml-2"><?= ($row['gps_tracker_exists'] == 1 ? lang('yes') : lang('no')) ?></span>
 								</p>

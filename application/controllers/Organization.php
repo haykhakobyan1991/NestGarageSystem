@@ -2142,6 +2142,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_rules('fleet_type', 'fleet_type', 'required');
 		$this->form_validation->set_rules('fleet_plate_number', 'fleet_plate_number', 'required');
 		$this->form_validation->set_rules('production_date', 'production_date', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
 
 
 
@@ -2157,6 +2158,7 @@ class Organization extends MX_Controller {
 				'fleet_type' => form_error('fleet_type'),
 				'fleet_plate_number' => form_error('fleet_plate_number'),
 				'production_date' => form_error('production_date'),
+				'color' => form_error('color'),
 
 			);
 			$messages['error']['elements'][] = $validation_errors;
@@ -2180,6 +2182,8 @@ class Organization extends MX_Controller {
 		$fuel = $this->input->post('fuel');
 		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
 		$mileage = $this->input->post('mileage');
+		$mileage_value = $this->input->post('mileage_value');
+
 		$odometer = $this->input->post('odometer');
 		$other = $this->input->post('other');
 
@@ -2525,6 +2529,7 @@ class Organization extends MX_Controller {
 					`fuel_id` = ".$this->load->db_value($fuel).",
 					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
 					`mileage` =  ".$this->load->db_value($mileage).",
+					`mileage_value_id` =  ".$this->load->db_value($mileage_value).",
 					`odometer` = ".$this->load->db_value($odometer).",
 					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
 					`other` = ".$this->load->db_value($other).",
@@ -2842,6 +2847,7 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_rules('fleet_type', 'fleet_type', 'required');
 		$this->form_validation->set_rules('fleet_plate_number', 'fleet_plate_number', 'required');
 		$this->form_validation->set_rules('production_date', 'production_date', 'required');
+		$this->form_validation->set_rules('color', 'color', 'required');
 
 
 
@@ -2859,6 +2865,7 @@ class Organization extends MX_Controller {
 				'fleet_type' => form_error('fleet_type'),
 				'fleet_plate_number' => form_error('fleet_plate_number'),
 				'production_date' => form_error('production_date'),
+				'color' => form_error('color')
 
 			);
 			$messages['error']['elements'][] = $validation_errors;
@@ -2880,6 +2887,7 @@ class Organization extends MX_Controller {
 		$fuel = $this->input->post('fuel');
 		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
 		$mileage = $this->input->post('mileage');
+		$mileage_value = $this->input->post('mileage_value');
 		$odometer = $this->input->post('odometer');
 		$other = $this->input->post('other');
 		$gps_tracker_exists = $this->input->post('gps_exist');
@@ -3193,6 +3201,7 @@ class Organization extends MX_Controller {
 					`fuel_id` = ".$this->load->db_value($fuel).",
 					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
 					`mileage` =  ".$this->load->db_value($mileage).",
+					`mileage_value_id` =  ".$this->load->db_value($mileage_value).",
 					`odometer` = ".$this->load->db_value($odometer).",
 					`fleet_plate_number` = ".$this->load->db_value($fleet_plate_number).",
 					`other` = ".$this->load->db_value($other).",

@@ -34,20 +34,37 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" readonly name="vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
+							<span style="display: none"><?= $row['brand_model'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
-						<td class="border">
-							<?= $row['user_name'] ?>
+							<input class="form-control text-center" title="" type="date" readonly name="date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
+							<span style="display: none"><?= $row['add_date'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['end_date'] ?>
+							<input title="" readonly type="text" name="user[<?= $row['id'] ?>]" value="<?= $row['user_name'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['user_name'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['price'] ?>
+							<input title="" readonly type="date" name="end_date[<?= $row['id'] ?>]" max="3000-12-31" min="1000-01-01"
+								   class="form-control text-center" value="<?= $row['end_date']?>" />
+							<span style="display: none"><?= $row['end_date'] ?></span>
 						</td>
-						<td class="border"></td>
+						<td class="border">
+							<input title="" readonly type="number" min="0" name="price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['price'] ?></span>
+						</td>
+						<td class="border">
+							<span
+								id="edit"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
+						</td>
 					</tr>
 
 					<?
@@ -314,6 +331,102 @@
 		});
 
 	}
+
+
+	//edit
+	$(document).on('click', '#edit', function() {
+		var id = $(this).data('id');
+		$('input[name="date['+id+']"]').prop('readonly', false);
+		$('input[name="end_date['+id+']"]').prop('readonly', false);
+		$('input[name="price['+id+']"]').prop('readonly', false);
+		$(this).parent('td').html('<button\n' +
+			'\t\t\t\t\tdata-id="'+id+'"\n' +
+			'\t\t\t\t\tid="edit_btn"\n' +
+			'\t\t\t\t\tstyle="min-width: 94px;\n' +
+			'\t\t\t\t\tfont-size: 14px !important;\n' +
+			'\t\t\t\t\tline-height: 14px !important;\n' +
+			'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+			'\t\t\t\t\tfont-weight: 500 !important;\n' +
+			'\t\t\t\t\tmargin-top: -4px;\n' +
+			'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+	});
+
+
+	$(document).on('click', '#edit_btn', function (e) {
+		var td = $(this).parent('td');
+		var id = $(this).data('id');
+
+		var add_date = $('input[name="date['+id+']"]').val();
+		var end_date = $('input[name="end_date['+id+']"]').val();
+		var price = $('input[name="price['+id+']"]').val();
+
+		var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_inspection_ax') ?>';
+		var me = $(this);
+		e.preventDefault();
+
+		if (me.data('requestRunning')) {
+			return;
+		}
+
+		me.data('requestRunning', true);
+
+		$('input').removeClass('border border-danger');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: {inspection_id: id, add_date: add_date, end_date: end_date, price: price},
+			success: function (data) {
+				if (data.success == '1') {
+
+					td.html('<span\n'+
+						'\t\t\t\t\t\t\t\tid="edit"\n'+
+						'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+						'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+						'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+						'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+						'\t\t\t\t\t\t\t</span>');
+
+					$('input[name="date['+id+']"]').prop('readonly', true);
+					$('input[name="end_date['+id+']"]').prop('readonly', true);
+					$('input[name="price['+id+']"]').prop('readonly', true);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						// loading('stop', 'inspection');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+								}
+							});
+						});
+					} else {
+						alert();
+					}
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				console.log('ERRORS: ' + textStatus);
+				// loading('stop', 'inspection');
+			},
+			complete: function () {
+				me.data('requestRunning', false);
+			}
+		});
+	});
 </script>
 
 

@@ -1072,14 +1072,14 @@ class Structure extends MX_Controller {
 		$staff_ids = implode(',', $driver_arr);
 
 		if($staff_ids != '') {
-			$add_sql = "AND FIND_IN_SET(`staff`.`id`, '" . $staff_ids . "')";
+			$add_sql = "OR FIND_IN_SET(`staff`.`id`, '" . $staff_ids . "')"; //todo
 		}
 
 
 
 		if($fleet_ids != '') {
 
-			$sql = "
+		$sql = "
 				SELECT
 					`brand`.`title_".$lng."` AS `brand`,
 					`model`.`title_".$lng."` AS `model`,
@@ -1099,6 +1099,7 @@ class Structure extends MX_Controller {
 					`staff`.`photo`,
 					`country`.`title_".$lng."` AS `country`,
 					`department`.`title` AS `department`,
+					`value`.`title_".$lng."` AS `value`,
 					`fleet`.*
 				 FROM
 				   `fleet`
@@ -1114,10 +1115,13 @@ class Structure extends MX_Controller {
 					ON `fleet`.`insurance_type_id_1` = `insurance_type`.`id`	
 				LEFT JOIN `staff`
 					ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	
+					
 				LEFT JOIN `department`
 					ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)
 				LEFT JOIN `country`
-					ON `country`.`id` = `staff`.`country_id`			
+					ON `country`.`id` = `staff`.`country_id`
+				LEFT JOIN `value`
+					ON `value`.`id` = `fleet`.`mileage_value_id`				
 				WHERE FIND_IN_SET(`fleet`.`id`, '" . $fleet_ids . "')
 				".$add_sql."
 				ORDER BY `staff`.`id`, `fleet`.`id`
@@ -1375,6 +1379,92 @@ class Structure extends MX_Controller {
 		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function edit_inspection_ax() {
+
+		//$this->load->authorisation('Structure', 'inspection');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+
+		$end_date = $this->input->post('end_date');
+		$price = $this->input->post('price');
+		$add_date = $this->input->post('add_date');
+		$inspection_id = $this->input->post('inspection_id');
+
+		$this->form_validation->set_rules('add_date', 'add_date', 'required');
+		$this->form_validation->set_rules('price', 'price', 'required');
+		$this->form_validation->set_rules('end_date', 'end_date', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'add_date['.$inspection_id.']' => form_error('add_date'),
+				'price['.$inspection_id.']' => form_error('price'),
+				'end_date['.$inspection_id.']' => form_error('end_date')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+		// end of validation
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+		 $sql = "
+			UPDATE `inspection` set
+				`add_date` = " . $this->load->db_value($add_date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`end_date` = " . $this->load->db_value($end_date) . ",
+				`price` = " . $this->load->db_value($price) . "
+			WHERE `id` = " . $this->load->db_value($inspection_id) . "	
+		";
+
+
+
+		$result = $this->db->query($sql);
+
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = $inspection_id;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = lang('error');

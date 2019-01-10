@@ -55,6 +55,10 @@
 		height: 37px !important;
 		margin-top: -1px;
 	}
+
+	.mt_custom-1 {
+		margin-top: .05rem !important;
+	}
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -169,7 +173,15 @@
 						<label class="pl-3 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="" min="0" name="mileage" type="number"
-							   class="form-control form-control-sm col-sm-7" placeholder="<?= lang('running') ?>">
+							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
+						<select name="mileage_value" class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2"  data-size="5"><?
+							foreach ($value as $row) :
+								if ($row['type'] == 1) :?>
+									<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<?
+								endif;
+							endforeach; ?>
+						</select>
 					</div>
 <!--					<div class="row" style="margin-top: .6rem;">-->
 <!--						<label class="pl-3 col-form-label col-sm-4"-->
@@ -184,7 +196,7 @@
 				<div class="col-sm-3">
 					<div class="row">
 						<label class="pl-4 col-form-label col-sm-3"
-							   style="font-size: 15px;"><?= lang('color') ?></label>
+							   style="font-size: 15px;"><?= lang('color') ?> *</label>
 						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
 								data-size="5"
 								data-live-search="true" title="<?= lang('color') ?>">
@@ -202,7 +214,7 @@
 					</div>
 
 					<div class="row mt-2">
-						<label class="pl-4 col-form-label col-sm-3"><?= lang('attached') ?>*</label>
+						<label class="pl-4 col-form-label col-sm-3"><?= lang('attached') ?> *</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]" class="col  selectpicker form-control form-control-sm" id="staff"
 									multiple data-live-search="true" title="<?= lang('select_a_staff') ?>">

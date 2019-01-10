@@ -35,27 +35,50 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
+							<span style="display: none"><?= $row['brand_model'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
+							<input class="form-control text-center" title="" type="date" disabled name="fuel_date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
+							<span style="display: none"><?= $row['add_date'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['user_name'] ?>
+							<input title="" disabled type="text" name="user[<?= $row['id'] ?>]" value="<?= $row['user_name'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['user_name'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['staff_name'] ?>
+							<select disabled class="form-control selectpicker" data-size="5" name="fuel_staff_id[<?= $row['id'] ?>]" title="<?=lang('driver')?>">
+								<? foreach ($this->load->get_drivers($row['fleet_id']) as $st) { ?>
+									<option <?= ($row['staff_id'] == $st['id'] ? 'selected' : '') ?>  value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
+								<? } ?>
+							</select>
+							<span style="display: none"><?= $row['staff_name'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['count_liter'] ?>
+							<input disabled title="" type="number" min="0" name="fuel_count_liter[<?= $row['id'] ?>]" value="<?= $row['count_liter'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['count_liter'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['one_liter_price'] ?>
+							<input disabled title="" type="number" min="0" name="fuel_one_liter_price[<?= $row['id'] ?>]" value="<?= $row['one_liter_price'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['one_liter_price'] ?></span>
 						</td>
 						<td class="border">
-							<?= $row['price'] ?>
+							<input disabled title="" type="number" min="0" name="fuel_price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
+								   class="form-control text-center"/>
+							<span style="display: none"><?= $row['price'] ?></span>
 						</td>
-						<td class="border"></td>
+						<td class="border">
+							<span
+								id="edit_fuel"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
+						</td>
 					</tr>
 
 					<?
@@ -476,6 +499,134 @@
 		});
 
 	}
+
+
+		//edit
+		$(document).on('click', '#edit_fuel', function() {
+			var id = $(this).data('id');
+			$('input[name="fuel_date['+id+']"]').prop('disabled', false);
+			$('select[name="fuel_staff_id['+id+']"]').prop('disabled', false);
+			$('select[name="fuel_staff_id['+id+']"]').parent('div').children('button').removeClass('disabled');
+			$('input[name="fuel_one_liter_price['+id+']"]').prop('disabled', false);
+			$('input[name="fuel_count_liter['+id+']"]').prop('disabled', false);
+			$('input[name="fuel_price['+id+']"]').prop('disabled', false);
+
+			$(this).parent('td').html('<button\n' +
+				'\t\t\t\t\tdata-id="'+id+'"\n' +
+				'\t\t\t\t\tid="edit_fuel_btn"\n' +
+				'\t\t\t\t\tstyle="min-width: 94px;\n' +
+				'\t\t\t\t\tfont-size: 14px !important;\n' +
+				'\t\t\t\t\tline-height: 14px !important;\n' +
+				'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+				'\t\t\t\t\tfont-weight: 500 !important;\n' +
+				'\t\t\t\t\tmargin-top: -4px;\n' +
+				'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+		});
+
+
+
+		$(document).on('keyup', 'input[name^="fuel_count_liter["]', function () {
+			var id = $(this).parent('td').parent('tr').find('button#edit_fuel_btn').data('id');
+			var count = $(this).val();
+			var one_liter_price = $('input[name="fuel_one_liter_price['+id+']"]').val();
+
+			sum =  parseFloat(count) * parseFloat(one_liter_price);
+
+			$('input[name="fuel_price['+id+']"]').val(sum);
+
+		});
+
+		$(document).on('keyup', 'input[name^="fuel_one_liter_price["]', function () {
+			var id = $(this).parent('td').parent('tr').find('button#edit_fuel_btn').data('id');
+			var count = $('input[name="fuel_count_liter['+id+']"]').val();
+			var one_liter_price = $(this).val();
+			sum =  parseFloat(count) * parseFloat(one_liter_price);
+
+			$('input[name="fuel_price['+id+']"]').val(sum);
+
+		});
+
+
+		$(document).on('click', '#edit_fuel_btn', function (e) {
+			var td = $(this).parent('td');
+			var id = $(this).data('id');
+
+			var fuel_add_date = $('input[name="fuel_date['+id+']"]').val();
+			var fuel_staff_id = $('select[name="fuel_staff_id['+id+']"]').val();
+			var fuel_one_liter_price = $('input[name="fuel_one_liter_price['+id+']"]').val();
+			var fuel_count_liter = $('input[name="fuel_count_liter['+id+']"]').val();
+			var fuel_price = $('input[name="fuel_price['+id+']"]').val();
+
+			var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_fuel_ax') ?>';
+			var me = $(this);
+			e.preventDefault();
+
+			if (me.data('requestRunning')) {
+				return;
+			}
+
+			me.data('requestRunning', true);
+
+			$('input').removeClass('border border-danger');
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: {fuel_id: id, fuel_add_date: fuel_add_date, fuel_staff_id: fuel_staff_id, fuel_one_liter_price: fuel_one_liter_price, fuel_count_liter: fuel_count_liter, fuel_price: fuel_price},
+				success: function (data) {
+					if (data.success == '1') {
+
+						td.html('<span\n'+
+							'\t\t\t\t\t\t\t\tid="edit_fuel"\n'+
+							'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+							'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+							'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+							'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+							'\t\t\t\t\t\t\t</span>');
+
+						$('input[name="fuel_date['+id+']"]').prop('disabled', true);
+						$('select[name="fuel_staff_id['+id+']"]').prop('disabled', true);
+						$('select[name="fuel_staff_id['+id+']"]').parent('div').children('button').addClass('disabled');
+						$('input[name="fuel_one_liter_price['+id+']"]').prop('disabled', true);
+						$('input[name="fuel_count_liter['+id+']"]').prop('disabled', true);
+						$('input[name="fuel_price['+id+']"]').prop('disabled', true);
+
+
+					} else {
+
+						if ($.isArray(data.error.elements)) {
+							// loading('stop', 'inspection');
+							errors = '';
+							tmp = '';
+							$.each(data.error.elements, function (index) {
+								$.each(data.error.elements[index], function (index, value) {
+									if (value != '') {
+										$('input[name="' + index + '"]').addClass('border border-danger');
+
+										if (value != tmp) {
+											errors += value;
+										}
+										tmp = value;
+
+									} else {
+										$('input[name="' + index + '"]').removeClass('border border-danger');
+									}
+								});
+							});
+						} else {
+							alert();
+						}
+					}
+				},
+				error: function (jqXHR, textStatus) {
+					console.log('ERRORS: ' + textStatus);
+					// loading('stop', 'inspection');
+				},
+				complete: function () {
+					me.data('requestRunning', false);
+				}
+			});
+		});
 </script>
 
 

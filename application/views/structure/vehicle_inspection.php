@@ -34,25 +34,25 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<input class="form-control text-center" title="" type="text" readonly name="vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
+							<input class="form-control text-center" title="" type="text" disabled name="vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
 							<span style="display: none"><?= $row['brand_model'] ?></span>
 						</td>
 						<td class="border">
-							<input class="form-control text-center" title="" type="date" readonly name="date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
+							<input class="form-control text-center" title="" type="date" disabled name="date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
 							<span style="display: none"><?= $row['add_date'] ?></span>
 						</td>
 						<td class="border">
-							<input title="" readonly type="text" name="user[<?= $row['id'] ?>]" value="<?= $row['user_name'] ?>"
+							<input title="" disabled type="text" name="user[<?= $row['id'] ?>]" value="<?= $row['user_name'] ?>"
 								   class="form-control text-center"/>
 							<span style="display: none"><?= $row['user_name'] ?></span>
 						</td>
 						<td class="border">
-							<input title="" readonly type="date" name="end_date[<?= $row['id'] ?>]" max="3000-12-31" min="1000-01-01"
+							<input title="" disabled type="date" name="end_date[<?= $row['id'] ?>]" max="3000-12-31" min="1000-01-01"
 								   class="form-control text-center" value="<?= $row['end_date']?>" />
 							<span style="display: none"><?= $row['end_date'] ?></span>
 						</td>
 						<td class="border">
-							<input title="" readonly type="number" min="0" name="price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
+							<input title="" disabled type="number" min="0" name="price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
 								   class="form-control text-center"/>
 							<span style="display: none"><?= $row['price'] ?></span>
 						</td>
@@ -336,9 +336,9 @@
 	//edit
 	$(document).on('click', '#edit', function() {
 		var id = $(this).data('id');
-		$('input[name="date['+id+']"]').prop('readonly', false);
-		$('input[name="end_date['+id+']"]').prop('readonly', false);
-		$('input[name="price['+id+']"]').prop('readonly', false);
+		$('input[name="date['+id+']"]').prop('disabled', false);
+		$('input[name="end_date['+id+']"]').prop('disabled', false);
+		$('input[name="price['+id+']"]').prop('disabled', false);
 		$(this).parent('td').html('<button\n' +
 			'\t\t\t\t\tdata-id="'+id+'"\n' +
 			'\t\t\t\t\tid="edit_btn"\n' +
@@ -387,9 +387,9 @@
 						'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
 						'\t\t\t\t\t\t\t</span>');
 
-					$('input[name="date['+id+']"]').prop('readonly', true);
-					$('input[name="end_date['+id+']"]').prop('readonly', true);
-					$('input[name="price['+id+']"]').prop('readonly', true);
+					$('input[name="date['+id+']"]').prop('disabled', true);
+					$('input[name="end_date['+id+']"]').prop('disabled', true);
+					$('input[name="price['+id+']"]').prop('disabled', true);
 
 
 				} else {

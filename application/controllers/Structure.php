@@ -1810,6 +1810,99 @@ class Structure extends MX_Controller {
 		return true;
 	}
 
+	public function edit_fuel_ax() {
+
+		//$this->load->authorisation('Structure', 'fuel');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$this->form_validation->set_rules('fuel_add_date', 'fuel_add_date', 'required');
+		$this->form_validation->set_rules('fuel_price', 'fuel_price', 'required');
+		$this->form_validation->set_rules('fuel_one_liter_price', 'fuel_one_liter_price', 'required');
+		$this->form_validation->set_rules('fuel_count_liter', 'fuel_count_liter', 'required');
+		$this->form_validation->set_rules('fuel_staff_id', 'fuel_fuel_staff_id', 'required');
+
+		$fuel_id = $this->input->post('fuel_id');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'fuel_add_date['.$fuel_id.']' => form_error('fuel_add_date'),
+				'fuel_price['.$fuel_id.']' => form_error('fuel_price'),
+				'fuel_one_liter_price['.$fuel_id.']' => form_error('fuel_one_liter_price'),
+				'fuel_count_liter['.$fuel_id.']' => form_error('fuel_count_liter'),
+				'fuel_staff_id['.$fuel_id.']' => form_error('fuel_staff_id')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+		// end of validation
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+		$price = $this->input->post('fuel_price');
+		$one_liter_price = $this->input->post('fuel_one_liter_price');
+		$count_liter = $this->input->post('fuel_count_liter');
+		$staff_id = $this->input->post('fuel_staff_id');
+		$date = $this->input->post('fuel_add_date');
+
+
+
+		$sql = "
+			UPDATE `fuel_consumption` SET
+				`add_date`  = " . $this->load->db_value($date) . ",
+				`add_user_id`  = " . $this->load->db_value($user_id) . ",
+				`staff_id`  = " . $this->load->db_value($staff_id) . ",
+				`count_liter`  = " . $this->load->db_value($count_liter) . ",
+				`one_liter_price`  = " . $this->load->db_value($one_liter_price) . ",
+				`price`  = " . $this->load->db_value($price) . "
+			WHERE `id` = " . $this->load->db_value($fuel_id) . "
+		";
+
+
+
+		$result = $this->db->query($sql);
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = $fuel_id;
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
 
 	public function vehicle_fine() {
 

@@ -75,8 +75,8 @@ $folder = $this->session->folder;
 						$staff_id = $row['staff_id'];
 						?>
 
-						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32.4%;">
-						<div class="row bg-white">
+						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32%;">
+						<div class="row bg-white" style="position:relative;">
 							<div class=" p-2 mt-1 w-auto" style="min-width: 47%">
 								<p class="text-black small driver_info"><?= lang('brand') ?>: <span
 										class="text-black ml-2"><?= $row['brand'] ?></span></p>
@@ -127,7 +127,7 @@ $folder = $this->session->folder;
 							</div>
 
 							<div class="text-center "
-								 style="background: #c3c3c3; min-width: 6%; position:relative;">
+								 style="background: #c3c3c3; min-width: 6%; position:absolute; right: 0;height: 100%;">
 								<img class="open_menu" style="width: 23px;" src="<?= base_url('assets/img/car.svg') ?>"
 									 alt="" title=""/>
 								<i style="display: block;margin-top: -5px;"

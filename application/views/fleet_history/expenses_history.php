@@ -209,6 +209,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 			console.log(table);
 
+			$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+			$('.buttons-colvis span').text('');
+			$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+
 			table.buttons().container()
 				.appendTo('#example_wrapper #example_filter:eq(0)');
 			$('.dt-buttons').css('float', 'left');

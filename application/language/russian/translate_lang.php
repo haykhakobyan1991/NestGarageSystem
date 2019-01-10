@@ -397,5 +397,5 @@ $lang['email_not_unique'] = 'Электронная почта не уникал
 $lang['password_not_match'] = 'Пароли не совпадают';
 $lang['health_insurance'] = 'Медицинское страхование';
 
-
+$lang['column_visibility'] = 'Видимые поля';
 

@@ -396,4 +396,6 @@ $lang['email_not_unique'] = 'Էլ․ հասցեն կրկնվում է';
 $lang['password_not_match'] = 'Գաղտնաբառերը չեն համապատասխանում';
 $lang['health_insurance'] = 'Առողջապահության ապահովագրություն';
 
+$lang['column_visibility'] = 'Տեսանելի Դաշտեր';
+
 

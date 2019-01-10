@@ -346,6 +346,10 @@
 
 		table.order([0, 'asc']).draw();
 
+		$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+		$('.buttons-colvis span').text('');
+		$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+
 		table.buttons().container()
 			.appendTo( '#ex_8_wrapper #ex_8_filter:eq(0)' );
 

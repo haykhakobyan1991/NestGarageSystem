@@ -160,35 +160,35 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			   role="tab" aria-controls="nav-7"
 			   aria-selected="false"><?=lang('repair')?></a>
 
-			<a class="nav-item nav-link tab_nav"
-			   data-tab="8" id="nav-8-tab"
-			   data-toggle="tab" href="#nav-8"
-			   role="tab" aria-controls="nav-8"
-			   aria-selected="false"><?=lang('wheel')?></a>
+<!--			<a class="nav-item nav-link tab_nav"-->
+<!--			   data-tab="8" id="nav-8-tab"-->
+<!--			   data-toggle="tab" href="#nav-8"-->
+<!--			   role="tab" aria-controls="nav-8"-->
+<!--			   aria-selected="false">--><?//=lang('wheel')?><!--</a>-->
 
-			<a class="nav-item nav-link tab_nav"
-			   data-tab="9" id="nav-9-tab"
-			   data-toggle="tab" href="#nav-9"
-			   role="tab" aria-controls="nav-9"
-			   aria-selected="false"><?=lang('brake')?></a>
+<!--			<a class="nav-item nav-link tab_nav"-->
+<!--			   data-tab="9" id="nav-9-tab"-->
+<!--			   data-toggle="tab" href="#nav-9"-->
+<!--			   role="tab" aria-controls="nav-9"-->
+<!--			   aria-selected="false">--><?//=lang('brake')?><!--</a>-->
 
-			<a class="nav-item nav-link tab_nav"
-			   data-tab="10" id="nav-10-tab"
-			   data-toggle="tab" href="#nav-10"
-			   role="tab" aria-controls="nav-10"
-			   aria-selected="false"><?=lang('grease')?></a>
+<!--			<a class="nav-item nav-link tab_nav"-->
+<!--			   data-tab="10" id="nav-10-tab"-->
+<!--			   data-toggle="tab" href="#nav-10"-->
+<!--			   role="tab" aria-controls="nav-10"-->
+<!--			   aria-selected="false">--><?//=lang('grease')?><!--</a>-->
 
-			<a class="nav-item nav-link tab_nav"
-			   data-tab="11" id="nav-11-tab"
-			   data-toggle="tab" href="#nav-11"
-			   role="tab" aria-controls="nav-11"
-			   aria-selected="false"><?=lang('filter')?></a>
+<!--			<a class="nav-item nav-link tab_nav"-->
+<!--			   data-tab="11" id="nav-11-tab"-->
+<!--			   data-toggle="tab" href="#nav-11"-->
+<!--			   role="tab" aria-controls="nav-11"-->
+<!--			   aria-selected="false">--><?//=lang('filter')?><!--</a>-->
 
-			<a class="nav-item nav-link tab_nav"
-			   data-tab="12" id="nav-12-tab"
-			   data-toggle="tab" href="#nav-12"
-			   role="tab" aria-controls="nav-12"
-			   aria-selected="false"><?=lang('battery')?></a>
+<!--			<a class="nav-item nav-link tab_nav"-->
+<!--			   data-tab="12" id="nav-12-tab"-->
+<!--			   data-toggle="tab" href="#nav-12"-->
+<!--			   role="tab" aria-controls="nav-12"-->
+<!--			   aria-selected="false">--><?//=lang('battery')?><!--</a>-->
 
 		</div>
 	</nav>

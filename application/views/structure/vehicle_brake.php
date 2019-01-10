@@ -481,7 +481,7 @@
 			$('.pos_abs_div').animate({
 				bottom: "-=60"
 			}, function () {
-				location.reload();
+
 			})
 	});
 

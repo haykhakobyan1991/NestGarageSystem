@@ -18,7 +18,7 @@
 	}
 
 	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 87px;
+		margin-left: 80px;
 	}
 
 	i {

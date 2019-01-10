@@ -198,12 +198,9 @@ endforeach;
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label
-															class="col-sm-4 col-form-label"><?= lang('position') ?></label>
+														<label class="col-sm-4 col-form-label"><?= lang('position') ?></label>
 														<div id="default-suggestions"  class="col-sm-8">
-															<input type="text" class="typeahead form-control form-control-sm"
-																   name="position"
-																   placeholder="<?= lang('position') ?>">
+															<input type="text" class="typeahead form-control form-control-sm" name="position" placeholder="<?= lang('position') ?>">
 															<input type="hidden" name="head">
 														</div>
 													</div>
@@ -211,9 +208,7 @@ endforeach;
 														<label
 															class="col-sm-4 col-form-label"><?= lang('nest_card_id') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="nest_card_id"
-																   placeholder="<?= lang('nest_card_id') ?>">
+															<input type="text" class="form-control form-control-sm" name="nest_card_id" placeholder="<?= lang('nest_card_id') ?>">
 														</div>
 													</div>
 												</div>
@@ -231,46 +226,35 @@ endforeach;
 																<option value=""><?= lang('select_country') ?>...
 																</option>
 																<? foreach ($country as $row) : ?>
-																	<option
-																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+																	<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 																<? endforeach; ?>
 															</select>
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label
-															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('address') ?></label>
+														<label class="col-sm-4 col-form-label" style="font-size: 15px;"><?= lang('address') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="address"
-																   placeholder="<?= lang('address') ?>">
+															<input type="text" class="form-control form-control-sm" name="address" placeholder="<?= lang('address') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('post_code') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="post_code"
-																   placeholder="<?= lang('post_code') ?>">
+															<input type="text" class="form-control form-control-sm" name="post_code" placeholder="<?= lang('post_code') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label class="col-sm-4 col-form-label"
 															   style="font-size: 15px;"><?= lang('contact_number') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="contact_1"
-																   placeholder="<?= lang('contact_number') ?> 1">
+															<input type="text" class="form-control form-control-sm" name="contact_1" placeholder="<?= lang('contact_number') ?> 1">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label class="col-sm-4 col-form-label"></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="contact_2"
-																   placeholder="<?= lang('contact_number') ?> 2">
+															<input type="text" class="form-control form-control-sm" name="contact_2" placeholder="<?= lang('contact_number') ?> 2">
 														</div>
 													</div>
 
@@ -319,10 +303,7 @@ endforeach;
     border-color: #ced4da !important;"
 																					  class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_1" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input class="btn_input" name="file_1" type="file" hidden style="display: none;" value="">
 																				</label>
 																			</div>
 																		</div>
@@ -330,27 +311,17 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text"
-																					   name="reference_1"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('reference') ?>">
+																				<input type="text" name="reference_1" class="form-control form-control-sm" placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_1"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-
-																				   class="form-control form-control-sm">
+																			<input type="date" name="expiration_1" max="3000-12-31" min="1000-01-01" class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('note') ?></label>
-																				<input type="text"
-																					   name="note_1"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('note') ?>">
+																				<input type="text" name="note_1" class="form-control form-control-sm" placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -390,10 +361,7 @@ endforeach;
     border-color: #ced4da !important;"
 																					  class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_2" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input class="btn_input" name="file_2" type="file" hidden style="display: none;" value="">
 																				</label>
 																			</div>
 																		</div>

@@ -683,7 +683,14 @@ class Fleet_history extends MX_Controller {
 
 		}
 
-		$table .= '</tbody></table>';
+		$table .= '</tbody>
+		<tfoot>
+            <tr role="row" class="odd">
+                <th class="font-weight-bold border" colspan="3" style="text-align:left !important;">'.lang('total').'</th>
+                <th class="font-weight-bold border"></th>
+            </tr>
+        </tfoot>
+		</table>';
 
 
 		$data['data'] = $this->get_unique_associate_array($data['data']);

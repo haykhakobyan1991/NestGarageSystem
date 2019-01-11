@@ -25,6 +25,7 @@
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
 
+
 	<!-- Some CSS Start-->
 	<style>
 
@@ -258,14 +259,14 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
 											</button>
 										</a>
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?>">
-											<button type="button"
-													style="width: 40px;height: 40px;padding: 0 !important;"
-													class="m-1 btn btn-outline-secondary <?= ($page == 'structure3' ? 'active' : '') ?>"
-													style="">
-												<img width="20" src="<?= base_url('assets/images/trees3.svg') ?>">
-											</button>
-										</a>
+<!--										<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?><!--">-->
+<!--											<button type="button"-->
+<!--													style="width: 40px;height: 40px;padding: 0 !important;"-->
+<!--													class="m-1 btn btn-outline-secondary --><?//= ($page == 'structure3' ? 'active' : '') ?><!--"-->
+<!--													style="">-->
+<!--												<img width="20" src="--><?//= base_url('assets/images/trees3.svg') ?><!--">-->
+<!--											</button>-->
+<!--										</a>-->
 
 										</div><?
 									}
@@ -278,7 +279,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							if ($page == 'structure1') {
 								?>
 								<div class="row btn-group mt-2 mt-md-2"
-									 style="right: 170px;z-index: 999;position: absolute;top: 77px;">
+									 style="right: 130px;z-index: 999;position: absolute;top: 77px;">
 									<input class="form-control col-7" type="search" id="mySearch"
 										   onkeypress="if (event.keyCode === 13) searchDiagram()">
 									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2"

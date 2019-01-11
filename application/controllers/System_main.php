@@ -12,6 +12,20 @@ class System_main extends CI_Controller {
 
         parent::__construct();
 
+		// load the library
+		$this->load->library('layout');
+
+		// load the helper
+		$this->load->helper('language');
+
+		$lng = $this->load->lng();
+
+		$language = $this->load->get_language($lng);
+
+		$this->config->set_item('language', $language);
+
+		$this->load->load_lang('translate', $lng);
+
     }
 
 
@@ -152,6 +166,8 @@ class System_main extends CI_Controller {
 
 	public function reference () {
 
+		$this->load->helper('language');
+
 		// Include the main TCPDF library (search for installation path).
 		require_once realpath('application/libraries/pdf.php');
 
@@ -199,17 +215,24 @@ class System_main extends CI_Controller {
 
 		//print_r($_REQUEST);
 
+		$sql = "SELECT `country`.`title_".$this->load->lng()."` AS `country` FROM `country` WHERE `country`.`id` = '".$this->input->post('legal_country')."'";
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+		$country = $row['country'];
+
+		$city = $this->input->post('legal_city');
+		$zip_code = $this->input->post('legal_zip_code');
+		$address = $this->input->post('legal_address');
+
 
 		$logo = $this->input->post('u_logo');
-		$address = 'RA, Yerevan, 0022, Avan Arindj, 1 microreg., 2/13b., App. 17'; // ?
+		$address = $country.','.$city.', '.$zip_code.' '.$address;
 		$phone = $this->input->post('phone_number');
 		$web_page = $this->input->post('web_address');
 		$email = $this->input->post('email');
 		$ITN = $this->input->post('tin');
 		$Director = $this->input->post('owner_firstname').' '.$this->input->post('owner_lastname');
-		$BeneficiaryBank = 'Ameria Bank CJSC'; //?
-		$Address_1 = '9 G. Lusavorich str., Yerevan, 0015, RA'; //?
-		$SwiftCode = 'ARMIAM22'; //?
+
 
 		$Account_type_1 = $this->input->post('account_name_1');
 		$Account_number_1 = $this->input->post('account_number_1');
@@ -229,12 +252,18 @@ class System_main extends CI_Controller {
 		$SwiftCode_3 = $this->input->post('correspondent_bank_3');
 		$Account_3 = $this->input->post('account_3');
 
+		$Account_type_4 = $this->input->post('account_name_4');
+		$Account_number_4 = $this->input->post('account_number_4');
+		$CorrespondentBank_4 = $this->input->post('correspondent_bank_4');
+		$SwiftCode_4 = $this->input->post('correspondent_bank_4');
+		$Account_4 = $this->input->post('account_4');
+
 		// create some HTML content
 		$html = '
 		<table>
 			<tr>
 				<td><img src="'.$logo.'" alt=""></td>
-				<td style="line-height: 80%;"><h1  align="center" style="color: #365f8f; "><br>Reference</h1></td>
+				<td style="line-height: 80%;"><h1  align="center" style="color: #365f8f; "><br>'.lang('Reference').'</h1></td>
 				<td></td>
 			</tr>
 			<tr>
@@ -244,32 +273,32 @@ class System_main extends CI_Controller {
 			</tr>
 			<br>
 			<tr>
-				<td>Address</td>
+				<td>'.lang('address').'</td>
 				<td >'.$address.'</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Tel.</td>
+				<td>'.lang('phone').'</td>
 				<td >'.$phone.'</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Web page</td>
+				<td>'.lang('Web_address').'</td>
 				<td >'.$web_page.'</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>E-mail</td>
+				<td>'.lang('email').'</td>
 				<td >'.$email.'</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>ITN</td>
+				<td>'.lang('tin').'</td>
 				<td >'.$ITN.'</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Director</td>
+				<td>'.lang('head').'</td>
 				<td >'.$Director.'</td>
 				<td></td>
 			</tr>
@@ -277,59 +306,35 @@ class System_main extends CI_Controller {
 			<tr>
 				<td colspan="3" style="line-height: 7%; background-color: #c7c7c7; "></td>
 			</tr>
-			<tr>
-				<br><td width="20%" style="color: #0f427a; " >Beneficiary bank</td>
-				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
-				<td></td>
-				<td width="40%" style="color: #0f427a; ">'.$BeneficiaryBank.'</td>
-			</tr>
-			<tr>
-				<td width="20%" >Address</td>
-				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
-				<td></td>
-				<td width="40%">'.$Address_1.'</td>
-			</tr>
-			<tr>
-				<td width="20%" >SWIFT code</td>
-				
-				<td align="center" width="10%" style="border-right: 1px solid #c7c7c7"></td>
-				<td></td>
-				<td width="40%" >'.$SwiftCode.'</td>
-			</tr>
-			<br>
-			<tr>
-				<td width="100%" colspan="3" style="line-height: 7%; background-color: #c7c7c7; "></td>
-			</tr>
+
 			<br>
 			
 			<tr>
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_1.'</td>
 			</tr>
+			
 			<tr>
-				<td width="20%" >'.($Account_number_1 != '' ? 'Account number' : '').'</td>
-				
+				<td width="30%" >'.($Account_number_1 != '' ? lang('account_number') : '').'</td>
 				<td align="center" width="10%" style="'.($Account_number_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td width="10%"></td>
 				<td width="40%" >'.$Account_number_1.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($Account_1 != '' ? 'Account' : '').'</td>
+				<td width="30%" >'.($Account_1 != '' ? lang('account') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($Account_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$Account_1.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($CorrespondentBank_1 != '' ? 'Correspondent bank' : '').'</td>
+				<td width="30%" >'.($CorrespondentBank_1 != '' ? lang('Correspondent_Bank') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($CorrespondentBank_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$CorrespondentBank_1.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($SwiftCode_1 != '' ? 'SWIFT code' : '').'</td>
+				<td width="30%" >'.($SwiftCode_1 != '' ? lang('swift_code') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($SwiftCode_1 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
@@ -342,28 +347,28 @@ class System_main extends CI_Controller {
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($Account_number_2 != '' ? 'Account number' : '').'</td>
+				<td width="20%" >'.($Account_number_2 != '' ? lang('account_number') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($Account_number_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'" ></td>
 				<td></td>
 				<td width="40%" >'.$Account_number_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($Account_2 != '' ? 'Account' : '').'</td>
+				<td width="20%" >'.($Account_2 != '' ?  lang('account') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($Account_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$Account_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($CorrespondentBank_2 != '' ? 'Correspondent bank' : '').'</td>
+				<td width="20%" >'.($CorrespondentBank_2 != '' ? lang('Correspondent_Bank') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($CorrespondentBank_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$CorrespondentBank_2.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($SwiftCode_2 != '' ? 'SWIFT code' : '').'</td>
+				<td width="20%" >'.($SwiftCode_2 != '' ? lang('swift_code') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($SwiftCode_2 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
@@ -376,32 +381,66 @@ class System_main extends CI_Controller {
 				<td width="40%" style="color: #0f427a; " >'.$Account_type_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($Account_number_3 != '' ? 'Account number' : '').'</td>
+				<td width="20%" >'.($Account_number_3 != '' ? lang('account_number') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($Account_number_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'" ></td>
 				<td></td>
 				<td width="40%" >'.$Account_number_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($CorrespondentBank_3 != '' ? 'Correspondent bank' : '').'</td>
+				<td width="20%" >'.($CorrespondentBank_3 != '' ?  lang('Correspondent_Bank') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($CorrespondentBank_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$CorrespondentBank_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($SwiftCode_3!= '' ? 'SWIFT code' : '').'</td>
+				<td width="20%" >'.($SwiftCode_3 != '' ? lang('swift_code') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($SwiftCode_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$SwiftCode_3.'</td>
 			</tr>
 			<tr>
-				<td width="20%" >'.($Account_3 != '' ? 'Account' : '').'</td>
+				<td width="20%" >'.($Account_3 != '' ? lang('account') : '').'</td>
 				
 				<td align="center" width="10%" style="'.($Account_3 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
 				<td></td>
 				<td width="40%" >'.$Account_3.'</td>
+			</tr>
+			
+			<br>
+			
+			<tr>
+				<td width="40%" style="color: #0f427a; " >'.$Account_type_4.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($Account_number_4 != '' ? lang('account_number') : '').'</td>
+				
+				<td align="center" width="10%" style="'.($Account_number_4 != '' ? 'border-right: 1px solid #c7c7c7' : '').'" ></td>
+				<td></td>
+				<td width="40%" >'.$Account_number_4.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($CorrespondentBank_4 != '' ?  lang('Correspondent_Bank') : '').'</td>
+				
+				<td align="center" width="10%" style="'.($CorrespondentBank_4 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$CorrespondentBank_4.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($SwiftCode_4 != '' ? lang('swift_code') : '').'</td>
+				
+				<td align="center" width="10%" style="'.($SwiftCode_4 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$SwiftCode_4.'</td>
+			</tr>
+			<tr>
+				<td width="20%" >'.($Account_4 != '' ? lang('account') : '').'</td>
+				
+				<td align="center" width="10%" style="'.($Account_4 != '' ? 'border-right: 1px solid #c7c7c7' : '').'"></td>
+				<td></td>
+				<td width="40%" >'.$Account_4.'</td>
 			</tr>
 			
 		</table>';

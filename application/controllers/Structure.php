@@ -2319,10 +2319,6 @@ class Structure extends MX_Controller {
 		return true;
 	}
 
-
-
-
-
 	public function vehicle_accident() {
 
 		$user_id = $this->session->user_id;
@@ -2497,11 +2493,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($replacement_parts[$i] == '') :
-						$n = 1;
-						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($replacement_parts[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 
 					if ($conclusion_number[$i] == '') :
@@ -2591,11 +2587,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($replacement_parts[$i] == '') :
-						$n = 1;
-						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($replacement_parts[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 
 					if ($conclusion_number[$i] == '') :
@@ -2662,6 +2658,108 @@ class Structure extends MX_Controller {
 		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function edit_accident_ax() {
+
+		//$this->load->authorisation('Structure', 'fuel');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$accident_id = $this->input->post('accident_id');
+
+		$this->form_validation->set_rules('accident_conclusion_number', 'accident_conclusion_number', 'required');
+		$this->form_validation->set_rules('accident_insurance_company', 'accident_insurance_company', 'required');
+//		$this->form_validation->set_rules('accident_replacement_parts', 'accident_replacement_parts', 'required');
+		$this->form_validation->set_rules('accident_return_amount', 'accident_return_amount', 'required');
+		$this->form_validation->set_rules('accident_staff_id', 'accident_staff_id', 'required');
+		$this->form_validation->set_rules('accident_add_date', 'accident_add_date', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'accident_conclusion_number['.$accident_id.']' => form_error('accident_conclusion_number'),
+				'accident_insurance_company['.$accident_id.']' => form_error('accident_insurance_company'),
+//				'accident_replacement_parts['.$accident_id.']' => form_error('accident_replacement_parts'),
+				'accident_return_amount['.$accident_id.']' => form_error('accident_return_amount'),
+				'accident_staff_id['.$accident_id.']' => form_error('accident_staff_id'),
+				'accident_add_date['.$accident_id.']' => form_error('accident_add_date')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+
+		// end of validation
+
+		$accident_conclusion_number = $this->input->post('accident_conclusion_number');
+		$accident_insurance_company = $this->input->post('accident_insurance_company');
+		$accident_replacement_parts = $this->input->post('accident_replacement_parts');
+		$accident_return_amount = $this->input->post('accident_return_amount');
+		$accident_staff_id = $this->input->post('accident_staff_id');
+		$accident_add_date = $this->input->post('accident_add_date');
+
+
+
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+		$sql = "
+			UPDATE `accident` SET
+				`add_date` = " . $this->load->db_value($accident_add_date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`insurance_company` = " . $this->load->db_value($accident_insurance_company) . ",
+				`staff_id` = " . $this->load->db_value($accident_staff_id) . ",
+				`conclusion_number` = " . $this->load->db_value($accident_conclusion_number) . ",
+				`replacement_parts` = " . $this->load->db_value($accident_replacement_parts) . ",
+				`return_amount` = " . $this->load->db_value($accident_return_amount) . "
+			WHERE `id` = " . $this->load->db_value($accident_id) . "
+		";
+
+
+		$result = $this->db->query($sql);
+
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = $accident_id;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = lang('error');
@@ -2764,6 +2862,7 @@ class Structure extends MX_Controller {
 				  `insurance`.`add_date`,
 				  `insurance`.`add_user_id`,
 				  `insurance`.`insurance_company`, 
+				  `insurance`.`insurance_type_id`,
 				  `insurance`.`end_date`,
 				  `insurance`.`price`,
 				  `insurance`.`fleet_id`, /**/
@@ -3021,6 +3120,115 @@ class Structure extends MX_Controller {
 	}
 
 
+	public function edit_insurance_ax() {
+
+		//$this->load->authorisation('Structure', 'insurance');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$insurance_id = $this->input->post('insurance_id');
+
+
+		$this->form_validation->set_rules('insurance_price', 'insurance_price', 'required');
+		$this->form_validation->set_rules('insurance_insurance_company', 'insurance_insurance_company', 'required');
+		$this->form_validation->set_rules('insurance_type_id', 'insurance_type_id', 'required');
+		$this->form_validation->set_rules('insurance_end_date', 'insurance_end_date', 'required');
+		$this->form_validation->set_rules('insurance_date', 'insurance_date', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'insurance_price['.$insurance_id.']' => form_error('insurance_price'),
+				'insurance_insurance_company['.$insurance_id.']' => form_error('insurance_insurance_company'),
+				'insurance_type_id['.$insurance_id.']' => form_error('insurance_type_id'),
+				'insurance_end_date['.$insurance_id.']' => form_error('insurance_end_date'),
+				'insurance_date['.$insurance_id.']' => form_error('insurance_date')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+		// end of validation
+
+
+		$price = $this->input->post('insurance_price');
+		$insurance_company = $this->input->post('insurance_insurance_company');
+		$insurance_type_id = $this->input->post('insurance_type_id');
+		$end_date = $this->input->post('insurance_end_date');
+		$date = $this->input->post('insurance_date');
+
+
+
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+
+
+
+		$sql = "
+			UPDATE `insurance` SET
+				`add_date` = " . $this->load->db_value($date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`insurance_company` = " . $this->load->db_value($insurance_company) . ",
+				`insurance_type_id` = " . $this->load->db_value($insurance_type_id) . ",
+				`end_date` = " . $this->load->db_value($end_date) . ",
+				`price` = " . $this->load->db_value($price) . "
+			WHERE `id` = " . $this->load->db_value($insurance_id) . "
+		";
+
+
+
+
+		$result = $this->db->query($sql);
+
+
+
+
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
 	public function vehicle_spares() {
 
 		$user_id = $this->session->user_id;
@@ -3197,11 +3405,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($whence[$i] == '') :
-						$n = 1;
-						$validation_errors = array('whence[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($whence[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($type[$i] == '') :
 						$n = 1;
@@ -3209,17 +3417,17 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($producer[$i] == '') :
-						$n = 1;
-						$validation_errors = array('producer[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
-
-					if ($model[$i] == '') :
-						$n = 1;
-						$validation_errors = array('model[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($producer[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
+//
+//					if ($model[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('model[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($depreciation[$i] == '') :
 						$n = 1;
@@ -3315,11 +3523,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($whence[$i] == '') :
-						$n = 1;
-						$validation_errors = array('whence[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($whence[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('whence[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($type[$i] == '') :
 						$n = 1;
@@ -3327,17 +3535,17 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($producer[$i] == '') :
-						$n = 1;
-						$validation_errors = array('producer[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
-
-					if ($model[$i] == '') :
-						$n = 1;
-						$validation_errors = array('model[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($producer[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('producer[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
+//
+//					if ($model[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('model[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($depreciation[$i] == '') :
 						$n = 1;
@@ -3415,6 +3623,115 @@ class Structure extends MX_Controller {
 		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function edit_spares_ax() {
+
+		//$this->load->authorisation('Structure', 'spares');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$spares_id = $this->input->post('spares_id');
+
+		$this->form_validation->set_rules('spares_price', 'spares_price', 'required');
+	//	$this->form_validation->set_rules('spares_whence', 'spares_whence', 'required');
+		$this->form_validation->set_rules('spares_type', 'spares_type', 'required');
+	//	$this->form_validation->set_rules('spares_producer', 'spares_producer', 'required');
+	//	$this->form_validation->set_rules('spares_model', 'spares_model', 'required');
+		$this->form_validation->set_rules('spares_depreciation', 'spares_depreciation', 'required');
+		$this->form_validation->set_rules('spares_count', 'spares_count', 'required');
+		$this->form_validation->set_rules('spares_one_price', 'spares_one_price', 'required');
+		$this->form_validation->set_rules('spares_date', 'spares_date', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'spares_price['.$spares_id.']' => form_error('spares_price'),
+			//	'spares_whence['.$spares_id.']' => form_error('spares_whence'),
+				'spares_type['.$spares_id.']' => form_error('spares_type'),
+			//	'spares_producer['.$spares_id.']' => form_error('spares_producer'),
+			//	'spares_model['.$spares_id.']' => form_error('spares_model'),
+				'spares_depreciation['.$spares_id.']' => form_error('spares_depreciation'),
+				'spares_count['.$spares_id.']' => form_error('spares_count'),
+				'spares_one_price['.$spares_id.']' => form_error('spares_one_price'),
+				'spares_date['.$spares_id.']' => form_error('spares_date')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		// end of validation
+
+		$spares_price = $this->input->post('spares_price');
+		$spares_whence = $this->input->post('spares_whence');
+		$spares_type = $this->input->post('spares_type');
+		$spares_producer = $this->input->post('spares_producer');
+		$spares_model = $this->input->post('spares_model');
+		$spares_depreciation = $this->input->post('spares_depreciation');
+		$spares_count = $this->input->post('spares_count');
+		$spares_one_price = $this->input->post('spares_one_price');
+		$spares_date = $this->input->post('spares_date');
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$sql = "
+			UPDATE `spares` SET
+				`add_date` = " . $this->load->db_value($spares_date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`whence` = " . $this->load->db_value($spares_whence) . ",
+				`type` = " . $this->load->db_value($spares_type) . ",
+				`producer` = " . $this->load->db_value($spares_producer) . ",
+				`model` = " . $this->load->db_value($spares_model) . ",
+			    `depreciation` =	" . $this->load->db_value($spares_depreciation) . ",
+				`count` = " . $this->load->db_value($spares_count) . ",
+				`one_price` = " . $this->load->db_value($spares_one_price) . ",
+				`price` = " . $this->load->db_value($spares_price) . "
+			WHERE `id` = " . $this->load->db_value($spares_id) . "
+		";
+
+		$result = $this->db->query($sql);
+
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = $spares_id;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = lang('error');
@@ -3594,11 +3911,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($repairer[$i] == '') :
-						$n = 1;
-						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($repairer[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($necessary_parts[$i] == '') :
 						$n = 1;
@@ -3675,11 +3992,11 @@ class Structure extends MX_Controller {
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-					if ($repairer[$i] == '') :
-						$n = 1;
-						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
-						$messages['error']['elements'][] = $validation_errors;
-					endif;
+//					if ($repairer[$i] == '') :
+//						$n = 1;
+//						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
+//						$messages['error']['elements'][] = $validation_errors;
+//					endif;
 
 					if ($necessary_parts[$i] == '') :
 						$n = 1;
@@ -3739,6 +4056,97 @@ class Structure extends MX_Controller {
 
 
 		}
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function edit_repair_ax() {
+
+		//$this->load->authorisation('Structure', 'spares');
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+		// validation
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('', '');
+
+		$repair_id = $this->input->post('repair_id');
+
+		$this->form_validation->set_rules('repair_price', 'repair_price', 'required');
+		//$this->form_validation->set_rules('repair_repairer', 'repair_repairer', 'required');
+		$this->form_validation->set_rules('repair_necessary_parts', 'repair_necessary_parts', 'required');
+		$this->form_validation->set_rules('repair_date', 'repair_date', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'repair_price['.$repair_id.']' => form_error('repair_price'),
+			//	'repair_repairer['.$repair_id.']' => form_error('repair_repairer'),
+				'repair_necessary_parts['.$repair_id.']' => form_error('repair_necessary_parts'),
+				'repair_date['.$repair_id.']' => form_error('repair_date')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		// end of validation
+
+
+		$repair_price = $this->input->post('repair_price');
+		$repair_repairer = $this->input->post('repair_repairer');
+		$repair_necessary_parts = $this->input->post('repair_necessary_parts');
+		$repair_date = $this->input->post('repair_date');
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$sql = "
+			UPDATE `repair` SET 
+				`add_date` = " . $this->load->db_value($repair_date) . ",
+				`add_user_id` = " . $this->load->db_value($user_id) . ",
+				`repairer` = " . $this->load->db_value($repair_repairer) . ",
+				`necessary_parts` = " . $this->load->db_value($repair_necessary_parts) . ",
+				`price` = " . $this->load->db_value($repair_price) . "
+			WHERE `id` = " . $this->load->db_value($repair_id) . "
+		";
+
+
+
+		$result = $this->db->query($sql);
+
 		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');

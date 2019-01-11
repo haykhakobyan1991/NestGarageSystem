@@ -52,7 +52,7 @@
 							<span style="display: none"><?= $row['end_date'] ?></span>
 						</td>
 						<td class="border">
-							<input title="" disabled type="number" min="0" name="price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
+							<input title="" disabled type="number" min="0" name="inspection_price[<?= $row['id'] ?>]" value="<?= $row['price'] ?>"
 								   class="form-control text-center"/>
 							<span style="display: none"><?= $row['price'] ?></span>
 						</td>
@@ -97,8 +97,23 @@
 				</td>
 				<td class="border"></td>
 			</tr>
+			<tr>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="4"><?=lang('total')?></td>
+				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
+			</tr>
 			</tfoot>
-			<? } ?>
+			<? } else {
+				echo '
+				<tfoot>
+					<tr>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="4">'.lang('total').'</td>
+						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				';
+			}?>
 
 		</table>
 	</div>
@@ -342,7 +357,7 @@
 		var id = $(this).data('id');
 		$('input[name="date['+id+']"]').prop('disabled', false);
 		$('input[name="end_date['+id+']"]').prop('disabled', false);
-		$('input[name="price['+id+']"]').prop('disabled', false);
+		$('input[name="inspection_price['+id+']"]').prop('disabled', false);
 		$(this).parent('td').html('<button\n' +
 			'\t\t\t\t\tdata-id="'+id+'"\n' +
 			'\t\t\t\t\tid="edit_btn"\n' +
@@ -362,7 +377,7 @@
 
 		var add_date = $('input[name="date['+id+']"]').val();
 		var end_date = $('input[name="end_date['+id+']"]').val();
-		var price = $('input[name="price['+id+']"]').val();
+		var price = $('input[name="inspection_price['+id+']"]').val();
 
 		var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_inspection_ax') ?>';
 		var me = $(this);
@@ -393,7 +408,7 @@
 
 					$('input[name="date['+id+']"]').prop('disabled', true);
 					$('input[name="end_date['+id+']"]').prop('disabled', true);
-					$('input[name="price['+id+']"]').prop('disabled', true);
+					$('input[name="inspection_price['+id+']"]').prop('disabled', true);
 
 
 				} else {
@@ -431,6 +446,16 @@
 			}
 		});
 	});
+
+	var sum = 0;
+	$('input[name^="inspection_price"]').each(function () {
+		sum += parseInt($(this).val());
+		console.log($(this).val());
+	})
+
+	$('td#sum').html(sum)
+
+	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
 
 

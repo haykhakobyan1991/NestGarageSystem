@@ -38,36 +38,61 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="spares_vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
+							<input class="form-control text-center" title="" type="date" disabled name="spares_date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
 						</td>
 						<td class="border">
-							<?= $row['whence'] ?>
+							<input value="<?= $row['whence'] ?>" disabled
+								   title="" type="text" name="spares_whence[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
+						</td>
+						<td class="border" style="min-width: 200px;">
+							<input value="<?= $row['type'] ?>" disabled
+								   title="" type="text" name="spares_type[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['type'] ?>
+							<input value="<?= $row['producer'] ?>" disabled
+								   title="" type="text" name="spares_producer[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['producer'] ?>
+							<input value="<?= $row['model'] ?>" disabled
+								   title="" type="text" name="spares_model[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['model'] ?>
+							<select disabled class="form-control selectpicker" data-size="5" name="spares_depreciation[<?= $row['id'] ?>]" title="<?=lang('new_used')?>">
+								<option <?=($row['depreciation'] == 1 ? 'selected' : '')?> value="1"><?=lang('new')?></option>
+								<option <?=($row['depreciation'] == 2 ? 'selected' : '')?> value="2"><?=lang('used')?></option>
+							</select>
 						</td>
 						<td class="border">
-							<?=($row['depreciation'] == 1 ? lang('new') : lang('used'))?>
+							<input value="<?= $row['count'] ?>" disabled
+								   title="" type="number" min="0" name="spares_count[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['count'] ?>
+							<input value="<?= $row['one_price'] ?>" disabled
+								   title="" type="number" min="0" name="spares_one_price[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['one_price'] ?>
+							<input value="<?= $row['price'] ?>" disabled
+								   title="" type="number" min="0" name="spares_price[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<?= $row['price'] ?>
+							<span
+								id="edit_spares"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
 						</td>
-						<td class="border"></td>
 					</tr>
 
 					<?
@@ -106,7 +131,7 @@
 				<td class="border">
 					<select class="form-control selectpicker" data-size="5" name="depreciation[1]" title="<?=lang('new_used')?>">
 							<option value="1"><?=lang('new')?></option>
-							<option value="2>"><?=lang('used')?></option>
+							<option value="2"><?=lang('used')?></option>
 					</select>
 				</td>
 				<td class="border">
@@ -123,8 +148,23 @@
 				</td>
 				<td class="border"></td>
 			</tr>
+			<tr>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="9"><?=lang('total')?></td>
+				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
+			</tr>
 			</tfoot>
-			<? } ?>
+			<? } else {
+				echo '
+				<tfoot>
+					<tr>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="9">'.lang('total').'</td>
+						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				';
+			}?>
 
 		</table>
 	</div>
@@ -317,6 +357,13 @@
 					filename: 'excel_file',
 					footer: true,
 					exportOptions: {
+						format: {
+							body: function ( data, row, column, node ) {
+								// Strip $ from salary column to make it numeric
+								return column === 6 ?
+									$(data).find("option:selected").text() : $(data).val()
+							}
+						},
 						columns: ':visible'
 					}
 				},
@@ -543,6 +590,169 @@
 		});
 
 	}
+
+
+		//edit
+		$(document).on('click', '#edit_spares', function() {
+			var id = $(this).data('id');
+
+			$('input[name="spares_date['+id+']"]').prop('disabled', false);
+			$('select[name="spares_depreciation['+id+']"]').prop('disabled', false);
+			$('select[name="spares_depreciation['+id+']"]').parent('div').children('button').removeClass('disabled');
+			$('input[name="spares_whence['+id+']"]').prop('disabled', false);
+			$('input[name="spares_type['+id+']"]').prop('disabled', false);
+			$('input[name="spares_producer['+id+']"]').prop('disabled', false);
+			$('input[name="spares_model['+id+']"]').prop('disabled', false);
+			$('input[name="spares_count['+id+']"]').prop('disabled', false);
+			$('input[name="spares_one_price['+id+']"]').prop('disabled', false);
+			$('input[name="spares_price['+id+']"]').prop('disabled', false);
+
+
+			$(this).parent('td').html('<button\n' +
+				'\t\t\t\t\tdata-id="'+id+'"\n' +
+				'\t\t\t\t\tid="edit_spares_btn"\n' +
+				'\t\t\t\t\tstyle="min-width: 94px;\n' +
+				'\t\t\t\t\tfont-size: 14px !important;\n' +
+				'\t\t\t\t\tline-height: 14px !important;\n' +
+				'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+				'\t\t\t\t\tfont-weight: 500 !important;\n' +
+				'\t\t\t\t\tmargin-top: -4px;\n' +
+				'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+		});
+
+		$(document).on('keyup', 'input[name^="spares_count["]', function () {
+			var id = $(this).parent('td').parent('tr').find('button#edit_spares_btn').data('id');
+			var count = $(this).val();
+			var spares_one_price = $('input[name="spares_one_price['+id+']"]').val();
+
+			sum =  parseFloat(count) * parseFloat(spares_one_price);
+
+			$('input[name="spares_price['+id+']"]').val(sum);
+
+		});
+
+		$(document).on('keyup', 'input[name^="spares_one_price["]', function () {
+			var id = $(this).parent('td').parent('tr').find('button#edit_spares_btn').data('id');
+			var count = $('input[name="spares_count['+id+']"]').val();
+			var spares_one_price = $(this).val();
+			sum =  parseFloat(count) * parseFloat(spares_one_price);
+
+			$('input[name="spares_price['+id+']"]').val(sum);
+
+		});
+
+
+
+		$(document).on('click', '#edit_spares_btn', function (e) {
+			var td = $(this).parent('td');
+			var id = $(this).data('id');
+
+			var spares_date = $('input[name="spares_date['+id+']"]').val();
+			var spares_depreciation = $('select[name="spares_depreciation['+id+']"]').val();
+			var spares_whence = $('input[name="spares_whence['+id+']"]').val();
+			var spares_type = $('input[name="spares_type['+id+']"]').val();
+			var spares_producer = $('input[name="spares_producer['+id+']"]').val();
+			var spares_model = $('input[name="spares_model['+id+']"]').val();
+			var spares_count = $('input[name="spares_count['+id+']"]').val();
+			var spares_one_price = $('input[name="spares_one_price['+id+']"]').val();
+			var spares_price = $('input[name="spares_price['+id+']"]').val();
+
+			var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_spares_ax') ?>';
+			var me = $(this);
+			e.preventDefault();
+
+			if (me.data('requestRunning')) {
+				return;
+			}
+
+			me.data('requestRunning', true);
+
+			$('input').removeClass('border border-danger');
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					spares_id: id,
+					spares_date: spares_date,
+					spares_depreciation: spares_depreciation,
+					spares_whence: spares_whence,
+					spares_type: spares_type,
+					spares_producer: spares_producer,
+					spares_model: spares_model,
+					spares_count: spares_count,
+					spares_one_price: spares_one_price,
+					spares_price: spares_price
+				},
+				success: function (data) {
+					if (data.success == '1') {
+
+						td.html('<span\n'+
+							'\t\t\t\t\t\t\t\tid="edit_spares"\n'+
+							'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+							'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+							'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+							'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+							'\t\t\t\t\t\t\t</span>');
+
+						$('input[name="spares_date['+id+']"]').prop('disabled', true);
+						$('select[name="spares_depreciation['+id+']"]').prop('disabled', true);
+						$('select[name="spares_depreciation['+id+']"]').parent('div').children('button').addClass('disabled');
+						$('input[name="spares_whence['+id+']"]').prop('disabled', true);
+						$('input[name="spares_type['+id+']"]').prop('disabled', true);
+						$('input[name="spares_producer['+id+']"]').prop('disabled', true);
+						$('input[name="spares_model['+id+']"]').prop('disabled', true);
+						$('input[name="spares_count['+id+']"]').prop('disabled', true);
+						$('input[name="spares_one_price['+id+']"]').prop('disabled', true);
+						$('input[name="spares_price['+id+']"]').prop('disabled', true);
+
+
+					} else {
+
+						if ($.isArray(data.error.elements)) {
+							// loading('stop', 'inspection');
+							errors = '';
+							tmp = '';
+							$.each(data.error.elements, function (index) {
+								$.each(data.error.elements[index], function (index, value) {
+									if (value != '') {
+										$('input[name="' + index + '"]').addClass('border border-danger');
+
+										if (value != tmp) {
+											errors += value;
+										}
+										tmp = value;
+
+									} else {
+										$('input[name="' + index + '"]').removeClass('border border-danger');
+									}
+								});
+							});
+						} else {
+							alert();
+						}
+					}
+				},
+				error: function (jqXHR, textStatus) {
+					console.log('ERRORS: ' + textStatus);
+					// loading('stop', 'inspection');
+				},
+				complete: function () {
+					me.data('requestRunning', false);
+				}
+			});
+		});
+
+		var sum = 0;
+		$('input[name^="spares_price"]').each(function () {
+			sum += parseInt($(this).val());
+			console.log($(this).val());
+		})
+
+		$('td#sum').html(sum)
+
+		$('.buttons-excel span').html('<?=lang('export')?>')
+
 </script>
 
 

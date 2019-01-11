@@ -18,6 +18,8 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+
 
 <?
 $time = strtotime(mdate('%Y-%m-%d', now()));
@@ -170,6 +172,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}
 		}).done(function () {
 			var table = $('#example').DataTable({
+				drawCallback: function () {
+					var api = this.api();
+					$( api.column( 3 ).footer() ).html(
+						api.column(3).data().sum()
+					);
+				},
 				language: {
 					search: "<?=lang('search_fleet')?>",
 					emptyTable: "<?=lang('no_data')?>",
@@ -206,6 +214,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					'colvis'
 				]
 			});
+
+
+
+			table.column( 3 ).data().sum();
+
+
 
 			console.log(table);
 
@@ -980,3 +994,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	</div>
 
 	<!-- Create Group Modal End -->
+
+
+<script>
+	$(window).on('load', function () {
+
+	})
+</script>

@@ -328,23 +328,6 @@ $i = '';
 								</div>
 							</div>
 
-							<div class="col-sm-4">
-								<div class="row">
-									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?=lang('requisite')?></label>
-									<div class="form-group col-sm-8" style="margin-top: -22px;margin-left: 22px;"
-										 id="requisite">
-										<a style="text-decoration: none; color: #1b1e21" target="_blank"
-										   href="javascript:void(0)">
-											<label
-												style="color: #000;font-weight: 400 !important;margin-left: -22px;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;border-color: #ced4da;"
-												class="btn btn-sm btn-outline-secondary">
-												<?= lang('download_requisite') ?>
-											</label>
-										</a>
-									</div>
-								</div>
-							</div>
 
 
 						</div>
@@ -353,8 +336,27 @@ $i = '';
 					</div>
 
 					<div class="container mt-1">
-						<p class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
-						<hr class="my-2">
+
+
+								<p style="float: left;margin-top: 30px;" class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
+
+
+								<div class="form-group mb-0" style="margin-left: 22px; float: right;"
+									 id="requisite">
+									<a style="text-decoration: none; color: #1b1e21" target="_blank"
+									   href="javascript:void(0)">
+										<label
+											style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
+											class="btn btn-sm btn-outline-success">
+											<?= lang('download_requisite') ?>
+										</label>
+									</a>
+								</div>
+
+
+
+
+						<hr class="my-2" style="clear: both;">
 					</div>
 					<div class="col-sm-12 tab-content col-sm-6 col-12" id="nav-tabContent">
 

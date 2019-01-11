@@ -48,7 +48,7 @@
 								   class="form-control text-center"/>
 							<span style="display: none"><?= $row['insurance_company'] ?></span>
 						</td>
-						<td class="border">
+						<td class="border" style="min-width: 150px;">
 							<select disabled class="form-control selectpicker" data-size="5" name="accident_staff_id[<?= $row['id'] ?>]" title="<?=lang('driver')?>">
 								<? foreach ($this->load->get_drivers($row['fleet_id']) as $st) { ?>
 									<option <?= ($row['staff_id'] == $st['id'] ? 'selected' : '') ?>  value="<?= $st['id'] ?>"><?= $st['name'] ?></option>
@@ -88,6 +88,7 @@
 
 					<?
 				}
+
 			}
 			echo '</tbody>';
 			if (count($fleet['id']) == 1) { ?>
@@ -130,8 +131,24 @@
 				</td>
 				<td class="border"></td>
 			</tr>
+			<tr>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="6"><?=lang('total')?></td>
+				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
+			</tr>
 			</tfoot>
-			<? } ?>
+			<? } else {
+				echo '
+				<tfoot>
+					<tr>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="6">'.lang('total').'</td>
+						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				';
+			}?>
+
 			</tbody>
 		</table>
 	</div>
@@ -210,6 +227,7 @@
 								<td class="border">
 									<input title="" type="number" min="0" name="return_amount[<?= $key + 1 ?>]" value=""
 										   class="form-control text-center"/>
+
 								</td>
 							</tr>
 
@@ -330,6 +348,13 @@
 				filename: 'excel_file',
 				footer: true,
 				exportOptions: {
+					format: {
+						body: function ( data, row, column, node ) {
+							// Strip $ from salary column to make it numeric
+							return column === 3 ?
+								$(data).find("option:selected").text() : $(data).val()
+						}
+					},
 					columns: ':visible'
 				}
 			},
@@ -447,6 +472,133 @@
 		});
 
 	}
+
+
+	//edit
+	$(document).on('click', '#edit_accident', function() {
+		var id = $(this).data('id');
+		$('input[name="accident_date['+id+']"]').prop('disabled', false);
+		$('select[name="accident_staff_id['+id+']"]').prop('disabled', false);
+		$('select[name="accident_staff_id['+id+']"]').parent('div').children('button').removeClass('disabled');
+		$('input[name="accident_insurance_company['+id+']"]').prop('disabled', false);
+		$('input[name="accident_conclusion_number['+id+']"]').prop('disabled', false);
+		$('input[name="accident_replacement_parts['+id+']"]').prop('disabled', false);
+		$('input[name="accident_return_amount['+id+']"]').prop('disabled', false);
+
+		$(this).parent('td').html('<button\n' +
+			'\t\t\t\t\tdata-id="'+id+'"\n' +
+			'\t\t\t\t\tid="edit_accident_btn"\n' +
+			'\t\t\t\t\tstyle="min-width: 94px;\n' +
+			'\t\t\t\t\tfont-size: 14px !important;\n' +
+			'\t\t\t\t\tline-height: 14px !important;\n' +
+			'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+			'\t\t\t\t\tfont-weight: 500 !important;\n' +
+			'\t\t\t\t\tmargin-top: -4px;\n' +
+			'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+	});
+
+
+	$(document).on('click', '#edit_accident_btn', function (e) {
+		var td = $(this).parent('td');
+		var id = $(this).data('id');
+
+		var accident_add_date = $('input[name="accident_date['+id+']"]').val();
+		var accident_staff_id = $('select[name="accident_staff_id['+id+']"]').val();
+		var accident_insurance_company = $('input[name="accident_insurance_company['+id+']"]').val();
+		var accident_conclusion_number = $('input[name="accident_conclusion_number['+id+']"]').val();
+		var accident_replacement_parts = $('input[name="accident_replacement_parts['+id+']"]').val();
+		var accident_return_amount = $('input[name="accident_return_amount['+id+']"]').val();
+
+		var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_accident_ax') ?>';
+		var me = $(this);
+		e.preventDefault();
+
+		if (me.data('requestRunning')) {
+			return;
+		}
+
+		me.data('requestRunning', true);
+
+		$('input').removeClass('border border-danger');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				accident_id: id,
+				accident_add_date: accident_add_date,
+				accident_staff_id: accident_staff_id,
+				accident_insurance_company: accident_insurance_company,
+				accident_conclusion_number: accident_conclusion_number,
+				accident_replacement_parts: accident_replacement_parts,
+				accident_return_amount: accident_return_amount
+			},
+			success: function (data) {
+				if (data.success == '1') {
+
+					td.html('<span\n'+
+						'\t\t\t\t\t\t\t\tid="edit_accident"\n'+
+						'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+						'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+						'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+						'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+						'\t\t\t\t\t\t\t</span>');
+
+					$('input[name="accident_date['+id+']"]').prop('disabled', true);
+					$('select[name="accident_staff_id['+id+']"]').prop('disabled', true);
+					$('select[name="accident_staff_id['+id+']"]').parent('div').children('button').addClass('disabled');
+					$('input[name="accident_insurance_company['+id+']"]').prop('disabled', true);
+					$('input[name="accident_conclusion_number['+id+']"]').prop('disabled', true);
+					$('input[name="accident_replacement_parts['+id+']"]').prop('disabled', true);
+					$('input[name="accident_return_amount['+id+']"]').prop('disabled', true);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						// loading('stop', 'inspection');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+								}
+							});
+						});
+					} else {
+						alert();
+					}
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				console.log('ERRORS: ' + textStatus);
+				// loading('stop', 'inspection');
+			},
+			complete: function () {
+				me.data('requestRunning', false);
+			}
+		});
+	});
+
+	var sum = 0;
+	$('input[name^="accident_return_amount"]').each(function () {
+		sum += parseInt($(this).val());
+		console.log($(this).val());
+	})
+
+	$('td#sum').html(sum)
+
+	$('.buttons-excel span').html('<?=lang('export')?>')
+
 </script>
 
 

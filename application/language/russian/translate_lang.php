@@ -257,13 +257,13 @@ $lang['move_here_to_see_the_costs'] = 'Переместите сюда, чтоб
 $lang['country'] = 'Страна';
 $lang['address'] = 'Адрес';
 
-$lang['Activity_Region'] = 'Страна Деятельности';
-$lang['Activity_City'] = 'Город Деятельности';
-$lang['Activity_address'] = 'Адрес деятельности';//todo
-$lang['activity_address'] = 'Адрес деятельности';//todo
+$lang['Activity_Region'] = 'Регион';
+$lang['Activity_City'] = 'Город';
+$lang['Activity_address'] = 'Адрес';//todo
+$lang['activity_address'] = 'Адрес';//todo
 
-$lang['legal_region'] = 'Юридический Страна'; //todo
-$lang['legal_address'] = 'Юридический адрес';
+$lang['legal_region'] = 'Регион';
+$lang['legal_address'] = 'Адрес';
 
 $lang['web_address'] = 'Интернет-адрес';
 
@@ -398,4 +398,10 @@ $lang['password_not_match'] = 'Пароли не совпадают';
 $lang['health_insurance'] = 'Медицинское страхование';
 
 $lang['column_visibility'] = 'Видимые поля';
+
+
+$lang['Reference'] = 'Реквизит';
+$lang['phone'] = 'Тел․';
+$lang['Web_address'] = 'Веб адрес';
+$lang['export'] = 'Экспорт';
 

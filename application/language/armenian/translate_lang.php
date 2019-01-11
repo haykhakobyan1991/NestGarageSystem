@@ -255,13 +255,13 @@ $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղե�
 $lang['country'] = 'Երկիր';
 $lang['address'] = 'Հասցե';
 
-$lang['Activity_Region'] = 'Երկիրը';
+$lang['Activity_Region'] = 'Համայնք';
 $lang['Activity_City'] = 'Քաղաքը';
 $lang['Activity_address'] = 'Հասցե';//todo
-$lang['activity_address'] = 'Գործունեության Հասցե';//todo
+$lang['activity_address'] = 'Հասցե';//todo
 
-$lang['legal_region'] = 'իրական Երկիր';
-$lang['legal_address'] = 'Իրավաբանական Հասցե';
+$lang['legal_region'] = 'Համայնք';
+$lang['legal_address'] = 'Հասցե';
 
 $lang['web_address'] = 'Առցանց Հասցե';
 
@@ -397,5 +397,11 @@ $lang['password_not_match'] = 'Գաղտնաբառերը չեն համապատա�
 $lang['health_insurance'] = 'Առողջապահության ապահովագրություն';
 
 $lang['column_visibility'] = 'Տեսանելի Դաշտեր';
+
+
+$lang['Reference'] = 'Ռեքվեզիտ';
+$lang['phone'] = 'Հեռ․';
+$lang['Web_address'] = 'Վեբ հասցե';
+$lang['export'] = 'Արտածել';
 
 

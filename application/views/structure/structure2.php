@@ -18,6 +18,7 @@
 <!--<script type="text/javascript" src="--><? //=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 
 <!-- Structure Start -->
 <style>
@@ -45,6 +46,16 @@
 
 	.dataTables_filter>label {
 		margin-right: 70%;
+	}
+
+	.btn.disabled, .btn:disabled{
+		opacity: 1 !important;
+	}
+
+	.bootstrap-select.disabled, .bootstrap-select > .disabled {
+		cursor: none !important;
+		color: #000 !important;
+		background: #eaedf0 !important;
 	}
 </style>
 

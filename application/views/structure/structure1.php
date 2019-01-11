@@ -17,6 +17,7 @@
 <!--<script type="text/javascript" src="--><? //=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 
 
 <?
@@ -42,6 +43,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	.dataTables_filter > label {
 		margin-right: 70%;
+	}
+
+	 .btn.disabled, .btn:disabled{
+		 opacity: 1 !important;
+	 }
+
+	.bootstrap-select.disabled, .bootstrap-select > .disabled {
+		cursor: none !important;
+		color: #000 !important;
+		background: #eaedf0 !important;
 	}
 
 </style>
@@ -78,16 +89,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
-		<div id="sample">
-			<div id="myDiagramDiv" style="height:300px"></div>
+		<div id="sample" style="position: relative;">
+			<div id="myDiagramDiv" style="height:300px;"></div>
+			<button name="" data-toggle="modal" data-target=".bd-example-modal-lg"
+					class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton"
+					style="position: absolute;top: -8px;right: 4px;z-index: 999;"
+					onclick="save('-1')"><?= lang('save') ?></button>
 		</div>
 		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 
-		<button name="" data-toggle="modal" data-target=".bd-example-modal-lg"
-				class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton"
-				style="margin-top: -48px !important; z-index: 999; position: relative; margin-right: 15px;"
-				onclick="save('-1')"><?= lang('save') ?></button>
+
 	</div>
 
 	<span class="selected_information "></span>

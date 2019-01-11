@@ -33,20 +33,31 @@
 					<tr style="height: 40px;">
 
 						<td class="border">
-							<?= $row['brand_model'] ?>
+							<input class="form-control text-center" title="" type="text" disabled name="repair_vehicle[<?= $row['id'] ?>]" value="<?= $row['brand_model'] ?>" >
 						</td>
 						<td class="border">
-							<?= $row['add_date'] ?>
+							<input class="form-control text-center" title="" type="date" disabled name="repair_date[<?= $row['id'] ?>]" value="<?= $row['add_date'] ?>" >
 						<td class="border">
-							<?= $row['repairer'] ?>
+							<input title="" type="text" name="repair_repairer[<?= $row['id'] ?>]"
+								   class="form-control text-center" disabled value="<?= $row['repairer'] ?>"/>
 						</td>
 						<td class="border">
-							<?= $row['necessary_parts'] ?>
+							<input title="" type="text" name="repair_necessary_parts[<?= $row['id'] ?>]"
+								   class="form-control text-center" disabled value="<?= $row['necessary_parts'] ?>"/>
 						</td>
 						<td class="border">
-							<?= $row['price'] ?>
+							<input title="" type="number" min="0" name="repair_price[<?= $row['id'] ?>]"
+								   class="form-control text-center" disabled value="<?= $row['price'] ?>"/>
 						</td>
-						<td class="border"></td>
+						<td class="border">
+							<span
+								id="edit_repair"
+								data-id="<?= $row['id'] ?>"
+								style="border: none;padding-top: 5px;cursor: pointer; display: contents;"
+								class="float-left text-secondary text-center" >
+								<i class="fas fa-edit"></i>
+							</span>
+						</td>
 					</tr>
 
 					<?
@@ -80,8 +91,23 @@
 				</td>
 				<td class="border"></td>
 			</tr>
+			<tr>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="4"><?=lang('total')?></td>
+				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
+			</tr>
 			</tfoot>
-			<? } ?>
+			<? } else {
+				echo '
+				<tfoot>
+					<tr>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="4">'.lang('total').'</td>
+						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				';
+			}?>
 
 		</table>
 	</div>
@@ -205,6 +231,12 @@
 				filename: 'excel_file',
 				footer: true,
 				exportOptions: {
+					format: {
+						body: function ( data, row, column, node ) {
+							// Strip $ from salary column to make it numeric
+							return $(data).val()
+						}
+					},
 					columns: ':visible'
 				}
 			},
@@ -367,6 +399,126 @@
 		});
 
 	}
+
+
+	//edit
+	$(document).on('click', '#edit_repair', function() {
+		var id = $(this).data('id');
+
+		$('input[name="repair_date['+id+']"]').prop('disabled', false);
+		$('input[name="repair_repairer['+id+']"]').prop('disabled', false);
+		$('input[name="repair_necessary_parts['+id+']"]').prop('disabled', false);
+		$('input[name="repair_price['+id+']"]').prop('disabled', false);
+
+
+		$(this).parent('td').html('<button\n' +
+			'\t\t\t\t\tdata-id="'+id+'"\n' +
+			'\t\t\t\t\tid="edit_repair_btn"\n' +
+			'\t\t\t\t\tstyle="min-width: 94px;\n' +
+			'\t\t\t\t\tfont-size: 14px !important;\n' +
+			'\t\t\t\t\tline-height: 14px !important;\n' +
+			'\t\t\t\t\tpadding: 10px 24px !important;\n' +
+			'\t\t\t\t\tfont-weight: 500 !important;\n' +
+			'\t\t\t\t\tmargin-top: -4px;\n' +
+			'\t\t\t\t\tmin-height: 37px !important;" type="button" id="search" class="ml-2 save_cancel_btn btn btn-success"><?=lang('edit')?></button>');
+	});
+
+
+	$(document).on('click', '#edit_repair_btn', function (e) {
+		var td = $(this).parent('td');
+		var id = $(this).data('id');
+
+		var repair_date = $('input[name="repair_date['+id+']"]').val();
+		var repair_repairer = $('input[name="repair_repairer['+id+']"]').val();
+		var repair_necessary_parts = $('input[name="repair_necessary_parts['+id+']"]').val();
+		var repair_price = $('input[name="repair_price['+id+']"]').val();
+
+
+		var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_repair_ax') ?>';
+		var me = $(this);
+		e.preventDefault();
+
+		if (me.data('requestRunning')) {
+			return;
+		}
+
+		me.data('requestRunning', true);
+
+		$('input').removeClass('border border-danger');
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: {
+				repair_id: id,
+				repair_date: repair_date,
+				repair_repairer: repair_repairer,
+				repair_necessary_parts: repair_necessary_parts,
+				repair_price: repair_price
+			},
+			success: function (data) {
+				if (data.success == '1') {
+
+					td.html('<span\n'+
+						'\t\t\t\t\t\t\t\tid="edit_repair"\n'+
+						'\t\t\t\t\t\t\t\tdata-id="'+data.message+'"\n'+
+						'\t\t\t\t\t\t\t\tstyle="border: none;padding-top: 5px;cursor: pointer; display: contents;"\n'+
+						'\t\t\t\t\t\t\t\tclass="float-left text-secondary text-center" >\n'+
+						'\t\t\t\t\t\t\t\t<i class="fas fa-edit"></i>\n'+
+						'\t\t\t\t\t\t\t</span>');
+
+					$('input[name="repair_date['+id+']"]').prop('disabled', true);
+					$('input[name="repair_repairer['+id+']"]').prop('disabled', true);
+					$('input[name="repair_necessary_parts['+id+']"]').prop('disabled', true);
+					$('input[name="repair_price['+id+']"]').prop('disabled', true);
+
+
+				} else {
+
+					if ($.isArray(data.error.elements)) {
+						// loading('stop', 'inspection');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+
+									if (value != tmp) {
+										errors += value;
+									}
+									tmp = value;
+
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+								}
+							});
+						});
+					} else {
+						alert();
+					}
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				console.log('ERRORS: ' + textStatus);
+				// loading('stop', 'inspection');
+			},
+			complete: function () {
+				me.data('requestRunning', false);
+			}
+		});
+	});
+
+	var sum = 0;
+	$('input[name^="repair_price"]').each(function () {
+		sum += parseInt($(this).val());
+		console.log($(this).val());
+	})
+
+	$('td#sum').html(sum)
+
+
+	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
 
 

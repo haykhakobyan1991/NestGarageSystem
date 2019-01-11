@@ -1,3 +1,4 @@
+
 <form id="vehicle_fine">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
@@ -111,8 +112,23 @@
 				</td>
 				<td class="border"></td>
 			</tr>
+			<tr>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="5"><?=lang('total')?></td>
+				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
+			</tr>
 			</tfoot>
-			<? } ?>
+			<? } else {
+				echo '
+				<tfoot>
+					<tr>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="5">'.lang('total').'</td>
+						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
+					</tr>
+				</tfoot>
+				';
+			}?>
 
 		</table>
 	</div>
@@ -307,6 +323,13 @@
                         filename: 'excel_file',
                         footer: true,
                         exportOptions: {
+							format: {
+								body: function ( data, row, column, node ) {
+									// Strip $ from salary column to make it numeric
+									return column === 3 ?
+										$(data).find("option:selected").text() : $(data).val()
+								}
+							},
                             columns: ':visible'
                         }
                     },
@@ -527,6 +550,16 @@
 		});
 	});
 
+
+	var sum = 0;
+	$('input[name^="fine_price"]').each(function () {
+		sum += parseInt($(this).val());
+		console.log($(this).val());
+	})
+
+	$('td#sum').html(sum)
+
+	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
 
 

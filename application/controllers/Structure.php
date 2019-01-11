@@ -240,7 +240,7 @@ class Structure extends MX_Controller {
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'title' => $value['fleet_plate_number'], 'text' => $value['model'], 'img' => base_url('assets/img/car.svg'),  'to' => true);
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'title' => $value['fleet_plate_number'], 'text' => $value['model']. ' (' . $value['fleet_plate_number']. ')', 'img' => base_url('assets/img/car.svg'),  'to' => true);
 			endif;
 			$fleet_id = $value['fleet_id'];
 
@@ -300,7 +300,8 @@ class Structure extends MX_Controller {
 				`brand`.`title_".$lng."`,
 				`model`.`title_".$lng."`
 			  ) AS `model`,
-			  `fleet`.`id` AS `fleet_id`
+			  `fleet`.`id` AS `fleet_id`,
+			  `fleet`.`fleet_plate_number`
 			FROM
 			  `user` 
 			  LEFT JOIN company 
@@ -365,7 +366,7 @@ class Structure extends MX_Controller {
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model'], 'parent' => 'd' . $value['driver_id'], 'title' => '');
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model']. ' (' . $value['fleet_plate_number']. ')', 'parent' => 'd' . $value['driver_id'], 'title' => '');
 			endif;
 
 		endforeach;

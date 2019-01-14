@@ -191,6 +191,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						last: "<?=lang('last')?>",
 						next: "<?=lang('next')?>",
 						previous: "<?=lang('prev')?>"
+					},
+					buttons: {
+						excel: "<?=lang('export')?>"
 					}
 				},
 				"paging": false,
@@ -307,10 +310,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$('#group').removeClass('d-none');
 			});
 
-
-
-
 		})
+
+
 
 	});
 
@@ -854,6 +856,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 
+
 </script>
 
 	<!-- Delete Modal start -->
@@ -994,10 +997,3 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	</div>
 
 	<!-- Create Group Modal End -->
-
-
-<script>
-	$(window).on('load', function () {
-
-	})
-</script>

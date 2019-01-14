@@ -53,7 +53,7 @@ $lang['social_card'] = 'Սոց քարտ';
 $lang['driving_license'] = 'Վարորդական Իրավունք';
 $lang['technical_passport'] = 'Տեխ անձնագիր';
 
-$lang['passenger_car'] = 'մարդատար';
+$lang['passenger_car'] = 'Մարդատար';
 $lang['truck'] = 'Բեռնատար';
 $lang['special—equipment'] = 'Հատուկ տեխնիկա';
 $lang['heavy_machinery'] = 'Ծանր տեխնիկա';
@@ -396,6 +396,7 @@ $lang['email_not_unique'] = 'Էլ․ հասցեն կրկնվում է';
 $lang['password_not_match'] = 'Գաղտնաբառերը չեն համապատասխանում';
 $lang['health_insurance'] = 'Առողջապահության ապահովագրություն';
 
+
 $lang['column_visibility'] = 'Տեսանելի Դաշտեր';
 
 
@@ -403,5 +404,11 @@ $lang['Reference'] = 'Ռեքվեզիտ';
 $lang['phone'] = 'Հեռ․';
 $lang['Web_address'] = 'Վեբ հասցե';
 $lang['export'] = 'Արտածել';
+$lang['insurance1'] = 'Ապահովագրություն';
+$lang['insurance_data'] = 'Ապահովագրության տվյալները';
+
+
+$lang['file'] = 'Փաստաթուղթ';
+
 
 

@@ -5,12 +5,12 @@
 			<thead class="thead_tables">
 			<tr>
 				<th class="table_th"><?=lang('vehicle')?></th>
-				<th class="table_th"><?=lang('when')?></th>
-				<th class="table_th"><?=lang('insurance_company')?></th>
-				<th class="table_th"><?=lang('driver')?></th>
-				<th class="table_th"><?=lang('conclusion_number')?></th>
+				<th class="table_th"><?=lang('when')?> *</th>
+				<th class="table_th"><?=lang('insurance_company')?> *</th>
+				<th class="table_th"><?=lang('driver')?> *</th>
+				<th class="table_th"><?=lang('conclusion_number')?> *</th>
 				<th class="table_th"><?=lang('replacement_subject_specs_name')?></th>
-				<th class="table_th"><?=lang('refundable_amount')?></th>
+				<th class="table_th"><?=lang('refundable_amount')?> *</th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -182,11 +182,11 @@
 						<tr>
 							<th class="table_th"><?=lang('vehicle')?></th>
 							<th class="table_th"><?=lang('when')?></th>
-							<th class="table_th"><?=lang('insurance_company')?></th>
-							<th class="table_th" style="min-width: 150px;"><?=lang('driver')?></th>
-							<th class="table_th"><?=lang('conclusion_number')?></th>
+							<th class="table_th"><?=lang('insurance_company')?> *</th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('driver')?> *</th>
+							<th class="table_th"><?=lang('conclusion_number')?> *</th>
 							<th class="table_th"><?=lang('replacement_subject_specs_name')?></th>
-							<th class="table_th"><?=lang('refundable_amount')?></th>
+							<th class="table_th"><?=lang('refundable_amount')?> *</th>
 						</tr>
 						</thead>
 						<tbody>

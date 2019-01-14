@@ -6,10 +6,11 @@
 			<tr>
 				<th class="table_th"><?=lang('vehicle')?></th>
 				<th class="table_th"><?=lang('when')?></th>
-				<th class="table_th"><?=lang('insurance_company')?></th>
-				<th class="table_th" style="min-width: 150px"><?=lang('type')?></th>
-				<th class="table_th"><?=lang('deadline')?></th>
-				<th class="table_th"><?=lang('price')?></th>
+				<th class="table_th"><?=lang('insurance_company')?> *</th>
+				<th class="table_th" style="min-width: 150px"><?=lang('type')?> *</th>
+				<th class="table_th"><?=lang('deadline')?> *</th>
+				<th class="table_th"><?=lang('price')?> *</th>
+				<th class="table_th"><?=lang('file')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -56,6 +57,10 @@
 						</td>
 						<td class="border">
 							<input disabled value="<?= $row['price'] ?>" title="" type="number" min="0" name="insurance_price[<?= $row['id'] ?>]"
+								   class="form-control text-center"/>
+						</td>
+						<td class="border">
+							<input disabled value="" title="" type="file" min="0" name="insurance_file[<?= $row['id'] ?>]"
 								   class="form-control text-center"/>
 						</td>
 						<td class="border">
@@ -106,10 +111,14 @@
 					<input title="" type="number" min="0" name="price[1]" value=""
 						   class="form-control text-center"/>
 				</td>
+				<td class="border">
+					<input  value="" title="" type="file" min="0" name="insurance_file[1]"
+						   class="form-control text-center"/>
+				</td>
 				<td class="border"></td>
 			</tr>
 			<tr>
-				<td class="font-weight-bold" style="text-align: left !important;" colspan="5"><?=lang('total')?></td>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="6"><?=lang('total')?></td>
 				<td class="font-weight-bold" id="sum"></td>
 				<td></td>
 			</tr>
@@ -118,7 +127,7 @@
 				echo '
 				<tfoot>
 					<tr>
-						<td class="font-weight-bold" style="text-align: left !important;" colspan="5">'.lang('total').'</td>
+						<td class="font-weight-bold" style="text-align: left !important;" colspan="6">'.lang('total').'</td>
 						<td class="font-weight-bold" id="sum"></td>
 						<td></td>
 					</tr>
@@ -161,10 +170,11 @@
 						<tr>
 							<th class="table_th"><?=lang('vehicle')?></th>
 							<th class="table_th"><?=lang('when')?></th>
-							<th class="table_th"><?=lang('insurance_company')?></th>
-							<th class="table_th" style="min-width: 150px"><?=lang('type')?></th>
-							<th class="table_th"><?=lang('deadline')?></th>
-							<th class="table_th"><?=lang('price')?></th>
+							<th class="table_th"><?=lang('insurance_company')?> *</th>
+							<th class="table_th" style="min-width: 150px"><?=lang('type')?> *</th>
+							<th class="table_th"><?=lang('deadline')?> *</th>
+							<th class="table_th"><?=lang('price')?> *</th>
+							<th class="table_th"><?=lang('file')?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -199,6 +209,10 @@
 
 								<td class="border">
 									<input title="" type="number" min="0" name="price[<?= $key + 1 ?>]" value=""
+										   class="form-control text-center"/>
+								</td>
+								<td class="border">
+									<input title="" type="file" min="0" name="file[<?= $key + 1 ?>]" value=""
 										   class="form-control text-center"/>
 								</td>
 							</tr>
@@ -259,7 +273,7 @@
 			"paging":   false,
 			"info":     false,
 			"columnDefs": [
-				{ "orderable": false, "targets": 6 }
+				{ "orderable": false, "targets": 7 }
 			],
 			dom: 'Bfrtip',
 			buttons: [
@@ -327,6 +341,7 @@
 				'</td>\n' +
 				'<td><input  title="" type="date" name="end_date[' + j + ']"class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="file" name="file[' + j + ']" value="" class="form-control text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>')
 			).then(function () {
@@ -351,7 +366,7 @@
 
 
 
-		<? if (count($fleet['id']) == 1) { ?>
+	<? if (count($fleet['id']) == 1) { ?>
 
 	$(document).on('change keyup', 'input,select,textarea', function () {
 		if (!$('.pos_abs_div').hasClass('animated')) {
@@ -494,7 +509,7 @@
 			}
 
 			me.data('requestRunning', true);
-
+			$('select').parent('div').children('button').removeClass('border border-danger');
 			$('input').removeClass('border border-danger');
 			$.ajax({
 				url: url,
@@ -537,7 +552,7 @@
 								$.each(data.error.elements[index], function (index, value) {
 									if (value != '') {
 										$('input[name="' + index + '"]').addClass('border border-danger');
-
+										$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 										if (value != tmp) {
 											errors += value;
 										}
@@ -545,6 +560,7 @@
 
 									} else {
 										$('input[name="' + index + '"]').removeClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
 									}
 								});
 							});

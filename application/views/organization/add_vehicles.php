@@ -293,7 +293,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info1"
 												aria-expanded="false" aria-controls="collapse_info1">
-											Ապահովագրություն։
+											<?=lang('insurance1')?>։
 										</button>
 									</h5>
 								</div>
@@ -333,25 +333,24 @@
 															   placeholder="<?= lang('reference') ?>">
 													</div>
 												</div>
+
 												<div class="col-md-2">
 													<label><?= lang('expiry_date') ?></label>
 													<input type="date" name="expiration[1]" max="3000-12-31"
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
+
 												<div class="col-md-2">
-													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+													<label><?=lang('insurance_data')?></label>
+													<label
+														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+														class="btn btn-sm btn-outline-secondary">
+														<span><?= lang('browse') ?></span>
+														<input class="btn_input" name="file_1" type="file" hidden
+															   style="display: none;" value="">
+													</label>
 												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_1" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -364,7 +363,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info2"
 												aria-expanded="false" aria-controls="collapse_info2">
-											Ապահովագրություն։
+											<?=lang('insurance1')?>։
 										</button>
 									</h5>
 								</div>
@@ -410,19 +409,16 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+													<label><?=lang('insurance_data')?></label>
+													<label
+														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+														class="btn btn-sm btn-outline-secondary">
+														<span><?= lang('browse') ?></span>
+														<input class="btn_input" name="file_2" type="file" hidden
+															   style="display: none;" value="">
+													</label>
 												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_2" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
+
 											</div>
 										</div>
 									</div>
@@ -434,7 +430,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info3"
 												aria-expanded="false" aria-controls="collapse_info3">
-											Ապահովագրություն։
+											<?=lang('insurance1')?>։
 										</button>
 									</h5>
 								</div>
@@ -481,18 +477,14 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
-												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label for="file_3"
-															   style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															   class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_3" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
+													<label><?=lang('insurance_data')?></label>
+													<label for="file_3"
+														   style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+														   class="btn btn-sm btn-outline-secondary">
+														<span><?= lang('browse') ?></span>
+														<input class="btn_input" name="file_3" type="file" hidden
+															   style="display: none;" value="">
+													</label>
 												</div>
 
 											</div>
@@ -506,7 +498,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info4"
 												aria-expanded="false" aria-controls="collapse_info4">
-											Ապահովագրություն։
+											<?=lang('other')?>։
 										</button>
 									</h5>
 								</div>
@@ -552,20 +544,15 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<p class="pt-3 text-center">Բեռնել ապահովագրության տվյալները</p>
+													<label><?=lang('insurance_data')?></label>
+													<label
+														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+														class="btn btn-sm btn-outline-secondary">
+														<span><?= lang('browse') ?></span>
+														<input class="btn_input" name="file_4" type="file" hidden
+															   style="display: none;" value="">
+													</label>
 												</div>
-												<div class="col-1">
-													<div class="form-group">
-														<label
-															style="width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-															class="btn btn-sm btn-outline-secondary">
-															<span><?= lang('browse') ?></span>
-															<input class="btn_input" name="file_4" type="file" hidden
-																   style="display: none;" value="">
-														</label>
-													</div>
-												</div>
-
 											</div>
 										</div>
 									</div>

@@ -18,7 +18,7 @@
 	}
 
 	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 80px;
+		margin-left: 87px;
 	}
 
 	i {
@@ -383,7 +383,12 @@
 							<button class="btn btn-link collapsed text-success" type="button"
 									data-toggle="collapse" data-target="#collapse_info1"
 									aria-expanded="false" aria-controls="collapse_info1">
-								<?= ($fleet['insurance_company_1'] != '' ? $fleet['insurance_company_1'] : 'N/D') ?>
+								<?= lang('insurance1') ?>։
+								<? foreach ($insurance_type as $row) :
+									if ($fleet['insurance_type_id_1'] == $row['id']) :
+										echo $row['title'];
+									endif;
+								endforeach; ?>
 							</button>
 						</h5>
 					</div>
@@ -392,67 +397,6 @@
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
-									<div class="col-md-2">
-										<div class="form-group">
-											<label><?= lang('company') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_company_1'] ?>"
-												   name="company[1]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('company') ?>">
-										</div>
-									</div>
-
-									<div class="">
-										<div class="form-group float-left">
-											<label
-												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-												class="btn btn-sm btn-outline-secondary">
-												<span><?= lang('browse') ?></span>
-												<input class="btn_input"
-													   name="file_1" type="file"
-													   hidden style="display: none;"
-													   value="">
-											</label>
-										</div>
-										<div class="ml-2 float-left"><?
-											if ($fleet['insurance_ext_1'] != '') : ?>
-												<a
-													class="a_ext1"
-													target=""
-													download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
-													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
-													<?
-
-													echo $this->select_ext($fleet['insurance_ext_1']);
-
-													?>
-												</a>
-											<? endif; ?>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<label><?= lang('reference') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_referance_1'] ?>"
-												   name="reference[1]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('reference') ?>">
-										</div>
-									</div>
-
-									<div
-										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-2' : 'col-md-2') ?>">
-										<label><?= lang('expiry_date') ?></label>
-										<input type="date"
-											   value="<?= $fleet['insurance_expiration_1'] ?>"
-											   name="expiration[1]"
-											   max="3000-12-31"
-											   min="1000-01-01"
-											   class="form-control form-control-sm">
-									</div>
 
 									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
@@ -477,6 +421,70 @@
 										</div>
 									</div>
 
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('company') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_company_1'] ?>"
+												   name="company[1]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('company') ?>">
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('reference') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_referance_1'] ?>"
+												   name="reference[1]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('reference') ?>">
+										</div>
+									</div>
+
+									<div
+										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-2' : 'col-md-2') ?>">
+										<label><?= lang('expiry_date') ?></label>
+										<input type="date"
+											   value="<?= $fleet['insurance_expiration_1'] ?>"
+											   name="expiration[1]"
+											   max="3000-12-31"
+											   min="1000-01-01"
+											   class="form-control form-control-sm">
+									</div>
+
+									<div class="col-sm-3">
+										<div class="form-group float-left col-sm-7">
+											<label><?= lang('insurance_data') ?></label>
+											<label
+												style="margin-left: -3px;width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+												class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_1" type="file"
+													   hidden style="display: none;"
+													   value="">
+											</label>
+										</div>
+										<div class="ml-2 float-left"><?
+											if ($fleet['insurance_ext_1'] != '') : ?>
+												<a
+													class="a_ext1"
+													target=""
+													download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
+													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
+													<?
+
+													echo $this->select_ext($fleet['insurance_ext_1']);
+
+													?>
+												</a>
+											<? endif; ?>
+										</div>
+									</div>
+
 								</div>
 
 
@@ -491,7 +499,12 @@
 							<button class="btn btn-link collapsed text-success" type="button"
 									data-toggle="collapse" data-target="#collapse_info2"
 									aria-expanded="false" aria-controls="collapse_info2">
-								<?= ($fleet['insurance_company_2'] != '' ? $fleet['insurance_company_2'] : 'N/D') ?>
+								<?= lang('insurance1') ?>։
+								<? foreach ($insurance_type as $row) :
+									if ($fleet['insurance_type_id_2'] == $row['id']) :
+										echo $row['title'];
+									endif;
+								endforeach; ?>
 							</button>
 						</h5>
 					</div>
@@ -500,6 +513,30 @@
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
+
+									<div class="col-sm-3" style="margin-top: -7px;">
+										<label
+											class="col-form-label"
+											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
+										<div class="">
+											<select name="type[2]"
+													class="selectpicker form-control form-control-sm dif_meter"
+													data-live-search="true"
+													data-size="5"
+													title="<?= lang('insurance_type') ?>"
+											>
+												<? foreach ($insurance_type as $row) : ?>
+													<option
+														value="<?= $row['id'] ?>"
+														<?= ($fleet['insurance_type_id_2'] == $row['id'] ? 'selected' : '') ?>
+													>
+														<?= $row['title'] ?>
+													</option>
+												<? endforeach; ?>
+											</select>
+										</div>
+									</div>
+
 
 									<div class="col-md-2">
 										<div class="form-group">
@@ -512,10 +549,35 @@
 										</div>
 									</div>
 
-									<div class="">
-										<div class="form-group float-left">
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('reference') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_referance_2'] ?>"
+												   name="reference[2]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('reference') ?>">
+										</div>
+									</div>
+
+									<div
+										class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-2' : 'col-md-2') ?>">
+										<label><?= lang('expiry_date') ?></label>
+										<input type="date"
+											   value="<?= $fleet['insurance_expiration_2'] ?>"
+											   name="expiration[2]"
+											   max="3000-12-31"
+											   min="1000-01-01"
+											   class="form-control form-control-sm">
+									</div>
+
+
+									<div class="col-sm-3">
+										<div class="form-group float-left col-sm-7">
+											<label><?= lang('insurance_data') ?></label>
 											<label
-												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+												style="margin-left: -3px;width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 												class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>
 												<input class="btn_input"
@@ -541,50 +603,6 @@
 											<? endif; ?>
 										</div>
 									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<label><?= lang('reference') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_referance_2'] ?>"
-												   name="reference[2]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('reference') ?>">
-										</div>
-									</div>
-
-									<div
-										class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-2' : 'col-md-2') ?>">
-										<label><?= lang('expiry_date') ?></label>
-										<input type="date"
-											   value="<?= $fleet['insurance_expiration_2'] ?>"
-											   name="expiration[2]"
-											   max="3000-12-31"
-											   min="1000-01-01"
-											   class="form-control form-control-sm">
-									</div>
-
-									<div class="col-sm-3" style="margin-top: -7px;">
-										<label
-											class="col-form-label"
-											style="font-size: 12px;"><?= lang('insurance_type') ?></label>
-										<div class="">
-											<select name="type[2]"
-													class="selectpicker form-control form-control-sm dif_meter"
-													data-live-search="true"
-													data-size="5"
-													title="<?= lang('insurance_type') ?>"
-											>
-												<? foreach ($insurance_type as $row) : ?>
-													<option
-														value="<?= $row['id'] ?>"
-														<?= ($fleet['insurance_type_id_2'] == $row['id'] ? 'selected' : '') ?>
-													>
-														<?= $row['title'] ?>
-													</option>
-												<? endforeach; ?>
-											</select>
-										</div>
-									</div>
 
 								</div>
 
@@ -600,7 +618,12 @@
 							<button class="btn btn-link collapsed text-success" type="button"
 									data-toggle="collapse" data-target="#collapse_info3"
 									aria-expanded="false" aria-controls="collapse_info3">
-								<?= ($fleet['insurance_company_3'] != '' ? $fleet['insurance_company_3'] : 'N/D') ?>
+								<?= lang('insurance1') ?>։
+								<? foreach ($insurance_type as $row) :
+									if ($fleet['insurance_type_id_3'] == $row['id']) :
+										echo $row['title'];
+									endif;
+								endforeach; ?>
 							</button>
 						</h5>
 					</div>
@@ -609,67 +632,6 @@
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
-									<div class="col-md-2">
-										<div class="form-group">
-											<label><?= lang('company') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_company_3'] ?>"
-												   name="company[3]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('company') ?>">
-										</div>
-									</div>
-
-									<div class="">
-										<div class="form-group float-left">
-											<label
-												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-												class="btn btn-sm btn-outline-secondary">
-												<span><?= lang('browse') ?></span>
-												<input class="btn_input"
-													   name="file_3" type="file"
-													   hidden style="display: none;"
-													   value="">
-											</label>
-										</div>
-										<div class="ml-2 float-left"><?
-											if ($fleet['insurance_ext_3'] != '') : ?>
-												<a class="a_ext1"
-												   target=""
-												   download="<?= $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>"
-												   href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>">
-													<?
-
-
-													echo $this->select_ext($fleet['insurance_ext_3']);
-
-													?>
-												</a>
-											<? endif; ?>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<label><?= lang('reference') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_referance_3'] ?>"
-												   name="reference[3]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('reference') ?>">
-										</div>
-									</div>
-
-									<div
-										class="<?= ($fleet['insurance_ext_3'] == '' ? 'col-md-2' : 'col-md-2') ?>">
-										<label><?= lang('expiry_date') ?></label>
-										<input type="date"
-											   value="<?= $fleet['insurance_expiration_3'] ?>"
-											   name="expiration[3]"
-											   max="3000-12-31"
-											   min="1000-01-01"
-											   class="form-control form-control-sm">
-									</div>
 
 									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
@@ -694,6 +656,70 @@
 										</div>
 									</div>
 
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('company') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_company_3'] ?>"
+												   name="company[3]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('company') ?>">
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('reference') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_referance_3'] ?>"
+												   name="reference[3]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('reference') ?>">
+										</div>
+									</div>
+
+									<div
+										class="<?= ($fleet['insurance_ext_3'] == '' ? 'col-md-2' : 'col-md-2') ?>">
+										<label><?= lang('expiry_date') ?></label>
+										<input type="date"
+											   value="<?= $fleet['insurance_expiration_3'] ?>"
+											   name="expiration[3]"
+											   max="3000-12-31"
+											   min="1000-01-01"
+											   class="form-control form-control-sm">
+									</div>
+
+									<div class="col-sm-3">
+										<div class="form-group float-left col-sm-7">
+											<label><?= lang('insurance_data') ?></label>
+											<label
+												style="margin-left: -3px;width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+												class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_3" type="file"
+													   hidden style="display: none;"
+													   value="">
+											</label>
+										</div>
+										<div class="ml-2 float-left"><?
+											if ($fleet['insurance_ext_3'] != '') : ?>
+												<a class="a_ext1"
+												   target=""
+												   download="<?= $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>"
+												   href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>">
+													<?
+
+
+													echo $this->select_ext($fleet['insurance_ext_3']);
+
+													?>
+												</a>
+											<? endif; ?>
+										</div>
+									</div>
+
 								</div>
 
 
@@ -708,7 +734,12 @@
 							<button class="btn btn-link collapsed text-success" type="button"
 									data-toggle="collapse" data-target="#collapse_info4"
 									aria-expanded="false" aria-controls="collapse_info4">
-								<?= ($fleet['insurance_company_4'] != '' ? $fleet['insurance_company_4'] : 'N/D') ?>
+								<?= lang('other') ?>։
+								<? foreach ($insurance_type as $row) :
+									if ($fleet['insurance_type_id_4'] == $row['id']) :
+										echo $row['title'];
+									endif;
+								endforeach; ?>
 							</button>
 						</h5>
 					</div>
@@ -718,64 +749,6 @@
 							<div class="add_new_items">
 								<div class="row">
 
-									<div class="col-md-2">
-										<div class="form-group">
-											<label><?= lang('company') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_company_4'] ?>"
-												   name="company[4]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('company') ?>">
-										</div>
-									</div>
-
-									<div class="">
-										<div class="form-group float-left">
-											<label
-												style="margin-left: -3px;width: 95px;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-												class="btn btn-sm btn-outline-secondary">
-												<span><?= lang('browse') ?></span>
-												<input class="btn_input"
-													   name="file_4" type="file"
-													   hidden style="display: none;"
-													   value="">
-											</label>
-										</div>
-										<div class="ml-2 float-left">
-											<? if ($fleet['insurance_ext_4'] != '') : ?>
-												<a
-													class="a_ext1"
-													target=""
-													download="<?= $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>"
-													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>">
-													<?
-													echo $this->select_ext($fleet['insurance_ext_4']);
-													?>
-												</a>
-											<? endif; ?>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="form-group">
-											<label><?= lang('reference') ?></label>
-											<input type="text"
-												   value="<?= $fleet['insurance_referance_4'] ?>"
-												   name="reference[4]"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('reference') ?>">
-										</div>
-									</div>
-
-									<div
-										class="<?= ($fleet['insurance_ext_4'] == '' ? 'col-md-2' : 'col-md-2') ?>">
-										<label><?= lang('expiry_date') ?></label>
-										<input type="date"
-											   value="<?= $fleet['insurance_expiration_4'] ?>"
-											   name="expiration[4]"
-											   max="3000-12-31"
-											   min="1000-01-01"
-											   class="form-control form-control-sm">
-									</div>
 
 									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
@@ -797,6 +770,68 @@
 													</option>
 												<? endforeach; ?>
 											</select>
+										</div>
+									</div>
+
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('company') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_company_4'] ?>"
+												   name="company[4]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('company') ?>">
+										</div>
+									</div>
+
+									<div class="col-md-2">
+										<div class="form-group">
+											<label><?= lang('reference') ?></label>
+											<input type="text"
+												   value="<?= $fleet['insurance_referance_4'] ?>"
+												   name="reference[4]"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('reference') ?>">
+										</div>
+									</div>
+
+									<div
+										class="<?= ($fleet['insurance_ext_4'] == '' ? 'col-md-2' : 'col-md-2') ?>">
+										<label><?= lang('expiry_date') ?></label>
+										<input type="date"
+											   value="<?= $fleet['insurance_expiration_4'] ?>"
+											   name="expiration[4]"
+											   max="3000-12-31"
+											   min="1000-01-01"
+											   class="form-control form-control-sm">
+									</div>
+
+									<div class="col-sm-3">
+										<div class="form-group float-left col-sm-7">
+											<label><?= lang('insurance_data') ?></label>
+											<label
+												style="margin-left: -3px;width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+												class="btn btn-sm btn-outline-secondary">
+												<span><?= lang('browse') ?></span>
+												<input class="btn_input"
+													   name="file_4" type="file"
+													   hidden style="display: none;"
+													   value="">
+											</label>
+										</div>
+										<div class="ml-2 float-left">
+											<? if ($fleet['insurance_ext_4'] != '') : ?>
+												<a
+													class="a_ext1"
+													target=""
+													download="<?= $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>"
+													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>">
+													<?
+													echo $this->select_ext($fleet['insurance_ext_4']);
+													?>
+												</a>
+											<? endif; ?>
 										</div>
 									</div>
 

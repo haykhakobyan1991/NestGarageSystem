@@ -7,10 +7,10 @@
 			<tr>
 				<th class="table_th"><?=lang('vehicle')?></th>
 				<th class="table_th"><?=lang('when')?></th>
-				<th class="table_th"><?=lang('type')?></th>
-				<th class="table_th" style="min-width: 150px;"><?=lang('driver')?></th>
+				<th class="table_th"><?=lang('type')?> *</th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('driver')?> *</th>
 				<th class="table_th"><?=lang('other_info')?></th>
-				<th class="table_th"><?=lang('price')?></th>
+				<th class="table_th"><?=lang('price')?> *</th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -163,10 +163,10 @@
 						<tr>
 							<th class="table_th"><?=lang('vehicle')?></th>
 							<th class="table_th"><?=lang('when')?></th>
-							<th class="table_th"><?=lang('type')?></th>
-							<th class="table_th" style="min-width: 150px;"><?=lang('driver')?></th>
+							<th class="table_th"><?=lang('type')?> *</th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('driver')?> *</th>
 							<th class="table_th"><?=lang('other_info')?></th>
-							<th class="table_th"><?=lang('price')?></th>
+							<th class="table_th"><?=lang('price')?> *</th>
 						</tr>
 						</thead>
 						<tbody>

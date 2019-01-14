@@ -7,13 +7,13 @@
 				<th class="table_th"><?=lang('vehicle')?></th>
 				<th class="table_th"><?=lang('when')?></th>
 				<th class="table_th"><?=lang('whence')?></th>
-				<th class="table_th"><?=lang('type')?></th>
+				<th class="table_th"><?=lang('type')?> *</th>
 				<th class="table_th"><?=lang('producer')?></th>
 				<th class="table_th"><?=lang('model')?></th>
-				<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
-				<th class="table_th"><?=lang('quantity')?> </th>
-				<th class="table_th"><?=lang('unit_cost')?></th>
-				<th class="table_th"><?=lang('price')?></th>
+				<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?> *</th>
+				<th class="table_th"><?=lang('quantity')?> *</th>
+				<th class="table_th"><?=lang('unit_cost')?> *</th>
+				<th class="table_th"><?=lang('price')?> *</th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -202,13 +202,13 @@
 							<th class="table_th"><?=lang('vehicle')?></th>
 							<th class="table_th"><?=lang('when')?></th>
 							<th class="table_th"><?=lang('whence')?></th>
-							<th class="table_th"><?=lang('type')?></th>
+							<th class="table_th"><?=lang('type')?> *</th>
 							<th class="table_th"><?=lang('producer')?></th>
 							<th class="table_th"><?=lang('model')?></th>
-							<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?></th>
-							<th class="table_th"><?=lang('quantity')?> </th>
-							<th class="table_th"><?=lang('unit_cost')?></th>
-							<th class="table_th"><?=lang('price')?></th>
+							<th class="table_th" style="min-width: 150px;"><?=lang('new_used')?>*</th>
+							<th class="table_th"><?=lang('quantity')?> *</th>
+							<th class="table_th"><?=lang('unit_cost')?> *</th>
+							<th class="table_th"><?=lang('price')?> *</th>
 						</tr>
 						</thead>
 						<tbody>

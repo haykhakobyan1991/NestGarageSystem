@@ -42,7 +42,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	}
 
 	.dataTables_filter > label {
-		margin-right: 70%;
+		margin-right: 65%;
 	}
 
 	 .btn.disabled, .btn:disabled{
@@ -93,13 +93,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div id="myDiagramDiv" style="height:300px;"></div>
 			<button name="" data-toggle="modal" data-target=".bd-example-modal-lg"
 					class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton"
-					style="position: absolute;top: -8px;right: 4px;z-index: 999;"
+					style="position: absolute;bottom: -55px;;right: 4px;z-index: 999;"
 					onclick="save('-1')"><?= lang('save') ?></button>
 		</div>
 		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
-
-
 	</div>
 
 	<span class="selected_information "></span>
@@ -378,7 +376,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					function (o) {
 						return o.diagram.commandHandler.canUngroupSelection();
 					})
+
+
 			);
+
 
 		function mayWorkFor(node1, node2) {
 			if (!(node1 instanceof go.Node)) return false;
@@ -390,7 +391,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		function textStyle() {
 			return {
 				font: "9px  Segoe UI,sans-serif",
-				stroke: "#fff"
+				stroke: "#fafafa"
+
 			};
 		}
 
@@ -469,7 +471,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						portId: "",
 						cursor: "pointer",
 						fromLinkableDuplicates: true,
-						toLinkableDuplicates: true
+						toLinkableDuplicates: true,
+						width: 140
 					},
 					new go.Binding("fill", "isHighlighted", function (h) {
 						return h ? "#ff7a59" : color;
@@ -494,7 +497,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							margin: new go.Margin(2, 2, 0, 1),
 							defaultAlignment: go.Spot.Left
 						},
-						$(go.RowColumnDefinition, {column: 2, width: 4}),
+						$(go.RowColumnDefinition, {column: 5, width: 4}),
 						$(go.TextBlock, textStyle(),
 							{
 								row: 0,
@@ -503,11 +506,18 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								font: "9px Segoe UI,sans-serif",
 								editable: false,
 								isMultiline: false,
-								minSize: new go.Size(8, 14)
+								minSize: new go.Size(NaN, 25),
+								width: 90
 							},
 							new go.Binding("text", "name").makeTwoWay()),
 						$(go.TextBlock, "", textStyle(),
-							{row: 1, column: 0}),
+							{
+								row: 1,
+								column: 0,
+								maxSize: new go.Size(160, NaN),
+								wrap: go.TextBlock.WrapFit
+							}
+						),
 						$(go.TextBlock, textStyle(),
 							{
 								row: 1,
@@ -516,7 +526,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								editable: false,
 								isMultiline: false,
 								minSize: new go.Size(10, 14),
-								margin: new go.Margin(1, 1, 0, 3)
+								margin: new go.Margin(0, 0, 0, 0),
+								wrap: go.TextBlock.WrapFit
 							},
 							new go.Binding("text", "text").makeTwoWay()),
 						$(go.TextBlock, textStyle(),
@@ -527,6 +538,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								name: "boss",
 								row: 2,
 								column: 3,
+								maxSize: new go.Size(160, NaN),
+								wrap: go.TextBlock.WrapFit
 							},
 							new go.Binding("text", "parent", function (v) {
 								return "Boss: " + v;
@@ -535,11 +548,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							{
 								row: 3,
 								column: 0,
-								columnSpan: 5,
+								columnSpan: 6,
 								font: "italic 9px sans-serif",
 								wrap: go.TextBlock.WrapFit,
 								editable: true,
-								minSize: new go.Size(10, 14)
+								minSize: new go.Size(15, 20)
 							},
 							new go.Binding("text", "comments").makeTwoWay())
 					)
@@ -590,10 +603,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					ungroupable: false
 				},
 				$(go.TextBlock,
+					'stretch',
 					{
 						font: "bold 9px sans-serif",
 						isMultiline: false,
-						editable: false
+						editable: false,
+						stretch: go.GraphObject.Fill
 					},
 					new go.Binding("text", "text").makeTwoWay(),
 					new go.Binding("stroke", "color")),
@@ -634,6 +649,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			);
 		var nodeDataArray = <?=$structure?>;
 		var linkDataArray = <?=$from_to?>;
+
+
+
+
 
 
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);

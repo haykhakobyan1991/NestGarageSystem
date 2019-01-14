@@ -341,7 +341,7 @@
 				'</td>\n' +
 				'<td><input  title="" type="date" name="end_date[' + j + ']"class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-				'<td><input title="" type="file" name="file[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="file" name="insurance_file[' + j + ']" value="" class="form-control text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>')
 			).then(function () {

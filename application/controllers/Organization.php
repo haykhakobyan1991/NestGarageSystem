@@ -2236,7 +2236,6 @@ class Organization extends MX_Controller {
 
 		if(isset($_FILES['regitered_file']['name']) AND $_FILES['regitered_file']['name'] != '') {
 
-
 			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/regitered_file'))) {
 				mkdir(set_realpath('uploads/'.$folder.'/fleet/regitered_file'), 0755, true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/regitered_file/index.html'));

@@ -2904,7 +2904,7 @@ class Structure extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
-
+		$folder = $this->session->folder;
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -2972,10 +2972,50 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
+
+
 			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
+
+//			//file config
+//			$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance');
+//			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+//			$config_f['max_size'] = '4097152'; //4 MB
+//			$config_f['file_name'] = $this->uname(3, 8);
+//
+//
+//			if(isset($_FILES['insurance_file']['name']) AND $_FILES['insurance_file']['name'] != '') { // todo foreach
+//
+//				if (!file_exists(set_realpath('uploads/'.$folder.'/insurance'))) {
+//					mkdir(set_realpath('uploads/'.$folder.'/insurance'), 0755, true);
+//					copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/insurance/index.html'));
+//				}
+//
+//
+//
+//				$this->load->library('upload', $config_f);
+//				$this->upload->initialize($config_f);
+//
+//				if (!$this->upload->do_upload('insurance_file')) {
+//					$validation_errors = array('insurance_file' => $this->upload->display_errors());
+//					$messages['error']['elements'][] = $validation_errors;
+//					echo json_encode($messages);
+//					return false;
+//				}
+//
+//
+//				$file_arr = $this->upload->data();
+//
+//				$file = $file_arr['file_name'];
+//
+//
+//				echo $file.'(_-_-_)';
+//
+//			}
+
+
 
 
 			$status = 1;

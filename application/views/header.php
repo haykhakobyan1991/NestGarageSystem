@@ -276,7 +276,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							</div>
 
 							<div class=""><?
-							if ($page == 'structure1') {
+							if ($page == 'structure1' || $page == 'structure2') {
 								?>
 								<div class="row btn-group mt-2 mt-md-2"
 									 style="right: 130px;z-index: 999;position: absolute;top: 77px;">

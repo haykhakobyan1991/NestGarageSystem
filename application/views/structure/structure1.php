@@ -391,8 +391,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		function textStyle() {
 			return {
 				font: "9px  Segoe UI,sans-serif",
-				stroke: "#fafafa"
-
+				stroke: "#fafafa",
+				row: 1
 			};
 		}
 
@@ -438,7 +438,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							shape.fill = "darkred";
 						}
 					},
-					height: 35,
+					height: 38,
 					mouseDragLeave: function (e, node, next) {
 						var shape = node.findObject("SHAPE");
 						if (shape && shape._prevFill) {
@@ -459,7 +459,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					}
 				},
 
-				new go.Binding("text", "name"),
+				new go.Binding("text", "text"),
 				new go.Binding("layerName", "isSelected", function (sel) {
 					return sel ? "Foreground" : "";
 				}).ofObject(),
@@ -472,7 +472,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						cursor: "pointer",
 						fromLinkableDuplicates: true,
 						toLinkableDuplicates: true,
-						width: 140
+						width: 160
 					},
 					new go.Binding("fill", "isHighlighted", function (h) {
 						return h ? "#ff7a59" : color;
@@ -506,55 +506,31 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								font: "9px Segoe UI,sans-serif",
 								editable: false,
 								isMultiline: false,
-								minSize: new go.Size(NaN, 25),
 								width: 90
 							},
-							new go.Binding("text", "name").makeTwoWay()),
-						$(go.TextBlock, "", textStyle(),
-							{
-								row: 1,
-								column: 0,
-								maxSize: new go.Size(160, NaN),
-								wrap: go.TextBlock.WrapFit
-							}
-						),
+							new go.Binding("text", "title").makeTwoWay()),
 						$(go.TextBlock, textStyle(),
 							{
 								row: 1,
-								column: 1,
 								columnSpan: 4,
 								editable: false,
 								isMultiline: false,
-								minSize: new go.Size(10, 14),
-								margin: new go.Margin(0, 0, 0, 0),
 								wrap: go.TextBlock.WrapFit
 							},
 							new go.Binding("text", "text").makeTwoWay()),
 						$(go.TextBlock, textStyle(),
-							{row: 2, column: 0},
+							{row: 1,margin: new go.Margin(0)},
 						),
 						$(go.TextBlock, textStyle(),
 							{
 								name: "boss",
 								row: 2,
-								column: 3,
-								maxSize: new go.Size(160, NaN),
+								column: 4,
 								wrap: go.TextBlock.WrapFit
 							},
 							new go.Binding("text", "parent", function (v) {
 								return "Boss: " + v;
-							})),
-						$(go.TextBlock, textStyle(),
-							{
-								row: 3,
-								column: 0,
-								columnSpan: 6,
-								font: "italic 9px sans-serif",
-								wrap: go.TextBlock.WrapFit,
-								editable: true,
-								minSize: new go.Size(15, 20)
-							},
-							new go.Binding("text", "comments").makeTwoWay())
+							}))
 					)
 				)
 			);
@@ -605,7 +581,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$(go.TextBlock,
 					'stretch',
 					{
-						font: "bold 9px sans-serif",
+						font: "bold 19px sans-serif",
 						isMultiline: false,
 						editable: false,
 						stretch: go.GraphObject.Fill

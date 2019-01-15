@@ -1,3 +1,13 @@
+<?
+$folder = $this->session->folder;
+?>
+<style>
+	a.ext > i{
+		width: 90%;
+		font-size: 20px;
+		padding: 8px !important;
+	}
+</style>
 <form id="vehicle_accident">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
@@ -11,6 +21,7 @@
 				<th class="table_th"><?=lang('conclusion_number')?> *</th>
 				<th class="table_th"><?=lang('replacement_subject_specs_name')?></th>
 				<th class="table_th"><?=lang('refundable_amount')?> *</th>
+				<th class="table_th"><?=lang('picture')?></th>
 				<th class="">
 					<? if (count($fleet['id']) > 1) { ?>
 					<span data-toggle="modal"
@@ -76,6 +87,27 @@
 						</td>
 
 						<td class="border">
+							<input style="width: 90%" disabled value="" title="" type="file" min="0" name="accident_file_<?= $row['id'] ?>"
+								   id="accident_file_<?= $row['id'] ?>"
+								   class="form-control text-center float-left"/>
+							<input type="hidden" name="fl[<?= $row['id'] ?>]" value="<?=$row['fleet_id']?>">
+							<a class="float-left ext"
+							   style="width:10%"
+							   target=""
+							   download="<?= $row['file'] ?>"
+							   href="<?= base_url('uploads/'.$folder.'/accident/fleet_'.$row['fleet_id'].'/') .  $row['file'] ?>">
+								<?
+
+								if($row['file']) {
+
+									$ext = explode('.',  $row['file']);
+
+									echo $this->select_ext($ext[1]);
+								}
+								?>
+
+						</td>
+						<td class="border">
 							<span
 								id="edit_accident"
 								data-id="<?= $row['id'] ?>"
@@ -129,11 +161,16 @@
 					<input title="" type="number" min="0" name="return_amount[1]" value=""
 						   class="form-control text-center"/>
 				</td>
+				<td class="border">
+					<input  value="" title="" type="file" min="0" name="accident_file_1"
+							class="form-control text-center"/>
+				</td>
 				<td class="border"></td>
 			</tr>
 			<tr>
 				<td class="font-weight-bold" style="text-align: left !important;" colspan="6"><?=lang('total')?></td>
 				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
 				<td></td>
 			</tr>
 			</tfoot>
@@ -143,6 +180,7 @@
 					<tr>
 						<td class="font-weight-bold" style="text-align: left !important;" colspan="6">'.lang('total').'</td>
 						<td class="font-weight-bold" id="sum"></td>
+						<td></td>
 						<td></td>
 					</tr>
 				</tfoot>
@@ -187,6 +225,7 @@
 							<th class="table_th"><?=lang('conclusion_number')?> *</th>
 							<th class="table_th"><?=lang('replacement_subject_specs_name')?></th>
 							<th class="table_th"><?=lang('refundable_amount')?> *</th>
+							<th class="table_th"><?=lang('picture')?> </th>
 						</tr>
 						</thead>
 						<tbody>
@@ -228,6 +267,10 @@
 									<input title="" type="number" min="0" name="return_amount[<?= $key + 1 ?>]" value=""
 										   class="form-control text-center"/>
 
+								</td>
+								<td class="border">
+									<input  value="" title="" type="file" min="0" name="accident_file_<?= $key + 1 ?>"
+											class="form-control text-center"/>
 								</td>
 							</tr>
 
@@ -289,6 +332,7 @@
 				'<td><input title="" type="text" name="conclusion_number[' + j + ']" value="" class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="text" name="replacement_parts[' + j + ']" value="" class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="return_amount[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+				'<td><input  value="" title="" type="file" min="0" name="accident_file_'+j+'" class="form-control text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>')
 		).then(function () {
@@ -338,7 +382,7 @@
 		"paging": false,
 		"info": false,
 		"columnDefs": [
-			{"orderable": false, "targets": 7}
+			{"orderable": false, "targets": 8}
 		],
 		dom: 'Bfrtip',
 		buttons: [
@@ -484,6 +528,7 @@
 		$('input[name="accident_conclusion_number['+id+']"]').prop('disabled', false);
 		$('input[name="accident_replacement_parts['+id+']"]').prop('disabled', false);
 		$('input[name="accident_return_amount['+id+']"]').prop('disabled', false);
+		$('input[name="accident_file_'+id+'"]').prop('disabled', false);
 
 		$(this).parent('td').html('<button\n' +
 			'\t\t\t\t\tdata-id="'+id+'"\n' +
@@ -501,6 +546,10 @@
 	$(document).on('click', '#edit_accident_btn', function (e) {
 		var td = $(this).parent('td');
 		var id = $(this).data('id');
+
+		var form_data = new FormData($('form#vehicle_accident')[0]);
+
+		form_data.append('accident_id', id);
 
 		var accident_add_date = $('input[name="accident_date['+id+']"]').val();
 		var accident_staff_id = $('select[name="accident_staff_id['+id+']"]').val();
@@ -524,15 +573,10 @@
 			url: url,
 			type: 'POST',
 			dataType: 'json',
-			data: {
-				accident_id: id,
-				accident_add_date: accident_add_date,
-				accident_staff_id: accident_staff_id,
-				accident_insurance_company: accident_insurance_company,
-				accident_conclusion_number: accident_conclusion_number,
-				accident_replacement_parts: accident_replacement_parts,
-				accident_return_amount: accident_return_amount
-			},
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
 			success: function (data) {
 				if (data.success == '1') {
 
@@ -551,6 +595,7 @@
 					$('input[name="accident_conclusion_number['+id+']"]').prop('disabled', true);
 					$('input[name="accident_replacement_parts['+id+']"]').prop('disabled', true);
 					$('input[name="accident_return_amount['+id+']"]').prop('disabled', true);
+					$('input[name="accident_file_'+id+'"]').prop('disabled', true);
 
 
 				} else {
@@ -593,9 +638,9 @@
 	$('input[name^="accident_return_amount"]').each(function () {
 		sum += parseInt($(this).val());
 		console.log($(this).val());
-	})
+	});
 
-	$('td#sum').html(sum)
+	$('td#sum').html(sum);
 
 	$('.buttons-excel span').html('<?=lang('export')?>')
 

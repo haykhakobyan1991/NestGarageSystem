@@ -474,7 +474,7 @@
 													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
-													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
+													href="<?= base_url('uploads/' . $folder . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
 													<?
 
 													echo $this->select_ext($fleet['insurance_ext_1']);
@@ -592,7 +592,7 @@
 													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_2'] . '.' . $fleet['insurance_ext_2'] ?>"
-													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_2'] . '.' . $fleet['insurance_ext_2'] ?>">
+													href="<?= base_url('uploads/' . $folder . '/fleet/insurance/') . $fleet['insurance_file_2'] . '.' . $fleet['insurance_ext_2'] ?>">
 													<?
 
 
@@ -708,7 +708,7 @@
 												<a class="a_ext1"
 												   target=""
 												   download="<?= $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>"
-												   href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>">
+												   href="<?= base_url('uploads/' . $folder . '/fleet/insurance/') . $fleet['insurance_file_3'] . '.' . $fleet['insurance_ext_3'] ?>">
 													<?
 
 
@@ -826,7 +826,7 @@
 													class="a_ext1"
 													target=""
 													download="<?= $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>"
-													href="<?= base_url('uploads/user_' . $fleet['registrar_user_id'] . '/fleet/insurance/') . $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>">
+													href="<?= base_url('uploads/' . $folder . '/fleet/insurance/') . $fleet['insurance_file_4'] . '.' . $fleet['insurance_ext_4'] ?>">
 													<?
 													echo $this->select_ext($fleet['insurance_ext_4']);
 													?>

@@ -1,3 +1,11 @@
+<?$folder = $this->session->folder;?>
+<style>
+	a.ext > i{
+		width: 90%;
+		font-size: 20px;
+		padding: 8px !important;
+	}
+</style>
 <form id="vehicle_insurance">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">
@@ -27,6 +35,7 @@
 			</tr>
 			</thead>
 			<tbody >
+
 			<?
 			if ($fleet_data) {
 				foreach ($fleet_data as $row) {
@@ -60,8 +69,23 @@
 								   class="form-control text-center"/>
 						</td>
 						<td class="border">
-							<input disabled value="" title="" type="file" min="0" name="insurance_file[<?= $row['id'] ?>]"
-								   class="form-control text-center"/>
+							<input style="width: 90%" disabled value="" title="" type="file" min="0" name="insurance_file_<?= $row['id'] ?>"
+								   id="insurance_file_<?= $row['id'] ?>"
+								   class="form-control text-center float-left"/>
+							<input type="hidden" name="fl[<?= $row['id'] ?>]" value="<?=$row['fleet_id']?>">
+							<a class="float-left ext"
+							   style="width:10%"
+							   target=""
+							   download="<?= $row['file'] ?>"
+							   href="<?= base_url('uploads/'.$folder.'/insurance/fleet_'.$row['fleet_id'].'/') .  $row['file'] ?>">
+								<?
+								if($row['file']) {
+									$ext = explode('.', $row['file']);
+
+									echo $this->select_ext($ext[1]);
+								}
+								?>
+
 						</td>
 						<td class="border">
 							<span
@@ -112,14 +136,15 @@
 						   class="form-control text-center"/>
 				</td>
 				<td class="border">
-					<input  value="" title="" type="file" min="0" name="insurance_file[1]"
+					<input  value="" title="" type="file" min="0" name="insurance_file_1"
 						   class="form-control text-center"/>
 				</td>
 				<td class="border"></td>
 			</tr>
 			<tr>
-				<td class="font-weight-bold" style="text-align: left !important;" colspan="6"><?=lang('total')?></td>
+				<td class="font-weight-bold" style="text-align: left !important;" colspan="5"><?=lang('total')?></td>
 				<td class="font-weight-bold" id="sum"></td>
+				<td></td>
 				<td></td>
 			</tr>
 			</tfoot>
@@ -212,7 +237,7 @@
 										   class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="file" min="0" name="file[<?= $key + 1 ?>]" value=""
+									<input title="" type="file" min="0" name="insurance_file_<?= $key + 1 ?>" value=""
 										   class="form-control text-center"/>
 								</td>
 							</tr>
@@ -341,7 +366,7 @@
 				'</td>\n' +
 				'<td><input  title="" type="date" name="end_date[' + j + ']"class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-				'<td><input title="" type="file" name="insurance_file[' + j + ']" value="" class="form-control text-center"/></td>\n' +
+				'<td><input title="" type="file" name="insurance_file_' + j + '" value="" class="form-control text-center"/></td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>')
 			).then(function () {
@@ -475,6 +500,7 @@
 			$('input[name="insurance_insurance_company['+id+']"]').prop('disabled', false);
 			$('input[name="insurance_end_date['+id+']"]').prop('disabled', false);
 			$('input[name="insurance_price['+id+']"]').prop('disabled', false);
+			$('input[name="insurance_file_'+id+'"]').prop('disabled', false);
 
 
 			$(this).parent('td').html('<button\n' +
@@ -494,11 +520,20 @@
 			var td = $(this).parent('td');
 			var id = $(this).data('id');
 
+			var form_data = new FormData($('form#vehicle_insurance')[0]);
+
+			form_data.append('insurance_id', id);
+
 			var insurance_date = $('input[name="insurance_date['+id+']"]').val();
 			var insurance_type_id = $('select[name="insurance_type_id['+id+']"]').val();
 			var insurance_insurance_company = $('input[name="insurance_insurance_company['+id+']"]').val();
 			var insurance_end_date = $('input[name="insurance_end_date['+id+']"]').val();
 			var insurance_price = $('input[name="insurance_price['+id+']"]').val();
+			var fileInput = document.getElementById('insurance_file_'+id);
+			var insurance_file = fileInput.files[0];
+
+			console.log(insurance_file);
+			var fleet_id = $('input[name="fl['+id+']"]').val();
 
 			var url = '<?=base_url($this->uri->segment(1) . '/Structure/edit_insurance_ax') ?>';
 			var me = $(this);
@@ -515,14 +550,10 @@
 				url: url,
 				type: 'POST',
 				dataType: 'json',
-				data: {
-					insurance_id: id,
-					insurance_date: insurance_date,
-					insurance_type_id: insurance_type_id,
-					insurance_insurance_company: insurance_insurance_company,
-					insurance_end_date: insurance_end_date,
-					insurance_price: insurance_price
-				},
+				data: form_data,
+				contentType: false,
+				cache: false,
+				processData: false,
 				success: function (data) {
 					if (data.success == '1') {
 
@@ -540,6 +571,7 @@
 						$('input[name="insurance_insurance_company['+id+']"]').prop('disabled', true);
 						$('input[name="insurance_end_date['+id+']"]').prop('disabled', true);
 						$('input[name="insurance_price['+id+']"]').prop('disabled', true);
+						$('input[name="insurance_file_'+id+'"]').prop('disabled', true);
 
 
 					} else {

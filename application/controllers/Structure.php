@@ -2402,6 +2402,7 @@ class Structure extends MX_Controller {
 				  `accident`.`conclusion_number`,
 				  `accident`.`replacement_parts`,
 				  `accident`.`return_amount`,
+				  `accident`.`file`,
 				  `accident`.`fleet_id`, /**/
 				  CONCAT_WS(
 					' ',
@@ -2449,6 +2450,7 @@ class Structure extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -2524,6 +2526,43 @@ class Structure extends MX_Controller {
 			}
 
 
+			$cpt = count($_FILES);
+			$file = array();
+			$config_f = array();
+			for ($i = 1; $i <= $cpt; $i++) {
+
+				//file config
+				$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/accident/fleet_'.$fleet_id);
+				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+				$config_f['max_size'] = '4097152'; //4 MB
+				$config_f['file_name'] = $this->uname(3, 8);
+				if(isset($_FILES['accident_file_' . $i]['name']) AND $_FILES['accident_file_' . $i]['name'] != '') {
+
+					if (!file_exists(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id))) {
+						mkdir(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id), 0755, true);
+						copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id . '/index.html'));
+					}
+
+
+					$this->load->library('upload', $config_f);
+					$this->upload->initialize($config_f);
+
+					if (!$this->upload->do_upload('accident_file_' . $i)) {
+						$validation_errors = array('accident_file_' . $i => $this->upload->display_errors());
+						$messages['error']['elements'][] = $validation_errors;
+						echo json_encode($messages);
+						return false;
+					}
+
+
+					$file_arr = $this->upload->data();
+
+					$file[$i] = $file_arr['file_name'];
+				}
+
+			}
+
+
 			$status = 1;
 
 
@@ -2537,6 +2576,7 @@ class Structure extends MX_Controller {
 				  `replacement_parts`,
 				  `return_amount`,
 				  `fleet_id`,
+				  `file`,
 				  `status`
 				) 
 				VALUES
@@ -2553,6 +2593,7 @@ class Structure extends MX_Controller {
 				" . $this->load->db_value($replacement_parts[$key]) . ",
 				" . $this->load->db_value($return_amount[$key]) . ",
 				" . $this->load->db_value($fleet_id) . ",
+				" . $this->load->db_value((isset($file[$key]) ? $file[$key] : '')) . ",
 				" . $this->load->db_value($status) . "
 			),";
 			}
@@ -2619,6 +2660,45 @@ class Structure extends MX_Controller {
 			}
 
 
+			$cpt = count($_FILES);
+			$file = array();
+			$config_f = array();
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$i = $key + 1;
+
+				//file config
+				$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id);
+				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+				$config_f['max_size'] = '4097152'; //4 MB
+				$config_f['file_name'] = $this->uname(3, 8);
+				if (isset($_FILES['accident_file_' . $key]['name']) AND $_FILES['accident_file_' . $key]['name'] != '') {
+
+					if (!file_exists(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id))) {
+						mkdir(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id), 0755, true);
+						copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id . '/index.html'));
+					}
+
+
+					$this->load->library('upload', $config_f);
+					$this->upload->initialize($config_f);
+
+					if (!$this->upload->do_upload('accident_file_' . $key )) {
+						$validation_errors = array('accident_file_' . $key => $this->upload->display_errors());
+						$messages['error']['elements'][] = $validation_errors;
+						echo json_encode($messages);
+						return false;
+					}
+
+
+					$file_arr = $this->upload->data();
+
+					$file[$key] = $file_arr['file_name'];
+				}
+
+			}
+
+
 			$sql = "
 				INSERT INTO `accident` (
 				  `add_date`,
@@ -2629,6 +2709,7 @@ class Structure extends MX_Controller {
 				  `replacement_parts`,
 				  `return_amount`,
 				  `fleet_id`,
+				  `file`,
 				  `status`
 				) 
 				VALUES
@@ -2646,6 +2727,7 @@ class Structure extends MX_Controller {
 					" . $this->load->db_value($replacement_parts[$key]) . ",
 					" . $this->load->db_value($return_amount[$key]) . ",
 					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value((isset($file[$key]) ? $file[$key] : '')) . ",
 					" . $this->load->db_value($status) . "
 				),";
 			}
@@ -2678,6 +2760,7 @@ class Structure extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
 
 		$result = false;
 
@@ -2695,12 +2778,12 @@ class Structure extends MX_Controller {
 
 		$accident_id = $this->input->post('accident_id');
 
-		$this->form_validation->set_rules('accident_conclusion_number', 'accident_conclusion_number', 'required');
-		$this->form_validation->set_rules('accident_insurance_company', 'accident_insurance_company', 'required');
+		$this->form_validation->set_rules('accident_conclusion_number['.$accident_id.']', 'accident_conclusion_number', 'required');
+		$this->form_validation->set_rules('accident_insurance_company['.$accident_id.']', 'accident_insurance_company', 'required');
 //		$this->form_validation->set_rules('accident_replacement_parts', 'accident_replacement_parts', 'required');
-		$this->form_validation->set_rules('accident_return_amount', 'accident_return_amount', 'required');
-		$this->form_validation->set_rules('accident_staff_id', 'accident_staff_id', 'required');
-		$this->form_validation->set_rules('accident_add_date', 'accident_add_date', 'required');
+		$this->form_validation->set_rules('accident_return_amount['.$accident_id.']', 'accident_return_amount', 'required');
+		$this->form_validation->set_rules('accident_staff_id['.$accident_id.']', 'accident_staff_id', 'required');
+		$this->form_validation->set_rules('accident_date['.$accident_id.']', 'accident_add_date', 'required');
 
 
 
@@ -2714,7 +2797,7 @@ class Structure extends MX_Controller {
 //				'accident_replacement_parts['.$accident_id.']' => form_error('accident_replacement_parts'),
 				'accident_return_amount['.$accident_id.']' => form_error('accident_return_amount'),
 				'accident_staff_id['.$accident_id.']' => form_error('accident_staff_id'),
-				'accident_add_date['.$accident_id.']' => form_error('accident_add_date')
+				'accident_date['.$accident_id.']' => form_error('accident_add_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -2729,8 +2812,9 @@ class Structure extends MX_Controller {
 		$accident_replacement_parts = $this->input->post('accident_replacement_parts');
 		$accident_return_amount = $this->input->post('accident_return_amount');
 		$accident_staff_id = $this->input->post('accident_staff_id');
-		$accident_add_date = $this->input->post('accident_add_date');
-
+		$accident_add_date = $this->input->post('accident_date');
+		$fl = $this->input->post('fl');
+		$fl_id = $fl[$accident_id];
 
 
 
@@ -2740,17 +2824,53 @@ class Structure extends MX_Controller {
 			return false;
 		}
 
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/accident/fleet_'.$fl_id);
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
+		//$this->pre($_FILES);
+
+		$add_file = '';
+		if(isset($_FILES['accident_file_' . $accident_id]['name']) AND $_FILES['accident_file_' . $accident_id]['name'] != '') {
+
+			if (!file_exists(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id))) {
+				mkdir(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id . '/index.html'));
+			}
+
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('accident_file_' . $accident_id)) {
+				$validation_errors = array('accident_file_' . $accident_id => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_arr = $this->upload->data();
+
+			$add_file = "`file` = " . $this->load->db_value($file_arr['file_name']) . ",";
+		}
+
 
 
 		$sql = "
 			UPDATE `accident` SET
-				`add_date` = " . $this->load->db_value($accident_add_date) . ",
+				`add_date` = " . $this->load->db_value($accident_add_date[$accident_id]) . ",
 				`add_user_id` = " . $this->load->db_value($user_id) . ",
-				`insurance_company` = " . $this->load->db_value($accident_insurance_company) . ",
-				`staff_id` = " . $this->load->db_value($accident_staff_id) . ",
-				`conclusion_number` = " . $this->load->db_value($accident_conclusion_number) . ",
-				`replacement_parts` = " . $this->load->db_value($accident_replacement_parts) . ",
-				`return_amount` = " . $this->load->db_value($accident_return_amount) . "
+				`insurance_company` = " . $this->load->db_value($accident_insurance_company[$accident_id]) . ",
+				`staff_id` = " . $this->load->db_value($accident_staff_id[$accident_id]) . ",
+				`conclusion_number` = " . $this->load->db_value($accident_conclusion_number[$accident_id]) . ",
+				`replacement_parts` = " . $this->load->db_value($accident_replacement_parts[$accident_id]) . ",
+				".$add_file."
+				`return_amount` = " . $this->load->db_value($accident_return_amount[$accident_id]) . "
 			WHERE `id` = " . $this->load->db_value($accident_id) . "
 		";
 
@@ -2863,6 +2983,7 @@ class Structure extends MX_Controller {
 				  `insurance`.`insurance_type_id`,
 				  `insurance`.`end_date`,
 				  `insurance`.`price`,
+				  `insurance`.`file`,
 				  `insurance`.`fleet_id`, /**/
 				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
@@ -2901,6 +3022,7 @@ class Structure extends MX_Controller {
 		//$this->load->authorisation('Structure', 'insurance');
 
 		$this->load->library('session');
+		$this->load->library('upload');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
@@ -2979,43 +3101,45 @@ class Structure extends MX_Controller {
 				return false;
 			}
 
-//			//file config
-//			$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance');
-//			$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
-//			$config_f['max_size'] = '4097152'; //4 MB
-//			$config_f['file_name'] = $this->uname(3, 8);
-//
-//
-//			if(isset($_FILES['insurance_file']['name']) AND $_FILES['insurance_file']['name'] != '') { // todo foreach
-//
-//				if (!file_exists(set_realpath('uploads/'.$folder.'/insurance'))) {
-//					mkdir(set_realpath('uploads/'.$folder.'/insurance'), 0755, true);
-//					copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/insurance/index.html'));
-//				}
-//
-//
-//
-//				$this->load->library('upload', $config_f);
-//				$this->upload->initialize($config_f);
-//
-//				if (!$this->upload->do_upload('insurance_file')) {
-//					$validation_errors = array('insurance_file' => $this->upload->display_errors());
-//					$messages['error']['elements'][] = $validation_errors;
-//					echo json_encode($messages);
-//					return false;
-//				}
-//
-//
-//				$file_arr = $this->upload->data();
-//
-//				$file = $file_arr['file_name'];
-//
-//
-//				echo $file.'(_-_-_)';
-//
-//			}
 
 
+
+
+			$cpt = count($_FILES);
+			$file = array();
+			$config_f = array();
+			for ($i = 1; $i <= $cpt; $i++) {
+
+				//file config
+				$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance/fleet_'.$fleet_id);
+				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+				$config_f['max_size'] = '4097152'; //4 MB
+				$config_f['file_name'] = $this->uname(3, 8);
+				if(isset($_FILES['insurance_file_' . $i]['name']) AND $_FILES['insurance_file_' . $i]['name'] != '') {
+
+					if (!file_exists(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id))) {
+						mkdir(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id), 0755, true);
+						copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id . '/index.html'));
+					}
+
+
+					$this->load->library('upload', $config_f);
+					$this->upload->initialize($config_f);
+
+					if (!$this->upload->do_upload('insurance_file_' . $i)) {
+						$validation_errors = array('insurance_file_' . $i => $this->upload->display_errors());
+						$messages['error']['elements'][] = $validation_errors;
+						echo json_encode($messages);
+						return false;
+					}
+
+
+					$file_arr = $this->upload->data();
+
+					$file[$i] = $file_arr['file_name'];
+				}
+
+			}
 
 
 			$status = 1;
@@ -3030,6 +3154,7 @@ class Structure extends MX_Controller {
 				  `end_date`,
 				  `price`,
 				  `fleet_id`,
+				  `file`,
 				  `status`
 				)
 				VALUES
@@ -3045,6 +3170,7 @@ class Structure extends MX_Controller {
 					" . $this->load->db_value($end_date[$key]) . ",
 					" . $this->load->db_value($price[$key]) . ",
 					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value((isset($file[$key]) ? $file[$key] : '')) . ",
 					" . $this->load->db_value($status) . "
 				),";
 			}
@@ -3101,6 +3227,45 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
+			$cpt = count($_FILES);
+			$file = array();
+			$config_f = array();
+			foreach ($fl_ids as $key => $fl_id) {
+
+				$i = $key + 1;
+
+				//file config
+				$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id);
+				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+				$config_f['max_size'] = '4097152'; //4 MB
+				$config_f['file_name'] = $this->uname(3, 8);
+				if (isset($_FILES['insurance_file_' . $key]['name']) AND $_FILES['insurance_file_' . $key]['name'] != '') {
+
+					if (!file_exists(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id))) {
+						mkdir(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id), 0755, true);
+						copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id . '/index.html'));
+					}
+
+
+					$this->load->library('upload', $config_f);
+					$this->upload->initialize($config_f);
+
+					if (!$this->upload->do_upload('insurance_file_' . $key )) {
+						$validation_errors = array('insurance_file_' . $key => $this->upload->display_errors());
+						$messages['error']['elements'][] = $validation_errors;
+						echo json_encode($messages);
+						return false;
+					}
+
+
+					$file_arr = $this->upload->data();
+
+					$file[$key] = $file_arr['file_name'];
+				}
+
+			}
+
+
 
 
 
@@ -3119,6 +3284,7 @@ class Structure extends MX_Controller {
 				  `end_date`,
 				  `price`,
 				  `fleet_id`,
+				  `file`,
 				  `status`
 				) 
 				VALUES
@@ -3135,6 +3301,7 @@ class Structure extends MX_Controller {
 					" . $this->load->db_value($end_date[$key]) . ",
 					" . $this->load->db_value($price[$key]) . ",
 					" . $this->load->db_value($fl_id) . ",
+					" . $this->load->db_value((isset($file[$key]) ? $file[$key] : '')) . ",
 					" . $this->load->db_value($status) . "
 				),";
 			}
@@ -3186,13 +3353,14 @@ class Structure extends MX_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 
 		$insurance_id = $this->input->post('insurance_id');
+		$folder = $this->session->folder;
 
 
-		$this->form_validation->set_rules('insurance_price', 'insurance_price', 'required');
-		$this->form_validation->set_rules('insurance_insurance_company', 'insurance_insurance_company', 'required');
-		$this->form_validation->set_rules('insurance_type_id', 'insurance_type_id', 'required');
-		$this->form_validation->set_rules('insurance_end_date', 'insurance_end_date', 'required');
-		$this->form_validation->set_rules('insurance_date', 'insurance_date', 'required');
+		$this->form_validation->set_rules('insurance_price['.$insurance_id.']', 'insurance_price', 'required');
+		$this->form_validation->set_rules('insurance_insurance_company['.$insurance_id.']', 'insurance_insurance_company', 'required');
+		$this->form_validation->set_rules('insurance_type_id['.$insurance_id.']', 'insurance_type_id', 'required');
+		$this->form_validation->set_rules('insurance_end_date['.$insurance_id.']', 'insurance_end_date', 'required');
+		$this->form_validation->set_rules('insurance_date['.$insurance_id.']', 'insurance_date', 'required');
 
 
 
@@ -3218,6 +3386,10 @@ class Structure extends MX_Controller {
 		$insurance_type_id = $this->input->post('insurance_type_id');
 		$end_date = $this->input->post('insurance_end_date');
 		$date = $this->input->post('insurance_date');
+		$fl = $this->input->post('fl');
+		$fl_id = $fl[$insurance_id];
+
+
 
 
 
@@ -3229,6 +3401,42 @@ class Structure extends MX_Controller {
 		}
 
 
+		//file config
+		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance/fleet_'.$fl_id);
+		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		$config_f['max_size'] = '4097152'; //4 MB
+		$config_f['file_name'] = $this->uname(3, 8);
+
+		//$this->pre($_FILES);
+
+		$add_file = '';
+		if(isset($_FILES['insurance_file_' . $insurance_id]['name']) AND $_FILES['insurance_file_' . $insurance_id]['name'] != '') {
+
+			if (!file_exists(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id))) {
+				mkdir(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id . '/index.html'));
+			}
+
+
+
+
+			$this->load->library('upload', $config_f);
+			$this->upload->initialize($config_f);
+
+			if (!$this->upload->do_upload('insurance_file_' . $insurance_id)) {
+				$validation_errors = array('insurance_file_' . $insurance_id => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$file_arr = $this->upload->data();
+
+			$add_file = "`file` = " . $this->load->db_value($file_arr['file_name']) . ",";
+		}
+
+
 
 
 
@@ -3236,12 +3444,13 @@ class Structure extends MX_Controller {
 
 		$sql = "
 			UPDATE `insurance` SET
-				`add_date` = " . $this->load->db_value($date) . ",
+				`add_date` = " . $this->load->db_value($date[$insurance_id]) . ",
 				`add_user_id` = " . $this->load->db_value($user_id) . ",
-				`insurance_company` = " . $this->load->db_value($insurance_company) . ",
-				`insurance_type_id` = " . $this->load->db_value($insurance_type_id) . ",
-				`end_date` = " . $this->load->db_value($end_date) . ",
-				`price` = " . $this->load->db_value($price) . "
+				`insurance_company` = " . $this->load->db_value($insurance_company[$insurance_id]) . ",
+				`insurance_type_id` = " . $this->load->db_value($insurance_type_id[$insurance_id]) . ",
+				`end_date` = " . $this->load->db_value($end_date[$insurance_id]) . ",
+				".$add_file."
+				`price` = " . $this->load->db_value($price[$insurance_id]) . "
 			WHERE `id` = " . $this->load->db_value($insurance_id) . "
 		";
 
@@ -3256,7 +3465,7 @@ class Structure extends MX_Controller {
 
 		if ($result) {
 			$messages['success'] = 1;
-			$messages['message'] = lang('success');
+			$messages['message'] = $insurance_id;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = lang('error');

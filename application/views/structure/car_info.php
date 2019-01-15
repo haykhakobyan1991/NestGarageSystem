@@ -92,7 +92,7 @@ $folder = $this->session->folder;
 								<p class="small text-black driver_info"><?= lang('vin') ?>: <span
 										class="text-black ml-2"><?= $row['vin_code'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('vehicle_type') ?>: <span
-										class="text-black ml-2"><?= $row['fleet_type'] ?></span></p>
+										class="text-black ml-2"><?= $row['fleet_type'] . ($row['other'] != '' ? ' ('.$row['other'].')' : '')?></span></p>
 								<p class="small text-black driver_info"><?= lang('department') ?>: <span
 										class="text-black ml-2"><?= $row['department'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('registration_address') ?>։<span

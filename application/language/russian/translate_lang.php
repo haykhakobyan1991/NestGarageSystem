@@ -408,6 +408,7 @@ $lang['insurance1'] = 'Страхование';
 $lang['insurance_data'] = 'Страховые данные';
 
 $lang['file'] = 'Документ';
+$lang['Report_period'] = 'Период отчета';
 
 
 

@@ -317,7 +317,7 @@ class Structure extends MX_Controller {
 				  department.id,
 				  staff.`department_ids`
 				) 
-				AND `staff`.`Id` <> `head_staff`.`Id` /*new*/
+				/*AND `staff`.`Id` <> `head_staff`.`Id` new*/
 				AND `staff`.`status` = '1'
 				/*todo*/
 			  LEFT JOIN `fleet` 

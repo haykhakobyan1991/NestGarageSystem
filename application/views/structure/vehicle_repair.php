@@ -92,7 +92,8 @@
 				<td class="border"></td>
 			</tr>
 			<tr>
-				<td class="font-weight-bold" style="text-align: left !important;" colspan="4"><?=lang('total')?></td>
+				<td class="font-weight-bold" style="text-align: left !important;" ><?=lang('total')?></td>
+				<td class="font-weight-bold"  colspan="3"></td>
 				<td class="font-weight-bold" id="sum"></td>
 				<td></td>
 			</tr>
@@ -101,7 +102,8 @@
 				echo '
 				<tfoot>
 					<tr>
-						<td class="font-weight-bold" style="text-align: left !important;" colspan="4">'.lang('total').'</td>
+						<td class="font-weight-bold" style="text-align: left !important;" >'.lang('total').'</td>
+						<td class="font-weight-bold" colspan="3"></td>
 						<td class="font-weight-bold" id="sum"></td>
 						<td></td>
 					</tr>
@@ -227,8 +229,9 @@
 		buttons: [
 			{
 				extend: 'excelHtml5',
-				title: '',
-				filename: 'excel_file',
+				title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+				messageTop: '<?=lang('user')?> '+$('.username_login > a').text(),
+				filename: 'repair',
 				footer: true,
 				exportOptions: {
 					format: {

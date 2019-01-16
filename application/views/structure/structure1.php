@@ -45,9 +45,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		margin-right: 65%;
 	}
 
-	 .btn.disabled, .btn:disabled{
-		 opacity: 1 !important;
-	 }
+	.btn.disabled, .btn:disabled {
+		opacity: 1 !important;
+	}
 
 	.bootstrap-select.disabled, .bootstrap-select > .disabled {
 		cursor: none !important;
@@ -150,35 +150,35 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			   role="tab" aria-controls="nav-7"
 			   aria-selected="false"><?= lang('repair') ?></a>
 
-<!--			<a class="nav-item nav-link tab_nav"-->
-<!--			   data-tab="8" id="nav-8-tab"-->
-<!--			   data-toggle="tab" href="#nav-8"-->
-<!--			   role="tab" aria-controls="nav-8"-->
-<!--			   aria-selected="false">--><?//= lang('wheel') ?><!--</a>-->
+			<!--			<a class="nav-item nav-link tab_nav"-->
+			<!--			   data-tab="8" id="nav-8-tab"-->
+			<!--			   data-toggle="tab" href="#nav-8"-->
+			<!--			   role="tab" aria-controls="nav-8"-->
+			<!--			   aria-selected="false">--><? //= lang('wheel') ?><!--</a>-->
 
-<!--			<a class="nav-item nav-link tab_nav"-->
-<!--			   data-tab="9" id="nav-9-tab"-->
-<!--			   data-toggle="tab" href="#nav-9"-->
-<!--			   role="tab" aria-controls="nav-9"-->
-<!--			   aria-selected="false">--><?//= lang('brake') ?><!--</a>-->
+			<!--			<a class="nav-item nav-link tab_nav"-->
+			<!--			   data-tab="9" id="nav-9-tab"-->
+			<!--			   data-toggle="tab" href="#nav-9"-->
+			<!--			   role="tab" aria-controls="nav-9"-->
+			<!--			   aria-selected="false">--><? //= lang('brake') ?><!--</a>-->
 
-<!--			<a class="nav-item nav-link tab_nav"-->
-<!--			   data-tab="10" id="nav-10-tab"-->
-<!--			   data-toggle="tab" href="#nav-10"-->
-<!--			   role="tab" aria-controls="nav-10"-->
-<!--			   aria-selected="false">--><?//= lang('grease') ?><!--</a>-->
+			<!--			<a class="nav-item nav-link tab_nav"-->
+			<!--			   data-tab="10" id="nav-10-tab"-->
+			<!--			   data-toggle="tab" href="#nav-10"-->
+			<!--			   role="tab" aria-controls="nav-10"-->
+			<!--			   aria-selected="false">--><? //= lang('grease') ?><!--</a>-->
 
-<!--			<a class="nav-item nav-link tab_nav"-->
-<!--			   data-tab="11" id="nav-11-tab"-->
-<!--			   data-toggle="tab" href="#nav-11"-->
-<!--			   role="tab" aria-controls="nav-11"-->
-<!--			   aria-selected="false">--><?//= lang('filter') ?><!--</a>-->
+			<!--			<a class="nav-item nav-link tab_nav"-->
+			<!--			   data-tab="11" id="nav-11-tab"-->
+			<!--			   data-toggle="tab" href="#nav-11"-->
+			<!--			   role="tab" aria-controls="nav-11"-->
+			<!--			   aria-selected="false">--><? //= lang('filter') ?><!--</a>-->
 
-<!--			<a class="nav-item nav-link tab_nav"-->
-<!--			   data-tab="12" id="nav-12-tab"-->
-<!--			   data-toggle="tab" href="#nav-12"-->
-<!--			   role="tab" aria-controls="nav-12"-->
-<!--			   aria-selected="false">--><?//= lang('battery') ?><!--</a>-->
+			<!--			<a class="nav-item nav-link tab_nav"-->
+			<!--			   data-tab="12" id="nav-12-tab"-->
+			<!--			   data-toggle="tab" href="#nav-12"-->
+			<!--			   role="tab" aria-controls="nav-12"-->
+			<!--			   aria-selected="false">--><? //= lang('battery') ?><!--</a>-->
 
 		</div>
 	</nav>
@@ -376,8 +376,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					function (o) {
 						return o.diagram.commandHandler.canUngroupSelection();
 					})
-
-
 			);
 
 
@@ -525,7 +523,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 						$(go.TextBlock, textStyle(),
-							{row: 1,margin: new go.Margin(0)},
+							{row: 1, margin: new go.Margin(0)},
 						),
 						$(go.TextBlock, textStyle(),
 							{
@@ -633,10 +631,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		var linkDataArray = <?=$from_to?>;
 
 
-
-
-
-
 		myDiagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
 	}
 
@@ -737,195 +731,195 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 		myDiagram.addDiagramListener('ObjectSingleClicked', function (e) {
-				var linkDataArray = <?=$from_to?>;
-				$.each(linkDataArray, function (key, value) {
-					if (value.from == myDiagram.selection.Ca.key.Wd.key) {
-						//console.log('+' + linkDataArray[key].to);
-						dragSelectNodes(linkDataArray[key].to);
-						$.each(linkDataArray, function (ky, val) {
-							if (val.from == value.to) {
-								dragSelectNodes(val.to);
-								//console.log('-' + val.to);
-							}
-						})
+			var linkDataArray = <?=$from_to?>;
+			$.each(linkDataArray, function (key, value) {
+				if (value.from == myDiagram.selection.Ca.key.Wd.key) {
+					//console.log('+' + linkDataArray[key].to);
+					dragSelectNodes(linkDataArray[key].to);
+					$.each(linkDataArray, function (ky, val) {
+						if (val.from == value.to) {
+							dragSelectNodes(val.to);
+							//console.log('-' + val.to);
+						}
+					})
+				}
+			});
+
+			var arr = [];
+			new_arr = [];
+			selecteds = [];
+
+			myDiagram.selection.each(function (part) {
+
+				if (part instanceof go.Node) {
+
+					//console.log(part);
+
+					arr = {
+						"key": part.Wd.key,
+						"name": part.Wd.text,
+						"parent": part.Wd.parent
+					};
+
+					var str1 = arr.key;
+					var re1 = 'f';
+					var re2 = 'd';
+					var found1 = str1.match(re1);
+					var found2 = str1.match(re2);
+					if (found1 == 'f' || found2 == 'd') {
+						new_arr.push(arr);
 					}
-				});
-
-				var arr = [];
-				new_arr = [];
-				selecteds = [];
-
-				myDiagram.selection.each(function (part) {
-
-					if (part instanceof go.Node) {
-
-						//console.log(part);
-
-						arr = {
-							"key": part.Wd.key,
-							"name": part.Wd.text,
-							"parent": part.Wd.parent
-						};
-
-						var str1 = arr.key;
-						var re1 = 'f';
-						var re2 = 'd';
-						var found1 = str1.match(re1);
-						var found2 = str1.match(re2);
-						if (found1 == 'f' || found2 == 'd') {
-							new_arr.push(arr);
-						}
-						//---;
-						if (found1 == 'f') {
-							selecteds.push(arr.key);
-						}
-
+					//---;
+					if (found1 == 'f') {
+						selecteds.push(arr.key);
 					}
 
-				});
-
-				//---;
-				$('input[name="selecteds"]').val(selecteds);
-
-
-				if ($('a[data-id="1"]').hasClass('active')) {
-					if (new_arr.length !== 0) {
-						$('.selected_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
-						var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
-						$.post(url, {arr: new_arr}).done(function (data) {
-							$('#add-info').fadeOut('slow');
-							$('.selected_information').html(data);
-							$('#nav-tabContent-car').fadeIn('slow');
-						});
-
-						var data = $.parseJSON(new_arr);
-
-						$(document).on('click', '#export', function () {
-							$(document).excelexportjs({
-								containerid: "dvjson",
-								datatype: 'json',
-								dataset: data,
-								columns: getColumns(data)
-							});
-						})
-					}
-				} else if ($('a[data-id="2"]').hasClass('active')) {
-					$('.selected_information').html('');
-					var url_1 = '';
-
-					$('.tab_nav').each(function () {
-						if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
-							url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
-							vehicle_add(new_arr, url_1, $(this).data('tab'))
-						}
-					});
-
-				} else if ($('a[data-id="3"]').hasClass('active')) {
-					$('.selected_information').html('');
-
-					var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
-					var date_from = $('input[name="from"]').val();
-					var date_to = $('input[name="to"]').val();
-					var table = '';
-					var title = '';
-
-					$('.tab_nav').each(function () {
-
-						if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
-							table = 'inspection';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
-							table = 'fuel_consumption';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
-							table = 'fine';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
-							table = 'accident';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
-							table = 'insurance';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
-							table = 'spares';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
-							table = 'repair';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
-							table = 'wheel';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
-							table = 'brake';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
-							table = 'grease';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
-							table = 'filter';
-							title = $(this).text();
-						} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
-							table = 'battery';
-							title = $(this).text();
-						}
-					});
-
-
-					$.ajax({
-						url: url,
-						type: 'POST',
-						data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
-						async: true,
-						dataType: "json",
-						success: function (data) {
-							if (title != '') {
-								chartCircle(data, title);
-								chart(data, title);
-							}
-						}
-					}).done(function () { //---
-						rightClick();
-					});
-				} else {
-					$('.selected_information').html('');
 				}
 
-				/*Remove BoxShadow From HighCharts Pie Diagram*/
-				$('.highcharts-text-outline').attr('stroke', '');
 			});
+
+			//---;
+			$('input[name="selecteds"]').val(selecteds);
+
+
+			if ($('a[data-id="1"]').hasClass('active')) {
+				if (new_arr.length !== 0) {
+					$('.selected_information').html('<img style="z-index: 999; position: fixed; left: 50%; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+					var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/car_info')?>';
+					$.post(url, {arr: new_arr}).done(function (data) {
+						$('#add-info').fadeOut('slow');
+						$('.selected_information').html(data);
+						$('#nav-tabContent-car').fadeIn('slow');
+					});
+
+					var data = $.parseJSON(new_arr);
+
+					$(document).on('click', '#export', function () {
+						$(document).excelexportjs({
+							containerid: "dvjson",
+							datatype: 'json',
+							dataset: data,
+							columns: getColumns(data)
+						});
+					})
+				}
+			} else if ($('a[data-id="2"]').hasClass('active')) {
+				$('.selected_information').html('');
+				var url_1 = '';
+
+				$('.tab_nav').each(function () {
+					if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_inspection')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fuel')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_fine')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_accident')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_insurance')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_spares')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_repair')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_wheel')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_brake')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_grease')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_filter')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+						url_1 = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Structure/vehicle_battery')?>';
+						vehicle_add(new_arr, url_1, $(this).data('tab'))
+					}
+				});
+
+			} else if ($('a[data-id="3"]').hasClass('active')) {
+				$('.selected_information').html('');
+
+				var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistory_ax')?>';
+				var date_from = $('input[name="from"]').val();
+				var date_to = $('input[name="to"]').val();
+				var table = '';
+				var title = '';
+
+				$('.tab_nav').each(function () {
+
+					if ($(this).data('tab') == 1 && $(this).hasClass('active')) {
+						table = 'inspection';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 2 && $(this).hasClass('active')) {
+						table = 'fuel_consumption';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 3 && $(this).hasClass('active')) {
+						table = 'fine';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 4 && $(this).hasClass('active')) {
+						table = 'accident';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 5 && $(this).hasClass('active')) {
+						table = 'insurance';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 6 && $(this).hasClass('active')) {
+						table = 'spares';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 7 && $(this).hasClass('active')) {
+						table = 'repair';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 8 && $(this).hasClass('active')) {
+						table = 'wheel';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 9 && $(this).hasClass('active')) {
+						table = 'brake';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 10 && $(this).hasClass('active')) {
+						table = 'grease';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 11 && $(this).hasClass('active')) {
+						table = 'filter';
+						title = $(this).text();
+					} else if ($(this).data('tab') == 12 && $(this).hasClass('active')) {
+						table = 'battery';
+						title = $(this).text();
+					}
+				});
+
+
+				$.ajax({
+					url: url,
+					type: 'POST',
+					data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+					async: true,
+					dataType: "json",
+					success: function (data) {
+						if (title != '') {
+							chartCircle(data, title);
+							chart(data, title);
+						}
+					}
+				}).done(function () { //---
+					rightClick();
+				});
+			} else {
+				$('.selected_information').html('');
+			}
+
+			/*Remove BoxShadow From HighCharts Pie Diagram*/
+			$('.highcharts-text-outline').attr('stroke', '');
+		});
 
 
 		// Ctrl right click multiple select //
@@ -1366,7 +1360,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					if (data != '') {
 						$('#search_').css('display', 'block');
 					}
-
 				}
 			});
 		});
@@ -1453,7 +1446,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 			<?}?>
 
-
 			$('input[name="from"]').val('<?=$this->input->get('from')?>');
 			$('input[name="to"]').val('<?=$this->input->get('to')?>');
 			$('#search').trigger('click');
@@ -1466,5 +1458,4 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <input type="hidden" name="selecteds">
 <input type="hidden" name="line_date">
-
 

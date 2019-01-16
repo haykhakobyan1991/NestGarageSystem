@@ -1354,7 +1354,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					if (data != '') {
 						$('#search_').css('display', 'block');
 					}
-
 				}
 			});
 		});
@@ -1441,7 +1440,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 			<?}?>
 
-
 			$('input[name="from"]').val('<?=$this->input->get('from')?>');
 			$('input[name="to"]').val('<?=$this->input->get('to')?>');
 			$('#search').trigger('click');
@@ -1454,5 +1452,4 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <input type="hidden" name="selecteds">
 <input type="hidden" name="line_date">
-
 

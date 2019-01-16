@@ -91,10 +91,19 @@
 <?
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
+$user_id = $this->session->user_id;
 ?>
 
 <?
-$user_id = $this->session->user_id;
+	$sql_company = "
+		SELECT `company`.`name` FROM `user` LEFT JOIN `company` ON `company`.`id` = `user`.`company_id` WHERE `user`.`id` = '".$user_id."'
+	";
+	$query_company = $this->db->query($sql_company);
+	$row_company = $query_company->row_array();
+?>
+
+<?
+
 $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS name')
 	->from('user')
 	->where('id', $user_id)
@@ -401,3 +410,5 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							</div>
 
 						<? } ?>
+
+						<input type="hidden" name="company" value="<?=$row_company['name']?>">

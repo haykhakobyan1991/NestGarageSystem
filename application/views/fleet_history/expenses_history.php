@@ -207,7 +207,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				buttons: [
 					{
 						extend: 'excelHtml5',
-						title: '',
+						title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+						messageTop: '<?=lang('user')?> '+$('.username_login > a').text(),
 						filename: 'excel_file',
 						footer: true,
 						exportOptions: {
@@ -265,6 +266,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				}
 			}).done(function () {
 				var table = $('#example').DataTable({
+					drawCallback: function () {
+						var api = this.api();
+						$( api.column( 3 ).footer() ).html(
+							api.column(3).data().sum()
+						);
+					},
 					language: {
 						search: "<?=lang('search_fleet')?>",
 						emptyTable: "<?=lang('no_data')?>",
@@ -291,7 +298,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					buttons: [
 						{
 							extend: 'excelHtml5',
-							title: '',
+							title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+							messageTop: '<?=lang('user')?> '+$('.username_login > a').text(),
 							filename: 'excel_file',
 							footer: true,
 							exportOptions: {
@@ -301,6 +309,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						'colvis'
 					]
 				});
+
+				table.column( 3 ).data().sum();
 
 
 				table.buttons().container()
@@ -401,6 +411,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							}
 						}).done(function () {
 							var table = $('#example').DataTable({
+								drawCallback: function () {
+									var api = this.api();
+									$( api.column( 3 ).footer() ).html(
+										api.column(3).data().sum()
+									);
+								},
 								"paging": false,
 								"info": false,
 								"search": {regex: true},
@@ -412,7 +428,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								buttons: [
 									{
 										extend: 'excelHtml5',
-										title: '',
+										title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+										messageTop: '<?=lang('user')?> '+$('.username_login > a').text(),
 										filename: 'excel_file',
 										footer: true,
 										exportOptions: {
@@ -422,6 +439,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									'colvis'
 								]
 							});
+
+							table.column( 3 ).data().sum();
 
 							table.buttons().container()
 								.appendTo('#example_wrapper #example_filter:eq(0)');
@@ -448,6 +467,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		var date_to = $('input[name="to"]').val();
 		var search_car = $(this).val();
 		var search_car_ids = $('select[name="group"]').val();
+
+
+		var sum = 0;
+		$('.price').each(function () {
+			sum += parseInt($(this).text());
+			console.log($(this).text());
+		});
+
+		$('th#sum').html(sum);
 
 
 		$.ajax({
@@ -488,6 +516,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		console.log(new_s);
 
 		$('#example').DataTable().column(2).search(new_s, true, false).draw();
+
+		var sum = 0;
+		$('.price').each(function () {
+			sum += parseInt($(this).text());
+			console.log($(this).text());
+		});
+
+		$('th#sum').html(sum);
 
 
 		$.ajax({

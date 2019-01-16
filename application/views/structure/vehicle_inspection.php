@@ -226,12 +226,15 @@
 		"columnDefs": [
 			{"orderable": false, "targets": 5}
 		],
-		dom: 'Bfrtip',
+		dom: 'Bfrtipl',
 		buttons: [
 			{
 				extend: 'excelHtml5',
+
 				title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-				messageTop: '<?=lang('user')?> '+$('.username_login > a').text(),
+				message: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+"  (<?=lang('inspection')?>) ",
+				autoWidth: true,
+
 				filename: 'inspection',
 				footer: true,
 				exportOptions: {
@@ -454,9 +457,9 @@
 	$('input[name^="inspection_price"]').each(function () {
 		sum += parseInt($(this).val());
 		console.log($(this).val());
-	})
+	});
 
-	$('td#sum').html(sum)
+	$('td#sum').html(sum);
 
 	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>

@@ -228,7 +228,7 @@ class Structure extends MX_Controller {
 			$cmp_id = $value['company_id'];
 
 			if ($value['department_id'] != $department_id && $value['department_id'] != '') :
-				$structure_arr[] = array('key' => 'h' . $value['department_id'], 'title' => $value['department'], 'text' => $value['head'], 'img' => base_url('uploads/' . $folder . '/staff/original/' . $value['head_staff_photo']), 'fromDepartment' => true, 'from' => true);
+				$structure_arr[] = array('key' => 'h' . $value['department_id'], 'title' => $value['head'], 'text' => $value['department'], 'img' => base_url('uploads/' . $folder . '/staff/original/' . $value['head_staff_photo']), 'fromDepartment' => true, 'from' => true);
 				$from_to_arr[] = array('from' => 'c' . $value['company_id'], 'to' => 'h' . $value['department_id']);
 			endif;
 			$department_id = $value['department_id'];
@@ -240,7 +240,7 @@ class Structure extends MX_Controller {
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'],  'text' => $value['fleet_plate_number'], 'title' => $value['model'], 'img' => base_url('assets/img/car.svg'),  'to' => true);
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'],  'text' => $value['model'], 'title' => $value['fleet_plate_number'], 'img' => base_url('assets/img/car.svg'),  'to' => true);
 			endif;
 			$fleet_id = $value['fleet_id'];
 

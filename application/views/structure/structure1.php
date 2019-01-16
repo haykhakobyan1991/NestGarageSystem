@@ -498,17 +498,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							defaultAlignment: go.Spot.Left
 						},
 						$(go.RowColumnDefinition, {column: 5, width: 4}),
-						$(go.TextBlock, textStyle(),
-							{
-								row: 0,
-								column: 0,
-								columnSpan: 2,
-								font: "9px Segoe UI,sans-serif",
-								editable: false,
-								isMultiline: false,
-								width: 90
-							},
-							new go.Binding("text", "title").makeTwoWay()),
+
 						$(go.TextBlock, textStyle(),
 							{
 								row: 1,
@@ -518,13 +508,29 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								wrap: go.TextBlock.WrapFit
 							},
 							new go.Binding("text", "text").makeTwoWay()),
+
+
+						$(go.TextBlock, textStyle(),
+							{
+								row: 2,
+								column: 0,
+								columnSpan: 2,
+								font: "9px Segoe UI,sans-serif",
+								editable: false,
+								isMultiline: false,
+								width: 90
+							},
+							new go.Binding("text", "title").makeTwoWay()),
+
+
+
 						$(go.TextBlock, textStyle(),
 							{row: 1,margin: new go.Margin(0)},
 						),
 						$(go.TextBlock, textStyle(),
 							{
 								name: "boss",
-								row: 2,
+								row: 1,
 								column: 4,
 								wrap: go.TextBlock.WrapFit
 							},

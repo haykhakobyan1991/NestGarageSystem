@@ -2272,7 +2272,7 @@ class Organization extends MX_Controller {
 		// end fleet details variables
 
 		// validation fleet details
-		if(is_array($item)) :
+		if(is_array($item) && !empty($item) && $item[1] != '') :
 			foreach ($item as $i => $item_val) :
 				if($item_val == '') :
 					$n = 1;
@@ -2582,26 +2582,29 @@ class Organization extends MX_Controller {
 
 
 
-		$sql_fleet_details = "
-			INSERT INTO `fleet_details`
-				(`items`,
-				 `value_id`,
-				 `avg_exploitation`,
-				 `start_alarm_date`,
-				 `per_days`,
-				 `more_info`,
-				 `reminde_me`,
-				 `fleet_id`,
-				 `next_alarm_date`,
-				 `registrar_user_id`,
-				 `registration_date`,
-				 `status`)
-			VALUES
-		";
 
 
 
-		if(is_array($item)) :
+
+		if(is_array($item) && !empty($item) && $item[1] != '') :
+
+			$sql_fleet_details = "
+				INSERT INTO `fleet_details`
+					(`items`,
+					 `value_id`,
+					 `avg_exploitation`,
+					 `start_alarm_date`,
+					 `per_days`,
+					 `more_info`,
+					 `reminde_me`,
+					 `fleet_id`,
+					 `next_alarm_date`,
+					 `registrar_user_id`,
+					 `registration_date`,
+					 `status`)
+				VALUES
+			";
+
 			foreach ($item as $i => $item_val) :
 				if($item_val != '') :
 
@@ -2627,12 +2630,14 @@ class Organization extends MX_Controller {
 
 				endif;
 			endforeach;
+
+			$sql_fleet_details = substr($sql_fleet_details, 0, -1);
+
+			$this->db->query($sql_fleet_details);
+
 		endif;
 
 
-		$sql_fleet_details = substr($sql_fleet_details, 0, -1);
-
-		$this->db->query($sql_fleet_details);
 
 
 
@@ -3975,18 +3980,6 @@ class Organization extends MX_Controller {
 		//echo json_encode($messages);
 		return true;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

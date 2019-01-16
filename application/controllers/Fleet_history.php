@@ -660,7 +660,7 @@ class Fleet_history extends MX_Controller {
 						$table .= '<td class="border">'.$date.'</td>';
 						$table .= '<td class="border">'.lang($type).'</td>';
 						$table .= '<td class="border">'.$fleet.'</td>';
-						$table .= '<td class="border">'.$price.'</td>';
+						$table .= '<td class="price border">'.$price.'</td>';
 					$table .= '</tr>';
 				}
 			}
@@ -675,19 +675,16 @@ class Fleet_history extends MX_Controller {
 			$data['data'][] = array('name' => lang('insurance'), 'data' => $arr['insurance'], 'table' => 'insurance', 'stack' => '-');
 			$data['data'][] = array('name' => lang('spares'), 'data' => $arr['spares'], 'table' => 'spares', 'stack' => '-');
 			$data['data'][] = array('name' => lang('repair'), 'data' => $arr['repair'], 'table' => 'repair', 'stack' => '-');
-			$data['data'][] = array('name' => lang('wheel'), 'data' => $arr['wheel'], 'table' => 'wheel', 'stack' => '-');
-			$data['data'][] = array('name' => lang('brake'), 'data' => $arr['brake'], 'table' => 'brake', 'stack' => '-');
-			$data['data'][] = array('name' => lang('grease'), 'data' => $arr['grease'], 'table' => 'grease', 'stack' => '-');
-			$data['data'][] = array('name' => lang('filter'), 'data' => $arr['filter'], 'table' => 'filter', 'stack' => '-');
-			$data['data'][] = array('name' => lang('battery'), 'data' => $arr['battery'], 'table' => 'battery', 'stack' => '-');
+
 
 		}
 
 		$table .= '</tbody>
 		<tfoot>
             <tr role="row" class="odd">
-                <th class="font-weight-bold border" colspan="3" style="text-align:left !important;">'.lang('total').'</th>
-                <th class="font-weight-bold border"></th>
+                <th class="font-weight-bold border"  style="text-align:left !important;">'.lang('total').'</th>
+                <th class="font-weight-bold border" colspan="2" ></th>
+                <th id="sum" class="font-weight-bold border"></th>
             </tr>
         </tfoot>
 		</table>';

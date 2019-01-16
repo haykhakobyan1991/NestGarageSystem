@@ -153,7 +153,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 				<!-- Vertical Tabs Start-->
 				<div class="col-sm-12 col-md-2">
 					<div class="list-group" id="list-tab" role="tablist"
-						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);"><?
+						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);position: fixed;width: 14%;"><?
 						if ($this->load->authorisation('Organization', 'company', 1)) :
 							?>
 							<a

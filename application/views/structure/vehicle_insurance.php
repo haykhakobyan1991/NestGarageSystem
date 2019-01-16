@@ -308,7 +308,7 @@
 				{
 					extend: 'excelHtml5',
 					title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-					message: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+"  (<?=lang('insurance')?>) ",
+					message: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+",  <?=lang('type')?>:  <?=lang('insurance')?> ",
 					autoWidth: true,
 					filename: 'insurance',
 					footer: true,

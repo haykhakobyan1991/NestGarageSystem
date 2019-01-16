@@ -322,7 +322,7 @@
                     {
                         extend: 'excelHtml5',
 						title:  '<?=lang('Report_period').'  '.lang('from')?> '+$('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-						message: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+"  (<?=lang('fine')?>) ",
+						message: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+",  <?=lang('type')?>:  <?=lang('fine')?> ",
 						autoWidth: true,
                         filename: 'fine',
                         footer: true,

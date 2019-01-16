@@ -198,10 +198,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 					</div>
 				</div>
 				<!-- Vertical Tabs End-->
-
-
 				<div class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
-					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;">
+					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;width:10%;">
 					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
 
 						<div class="loader"></div>
@@ -218,7 +216,6 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									   role="tab">
 										<i class="fas fa-info"></i> <?= lang('information') ?>
 									</a>
-
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
 									   data-id="2"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/add_expenses') ?>"
@@ -259,14 +256,17 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
 											</button>
 										</a>
-<!--										<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?><!--">-->
-<!--											<button type="button"-->
-<!--													style="width: 40px;height: 40px;padding: 0 !important;"-->
-<!--													class="m-1 btn btn-outline-secondary --><?//= ($page == 'structure3' ? 'active' : '') ?><!--"-->
-<!--													style="">-->
-<!--												<img width="20" src="--><?//= base_url('assets/images/trees3.svg') ?><!--">-->
-<!--											</button>-->
-<!--										</a>-->
+										<!--										<a href="-->
+										<?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?><!--">-->
+										<!--											<button type="button"-->
+										<!--													style="width: 40px;height: 40px;padding: 0 !important;"-->
+										<!--													class="m-1 btn btn-outline-secondary -->
+										<?//= ($page == 'structure3' ? 'active' : '') ?><!--"-->
+										<!--													style="">-->
+										<!--												<img width="20" src="-->
+										<?//= base_url('assets/images/trees3.svg') ?><!--">-->
+										<!--											</button>-->
+										<!--										</a>-->
 
 										</div><?
 									}
@@ -295,66 +295,60 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 										<div class="navbar-nav mr-auto">
 											<button
 												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/><?= lang('trajectory') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/><?= lang('trajectory') ?>
 											</button>
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
 												<button style="color:#00000080 !important;max-height: 40px;"
 														class="btn btn-outline-secondary  nav-item nav-link mr-1"
-														href="#"><img
-														style="margin-right: 5px;margin-left: -15px;"
-														src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/><?= lang('speed') ?>
+														href="#">
+													<img style="margin-right: 5px;margin-left: -15px;"
+														 src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/><?= lang('speed') ?>
 												</button>
 											</a>
 											<button
 												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/><?= lang('fuel') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1" href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/><?= lang('fuel') ?>
 											</button>
 											<button
 												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/><?= lang('engine') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/><?= lang('engine') ?>
 											</button>
 											<button
 												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/><?= lang('cargo') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/><?= lang('cargo') ?>
 											</button>
 											<button
 												style="color:#00000080 !important;min-width: 120px;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/><?= lang('sos') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/><?= lang('sos') ?>
 											</button>
-
 											<button
 												style="color:#00000080 !important;min-width: 120px;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1"
-												href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 ml-1" href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/><?= lang('notification') ?>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 "
-												href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/><?= lang('event') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/><?= lang('event') ?>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 "
-												href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?>
+												class="btn btn-outline-secondary  nav-item nav-link mr-1 " href="#">
+												<img style="margin-right: 5px;margin-left: -15px;"
+													 src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/><?= lang('statistics') ?>
 											</button>
-
-
 											<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
 											<select style="margin-top: 1px" class="form-control form-control-sml">
 												<option>1</option>

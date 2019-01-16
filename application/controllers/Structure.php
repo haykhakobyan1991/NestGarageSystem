@@ -2,13 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Structure extends MX_Controller {
+class Structure extends MX_Controller
+{
 
 	/**
 	 * Structure constructor.
 	 * @property
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
 		parent::__construct();
 
@@ -29,7 +31,8 @@ class Structure extends MX_Controller {
 
 	}
 
-	private function my_lang($line, $args = array()) {
+	private function my_lang($line, $args = array())
+	{
 		$CI =& get_instance();
 		$lang = $CI->lang->line($line);
 		// $lang = '%s %s were %s';// this would be the language line
@@ -40,14 +43,15 @@ class Structure extends MX_Controller {
 	/**
 	 * @return mixed
 	 */
-	private function upload_config() {
+	private function upload_config()
+	{
 
 
-		$config['allowed_types']        = 'gif|jpg|png|bmp';
-		$config['max_size'] 			= '4097152'; //4 MB
-		$config['file_name']			= $this->uname(3,8);
-		$config['max_width']            = '2048';
-		$config['max_height']           = '1200';
+		$config['allowed_types'] = 'gif|jpg|png|bmp';
+		$config['max_size'] = '4097152'; //4 MB
+		$config['file_name'] = $this->uname(3, 8);
+		$config['max_width'] = '2048';
+		$config['max_height'] = '1200';
 
 		$this->load->library('upload', $config);
 
@@ -60,7 +64,8 @@ class Structure extends MX_Controller {
 	/**
 	 * @param $element
 	 */
-	public function pre($element) {
+	public function pre($element)
+	{
 
 		echo '<pre class="mt-5">';
 		print_r($element);
@@ -71,7 +76,8 @@ class Structure extends MX_Controller {
 	/**
 	 * @return bool
 	 */
-	public function access_denied() {
+	public function access_denied()
+	{
 		$message = 'Access Denied';
 		show_error($message, '403', $heading = '403 Access is prohibited');
 		return false;
@@ -81,7 +87,8 @@ class Structure extends MX_Controller {
 	 * @param $data
 	 * @return string
 	 */
-	public function hash($data) {
+	public function hash($data)
+	{
 		return hash('sha256', $data);
 	}
 
@@ -91,7 +98,8 @@ class Structure extends MX_Controller {
 	 * @return bool|string
 	 * Ex: 45f7fd76
 	 */
-	private function uname($start = 3, $length = 2) {
+	private function uname($start = 3, $length = 2)
+	{
 
 		return substr(md5(time() . rand()), $start, $length);
 
@@ -101,18 +109,21 @@ class Structure extends MX_Controller {
 	 * @param $text
 	 * @return string
 	 */
-	public function get_first_character($text) {
-		return mb_substr($text,0,1, 'utf-8');
+	public function get_first_character($text)
+	{
+		return mb_substr($text, 0, 1, 'utf-8');
 	}
 
 	/**
 	 * @return string
 	 */
-	public function rand_color() {
+	public function rand_color()
+	{
 		return '#' . str_pad(dechex(mt_rand(0, 0xFFFFFF)), 6, '0', STR_PAD_LEFT);
 	}
 
-	public function structure1 () {
+	public function structure1()
+	{
 
 		$this->load->authorisation();
 
@@ -130,13 +141,12 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
 
 		$data['user'] = $query_add_user->row_array();
-
 
 
 		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
@@ -165,8 +175,8 @@ class Structure extends MX_Controller {
 			  `company`.`logo` AS `company_logo`,
 			   CONCAT_WS(
 				' ',
-				`brand`.`title_".$lng."`,
-				`model`.`title_".$lng."`
+				`brand`.`title_" . $lng . "`,
+				`model`.`title_" . $lng . "`
 			  ) AS `model`,
 			  `fleet`.`id` AS `fleet_id`,
 			  `fleet`.`fleet_plate_number`
@@ -234,13 +244,13 @@ class Structure extends MX_Controller {
 			$department_id = $value['department_id'];
 
 			if ($value['driver_id'] != $driver_id && $value['driver_id'] != '') :
-				$structure_arr[] = array('key' => 'd' . $value['driver_id'], 'color' => 'salmon', 'text' => ($value['driver'] == $value['head'] ? '▲  '.$value['driver'] : $value['driver']), 'img' => ($value['driver_photo'] != '' ? base_url('uploads/' . $folder . '/staff/original/' . $value['driver_photo']) : base_url('assets/img/staff.svg')), 'toStaff' => true, 'from' => true, 'fromDepartment' => true);
+				$structure_arr[] = array('key' => 'd' . $value['driver_id'], 'color' => 'salmon', 'text' => ($value['driver'] == $value['head'] ? '▲  ' . $value['driver'] : $value['driver']), 'img' => ($value['driver_photo'] != '' ? base_url('uploads/' . $folder . '/staff/original/' . $value['driver_photo']) : base_url('assets/img/staff.svg')), 'toStaff' => true, 'from' => true, 'fromDepartment' => true);
 				$from_to_arr[] = array('from' => 'h' . $value['department_id'], 'to' => 'd' . $value['driver_id']);
 			endif;
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'],  'text' => $value['fleet_plate_number'], 'title' => $value['model'], 'img' => base_url('assets/img/car.svg'),  'to' => true);
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['fleet_plate_number'], 'title' => $value['model'], 'img' => base_url('assets/img/car.svg'), 'to' => true);
 			endif;
 			$fleet_id = $value['fleet_id'];
 
@@ -263,7 +273,8 @@ class Structure extends MX_Controller {
 
 	}
 
-	public function structure2(){
+	public function structure2()
+	{
 		$this->load->authorisation();
 
 		$user_id = $this->session->user_id;
@@ -297,8 +308,8 @@ class Structure extends MX_Controller {
 			  `company`.`logo` AS `company_logo`,
 			  CONCAT_WS(
 				' ',
-				`brand`.`title_".$lng."`,
-				`model`.`title_".$lng."`
+				`brand`.`title_" . $lng . "`,
+				`model`.`title_" . $lng . "`
 			  ) AS `model`,
 			  `fleet`.`id` AS `fleet_id`,
 			  `fleet`.`fleet_plate_number`
@@ -366,7 +377,7 @@ class Structure extends MX_Controller {
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model']. ' (' . $value['fleet_plate_number']. ')', 'parent' => 'd' . $value['driver_id'], 'title' => '');
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model'] . ' (' . $value['fleet_plate_number'] . ')', 'parent' => 'd' . $value['driver_id'], 'title' => '');
 			endif;
 
 		endforeach;
@@ -383,8 +394,8 @@ class Structure extends MX_Controller {
 	}
 
 
-
-	public function structure3 () {
+	public function structure3()
+	{
 
 		$this->load->authorisation();
 
@@ -421,8 +432,8 @@ class Structure extends MX_Controller {
 			  `company`.`logo` AS `company_logo`,
 			  CONCAT_WS(
 				' ',
-				`brand`.`title_".$lng."`,
-				`model`.`title_".$lng."`
+				`brand`.`title_" . $lng . "`,
+				`model`.`title_" . $lng . "`
 			  ) AS `model`,
 			  `fleet`.`id` AS `fleet_id`
 			FROM
@@ -500,13 +511,12 @@ class Structure extends MX_Controller {
 		$data['structure'] = json_encode($structure_unique);
 
 
-
 		$this->layout->view('structure/structure3', $data);
 	}
 
 
-
-	public function change_from_to_ax() {
+	public function change_from_to_ax()
+	{
 
 		$return = array('error' => '', 'result' => '');
 
@@ -575,7 +585,7 @@ class Structure extends MX_Controller {
 //		echo '<br>----------------------OLD Driver - fleet------------------------------<br>';
 //		$this->pre($old_data_arr['d_f']);
 
-		if(!isset($new_data_arr['c_h']) || !isset($new_data_arr['h_d']) || !isset($new_data_arr['d_f'])) {
+		if (!isset($new_data_arr['c_h']) || !isset($new_data_arr['h_d']) || !isset($new_data_arr['d_f'])) {
 			$return['error'] = 'ERROR'; //todo
 			echo json_encode($return);
 			return false;
@@ -588,32 +598,32 @@ class Structure extends MX_Controller {
 		if ($this->input->post('value') == '-1') {
 
 			if (isset($array['deleted'])) {
-				$return['result'][] = '<b>'.lang('deleted').'</b>'.hr();
+				$return['result'][] = '<b>' . lang('deleted') . '</b>' . hr();
 				foreach ($array['deleted'] as $f_t => $value) {
 					foreach ($value as $from_to) {
 
-						if($f_t == 'd_f') {
-							 $return['result'][] = $this->my_lang('from_driver_vehicle', array($structure_arr['d'.$from_to['from']],$structure_arr['f'.$from_to['to']])). br();
-						} elseif($f_t == 'h_d') {
-							 $return['result'][] = $this->my_lang('from_department_driver', array($structure_arr['h'.$from_to['from']],$structure_arr['d'.$from_to['to']]) ) . br();
-						} elseif($f_t == 'c_h') {
-							 $return['result'][] = $this->my_lang('from_company_department', array($structure_arr['c'.$from_to['from']],$structure_arr['h'.$from_to['to']])). br();
+						if ($f_t == 'd_f') {
+							$return['result'][] = $this->my_lang('from_driver_vehicle', array($structure_arr['d' . $from_to['from']], $structure_arr['f' . $from_to['to']])) . br();
+						} elseif ($f_t == 'h_d') {
+							$return['result'][] = $this->my_lang('from_department_driver', array($structure_arr['h' . $from_to['from']], $structure_arr['d' . $from_to['to']])) . br();
+						} elseif ($f_t == 'c_h') {
+							$return['result'][] = $this->my_lang('from_company_department', array($structure_arr['c' . $from_to['from']], $structure_arr['h' . $from_to['to']])) . br();
 						}
 
 					}
 				}
 			}
 
-			if(isset($array['added'])) {
-				$return['result'][] = (isset($array['deleted']) ? hr().'<b>'.lang('added').'</b>'.hr() : '<b>'.lang('added').'</b>'.hr());
+			if (isset($array['added'])) {
+				$return['result'][] = (isset($array['deleted']) ? hr() . '<b>' . lang('added') . '</b>' . hr() : '<b>' . lang('added') . '</b>' . hr());
 				foreach ($array['added'] as $f_t => $value) {
 					foreach ($value as $from_to) {
-						if($f_t == 'd_f' && isset($structure_arr['d'.$from_to['from']]) && isset($structure_arr['f'.$from_to['to']])) {
-							$return['result'][] = $this->my_lang('from_driver_to_vehicle', array($structure_arr['d'.$from_to['from']], $structure_arr['f'.$from_to['to']])).br();
-						} elseif($f_t == 'h_d' && isset($structure_arr['h'.$from_to['from']]) && isset($structure_arr['d'.$from_to['to']])) {
-							$return['result'][] = $this->my_lang('from_department_to_driver', array($structure_arr['h'.$from_to['from']],$structure_arr['d'.$from_to['to']])). br();
-						} elseif($f_t == 'c_h' && isset($structure_arr['c'.$from_to['from']]) && isset($structure_arr['h'.$from_to['to']])) {
-							$return['result'][] = $this->my_lang('from_company_to_department',array($structure_arr['c'.$from_to['from']],$structure_arr['h'.$from_to['to']])). br();
+						if ($f_t == 'd_f' && isset($structure_arr['d' . $from_to['from']]) && isset($structure_arr['f' . $from_to['to']])) {
+							$return['result'][] = $this->my_lang('from_driver_to_vehicle', array($structure_arr['d' . $from_to['from']], $structure_arr['f' . $from_to['to']])) . br();
+						} elseif ($f_t == 'h_d' && isset($structure_arr['h' . $from_to['from']]) && isset($structure_arr['d' . $from_to['to']])) {
+							$return['result'][] = $this->my_lang('from_department_to_driver', array($structure_arr['h' . $from_to['from']], $structure_arr['d' . $from_to['to']])) . br();
+						} elseif ($f_t == 'c_h' && isset($structure_arr['c' . $from_to['from']]) && isset($structure_arr['h' . $from_to['to']])) {
+							$return['result'][] = $this->my_lang('from_company_to_department', array($structure_arr['c' . $from_to['from']], $structure_arr['h' . $from_to['to']])) . br();
 						} else {
 							$return['result'] = false;
 							$return['error'] = lang('impossible_connectivity'); //todo
@@ -681,7 +691,7 @@ class Structure extends MX_Controller {
 								WHERE `id` = '" . $from_to['to'] . "' 
 							";
 
-							 $this->db->query($sql);
+							$this->db->query($sql);
 
 							// check isset staffs for this department
 							$sql_isset_departments = "
@@ -710,7 +720,7 @@ class Structure extends MX_Controller {
 
 						} else if ($f_t == 'd_f') {
 							//select staffs for this fleet
-							 $sql_sel = "
+							$sql_sel = "
 								SELECT 
 								  `staff_ids` 
 								FROM
@@ -801,7 +811,7 @@ class Structure extends MX_Controller {
 
 						} else if ($f_t == 'h_d') {
 							//select departments for this staff
-							 $sql_sel = "
+							$sql_sel = "
 								SELECT 
 								  `department_ids` 
 								FROM
@@ -814,15 +824,15 @@ class Structure extends MX_Controller {
 
 							$new_departments = '';
 
-							if($row['department_ids'] != '') {
-								$new_departments = $row['department_ids'].','.$from_to['from'];
+							if ($row['department_ids'] != '') {
+								$new_departments = $row['department_ids'] . ',' . $from_to['from'];
 							} else {
 								$new_departments = $from_to['from'];
 							}
 
 
-							 // update staff departments
-							 $sql = "
+							// update staff departments
+							$sql = "
 								UPDATE 
 								  `staff` 
 								SET
@@ -830,8 +840,7 @@ class Structure extends MX_Controller {
 								WHERE `id` = '" . $from_to['to'] . "' 
 							 ";
 
-							 $this->db->query($sql);
-
+							$this->db->query($sql);
 
 
 						} else if ($f_t == 'd_f') {
@@ -850,8 +859,8 @@ class Structure extends MX_Controller {
 
 							$new_staffs = '';
 
-							if($row['staff_ids'] != '') {
-								$new_staffs = $row['staff_ids'].','.$from_to['from'];
+							if ($row['staff_ids'] != '') {
+								$new_staffs = $row['staff_ids'] . ',' . $from_to['from'];
 							} else {
 								$new_staffs = $from_to['from'];
 							}
@@ -883,8 +892,6 @@ class Structure extends MX_Controller {
 	}
 
 
-
-
 	/**
 	 * @param $new_ch
 	 * @param $new_hd
@@ -894,14 +901,15 @@ class Structure extends MX_Controller {
 	 * @param $old_df
 	 * @return array
 	 */
-	private function from_to ($new_ch, $new_hd, $new_df, $old_ch, $old_hd, $old_df) {
+	private function from_to($new_ch, $new_hd, $new_df, $old_ch, $old_hd, $old_df)
+	{
 
 		$change_array = array();
 
 		foreach ($new_ch as $company_id => $department_array) {
 			foreach ($department_array as $key => $department_id) {
 				if (!isset($old_ch[$company_id][$key])) {
-					if(isset($old_ch[$company_id]) && !in_array($department_id, $old_ch[$company_id])) {
+					if (isset($old_ch[$company_id]) && !in_array($department_id, $old_ch[$company_id])) {
 						$change_array['added']['c_h'][] = array(
 							'from' => $company_id,
 							'to' => $department_id
@@ -912,7 +920,7 @@ class Structure extends MX_Controller {
 							'to' => $department_id
 						);
 					}
-				} elseif(!in_array($department_id, $old_ch[$company_id])) {
+				} elseif (!in_array($department_id, $old_ch[$company_id])) {
 					$change_array['added']['c_h'][] = array(
 						'from' => $company_id,
 						'to' => $department_id
@@ -924,7 +932,7 @@ class Structure extends MX_Controller {
 		foreach ($new_hd as $department_id => $driver_array) {
 			foreach ($driver_array as $key => $driver_id) {
 				if (!isset($old_hd[$department_id][$key])) {
-					if(isset($old_hd[$department_id]) && !in_array($driver_id, $old_hd[$department_id])) {
+					if (isset($old_hd[$department_id]) && !in_array($driver_id, $old_hd[$department_id])) {
 						$change_array['added']['h_d'][] = array(
 							'from' => $department_id,
 							'to' => $driver_id
@@ -935,7 +943,7 @@ class Structure extends MX_Controller {
 							'to' => $driver_id
 						);
 					}
-				} elseif(!in_array($driver_id, $old_hd[$department_id])) {
+				} elseif (!in_array($driver_id, $old_hd[$department_id])) {
 					$change_array['added']['h_d'][] = array(
 						'from' => $department_id,
 						'to' => $driver_id
@@ -947,18 +955,18 @@ class Structure extends MX_Controller {
 		foreach ($new_df as $driver_id => $fleet_array) {
 			foreach ($fleet_array as $key => $fleet_id) {
 				if (!isset($old_df[$driver_id][$key])) {
-					if(isset($old_df[$driver_id]) && !in_array($fleet_id, $old_df[$driver_id])) {
+					if (isset($old_df[$driver_id]) && !in_array($fleet_id, $old_df[$driver_id])) {
 						$change_array['added']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id
 						);
-					} elseif(!isset($old_df[$driver_id])) { //new todo stugel
+					} elseif (!isset($old_df[$driver_id])) { //new todo stugel
 						$change_array['added']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id
 						);
 					}
-				} elseif(!in_array($fleet_id, $old_df[$driver_id])) {
+				} elseif (!in_array($fleet_id, $old_df[$driver_id])) {
 					$change_array['added']['d_f'][] = array(
 						'from' => $driver_id,
 						'to' => $fleet_id
@@ -971,18 +979,18 @@ class Structure extends MX_Controller {
 		foreach ($old_ch as $company_id => $department_array) {
 			foreach ($department_array as $key => $department_id) {
 				if (!isset($new_ch[$company_id][$key])) {
-					if(isset($new_ch[$company_id]) && !in_array($department_id, $new_ch[$company_id])) {
+					if (isset($new_ch[$company_id]) && !in_array($department_id, $new_ch[$company_id])) {
 						$change_array['deleted']['c_h'][] = array(
 							'from' => $company_id,
 							'to' => $department_id
 						);
-					} elseif(!isset($new_ch[$company_id])) { //new todo stugel
+					} elseif (!isset($new_ch[$company_id])) { //new todo stugel
 						$change_array['deleted']['c_h'][] = array(
 							'from' => $company_id,
 							'to' => $department_id
 						);
 					}
-				} elseif(!in_array($department_id, $new_ch[$company_id])) {
+				} elseif (!in_array($department_id, $new_ch[$company_id])) {
 					$change_array['deleted']['c_h'][] = array(
 						'from' => $company_id,
 						'to' => $department_id
@@ -994,7 +1002,7 @@ class Structure extends MX_Controller {
 		foreach ($old_hd as $department_id => $driver_array) {
 			foreach ($driver_array as $key => $driver_id) {
 				if (!isset($new_hd[$department_id][$key])) {
-					if(isset($new_hd[$department_id]) && !in_array($driver_id, $new_hd[$department_id])) {
+					if (isset($new_hd[$department_id]) && !in_array($driver_id, $new_hd[$department_id])) {
 						$change_array['deleted']['h_d'][] = array(
 							'from' => $department_id,
 							'to' => $driver_id
@@ -1005,7 +1013,7 @@ class Structure extends MX_Controller {
 							'to' => $driver_id
 						);
 					}
-				} elseif(!in_array($driver_id, $new_hd[$department_id])) {
+				} elseif (!in_array($driver_id, $new_hd[$department_id])) {
 					$change_array['deleted']['h_d'][] = array(
 						'from' => $department_id,
 						'to' => $driver_id
@@ -1017,7 +1025,7 @@ class Structure extends MX_Controller {
 		foreach ($old_df as $driver_id => $fleet_array) {
 			foreach ($fleet_array as $key => $fleet_id) {
 				if (!isset($new_df[$driver_id][$key])) {
-					if(isset($new_df[$driver_id]) && !in_array($fleet_id, $new_df[$driver_id])) {
+					if (isset($new_df[$driver_id]) && !in_array($fleet_id, $new_df[$driver_id])) {
 						$change_array['deleted']['d_f'][] = array(
 							'from' => $driver_id,
 							'to' => $fleet_id
@@ -1028,7 +1036,7 @@ class Structure extends MX_Controller {
 							'to' => $fleet_id
 						);
 					}
-				} elseif(!in_array($fleet_id, $new_df[$driver_id])) {
+				} elseif (!in_array($fleet_id, $new_df[$driver_id])) {
 					$change_array['deleted']['d_f'][] = array(
 						'from' => $driver_id,
 						'to' => $fleet_id
@@ -1042,7 +1050,8 @@ class Structure extends MX_Controller {
 
 	}
 
-	public function car_info() {
+	public function car_info()
+	{
 
 		// $this->load->authorisation();
 		//todo if not post redirect to 404
@@ -1061,7 +1070,7 @@ class Structure extends MX_Controller {
 		$add_sql = '';
 
 		foreach ($arr as $value) :
-			if(preg_match('/^(f)/', $value['key'])) :
+			if (preg_match('/^(f)/', $value['key'])) :
 				$fleet_arr[] = preg_replace('/^(f)/', '', $value['key']);
 			elseif (preg_match('/^(d)/', $value['key'])) :
 				$driver_arr[] = preg_replace('/^(d)/', '', $value['key']);
@@ -1072,21 +1081,20 @@ class Structure extends MX_Controller {
 		$fleet_ids = implode(',', $fleet_arr);
 		$staff_ids = implode(',', $driver_arr);
 
-		if($staff_ids != '') {
+		if ($staff_ids != '') {
 			$add_sql = "OR FIND_IN_SET(`staff`.`id`, '" . $staff_ids . "')"; //todo
 		}
 
 
+		if ($fleet_ids != '') {
 
-		if($fleet_ids != '') {
-
-		$sql = "
+			$sql = "
 				SELECT
-					`brand`.`title_".$lng."` AS `brand`,
-					`model`.`title_".$lng."` AS `model`,
-					`fleet_type`.`title_".$lng."` AS `fleet_type`,
-					`fuel`.`title_".$lng."` AS `fuel`,
-					`insurance_type`.`title_".$lng."` AS `insurance_type`,
+					`brand`.`title_" . $lng . "` AS `brand`,
+					`model`.`title_" . $lng . "` AS `model`,
+					`fleet_type`.`title_" . $lng . "` AS `fleet_type`,
+					`fuel`.`title_" . $lng . "` AS `fuel`,
+					`insurance_type`.`title_" . $lng . "` AS `insurance_type`,
 					`staff`.`id` AS `staff_id`,
 					`staff`.`first_name`,
 					`staff`.`last_name`,
@@ -1098,9 +1106,9 @@ class Structure extends MX_Controller {
 					`staff`.`position`,
 					`staff`.`nest_card_id`,
 					`staff`.`photo`,
-					`country`.`title_".$lng."` AS `country`,
+					`country`.`title_" . $lng . "` AS `country`,
 					`department`.`title` AS `department`,
-					`value`.`title_".$lng."` AS `value`,
+					`value`.`title_" . $lng . "` AS `value`,
 					`fleet`.*
 				 FROM
 				   `fleet`
@@ -1124,7 +1132,7 @@ class Structure extends MX_Controller {
 				LEFT JOIN `value`
 					ON `value`.`id` = `fleet`.`mileage_value_id`				
 				WHERE FIND_IN_SET(`fleet`.`id`, '" . $fleet_ids . "')
-				".$add_sql."
+				" . $add_sql . "
 				ORDER BY `staff`.`id`, `fleet`.`id`
 			";
 
@@ -1140,7 +1148,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_inspection() {
+	public function vehicle_inspection()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -1159,7 +1168,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -1168,7 +1177,7 @@ class Structure extends MX_Controller {
 
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -1178,8 +1187,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 			$data['fleet'] = $fleet_arr;
 
 			$sql = "
@@ -1192,8 +1200,8 @@ class Structure extends MX_Controller {
 				  `inspection`.`fleet_id`,
 				  CONCAT_WS(
 					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
+					`brand`.`title_" . $lng . "`,
+					`model`.`title_" . $lng . "`
 				  ) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `inspection`.`status` 
@@ -1208,8 +1216,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `inspection`.`status` = '1' 
-				AND FIND_IN_SET(`inspection`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`inspection`.`add_date` >= '".$date_from."' AND `inspection`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`inspection`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`inspection`.`add_date` >= '" . $date_from . "' AND `inspection`.`add_date` <= '" . $date_to . "')
 				ORDER BY `inspection`.`fleet_id`
 			";
 
@@ -1222,7 +1230,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function inspection_ax() {
+	public function inspection_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'inspection');
 
@@ -1241,16 +1250,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
-
-
 
 
 		if ($fleet_id != '') {
@@ -1340,7 +1344,7 @@ class Structure extends MX_Controller {
 				endforeach;
 			endif;
 
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -1391,7 +1395,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_inspection_ax() {
+	public function edit_inspection_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'inspection');
 
@@ -1424,17 +1429,14 @@ class Structure extends MX_Controller {
 		$this->form_validation->set_rules('end_date', 'end_date', 'required');
 
 
-
-
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'add_date['.$inspection_id.']' => form_error('add_date'),
-				'price['.$inspection_id.']' => form_error('price'),
-				'end_date['.$inspection_id.']' => form_error('end_date')
+				'add_date[' . $inspection_id . ']' => form_error('add_date'),
+				'price[' . $inspection_id . ']' => form_error('price'),
+				'end_date[' . $inspection_id . ']' => form_error('end_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -1448,8 +1450,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-		 $sql = "
+		$sql = "
 			UPDATE `inspection` set
 				`add_date` = " . $this->load->db_value($add_date) . ",
 				`add_user_id` = " . $this->load->db_value($user_id) . ",
@@ -1457,7 +1458,6 @@ class Structure extends MX_Controller {
 				`price` = " . $this->load->db_value($price) . "
 			WHERE `id` = " . $this->load->db_value($inspection_id) . "	
 		";
-
 
 
 		$result = $this->db->query($sql);
@@ -1477,8 +1477,8 @@ class Structure extends MX_Controller {
 	}
 
 
-
-	public function vehicle_fuel() {
+	public function vehicle_fuel()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -1497,7 +1497,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -1505,11 +1505,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -1519,9 +1517,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 
 			$sql_add_staff = "
@@ -1539,7 +1535,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -1562,8 +1558,8 @@ class Structure extends MX_Controller {
 				  `fuel_consumption`.`fleet_id`, /**/
 				  CONCAT_WS(
 					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
+					`brand`.`title_" . $lng . "`,
+					`model`.`title_" . $lng . "`
 				  ) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  CONCAT_WS(
@@ -1585,8 +1581,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `fuel_consumption`.`status` = '1' 
-				AND FIND_IN_SET(`fuel_consumption`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`fuel_consumption`.`add_date` >= '".$date_from."' AND `fuel_consumption`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`fuel_consumption`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`fuel_consumption`.`add_date` >= '" . $date_from . "' AND `fuel_consumption`.`add_date` <= '" . $date_to . "')
 				ORDER BY `brand_model`
 			";
 
@@ -1599,7 +1595,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function fuel_ax() {
+	public function fuel_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fuel');
 
@@ -1618,14 +1615,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -1754,10 +1748,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -1811,7 +1802,8 @@ class Structure extends MX_Controller {
 		return true;
 	}
 
-	public function edit_fuel_ax() {
+	public function edit_fuel_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fuel');
 
@@ -1843,19 +1835,16 @@ class Structure extends MX_Controller {
 		$fuel_id = $this->input->post('fuel_id');
 
 
-
-
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'fuel_add_date['.$fuel_id.']' => form_error('fuel_add_date'),
-				'fuel_price['.$fuel_id.']' => form_error('fuel_price'),
-				'fuel_one_liter_price['.$fuel_id.']' => form_error('fuel_one_liter_price'),
-				'fuel_count_liter['.$fuel_id.']' => form_error('fuel_count_liter'),
-				'fuel_staff_id['.$fuel_id.']' => form_error('fuel_staff_id')
+				'fuel_add_date[' . $fuel_id . ']' => form_error('fuel_add_date'),
+				'fuel_price[' . $fuel_id . ']' => form_error('fuel_price'),
+				'fuel_one_liter_price[' . $fuel_id . ']' => form_error('fuel_one_liter_price'),
+				'fuel_count_liter[' . $fuel_id . ']' => form_error('fuel_count_liter'),
+				'fuel_staff_id[' . $fuel_id . ']' => form_error('fuel_staff_id')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -1867,13 +1856,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$price = $this->input->post('fuel_price');
 		$one_liter_price = $this->input->post('fuel_one_liter_price');
 		$count_liter = $this->input->post('fuel_count_liter');
 		$staff_id = $this->input->post('fuel_staff_id');
 		$date = $this->input->post('fuel_add_date');
-
 
 
 		$sql = "
@@ -1886,7 +1873,6 @@ class Structure extends MX_Controller {
 				`price`  = " . $this->load->db_value($price) . "
 			WHERE `id` = " . $this->load->db_value($fuel_id) . "
 		";
-
 
 
 		$result = $this->db->query($sql);
@@ -1905,7 +1891,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_fine() {
+	public function vehicle_fine()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -1924,7 +1911,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -1932,11 +1919,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -1946,9 +1931,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 
 			$sql_add_staff = "
@@ -1966,7 +1949,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -1989,8 +1972,8 @@ class Structure extends MX_Controller {
 				  `fine`.`fleet_id`, /**/
 				  CONCAT_WS(
 					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
+					`brand`.`title_" . $lng . "`,
+					`model`.`title_" . $lng . "`
 				  ) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  CONCAT_WS(
@@ -2012,8 +1995,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `fine`.`status` = '1' 
-				AND FIND_IN_SET(`fine`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`fine`.`add_date` >= '".$date_from."' AND `fine`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`fine`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`fine`.`add_date` >= '" . $date_from . "' AND `fine`.`add_date` <= '" . $date_to . "')
 			";
 
 			$query = $this->db->query($sql);
@@ -2025,8 +2008,8 @@ class Structure extends MX_Controller {
 	}
 
 
-
-	public function fine_ax() {
+	public function fine_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fuel');
 
@@ -2045,16 +2028,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
-
-
 
 
 		if ($fleet_id != '') {
@@ -2171,7 +2149,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -2226,7 +2204,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_fine_ax() {
+	public function edit_fine_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fine');
 
@@ -2245,8 +2224,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
@@ -2260,21 +2237,18 @@ class Structure extends MX_Controller {
 
 		$fine_id = $this->input->post('fine_id');
 
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'fine_add_date['.$fine_id.']' => form_error('fine_add_date'),
-				'fine_price['.$fine_id.']' => form_error('fine_price'),
-				'fine_type['.$fine_id.']' => form_error('fine_type'),
-				'fine_staff_id['.$fine_id.']' => form_error('fine_staff_id')
+				'fine_add_date[' . $fine_id . ']' => form_error('fine_add_date'),
+				'fine_price[' . $fine_id . ']' => form_error('fine_price'),
+				'fine_type[' . $fine_id . ']' => form_error('fine_type'),
+				'fine_staff_id[' . $fine_id . ']' => form_error('fine_staff_id')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
-
-
-
 
 
 		$price = $this->input->post('fine_price');
@@ -2320,7 +2294,8 @@ class Structure extends MX_Controller {
 		return true;
 	}
 
-	public function vehicle_accident() {
+	public function vehicle_accident()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -2339,7 +2314,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -2347,11 +2322,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -2361,9 +2334,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 
 			$sql_add_staff = "
@@ -2381,7 +2352,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -2406,8 +2377,8 @@ class Structure extends MX_Controller {
 				  `accident`.`fleet_id`, /**/
 				  CONCAT_WS(
 					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
+					`brand`.`title_" . $lng . "`,
+					`model`.`title_" . $lng . "`
 				  ) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  CONCAT_WS(
@@ -2429,8 +2400,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `accident`.`status` = '1' 
-				AND FIND_IN_SET(`accident`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`accident`.`add_date` >= '".$date_from."' AND `accident`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`accident`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`accident`.`add_date` >= '" . $date_from . "' AND `accident`.`add_date` <= '" . $date_to . "')
 			";
 
 			$query = $this->db->query($sql);
@@ -2442,7 +2413,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function accident_ax() {
+	public function accident_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fuel');
 
@@ -2462,13 +2434,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
 
 
 		if ($fleet_id != '') {
@@ -2532,11 +2502,11 @@ class Structure extends MX_Controller {
 			for ($i = 1; $i <= $cpt; $i++) {
 
 				//file config
-				$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/accident/fleet_'.$fleet_id);
+				$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id);
 				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 				$config_f['max_size'] = '4097152'; //4 MB
 				$config_f['file_name'] = $this->uname(3, 8);
-				if(isset($_FILES['accident_file_' . $i]['name']) AND $_FILES['accident_file_' . $i]['name'] != '') {
+				if (isset($_FILES['accident_file_' . $i]['name']) AND $_FILES['accident_file_' . $i]['name'] != '') {
 
 					if (!file_exists(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id))) {
 						mkdir(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fleet_id), 0755, true);
@@ -2653,8 +2623,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -2683,7 +2652,7 @@ class Structure extends MX_Controller {
 					$this->load->library('upload', $config_f);
 					$this->upload->initialize($config_f);
 
-					if (!$this->upload->do_upload('accident_file_' . $key )) {
+					if (!$this->upload->do_upload('accident_file_' . $key)) {
 						$validation_errors = array('accident_file_' . $key => $this->upload->display_errors());
 						$messages['error']['elements'][] = $validation_errors;
 						echo json_encode($messages);
@@ -2752,7 +2721,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_accident_ax() {
+	public function edit_accident_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'fuel');
 
@@ -2778,31 +2748,28 @@ class Structure extends MX_Controller {
 
 		$accident_id = $this->input->post('accident_id');
 
-		$this->form_validation->set_rules('accident_conclusion_number['.$accident_id.']', 'accident_conclusion_number', 'required');
-		$this->form_validation->set_rules('accident_insurance_company['.$accident_id.']', 'accident_insurance_company', 'required');
+		$this->form_validation->set_rules('accident_conclusion_number[' . $accident_id . ']', 'accident_conclusion_number', 'required');
+		$this->form_validation->set_rules('accident_insurance_company[' . $accident_id . ']', 'accident_insurance_company', 'required');
 //		$this->form_validation->set_rules('accident_replacement_parts', 'accident_replacement_parts', 'required');
-		$this->form_validation->set_rules('accident_return_amount['.$accident_id.']', 'accident_return_amount', 'required');
-		$this->form_validation->set_rules('accident_staff_id['.$accident_id.']', 'accident_staff_id', 'required');
-		$this->form_validation->set_rules('accident_date['.$accident_id.']', 'accident_add_date', 'required');
+		$this->form_validation->set_rules('accident_return_amount[' . $accident_id . ']', 'accident_return_amount', 'required');
+		$this->form_validation->set_rules('accident_staff_id[' . $accident_id . ']', 'accident_staff_id', 'required');
+		$this->form_validation->set_rules('accident_date[' . $accident_id . ']', 'accident_add_date', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'accident_conclusion_number['.$accident_id.']' => form_error('accident_conclusion_number'),
-				'accident_insurance_company['.$accident_id.']' => form_error('accident_insurance_company'),
+				'accident_conclusion_number[' . $accident_id . ']' => form_error('accident_conclusion_number'),
+				'accident_insurance_company[' . $accident_id . ']' => form_error('accident_insurance_company'),
 //				'accident_replacement_parts['.$accident_id.']' => form_error('accident_replacement_parts'),
-				'accident_return_amount['.$accident_id.']' => form_error('accident_return_amount'),
-				'accident_staff_id['.$accident_id.']' => form_error('accident_staff_id'),
-				'accident_date['.$accident_id.']' => form_error('accident_add_date')
+				'accident_return_amount[' . $accident_id . ']' => form_error('accident_return_amount'),
+				'accident_staff_id[' . $accident_id . ']' => form_error('accident_staff_id'),
+				'accident_date[' . $accident_id . ']' => form_error('accident_add_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
-
-
 
 
 		// end of validation
@@ -2817,15 +2784,13 @@ class Structure extends MX_Controller {
 		$fl_id = $fl[$accident_id];
 
 
-
-
 		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
 
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/accident/fleet_'.$fl_id);
+		$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id);
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -2833,14 +2798,12 @@ class Structure extends MX_Controller {
 		//$this->pre($_FILES);
 
 		$add_file = '';
-		if(isset($_FILES['accident_file_' . $accident_id]['name']) AND $_FILES['accident_file_' . $accident_id]['name'] != '') {
+		if (isset($_FILES['accident_file_' . $accident_id]['name']) AND $_FILES['accident_file_' . $accident_id]['name'] != '') {
 
 			if (!file_exists(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id))) {
 				mkdir(set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id), 0755, true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/accident/fleet_' . $fl_id . '/index.html'));
 			}
-
-
 
 
 			$this->load->library('upload', $config_f);
@@ -2860,7 +2823,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$sql = "
 			UPDATE `accident` SET
 				`add_date` = " . $this->load->db_value($accident_add_date[$accident_id]) . ",
@@ -2869,7 +2831,7 @@ class Structure extends MX_Controller {
 				`staff_id` = " . $this->load->db_value($accident_staff_id[$accident_id]) . ",
 				`conclusion_number` = " . $this->load->db_value($accident_conclusion_number[$accident_id]) . ",
 				`replacement_parts` = " . $this->load->db_value($accident_replacement_parts[$accident_id]) . ",
-				".$add_file."
+				" . $add_file . "
 				`return_amount` = " . $this->load->db_value($accident_return_amount[$accident_id]) . "
 			WHERE `id` = " . $this->load->db_value($accident_id) . "
 		";
@@ -2892,7 +2854,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_insurance() {
+	public function vehicle_insurance()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -2911,7 +2874,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -2921,7 +2884,7 @@ class Structure extends MX_Controller {
 		$sql_insurance_type = "
 			SELECT
 				`id`,
-				`title_".$lng."` AS `title`
+				`title_" . $lng . "` AS `title`
 			 FROM
 			    `insurance_type`
 			WHERE `status` = '1'    	
@@ -2932,11 +2895,9 @@ class Structure extends MX_Controller {
 		$data['insurance_type'] = $query_insurance_type->result_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -2946,7 +2907,7 @@ class Structure extends MX_Controller {
 		}
 
 
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$sql_add_staff = "
 				SELECT
@@ -2963,7 +2924,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -2985,9 +2946,9 @@ class Structure extends MX_Controller {
 				  `insurance`.`price`,
 				  `insurance`.`file`,
 				  `insurance`.`fleet_id`, /**/
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
-				  `insurance_type`.`title_".$lng."` AS `insurance_type`,
+				  `insurance_type`.`title_" . $lng . "` AS `insurance_type`,
 				  `insurance`.`status` 
 				FROM
 				  `insurance` 
@@ -3002,8 +2963,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `insurance`.`status` = '1' 
-				AND FIND_IN_SET(`insurance`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`insurance`.`add_date` >= '".$date_from."' AND `insurance`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`insurance`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`insurance`.`add_date` >= '" . $date_from . "' AND `insurance`.`add_date` <= '" . $date_to . "')
 				ORDER BY `brand_model`
 			";
 
@@ -3017,7 +2978,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function insurance_ax() {
+	public function insurance_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'insurance');
 
@@ -3037,14 +2999,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -3094,15 +3053,10 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-
 			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
-
-
-
 
 
 			$cpt = count($_FILES);
@@ -3111,11 +3065,11 @@ class Structure extends MX_Controller {
 			for ($i = 1; $i <= $cpt; $i++) {
 
 				//file config
-				$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance/fleet_'.$fleet_id);
+				$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id);
 				$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 				$config_f['max_size'] = '4097152'; //4 MB
 				$config_f['file_name'] = $this->uname(3, 8);
-				if(isset($_FILES['insurance_file_' . $i]['name']) AND $_FILES['insurance_file_' . $i]['name'] != '') {
+				if (isset($_FILES['insurance_file_' . $i]['name']) AND $_FILES['insurance_file_' . $i]['name'] != '') {
 
 					if (!file_exists(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id))) {
 						mkdir(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fleet_id), 0755, true);
@@ -3250,7 +3204,7 @@ class Structure extends MX_Controller {
 					$this->load->library('upload', $config_f);
 					$this->upload->initialize($config_f);
 
-					if (!$this->upload->do_upload('insurance_file_' . $key )) {
+					if (!$this->upload->do_upload('insurance_file_' . $key)) {
 						$validation_errors = array('insurance_file_' . $key => $this->upload->display_errors());
 						$messages['error']['elements'][] = $validation_errors;
 						echo json_encode($messages);
@@ -3266,10 +3220,7 @@ class Structure extends MX_Controller {
 			}
 
 
-
-
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -3326,7 +3277,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_insurance_ax() {
+	public function edit_insurance_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'insurance');
 
@@ -3345,9 +3297,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
@@ -3356,24 +3305,23 @@ class Structure extends MX_Controller {
 		$folder = $this->session->folder;
 
 
-		$this->form_validation->set_rules('insurance_price['.$insurance_id.']', 'insurance_price', 'required');
-		$this->form_validation->set_rules('insurance_insurance_company['.$insurance_id.']', 'insurance_insurance_company', 'required');
-		$this->form_validation->set_rules('insurance_type_id['.$insurance_id.']', 'insurance_type_id', 'required');
-		$this->form_validation->set_rules('insurance_end_date['.$insurance_id.']', 'insurance_end_date', 'required');
-		$this->form_validation->set_rules('insurance_date['.$insurance_id.']', 'insurance_date', 'required');
+		$this->form_validation->set_rules('insurance_price[' . $insurance_id . ']', 'insurance_price', 'required');
+		$this->form_validation->set_rules('insurance_insurance_company[' . $insurance_id . ']', 'insurance_insurance_company', 'required');
+		$this->form_validation->set_rules('insurance_type_id[' . $insurance_id . ']', 'insurance_type_id', 'required');
+		$this->form_validation->set_rules('insurance_end_date[' . $insurance_id . ']', 'insurance_end_date', 'required');
+		$this->form_validation->set_rules('insurance_date[' . $insurance_id . ']', 'insurance_date', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'insurance_price['.$insurance_id.']' => form_error('insurance_price'),
-				'insurance_insurance_company['.$insurance_id.']' => form_error('insurance_insurance_company'),
-				'insurance_type_id['.$insurance_id.']' => form_error('insurance_type_id'),
-				'insurance_end_date['.$insurance_id.']' => form_error('insurance_end_date'),
-				'insurance_date['.$insurance_id.']' => form_error('insurance_date')
+				'insurance_price[' . $insurance_id . ']' => form_error('insurance_price'),
+				'insurance_insurance_company[' . $insurance_id . ']' => form_error('insurance_insurance_company'),
+				'insurance_type_id[' . $insurance_id . ']' => form_error('insurance_type_id'),
+				'insurance_end_date[' . $insurance_id . ']' => form_error('insurance_end_date'),
+				'insurance_date[' . $insurance_id . ']' => form_error('insurance_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -3390,11 +3338,6 @@ class Structure extends MX_Controller {
 		$fl_id = $fl[$insurance_id];
 
 
-
-
-
-
-
 		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
@@ -3402,7 +3345,7 @@ class Structure extends MX_Controller {
 
 
 		//file config
-		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/insurance/fleet_'.$fl_id);
+		$config_f['upload_path'] = set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id);
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
@@ -3410,14 +3353,12 @@ class Structure extends MX_Controller {
 		//$this->pre($_FILES);
 
 		$add_file = '';
-		if(isset($_FILES['insurance_file_' . $insurance_id]['name']) AND $_FILES['insurance_file_' . $insurance_id]['name'] != '') {
+		if (isset($_FILES['insurance_file_' . $insurance_id]['name']) AND $_FILES['insurance_file_' . $insurance_id]['name'] != '') {
 
 			if (!file_exists(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id))) {
 				mkdir(set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id), 0755, true);
 				copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/insurance/fleet_' . $fl_id . '/index.html'));
 			}
-
-
 
 
 			$this->load->library('upload', $config_f);
@@ -3437,11 +3378,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-
-
-
 		$sql = "
 			UPDATE `insurance` SET
 				`add_date` = " . $this->load->db_value($date[$insurance_id]) . ",
@@ -3449,18 +3385,13 @@ class Structure extends MX_Controller {
 				`insurance_company` = " . $this->load->db_value($insurance_company[$insurance_id]) . ",
 				`insurance_type_id` = " . $this->load->db_value($insurance_type_id[$insurance_id]) . ",
 				`end_date` = " . $this->load->db_value($end_date[$insurance_id]) . ",
-				".$add_file."
+				" . $add_file . "
 				`price` = " . $this->load->db_value($price[$insurance_id]) . "
 			WHERE `id` = " . $this->load->db_value($insurance_id) . "
 		";
 
 
-
-
 		$result = $this->db->query($sql);
-
-
-
 
 
 		if ($result) {
@@ -3477,7 +3408,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_spares() {
+	public function vehicle_spares()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -3496,7 +3428,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -3506,7 +3438,7 @@ class Structure extends MX_Controller {
 		$sql_insurance_type = "
 			SELECT
 				`id`,
-				`title_".$lng."` AS `title`
+				`title_" . $lng . "` AS `title`
 			 FROM
 			    `insurance_type`
 			WHERE `status` = '1'    	
@@ -3517,11 +3449,9 @@ class Structure extends MX_Controller {
 		$data['insurance_type'] = $query_insurance_type->result_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -3531,9 +3461,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 
 			$sql_add_staff = "
@@ -3551,7 +3479,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -3576,7 +3504,7 @@ class Structure extends MX_Controller {
 				  `spares`.`one_price`,
 				  `spares`.`price`,
 				  `spares`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `spares`.`status` 
 				FROM
@@ -3590,8 +3518,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `spares`.`status` = '1' 
-				 AND FIND_IN_SET(`spares`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`spares`.`add_date` >= '".$date_from."' AND `spares`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`spares`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`spares`.`add_date` >= '" . $date_from . "' AND `spares`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -3604,7 +3532,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function spares_ax() {
+	public function spares_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -3623,14 +3552,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -3818,8 +3744,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -3882,7 +3807,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_spares_ax() {
+	public function edit_spares_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -3901,7 +3827,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
@@ -3909,35 +3834,33 @@ class Structure extends MX_Controller {
 		$spares_id = $this->input->post('spares_id');
 
 		$this->form_validation->set_rules('spares_price', 'spares_price', 'required');
-	//	$this->form_validation->set_rules('spares_whence', 'spares_whence', 'required');
+		//	$this->form_validation->set_rules('spares_whence', 'spares_whence', 'required');
 		$this->form_validation->set_rules('spares_type', 'spares_type', 'required');
-	//	$this->form_validation->set_rules('spares_producer', 'spares_producer', 'required');
-	//	$this->form_validation->set_rules('spares_model', 'spares_model', 'required');
+		//	$this->form_validation->set_rules('spares_producer', 'spares_producer', 'required');
+		//	$this->form_validation->set_rules('spares_model', 'spares_model', 'required');
 		$this->form_validation->set_rules('spares_depreciation', 'spares_depreciation', 'required');
 		$this->form_validation->set_rules('spares_count', 'spares_count', 'required');
 		$this->form_validation->set_rules('spares_one_price', 'spares_one_price', 'required');
 		$this->form_validation->set_rules('spares_date', 'spares_date', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'spares_price['.$spares_id.']' => form_error('spares_price'),
-			//	'spares_whence['.$spares_id.']' => form_error('spares_whence'),
-				'spares_type['.$spares_id.']' => form_error('spares_type'),
-			//	'spares_producer['.$spares_id.']' => form_error('spares_producer'),
-			//	'spares_model['.$spares_id.']' => form_error('spares_model'),
-				'spares_depreciation['.$spares_id.']' => form_error('spares_depreciation'),
-				'spares_count['.$spares_id.']' => form_error('spares_count'),
-				'spares_one_price['.$spares_id.']' => form_error('spares_one_price'),
-				'spares_date['.$spares_id.']' => form_error('spares_date')
+				'spares_price[' . $spares_id . ']' => form_error('spares_price'),
+				//	'spares_whence['.$spares_id.']' => form_error('spares_whence'),
+				'spares_type[' . $spares_id . ']' => form_error('spares_type'),
+				//	'spares_producer['.$spares_id.']' => form_error('spares_producer'),
+				//	'spares_model['.$spares_id.']' => form_error('spares_model'),
+				'spares_depreciation[' . $spares_id . ']' => form_error('spares_depreciation'),
+				'spares_count[' . $spares_id . ']' => form_error('spares_count'),
+				'spares_one_price[' . $spares_id . ']' => form_error('spares_one_price'),
+				'spares_date[' . $spares_id . ']' => form_error('spares_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
-
 
 
 		// end of validation
@@ -3991,7 +3914,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_repair() {
+	public function vehicle_repair()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -4010,7 +3934,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -4020,7 +3944,7 @@ class Structure extends MX_Controller {
 		$sql_insurance_type = "
 			SELECT
 				`id`,
-				`title_".$lng."` AS `title`
+				`title_" . $lng . "` AS `title`
 			 FROM
 			    `insurance_type`
 			WHERE `status` = '1'    	
@@ -4031,11 +3955,9 @@ class Structure extends MX_Controller {
 		$data['insurance_type'] = $query_insurance_type->result_array();
 
 
-
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -4045,9 +3967,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 
 			$sql_add_staff = "
@@ -4065,7 +3985,7 @@ class Structure extends MX_Controller {
 					  `staff`.`id`,
 					  `fleet`.`staff_ids`
 					) 
-			   WHERE `fleet`.`id` = '".$fleet_arr['id'][0]."'
+			   WHERE `fleet`.`id` = '" . $fleet_arr['id'][0] . "'
 			    GROUP BY `staff`.`id`		
 			";
 
@@ -4085,7 +4005,7 @@ class Structure extends MX_Controller {
 				  `repair`.`necessary_parts`,
 				  `repair`.`price`,
 				  `repair`.`fleet_id`, /**/
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `repair`.`status` 
 				FROM
@@ -4099,8 +4019,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `repair`.`status` = '1' 
-				AND FIND_IN_SET(`repair`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				AND (`repair`.`add_date` >= '".$date_from."' AND `repair`.`add_date` <= '".$date_to."')
+				AND FIND_IN_SET(`repair`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				AND (`repair`.`add_date` >= '" . $date_from . "' AND `repair`.`add_date` <= '" . $date_to . "')
 				ORDER BY `brand_model`
 			";
 
@@ -4113,7 +4033,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function repair_ax() {
+	public function repair_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -4132,14 +4053,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -4264,8 +4182,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -4318,7 +4235,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function edit_repair_ax() {
+	public function edit_repair_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -4337,7 +4255,6 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
@@ -4350,20 +4267,18 @@ class Structure extends MX_Controller {
 		$this->form_validation->set_rules('repair_date', 'repair_date', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'repair_price['.$repair_id.']' => form_error('repair_price'),
-			//	'repair_repairer['.$repair_id.']' => form_error('repair_repairer'),
-				'repair_necessary_parts['.$repair_id.']' => form_error('repair_necessary_parts'),
-				'repair_date['.$repair_id.']' => form_error('repair_date')
+				'repair_price[' . $repair_id . ']' => form_error('repair_price'),
+				//	'repair_repairer['.$repair_id.']' => form_error('repair_repairer'),
+				'repair_necessary_parts[' . $repair_id . ']' => form_error('repair_necessary_parts'),
+				'repair_date[' . $repair_id . ']' => form_error('repair_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
-
 
 
 		// end of validation
@@ -4392,7 +4307,6 @@ class Structure extends MX_Controller {
 		";
 
 
-
 		$result = $this->db->query($sql);
 
 		if ($result) {
@@ -4409,7 +4323,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_wheel() {
+	public function vehicle_wheel()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -4428,7 +4343,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -4436,10 +4351,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -4449,9 +4363,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$data['fleet'] = $fleet_arr;
 
@@ -4470,7 +4382,7 @@ class Structure extends MX_Controller {
 				  `wheel`.`other_info`,
 				  `wheel`.`price`,
 				  `wheel`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `wheel`.`status` 
 				FROM
@@ -4484,8 +4396,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `wheel`.`status` = '1' 
-				 AND FIND_IN_SET(`wheel`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`wheel`.`add_date` >= '".$date_from."' AND `wheel`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`wheel`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`wheel`.`add_date` >= '" . $date_from . "' AND `wheel`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -4497,7 +4409,8 @@ class Structure extends MX_Controller {
 		}
 	}
 
-	public function wheel_ax() {
+	public function wheel_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -4516,14 +4429,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -4715,8 +4625,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -4781,7 +4690,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_brake() {
+	public function vehicle_brake()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -4800,7 +4710,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -4808,10 +4718,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -4821,9 +4730,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$data['fleet'] = $fleet_arr;
 
@@ -4842,7 +4749,7 @@ class Structure extends MX_Controller {
 				  `brake`.`other_info`,
 				  `brake`.`price`,
 				  `brake`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `brake`.`status` 
 				FROM
@@ -4856,8 +4763,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `brake`.`status` = '1' 
-				 AND FIND_IN_SET(`brake`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`brake`.`add_date` >= '".$date_from."' AND `brake`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`brake`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`brake`.`add_date` >= '" . $date_from . "' AND `brake`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -4870,7 +4777,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function brake_ax() {
+	public function brake_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'spares');
 
@@ -4889,14 +4797,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -5088,8 +4993,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -5154,8 +5058,8 @@ class Structure extends MX_Controller {
 	}
 
 
-
-	public function vehicle_grease() {
+	public function vehicle_grease()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -5174,7 +5078,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -5182,10 +5086,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -5195,9 +5098,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$data['fleet'] = $fleet_arr;
 
@@ -5214,7 +5115,7 @@ class Structure extends MX_Controller {
 				  `grease`.`other_info`,
 				  `grease`.`price`,
 				  `grease`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `grease`.`status` 
 				FROM
@@ -5228,8 +5129,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `grease`.`status` = '1' 
-				 AND FIND_IN_SET(`grease`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`grease`.`add_date` >= '".$date_from."' AND `grease`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`grease`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`grease`.`add_date` >= '" . $date_from . "' AND `grease`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -5242,7 +5143,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function grease_ax() {
+	public function grease_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'grease');
 
@@ -5261,14 +5163,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -5429,8 +5328,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -5491,7 +5389,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function vehicle_filter() {
+	public function vehicle_filter()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -5510,7 +5409,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -5518,10 +5417,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -5531,9 +5429,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$data['fleet'] = $fleet_arr;
 
@@ -5551,7 +5447,7 @@ class Structure extends MX_Controller {
 				  `filter`.`other_info`,
 				  `filter`.`price`,
 				  `filter`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `filter`.`status` 
 				FROM
@@ -5565,8 +5461,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `filter`.`status` = '1' 
-				 AND FIND_IN_SET(`filter`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`filter`.`add_date` >= '".$date_from."' AND `filter`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`filter`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`filter`.`add_date` >= '" . $date_from . "' AND `filter`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -5579,7 +5475,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function filter_ax() {
+	public function filter_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'grease');
 
@@ -5598,14 +5495,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -5782,8 +5676,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -5846,9 +5739,8 @@ class Structure extends MX_Controller {
 	}
 
 
-
-
-	public function vehicle_battery() {
+	public function vehicle_battery()
+	{
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();
@@ -5867,7 +5759,7 @@ class Structure extends MX_Controller {
 			  	) AS `name`
 			FROM
 			  `user`
-			WHERE `id` = '".$user_id."'	  	
+			WHERE `id` = '" . $user_id . "'	  	
 		";
 
 		$query_add_user = $this->db->query($sql_add_user);
@@ -5875,10 +5767,9 @@ class Structure extends MX_Controller {
 		$data['user'] = $query_add_user->row_array();
 
 
-
 		$fleet_arr = array();
 
-		if($arr) {
+		if ($arr) {
 			foreach ($arr as $value) {
 				if (preg_match('/^(f)/', $value['key'])) {
 					$fleet_arr['id'][] = preg_replace('/^(f)/', '', $value['key']);
@@ -5888,9 +5779,7 @@ class Structure extends MX_Controller {
 		}
 
 
-
-
-		if($fleet_arr) {
+		if ($fleet_arr) {
 
 			$data['fleet'] = $fleet_arr;
 
@@ -5907,7 +5796,7 @@ class Structure extends MX_Controller {
 				  `battery`.`other_info`,
 				  `battery`.`price`,
 				  `battery`.`fleet_id`,
-				  CONCAT_WS(' ', `brand`.`title_".$lng."`, `model`.`title_".$lng."`) AS `brand_model`,
+				  CONCAT_WS(' ', `brand`.`title_" . $lng . "`, `model`.`title_" . $lng . "`) AS `brand_model`,
 				  CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 				  `battery`.`status` 
 				FROM
@@ -5921,8 +5810,8 @@ class Structure extends MX_Controller {
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id` 	
 				WHERE `battery`.`status` = '1' 
-				 AND FIND_IN_SET(`battery`.`fleet_id`, '".implode(',', $fleet_arr['id'])."')
-				 AND (`battery`.`add_date` >= '".$date_from."' AND `battery`.`add_date` <= '".$date_to."')
+				 AND FIND_IN_SET(`battery`.`fleet_id`, '" . implode(',', $fleet_arr['id']) . "')
+				 AND (`battery`.`add_date` >= '" . $date_from . "' AND `battery`.`add_date` <= '" . $date_to . "')
 				 ORDER BY `brand_model`
 			";
 
@@ -5935,7 +5824,8 @@ class Structure extends MX_Controller {
 	}
 
 
-	public function battery_ax() {
+	public function battery_ax()
+	{
 
 		//$this->load->authorisation('Structure', 'grease');
 
@@ -5954,14 +5844,11 @@ class Structure extends MX_Controller {
 		}
 
 
-
 		$fleet_id = $this->input->post('fleet_id');
 
 		// validation
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('', '');
-
-
 
 
 		if ($fleet_id != '') {
@@ -6122,8 +6009,7 @@ class Structure extends MX_Controller {
 			// end of validation
 
 
-
-			if($n == 1) {
+			if ($n == 1) {
 				echo json_encode($messages);
 				return false;
 			}
@@ -6182,8 +6068,6 @@ class Structure extends MX_Controller {
 		echo json_encode($messages);
 		return true;
 	}
-
-
 
 
 }

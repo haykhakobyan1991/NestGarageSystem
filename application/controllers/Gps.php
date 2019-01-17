@@ -130,6 +130,13 @@ class Gps extends MX_Controller {
 
 	}
 
+	public function fuel() {
+		//$this->load->authorisation('Gps', 'gps_tracking');
+
+		$this->layout->view('gps_tracking/fuel');
+
+	}
+
 
 }
 //end of class

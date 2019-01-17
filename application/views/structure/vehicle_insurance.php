@@ -68,10 +68,20 @@
 							<input disabled value="<?= $row['price'] ?>" title="" type="number" min="0" name="insurance_price[<?= $row['id'] ?>]"
 								   class="form-control text-center"/>
 						</td>
-						<td class="border">
-							<input style="width: 90%" disabled value="" title="" type="file" min="0" name="insurance_file_<?= $row['id'] ?>"
-								   id="insurance_file_<?= $row['id'] ?>"
-								   class="form-control text-center float-left"/>
+						<td class="border" style="width: 150px;">
+							<label
+								style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important; width: 85%;float: left;"
+								class="btn btn-sm btn-outline-secondary mb-0">
+								<span><?= lang('browse') ?></span>
+								<input  disabled  id="insurance_file_<?= $row['id'] ?>" type="file" name="insurance_file_<?= $row['id'] ?>" class="d-none form-control-file btn_input"
+									   hidden
+									   style="display: none;" id="exampleFormControlFile1">
+							</label>
+
+
+<!--							<input style="width: 90%" disabled value="" title="" type="file" min="0" name="insurance_file_--><?//= $row['id'] ?><!--"-->
+<!--								   id="insurance_file_--><?//= $row['id'] ?><!--"-->
+<!--								   class="form-control text-center float-left"/>-->
 							<input type="hidden" name="fl[<?= $row['id'] ?>]" value="<?=$row['fleet_id']?>">
 							<a class="float-left ext"
 							   style="width:10%"
@@ -136,8 +146,17 @@
 						   class="form-control text-center"/>
 				</td>
 				<td class="border">
-					<input  value="" title="" type="file" min="0" name="insurance_file_1"
-						   class="form-control text-center"/>
+					<label
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
+						class="btn btn-sm btn-outline-secondary mb-0">
+						<span><?= lang('browse') ?></span>
+						<input insurance_file_<?= $row['id'] ?> type="file" name="insurance_file_1" class="d-none form-control-file btn_input"
+							   hidden
+							   style="display: none;" >
+					</label>
+
+<!--					<input  value="" title="" type="file" min="0" name="insurance_file_1"-->
+<!--						   class="form-control text-center"/>-->
 				</td>
 				<td class="border"></td>
 			</tr>
@@ -240,8 +259,17 @@
 										   class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="file" min="0" name="insurance_file_<?= $key + 1 ?>" value=""
-										   class="form-control text-center"/>
+									<label
+										style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
+										class="btn btn-sm btn-outline-secondary mb-0">
+										<span><?= lang('browse') ?></span>
+										<input type="file" name="insurance_file_<?= $key + 1 ?>" class="d-none form-control-file btn_input"
+										hidden
+										style="display: none;" id="exampleFormControlFile1">
+									</label>
+
+<!--									<input title="" type="file" min="0" name="insurance_file_--><?//= $key + 1 ?><!--" value=""-->
+<!--										   class="form-control text-center"/>-->
 								</td>
 							</tr>
 
@@ -371,7 +399,12 @@
 				'</td>\n' +
 				'<td><input  title="" type="date" name="end_date[' + j + ']"class="form-control text-center"/></td>\n' +
 				'<td><input title="" type="number" name="price[' + j + ']" value="" class="form-control text-center"/></td>\n' +
-				'<td><input title="" type="file" name="insurance_file_' + j + '" value="" class="form-control text-center"/></td>\n' +
+				'<td>' +
+				'<label style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;" class="btn btn-sm btn-outline-secondary mb-0">'+
+				'<span><?= lang('browse') ?></span>'+
+				'<input type="file" name="insurance_file_' + j + '" class="d-none form-control-file btn_input" hidden style="display: none;" id="exampleFormControlFile1">'+
+				'</label>'+
+				'</td>\n' +
 				'<td><i class="del_row_ft fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row" > </i></td>\n' +
 				'</tr>')
 			).then(function () {
@@ -626,6 +659,41 @@
 		$('td#sum').html(sum)
 
 		$('.buttons-excel span').html('<?=lang('export')?>')
+
+
+		// Input type File Staff
+		$(document).on('change', '.btn_input', function () {
+
+			var upload_file = $(this).val();
+			var upload_file = upload_file.split("\\");
+			var upload_file = upload_file[upload_file.length - 1];
+
+			var text_truncate = function (str, length, ending) {
+				if (length == null) {
+					length = 100;
+				}
+				if (ending == null) {
+					ending = '...';
+				}
+				if (str.length > length) {
+					return str.substring(0, length - ending.length) + ending;
+				} else {
+					return str;
+				}
+			};
+
+			if (upload_file == '') {
+				$(this).parent('label').children('span').text('<?=lang('browse')?>');
+			} else {
+				if (upload_file.length > 10) {
+					var short_text = text_truncate(upload_file, 10, ' ...');
+					$(this).parent('label').children('span').text(short_text);
+				} else {
+					$(this).parent('label').children('span').text(upload_file);
+				}
+			}
+
+		});
 </script>
 
 

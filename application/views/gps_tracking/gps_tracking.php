@@ -996,7 +996,7 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="form-group row mb-0">
-								<label class="col-sm-6"><?= lang('event') ?></label>
+								<label class="colnavbar navbar-expand-lg navbar-light bg-light pl-0 pr-0-sm-6"><?= lang('event') ?></label>
 								<input class="col-sm-1 mt-1" type="checkbox"/>
 							</div>
 						</div>
@@ -1668,4 +1668,11 @@
 			location.reload();
 		});
 	});
+
+	var  dataTable_label = $('.dataTables_filter label').text();
+	$('.dataTables_filter input').attr('placeholder', dataTable_label);
+	$('.dataTables_filter label').css('text','dddd');
+
+	var elem = $('.dataTables_filter label');
+	$(elem).html($(elem).html().replace($(elem).text(),''));
 </script>

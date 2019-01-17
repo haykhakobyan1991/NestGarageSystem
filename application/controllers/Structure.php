@@ -384,9 +384,6 @@ class Structure extends MX_Controller
 
 		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
 
-//		$this->pre($structure_unique);
-
-
 		$data['structure'] = json_encode($structure_unique);
 
 		$this->layout->view('structure/structure2', $data);
@@ -576,14 +573,6 @@ class Structure extends MX_Controller
 		endforeach;
 
 
-//		echo '<br>----------------------New department - driver------------------------------<br>';
-//		$this->pre($new_data_arr['h_d']);
-//		echo '<br>----------------------OLD department - driver------------------------------<br>';
-//		$this->pre($old_data_arr['h_d']);
-//		echo '<br>----------------------New Driver - fleet------------------------------<br>';
-//		$this->pre($new_data_arr['d_f']);
-//		echo '<br>----------------------OLD Driver - fleet------------------------------<br>';
-//		$this->pre($old_data_arr['d_f']);
 
 		if (!isset($new_data_arr['c_h']) || !isset($new_data_arr['h_d']) || !isset($new_data_arr['d_f'])) {
 			$return['error'] = 'ERROR'; //todo
@@ -639,9 +628,7 @@ class Structure extends MX_Controller
 
 			if (isset($array['deleted'])) {
 				foreach ($array['deleted'] as $f_t => $value) {
-					//echo $f_t;
-					//echo hr();
-					//$this->pre($value);
+
 					foreach ($value as $from_to) {
 
 						if ($f_t == 'c_h') {
@@ -1435,7 +1422,7 @@ class Structure extends MX_Controller
 
 			$validation_errors = array(
 				'add_date[' . $inspection_id . ']' => form_error('add_date'),
-				'price[' . $inspection_id . ']' => form_error('price'),
+				'inspection_price[' . $inspection_id . ']' => form_error('price'),
 				'end_date[' . $inspection_id . ']' => form_error('end_date')
 			);
 			$messages['error']['elements'][] = $validation_errors;
@@ -2466,13 +2453,6 @@ class Structure extends MX_Controller
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-//					if ($replacement_parts[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-
-
 					if ($conclusion_number[$i] == '') :
 						$n = 1;
 						$validation_errors = array('conclusion_number[' . $i . ']' => lang('required'));
@@ -2598,13 +2578,6 @@ class Structure extends MX_Controller
 						$validation_errors = array('staff_id[' . $i . ']' => lang('required'));
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
-
-//					if ($replacement_parts[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('replacement_parts[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-
 
 					if ($conclusion_number[$i] == '') :
 						$n = 1;
@@ -2750,7 +2723,6 @@ class Structure extends MX_Controller
 
 		$this->form_validation->set_rules('accident_conclusion_number[' . $accident_id . ']', 'accident_conclusion_number', 'required');
 		$this->form_validation->set_rules('accident_insurance_company[' . $accident_id . ']', 'accident_insurance_company', 'required');
-//		$this->form_validation->set_rules('accident_replacement_parts', 'accident_replacement_parts', 'required');
 		$this->form_validation->set_rules('accident_return_amount[' . $accident_id . ']', 'accident_return_amount', 'required');
 		$this->form_validation->set_rules('accident_staff_id[' . $accident_id . ']', 'accident_staff_id', 'required');
 		$this->form_validation->set_rules('accident_date[' . $accident_id . ']', 'accident_add_date', 'required');
@@ -2759,21 +2731,18 @@ class Structure extends MX_Controller
 		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
-
 			$validation_errors = array(
-				'accident_conclusion_number[' . $accident_id . ']' => form_error('accident_conclusion_number'),
-				'accident_insurance_company[' . $accident_id . ']' => form_error('accident_insurance_company'),
-//				'accident_replacement_parts['.$accident_id.']' => form_error('accident_replacement_parts'),
-				'accident_return_amount[' . $accident_id . ']' => form_error('accident_return_amount'),
-				'accident_staff_id[' . $accident_id . ']' => form_error('accident_staff_id'),
-				'accident_date[' . $accident_id . ']' => form_error('accident_add_date')
+				'accident_conclusion_number[' . $accident_id . ']' => form_error('accident_conclusion_number[' . $accident_id . ']'),
+				'accident_insurance_company[' . $accident_id . ']' => form_error('accident_insurance_company[' . $accident_id . ']'),
+				'accident_return_amount[' . $accident_id . ']' => form_error('accident_return_amount[' . $accident_id . ']'),
+				'accident_staff_id[' . $accident_id . ']' => form_error('accident_staff_id[' . $accident_id . ']'),
+				'accident_date[' . $accident_id . ']' => form_error('accident_add_date[' . $accident_id . ']')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
 		// end of validation
-
 		$accident_conclusion_number = $this->input->post('accident_conclusion_number');
 		$accident_insurance_company = $this->input->post('accident_insurance_company');
 		$accident_replacement_parts = $this->input->post('accident_replacement_parts');
@@ -2794,8 +2763,6 @@ class Structure extends MX_Controller
 		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
-
-		//$this->pre($_FILES);
 
 		$add_file = '';
 		if (isset($_FILES['accident_file_' . $accident_id]['name']) AND $_FILES['accident_file_' . $accident_id]['name'] != '') {
@@ -3317,11 +3284,11 @@ class Structure extends MX_Controller
 			$n = 1;
 
 			$validation_errors = array(
-				'insurance_price[' . $insurance_id . ']' => form_error('insurance_price'),
-				'insurance_insurance_company[' . $insurance_id . ']' => form_error('insurance_insurance_company'),
-				'insurance_type_id[' . $insurance_id . ']' => form_error('insurance_type_id'),
-				'insurance_end_date[' . $insurance_id . ']' => form_error('insurance_end_date'),
-				'insurance_date[' . $insurance_id . ']' => form_error('insurance_date')
+				'insurance_price[' . $insurance_id . ']' => form_error('insurance_price[' . $insurance_id . ']'),
+				'insurance_insurance_company[' . $insurance_id . ']' => form_error('insurance_insurance_company[' . $insurance_id . ']'),
+				'insurance_type_id[' . $insurance_id . ']' => form_error('insurance_type_id[' . $insurance_id . ']'),
+				'insurance_end_date[' . $insurance_id . ']' => form_error('insurance_end_date[' . $insurance_id . ']'),
+				'insurance_date[' . $insurance_id . ']' => form_error('insurance_date[' . $insurance_id . ']')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -3579,29 +3546,11 @@ class Structure extends MX_Controller
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-//					if ($whence[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('whence[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-
 					if ($type[$i] == '') :
 						$n = 1;
 						$validation_errors = array('type[' . $i . ']' => lang('required'));
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
-
-//					if ($producer[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('producer[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-//
-//					if ($model[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('model[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
 
 					if ($depreciation[$i] == '') :
 						$n = 1;
@@ -3696,30 +3645,11 @@ class Structure extends MX_Controller
 						$validation_errors = array('price[' . $i . ']' => lang('required'));
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
-
-//					if ($whence[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('whence[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-
 					if ($type[$i] == '') :
 						$n = 1;
 						$validation_errors = array('type[' . $i . ']' => lang('required'));
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
-
-//					if ($producer[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('producer[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-//
-//					if ($model[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('model[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
 
 					if ($depreciation[$i] == '') :
 						$n = 1;
@@ -3834,10 +3764,7 @@ class Structure extends MX_Controller
 		$spares_id = $this->input->post('spares_id');
 
 		$this->form_validation->set_rules('spares_price', 'spares_price', 'required');
-		//	$this->form_validation->set_rules('spares_whence', 'spares_whence', 'required');
 		$this->form_validation->set_rules('spares_type', 'spares_type', 'required');
-		//	$this->form_validation->set_rules('spares_producer', 'spares_producer', 'required');
-		//	$this->form_validation->set_rules('spares_model', 'spares_model', 'required');
 		$this->form_validation->set_rules('spares_depreciation', 'spares_depreciation', 'required');
 		$this->form_validation->set_rules('spares_count', 'spares_count', 'required');
 		$this->form_validation->set_rules('spares_one_price', 'spares_one_price', 'required');
@@ -3850,10 +3777,7 @@ class Structure extends MX_Controller
 
 			$validation_errors = array(
 				'spares_price[' . $spares_id . ']' => form_error('spares_price'),
-				//	'spares_whence['.$spares_id.']' => form_error('spares_whence'),
 				'spares_type[' . $spares_id . ']' => form_error('spares_type'),
-				//	'spares_producer['.$spares_id.']' => form_error('spares_producer'),
-				//	'spares_model['.$spares_id.']' => form_error('spares_model'),
 				'spares_depreciation[' . $spares_id . ']' => form_error('spares_depreciation'),
 				'spares_count[' . $spares_id . ']' => form_error('spares_count'),
 				'spares_one_price[' . $spares_id . ']' => form_error('spares_one_price'),
@@ -4077,12 +4001,6 @@ class Structure extends MX_Controller
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
 
-//					if ($repairer[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
-
 					if ($necessary_parts[$i] == '') :
 						$n = 1;
 						$validation_errors = array('necessary_parts[' . $i . ']' => lang('required'));
@@ -4157,12 +4075,6 @@ class Structure extends MX_Controller
 						$validation_errors = array('price[' . $i . ']' => lang('required'));
 						$messages['error']['elements'][] = $validation_errors;
 					endif;
-
-//					if ($repairer[$i] == '') :
-//						$n = 1;
-//						$validation_errors = array('repairer[' . $i . ']' => lang('required'));
-//						$messages['error']['elements'][] = $validation_errors;
-//					endif;
 
 					if ($necessary_parts[$i] == '') :
 						$n = 1;
@@ -4262,7 +4174,6 @@ class Structure extends MX_Controller
 		$repair_id = $this->input->post('repair_id');
 
 		$this->form_validation->set_rules('repair_price', 'repair_price', 'required');
-		//$this->form_validation->set_rules('repair_repairer', 'repair_repairer', 'required');
 		$this->form_validation->set_rules('repair_necessary_parts', 'repair_necessary_parts', 'required');
 		$this->form_validation->set_rules('repair_date', 'repair_date', 'required');
 
@@ -4273,7 +4184,6 @@ class Structure extends MX_Controller
 
 			$validation_errors = array(
 				'repair_price[' . $repair_id . ']' => form_error('repair_price'),
-				//	'repair_repairer['.$repair_id.']' => form_error('repair_repairer'),
 				'repair_necessary_parts[' . $repair_id . ']' => form_error('repair_necessary_parts'),
 				'repair_date[' . $repair_id . ']' => form_error('repair_date')
 			);

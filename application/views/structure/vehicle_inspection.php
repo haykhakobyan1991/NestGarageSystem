@@ -426,6 +426,7 @@
 						$.each(data.error.elements, function (index) {
 							$.each(data.error.elements[index], function (index, value) {
 								if (value != '') {
+									console.log(index+'='+value);
 									$('input[name="' + index + '"]').addClass('border border-danger');
 
 									if (value != tmp) {
@@ -463,7 +464,3 @@
 
 	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
-
-
-
-

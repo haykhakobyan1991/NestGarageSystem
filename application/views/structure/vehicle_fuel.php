@@ -291,7 +291,6 @@
 
 		});
 
-
 		var table = $('#ex_2').DataTable({
 			language: {
 				search: "<?=lang('search')?>",
@@ -348,13 +347,10 @@
 
 		$('.dt-buttons').css('float', 'left');
 
-
 		//vehicle fuel
 		var j = 1;
 		$(document).on('click', '.ex_2_add_new_tr', function (e) {
 			j++;
-
-
 
 			var fleet = $('input[name="vehicle[1]"]').val();
 
@@ -415,8 +411,6 @@
 					me.data('requestRunning', false);
 				});
 
-
-
 		});
 
 
@@ -433,23 +427,23 @@
 
 		<? if (count($fleet['id']) == 1) { ?>
 
-	$(document).on('change keyup', 'input,select,textarea', function () {
-		if (!$('.pos_abs_div').hasClass('animated')) {
+		$(document).on('change keyup', 'input,select,textarea', function () {
+			if (!$('.pos_abs_div').hasClass('animated')) {
+				$('.pos_abs_div').animate({
+					bottom: "+=60",
+				});
+				$('.pos_abs_div').addClass('animated');
+			}
+		});
+
+		$('.dont_save').on('click', function () {
+			$('.pos_abs_div').removeClass('animated');
 			$('.pos_abs_div').animate({
-				bottom: "+=60",
-			});
-			$('.pos_abs_div').addClass('animated');
-		}
-	});
+				bottom: "-=60"
+			}, function () {
 
-	$('.dont_save').on('click', function () {
-		$('.pos_abs_div').removeClass('animated');
-		$('.pos_abs_div').animate({
-			bottom: "-=60"
-		}, function () {
-
-		})
-	});
+			})
+		});
 
 	<?}?>
 
@@ -668,5 +662,3 @@
 
 		$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
-
-

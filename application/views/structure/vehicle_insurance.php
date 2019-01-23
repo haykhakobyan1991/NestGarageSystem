@@ -150,7 +150,7 @@
 						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-secondary mb-0">
 						<span><?= lang('browse') ?></span>
-						<input insurance_file_<?= $row['id'] ?> type="file" name="insurance_file_1" class="d-none form-control-file btn_input"
+						<input  type="file" name="insurance_file_1" class="d-none form-control-file btn_input"
 							   hidden
 							   style="display: none;" >
 					</label>

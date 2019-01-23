@@ -50,8 +50,8 @@
 						<div class="col-sm-4">
 							<select style="margin-top: 1px;max-width: 220px; z-index: 999;"
 									name="group"
-									class="form-control form-control-sml ">
-								<option selected value=""><?= lang('all1') ?></option>
+									class="form-control form-control-sml sell_group_select">
+								<option selected value="all_val"><?= lang('all1') ?></option>
 								<? foreach ($result as $row) { ?>
 									<option data-id="<?= $row['group_id'] ?>"
 											value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
@@ -1333,6 +1333,48 @@
 				}
 			});
 
+			//Get Addres by Coordinates
+
+			myMap.events.add('click', function (e) {
+				var coords = e.get('coords');
+				if (myPlacemark) {
+					myPlacemark.geometry.setCoordinates(coords);
+				} else {
+					myPlacemark = createPlacemark(coords);
+					myMap.geoObjects.add(myPlacemark);
+					// Слушаем событие окончания перетаскивания на метке.
+					myPlacemark.events.add('dragend', function () {
+						getAddress(myPlacemark.geometry.getCoordinates());
+					});
+				}
+				getAddress(coords);
+			});
+
+			function createPlacemark(coords) {
+				return new ymaps.Placemark(coords, {
+					iconCaption: 'поиск...'
+				}, {
+					preset: 'islands#violetDotIconWithCaption',
+					draggable: true
+				});
+			}
+
+			function getAddress(coords) {
+				myPlacemark.properties.set('iconCaption', 'поиск...');
+				ymaps.geocode(coords).then(function (res) {
+					var firstGeoObject = res.geoObjects.get(0);
+					myPlacemark.properties
+						.set({
+							iconCaption: [
+								firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
+								firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+							].filter(Boolean).join(', '),
+							balloonContent: firstGeoObject.getAddressLine()
+						});
+				});
+			}
+
+			//Draw Polygon By coordinates
 			var myPolygon = new ymaps.Polygon([
 				[
 					[40.19060653826287, 44.50844357516261],
@@ -1365,7 +1407,7 @@
 
 			//Car Coordinates
 			var cord = firebase.database().ref("cord/");
-			console.log(cord)
+			console.log(cord);
 			var track = [];
 			cord.on("child_changed", function (data) {
 				var carCoordinate = '';
@@ -1713,8 +1755,17 @@
 
 	var dataTable_label = $('.dataTables_filter label').text();
 	$('.dataTables_filter input').attr('placeholder', dataTable_label);
-	$('.dataTables_filter label').css('text', 'dddd');
 
 	var elem = $('.dataTables_filter label');
 	$(elem).html($(elem).html().replace($(elem).text(), ''));
 </script>
+
+<script>
+	$(document).ready(function () {
+		($('.sell_group_select').val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
+		$('.sell_group_select').on('change', function () {
+			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
+		})
+	})
+</script>
+

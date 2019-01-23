@@ -116,7 +116,7 @@ div.fuel_seccond {
 .col-sm-6.scroll_style::-webkit-scrollbar,
 .col-sm-5.scroll_style::-webkit-scrollbar,
 .card-body::-webkit-scrollbar{
-	width: .25em;
+	width: 10px;
 }
 .dataTables_scrollBody::-webkit-scrollbar-track,
 .col-sm-6.scroll_style::-webkit-scrollbar-track,

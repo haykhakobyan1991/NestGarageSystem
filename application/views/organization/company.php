@@ -987,7 +987,7 @@ $i = '';
 		})
 	})
 
-</script>K
+</script>
 <a id="dwnldLnk" download="reference.pdf" target="_blank" style="display:none;"/>
 <!--end /-->
 

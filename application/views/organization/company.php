@@ -985,10 +985,9 @@ $i = '';
 				console.log('/*/' + errorThrown);
 			}
 		})
-
 	})
 
-</script>
+</script>K
 <a id="dwnldLnk" download="reference.pdf" target="_blank" style="display:none;"/>
 <!--end /-->
 

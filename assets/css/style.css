@@ -28,12 +28,12 @@ a.dropdown-item span {
 	padding-bottom: 1px !important;
 }
 
-::-webkit-input-placeholder {
-	font-size: 14px !important;
+input::-webkit-input-placeholder {
+	font-size: 12px !important;
 }
 
-:-moz-placeholder {
-	font-size: 14px !important;
+input:-moz-placeholder {
+	font-size: 12px !important;
 }
 
 

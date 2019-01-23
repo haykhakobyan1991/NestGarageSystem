@@ -405,10 +405,11 @@ $lang['phone'] = 'Тел․';
 $lang['Web_address'] = 'Веб адрес';
 $lang['export'] = 'Экспорт';
 $lang['insurance1'] = 'Страхование';
-$lang['insurance_data'] = 'Страховые данные';
+$lang['insurance_data'] = 'Картины';
 
 $lang['file'] = 'Документ';
 $lang['Report_period'] = 'Период отчета';
+$lang['GPS_tracking'] = 'GPS-трекинг';
 
 
 

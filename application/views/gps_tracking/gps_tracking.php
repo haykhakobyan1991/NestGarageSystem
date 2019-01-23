@@ -39,7 +39,6 @@
 </style>
 
 
-
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
 		<div class="col-sm-5">
@@ -54,7 +53,8 @@
 									class="form-control form-control-sml ">
 								<option selected value=""><?= lang('all1') ?></option>
 								<? foreach ($result as $row) { ?>
-									<option data-id="<?= $row['group_id']?>" value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
+									<option data-id="<?= $row['group_id'] ?>"
+											value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
 								<? } ?>
 							</select>
 						</div>
@@ -76,7 +76,8 @@
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
 									class="ml-0 mr-0 "/></button>
-							<button class="btn btn-sm btn-outline-secondary delete_btn" data-toggle="modal" data-target=".del_group_modal"
+							<button class="btn btn-sm btn-outline-secondary delete_btn" data-toggle="modal"
+									data-target=".del_group_modal"
 									style="width: 20px;padding: 2px !important;"><img
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/delete.svg"
@@ -91,9 +92,10 @@
 							<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 								<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>Select all
 							</th>
-							<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+							<th
+								style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 								<i style="font-size: 12px !important;color: #000 !important;"
-								   class="fas fa-sort-alpha-down"></i>cars
+								   class="fas fa-sort-alpha-up"></i>cars
 							</th>
 							<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 								<i style="font-size: 12px !important;color: #000 !important;"
@@ -718,7 +720,8 @@
 
 
 <!-- Delete Modal start -->
-<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
+	 aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -755,7 +758,7 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-secondary " style="border-radius: unset;">
-				<h6 class="text-white modal-title dar"><?=lang('EditGroup')?></h6>
+				<h6 class="text-white modal-title dar"><?= lang('EditGroup') ?></h6>
 			</div>
 			<div class="body-m">
 				<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
@@ -996,7 +999,8 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="form-group row mb-0">
-								<label class="colnavbar navbar-expand-lg navbar-light bg-light pl-0 pr-0-sm-6"><?= lang('event') ?></label>
+								<label
+									class="colnavbar navbar-expand-lg navbar-light bg-light pl-0 pr-0-sm-6"><?= lang('event') ?></label>
 								<input class="col-sm-1 mt-1" type="checkbox"/>
 							</div>
 						</div>
@@ -1043,7 +1047,8 @@
 <!-- Settings Modal End -->
 
 <!-- Delete Modal start -->
-<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
+	 aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
@@ -1074,6 +1079,23 @@
 <!-- Delete modal End -->
 
 <script>
+
+	$('table tr th:nth-child(2)').click(function () {
+
+		if (!$(this).hasClass('az')) {
+			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
+			$(this).addClass('az');
+		} else {
+			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-up"></i>');
+			$(this).removeClass('az');
+		}
+	});
+
+	$('td input').each(function () {
+		$(this).prop('checked', true);
+	});
+	$('.sel_all_checkbox').prop('checked', true);
+
 	$('.sel_all_checkbox').on('change', function () {
 		if ($('input.sel_all_checkbox').is(':checked')) {
 
@@ -1269,6 +1291,7 @@
 			text_arr.push(text);
 		});
 		ymaps.ready(function () {
+
 			if (arr.length == 0) {
 				var arr_a = [35.6697343, 19.9361881];
 				var zoom = 3;
@@ -1280,7 +1303,51 @@
 				center: arr_a,
 				zoom: zoom,
 			});
-			console.log(arr)
+			firstButton = new ymaps.control.Button("<i class='fas fa-draw-polygon'></i> Polygon");
+			myMap.controls.add(firstButton, {float: 'left'});
+
+			var a = 1;
+
+			firstButton.events.add('click', function () {
+				if (a == 1) {
+					var myPolygon = new ymaps.Polygon([], {}, {
+						editorDrawingCursor: "crosshair",
+						editorMaxPoints: 10,
+						fillColor: '#00ff0054',
+						strokeColor: '#0000FF',
+						strokeWidth: 3
+					});
+					myMap.geoObjects.add(myPolygon);
+					var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
+					stateMonitor.add("drawing", function (newValue) {
+						myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
+					});
+
+					myPolygon.geometry.events.add('change', function () {
+						console.log(myPolygon.geometry.getCoordinates().toString());
+					});
+					myPolygon.editor.startDrawing();
+					a++;
+				} else {
+					a = 1;
+				}
+			});
+
+			var myPolygon = new ymaps.Polygon([
+				[
+					[40.19060653826287, 44.50844357516261],
+					[40.189981206597146, 44.51397965456936],
+					[40.18741399465704, 44.510246019620624],
+					[40.19060653826287, 44.50844357516261]
+				]
+			]);
+			myPolygon.editor.startDrawing();
+			myPolygon.geometry.events.add('change', function () {
+				console.log(myPolygon.geometry.getCoordinates().toString());
+			});
+
+			myMap.geoObjects.add(myPolygon);
+
 			var myGeoObject = new ymaps.GeoObject({
 				geometry: {
 					type: "LineString",
@@ -1295,33 +1362,7 @@
 				strokeColor: "#4285F4",
 				strokeWidth: 5
 			});
-			// $(document).ready(function () {
-			// 	counter += 1;
-			// 	var cord = {
-			// 		lat: 44.454545,
-			// 		long: 43.4545454,
-			// 		id: counter
-			// 	}
-			// 	let db = firebase.database().ref("cord/" + counter);
-			// 	db.set(cord);
-			// });
-			// var pointA = [55.80, 37.50],
-			//     pointB = [55.80, 37.40],
-			//     pointC = [55.70, 37.50],
-			//     pointD = [55.70, 37.40];
-			//     var multiRoute = new ymaps.multiRouter.MultiRoute({
-			//         referencePoints: ['55.80, 37.50','55.80, 37.40','55.70, 37.50','55.70, 37.40'],
-			//         params: {routingMode: ''}
-			//         }, {boundsAutoApply: false});
-			// // Создаем карту с добавленной на нее кнопкой.
-			// var myMap = new ymaps.Map('map', {
-			//     center: [55.739625, 37.54120],
-			//     zoom: 12,
-			// }, {
-			//     buttonMaxWidth: 300
-			// });
-			// // Добавляем мультимаршрут на карту.
-			// myMap.geoObjects.add(multiRoute);
+
 			//Car Coordinates
 			var cord = firebase.database().ref("cord/");
 			console.log(cord)
@@ -1443,6 +1484,7 @@
 			})
 			myMap.geoObjects
 				.add(myGeoObject);
+
 			var i = 1;
 			$.each(arr, function (e, value) {
 				if (i == 1) {
@@ -1662,17 +1704,17 @@
 
 	$(document).on('click', '#delete_group', function () {
 		var id = $('input[name="group_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Fleet_history/delete_group/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
 
 		$.post(url, {group_id, id}, function (result) {
 			location.reload();
 		});
 	});
 
-	var  dataTable_label = $('.dataTables_filter label').text();
+	var dataTable_label = $('.dataTables_filter label').text();
 	$('.dataTables_filter input').attr('placeholder', dataTable_label);
-	$('.dataTables_filter label').css('text','dddd');
+	$('.dataTables_filter label').css('text', 'dddd');
 
 	var elem = $('.dataTables_filter label');
-	$(elem).html($(elem).html().replace($(elem).text(),''));
+	$(elem).html($(elem).html().replace($(elem).text(), ''));
 </script>

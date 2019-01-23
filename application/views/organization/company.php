@@ -4,6 +4,12 @@ $folder = $this->session->folder;
 $i = '';
 ?>
 
+<style>
+	input::-webkit-input-placeholder {
+		font-size: 12px !important;
+	}
+</style>
+
 <!--  Company  Start-->
 <div class="tab-pane fade show active" id="list-company" role="tabpanel"
 	 aria-labelledby="list-company-list">
@@ -200,7 +206,7 @@ $i = '';
 							<select name="legal_country"
 									class="col selectpicker form-control form-control-sm selectpicker_2"
 									data-size="5" id="country" data-live-search="true"
-									title="<?=lang('select_country');?>">
+									title="<?= lang('select_country'); ?>">
 								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['legal_country_id'] == $row['id'] ? 'selected' : '') ?>
@@ -219,7 +225,8 @@ $i = '';
 							<div class="col">
 								<input name="legal_city"
 									   value="<?= $company['legal_city'] ?>" type="text"
-									   class="form-control form-control-sm" placeholder="<?=lang('Activity_Region')?>">
+									   class="form-control form-control-sm"
+									   placeholder="<?= lang('Activity_Region') ?>">
 							</div>
 							<div class="col">
 								<input name="legal_zip_code"
@@ -234,7 +241,7 @@ $i = '';
 								<input name="legal_address"
 									   value="<?= $company['legal_address'] ?>"
 									   type="text" class="form-control form-control-sm"
-									   placeholder="<?=lang('Activity_address')?>">
+									   placeholder="<?= lang('Activity_address') ?>">
 							</div>
 						</div>
 
@@ -318,7 +325,7 @@ $i = '';
 							<div class="col-sm-5">
 								<div class="row">
 									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?=lang('phone_number')?></label>
+										   style="font-size: 15px;"><?= lang('phone_number') ?></label>
 									<div class="col-sm-8">
 										<input value="<?= $company['owner_contact_number'] ?>"
 											   name="owner_contact_number" type="text"
@@ -329,7 +336,6 @@ $i = '';
 							</div>
 
 
-
 						</div>
 
 
@@ -338,22 +344,21 @@ $i = '';
 					<div class="container mt-1">
 
 
-								<p style="float: left;margin-top: 30px;" class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
+						<p style="float: left;margin-top: 30px;"
+						   class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
 
 
-								<div class="form-group mb-0" style="margin-left: 22px; float: right;"
-									 id="requisite">
-									<a style="text-decoration: none; color: #1b1e21" target="_blank"
-									   href="javascript:void(0)">
-										<label
-											style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
-											class="btn btn-sm btn-outline-success">
-											<?= lang('download_requisite') ?>
-										</label>
-									</a>
-								</div>
-
-
+						<div class="form-group mb-0" style="margin-left: 22px; float: right;"
+							 id="requisite">
+							<a style="text-decoration: none; color: #1b1e21" target="_blank"
+							   href="javascript:void(0)">
+								<label
+									style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
+									class="btn btn-sm btn-outline-success">
+									<?= lang('download_requisite') ?>
+								</label>
+							</a>
+						</div>
 
 
 						<hr class="my-2" style="clear: both;">
@@ -406,8 +411,8 @@ $i = '';
 
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-7 col-form-label text-right"><?= lang('Correspondent_Bank') ?></label>
-												<div class="col-sm-5">
+													class="col-sm-6 col-form-label text-right"><?= lang('Correspondent_Bank') ?></label>
+												<div class="col-sm-6 p-0">
 													<input type="text"
 														   name="correspondent_bank_1"
 														   class="form-control form-control-sm correspondent_bank"
@@ -421,13 +426,16 @@ $i = '';
 												<label
 													class="col-sm-5 col-form-label text-right"><?= lang('swift_code') ?></label>
 												<div class="col-sm-7">
-													<input type="text" name="swift_code_1" class="form-control form-control-sm swift_code" value="<?= $company['swift_code_1'] ?>" placeholder="<?= lang('swift_code') ?>">
+													<input type="text" name="swift_code_1"
+														   class="form-control form-control-sm swift_code"
+														   value="<?= $company['swift_code_1'] ?>"
+														   placeholder="<?= lang('swift_code') ?>">
 												</div>
 											</div>
 
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-5 col-form-label text-right"><?= lang('account') ?></label>
+													class="col-sm-5 col-form-label account_label text-right"><?= lang('account') ?></label>
 												<div class="col-sm-7">
 													<input type="text"
 														   value="<?= $company['account_1'] ?>"
@@ -485,7 +493,7 @@ $i = '';
 											<div class="form-group row mb-1 col-sm-4">
 												<label
 													class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
-												<div class="col-sm-6">
+												<div class="col-sm-6 p-0">
 													<input type="text"
 														   name="correspondent_bank_2"
 														   class="form-control form-control-sm correspondent_bank"
@@ -508,7 +516,7 @@ $i = '';
 											</div>
 											<div class="form-group row mb-1 col-sm-4">
 												<label
-													class="col-sm-5 col-form-label"><?= lang('account') ?></label>
+													class="col-sm-5 account_label col-form-label"><?= lang('account') ?></label>
 												<div class="col-sm-7">
 													<input type="text"
 														   name="account_2"
@@ -570,7 +578,7 @@ $i = '';
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-6 p-0">
 						<input type="text"
 							   name="correspondent_bank_3"
 							   class="form-control form-control-sm correspondent_bank"
@@ -594,7 +602,7 @@ $i = '';
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label
-						class="col-sm-5 col-form-label"><?= lang('account') ?></label>
+						class="col-sm-5 account_label col-form-label"><?= lang('account') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="account_3"
@@ -656,7 +664,7 @@ $i = '';
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label class="col-sm-6 col-form-label"><?= lang('Correspondent_Bank') ?></label>
-					<div class="col-sm-6">
+					<div class="col-sm-6 p-0">
 						<input type="text"
 							   name="correspondent_bank_4"
 							   class="form-control form-control-sm correspondent_bank"
@@ -680,7 +688,7 @@ $i = '';
 
 				<div class="form-group row mb-1 col-sm-4">
 					<label
-						class="col-sm-5 col-form-label"><?= lang('account') ?></label>
+						class="col-sm-5 account_label col-form-label"><?= lang('account') ?></label>
 					<div class="col-sm-7">
 						<input type="text"
 							   name="account_4"
@@ -957,7 +965,6 @@ $i = '';
 		e.preventDefault();
 		var data = new FormData($('form#company')[0]);
 
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -985,10 +992,9 @@ $i = '';
 <a id="dwnldLnk" download="reference.pdf" target="_blank" style="display:none;"/>
 <!--end /-->
 
-
-
-
-
-
-
-
+<script>
+	$(".account_number").keydown(function () {
+		var label_text = $(this).parent('div').parent('div').parent('div').parent('div').find('.account_label')
+		label_text.text('<?= lang("account") ?>*');
+	});
+</script>

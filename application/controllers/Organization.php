@@ -243,7 +243,21 @@ class Organization extends MX_Controller {
 		$this->form_validation->set_rules('owner_email', 'lang:owner_email', 'valid_email');
 		$this->form_validation->set_rules('email', 'lang:email', 'valid_email');
 
+		if($this->input->post('account_name_1')){
+			$this->form_validation->set_rules('account_1', 'lang:email', 'required');
+		}
 
+		if($this->input->post('account_name_2')){
+			$this->form_validation->set_rules('account_2', 'lang:email', 'required');
+		}
+
+		if($this->input->post('account_name_3')){
+			$this->form_validation->set_rules('account_3', 'lang:email', 'required');
+		}
+
+		if($this->input->post('account_name_4')){
+			$this->form_validation->set_rules('account_4', 'lang:email', 'required');
+		}
 
 
 
@@ -256,6 +270,10 @@ class Organization extends MX_Controller {
 				'company_name' => form_error('company_name'),
 				'owner_email' => form_error('owner_email'),
 				'email' => form_error('email'),
+				'account_1' => form_error('account_1'),
+				'account_2' => form_error('account_2'),
+				'account_3' => form_error('account_3'),
+				'account_4' => form_error('account_4'),
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -2183,6 +2201,8 @@ class Organization extends MX_Controller {
 		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
 		$mileage = $this->input->post('mileage');
 		$mileage_value = $this->input->post('mileage_value');
+
+
 
 		$odometer = $this->input->post('odometer');
 		$other = $this->input->post('other');

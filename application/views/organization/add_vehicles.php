@@ -15,10 +15,6 @@
 		opacity: 1 !important;
 	}
 
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 87px;
-	}
-
 	i {
 		margin-left: 15px;
 	}
@@ -41,6 +37,11 @@
 	::placeholder {
 		color: peachpuff;
 		font-size: 13px;
+	}
+
+	#model_div label {
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
 	}
 
 	button.btn.dropdown-toggle.bs-placeholder {
@@ -116,7 +117,7 @@
 					</div>
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
-						<label class=" col-form-label col-sm-2"><?= lang('model') ?> *</label>
+						<label class=" col-form-label col-sm-4"><?= lang('model') ?> *</label>
 						<select name="model" class="col selectpicker form-control form-control-sm col-sm-7"
 								data-size="5" id="model" data-live-search="true"
 								title="<?= lang('select_car_model') ?>"></select>
@@ -430,7 +431,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info3"
 												aria-expanded="false" aria-controls="collapse_info3">
-											<?=lang('insurance1')?>։
+											<?=lang('other')?>։
 										</button>
 									</h5>
 								</div>
@@ -587,8 +588,9 @@
 										   value="">
 								</td>
 								<td>
-									<select name="value[1]" class="selectpicker form-control form-control-sm dif_meter"
-											data-live-search="true" data-size="5" title="<?= lang('select_value') ?>">
+									<select style="height: 37px;" name="value[1]" class="form-control form-control-sm dif_meter"
+											data-live-search="true" data-size="5">
+										<option><?= lang('select_value') ?></option>
 										<? foreach ($value as $row) : ?>
 											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
@@ -770,11 +772,11 @@
 			'   value="">\n' +
 			'</td>\n' +
 			'<td>\n' +
-			'<select name="value[' + n + ']"\n' +
-			'class="selectpicker form-control form-control-sm dif_meter"\n' +
+			'<select style="height: 37px;" name="value[' + n + ']"\n' +
+			'class="form-control form-control-sm dif_meter"\n' +
 			'data-live-search="true"\n' +
 			'data-size="5"\n' +
-			'title="<?=lang('select_value')?>">\n' +
+			'<option><?=lang("select_value")?></option>\n'+
 			'<? foreach ($value as $row) : ?>\n' +
 			'<option\n' +
 			'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n' +
@@ -972,5 +974,11 @@
 		$('.fleet_type_8 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/ellipsis.png">');
 
 	});
+
+	$(document).on('change', function () {
+		$('.model_div label').css('flex', '0 0 33.333333%');
+		$('.model_div label').css('max-width', '33.333333%');
+	})
+
 
 </script>

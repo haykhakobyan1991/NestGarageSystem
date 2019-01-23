@@ -342,7 +342,7 @@ $lang['coefficient'] = 'Գործակից';
 $lang['default_speed'] = 'Նախնական արագություն';
 $lang['readout_time'] = 'Հաշվի ժամանակը: դադարեցնել ավելին';
 $lang['analog_input'] = 'Մուտքի Անալոգ';
-$lang['fleets'] = 'Տրանսպորտային Միջոցներ';
+$lang['fleets'] = 'Տ/Մ';
 $lang['max_speed'] = 'Առավելագույն արագություն';
 $lang['get_information'] = 'Ստացված ինֆորմացիան';
 
@@ -405,12 +405,12 @@ $lang['phone'] = 'Հեռ․';
 $lang['Web_address'] = 'Վեբ հասցե';
 $lang['export'] = 'Արտածել';
 $lang['insurance1'] = 'Ապահովագրություն';
-$lang['insurance_data'] = 'Ապահովագրության տվյալները';
+$lang['insurance_data'] = 'Նկարներ';
 
 
 $lang['file'] = 'Փաստաթուղթ';
 $lang['Report_period'] = 'Հաշվետու ժամանակաշրջան';
-
+$lang['GPS_tracking'] = 'GPS- ի հետեւում';
 
 
 

@@ -262,7 +262,7 @@ class System_main extends CI_Controller {
 		$html = '
 		<table>
 			<tr>
-				<td><img src="'.$logo.'" alt=""></td>
+				<td><img height="70" src="'.$logo.'" alt=""></td>
 				<td style="line-height: 80%;"><h1  align="center" style="color: #365f8f; "><br>'.lang('Reference').'</h1></td>
 				<td></td>
 			</tr>
@@ -296,7 +296,7 @@ class System_main extends CI_Controller {
 				<td>'.lang('tin').'</td>
 				<td >'.$ITN.'</td>
 				<td></td>
-			</tr>
+			</tr>  
 			<tr>
 				<td>'.lang('head').'</td>
 				<td >'.$Director.'</td>

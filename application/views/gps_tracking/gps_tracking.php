@@ -711,7 +711,7 @@
 
 
 		<div class="col-sm-7">
-			<div id="map" style="width: 100%; height: 650px;"></div>
+			<div id="map" style="width: 100%; height: calc(100% - 150px);"></div>
 		</div>
 
 
@@ -1134,7 +1134,7 @@
 			'colvis'
 		],
 		"bPaginate": false,
-		"scrollY": "500",
+		"scrollY": "55vh",
 		"scrollCollapse": true,
 		"paging": false,
 		"order": [[1, "desc"]]
@@ -1766,6 +1766,8 @@
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		})
+
+		$('.dataTables_scrollBody').css('height', 'calc(100% - 120px) !important')
 	})
 </script>
 

@@ -411,6 +411,7 @@ $lang['insurance_data'] = 'Նկարներ';
 $lang['file'] = 'Փաստաթուղթ';
 $lang['Report_period'] = 'Հաշվետու ժամանակաշրջան';
 $lang['GPS_tracking'] = 'GPS- ի հետեւում';
+$lang['geofences'] = 'Գեոզոնաներ';
 
 
 

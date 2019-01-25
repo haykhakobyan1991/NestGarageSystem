@@ -95,11 +95,11 @@ $user_id = $this->session->user_id;
 ?>
 
 <?
-	$sql_company = "
-		SELECT `company`.`name` FROM `user` LEFT JOIN `company` ON `company`.`id` = `user`.`company_id` WHERE `user`.`id` = '".$user_id."'
+$sql_company = "
+		SELECT `company`.`name` FROM `user` LEFT JOIN `company` ON `company`.`id` = `user`.`company_id` WHERE `user`.`id` = '" . $user_id . "'
 	";
-	$query_company = $this->db->query($sql_company);
-	$row_company = $query_company->row_array();
+$query_company = $this->db->query($sql_company);
+$row_company = $query_company->row_array();
 ?>
 
 <?
@@ -124,7 +124,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 
 		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
-		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>"><?=lang('GPS_tracking')?></a>
+		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>"><?= lang('GPS_tracking') ?></a>
 
 	</div>
 
@@ -303,59 +303,85 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 										<div class="navbar-nav mr-auto">
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1" href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('trajectory') ?>">
+												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+												data-toggle="tooltip" data-placement="top"
+												title="<?= lang('trajectory') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
 											</button>
+											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?>">
+												<button
+													style="color:#00000080 !important;max-height: 40px;"
+													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"
+													data-toggle="tooltip" data-placement="top"
+													title="<?= lang('geofences') ?>">
+													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
+												</button>
+											</a>
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
 												<button style="color:#00000080 !important;max-height: 40px;"
-														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"href="#"
-														data-toggle="tooltip" data-placement="top" title="<?= lang('speed') ?>">
-													<img src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
+														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+														href="#"
+														data-toggle="tooltip" data-placement="top"
+														title="<?= lang('speed') ?>">
+													<img
+														src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
 												</button>
 											</a>
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1" href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('fuel') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
-											</button>
+												<button
+													style="color:#00000080 !important;max-height: 40px;"
+													class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+													href="#"
+													data-toggle="tooltip" data-placement="top"
+													title="<?= lang('fuel') ?>">
+													<img
+														src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
+												</button>
 											</a>
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 " href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('engine') ?>">
+												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
+												href="#"
+												data-toggle="tooltip" data-placement="top"
+												title="<?= lang('engine') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 " href="#"
+												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
+												href="#"
 												data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 " href="#"
+												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+												href="#"
 												data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1" href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('notification') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
+												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
+												href="#"
+												data-toggle="tooltip" data-placement="top"
+												title="<?= lang('notification') ?>">
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 " href="#"
+												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+												href="#"
 												data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 " href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('statistics') ?>">
+												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+												href="#"
+												data-toggle="tooltip" data-placement="top"
+												title="<?= lang('statistics') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
 											</button>
 											<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
@@ -405,7 +431,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 						<? } ?>
 
-						<input type="hidden" name="company" value="<?=$row_company['name']?>">
+						<input type="hidden" name="company" value="<?= $row_company['name'] ?>">
 
 
 						<script>

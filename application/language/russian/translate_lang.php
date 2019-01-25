@@ -410,6 +410,7 @@ $lang['insurance_data'] = 'Картины';
 $lang['file'] = 'Документ';
 $lang['Report_period'] = 'Период отчета';
 $lang['GPS_tracking'] = 'GPS-трекинг';
+$lang['geofences'] = 'Геозоны';
 
 
 

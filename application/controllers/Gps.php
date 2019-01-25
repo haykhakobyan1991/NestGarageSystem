@@ -115,27 +115,26 @@ class Gps extends MX_Controller {
 
 
 		$query_fleets = $this->db->query($sql_fleets);
-
 		$data['result_fleets'] = $query_fleets->result_array();
-
 		$this->layout->view('gps_tracking/gps_tracking', $data);
 
 	}
 
 	public function speed() {
-
 		//$this->load->authorisation('Gps', 'gps_tracking');
-
 		$this->layout->view('gps_tracking/speed');
-
 	}
 
 	public function fuel() {
 		//$this->load->authorisation('Gps', 'gps_tracking');
-
 		$this->layout->view('gps_tracking/fuel');
-
 	}
+
+	public function geofences() {
+		//$this->load->authorisation('Gps', 'gps_tracking');
+		$this->layout->view('gps_tracking/geofences');
+	}
+
 
 
 }

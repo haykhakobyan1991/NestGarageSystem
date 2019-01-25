@@ -15,27 +15,39 @@
 <script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
 		type="text/javascript"></script>
 <style>
-	ul.pagination {margin-top: 5px !important;}
-	#example_length {display: none !important;}
-	div#example_wrapper {margin-top: -35px;}
-	.modal-full {min-width: 100%;margin: 0;}
+	ul.pagination {
+		margin-top: 5px !important;
+	}
+
+	#example_length {
+		display: none !important;
+	}
+
+	div#example_wrapper {
+		margin-top: -35px;
+	}
+
+	.modal-full {
+		min-width: 100%;
+		margin: 0;
+	}
 </style>
 <div class="container-fluid">
 	<hr class="my-2">
 	<div class="row">
 		<div class="col-sm-5">
 			<div class="row">
-				<button class="btn btn-outline-secondary ml-3 mr-1" 
-						style="z-index: 999;" 
+				<button class="btn btn-outline-secondary ml-3 mr-1"
+						style="z-index: 999;"
 						data-toggle="modal"
 						data-target=".bd-example-modal-xl"
 				>New
 				</button>
-				<select name="company_type" 
-						id="table-filter" 
+				<select name="company_type"
+						id="table-filter"
 						class="selectpicker form-control form-control-sm col-sm-3"
-						data-size="5" 
-						id="company_type" 
+						data-size="5"
+						id="company_type"
 						data-live-search="true"
 						title="<?= lang('all') ?>">
 					<option value=""><?= lang('all') ?></option>
@@ -45,8 +57,8 @@
 				</select>
 
 
-				<table id="example" 
-				       class="table table-striped table-borderless"
+				<table id="example"
+					   class="table table-striped table-borderless"
 					   style="width:100%">
 					<thead style="background: #fff;color: #545b62;">
 					<tr>
@@ -58,8 +70,8 @@
 							   class="fas fa-sort-alpha-up"></i>
 						</th>
 						<th class="no-sort">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/geofences/car-front.svg" 
-							     alt=""
+							<img src="<?= base_url() ?>assets/images/gps_tracking/geofences/car-front.svg"
+								 alt=""
 								 title=""/></th>
 						<th class="no-sort"><img
 								src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
@@ -76,17 +88,23 @@
 
 					<tr>
 						<td>
-							<input name="coordinate" 
+							<input name="coordinate"
 								   type="radio"
-								   data-coordinate="[40.19060653826287, 44.50844357516261],[40.189981206597146, 44.51397965456936],[40.18741399465704, 44.510246019620624],[40.19060653826287, 44.50844357516261]"
-								/>
+								   data-coordinate="[40.19060653826287, 44.50844357516261],
+													[40.189981206597146, 44.51397965456936],
+													[40.18741399465704, 44.510246019620624],
+													[40.19060653826287, 44.50844357516261]"/>
 						</td>
 						<td>b geofences 1</td>
 						<td class="text-left">0</td>
-						<td style="cursor: pointer;" class="text-left">
+						<td
+							data-toggle="modal"
+							data-target=".bd-example-modal-xl_Edite"
+							style="cursor: pointer;"
+							class="text-left settings_geoObject">
 							<img style="opacity: .5;"
 								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt="" 
+								 alt=""
 								 title=""
 							/>
 						</td>
@@ -101,16 +119,24 @@
 					</tr>
 
 					<tr>
-						<td><input name="coordinate" 
-						           type="radio"
-								   data-coordinate="[55.388712763532915,32.24634252406617],[55.38324024891158,32.40289769984742],[55.29165843010759,32.319126947894304],[55.31124505920083,32.11862645961305],[55.388712763532915,32.24634252406617]"/>
+						<td><input name="coordinate"
+								   type="radio"
+								   data-coordinate="[55.388712763532915,32.24634252406617],
+													[55.38324024891158,32.40289769984742],
+													[55.29165843010759,32.319126947894304],
+													[55.31124505920083,32.11862645961305],
+													[55.388712763532915,32.24634252406617]"/>
 						</td>
 						<td>a geofences 1</td>
 						<td class="text-left">4</td>
-						<td style="cursor: pointer;" class="text-left">
+						<td
+							data-toggle="modal"
+							data-target=".bd-example-modal-xl_Edite"
+							style="cursor: pointer;"
+							class="text-left settings_geoObject">
 							<img style="opacity: .5;"
-					             src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt="" 
+								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
+								 alt=""
 								 title=""/></td>
 						<td style="cursor: pointer;">
 							<img style="opacity: .5;"
@@ -125,15 +151,23 @@
 
 					<tr>
 						<td>
-							<input name="coordinate" 
+							<input name="coordinate"
 								   type="radio"
-								   data-coordinate="[56.388712763532915,31.24634252406617],[55.38324024894358,32.40289549984742],[55.29165866010759,32.319126943394304],[55.31124655920083,32.11862645961305],[55.388712763537615,32.24634252236617]" /></td>
+								   data-coordinate="[56.388712763532915,31.24634252406617],
+													[55.38324024894358,32.40289549984742],
+													[55.29165866010759,32.319126943394304],
+													[55.31124655920083,32.11862645961305],
+													[55.388712763537615,32.24634252236617]"/></td>
 						<td>d geofences 1</td>
 						<td class="text-left">0</td>
-						<td style="cursor: pointer;" class="text-left">
-						    <img style="opacity: .5;"
+						<td
+							data-toggle="modal"
+							data-target=".bd-example-modal-xl_Edite"
+							style="cursor: pointer;"
+							class="text-left settings_geoObject">
+							<img style="opacity: .5;"
 								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt="" 
+								 alt=""
 								 title=""/></td>
 						<td style="cursor: pointer;"><img style="opacity: .5;"
 														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
@@ -193,20 +227,55 @@
 <!-- Add New Geofences Modal End -->
 
 
+<!-- Edite Geofences Modal Start -->
+
+<div class="modal fade bd-example-modal-xl_Edite pr-0" tabindex="-1" role="dialog"
+	 aria-labelledby="myExtraLargeModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog  modal-full">
+		<div class="modal-content">
+			<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
+				<h5 class="modal-title" id="exampleModalLabel">Create New Geofences</h5>
+				<div class="float-right">
+					<button id="add_department_btn" type="button"
+							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+					</button>
+					<button id="load" style="height: 40px !important; width: 90px !important;"
+							class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+					<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1"
+							data-dismiss="modal"
+							aria-label="Close">
+						<?= lang('cancel') ?>
+					</button>
+				</div>
+
+			</div>
+			<div class="modal-content">
+				<div id="map_settings" style="width: 100%;height: calc(100% - 58px);"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Edite Geofences Modal End -->
+
+
 <script type="text/javascript">
 	// Yandex Map Start
-	
+
 	//Init Map On Pae Loade Start
 	ymaps.ready(init3);
+
 	function init3() {
 		var myMap_new = new ymaps.Map("map", {
 			center: [55.76, 37.64],
 			zoom: 7
 		});
 	}
+
 	//Init Map On Page Load End
-
-
 
 	$('input').on('change', function () {
 
@@ -227,12 +296,50 @@
 		console.log(array);
 		var myPolygon = new ymaps.Polygon([array]);
 		var myMap = new ymaps.Map("map", {
-					center: [array[0][0], array[0][1]],
-					zoom: 12
-				});
+			center: [array[0][0], array[0][1]],
+			zoom: 12
+		});
 		myMap.geoObjects.add(myPolygon);
+
+		//Center Map By geoObject
+		myMap.controls.add(new ymaps.control.ZoomControl());
+		myMap.setBounds(myMap.geoObjects.getBounds());
+
 	}
- 
+
+
+	//Yandex Map Modal Setting geoObject Start
+	//todo
+	$('.settings_geoObject').click(function () {
+
+		geoObject_coordinates = $(this).parent('tr').children('td:first-child').children('input').attr('data-coordinate')
+		array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+		console.log(array_stting);
+		init5(array_stting)
+		//Start Paint Map 
+
+		ymaps.ready(init5);
+
+		function init5(array_stting) {
+			myMap_setting = new ymaps.Map("map_settings", {
+				center: [55.76, 37.64],
+				zoom: 7
+			});
+
+			var myPolygon = new ymaps.Polygon([array_stting]);
+			myMap_setting.geoObjects.add(myPolygon);
+			myPolygon.editor.startDrawing();
+
+
+			myPolygon.geometry.events.add('change', function () {
+				console.log(myPolygon.geometry.getCoordinates().toString());
+			});
+
+		}
+	})
+
+	//Yandex Map Modal Setting geoObject End 
+
 
 	//Yandex Map Modal Start
 

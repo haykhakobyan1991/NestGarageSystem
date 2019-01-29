@@ -36,6 +36,18 @@
 		top: 55px;
 		left: -15px;
 	}
+
+	.dataTables_filter label {
+		font-size: 0px !important;
+	}
+
+	#example11_filter label input {
+		height: 38px;
+	}
+
+	#example11_filter {
+		height: 37px;
+	}
 </style>
 
 
@@ -46,8 +58,13 @@
 				<div class="col-sm-12 m-2">
 
 					<div class="form-group row ml-2">
-						<label style="margin-left: 18px;margin-top: 10px;"><?= lang('group') ?></label>
-						<div class="col-sm-4">
+						<div class="col-sm-2" style="padding-top: 10px;">
+							<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
+								 style="width: 25px;display: inline-block;"/>
+							<span class="count_cars_in_table">16</span>
+						</div>
+						<label style="margin-top: 10px;"><?= lang('group') ?></label>
+						<div class="col-sm-3 ml-0">
 							<select style="margin-top: 1px;max-width: 220px; z-index: 999;"
 									name="group"
 									class="form-control form-control-sml sell_group_select">
@@ -59,14 +76,14 @@
 							</select>
 						</div>
 
-						<div class="col-sm-4" style="padding-top: 4px;">
-							<button class="btn btn-sm btn-outline-secondary plus_btn mr-3"
+						<div class="col-sm-2 pl-0" style="padding-top: 4px;">
+							<button class="btn btn-sm btn-outline-secondary plus_btn mr-1"
 									data-toggle="modal" data-target=".add_group"
 									style="width: 20px;padding: 2px !important;"><img
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
 									class="ml-0 mr-0 "/></button>
-							<button class="btn btn-sm btn-outline-secondary set_btn mr-3"
+							<button class="btn btn-sm btn-outline-secondary set_btn mr-1"
 									id="edit_group_modal"
 									data-toggle="modal"
 									data-target="#edit_group"
@@ -155,7 +172,7 @@
 								12.12.2018
 								<small class="form-text text-muted">19:32</small>
 							</td>
-							<td>
+							<td class="show_car" data-coordinate='40.183605, 44.518732'>
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 						</tr>
@@ -191,7 +208,7 @@
 								12.12.2018
 								<small class="form-text text-muted">19:32</small>
 							</td>
-							<td>
+							<td class="show_car" data-coordinate='40.170286, 44.525174'>
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 
@@ -227,7 +244,7 @@
 								12.12.2018
 								<small class="form-text text-muted">19:32</small>
 							</td>
-							<td>
+							<td class="show_car" data-coordinate='40.177472, 44.513130'>
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 
@@ -1135,10 +1152,10 @@
 		],
 		"bPaginate": false,
 		"scrollY": "55vh",
+		"scrollX": true,
 		"scrollCollapse": true,
 		"paging": false,
 		"order": [[1, "desc"]]
-
 	});
 	table.buttons().container().appendTo('#example11_wrapper #example11_filter:eq(0)');
 	$(document).on('click', '.sel_items', function () {
@@ -1255,25 +1272,7 @@
 	var d = new Date();
 	var t = d.getTime()
 	counter = t;
-	// setInterval(function () {
-	//     lat =  parseFloat(lat + 0.0001);
-	//     long = parseFloat(long + 0.0001);
-	// var ref = firebase.database().ref('cord/1544097063591/').update({long, lat})
-	// },2000);
-	// $('button').click(function () {
-	// 	var coordinate = [];
-	// 	var lat = $('input[name="x"]').val();
-	// 	var long = $('input[name="y"]').val();
-	// 	var d1 = $('input[name="d1"]').val();
-	// 	var d2 = $('input[name="d2"]').val();
-	// 	var text = $('input[name="text"]').val();
-	// 	counter += 1;
-	// 	db.collection('GPS').add({
-	// 	cord: {'id': counter,'lat': lat,'long': long,'d1': d1,'d2': d2,'text': text}
-	// 	});
-	// 	$('input').val('');
-	// 	db.collection('GPS').get().then((snapshots) => {location.reload();})
-	// });
+
 	var arr = [];
 	var d1_arr = [];
 	var d2_arr = [];
@@ -1289,284 +1288,129 @@
 			d1_arr.push(d1);
 			d2_arr.push(d2);
 			text_arr.push(text);
-		});
-		ymaps.ready(function () {
-
-			if (arr.length == 0) {
-				var arr_a = [35.6697343, 19.9361881];
-				var zoom = 3;
-			} else {
-				var arr_a = arr[0];
-				var zoom = 17;
-			}
-			var myMap = new ymaps.Map('map', {
-				center: arr_a,
-				zoom: zoom,
-			});
-			firstButton = new ymaps.control.Button("<i class='fas fa-draw-polygon'></i> Polygon");
-			myMap.controls.add(firstButton, {float: 'left'});
-
-			var a = 1;
-
-			firstButton.events.add('click', function () {
-				if (a == 1) {
-					var myPolygon = new ymaps.Polygon([], {}, {
-						editorDrawingCursor: "crosshair",
-						editorMaxPoints: 10,
-						fillColor: '#00ff0054',
-						strokeColor: '#0000FF',
-						strokeWidth: 3
-					});
-					myMap.geoObjects.add(myPolygon);
-					var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
-					stateMonitor.add("drawing", function (newValue) {
-						myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
-					});
-
-					myPolygon.geometry.events.add('change', function () {
-						console.log(myPolygon.geometry.getCoordinates().toString());
-					});
-					myPolygon.editor.startDrawing();
-					a++;
-				} else {
-					a = 1;
-				}
-			});
-
-			//Get Addres by Coordinates
-
-			myMap.events.add('click', function (e) {
-				var coords = e.get('coords');
-				if (myPlacemark) {
-					myPlacemark.geometry.setCoordinates(coords);
-				} else {
-					myPlacemark = createPlacemark(coords);
-					myMap.geoObjects.add(myPlacemark);
-					// Слушаем событие окончания перетаскивания на метке.
-					myPlacemark.events.add('dragend', function () {
-						getAddress(myPlacemark.geometry.getCoordinates());
-					});
-				}
-				getAddress(coords);
-			});
-
-			function createPlacemark(coords) {
-				return new ymaps.Placemark(coords, {
-					iconCaption: 'поиск...'
-				}, {
-					preset: 'islands#violetDotIconWithCaption',
-					draggable: true
-				});
-			}
-
-			function getAddress(coords) {
-				myPlacemark.properties.set('iconCaption', 'поиск...');
-				ymaps.geocode(coords).then(function (res) {
-					var firstGeoObject = res.geoObjects.get(0);
-					myPlacemark.properties
-						.set({
-							iconCaption: [
-								firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() : firstGeoObject.getAdministrativeAreas(),
-								firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
-							].filter(Boolean).join(', '),
-							balloonContent: firstGeoObject.getAddressLine()
-						});
-				});
-			}
-
-			//Draw Polygon By coordinates
-			var myPolygon = new ymaps.Polygon([
-				[
-					[40.19060653826287, 44.50844357516261],
-					[40.189981206597146, 44.51397965456936],
-					[40.18741399465704, 44.510246019620624],
-					[40.19060653826287, 44.50844357516261]
-				]
-			]);
-			myPolygon.editor.startDrawing();
-			myPolygon.geometry.events.add('change', function () {
-				console.log(myPolygon.geometry.getCoordinates().toString());
-			});
-
-			myMap.geoObjects.add(myPolygon);
-
-			var myGeoObject = new ymaps.GeoObject({
-				geometry: {
-					type: "LineString",
-					coordinates: arr
-				},
-				properties: {
-					hintContent: "",
-					balloonContent: ""
-				}
-			}, {
-				draggable: false,
-				strokeColor: "#4285F4",
-				strokeWidth: 5
-			});
-
-			//Car Coordinates
-			var cord = firebase.database().ref("cord/");
-			console.log(cord);
-			var track = [];
-			cord.on("child_changed", function (data) {
-				var carCoordinate = '';
-				cordValue = data.val();
-				latitude = cordValue.lat;
-				longitude = cordValue.long;
-				console.log(latitude);
-				console.log(longitude);
-				if (track.indexOf([latitude.toFixed(5), longitude.toFixed(5)]) === -1) {
-					track.push([latitude.toFixed(5), longitude.toFixed(5)]);
-				}
-				console.log(track);
-				var myGeoObject2 = new ymaps.GeoObject({
-					geometry: {
-						type: "LineString",
-						coordinates: track
-					},
-					properties: {
-						hintContent: "",
-						balloonContent: ""
-					}
-				}, {
-					draggable: false,
-					strokeColor: "#4285F4",
-					strokeWidth: 3
-				});
-				myMap.geoObjects
-					.add(myGeoObject2);
-				carCoordinate = new ymaps.Placemark([latitude, longitude], {
-					balloonContentHeader: "",
-					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
-						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
-						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
-						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
-					balloonContentFooter: ""
-				}, {
-					iconLayout: 'default#image',
-					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-					iconImageSize: [35, 30],
-					iconImageOffset: [-15, -15]
-				});
-				myMap.geoObjects
-					.removeAll();
-				myMap.geoObjects
-					.add(carCoordinate);
-				myMap.geoObjects
-					.add(carCoordinate)
-					.add(myGeoObject)
-					.add(myGeoObject2);
-				// var i = 1;
-				// $.each(arr, function (e, value) {
-				// 	if (i == 1) {
-				// 		myPlacemark = new ymaps.Placemark(value, {
-				// 			balloonContentHeader: text_arr[e],
-				// 			balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-				// 			balloonContentFooter: "",
-				// 			hintContent: value
-				// 		}, {
-				// 			preset: 'islands#greenDotIcon',
-				// 		});
-				// 	} else if (i > 1 && i < arr.length) {
-				// 		myPlacemark = new ymaps.Placemark(value, {
-				// 				balloonContentHeader: text_arr[e],
-				// 				balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-				// 				balloonContentFooter: "",
-				// 				hintContent: value
-				// 			},
-				// 			{
-				// 				preset: 'islands#blueCircleDotIconWithCaption',
-				// 				iconCaptionMaxWidth: '50'
-				// 			});
-				// 	} else if (i == arr.length) {
-				// 		myPlacemark = new ymaps.Placemark(value, {
-				// 			balloonContentHeader: text_arr[e],
-				// 			balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-				// 			balloonContentFooter: "",
-				// 			hintContent: value
-				// 		}, {
-				// 			preset: 'islands#redDotIcon',
-				// 		});
-				// 	}
-				// 	myMap.geoObjects.add(myPlacemark);
-				// 	i++;
-				// })
-			});
-			cord.on("child_added", function (data) {
-				var carCoordinate = '';
-				cordValue = data.val();
-				latitude = cordValue.lat;
-				longitude = cordValue.long;
-				console.log(latitude);
-				console.log(longitude);
-				carCoordinate = new ymaps.Placemark([latitude, longitude], {
-					balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
-					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
-						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
-						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
-						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
-					balloonContentFooter: ""
-				}, {
-					iconLayout: 'default#image',
-					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-					iconImageSize: [35, 30],
-					iconImageOffset: [-10, -35]
-				});
-				myMap.geoObjects
-					.add(carCoordinate);
-			})
-			myMap.geoObjects
-				.add(myGeoObject);
-
-			var i = 1;
-			$.each(arr, function (e, value) {
-				if (i == 1) {
-					myPlacemark = new ymaps.Placemark(value, {
-						balloonContentHeader: text_arr[e],
-						balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-						balloonContentFooter: "",
-						hintContent: value
-					}, {
-						preset: 'islands#greenDotIcon',
-					});
-				} else if (i > 1 && i < arr.length) {
-					myPlacemark = new ymaps.Placemark(value, {
-							balloonContentHeader: text_arr[e],
-							balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-							balloonContentFooter: "",
-							hintContent: value
-						},
-						{
-							preset: 'islands#blueCircleDotIconWithCaption',
-							iconCaptionMaxWidth: '50'
-						});
-				} else if (i == arr.length) {
-					myPlacemark = new ymaps.Placemark(value, {
-						balloonContentHeader: text_arr[e],
-						balloonContentBody: "<span>" + d1_arr[e] + "</span>  /  <span>" + d2_arr[e] + "</span>",
-						balloonContentFooter: "",
-						hintContent: value
-					}, {
-						preset: 'islands#redDotIcon',
-					});
-				}
-				myMap.geoObjects
-					.add(myPlacemark);
-				myMap.geoObjects
-					.add(myPlacemark);
-				i++;
-			})
-		});
+		})
 	});
+
+
+	/***********************
+	 ************************
+	 * [ Yandex Map Start ] *
+	 ************************
+	 ***********************/
+
+	//-------------------------------------------------
+
+
+	// Show All Cars On Maps /--------------
+	$(document).ready(function () {
+
+		ymaps.ready(init_all);
+
+		function init_all() {
+			var myMap_show_all_cars = new ymaps.Map( "map", {
+				center: [55.76, 37.64],
+				zoom: 1
+			}, {suppressMapOpenBlock: true } );
+
+			$('.show_car').each(function () {
+				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
+
+					coordinate = $(this).data('coordinate');
+					array = JSON.parse("[" + coordinate + "]");
+
+					var carCoordinate = '';
+
+					latitude = array[0];
+					longitude = array[1];
+
+
+					carCoordinate = new ymaps.Placemark( [latitude, longitude], {
+						balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
+						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
+							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+						balloonContentFooter: ""
+					}, {
+						iconLayout: 'default#image',
+						iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+						iconImageSize: [35, 30],
+						iconImageOffset: [-10, -35]
+					} );
+
+					myMap_show_all_cars.geoObjects.add(carCoordinate);
+					myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
+					myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds());
+				}
+			});
+		}
+
+		/*  On Change checkbox  */
+
+		$('tr td input , th input').on( 'change', function () {
+			$('#map').html('');
+			ymaps.ready(init_all);
+
+			function init_all() {
+				var myMap_show_all_cars = new ymaps.Map("map", {
+					center: [55.76, 37.64],
+					zoom: 1
+				}, {suppressMapOpenBlock: true});
+
+				$('.show_car').each(function () {
+					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
+
+						coordinate = $(this).data('coordinate');
+						array = JSON.parse("[" + coordinate + "]");
+
+						var carCoordinate = '';
+
+						latitude = array[0];
+						longitude = array[1];
+
+
+						carCoordinate = new ymaps.Placemark( [latitude, longitude], {
+							balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
+							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
+								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+							balloonContentFooter: ""
+						}, {
+							iconLayout: 'default#image',
+							iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+							iconImageSize: [35, 30],
+							iconImageOffset: [-10, -35]
+						} );
+
+						myMap_show_all_cars.geoObjects.add(carCoordinate);
+						myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
+						myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
+					}
+				});
+			}
+		} );
+
+
+	});
+
+
+	/*********************
+	 **********************
+	 * [ Yandex Map End ] *
+	 **********************
+	 *********************/
+
+
+
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
 	})
@@ -1753,11 +1597,12 @@
 		});
 	});
 
+
 	var dataTable_label = $('.dataTables_filter label').text();
 	$('.dataTables_filter input').attr('placeholder', dataTable_label);
 
 	var elem = $('.dataTables_filter label');
-	$(elem).html($(elem).html().replace($(elem).text(), ''));
+	// $(elem).html($(elem).html().replace($(elem).text(), ''));
 </script>
 
 <script>
@@ -1770,4 +1615,3 @@
 		$('.dataTables_scrollBody').css('height', 'calc(100% - 120px) !important')
 	})
 </script>
-

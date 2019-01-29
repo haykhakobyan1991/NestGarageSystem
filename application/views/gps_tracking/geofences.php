@@ -336,10 +336,7 @@
 			});
 
 		}
-	})
-
-	//Yandex Map Modal Setting geoObject End 
-
+	});
 
 	//Yandex Map Modal Start
 

@@ -400,14 +400,14 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 										</div>
 
 										<div class="navbar-nav ml-auto">
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"
-												href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/set-square.svg"
-													class="ml-0 mr-0 "/>
-											</button>
+<!--											<button-->
+<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
+<!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->
+<!--												href="#"><img-->
+<!--													style="margin-right: 5px;margin-left: -15px;"-->
+<!--													src="--><?//= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
+<!--													class="ml-0 mr-0 "/>-->
+<!--											</button>-->
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
 												class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"

@@ -10,6 +10,8 @@
 <!--<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>-->
 <script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
 		type="text/javascript"></script>
+
+
 <!--<script>-->
 <!--	// Initialize Firebase-->
 <!--	var config = {-->
@@ -23,37 +25,13 @@
 <!--	firebase.initializeApp(config);-->
 <!--</script>-->
 <style>
-	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
-		display: none;
-	}
-
-	.dropdown-menu {
-		padding: 0;
-	}
-
-	.dropdown-menu a:last-child {
-		display: none;
-		top: 55px;
-		left: -15px;
-	}
-
-	.dataTables_filter label {
-		font-size: 0px !important;
-	}
-
-	#example11_filter label input {
-		height: 38px;
-	}
-
-	#example11_filter {
-		height: 37px;
-	}
+	
 </style>
 
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-sm-5">
+		<div class="col-sm-5" >
 			<div class="row">
 				<div class="col-sm-12 m-2">
 
@@ -114,14 +92,18 @@
 								<i style="font-size: 12px !important;color: #000 !important;"
 								   class="fas fa-sort-alpha-up"></i>cars
 							</th>
-							<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+							<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 								<i style="font-size: 12px !important;color: #000 !important;"
 								   class="fas fa-map-marker-alt"></i> place
 							</th>
-							<th style="font-size: 12px !important;font-weight: 500;"
-								class="text-center"><?= lang('status') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
+								class="text-center">
+								<i class="fas fa-parking pb-1"></i>
+								<i class="fas fa-arrow-alt-circle-right pb-1"></i>
+								<i class="fas fa-stop-circle"></i>
+							</th>
 							<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
-								<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-user"></i>
+								<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;" class="fas fa-user"></i>
 								Driver
 							</th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
@@ -726,7 +708,6 @@
 			</div>
 		</div>
 
-
 		<div class="col-sm-7">
 			<div id="map" style="width: 100%; height: calc(100% - 150px);"></div>
 		</div>
@@ -744,7 +725,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
-					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+					style="font-size: 12px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
@@ -814,6 +795,18 @@
 							<textarea name="description" type="text" class="form-control"
 									  placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
+					</div>
+					<div class="form-group row">
+					<div class="col-sm-1"></div>
+					<label class="col-sm-2 col-form-label"><?= lang('geofences') ?></label>
+					<select class="form-control form-control-sm col-sm-8">
+									<option selected>value 1</option>
+									<option>value 2</option>
+									<option>value 3</option>
+									<option>value 4</option>
+									<option>value 5</option>
+								</select>
+					
 					</div>
 
 					<input type="hidden" name="groups">
@@ -1151,7 +1144,7 @@
 			'colvis'
 		],
 		"bPaginate": false,
-		"scrollY": "55vh",
+		"scrollY": "",
 		"scrollX": true,
 		"scrollCollapse": true,
 		"paging": false,
@@ -1307,10 +1300,13 @@
 		ymaps.ready(init_all);
 
 		function init_all() {
-			var myMap_show_all_cars = new ymaps.Map("map", {
+			var myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
 			}, {suppressMapOpenBlock: true});
+
+			firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
+			myMap_show_all_cars_onChange.controls.add(firstButton, {float: 'right'});
 
 			$('.show_car').each(function () {
 				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
@@ -1342,9 +1338,9 @@
 						iconImageOffset: [-10, -35]
 					});
 
-					myMap_show_all_cars.geoObjects.add(carCoordinate);
-					myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
-					myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds());
+					myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
+					myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
+					myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 				}
 			});
 		}
@@ -1366,6 +1362,9 @@
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';
+
+				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
+				myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
 
 				latitude = array[0];
 				longitude = array[1];
@@ -1407,6 +1406,9 @@
 					center: [55.76, 37.64],
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
+
+				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
+				myMap_show_all_cars.controls.add(firstButton, {float: 'right'});
 
 				$('.show_car').each(function () {
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
@@ -1657,8 +1659,11 @@
 		($('.sell_group_select').val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
-		})
+		});
 
-		$('.dataTables_scrollBody').css('height', 'calc(100% - 120px) !important')
+		
+
 	})
 </script>
+
+

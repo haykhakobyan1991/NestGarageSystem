@@ -308,15 +308,15 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												title="<?= lang('trajectory') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
 											</button>
-											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?>">
-												<button
-													style="color:#00000080 !important;max-height: 40px;"
-													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"
-													data-toggle="tooltip" data-placement="top"
-													title="<?= lang('geofences') ?>">
-													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
-												</button>
-											</a>
+<!--											<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?><!--">-->
+<!--												<button-->
+<!--													style="color:#00000080 !important;max-height: 40px;"-->
+<!--													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"-->
+<!--													data-toggle="tooltip" data-placement="top"-->
+<!--													title="--><?//= lang('geofences') ?><!--">-->
+<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
+<!--												</button>-->
+<!--											</a>-->
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
 												<button style="color:#00000080 !important;max-height: 40px;"
 														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
@@ -400,6 +400,15 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 										</div>
 
 										<div class="navbar-nav ml-auto">
+											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?>">
+												<button
+													style="color:#00000080 !important;max-height: 40px;"
+													class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
+													data-toggle="tooltip" data-placement="top"
+													title="<?= lang('geofences') ?>">
+													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
+												</button>
+											</a>
 <!--											<button-->
 <!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
 <!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->

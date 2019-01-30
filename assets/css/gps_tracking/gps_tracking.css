@@ -167,3 +167,28 @@ div.fuel_seccond {
 	color: #fff !important;
 }
 
+.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
+	display: none;
+}
+.dropdown-menu {
+	padding: 0;
+}
+.dropdown-menu a:last-child {
+	display: none;
+	top: 55px;
+	left: -15px;
+}
+.dataTables_filter label {
+	font-size: 0px !important;
+}
+#example11_filter label input {
+	height: 38px;
+}
+#example11_filter {
+	height: 37px;
+}
+td { font-size: 11px !important; }
+
+.dataTables_scrollBody {
+	height: calc(100% - 315px) !important;
+}

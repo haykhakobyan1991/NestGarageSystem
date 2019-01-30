@@ -52,12 +52,11 @@
 									style="margin-right: 5px;margin-left: -15px;"
 									src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
 									class="ml-0 mr-0 "/></button>
-							<button class="btn btn-sm btn-outline-secondary delete_btn" data-toggle="modal"
+							<button class="custom_fas_trash_btn btn btn-sm btn-outline-secondary delete_btn" data-toggle="modal"
 									data-target=".del_group_modal"
-									style="width: 20px;padding: 2px !important;"><img
-									style="margin-right: 5px;margin-left: -15px;"
-									src="<?= base_url() ?>assets/images/gps_tracking/delete.svg"
-									class="ml-0 mr-0 "/></button>
+									style="width: 20px;padding: 2px !important;">
+									<i class="custom_fas_trash fas fa-trash"></i>
+								
 						</div>
 					</div>
 
@@ -1344,13 +1343,14 @@
 				});
 
 				myMap_show_singleCar.geoObjects.add(carCoordinate);
+				
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
 			}
 		});
 
 
-		/*  On Change checkbox  */
+		/* On Change checkbox  */
 
 		$('tr td input , th input').on('change', function () {
 			$('#map').html('');

@@ -73,9 +73,7 @@
 							<img src="<?= base_url() ?>assets/images/gps_tracking/geofences/car-front.svg"
 								 alt=""
 								 title=""/></th>
-						<th class="no-sort"><img
-								src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								alt="" title=""/></th>
+						<th class="no-sort"><i class="fas fa-edit"></i></th>
 						<th class="no-sort"><img
 								src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg" alt=""
 								title=""/></th>
@@ -102,11 +100,7 @@
 							data-target=".bd-example-modal-xl_Edite"
 							style="cursor: pointer;"
 							class="text-left settings_geoObject">
-							<img style="opacity: .5;"
-								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt=""
-								 title=""
-							/>
+							<i style="opacity: .5;" class="fas fa-edit"></i>
 						</td>
 						<td style="cursor: pointer;"><img style="opacity: .5;"
 														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
@@ -134,10 +128,8 @@
 							data-target=".bd-example-modal-xl_Edite"
 							style="cursor: pointer;"
 							class="text-left settings_geoObject">
-							<img style="opacity: .5;"
-								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt=""
-								 title=""/></td>
+							<i style="opacity: .5;" class="fas fa-edit"></i>
+							</td>
 						<td style="cursor: pointer;">
 							<img style="opacity: .5;"
 								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
@@ -165,10 +157,7 @@
 							data-target=".bd-example-modal-xl_Edite"
 							style="cursor: pointer;"
 							class="text-left settings_geoObject">
-							<img style="opacity: .5;"
-								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/screwdriver-and-wrench-crossed.svg"
-								 alt=""
-								 title=""/></td>
+							<i style="opacity: .5;" class="fas fa-edit"></i></td>
 						<td style="cursor: pointer;"><img style="opacity: .5;"
 														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
 														  alt=""
@@ -328,8 +317,7 @@
 
 			var myPolygon = new ymaps.Polygon([array_stting]);
 			myMap_setting.geoObjects.add(myPolygon);
-			myPolygon.editor.startDrawing();
-
+			myPolygon.editor.startDrawing();	
 
 			myPolygon.geometry.events.add('change', function () {
 				console.log(myPolygon.geometry.getCoordinates().toString());

@@ -384,7 +384,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												title="<?= lang('statistics') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
 											</button>
-											<label style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+											<label class="text-center" style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
 											<select style="margin-top: 1px" class="form-control form-control-sml">
 												<option>1</option>
 												<option>2</option>

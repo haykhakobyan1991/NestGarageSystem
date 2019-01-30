@@ -7,21 +7,21 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<!--<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>-->
 <script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
 		type="text/javascript"></script>
-<script>
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyCXe53OPy3WBeXRud_Muy3jfHqMlcgFsh0",
-		authDomain: "mapdraw-303a9.firebaseapp.com",
-		databaseURL: "https://mapdraw-303a9.firebaseio.com",
-		projectId: "mapdraw-303a9",
-		storageBucket: "mapdraw-303a9.appspot.com",
-		messagingSenderId: "169827754958"
-	};
-	firebase.initializeApp(config);
-</script>
+<!--<script>-->
+<!--	// Initialize Firebase-->
+<!--	var config = {-->
+<!--		apiKey: "AIzaSyCXe53OPy3WBeXRud_Muy3jfHqMlcgFsh0",-->
+<!--		authDomain: "mapdraw-303a9.firebaseapp.com",-->
+<!--		databaseURL: "https://mapdraw-303a9.firebaseio.com",-->
+<!--		projectId: "mapdraw-303a9",-->
+<!--		storageBucket: "mapdraw-303a9.appspot.com",-->
+<!--		messagingSenderId: "169827754958"-->
+<!--	};-->
+<!--	firebase.initializeApp(config);-->
+<!--</script>-->
 <style>
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
@@ -1267,29 +1267,29 @@
 	});
 </script>
 <script type="text/javascript">
-	const db = firebase.firestore();
-	db.settings({timestampsInSnapshots: true});
-	var d = new Date();
-	var t = d.getTime()
-	counter = t;
-
-	var arr = [];
-	var d1_arr = [];
-	var d2_arr = [];
-	var text_arr = [];
-	db.collection('GPS').orderBy('cord.id').get().then((snapshots) => {
-		snapshots.docs.forEach(doc => {
-			lat = doc.data().cord.lat;
-			long = doc.data().cord.long;
-			d1 = doc.data().cord.d1;
-			d2 = doc.data().cord.d2;
-			text = doc.data().cord.text;
-			arr.push([lat, long]);
-			d1_arr.push(d1);
-			d2_arr.push(d2);
-			text_arr.push(text);
-		})
-	});
+	// const db = firebase.firestore();
+	// db.settings({timestampsInSnapshots: true});
+	// var d = new Date();
+	// var t = d.getTime()
+	// counter = t;
+	//
+	// var arr = [];
+	// var d1_arr = [];
+	// var d2_arr = [];
+	// var text_arr = [];
+	// db.collection('GPS').orderBy('cord.id').get().then((snapshots) => {
+	// 	snapshots.docs.forEach(doc => {
+	// 		lat = doc.data().cord.lat;
+	// 		long = doc.data().cord.long;
+	// 		d1 = doc.data().cord.d1;
+	// 		d2 = doc.data().cord.d2;
+	// 		text = doc.data().cord.text;
+	// 		arr.push([lat, long]);
+	// 		d1_arr.push(d1);
+	// 		d2_arr.push(d2);
+	// 		text_arr.push(text);
+	// 	})
+	// });
 
 
 	/***********************
@@ -1307,10 +1307,10 @@
 		ymaps.ready(init_all);
 
 		function init_all() {
-			var myMap_show_all_cars = new ymaps.Map( "map", {
+			var myMap_show_all_cars = new ymaps.Map("map", {
 				center: [55.76, 37.64],
-				zoom: 1
-			}, {suppressMapOpenBlock: true } );
+				zoom: 2
+			}, {suppressMapOpenBlock: true});
 
 			$('.show_car').each(function () {
 				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
@@ -1324,7 +1324,7 @@
 					longitude = array[1];
 
 
-					carCoordinate = new ymaps.Placemark( [latitude, longitude], {
+					carCoordinate = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
 						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
@@ -1340,7 +1340,7 @@
 						iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
 						iconImageSize: [35, 30],
 						iconImageOffset: [-10, -35]
-					} );
+					});
 
 					myMap_show_all_cars.geoObjects.add(carCoordinate);
 					myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
@@ -1349,16 +1349,63 @@
 			});
 		}
 
+		/* On Click Function Show single Car On Map */
+
+		$('.show_car').click(function () {
+			$('#map').html('');
+			coordinate = $(this).data('coordinate');
+			array = JSON.parse("[" + coordinate + "]");
+			console.log(coordinate);
+			console.log(array);
+			ymaps.ready(init_singleCar);
+			init_singleCar(array);
+
+			function init_singleCar(array) {
+				var myMap_show_singleCar = new ymaps.Map("map", {
+					center: [],
+					zoom: 2
+				}, {suppressMapOpenBlock: true});
+				var carCoordinate = '';
+
+				latitude = array[0];
+				longitude = array[1];
+
+
+				carCoordinate = new ymaps.Placemark([latitude, longitude], {
+					balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
+					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
+						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+					balloonContentFooter: ""
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+					iconImageSize: [35, 30],
+					iconImageOffset: [-10, -35]
+				});
+
+				myMap_show_singleCar.geoObjects.add(carCoordinate);
+				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+			}
+		});
+
+
 		/*  On Change checkbox  */
 
-		$('tr td input , th input').on( 'change', function () {
+		$('tr td input , th input').on('change', function () {
 			$('#map').html('');
 			ymaps.ready(init_all);
 
 			function init_all() {
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
-					zoom: 1
+					zoom: 2
 				}, {suppressMapOpenBlock: true});
 
 				$('.show_car').each(function () {
@@ -1366,14 +1413,14 @@
 
 						coordinate = $(this).data('coordinate');
 						array = JSON.parse("[" + coordinate + "]");
-
+						console.log(coordinate);
 						var carCoordinate = '';
 
 						latitude = array[0];
 						longitude = array[1];
 
 
-						carCoordinate = new ymaps.Placemark( [latitude, longitude], {
+						carCoordinate = new ymaps.Placemark([latitude, longitude], {
 							balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
 							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
 								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
@@ -1389,7 +1436,7 @@
 							iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
 							iconImageSize: [35, 30],
 							iconImageOffset: [-10, -35]
-						} );
+						});
 
 						myMap_show_all_cars.geoObjects.add(carCoordinate);
 						myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
@@ -1397,7 +1444,7 @@
 					}
 				});
 			}
-		} );
+		});
 
 
 	});

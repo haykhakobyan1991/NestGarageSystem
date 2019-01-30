@@ -8,26 +8,7 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <!--<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>-->
-<script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
-		type="text/javascript"></script>
-
-
-<!--<script>-->
-<!--	// Initialize Firebase-->
-<!--	var config = {-->
-<!--		apiKey: "AIzaSyCXe53OPy3WBeXRud_Muy3jfHqMlcgFsh0",-->
-<!--		authDomain: "mapdraw-303a9.firebaseapp.com",-->
-<!--		databaseURL: "https://mapdraw-303a9.firebaseio.com",-->
-<!--		projectId: "mapdraw-303a9",-->
-<!--		storageBucket: "mapdraw-303a9.appspot.com",-->
-<!--		messagingSenderId: "169827754958"-->
-<!--	};-->
-<!--	firebase.initializeApp(config);-->
-<!--</script>-->
-<style>
-	
-</style>
-
+<script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU" type="text/javascript"></script>
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
@@ -1260,36 +1241,12 @@
 	});
 </script>
 <script type="text/javascript">
-	// const db = firebase.firestore();
-	// db.settings({timestampsInSnapshots: true});
-	// var d = new Date();
-	// var t = d.getTime()
-	// counter = t;
-	//
-	// var arr = [];
-	// var d1_arr = [];
-	// var d2_arr = [];
-	// var text_arr = [];
-	// db.collection('GPS').orderBy('cord.id').get().then((snapshots) => {
-	// 	snapshots.docs.forEach(doc => {
-	// 		lat = doc.data().cord.lat;
-	// 		long = doc.data().cord.long;
-	// 		d1 = doc.data().cord.d1;
-	// 		d2 = doc.data().cord.d2;
-	// 		text = doc.data().cord.text;
-	// 		arr.push([lat, long]);
-	// 		d1_arr.push(d1);
-	// 		d2_arr.push(d2);
-	// 		text_arr.push(text);
-	// 	})
-	// });
 
-
-	/***********************
-	 ************************
-	 * [ Yandex Map Start ] *
-	 ************************
-	 ***********************/
+	/**************************
+	 **************************
+	 ** [ Yandex Map Start ] **
+	 **************************
+	 *************************/
 
 	//-------------------------------------------------
 
@@ -1318,7 +1275,6 @@
 
 					latitude = array[0];
 					longitude = array[1];
-
 
 					carCoordinate = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
@@ -1368,7 +1324,6 @@
 
 				latitude = array[0];
 				longitude = array[1];
-
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
 					balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
@@ -1421,7 +1376,6 @@
 						latitude = array[0];
 						longitude = array[1];
 
-
 						carCoordinate = new ymaps.Placemark([latitude, longitude], {
 							balloonContentHeader: "<p>Հիմնական Տվյալներ</p>",
 							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
@@ -1447,18 +1401,14 @@
 				});
 			}
 		});
-
-
 	});
 
 
-	/*********************
-	 **********************
-	 * [ Yandex Map End ] *
-	 **********************
-	 *********************/
-
-
+	/************************
+	 ************************
+	 ** [ Yandex Map End ] **
+	 ************************
+	 ***********************/
 
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
@@ -1660,9 +1610,6 @@
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		});
-
-		
-
 	})
 </script>
 

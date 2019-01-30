@@ -215,7 +215,6 @@
 
 <!-- Add New Geofences Modal End -->
 
-
 <!-- Edite Geofences Modal Start -->
 
 <div class="modal fade bd-example-modal-xl_Edite pr-0" tabindex="-1" role="dialog"
@@ -250,7 +249,6 @@
 
 <!-- Edite Geofences Modal End -->
 
-
 <script type="text/javascript">
 	// Yandex Map Start
 
@@ -278,7 +276,6 @@
 				init(array);
 			}
 		});
-
 	});
 
 	function init(array) {
@@ -295,7 +292,6 @@
 		myMap.setBounds(myMap.geoObjects.getBounds());
 
 	}
-
 
 	//Yandex Map Modal Setting geoObject Start
 	//todo
@@ -316,7 +312,12 @@
 			});
 
 			var myPolygon = new ymaps.Polygon([array_stting]);
+			console.log(array_stting)
 			myMap_setting.geoObjects.add(myPolygon);
+
+			myMap_setting.controls.add(new ymaps.control.ZoomControl());
+			myMap_setting.setBounds(myMap_setting.geoObjects.getBounds(), {checkZoomRange: true});
+
 			myPolygon.editor.startDrawing();	
 
 			myPolygon.geometry.events.add('change', function () {
@@ -343,6 +344,7 @@
 			strokeColor: '#0000FF',
 			strokeWidth: 3
 		});
+
 		myMap_new.geoObjects.add(myPolygon);
 		var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
 		stateMonitor.add("drawing", function (newValue) {
@@ -383,11 +385,8 @@
 
 	//Yandex Map Modal End
 
-
 	//Bootstrap Data table Start
 	$(document).ready(function () {
-
-
 		var table = $('#example').DataTable({
 			language: {
 				search: "<?=lang('search')?>",
@@ -414,7 +413,6 @@
 		});
 
 		$('table tr th:nth-child(2)').click(function () {
-
 			if (!$(this).hasClass('az')) {
 				$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
 				$(this).addClass('az');
@@ -424,10 +422,8 @@
 			}
 		});
 
-
 		$('.sel_all_checkbox').on('change', function () {
 			if ($('input.sel_all_checkbox').is(':checked')) {
-
 				$('td input').each(function () {
 					$(this).prop('checked', true);
 				});

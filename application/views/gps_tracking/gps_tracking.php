@@ -1241,11 +1241,11 @@
 </script>
 <script type="text/javascript">
 
-	/**************************
-	 **************************
-	 ** [ Yandex Map Start ] **
-	 **************************
-	 *************************/
+	/***************************
+	****************************
+	*** [ Yandex Map Start ] ***
+	****************************
+	***************************/
 
 	//-------------------------------------------------
 
@@ -1343,7 +1343,7 @@
 				});
 
 				myMap_show_singleCar.geoObjects.add(carCoordinate);
-				
+
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
 			}
@@ -1404,11 +1404,11 @@
 	});
 
 
-	/************************
-	 ************************
-	 ** [ Yandex Map End ] **
-	 ************************
-	 ***********************/
+	/*************************
+	**************************
+	*** [ Yandex Map End ] ***
+	**************************
+	*************************/
 
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')

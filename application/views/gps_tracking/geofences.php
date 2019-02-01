@@ -15,7 +15,7 @@
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
 <style>
-	ul.pagination {
+	ul.pagination  {
 		margin-top: 5px !important;
 	}
 

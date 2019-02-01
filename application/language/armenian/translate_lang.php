@@ -214,6 +214,7 @@ $lang['add_user'] = 'Ավելացնել Օգտատեր';
 
 //vehicles
 $lang['vehicles_information'] = 'Փոխադրամիջոցի Հիմնական Տվյալներ';
+$lang['basic_information'] = 'Հիմնական Տվյալներ';
 $lang['expiry_date'] = 'Վավերական Է Մինչեւ';
 $lang['add_vehicles'] = 'Ավելացնել Փոխադրամիջոց';
 $lang['brand'] = 'Մակնիշ';

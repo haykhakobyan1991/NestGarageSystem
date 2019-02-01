@@ -187,6 +187,7 @@ $lang ['month_12'] = 'декабрь';
 
 //company
 $lang['Basic_information'] = 'Основные данные компании';
+$lang['basic_information'] = 'Основные данные';
 $lang['upload_logo'] = 'Загрузить логотип вашей компании';
 $lang['company_type'] = 'Тип компании';
 $lang['company'] = 'Компания';

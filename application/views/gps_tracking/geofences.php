@@ -12,7 +12,7 @@
 <![endif]-->
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<script src="https://api-maps.yandex.ru/2.1/?apikey=624e82b8-f673-476e-ada3-3c68555422b9&lang=ru_RU"
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
 <style>
 	ul.pagination {
@@ -54,6 +54,7 @@
 					<option value="b geofences 1">b geofences 1</option>
 					<option value="a geofences 1">a geofences 1</option>
 					<option value="d geofences 1">d geofences 1</option>
+					<option value="e geofences 1">d geofences 1</option>
 				</select>
 
 
@@ -63,7 +64,7 @@
 					<thead style="background: #fff;color: #545b62;">
 					<tr>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<!--<input class="sel_all_checkbox" type="checkbox"/>Select all -->
+							<input class="sel_all_checkbox" type="checkbox" checked/>Select all
 						</th>
 						<th style="width: 40%;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
@@ -87,7 +88,8 @@
 					<tr>
 						<td>
 							<input name="coordinate"
-								   type="radio"
+								   type="checkbox"
+								   checked
 								   data-coordinate="[40.19060653826287, 44.50844357516261],
 													[40.189981206597146, 44.51397965456936],
 													[40.18741399465704, 44.510246019620624],
@@ -114,12 +116,12 @@
 
 					<tr>
 						<td><input name="coordinate"
-								   type="radio"
-								   data-coordinate="[55.388712763532915,32.24634252406617],
-													[55.38324024891158,32.40289769984742],
-													[55.29165843010759,32.319126947894304],
-													[55.31124505920083,32.11862645961305],
-													[55.388712763532915,32.24634252406617]"/>
+								   type="checkbox"
+								   checked
+								   data-coordinate="[40.13331860515059,44.44393439075485],
+								   					[40.09483366177357,44.54555792591108],
+								   					[40.148601052086335,44.54967779895795],
+								   					[40.13331860515059,44.44393439075485]"/>
 						</td>
 						<td>a geofences 1</td>
 						<td class="text-left">4</td>
@@ -129,7 +131,7 @@
 							style="cursor: pointer;"
 							class="text-left settings_geoObject">
 							<i style="opacity: .5;" class="fas fa-edit"></i>
-							</td>
+						</td>
 						<td style="cursor: pointer;">
 							<img style="opacity: .5;"
 								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
@@ -144,13 +146,46 @@
 					<tr>
 						<td>
 							<input name="coordinate"
-								   type="radio"
-								   data-coordinate="[56.388712763532915,31.24634252406617],
-													[55.38324024894358,32.40289549984742],
-													[55.29165866010759,32.319126943394304],
-													[55.31124655920083,32.11862645961305],
-													[55.388712763537615,32.24634252236617]"/></td>
+								   type="checkbox"
+								   checked
+								   data-coordinate="[40.188001002307885,44.52710650739624],
+								   				[40.17977217076603,44.520068390941155],
+								   				[40.174702709790814,44.52762149152713],
+								   				[40.173122540044034,44.54118274030644],
+								   				[40.18391962756528,44.5442726450916],
+								   				[40.188001002307885,44.52710650739624]"/>
+						</td>
 						<td>d geofences 1</td>
+						<td class="text-left">0</td>
+						<td
+							data-toggle="modal"
+							data-target=".bd-example-modal-xl_Edite"
+							style="cursor: pointer;"
+							class="text-left settings_geoObject">
+							<i style="opacity: .5;" class="fas fa-edit"></i></td>
+						<td style="cursor: pointer;"><img style="opacity: .5;"
+														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
+														  alt=""
+														  title=""/></td>
+						<td style="cursor: pointer;"><img style="opacity: .5;"
+														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
+														  alt=""
+														  title=""/></td>
+					</tr>
+
+					<tr>
+						<td>
+							<input name="coordinate"
+								   type="checkbox"
+								   checked
+								   data-coordinate="[40.182152607087005,44.48289401495332],
+								   					[40.179848435430564,44.49079043829316],
+								   					[40.181560113314845,44.50478084051483],
+								   					[40.187320248036535,44.502635073302926],
+								   					[40.189196299777905,44.487056803344416],
+								   					[40.182152607087005,44.48289401495332]"/>
+						</td>
+						<td>e geofences 1</td>
 						<td class="text-left">0</td>
 						<td
 							data-toggle="modal"
@@ -217,7 +252,7 @@
 
 <!-- Edite Geofences Modal Start -->
 
-<div class="modal fade bd-example-modal-xl_Edite pr-0" tabindex="-1" role="dialog"
+<div id="shown" class="modal fade bd-example-modal-xl_Edite pr-0 hide" tabindex="-1" role="dialog"
 	 aria-labelledby="myExtraLargeModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog  modal-full">
@@ -250,81 +285,131 @@
 <!-- Edite Geofences Modal End -->
 
 <script type="text/javascript">
-	// Yandex Map Start
 
-	//Init Map On Pae Loade Start
-	ymaps.ready(init3);
+	$(document).ready(function () {
 
-	function init3() {
-		var myMap_new = new ymaps.Map("map", {
-			center: [55.76, 37.64],
-			zoom: 7
-		});
-	}
+		ymaps.ready(init_all);
 
-	//Init Map On Page Load End
-
-	$('input').on('change', function () {
-
-		$('#map').html('');
-		ymaps.ready(init);
-
-		$('input[name="coordinate"]').each(function () {
-			if ($(this).is(":checked")) {
-				coordinate = $(this).data('coordinate');
-				array = JSON.parse("[" + coordinate + "]");
-				init(array);
-			}
-		});
-	});
-
-	function init(array) {
-		console.log(array);
-		var myPolygon = new ymaps.Polygon([array]);
-		var myMap = new ymaps.Map("map", {
-			center: [array[0][0], array[0][1]],
-			zoom: 12
-		});
-		myMap.geoObjects.add(myPolygon);
-
-		//Center Map By geoObject
-		myMap.controls.add(new ymaps.control.ZoomControl());
-		myMap.setBounds(myMap.geoObjects.getBounds());
-
-	}
-
-	//Yandex Map Modal Setting geoObject Start
-	//todo
-	$('.settings_geoObject').click(function () {
-
-		geoObject_coordinates = $(this).parent('tr').children('td:first-child').children('input').attr('data-coordinate')
-		array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-		console.log(array_stting);
-		init5(array_stting)
-		//Start Paint Map 
-
-		ymaps.ready(init5);
-
-		function init5(array_stting) {
-			myMap_setting = new ymaps.Map("map_settings", {
+		function init_all() {
+			var myMap_show_all_geofances = new ymaps.Map("map", {
 				center: [55.76, 37.64],
-				zoom: 7
-			});
+				zoom: 2
+			}, {suppressMapOpenBlock: true});
 
-			var myPolygon = new ymaps.Polygon([array_stting]);
-			console.log(array_stting)
-			myMap_setting.geoObjects.add(myPolygon);
+			$('input[name="coordinate"]').each(function () {
 
-			myMap_setting.controls.add(new ymaps.control.ZoomControl());
-			myMap_setting.setBounds(myMap_setting.geoObjects.getBounds(), {checkZoomRange: true});
+				if ($(this).is(':checked')) {
+					geoObject_coordinates = $(this).data('coordinate')
+					array_stting = JSON.parse("[" + geoObject_coordinates + "]");
 
-			myPolygon.editor.startDrawing();	
+					var rand_color = '#' + (function co(lor) {
+						return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+					})('') + '75';
 
-			myPolygon.geometry.events.add('change', function () {
-				console.log(myPolygon.geometry.getCoordinates().toString());
+					var myPolygon = new ymaps.Polygon([
+						array_stting
+					], {}, {
+						editorDrawingCursor: "crosshair",
+						fillColor: rand_color,
+						strokeColor: rand_color,
+						strokeWidth: 2
+					});
+
+					myMap_show_all_geofances.geoObjects.add(myPolygon);
+
+					myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
+					myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
+
+				}
+
 			});
 
 		}
+
+
+		//Yandex map checkbox onchange
+		$('input[name="coordinate"], .sel_all_checkbox').on('change', function () {
+			$('#map').html('');
+			ymaps.ready(init_all);
+
+			function init_all() {
+				var myMap_show_all_geofances = new ymaps.Map("map", {
+					center: [55.76, 37.64],
+					zoom: 2
+				}, {suppressMapOpenBlock: true});
+
+				$('input[name="coordinate"]').each(function () {
+
+					if ($(this).is(':checked')) {
+						geoObject_coordinates = $(this).data('coordinate')
+						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+
+						var rand_color = '#' + (function co(lor) {
+							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+						})('') + '75';
+
+						var myPolygon = new ymaps.Polygon([
+							array_stting
+						], {}, {
+							editorDrawingCursor: "crosshair",
+							fillColor: rand_color,
+							strokeColor: rand_color,
+							strokeWidth: 2
+						});
+
+						myMap_show_all_geofances.geoObjects.add(myPolygon);
+
+						myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
+						myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
+
+					}
+
+				});
+
+			}
+		});
+
+
+		//Yandex Map Modal Edit geoObject Start
+		$(document).on('click', '.settings_geoObject', function () {
+				var th = $(this);
+			$('#shown').on('shown.bs.modal', function(){
+				$('#map_settings').html('');
+
+				geoObject_coordinates = th.parent('tr').children('td:first-child').children('input').attr('data-coordinate');
+				array_seting = JSON.parse("[" + geoObject_coordinates + "]");
+
+				ymaps.ready(init_singleCar(array_seting));
+
+				function init_singleCar(array_seting) {
+
+					var myMap_geofencesSetting = new ymaps.Map("map_settings", {
+						center: [54.45454, 53.4665],
+						zoom: 2
+					}, {suppressMapOpenBlock: true});
+
+
+					var myPolygon = new ymaps.Polygon([
+						array_seting
+					]);
+
+					console.log(array_seting)
+
+					myMap_geofencesSetting.geoObjects.add(myPolygon);
+
+					myMap_geofencesSetting.controls.add(new ymaps.control.ZoomControl());
+					myMap_geofencesSetting.setBounds(myMap_geofencesSetting.geoObjects.getBounds(), {checkZoomRange: true});
+
+					myPolygon.geometry.events.add('change', function () {
+						console.log(myPolygon.geometry.getCoordinates().toString());
+					});
+
+					myPolygon.editor.startDrawing();
+
+				}
+			});
+
+		});
 	});
 
 	//Yandex Map Modal Start
@@ -404,9 +489,10 @@
 				}
 			},
 			"columnDefs": [{
-				"targets": 'no-sort',
-				"orderable": false,
-			}]
+				"orderable": false, "targets": 0
+			}],
+			"bPaginate": false,
+			"scrollY": ""
 		});
 		$('#table-filter').on('change', function () {
 			table.search(this.value).draw();

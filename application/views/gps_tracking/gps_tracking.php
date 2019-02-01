@@ -14,7 +14,7 @@
 <style>
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
-	}
+	 }
 
 	.dropdown-menu {
 		padding: 0;

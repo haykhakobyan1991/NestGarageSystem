@@ -33,7 +33,7 @@ class Organization extends MX_Controller {
 	private function upload_config() {
 
 
-		$config['allowed_types']        = 'gif|jpg|png|bmp';
+		$config['allowed_types']        = 'gif|jpg|png';
 		$config['max_size'] 			= '4097152'; //4 MB
 		$config['file_name']			= $this->uname(3,8);
 		$config['max_width']            = '2048';
@@ -391,6 +391,30 @@ class Organization extends MX_Controller {
 			$photo_arr = $this->upload->data();
 
 			$image = $photo_arr['file_name'];
+
+
+			$configR['image_library'] = 'gd2';
+			$configR['source_image'] = set_realpath('uploads/'.$folder.'/company/'.$image);
+			//$configR['create_thumb'] = TRUE;
+			$configR['maintain_ratio'] = TRUE;
+			$configR['width']         = 100;
+			$configR['height']       = 75;
+
+			//$this->load->library('image_lib', $configR);
+
+
+			$this->image_lib->clear();
+			$this->image_lib->initialize($configR);
+
+
+
+			if ( ! $this->image_lib->resize())
+			{
+				$validation_errors = array('photo' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
 
 			$add_sql_image = "`logo` =  '".$image."',";
 

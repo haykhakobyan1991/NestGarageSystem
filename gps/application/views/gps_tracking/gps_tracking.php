@@ -12,7 +12,7 @@
 <!--		type="text/javascript"></script>-->
 
 <script type="text/javascript" src="<?= base_url('assets/js/ymap.js') ?>"></script>
-
+<!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
 
 <style>
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
@@ -57,6 +57,10 @@
 		color: #6c757d !important;
 	}
 
+	.border-5 {
+		border-width:5px !important;
+	}
+
 </style>
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
@@ -69,7 +73,7 @@
 						<div class="col-sm-2" style="padding-top: 10px;">
 							<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
 								 style="width: 25px;display: inline-block;"/>
-							<span class="count_cars_in_table">16</span>
+							<span class="count_cars_in_table">3</span>
 						</div>
 						<label style="margin-top: 10px;"><?= lang('group') ?></label>
 						<div class="col-sm-3 ml-0">
@@ -130,7 +134,7 @@
 								class="text-center">
 								<i class="fas fa-parking pb-1"></i>
 								<i class="fas fa-arrow-alt-circle-right pb-1"></i>
-								<i class="fas fa-stop-circle"></i>
+								<i class="float-left fas fa-stop-circle"></i>
 							</th>
 							<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 								<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
@@ -148,8 +152,7 @@
 								<i style="color: #000 !important; font-size: 12px  !important;" class="fas fa-wifi"></i>signal
 							</th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><i class="fas fa-ellipsis-v"></i>
-							</th>
+							<th style="font-size: 12px !important;font-weight: 500;"></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -262,476 +265,6 @@
 							</td>
 
 						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								bmw
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-						<tr>
-							<td><input type="checkbox"/></td>
-							<td>
-								mercedes benz
-								<small class="form-text text-muted">433xx33</small>
-							</td>
-							<td>street 34/56</td>
-							<td class="text-center"><i class="text-success fas fa-arrow-alt-circle-right"></i></td>
-							<td>
-								anun azganun
-								<small class="form-text text-muted">+37444443344</small>
-							</td>
-							<td>
-								department
-							</td>
-							<td>
-								<div class="border-success fuel_wrapper">
-									<div class="h-50 bg_full fuel_first"></div>
-								</div>
-								<div class="border-success fuel_wrapper ">
-									<div class="h-100 fuel_seccond bg_full"></div>
-								</div>
-							</td>
-							<td>
-								<div class="bg-success"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-							</td>
-							<td>
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
-							</td>
-							<td>
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-
-						</tr>
-
-
 						</tbody>
 					</table>
 
@@ -830,17 +363,19 @@
 					<div class="form-group row">
 						<div class="col-sm-1"></div>
 						<label class="col-sm-2 col-form-label"><?= lang('geofences') ?></label>
-						<select class="form-control form-control-sm col-sm-8">
-							<option selected>value 1</option>
-							<option>value 2</option>
-							<option>value 3</option>
-							<option>value 4</option>
-							<option>value 5</option>
-						</select>
-
+						<div class="col-sm-8">
+							<select class="form-control form-control-sm col-sm-12">
+								<option selected>value 1</option>
+								<option>value 2</option>
+								<option>value 3</option>
+								<option>value 4</option>
+								<option>value 5</option>
+							</select>
+						</div>
 					</div>
 
 					<input type="hidden" name="groups">
+					<input type="hidden" name="token" value="<?=$this->session->token?>">
 
 				</form>
 				<hr class="my-2">
@@ -870,11 +405,8 @@
 						</button>
 
 					</div>
-					<div class="col-sm-5 scroll_style"
-						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
-						<ul class="list-group lg_2 mt-1">
-
-						</ul>
+					<div class="col-sm-5 scroll_style" style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+						<ul class="list-group lg_2 mt-1"></ul>
 
 					</div>
 
@@ -884,9 +416,9 @@
 				<button id="add_group" type="button"
 						class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 				</button>
-				<button id="load" class="btn btn-sm btn-success d-none cancel_btn"><img
-						style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-						src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+				<button id="load" class="btn btn-sm btn-success d-none cancel_btn">
+					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
+				</button>
 				<button type="button" class="cancel_btn close btn btn-sm"
 						data-dismiss="modal"
 						aria-label="Close">
@@ -895,7 +427,6 @@
 			</div>
 		</div>
 	</div>
-
 </div>
 
 <!-- Create Group Modal End -->
@@ -1229,6 +760,8 @@
 			}
 		});
 	});
+
+
 	$(document).on('click', '.add_lg_2', function () {
 		$('.sel_items').each(function () {
 			if ($(this).hasClass('bg-info')) {
@@ -1238,6 +771,21 @@
 				$(this).removeClass('bg-info text-white sel_items');
 			}
 		});
+
+
+		// group input
+
+		var group = '';
+
+		$('.lg_2  li').each(function (e) {
+			group += $(this).data('id') + ','
+		});
+
+		var groups = group.substring(0, group.length - 1);
+
+		$('input[name="groups"]').val(groups);
+
+		// end group input
 		//$('.select_all').prop('checked', false);
 	});
 	$(document).on('click', '.remove_lg_2', function () {
@@ -1251,6 +799,21 @@
 				$('.tab-pane').children('form').remove();
 			}
 		});
+
+		// group input
+
+		var group = '';
+
+		$('.lg_2  li').each(function (e) {
+			group += $(this).data('id') + ','
+		});
+
+		var groups = group.substring(0, group.length - 1);
+
+		$('input[name="groups"]').val(groups);
+
+		// end group input
+
 		//$('.select_all_2').prop('checked', false);
 	});
 	$('.select_all').on('change', function () {
@@ -1372,7 +935,7 @@
 					ymaps.ready(init_all);
 
 					$('.show_car').each(function () {
-						$('#map').html('')
+						$('#map').html('');
 
 						if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
@@ -1503,7 +1066,7 @@
 					} else {
 
 						$('.show_car').each(function () {
-							if(coordinate == $(this).data('coordinate')){
+							if (coordinate == $(this).data('coordinate')) {
 
 								$(this).trigger('click')
 							}
@@ -1511,8 +1074,6 @@
 							console.log($(this).data('coordinate'))
 
 						})
-
-
 
 					}
 				});
@@ -1561,6 +1122,85 @@
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 				myMap_show_all_cars.controls.add(firstButton, {float: 'right'});
 
+
+				//Click Function Show All Geofences
+				firstButton.events.add(['select', 'deselect'], function (e) {
+					if (e.get('type') == 'select') {
+						$('.geofences_coordinate').each(function () {
+
+							geoObject_coordinates = $(this).attr('data-gCoordinate');
+							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+
+							var rand_color = '#' + (function co(lor) {
+								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+							})('') + '75';
+
+							myPolygon = new ymaps.Polygon([
+								array_stting
+							], {}, {
+								editorDrawingCursor: "crosshair",
+								fillColor: rand_color,
+								strokeColor: rand_color,
+								strokeWidth: 2
+							});
+
+							myMap_show_all_cars.geoObjects.add(myPolygon);
+							myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
+							myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds());
+
+						});
+					} else {
+						$('#map').html('');
+
+						ymaps.ready(init_all);
+
+						function init_all() {
+							var myMap_show_all_cars = new ymaps.Map("map", {
+								center: [55.76, 37.64],
+								zoom: 2
+							}, {suppressMapOpenBlock: true});
+
+
+							$('.show_car').each(function () {
+
+								if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
+
+									coordinate = $(this).data('coordinate');
+									array = JSON.parse("[" + coordinate + "]");
+									// console.log(coordinate);
+									var carCoordinate = '';
+
+									latitude = array[0];
+									longitude = array[1];
+
+									carCoordinate = new ymaps.Placemark([latitude, longitude], {
+										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+										balloonContentBody: "<p class='mb-0'><?=lang('object')?>f:<span class='ml-1'><a href='#'>Kamaz</a></span></p>" +
+											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441 xs26</span></p>" +
+											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+										balloonContentFooter: ""
+									}, {
+										iconLayout: 'default#image',
+										iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+										iconImageSize: [35, 30],
+										iconImageOffset: [-10, -35]
+									});
+
+									myMap_show_all_cars.geoObjects.add(carCoordinate);
+									myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
+									myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
+								}
+							});
+						}
+					}
+				});
+
+
 				$('.show_car').each(function () {
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
@@ -1599,7 +1239,6 @@
 		});
 	});
 
-
 	/*************************
 	 **************************
 	 *** [ Yandex Map End ] ***
@@ -1608,18 +1247,19 @@
 
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
-	})
+	});
 
 	// add group
 	$(document).on('click', '#add_group', function (e) {
 
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/add_group_ax') ?>';
+		var url = '<?=$this->load->old_baseUrl().(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/add_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_add')[0]);
 
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
+		$('ul.list-group.lg_2').parent('div').removeClass('border-5 border-danger');
 		loading('start', 'add_group');
 
 		$.ajax({
@@ -1636,6 +1276,7 @@
 				loading('start', 'add_group');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -1662,6 +1303,10 @@
 									close_message();
 									$('.alert-danger').removeClass('d-none');
 
+									if(index == 'groups') {
+										$('ul.list-group.lg_2').parent('div').addClass('border-5 border-danger');
+									}
+
 									if (value != tmp) {
 										errors += value;
 									}
@@ -1670,6 +1315,7 @@
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+									$('ul.list-group.lg_2').parent('div').removeClass('border-5 border-danger');
 								}
 							});
 						});
@@ -1692,7 +1338,7 @@
 
 	// get edit modal
 	$(document).on('click', '#edit_group_modal', function () {
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id');
+		var url = '<?=$this->load->old_baseUrl().(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id')+'/<?=$this->session->token?>';
 		$.get(url, function (result) {
 			// update modal content
 			$('.body-m').html(result);
@@ -1706,7 +1352,7 @@
 	$(document).on('click', '#edit_group_btn', function (e) {
 
 
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
+		var url = '<?=$this->load->old_baseUrl().(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_edit')[0]);
 
@@ -1723,10 +1369,7 @@
 			cache: false,
 			processData: false,
 			beforeSend: function () {
-
-
 				loading('start', 'edit_group_btn');
-
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -1736,7 +1379,6 @@
 				} else {
 					close_message();
 					loading('stop', 'edit_group_btn');
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'edit_group_btn');
@@ -1761,9 +1403,7 @@
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -1771,9 +1411,7 @@
 				$('p#success').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
-			complete: function () {
-
-			}
+			complete: function () {}
 		});
 	});
 
@@ -1782,10 +1420,9 @@
 		group_id = $('select[name="group"] option:selected').data('id');
 		$('input[name="group_id"]').val(group_id);
 	});
-
 	$(document).on('click', '#delete_group', function () {
 		var id = $('input[name="group_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
+		var url = '<?=$this->load->old_baseUrl().(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
 
 		$.post(url, {group_id, id}, function (result) {
 			location.reload();
@@ -1806,6 +1443,8 @@
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		});
+
+		$('.dt-buttons.btn-group').append('<i style="cursor: pointer;" class="fas fa-ellipsis-v ml-2"></i>');
 	})
 </script>
 

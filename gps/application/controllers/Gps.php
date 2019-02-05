@@ -60,62 +60,46 @@ class Gps extends MX_Controller {
 
 
 
+	public function index() {
+
+		$token = $this->input->post('token');
+
+
+		$sql = "
+			SELECT token FROM \"user\" where token = '".$token."'
+		";
+
+		$query = $this->db->query($sql);
+		$num_rows = $query->num_rows();
+
+		if($num_rows == 0) {
+			$this->db->insert('user', array('token' => $token));
+		}
+
+		$this->session->set_userdata(array('token' => $token));
+	}
+
+
+
 	public function gps_tracking() {
 
-		//$this->load->authorisation('Gps', 'gps_tracking');
+		$token = $this->session->token;
+		$this->load->authorisation('Gps', 'gps_tracking', $token);
 
-
-		$user_id = $this->session->user_id;
 
 		$data = array();
 
 		$lng = $this->load->lng();
 
 
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
-
-		$sql = "
-			SELECT 
-			  GROUP_CONCAT(`fleet_group`.`fleet_id`) AS `fleet_id`,
-			  `fleet_group`.`title`,
-			  `fleet_group`.`group_id`
-			FROM
-			  `fleet_group` 
-			WHERE `fleet_group`.`status` = 1
-			 AND `fleet_group`.`company_id` = ".$this->load->db_value($company_id)."
-			 GROUP BY `fleet_group`.`title` 
-		";
-
-		$query = $this->db->query($sql);
+		//api call //todo urls
+		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token));
+		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token));
 
 
-		$data['result'] = $query->result_array();
+		$data['result'] = json_decode($fleet_group, true);
+		$data['result_fleets'] = json_decode($fleets, true);
 
-
-		$sql_fleets = "
-			SELECT 
-				`fleet`.`id`,
-				CONCAT_WS(
-					' ',
-					`brand`.`title_".$lng."`,
-					`model`.`title_".$lng."`
-				) AS `brand_model`
-			FROM
-			   `fleet`
-			LEFT JOIN `model` 
-				ON `model`.`id` = `fleet`.`model_id` 
-			LEFT JOIN `brand` 
-				ON `brand`.`id` = `model`.`brand_id`
-			LEFT JOIN `user` 
-				ON `user`.`id` = `fleet`.`registrar_user_id` 	
-			WHERE `user`.`company_id` = ".$this->load->db_value($company_id)."		
-			 AND `fleet`.`status` = '1'	   
-		";
-
-
-		$query_fleets = $this->db->query($sql_fleets);
-		$data['result_fleets'] = $query_fleets->result_array();
 		$this->layout->view('gps_tracking/gps_tracking', $data);
 
 	}

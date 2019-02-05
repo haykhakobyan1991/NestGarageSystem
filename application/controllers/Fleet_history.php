@@ -835,9 +835,16 @@ class Fleet_history extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$token = $this->input->post('token'); //for gps
 
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
+		if($token != '') {
+			$row_t = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+			$company_id = $row_t['company_id'];
+		} else {
+			$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+			$company_id = $row['company_id'];
+		}
+
 
 		$result = false;
 
@@ -854,8 +861,6 @@ class Fleet_history extends MX_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
 		$this->form_validation->set_rules('groups', 'groups', 'required');
-
-
 
 
 
@@ -879,7 +884,7 @@ class Fleet_history extends MX_Controller {
 
 
 		$row_l = $this->db->select('group_id')->from('fleet_group')->where('company_id', $company_id)->order_by("group_id", "desc")->limit(1)->get()->row_array();
-		$group_id = $row_l['group_id'] + 1;
+		$group_id = $row_l['group_id'] + 1; //todo return false if group id is 0
 
 
 
@@ -936,6 +941,7 @@ class Fleet_history extends MX_Controller {
 	public function edit_group_modal_ax() {
 
 		$id = $this->uri->segment(4);
+		$token = $this->uri->segment(5);
 
 		$this->load->helper('url');
 		$this->load->helper('form');
@@ -948,14 +954,21 @@ class Fleet_history extends MX_Controller {
 			return false;
 		}
 
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
+		if($token != '') {
+			$row_t = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+			$company_id = $row_t['company_id'];
+			$data['token'] = $token;
+		} else {
+			$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+			$company_id = $row['company_id'];
+		}
 
 		$sql_selected_fleets = "
 			SELECT 
 			    `fleet`.`id`,
 			    `fleet_group`.`title`,
 			    `fleet_group`.`details`,
+			    `fleet_group`.`default`,
 			    CONCAT_WS(
 					' ',
 					`brand`.`title_".$lng."`,
@@ -970,7 +983,7 @@ class Fleet_history extends MX_Controller {
 			LEFT JOIN `brand` 
 				ON `brand`.`id` = `model`.`brand_id`	
 			WHERE `group_id` = 	'".$id."'	
-			 AND `default` = '1'	
+			 
 		";
 
 		$query_selected_fleets = $this->db->query($sql_selected_fleets);
@@ -981,8 +994,6 @@ class Fleet_history extends MX_Controller {
 		}
 
 		$data['result_selected_fleets'] = $query_selected_fleets->result_array();
-
-
 
 
 		$choose_fleet_arr = array();
@@ -1034,9 +1045,15 @@ class Fleet_history extends MX_Controller {
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$token = $this->input->post('token'); //for gps
 
-		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
-		$company_id = $row['company_id'];
+		if($token != '') {
+			$row_t = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+			$company_id = $row_t['company_id'];
+		} else {
+			$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+			$company_id = $row['company_id'];
+		}
 
 		$result = false;
 

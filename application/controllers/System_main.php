@@ -51,6 +51,19 @@ class System_main extends CI_Controller {
 
 
 	/**
+	 * @param int $start
+	 * @param int $length
+	 * @return bool|string
+	 * Ex: 45f7fd76
+	 */
+	private function uname($start = 3, $length = 2) {
+
+		return substr(md5(time() . rand()), $start, $length);
+
+	}
+
+
+	/**
 	 * @return bool
 	 */
 	public function change_lang() {
@@ -262,7 +275,7 @@ class System_main extends CI_Controller {
 		$html = '
 		<table>
 			<tr>
-				<td><img height="70" src="'.$logo.'" alt=""></td>
+				<td><img src="'.$logo.'" alt=""></td>
 				<td style="line-height: 80%;"><h1  align="center" style="color: #365f8f; "><br>'.lang('Reference').'</h1></td>
 				<td></td>
 			</tr>
@@ -469,6 +482,30 @@ class System_main extends CI_Controller {
 		unset($pdf);
 		return;
 
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function get_token() {
+
+		$user_id = $this->session->user_id;
+
+		if($user_id == '') {
+			return false;
+		}
+
+		$row = $this->db->select('token')->from('user')->where('id', $user_id)->get()->row_array();
+		$token = $row['token'];
+
+		if($token == '') {
+			$token = $this->uname( 3, 16);
+			$this->db->update('user', array('token' => $token), array('id' => $user_id));
+		}
+
+		echo $token;
+		return true;
 	}
 
 

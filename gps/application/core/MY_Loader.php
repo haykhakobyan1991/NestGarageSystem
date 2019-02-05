@@ -15,61 +15,35 @@ class MY_Loader extends MX_Loader
 	 * @passive mode $type = '1' for links // return bool
 	 * @active mode $type = '2'
 	 */
-	public function authorisation($controller = NULL, $page = NULL, $type = '2')
+	public function authorisation($controller = NULL, $page = NULL, $token = NULL, $type = '2')
 	{
 
-		$this->load->library('session');
-		$this->load->helper('url');
-		$user_id = $this->session->user_id;
+		$authorisation = $this->load->CallAPI('POST', $this->old_baseUrl().$this->lng().'/Api/authorisation', array('controller' => $controller, 'page' => $page, 'type' => $type, 'token' => $token));
 
 
-		if (is_null($controller)) {
-			$controller = $this->router->fetch_class();
-		}
-
-		if (is_null($page)) {
-			$page = $this->router->fetch_method();
-		}
-
-
-		if (!$this->session->username) {
-			redirect($this->lng() . '/', 'location');
+		if($authorisation == 'logout') {
 			$this->session->sess_destroy();
+			redirect($this->old_baseUrl() . 'User/logout', 'location');
+		} elseif ($authorisation == 'false') {
+			return false;
+		} elseif ($authorisation == 'access_denied') {
+			$this->access_denied();
+		} elseif ($authorisation == 'true') {
+			return true;
+		} else {
+			$this->layout->set_title($authorisation);
 		}
-
-
-		$sql = "SELECT 
-					`permission`.`id`,
-				    `permission`.`controller`,
-				    `permission`.`title_" . $this->lng() . "` AS `title`,
-					`permission`.`page`,
-					`permission`.`status`
-				FROM 
-					`permission`
-				LEFT JOIN `role_permission` ON `role_permission`.`permission_id` = `permission`.`id`	
-				LEFT JOIN `role` ON `role_permission`.`role_id` = `role`.`id`
-				LEFT JOIN `user` ON `user`.`role_id` = `role`.`id`
-				WHERE `user`.`id` = '" . $user_id . "' AND `permission`.`status` = '1' AND `controller` = '" . $controller . "' AND `page` = '" . $page . "'
-		";
-
-		$query = $this->db->query($sql);
-		$row = $query->row_array();
-
-		if($type == '2') {
-			$this->layout->set_title($row['title']);
-		}
-
-		if ($query->num_rows() != 1) {
-			if ($type == '1') {
-				return false;
-			} elseif ($type == '2') {
-				redirect('access_denied', 'location');
-				return false;
-			}
-		}
-
 
 		return true;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function access_denied() {
+		$message = 'Access Denied';
+		show_error($message, '403', $heading = '403 Access is prohibited');
+		return false;
 	}
 
 
@@ -80,6 +54,14 @@ class MY_Loader extends MX_Loader
 	public function escape($data)
 	{
 		return mysqli_escape_string($this->db->db_connect(), $data);
+	}
+
+	/**
+	 * @return bool|string
+	 */
+	public function old_baseUrl ()
+	{
+		return substr(base_url(), 0, -4);
 	}
 
 
@@ -274,6 +256,40 @@ class MY_Loader extends MX_Loader
 		$query_add_staff = $this->db->query($sql_add_staff);
 
 		return $query_add_staff->result_array();
+	}
+
+
+	public function CallAPI ($method, $url, $data = false)
+	{
+		$curl = curl_init();
+
+		switch ($method) {
+			case "POST":
+				curl_setopt($curl, CURLOPT_POST, 1);
+
+				if ($data)
+					curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+				break;
+			case "PUT":
+				curl_setopt($curl, CURLOPT_PUT, 1);
+				break;
+			default:
+				if ($data)
+					$url = sprintf("%s?%s", $url, http_build_query($data));
+		}
+
+		// Optional Authentication:
+		curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+		curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($curl);
+
+		curl_close($curl);
+
+		return $result;
 	}
 
 

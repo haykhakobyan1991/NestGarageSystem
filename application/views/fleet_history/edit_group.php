@@ -4,7 +4,8 @@
 			<div class="col-sm-1"></div>
 			<label class="col-sm-2 col-form-label"><?= lang('company_name') ?></label>
 			<div class="col-sm-8">
-				<input name="title" type="text" class="form-control"
+				<input name="title" type="text" class="form-control "
+					  <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '')?>
 					   placeholder="<?= lang('company_name') ?>"
 					   value="<?=$result_selected_fleets[0]['title']?>"
 				>
@@ -14,12 +15,27 @@
 			<div class="col-sm-1"></div>
 			<label class="col-sm-2 col-form-label"><?= lang('more_info') ?></label>
 			<div class="col-sm-8">
-				<textarea name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"><?=$result_selected_fleets[0]['details']?></textarea>
+				<textarea <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '')?> name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"><?=$result_selected_fleets[0]['details']?></textarea>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<div class="col-sm-1"></div>
+			<label class="col-sm-2 col-form-label"><?= lang('geofences') ?></label>
+			<div class="col-sm-8">
+				<select class="form-control form-control-sm col-sm-12">
+					<option selected>value 1</option>
+					<option>value 2</option>
+					<option>value 3</option>
+					<option>value 4</option>
+					<option>value 5</option>
+				</select>
 			</div>
 		</div>
 
 		<input type="hidden" name="edit_groups" value="<?=$selected_fleet_ids?>">
 		<input type="hidden" name="group_id" value="<?=$group_id?>">
+		<input type="hidden" name="token" value="<?=$token?>">
 
 	</form>
 	<hr class="my-2">
@@ -31,8 +47,9 @@
 
 			<ul style="list-style: decimal;" class="list-group lg_11 mt-1">
 				<? foreach ($result_fleets as $row_fleet) : ?>
-					<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
-						class="p-1 sel_items2 mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+					<li data-id="<?= $row_fleet['id'] ?>"
+						class="p-1 sel_items2 mt-1 list-group-item"
+						style="cursor: pointer; <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] ?></li>
 				<? endforeach; ?>
 			</ul>
 		</div>
@@ -54,8 +71,9 @@
 			<ul class="list-group lg_22 mt-1">
 
 				<? foreach ($result_selected_fleets as $row_fleet) : ?>
-					<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
-						class="p-1 added_lg_22 mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+					<li data-id="<?= $row_fleet['id'] ?>"
+						class="p-1 added_lg_22 mt-1 list-group-item"
+						style="cursor: pointer; <?=($row_fleet['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] ?></li>
 				<? endforeach; ?>
 			</ul>
 

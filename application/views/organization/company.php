@@ -109,7 +109,9 @@ $i = '';
 															<span class="input-group-btn">
 																<span class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade">
 																	<?= lang('browse') ?> <input type="file" id="imgInp"
-																								 name="photo">
+																								 name="photo"
+																								 accept='image/png'
+																	>
 																</span>
 															</span>
 									<input type="text" class="form-control form-control-sm" readonly
@@ -356,7 +358,7 @@ $i = '';
 							   href="javascript:void(0)">
 								<label
 									style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
-									class="btn btn-sm btn-outline-success">
+									class="btn btn-sm btn-outline-success text_req">
 									<?= lang('download_requisite') ?>
 								</label>
 							</a>
@@ -967,6 +969,10 @@ $i = '';
 		e.preventDefault();
 		var data = new FormData($('form#company')[0]);
 
+
+
+
+
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -974,6 +980,12 @@ $i = '';
 			data: data,
 			processData: false,
 			contentType: false,
+			beforeSend: function () {
+
+				var loadText = '<?=lang('PleaseWait');?>';
+				$('.text_req').html(loadText+' . . .');
+
+			},
 			success: function (data, textStatus, jQxhr) {
 				window.downloadPDF = function downloadPDF() {
 					var dlnk = document.getElementById('dwnldLnk');
@@ -982,6 +994,7 @@ $i = '';
 				};
 
 				downloadPDF();
+				$('.text_req').html('<?= lang('download_requisite') ?>');
 			},
 			error: function (jqXhr, textStatus, errorThrown) {
 				console.log('/*/' + errorThrown);

@@ -93,6 +93,7 @@ $lang['information_is_empty'] = 'Информация пуста';
 $lang['added'] = 'добавленные';
 $lang['deleted'] = 'удаленные';
 $lang['impossible_connectivity'] = 'Невозможное подключение';
+$lang['PleaseWait'] = 'Подождите пожалуйста';
 
 //Add
 $lang['from_driver_to_vehicle'] = '<b>вадителю </b> %s - <b> добавлен транспортное средство</b> %s';

@@ -124,7 +124,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 
 		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
-		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>"><?= lang('GPS_tracking') ?></a>
+		   id="gps_tracking"
+		   href="javascript:void(0)"><?= lang('GPS_tracking') ?></a>
 
 	</div>
 
@@ -447,4 +448,17 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							$(function () {
 								$('[data-toggle="tooltip"]').tooltip()
 							})
+						</script>
+
+						<script>
+							$(document).on('click', '#gps_tracking', function () {
+								$.post( '<?=base_url($this->uri->segment(1) . '/System_main/get_token') ?>', function( data ) {
+									$.post('<?=base_url('gps/' . $this->uri->segment(1) . '/Gps') ?>', { token: data } ) .done( function( data ) {
+										url = '<?= base_url('gps/' . ($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>';
+										$( location ).attr("href", url);
+
+									});
+
+								});
+							});
 						</script>

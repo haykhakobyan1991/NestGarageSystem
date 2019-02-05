@@ -91,24 +91,15 @@
 <?
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
-$user_id = $this->session->user_id;
+$token = $this->session->token;
 ?>
 
-<?
-$sql_company = "
-		SELECT `company`.`name` FROM `user` LEFT JOIN `company` ON `company`.`id` = `user`.`company_id` WHERE `user`.`id` = '" . $user_id . "'
-	";
-$query_company = $this->db->query($sql_company);
-$row_company = $query_company->row_array();
-?>
+
 
 <?
+$row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true);
 
-$row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS name')
-	->from('user')
-	->where('id', $user_id)
-	->get()
-	->row_array();
+
 ?>
 
 <!-- Navbar Start -->
@@ -118,10 +109,10 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	<div class="ml-4">
 
 		<a class="nav_a mr-2 <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
-		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
+		   href="<?= $this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
 
 		<a class="nav_a btn btn-sm btn-outline-success2 mr-2 <?= ($controller == 'Structure' ? 'active' : '') ?> "
-		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
+		   href="<?= $this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1') ?>"><?= lang('structure') ?></a>
 
 		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>"><?= lang('GPS_tracking') ?></a>
@@ -143,7 +134,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		</ul>
 	</div>
 
-	<a href="<?= base_url('User/logout') ?>">
+	<a href="<?= $this->load->old_baseUrl() . 'User/logout' ?>">
 		<button class="btn btn-outline-dark">
 			<i class="fas fa-sign-out-alt"></i>
 		</button>
@@ -152,150 +143,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 <!-- Navbar End -->
 
 <div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
-	if ($controller == 'Organization') { ?>
-	<div class="tab-content">
-
-		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
-
-			<div class="row">
-				<!-- Vertical Tabs Start-->
-				<div class="col-sm-12 col-md-2">
-					<div class="list-group" id="list-tab" role="tablist"
-						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);position: fixed;width: 14%;"><?
-						if ($this->load->authorisation('Organization', 'company', 1)) :
-							?>
-							<a
-							class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
-							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
-							role="tab" aria-controls="company"><?= lang('company') ?>
-							</a><?
-						endif;
-						if ($this->load->authorisation('Organization', 'department', 1)) :
-							?>
-							<a
-							class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
-							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
-							role="tab" aria-controls="department"><?= lang('department') ?>
-							</a><?
-						endif;
-						if ($this->load->authorisation('Organization', 'staff', 1)) :
-							?>
-							<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
-							   role="tab" aria-controls="staff"><?= lang('staff') ?>
-							</a><?
-						endif;
-						if ($this->load->authorisation('Organization', 'vehicles', 1)) :
-							?>
-							<a
-							class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
-							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-							role="tab" aria-controls="settings"><?= lang('vehicle') ?>
-							<span class="float-right"></span>
-							</a><?
-						endif;
-						if ($this->load->authorisation('Organization', 'user', 1)) :
-							?>
-							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-							   role="tab" aria-controls="user"><?= lang('user') ?>
-							<span class="float-right"></span>
-							</a><?
-						endif;
-						?>
-					</div>
-				</div>
-				<!-- Vertical Tabs End-->
-				<div class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
-					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;width:10%;">
-					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
-
-						<div class="loader"></div>
-						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/><?
-
-						} elseif ($controller == 'Structure' || $controller == 'Fleet_history') { ?>
-							<div class="loader"></div>
-							<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
-							<div class="content m-1">
-								<div class="nav nav-tabs" id="nav-tab" role="tablist">
-									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "
-									   data-id="1"
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1')) ?>"
-									   role="tab">
-										<i class="fas fa-info"></i> <?= lang('information') ?>
-									</a>
-									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed  <?= $this->uri->segment(3) == 'add_expenses' ? 'active show' : '' ?> "
-									   data-id="2"
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/add_expenses') ?>"
-									   role="tab">
-										<i class="fas fa-plus"></i> <?= lang('add_expenses') ?>
-									</a>
-
-									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $this->uri->segment(3) == 'fleet_history' ? 'active show' : '' ?> "
-									   data-id="3"
-									   data-toggle=""
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1') . '/fleet_history') ?>"
-									   role="tab">
-										<i class="fas fa-clipboard-list"></i> <?= lang('expenses_history') ?>
-									</a>
-
-									<a class="info-type nav-item nav-link nav_a mr-2  btn btn-sm btn-outline-success2 showed <?= $page == 'expenses_history' ? 'active show' : '' ?> "
-									   data-id="3"
-									   data-toggle=""
-									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/expenses_history') ?>"
-									   role="tab">
-										<i class="fas fa-history"></i> <?= lang('total_company_expenses') ?>
-									</a><?
-									if ($controller == 'Structure') {
-										?>
-										<div class="btn-group ml-auto">
-
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/' . $this->uri->segment(3)) ?>">
-											<button type="button"
-													style="width: 40px;height: 40px;padding: 0 !important;"
-													class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
-												<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
-											</button>
-										</a>
-										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/' . $this->uri->segment(3)) ?>">
-											<button type="button"
-													style="width: 40px;height: 40px;padding: 0 !important;"
-													class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
-												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
-											</button>
-										</a>
-										<!--										<a href="-->
-										<?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?><!--">-->
-										<!--											<button type="button"-->
-										<!--													style="width: 40px;height: 40px;padding: 0 !important;"-->
-										<!--													class="m-1 btn btn-outline-secondary -->
-										<?//= ($page == 'structure3' ? 'active' : '') ?><!--"-->
-										<!--													style="">-->
-										<!--												<img width="20" src="-->
-										<?//= base_url('assets/images/trees3.svg') ?><!--">-->
-										<!--											</button>-->
-										<!--										</a>-->
-
-										</div><?
-									}
-									?>
-
-								</div>
-							</div>
-
-							<div class=""><?
-							if ($page == 'structure1' || $page == 'structure2') {
-								?>
-								<div class="row btn-group mt-2 mt-md-2"
-									 style="right: 130px;z-index: 999;position: absolute;top: 77px;">
-									<input class="form-control col-7" type="search" id="mySearch"
-										   onkeypress="if (event.keyCode === 13) searchDiagram()">
-									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2"
-									   onclick="searchDiagram()"><?= lang('search') ?></a>
-								</div>
-							<? } ?>
-							</div><?
-						} elseif ($controller == 'Gps') { ?>
+	if ($controller == 'Gps') { ?>
 
 							<div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
 								<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
@@ -440,7 +288,6 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 						<? } ?>
 
-						<input type="hidden" name="company" value="<?= $row_company['name'] ?>">
 
 
 						<script>

@@ -129,7 +129,7 @@
 								data-size="5" id="fleet_type" data-live-search="true"
 								title="<?= lang('select_car_type') ?>">
 							<? foreach ($fleet_type as $row) : ?>
-							<option class="car_type" value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<option class="car_type" value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
 
 						</select>
@@ -175,7 +175,8 @@
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
-						<select name="mileage_value" class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2"  data-size="5"><?
+						<select name="mileage_value"
+								class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2" data-size="5"><?
 							foreach ($value as $row) :
 								if ($row['type'] == 1) :?>
 									<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -184,17 +185,18 @@
 							endforeach; ?>
 						</select>
 					</div>
-<!--					<div class="row" style="margin-top: .6rem;">-->
-<!--						<label class="pl-3 col-form-label col-sm-4"-->
-<!--							   style="font-size: 15px;">--><?//= lang('odometer') ?><!--</label>-->
-<!--						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"-->
-<!--							   placeholder="--><?//= lang('odometer') ?><!--">-->
-<!--					</div>-->
-<!--					todo-->
+					<!--					<div class="row" style="margin-top: .6rem;">-->
+					<!--						<label class="pl-3 col-form-label col-sm-4"-->
+					<!--							   style="font-size: 15px;">-->
+					<? //= lang('odometer') ?><!--</label>-->
+					<!--						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"-->
+					<!--							   placeholder="--><? //= lang('odometer') ?><!--">-->
+					<!--					</div>-->
+					<!--					todo-->
 
 				</div>
 
-				<div class="col-sm-3">
+				<div class="col-sm-4">
 					<div class="row">
 						<label class="pl-4 col-form-label col-sm-3"
 							   style="font-size: 15px;"><?= lang('color') ?> *</label>
@@ -265,7 +267,7 @@
 					<label class="col-sm-6 col-form-label text-right"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
 					<label
-						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: -20px;"
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: 7px;"
 						class="btn btn-sm btn-outline-success mb-0">
 						<span><?= lang('browse') ?></span>
 						<input type="file" name="regitered_file" class="d-none form-control-file btn_input" hidden
@@ -294,7 +296,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info1"
 												aria-expanded="false" aria-controls="collapse_info1">
-											<?=lang('insurance1')?>։
+											<?= lang('insurance1') ?>։
 										</button>
 									</h5>
 								</div>
@@ -342,7 +344,7 @@
 												</div>
 
 												<div class="col-md-2">
-													<label><?=lang('insurance_data')?></label>
+													<label><?= lang('insurance_data') ?></label>
 													<label
 														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
@@ -364,7 +366,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info2"
 												aria-expanded="false" aria-controls="collapse_info2">
-											<?=lang('insurance1')?>։
+											<?= lang('insurance1') ?>։
 										</button>
 									</h5>
 								</div>
@@ -410,7 +412,7 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<label><?=lang('insurance_data')?></label>
+													<label><?= lang('insurance_data') ?></label>
 													<label
 														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
@@ -431,7 +433,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info3"
 												aria-expanded="false" aria-controls="collapse_info3">
-											<?=lang('other')?>։
+											<?= lang('other') ?>։
 										</button>
 									</h5>
 								</div>
@@ -478,7 +480,7 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<label><?=lang('insurance_data')?></label>
+													<label><?= lang('insurance_data') ?></label>
 													<label for="file_3"
 														   style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														   class="btn btn-sm btn-outline-secondary">
@@ -499,7 +501,7 @@
 										<button class="btn btn-sm btn-link text-success" type="button"
 												data-toggle="collapse" data-target="#collapse_info4"
 												aria-expanded="false" aria-controls="collapse_info4">
-											<?=lang('other')?>։
+											<?= lang('other') ?>։
 										</button>
 									</h5>
 								</div>
@@ -545,7 +547,7 @@
 														   min="1000-01-01" class="form-control form-control-sm">
 												</div>
 												<div class="col-md-2">
-													<label><?=lang('insurance_data')?></label>
+													<label><?= lang('insurance_data') ?></label>
 													<label
 														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
@@ -588,7 +590,8 @@
 										   value="">
 								</td>
 								<td>
-									<select style="height: 37px;" name="value[1]" class="form-control form-control-sm dif_meter"
+									<select style="height: 37px;" name="value[1]"
+											class="form-control form-control-sm dif_meter"
 											data-live-search="true" data-size="5">
 										<option><?= lang('select_value') ?></option>
 										<? foreach ($value as $row) : ?>
@@ -776,7 +779,7 @@
 			'class="form-control form-control-sm dif_meter"\n' +
 			'data-live-search="true"\n' +
 			'data-size="5"\n' +
-			'<option><?=lang("select_value")?></option>\n'+
+			'<option><?=lang("select_value")?></option>\n' +
 			'<? foreach ($value as $row) : ?>\n' +
 			'<option\n' +
 			'value="<?= $row['id'] ?>"><?= $row['title'] ?></option>\n' +
@@ -929,10 +932,10 @@
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
-			$(this).addClass('el_'+i);
-			$(this).append('<style>.el_'+i+':before{\n' +
+			$(this).addClass('el_' + i);
+			$(this).append('<style>.el_' + i + ':before{\n' +
 				'\tcontent: \'\';\n' +
-				'\tborder: 2px solid '+$(this).data('value')+';\n'+
+				'\tborder: 2px solid ' + $(this).data('value') + ';\n' +
 				'\tdisplay: inline-block;\n' +
 				'\twidth: 15px;\n' +
 				'\theight: 15px;\n' +
@@ -948,8 +951,8 @@
 				'\t-o-transition: all .3s ease-in-out;\n' +
 				'\ttransition: all .3s ease-in-out;\n' +
 				'}\n' +
-				'.el_'+i+':hover:before {\n' +
-				 '\tbackground: '+$(this).data('value')+';\n'+
+				'.el_' + i + ':hover:before {\n' +
+				'\tbackground: ' + $(this).data('value') + ';\n' +
 				'}' +
 				'</style>');
 			i++;

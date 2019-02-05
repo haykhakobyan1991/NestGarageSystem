@@ -22,7 +22,7 @@ $lang['generate'] = 'Գեներացնել';
 $lang['logout'] = 'Դուրս Գալ';
 $lang['save'] = 'Պահել';
 $lang['cancel'] = 'Չեղարկել';
-$lang['phone_number'] = 'Հեռախոսահամար';
+$lang['phone_number'] = 'Հեռ.';
 $lang['welcome'] = 'Բարի Գալուստ';
 $lang['yes'] = 'Այո';
 $lang['no'] = 'Ոչ';
@@ -44,7 +44,7 @@ $lang['select_all'] = 'Ըմտրել բոլորը';
 $lang['delete'] = 'Ջնջել';
 $lang['settings'] = 'Կարգավորումներ';
 $lang['titles'] = 'Վերնագրեր';
-$lang['coefficient'] = 'Գործակիցը';
+$lang['coefficient'] = 'Գործակից';
 $lang['download_requisite'] = 'Ներբեռնել ռեքվեզիտ';
 $lang['requisite'] = 'Ռեքվեզիտ';
 
@@ -226,13 +226,13 @@ $lang['vin'] = 'VIN';
 $lang['vehicle_type'] = 'Փոխադրամիջոցի տեսակը';
 $lang['attached'] = 'Կցված';
 $lang['car_number'] = 'Հաշվառման համարանիշ';
-$lang['average_expense_100_km'] = 'Միջին ծաղսը 100 կմ․';
+$lang['average_expense_100_km'] = 'Միջին ծախսը 100 կմ․';
 $lang['in_day'] = 'Օրեկան';
 $lang['running'] = 'Վազք';
 $lang['odometer'] = 'Վազք';
-$lang['GPS_Exist'] = 'GPS գոյություն ունի';
+$lang['GPS_Exist'] = 'GPS';
 $lang['GPS_Tracker_IMEI'] = 'GPS Tracker IMEI';
-$lang['registration_address'] = 'Հաշվառման Հասցե';
+$lang['registration_address'] = 'Հասցե';
 $lang['in_force'] = 'Ուժի մեջ է';
 $lang['item_name'] = "Անվանում";
 $lang['KM\Days\Months'] = 'կմ\օր\ամիս';
@@ -242,7 +242,7 @@ $lang['per_day'] = 'Օրական';
 $lang['more_info'] = 'Ավելին';
 $lang['day_before'] = 'Հիշեցնել';
 $lang['start_alarm_day'] = 'Առաջին Զգուշացման Օրը';
-$lang['appendix_copy'] = 'Ավտոմեքենայի Տեխանձնագրի Պատճեն';
+$lang['appendix_copy'] = 'Տեխանձնագրի';
 $lang['kilometer_per_day'] = 'Օրական Կիլոմետր';
 $lang['engine_power'] = 'Շարժիչի հզորություն';
 $lang['fuel'] = 'Վառելիք';
@@ -255,6 +255,8 @@ $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղե�
 //address
 $lang['country'] = 'Երկիր';
 $lang['address'] = 'Հասցե';
+$lang['address_1'] = 'Իրավաբանական Հասցե';
+$lang['address_2'] = 'Գործունեության Հասցե';
 
 $lang['Activity_Region'] = 'Համայնք';
 $lang['Activity_City'] = 'Քաղաքը';
@@ -280,10 +282,10 @@ $lang['head'] = 'Ղեկավար';
 
 
 //owner
-$lang['owner_firstname'] = 'Անունը';
-$lang['owner_lastname'] = 'Ազգանունը';
-$lang['owner_position'] = 'Պաշտոնը';
-$lang['owner_email'] = 'Էլ․ Հասցեն';
+$lang['owner_firstname'] = 'Անուն';
+$lang['owner_lastname'] = 'Ազգանուն';
+$lang['owner_position'] = 'Պաշտոն';
+$lang['owner_email'] = 'Էլ․ Հասցե';
 
 
 //table
@@ -353,7 +355,7 @@ $lang['get_information'] = 'Ստացված ինֆորմացիան';
 $lang['activity'] = 'Ակտիվություն';
 $lang['post_code'] = 'Փոստային Կոդ';
 $lang['tin'] = 'ՀՎՀՀ';
-$lang['general_information'] = 'Սեփականատիրոջ Հիմնական Տվյալներ';
+$lang['general_information'] = 'Տնօրենի Հիմնական Տվյալներ';
 $lang['status_make_passive'] = 'Կարգավիճակ Դարձնել Պասիվ';
 $lang['type_of_meter'] = 'Չափման Միավոր';
 $lang['secondary_meter'] = 'երկրորդական Չափման Միավոր';
@@ -413,6 +415,11 @@ $lang['file'] = 'Փաստաթուղթ';
 $lang['Report_period'] = 'Հաշվետու ժամանակաշրջան';
 $lang['GPS_tracking'] = 'GPS- ի հետեւում';
 $lang['geofences'] = 'Գեոզոնաներ';
+
+
+$lang['Create_New_Geofences'] = 'Ստեղծեք նոր գեոզոնա';
+
+
 
 
 

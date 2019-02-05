@@ -1,10 +1,9 @@
-<?$folder = $this->session->folder;?>
+<? $folder = $this->session->folder; ?>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
 <style>
 	label {
 		font-size: 11px !important;
 	}
-
 	.st_inp::before {
 		content: "";
 		margin-left: -3px;
@@ -16,37 +15,31 @@
 		display: inline-block;
 		opacity: 1 !important;
 	}
-
-	.dropdown.bootstrap-select.col.form-control.form-control-sm.col-sm-7 {
-		margin-left: 87px;
-	}
-
 	i {
 		margin-left: 15px;
 	}
-
 	.card-header {
 		padding: 0 !important;
 	}
-
 	button.btn.dropdown-toggle.bs-placeholder {
 		height: 39px;
 		background: rgb(255, 255, 255);
 		color: rgb(108, 117, 125);
 		border: 1px solid rgb(206, 212, 218);
 	}
-
 	.btn.dropdown-toggle {
 		height: 37px !important;
 	}
-
-	.a_ext>i {
+	.a_ext > i {
 		font-size: 27px;
 		padding-top: 5px !important;
 		margin-right: 40px !important;
 	}
-
-	.a_ext1>i {
+	#model_div label {
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%;
+	}
+	.a_ext1 > i {
 		font-size: 27px;
 		padding-top: 27px !important;
 	}
@@ -125,7 +118,7 @@
 					</div>
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
-						<label class=" col-form-label col-sm-2"><?= lang('model') ?> *</label>
+						<label class=" col-form-label col-sm-2"><?= lang('model') ?>*</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"
@@ -151,13 +144,13 @@
 								title="<?= lang('select_car_type') ?>"
 						>
 
-							<?  foreach ($fleet_type as $row) : ?>
-							<option class="fleet_type"
-							value="<?= $row['id'] ?>"
-							<?= ($fleet['fleet_type_id'] == $row['id'] ? 'selected' : '') ?>
-							>
-							<?= $row['title'] ?>
-							</option>
+							<? foreach ($fleet_type as $row) : ?>
+								<option class="fleet_type"
+										value="<?= $row['id'] ?>"
+									<?= ($fleet['fleet_type_id'] == $row['id'] ? 'selected' : '') ?>
+								>
+									<?= $row['title'] ?>
+								</option>
 							<? endforeach; ?>
 						</select>
 					</div>
@@ -179,12 +172,13 @@
 									<?= $i ?>
 								</option>
 							<?php endfor; ?>
-
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 						<label class="col-sm-4 col-form-label"><?= lang('engine_power') ?></label>
-						<input value="<?= $fleet['engine_power'] ?>" min="0" step="0.1" name="engine_power" type="number" class="form-control form-control-sm col-sm-7" placeholder="<?= lang('engine_power') ?>">
+						<input value="<?= $fleet['engine_power'] ?>" min="0" step="0.1" name="engine_power"
+							   type="number" class="form-control form-control-sm col-sm-7"
+							   placeholder="<?= lang('engine_power') ?>">
 					</div>
 				</div>
 				<div class="col-sm-4">
@@ -223,32 +217,38 @@
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="<?= $fleet['mileage'] ?>" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
-						<select name="mileage_value" class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2"  data-size="5"><?
+						<select name="mileage_value"
+								class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2" data-size="5"><?
 							foreach ($value as $row) :
 								if ($row['type'] == 1) :?>
-									<option <?= $fleet['mileage_value_id'] == $row['id'] ? 'selected' : '' ?> value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<option <?= $fleet['mileage_value_id'] == $row['id'] ? 'selected' : '' ?>
+										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 								<?
 								endif;
 							endforeach; ?>
 						</select>
 					</div>
-<!--					<div class="row mt-1">-->
-<!--						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">--><?//= lang('odometer') ?><!--</label>-->
-<!--						<input value="--><?//= $fleet['odometer'] ?><!--" name="odometer" type="text" class="form-control form-control-sm col-sm-7" placeholder="--><?//= lang('odometer') ?><!--">-->
-<!--					</div>-->
-<!--					todo-->
+					<!--					<div class="row mt-1">-->
+					<!--						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;">-->
+					<? //= lang('odometer') ?><!--</label>-->
+					<!--						<input value="-->
+					<? //= $fleet['odometer'] ?><!--" name="odometer" type="text" class="form-control form-control-sm col-sm-7" placeholder="-->
+					<? //= lang('odometer') ?><!--">-->
+					<!--					</div>-->
+					<!--					todo-->
 
 				</div>
 
 				<div class="col-sm-3">
 					<div class="row">
-						<label class="pl-4 col-form-label col-sm-3"
+						<label class="pl-4 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('color') ?> *</label>
 						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
 								data-size="5"
 								data-live-search="true" title="<?= lang('color') ?>">
 							<? foreach ($fleet_color as $row) : ?>
-								<option <?= ($fleet['color'] == $row['color_code'] ? 'selected' : '')  ?> value="<?= $row['color_code'] ?>"><?= $row['title'] ?></option>
+								<option <?= ($fleet['color'] == $row['color_code'] ? 'selected' : '') ?>
+									value="<?= $row['color_code'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
 						</select>
 
@@ -264,14 +264,14 @@
 					<!--</div>-->
 					<!--</div>-->
 					<div class="row" style="margin-top: .75rem;">
-						<label class="pl-4 col-form-label col-sm-3" style="font-size: 15px;"><?= lang('vin') ?></label>
+						<label class="pl-4 col-form-label col-sm-4" style="font-size: 15px;"><?= lang('vin') ?></label>
 						<input value="<?= $fleet['vin_code'] ?>" name="vin" type="text"
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('vin') ?>">
 					</div>
 
 					<div class="row" style="margin-top: .4rem !important;">
-						<label class=" col-form-label col-sm-3"><?= lang('attached') ?> *</label>
+						<label class=" col-form-label col-sm-4"><?= lang('attached') ?> *</label>
 						<div class="col-sm-7 p-0">
 							<select name="staff[]"
 									class="col  selectpicker form-control form-control-sm"
@@ -332,7 +332,8 @@
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<label class="col-sm-6 col-form-label text-right" style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
+					<label class="col-sm-4 col-form-label text-right"
+						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
 					<label
 						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success mb-0">
@@ -348,7 +349,7 @@
 						target=""
 						class="a_ext"
 						download="<?= $fleet['regitered_file'] ?>"
-						href="<?= base_url('uploads/'.$folder.'/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
+						href="<?= base_url('uploads/' . $folder . '/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
 						<?
 
 						$ext = explode('.', $fleet['regitered_file']);
@@ -369,7 +370,6 @@
 
 
 		<div class="row">
-
 
 
 			<!-- Acardion -->
@@ -468,7 +468,7 @@
 													   value="">
 											</label>
 										</div>
-										<div class="ml-2 float-left"><?
+										<div class="ml-5 float-left"><?
 											if ($fleet['insurance_ext_1'] != '') : ?>
 												<a
 													class="a_ext1"
@@ -484,10 +484,7 @@
 											<? endif; ?>
 										</div>
 									</div>
-
 								</div>
-
-
 							</div>
 						</div>
 					</div>
@@ -1255,10 +1252,10 @@
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
-			$(this).addClass('el_'+i);
-			$(this).append('<style>.el_'+i+':before{\n' +
+			$(this).addClass('el_' + i);
+			$(this).append('<style>.el_' + i + ':before{\n' +
 				'\tcontent: \'\';\n' +
-				'\tborder: 2px solid '+$(this).data('value')+';\n'+
+				'\tborder: 2px solid ' + $(this).data('value') + ';\n' +
 				'\tdisplay: inline-block;\n' +
 				'\twidth: 15px;\n' +
 				'\theight: 15px;\n' +
@@ -1274,8 +1271,8 @@
 				'\t-o-transition: all .3s ease-in-out;\n' +
 				'\ttransition: all .3s ease-in-out;\n' +
 				'}\n' +
-				'.el_'+i+':hover:before {\n' +
-				'\tbackground: '+$(this).data('value')+';\n'+
+				'.el_' + i + ':hover:before {\n' +
+				'\tbackground: ' + $(this).data('value') + ';\n' +
 				'}' +
 				'</style>');
 			i++;
@@ -1298,5 +1295,10 @@
 		$('.fleet_type_6 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/minivan.png">');
 		$('.fleet_type_7 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car-with-trailer.png">');
 	});
+
+	$(document).on('change', function () {
+		$('#model_div label').css('flex', '0 0 33.333333% !important');
+		$('#model_div label').css('max-width', '33.333333% !important');
+	})
 
 </script>

@@ -18,7 +18,7 @@
 <script type="text/javascript" src="<?= base_url('assets/js/ymap.js') ?>"></script>
 
 <style>
-	ul.pagination  {
+	ul.pagination {
 		margin-top: 5px !important;
 	}
 
@@ -40,25 +40,31 @@
 	<div class="row">
 		<div class="col-sm-5">
 			<div class="row">
-				<button class="btn btn-outline-secondary ml-3 mr-1"
-						style="z-index: 999;"
-						data-toggle="modal"
-						data-target=".bd-example-modal-xl"
-				>New
-				</button>
-				<select name="company_type"
-						id="table-filter"
-						class="selectpicker form-control form-control-sm col-sm-3"
-						data-size="5"
-						id="company_type"
-						data-live-search="true"
-						title="<?= lang('all') ?>">
-					<option value=""><?= lang('all') ?></option>
-					<option value="b geofences 1">b geofences 1</option>
-					<option value="a geofences 1">a geofences 1</option>
-					<option value="d geofences 1">d geofences 1</option>
-					<option value="e geofences 1">d geofences 1</option>
-				</select>
+
+				<div class="col-sm-2" style="padding-top: 10px;">
+					<i style="font-size: 17px;" class="fas fa-draw-polygon"></i>
+					<span class="count_cars_in_table">4</span>
+				</div>
+
+				<span style="padding-top: 11px;">Ստեղծել</span>
+				<span class=" ml-3 mr-1 mt-3"
+					  style="z-index: 999;"
+					  data-toggle="modal"
+					  data-target=".bd-example-modal-xl"><i class="fas fa-plus"></i>
+				</span>
+				<!--				<select name="company_type"-->
+				<!--						id="table-filter"-->
+				<!--						class="selectpicker form-control form-control-sm col-sm-3"-->
+				<!--						data-size="5"-->
+				<!--						id="company_type"-->
+				<!--						data-live-search="true"-->
+				<!--						title="--><? //= lang('all') ?><!--">-->
+				<!--					<option value="">--><? //= lang('all') ?><!--</option>-->
+				<!--					<option value="b geofences 1">b geofences 1</option>-->
+				<!--					<option value="a geofences 1">a geofences 1</option>-->
+				<!--					<option value="d geofences 1">d geofences 1</option>-->
+				<!--					<option value="e geofences 1">d geofences 1</option>-->
+				<!--				</select>-->
 
 
 				<table id="example"
@@ -227,8 +233,9 @@
 	<div class="modal-dialog  modal-full">
 		<div class="modal-content">
 			<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-				<h5 class="modal-title" id="exampleModalLabel">Create New Geofences</h5>
+				<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
 				<div class="float-right">
+					<button style="float: none;margin-right: 1px;" class="cancel_btn close btn btn-sm refresh_map"><i class="fas fa-redo"></i></button>
 					<button id="add_department_btn" type="button"
 							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
 					</button>
@@ -236,7 +243,7 @@
 							class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-					<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1"
+					<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1 delete_geofences_onMap"
 							data-dismiss="modal"
 							aria-label="Close">
 						<?= lang('cancel') ?>
@@ -261,7 +268,7 @@
 	<div class="modal-dialog  modal-full">
 		<div class="modal-content">
 			<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-				<h5 class="modal-title" id="exampleModalLabel">Create New Geofences</h5>
+				<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
 				<div class="float-right">
 					<button id="add_department_btn" type="button"
 							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
@@ -319,14 +326,11 @@
 					});
 
 					myMap_show_all_geofances.geoObjects.add(myPolygon);
-
 					myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
 
 				}
-
 			});
-
 		}
 
 
@@ -339,7 +343,7 @@
 				var myMap_show_all_geofances = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
-				}, {suppressMapOpenBlock: true});
+				}, { suppressMapOpenBlock: true });
 
 				$('input[name="coordinate"]').each(function () {
 
@@ -359,24 +363,20 @@
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
+						
 						myMap_show_all_geofances.geoObjects.add(myPolygon);
-
 						myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
-
 					}
-
 				});
-
 			}
 		});
 
 
 		//Yandex Map Modal Edit geoObject Start
 		$(document).on('click', '.settings_geoObject', function () {
-				var th = $(this);
-			$('#shown').on('shown.bs.modal', function(){
+			var th = $(this);
+			$('#shown').on('shown.bs.modal', function () {
 				$('#map_settings').html('');
 
 				geoObject_coordinates = th.parent('tr').children('td:first-child').children('input').attr('data-coordinate');
@@ -417,46 +417,23 @@
 
 	//Yandex Map Modal Start
 
-	ymaps.ready(init2);
+	function createNewGeofences() {
+		ymaps.ready(init2);
 
-	function init2() {
-		var myMap_new = new ymaps.Map("map_new", {
-			center: [55.76, 37.64],
-			zoom: 7
-		});
-
-		var myPolygon = new ymaps.Polygon([], {}, {
-			editorDrawingCursor: "crosshair",
-			editorMaxPoints: 10,
-			fillColor: '#00ff0054',
-			strokeColor: '#0000FF',
-			strokeWidth: 3
-		});
-
-		myMap_new.geoObjects.add(myPolygon);
-		var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
-		stateMonitor.add("drawing", function (newValue) {
-			myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
-		});
-
-		myPolygon.geometry.events.add('change', function () {
-			console.log(myPolygon.geometry.getCoordinates().toString());
-		});
-		myPolygon.editor.startDrawing();
-
-
-		firstButton = new ymaps.control.Button("<i class='fas fa-draw-polygon'></i> Polygon");
-		myMap_new.controls.add(firstButton, {float: 'left'});
-
-		firstButton.events.add('click', function () {
+		function init2() {
+			var myMap_new = new ymaps.Map("map_new", {
+				center: [55.76, 37.64],
+				zoom: 7
+			});
 
 			var myPolygon = new ymaps.Polygon([], {}, {
 				editorDrawingCursor: "crosshair",
-				editorMaxPoints: 10,
+				editorMaxPoints: 100,
 				fillColor: '#00ff0054',
 				strokeColor: '#0000FF',
 				strokeWidth: 3
 			});
+
 			myMap_new.geoObjects.add(myPolygon);
 			var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
 			stateMonitor.add("drawing", function (newValue) {
@@ -468,8 +445,46 @@
 			});
 			myPolygon.editor.startDrawing();
 
-		});
+
+			firstButton = new ymaps.control.Button("<i class='fas fa-draw-polygon'></i> Polygon");
+			myMap_new.controls.add(firstButton, {float: 'left'});
+
+			firstButton.events.add('click', function () {
+
+				var myPolygon = new ymaps.Polygon([], {}, {
+					editorDrawingCursor: "crosshair",
+					editorMaxPoints: 10,
+					fillColor: '#00ff0054',
+					strokeColor: '#0000FF',
+					strokeWidth: 3
+				});
+				myMap_new.geoObjects.add(myPolygon);
+				var stateMonitor = new ymaps.Monitor(myPolygon.editor.state);
+				stateMonitor.add("drawing", function (newValue) {
+					myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
+				});
+
+				myPolygon.geometry.events.add('change', function () {
+					console.log(myPolygon.geometry.getCoordinates().toString());
+				});
+				myPolygon.editor.startDrawing();
+
+			});
+		}
 	}
+
+	createNewGeofences();
+
+	$('.delete_geofences_onMap').click(function () {
+		$('#map_new').html('');
+		createNewGeofences();
+	});
+
+
+	$('.refresh_map').click(function () {
+		$('#map_new').html('');
+		createNewGeofences();
+	})
 
 	//Yandex Map Modal End
 

@@ -3017,7 +3017,8 @@ class Organization extends MX_Controller {
 
 		//file config
 		$config_f['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/regitered_file');
-		$config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		// $config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx'; //todo
+		$config_f['allowed_types'] = '*';
 		$config_f['max_size'] = '4097152'; //4 MB
 		$config_f['file_name'] = $this->uname(3, 8);
 
@@ -3056,12 +3057,13 @@ class Organization extends MX_Controller {
 		$company = $this->input->post('company');
 		//$file = $this->input->post('file');
 		$reference = $this->input->post('reference');
-		$expiration = $this->input->post('expiration');
+		$expiration = $this->input->post('expiration'); 
 		$type = $this->input->post('type');
 
 		//file config insurance
 		$config_f_i['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/insurance');
-		$config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx';
+		// $config_f_i['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx'; //todo
+		$config_f_i['allowed_types'] = '*';
 		$config_f_i['max_size'] = '4097152'; //4 MB
 		$config_f_i['file_name'] = $this->uname(3, 8);
 

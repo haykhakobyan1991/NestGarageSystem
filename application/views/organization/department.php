@@ -14,6 +14,10 @@
 		color: #fff !important;
 		background: rgb(255, 122, 89) !important;
 	}
+
+	.btn.dropdown-toggle.bs-placeholder {
+		font-size: 13px !important;
+	}
 </style>
 
 <script>
@@ -39,180 +43,183 @@
 </script>
 <!-- Department Start -->
 
-	<div class="tab-pane fade show active" id="list-department" role="tabpanel" style="padding-top:10px;"
-		 aria-labelledby="list-department-list">
+<div class="tab-pane fade show active" id="list-department" role="tabpanel" style="padding-top:10px;"
+	 aria-labelledby="list-department-list">
 
 
-		<div class="pt-2">
-			<div class="container-fluid">
-				<p class="display-5 font-weight-bold mb-0"><?= lang('department') ?></p>
-				<hr class="my-2">
-			</div>
+	<div class="pt-2">
+		<div class="container-fluid">
+			<p class="display-5 font-weight-bold mb-0"><?= lang('department') ?></p>
+			<hr class="my-2">
+		</div>
 
-			<div class="container-fluid">
-				<p class="display-5 font-weight-bold float-left"><?=lang('count_departments')?></p>
-				<span
-					class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span><?
-					if($this->load->authorisation('Organization', 'add_department', 1)) :
-					?>
-					<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
-						  data-target="#add_department"><?=lang('create_departments')?>
-					</span><?
-					endif;
-					?>
-				<hr class="my-4">
-			</div>
-
-
-			<div class="row  m-0 col-sm-12 col-md-12"
-				 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+		<div class="container-fluid">
+			<p class="display-5 font-weight-bold float-left"><?= lang('count_departments') ?></p>
+			<span
+				class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $department_num_rows ?></span><?
+			if ($this->load->authorisation('Organization', 'add_department', 1)) :
+				?>
+				<span class="btn btn-outline-success btn-sm float-right" data-toggle="modal"
+					  data-target="#add_department"><?= lang('create_departments') ?>
+				</span><?
+			endif;
+			?>
+			<hr class="my-4">
+		</div>
 
 
-				<table id="example" class="table table-striped table-borderless"
-					   style="width:100%">
-					<thead style="background: #fff;
+		<div class="row  m-0 col-sm-12 col-md-12"
+			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
+
+
+			<table id="example" class="table table-striped table-borderless"
+				   style="width:100%">
+				<thead style="background: #fff;
 color: #545b62;">
+				<tr>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('department') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('more_info') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('first_name') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('last_name') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('phone_number') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('email') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('Created_Date') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;"><?= lang('by_whom') ?></th>
+					<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
+				</tr>
+				</thead>
+				<tbody>
+				<? foreach ($department as $item) : ?>
 					<tr>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('department')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('more_info')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('first_name')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('last_name')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('phone_number')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('email')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('Created_Date')?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?=lang('by_whom')?></th>
-						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
-					</tr>
-					</thead>
-					<tbody>
-					<? foreach ($department as $item) : ?>
-						<tr>
-							<td><?= $item['title'] ?></td>
-							<td><?= $item['description'] ?></td>
-							<td><?= $item['first_name'] ?></td>
-							<td><?= $item['last_name'] ?></td>
-							<td><?= $item['phone'] ?></td>
-							<td><?= $item['email'] ?></td>
-							<td><?= $item['registration_date'] ?></td>
-							<td><?= $item['user_name'] ?></td>
-							<td colspan="2"><?
-								if ($this->load->authorisation('Organization', 'edit_department', 1)) :
+						<td><?= $item['title'] ?></td>
+						<td><?= $item['description'] ?></td>
+						<td><?= $item['first_name'] ?></td>
+						<td><?= $item['last_name'] ?></td>
+						<td><?= $item['phone'] ?></td>
+						<td><?= $item['email'] ?></td>
+						<td><?= $item['registration_date'] ?></td>
+						<td><?= $item['user_name'] ?></td>
+						<td colspan="2"><?
+							if ($this->load->authorisation('Organization', 'edit_department', 1)) :
 								?>
-									<span style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
-										  data-id="<?= $item['id'] ?>" id="edit_department_modal"
-										  data-toggle="modal" class="float-left text-success"
-										  data-target="#edit_department"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="edit"><i class="fas fa-edit"></i></span>
-								<?endif;?>
+								<span
+									style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
+									data-id="<?= $item['id'] ?>" id="edit_department_modal"
+									data-toggle="modal" class="float-left text-success"
+									data-target="#edit_department"
+									data-toggle2="tooltip"
+									data-placement="top"
+									title="edit"><i class="fas fa-edit"></i></span>
+							<? endif; ?>
 
-								<?if ($this->load->authorisation('Organization', 'delete_department', 1)) :?>
-								<span style="border: none; cursor:pointer;" data-toggle="modal"
-									  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
-									  id="delete_department_modal" class="text-secondary"
-									  data-toggle2="tooltip"
-									  data-placement="top"
-									  title="delete"><i class="fas fa-trash"></i></span></td>
-								<?endif;?>
-						</tr>
-
-
-					<? endforeach; ?>
-				</table>
+							<? if ($this->load->authorisation('Organization', 'delete_department', 1)) : ?>
+							<span style="border: none; cursor:pointer;" data-toggle="modal"
+								  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
+								  id="delete_department_modal" class="text-secondary"
+								  data-toggle2="tooltip"
+								  data-placement="top"
+								  title="delete"><i class="fas fa-trash"></i></span></td>
+						<? endif; ?>
+					</tr>
 
 
+				<? endforeach; ?>
+			</table>
+
+
+		</div>
+
+
+		<div class="modal fade" id="edit_department" tabindex="-1" role="dialog"
+			 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header bg-dark">
+						<h6 class="text-white modal-title dar"><?= lang('department') ?></h6>
+					</div>
+					<div class="modal-body">
+						<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+							 src="<?= base_url() ?>assets/images/bars.svg"/>
+					</div>
+				</div>
 			</div>
+		</div>
 
-
-			<div class="modal fade" id="edit_department" tabindex="-1" role="dialog"
+		<!--  Department Modal Start -->
+		<form id="department">
+			<div class="modal fade " tabindex="-1" role="dialog" id="add_department"
 				 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header bg-dark">
-							<h6 class="text-white modal-title dar"><?=lang('department')?></h6>
+							<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6>
 						</div>
 						<div class="modal-body">
-							<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-								 src="<?= base_url() ?>assets/images/bars.svg"/>
+							<!-- Error Message -->
+
+							<div class="for_message">
+								<div class="alert alert-success d-none " role="alert"></div>
+								<div class="alert alert-danger d-none " role="alert"></div>
+							</div>
+
+
+							<div class="form-group row mb-0">
+
+								<label class="col-sm-3 col-form-label"><?= lang('item_name') ?> *</label>
+								<div class="col-sm-8">
+									<input type="text" name="title" class="form-control"
+										   placeholder="<?= lang('item_name') ?>">
+								</div>
+							</div>
+
+
+							<div class="form-group row mb-0 mt-1" style="font-size: 13px !important;">
+								<label class="col-sm-3 col-form-label"><?= lang('head') ?> </label>
+								<div class="col-sm-8">
+									<select name="head_staff"
+											class="form-control selectpicker"
+											data-size="5" id="head_staff" data-live-search="true"
+											title="<?= lang('select_staff') ?>">
+										<?
+										foreach ($staff_for_select as $val) :
+											?>
+											<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
+										<? endforeach; ?>
+									</select>
+								</div>
+							</div>
+
+							<div class="form-group row mb-2" style="margin-top: 0.4em;">
+								<label class="col-sm-3 col-form-label"><?= lang('more_info') ?></label>
+								<div class="col-sm-8">
+											<textarea style="font-size: 13px;" rows="3" value="" type="text"
+													  class=" form-control"
+													  name="description"
+													  placeholder="<?= lang('more_info') ?>"></textarea>
+								</div>
+							</div>
+
+							<div class="modal-footer pb-0" style="margin-right: 22px;">
+								<button id="add_department_btn" type="button"
+										class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+								</button>
+								<button id="load" style="height: 40px !important; width: 90px !important;"
+										class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+										style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+										src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+								<button type="button" class="cancel_btn close btn btn-sm"
+										data-dismiss="modal"
+										aria-label="Close">
+									<?= lang('cancel') ?>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<!--  Department Modal Start -->
-			<form id="department">
-				<div class="modal fade " tabindex="-1" role="dialog" id="add_department"
-					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header bg-dark">
-								<h6 class="text-white modal-title dar"><?= lang('New_Department') ?></h6>
-							</div>
-							<div class="modal-body">
-								<!-- Error Message -->
-
-								<div class="for_message">
-									<div class="alert alert-success d-none " role="alert"></div>
-									<div class="alert alert-danger d-none " role="alert"></div>
-								</div>
-
-
-								<div class="form-group row mb-0">
-
-									<label class="col-sm-3 col-form-label"><?=lang('item_name')?> *</label>
-									<div class="col-sm-8">
-										<input type="text" name="title" class="form-control" placeholder="<?=lang('item_name')?>">
-									</div>
-								</div>
-
-
-								<div class="form-group row mb-0 mt-1">
-									<label class="col-sm-3 col-form-label"><?=lang('head')?> </label>
-									<div class="col-sm-8">
-										<select name="head_staff"
-												class="form-control selectpicker"
-												data-size="5" id="head_staff" data-live-search="true"
-												title="<?= lang('select_staff') ?>">
-											<?
-											foreach ($staff_for_select as $val) :
-												?>
-												<option value="<?= $val['id'] ?>"><?= $val['name'] ?></option>
-											<? endforeach; ?>
-										</select>
-									</div>
-								</div>
-
-								<div class="form-group row mb-2" style="margin-top: 0.4em;">
-									<label class="col-sm-3 col-form-label"><?=lang('more_info')?></label>
-									<div class="col-sm-8">
-											<textarea rows="3" value="" type="text"
-													  class=" form-control"
-													  name="description"
-													  placeholder="<?=lang('more_info')?>"></textarea>
-									</div>
-								</div>
-
-								<div class="modal-footer pb-0" style="margin-right: 22px;">
-									<button id="add_department_btn" type="button"
-											class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
-									</button>
-									<button id="load" style="height: 40px !important; width: 90px !important;" class="btn btn-sm btn-outline-success cancel_btn d-none"><img
-											style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-											src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-									<button type="button" class="cancel_btn close btn btn-sm"
-											data-dismiss="modal"
-											aria-label="Close">
-										<?= lang('cancel') ?>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-		</div>
+		</form>
 	</div>
+</div>
 
 
 <!-- Department End -->
@@ -223,7 +230,8 @@ color: #545b62;">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 15px;"><?=lang('are_you_sure_you_want_to_delete')?></h6>
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
@@ -255,7 +263,7 @@ color: #545b62;">
 
 	$(document).on('click', '#delete_department', function () {
 		var id = $('input[name="department_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) .'/Organization/delete_department/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/delete_department/')?>';
 
 		$.post(url, {department_id, id}, function (result) {
 			location.reload();

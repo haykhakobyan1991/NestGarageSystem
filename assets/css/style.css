@@ -219,6 +219,21 @@ input[type="number"] {
 	}
 }
 
+span.btn.btn-sm.btn-outline-success.btn-file.mr-1.span_button_uploade {
+	margin-left: 274px;
+	font-size: 14px !important;
+	line-height: 14px !important;
+	padding: 12px 24px !important;
+	font-weight: 500 !important;
+	margin-top: -69px !important;
+}
+
+@media screen and (max-width: 1349px) {
+	span.btn.btn-sm.btn-outline-success.btn-file.mr-1.span_button_uploade {
+		margin-left: 274px;
+	}
+}
+
 .btn-file {
 	position: relative !important;
 	overflow: hidden !important;
@@ -447,4 +462,9 @@ canvas:focus {
 	left: -8px;
 }
 
+@media (max-width: 1024px) {
+	.res_cont_fl.container-fluid{
+		margin-top: 7rem !important;
+	}
+}
 

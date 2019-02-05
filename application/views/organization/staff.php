@@ -14,7 +14,6 @@ foreach ($staff as $row) :
 	$total++;
 
 
-
 endforeach;
 ?>
 
@@ -49,7 +48,7 @@ endforeach;
 				<div class="row">
 					<div class="col-sm-5 pt-2">
 						<div class="row">
-							<div class="col-sm-4">
+							<div class="col-sm-6">
 								<p class="display-5 font-weight-bold float-left"
 								   style="font-size: 12px;"><?= lang('total_staff') ?></p> <span
 									class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
@@ -57,10 +56,10 @@ endforeach;
 						</div>
 					</div>
 					<div class="col-sm-7 text-right"><?
-						if($this->load->authorisation('Organization', 'add_staff', 1)) :
-						?>
+						if ($this->load->authorisation('Organization', 'add_staff', 1)) :
+							?>
 							<span class="text-capitalize btn btn-outline-success btn-sm float-right" data-toggle="modal"
-							  data-target=".add_staff_modal"><?= lang('add_staff') ?>
+								  data-target=".add_staff_modal"><?= lang('add_staff') ?>
 							</span><?
 						endif;
 						?>
@@ -164,7 +163,8 @@ endforeach;
 													</div>
 													<div class="row mt-1">
 														<label
-															class="col-sm-4 col-form-label"><?= lang('last_name') ?>*</label>
+															class="col-sm-4 col-form-label"><?= lang('last_name') ?>
+															*</label>
 														<div class="col-sm-8">
 															<input type="text" class="form-control form-control-sm"
 																   name="lastname"
@@ -192,15 +192,20 @@ endforeach;
 																	data-live-search="true"
 																	title="<?= lang('select_department') ?>">
 																<? foreach ($department as $row) : ?>
-																	<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+																	<option
+																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 																<? endforeach; ?>
 															</select>
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label class="col-sm-4 col-form-label"><?= lang('position') ?></label>
-														<div id="default-suggestions"  class="col-sm-8">
-															<input type="text" class="typeahead form-control form-control-sm" name="position" placeholder="<?= lang('position') ?>">
+														<label
+															class="col-sm-4 col-form-label"><?= lang('position') ?></label>
+														<div id="default-suggestions" class="col-sm-8">
+															<input type="text"
+																   class="typeahead form-control form-control-sm"
+																   name="position"
+																   placeholder="<?= lang('position') ?>">
 															<input type="hidden" name="head">
 														</div>
 													</div>
@@ -208,7 +213,9 @@ endforeach;
 														<label
 															class="col-sm-4 col-form-label"><?= lang('nest_card_id') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm" name="nest_card_id" placeholder="<?= lang('nest_card_id') ?>">
+															<input type="text" class="form-control form-control-sm"
+																   name="nest_card_id"
+																   placeholder="<?= lang('nest_card_id') ?>">
 														</div>
 													</div>
 												</div>
@@ -226,35 +233,44 @@ endforeach;
 																<option value=""><?= lang('select_country') ?>...
 																</option>
 																<? foreach ($country as $row) : ?>
-																	<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+																	<option
+																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 																<? endforeach; ?>
 															</select>
 														</div>
 													</div>
 													<div class="row" style="margin-top: .75rem!important;">
-														<label class="col-sm-4 col-form-label" style="font-size: 15px;"><?= lang('address') ?></label>
+														<label class="col-sm-4 col-form-label"
+															   style="font-size: 15px;"><?= lang('address') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm" name="address" placeholder="<?= lang('address') ?>">
+															<input type="text" class="form-control form-control-sm"
+																   name="address" placeholder="<?= lang('address') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('post_code') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm" name="post_code" placeholder="<?= lang('post_code') ?>">
+															<input type="text" class="form-control form-control-sm"
+																   name="post_code"
+																   placeholder="<?= lang('post_code') ?>">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label class="col-sm-4 col-form-label"
 															   style="font-size: 15px;"><?= lang('contact_number') ?></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm" name="contact_1" placeholder="<?= lang('contact_number') ?> 1">
+															<input type="text" class="form-control form-control-sm"
+																   name="contact_1"
+																   placeholder="<?= lang('contact_number') ?> 1">
 														</div>
 													</div>
 													<div class="row mt-1">
 														<label class="col-sm-4 col-form-label"></label>
 														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm" name="contact_2" placeholder="<?= lang('contact_number') ?> 2">
+															<input type="text" class="form-control form-control-sm"
+																   name="contact_2"
+																   placeholder="<?= lang('contact_number') ?> 2">
 														</div>
 													</div>
 
@@ -291,7 +307,8 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<input type="hidden" name="document_1" value="<?= lang('passport') ?>" />
+																		<input type="hidden" name="document_1"
+																			   value="<?= lang('passport') ?>"/>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('passport') ?></label>
@@ -301,9 +318,12 @@ endforeach;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					  class="btn btn-sm btn-outline-secondary">
+																					   class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input" name="file_1" type="file" hidden style="display: none;" value="">
+																					<input class="btn_input"
+																						   name="file_1" type="file"
+																						   hidden style="display: none;"
+																						   value="">
 																				</label>
 																			</div>
 																		</div>
@@ -311,17 +331,23 @@ endforeach;
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text" name="reference_1" class="form-control form-control-sm" placeholder="<?= lang('reference') ?>">
+																				<input type="text" name="reference_1"
+																					   class="form-control form-control-sm"
+																					   placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
 																		<div class="col-md-3">
 																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_1" max="3000-12-31" min="1000-01-01" class="form-control form-control-sm">
+																			<input type="date" name="expiration_1"
+																				   max="3000-12-31" min="1000-01-01"
+																				   class="form-control form-control-sm">
 																		</div>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('note') ?></label>
-																				<input type="text" name="note_1" class="form-control form-control-sm" placeholder="<?= lang('note') ?>">
+																				<input type="text" name="note_1"
+																					   class="form-control form-control-sm"
+																					   placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -349,7 +375,8 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<input type="hidden" name="document_2" value="<?= lang('social_card') ?>" />
+																		<input type="hidden" name="document_2"
+																			   value="<?= lang('social_card') ?>"/>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('social_card') ?></label>
@@ -359,9 +386,12 @@ endforeach;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					  class="btn btn-sm btn-outline-secondary">
+																					   class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input" name="file_2" type="file" hidden style="display: none;" value="">
+																					<input class="btn_input"
+																						   name="file_2" type="file"
+																						   hidden style="display: none;"
+																						   value="">
 																				</label>
 																			</div>
 																		</div>
@@ -415,7 +445,8 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<input type="hidden" name="document_3" value="<?= lang('driving_license') ?>" />
+																		<input type="hidden" name="document_3"
+																			   value="<?= lang('driving_license') ?>"/>
 
 																		<div class="col-md-3">
 																			<div class="form-group">
@@ -426,7 +457,7 @@ endforeach;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					  class="btn btn-sm btn-outline-secondary">
+																					   class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_3" type="file"
@@ -477,7 +508,7 @@ endforeach;
 																	data-target="#collapseFour"
 																	aria-expanded="false"
 																	aria-controls="collapseThree">
-																	<?=lang('health_insurance')?>
+																	<?= lang('health_insurance') ?>
 																</button>
 															</h5>
 														</div>
@@ -487,7 +518,8 @@ endforeach;
 															<div class="card-body">
 																<div class="add_new_items">
 																	<div class="row">
-																		<input type="hidden" name="document_4" value="<?= lang('technical_passport') ?>" />
+																		<input type="hidden" name="document_4"
+																			   value="<?= lang('technical_passport') ?>"/>
 																		<div class="col-md-3">
 																			<div class="form-group">
 																				<label><?= lang('technical_passport') ?></label>
@@ -497,7 +529,7 @@ endforeach;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					  class="btn btn-sm btn-outline-secondary">
+																					   class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
 																					<input class="btn_input"
 																						   name="file_4" type="file"
@@ -544,14 +576,16 @@ endforeach;
 											<button id="add_staff" type="button"
 													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
-											<button style="max-height: 40px; height: 40px !important; width: 93px !important;" id="load"
-													class="cancel_btn close btn btn-sm d-none">
+											<button
+												style="max-height: 40px; height: 40px !important; width: 93px !important;"
+												id="load"
+												class="cancel_btn close btn btn-sm d-none">
 												<img style="height: 24px;
 														   margin: 0 auto;
 														   padding-bottom: 5px;
 														   display: block;
 														   text-align: center;"
-													src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+													 src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 											<button type="button" class="cancel_btn close btn btn-sm"
 													data-dismiss="modal"
 													aria-label="Close">
@@ -568,14 +602,14 @@ endforeach;
 			</div>
 			<hr class="my-2">
 
-			<div class="row  m-0 col-sm-12 col-md-12" style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
+			<div class="row  m-0 col-sm-12 col-md-12"
+				 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
 
 
 				<table id="example2" class="table table-striped table-borderless" style="width:100%">
 					<thead style="background: #fff;color: #545b62;">
 					<tr>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('status') ?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('position') ?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('section') ?></th>
 						<th style="font-size: 12px !important;font-weight:500;"><?= lang('head') ?></th>
@@ -602,14 +636,6 @@ endforeach;
 										</small>
 									</div>
 								</div>
-							</td>
-							<td class="text-center">
-								<? if ($row['status'] == 1) { ?>
-									<div class="bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-								<? } else { ?>
-									<div class="bg-danger"
-										 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-								<? } ?>
 							</td>
 							<td><?= $row['position'] ?></td>
 							<td><?= $row['department'] ?></td>
@@ -660,25 +686,25 @@ endforeach;
 
 							<td colspan="2"><?
 								if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
-								?>
-								<span style="border: none;padding-top: 5px;cursor: pointer;"
-									  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-									  data-toggle="modal" class="float-left text-success"
-									  data-target="#edit_staff"
-									  data-toggle2="tooltip"
-									  data-placement="top"
-									  title="edit"><i class="fas fa-edit"></i></span>
-								<?endif;?>
+									?>
+									<span style="border: none;padding-top: 5px;cursor: pointer;"
+										  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+										  data-toggle="modal" class="float-left text-success"
+										  data-target="#edit_staff"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="edit"><i class="fas fa-edit"></i></span>
+								<? endif; ?>
 
-								<?if ($this->load->authorisation('Organization', 'delete_staff', 1)) :?>
-								<span style="border: none; cursor:pointer;" data-toggle="modal"
-									  id="delete_staff_modal"
-									  class="text-secondary btn"
-									  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
-									  data-toggle2="tooltip"
-									  data-placement="top"
-									  title="delete"><i class="fas fa-trash"></i></span>
-								<?endif;?>
+								<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
+									<span style="border: none; cursor:pointer;" data-toggle="modal"
+										  id="delete_staff_modal"
+										  class="text-secondary btn"
+										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="delete"><i class="fas fa-trash"></i></span>
+								<? endif; ?>
 							</td>
 						</tr>
 					<? endforeach; ?>
@@ -756,7 +782,7 @@ endforeach;
 
 	$(document).on('click', '#delete_staff', function () {
 		var id = $('input[name="staff_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Organization/delete_staff/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/delete_staff/')?>';
 
 		$.post(url, {staff_id: id}, function (result) {
 			location.reload();
@@ -1009,13 +1035,11 @@ endforeach;
 	});
 
 
-
-
 	function nflTeamsWithDefaults(q, sync) {
 		if (q === '') {
-			var text = [{'team' :'<?=lang('head')?>'}];
+			var text = [{'team': '<?=lang('head')?>'}];
 			sync(text);
-		} else if(q != '<?=lang('head')?>'){
+		} else if (q != '<?=lang('head')?>') {
 			$('input[name="head"]').val('');
 		} else if (q == '<?=lang('head')?>') {
 			$('input[name="head"]').val('1');
@@ -1032,7 +1056,7 @@ endforeach;
 			source: nflTeamsWithDefaults
 		});
 
-	$('#default-suggestions .typeahead').on('typeahead:selected', function(evt, item) {
+	$('#default-suggestions .typeahead').on('typeahead:selected', function (evt, item) {
 		$('input[name="head"]').val('1');
 	});
 
@@ -1040,11 +1064,11 @@ endforeach;
 	$(document).on('click', 'li.no-results', function () {
 		var new_option = $(this).text().split('"')[1];
 
-		if(new_option != '') {
+		if (new_option != '') {
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/add_department_select_ax') ?>';
-			$.post(url, {title: new_option}, function(e) {
+			$.post(url, {title: new_option}, function (e) {
 				$("#department")
-					.append('<option value="'+e+'" selected>'+ new_option +'</option>')
+					.append('<option value="' + e + '" selected>' + new_option + '</option>')
 					.selectpicker('refresh');
 			});
 		}

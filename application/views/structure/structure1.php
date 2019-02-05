@@ -1458,4 +1458,3 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <input type="hidden" name="selecteds">
 <input type="hidden" name="line_date">
-

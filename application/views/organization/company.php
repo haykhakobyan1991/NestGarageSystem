@@ -107,9 +107,7 @@ $i = '';
 								<p style="float: left;margin-top: -20px;margin-left:15px;"><?= lang('upload_logo'); ?></p>
 								<div class="input-group ml-2 ml-md-2" style="display: inline-block;width: auto;">
 															<span class="input-group-btn">
-																<span
-																	class="btn btn-sm btn-outline-success btn-file mr-1"
-																	style="margin-left: 290px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-top: -55px;">
+																<span class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade">
 																	<?= lang('browse') ?> <input type="file" id="imgInp"
 																								 name="photo">
 																</span>
@@ -135,7 +133,7 @@ $i = '';
 					<div class="col-sm-6">
 						<label
 							class="col-sm-6 col-form-label"
-							style="padding-left: 0;"><?= lang('activity_address') ?></label>
+							style="padding-left: 0;"><?= lang('address_1') ?></label>
 
 						<div class="form-row">
 							<select name="activity_country"
@@ -190,13 +188,23 @@ $i = '';
 							</div>
 						</div>
 
+						<div class="row mt-1">
+							<label
+								class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
+							<div class="col-sm-8">
+								<input value="<?= $company['phone_number'] ?>"
+									   name="phone_number" type="text" class="form-control form-control-sm"
+									   placeholder="<?= lang('phone_number') ?>">
+							</div>
+						</div>
+
 					</div>
 
 
 					<div class="col-sm-6">
 						<label
 							class="w-100 col-form-label"
-							style="padding-left: 0;"><?= lang('legal_address') ?>
+							style="padding-left: 0;"><?= lang('address_2') ?>
 							<button type="button"
 									class="btn btn-sm btn-outline-success float-right  copy_btn">
 								<?= lang('Same_as') ?>
@@ -226,7 +234,7 @@ $i = '';
 								<input name="legal_city"
 									   value="<?= $company['legal_city'] ?>" type="text"
 									   class="form-control form-control-sm"
-									   placeholder="<?= lang('Activity_Region') ?>">
+									   placeholder="<?= lang('Activity_City') ?>">
 							</div>
 							<div class="col">
 								<input name="legal_zip_code"
@@ -245,15 +253,7 @@ $i = '';
 							</div>
 						</div>
 
-						<div class="row mt-1">
-							<label
-								class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
-							<div class="col-sm-8">
-								<input value="<?= $company['phone_number'] ?>"
-									   name="phone_number" type="text" class="form-control form-control-sm"
-									   placeholder="<?= lang('phone_number') ?>">
-							</div>
-						</div>
+
 					</div>
 
 
@@ -276,18 +276,35 @@ $i = '';
 											   placeholder="<?= lang('owner_firstname') ?>">
 									</div>
 								</div>
+
+
 							</div>
-							<div class="col-sm-4">
-								<div class="row">
-									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?= lang('owner_position') ?></label>
-									<div class="col-sm-8">
-										<input value="<?= $company['owner_position'] ?>"
-											   name="owner_position" type="text" class="form-control form-control-sm"
-											   placeholder="<?= lang('owner_position') ?>">
+
+								<div class="col-sm-4">
+									<div class="row">
+										<label class="col-sm-3 col-form-label"
+											   style="font-size: 15px;"><?= lang('phone_number') ?></label>
+										<div class="col-sm-8">
+											<input value="<?= $company['owner_contact_number'] ?>"
+												   name="owner_contact_number" type="text"
+												   class="form-control form-control-sm"
+												   placeholder="<?= lang('contact_number') ?>">
+										</div>
 									</div>
 								</div>
-							</div>
+
+
+<!--							<div class="col-sm-4">-->
+<!--								<div class="row">-->
+<!--									<label class="col-sm-3 col-form-label"-->
+<!--										   style="font-size: 15px;">--><?//= lang('owner_position') ?><!--</label>-->
+<!--									<div class="col-sm-8">-->
+<!--										<input value="--><?//= $company['owner_position'] ?><!--"-->
+<!--											   name="owner_position" type="text" class="form-control form-control-sm"-->
+<!--											   placeholder="--><?//= lang('owner_position') ?><!--">-->
+<!--									</div>-->
+<!--								</div>-->
+<!--							</div>-->
 						</div>
 
 						<div class="row mt-1">
@@ -321,22 +338,7 @@ $i = '';
 
 						</div>
 
-						<div class="row mt-1">
-							<div class="col-sm-5">
-								<div class="row">
-									<label class="col-sm-3 col-form-label"
-										   style="font-size: 15px;"><?= lang('phone_number') ?></label>
-									<div class="col-sm-8">
-										<input value="<?= $company['owner_contact_number'] ?>"
-											   name="owner_contact_number" type="text"
-											   class="form-control form-control-sm"
-											   placeholder="<?= lang('contact_number') ?>">
-									</div>
-								</div>
-							</div>
 
-
-						</div>
 
 
 					</div>

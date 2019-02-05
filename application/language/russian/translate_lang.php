@@ -22,8 +22,8 @@ $lang['generate'] = 'генерировать';
 $lang['logout'] = 'Выйти';
 $lang['save'] = 'Сохранить';
 $lang['cancel'] = 'Отменить';
-$lang['phone_number'] = 'Номер телефона';
-$lang['welcome'] = 'Добро пожаловать';
+$lang['phone_number'] = 'тел.';
+$lang['welcome'] = 'Добро 0ожаловать';
 $lang['yes'] = 'Да';
 $lang['no'] = 'Нет';
 $lang['search'] = 'Искать';
@@ -232,7 +232,7 @@ $lang['average_expense_100_km'] = 'Средний Расход 100 Км';
 $lang['in_day'] = 'Ежедневно';
 $lang['running'] = 'Пробег';
 $lang['odometer'] = 'Одометр';
-$lang['GPS_Exist'] = 'GPS Существует';
+$lang['GPS_Exist'] = 'GPS';
 $lang['GPS_Tracker_IMEI'] = 'GPS-Трекер IMEI'; //--
 $lang['registration_address'] = 'Адрес Учета';
 $lang['in_force'] = 'В Силе';
@@ -244,7 +244,7 @@ $lang['per_day'] = 'Ежедневно';
 $lang['more_info'] = 'Более';
 $lang['day_before'] = 'Напоминать';
 $lang['start_alarm_day'] = 'Первый День Предупреждения';
-$lang['appendix_copy'] = 'Копия Техпаспорта';
+$lang['appendix_copy'] = 'Техпаспорта';
 $lang['kilometer_per_day'] = 'Ежедневно Километр';
 $lang['select_car_type'] = 'Выберите тип';
 $lang['engine_power'] = 'Мощность Двигателя';
@@ -413,5 +413,7 @@ $lang['Report_period'] = 'Период отчета';
 $lang['GPS_tracking'] = 'GPS-трекинг';
 $lang['geofences'] = 'Геозоны';
 
+
+$lang['Create_New_Geofences'] = 'Создать новую геозону';
 
 

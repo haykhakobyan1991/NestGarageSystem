@@ -69,7 +69,7 @@ endforeach;
 			<div class="row">
 				<diiv class="col-sm-8 pt-2">
 					<div class="row">
-						<div class="col-sm-3">
+						<div class="col-sm-6">
 							<p class="display-5 font-weight-bold float-left"
 							   style="font-size: 13px;"><?= lang('total_vehicles') ?></p> <span
 								class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
@@ -99,7 +99,6 @@ endforeach;
 color: #545b62;">
 						<tr>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('attached') ?></th>
-							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('status') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') . ' ' . lang('model') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('color') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('vin') ?></th>
@@ -112,15 +111,6 @@ color: #545b62;">
 						<? foreach ($result_array as $row) : ?>
 							<tr>
 								<td><?= $row['staff'] ?></td>
-								<td style="text-align: center; vertical-align: middle;">
-									<? if ($row['status'] == '1') { ?>
-										<div class="bg-success"
-											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-									<? } elseif ($row['status'] == '-1') { ?>
-										<div class="bg-danger"
-											 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-									<? } ?>
-								</td>
 								<td><?= $row['brand_model'] ?></td>
 								<td><span style="display: none">Spitak</span><span class="p-3 m-2 text-white"
 																				   style="border-radius: 50%; border: 1px solid #000; background: <?= $row['color'] ?>; display: inline-block;"></span>

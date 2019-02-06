@@ -92,6 +92,7 @@
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
 $user_id = $this->session->user_id;
+
 ?>
 
 <?

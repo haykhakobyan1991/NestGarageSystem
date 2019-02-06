@@ -76,12 +76,16 @@ class Gps extends MX_Controller {
 			$this->db->insert('user', array('token' => $token));
 		}
 
+
+
 		$this->session->set_userdata(array('token' => $token));
 	}
 
 
 
 	public function gps_tracking() {
+
+
 
 		$token = $this->session->token;
 		$this->load->authorisation('Gps', 'gps_tracking', $token);
@@ -114,9 +118,9 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/fuel');
 	}
 
-	public function geofences() {
+	public function geoferences() {
 		//$this->load->authorisation('Gps', 'gps_tracking');
-		$this->layout->view('gps_tracking/geofences');
+		$this->layout->view('gps_tracking/geoferences');
 	}
 
 

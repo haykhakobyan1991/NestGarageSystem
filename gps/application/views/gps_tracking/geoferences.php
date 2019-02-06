@@ -94,123 +94,42 @@
 					</thead>
 					<tbody>
 
-					<tr>
-						<td>
-							<input name="coordinate"
-								   type="checkbox"
-								   checked
-								   data-coordinate="[40.19060653826287, 44.50844357516261],
-													[40.189981206597146, 44.51397965456936],
-													[40.18741399465704, 44.510246019620624],
-													[40.19060653826287, 44.50844357516261]"/>
-						</td>
-						<td>b geofences 1</td>
-						<td class="text-left">0</td>
-						<td
-							data-toggle="modal"
-							data-target=".bd-example-modal-xl_Edite"
-							style="cursor: pointer;"
-							class="text-left settings_geoObject">
-							<i style="opacity: .5;" class="fas fa-edit"></i>
-						</td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
-														  alt=""
-														  title=""/></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
-														  alt=""
-														  title=""/></td>
-					</tr>
+					<?foreach ($result as $name => $value) {
+						foreach ($value as $id => $val) {
+							?>
 
-					<tr>
-						<td><input name="coordinate"
-								   type="checkbox"
-								   checked
-								   data-coordinate="[40.13331860515059,44.44393439075485],
-								   					[40.09483366177357,44.54555792591108],
-								   					[40.148601052086335,44.54967779895795],
-								   					[40.13331860515059,44.44393439075485]"/>
-						</td>
-						<td>a geofences 1</td>
-						<td class="text-left">4</td>
-						<td
-							data-toggle="modal"
-							data-target=".bd-example-modal-xl_Edite"
-							style="cursor: pointer;"
-							class="text-left settings_geoObject">
-							<i style="opacity: .5;" class="fas fa-edit"></i>
-						</td>
-						<td style="cursor: pointer;">
-							<img style="opacity: .5;"
-								 src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
-								 alt=""
-								 title=""/></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
-														  alt=""
-														  title=""/></td>
-					</tr>
 
-					<tr>
-						<td>
-							<input name="coordinate"
-								   type="checkbox"
-								   checked
-								   data-coordinate="[40.188001002307885,44.52710650739624],
-								   				[40.17977217076603,44.520068390941155],
-								   				[40.174702709790814,44.52762149152713],
-								   				[40.173122540044034,44.54118274030644],
-								   				[40.18391962756528,44.5442726450916],
-								   				[40.188001002307885,44.52710650739624]"/>
-						</td>
-						<td>d geofences 1</td>
-						<td class="text-left">0</td>
-						<td
-							data-toggle="modal"
-							data-target=".bd-example-modal-xl_Edite"
-							style="cursor: pointer;"
-							class="text-left settings_geoObject">
-							<i style="opacity: .5;" class="fas fa-edit"></i></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
-														  alt=""
-														  title=""/></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
-														  alt=""
-														  title=""/></td>
-					</tr>
+							<tr>
+								<td class="coords">
+									<input name="coordinate"
+										   type="checkbox"
+										   checked
+										   data-coordinate="<?= implode(',', $val) ?>"/>
+								</td>
+								<td class="name"><?= $name ?></td>
+								<td class="text-left">0</td>
+								<td
+									data-toggle="modal"
+									data-target=".bd-example-modal-xl_Edite"
+									style="cursor: pointer;"
+									class="text-left settings_geoObject">
+									<i style="opacity: .5;" class="fas fa-edit"></i>
+									<input type="hidden" name="" value="<?=$id?>">
+								</td>
+								<td style="cursor: pointer;"><img style="opacity: .5;"
+																  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
+																  alt=""
+																  title=""/></td>
+								<td style="cursor: pointer;"><img style="opacity: .5;"
+																  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
+																  alt=""
+																  title=""/></td>
+							</tr>
 
-					<tr>
-						<td>
-							<input name="coordinate"
-								   type="checkbox"
-								   checked
-								   data-coordinate="[40.182152607087005,44.48289401495332],
-								   					[40.179848435430564,44.49079043829316],
-								   					[40.181560113314845,44.50478084051483],
-								   					[40.187320248036535,44.502635073302926],
-								   					[40.189196299777905,44.487056803344416],
-								   					[40.182152607087005,44.48289401495332]"/>
-						</td>
-						<td>e geofences 1</td>
-						<td class="text-left">0</td>
-						<td
-							data-toggle="modal"
-							data-target=".bd-example-modal-xl_Edite"
-							style="cursor: pointer;"
-							class="text-left settings_geoObject">
-							<i style="opacity: .5;" class="fas fa-edit"></i></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
-														  alt=""
-														  title=""/></td>
-						<td style="cursor: pointer;"><img style="opacity: .5;"
-														  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
-														  alt=""
-														  title=""/></td>
-					</tr>
+							<?
+						}
+					}?>
+
 
 					</tbody>
 				</table>
@@ -232,25 +151,36 @@
 	 aria-hidden="true">
 	<div class="modal-dialog  modal-full">
 		<div class="modal-content">
-			<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-				<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
-				<div class="float-right">
-					<button style="float: none;margin-right: 1px;" class="cancel_btn close btn btn-sm refresh_map"><i class="fas fa-redo"></i></button>
-					<button id="add_department_btn" type="button"
-							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
-					</button>
-					<button id="load" style="height: 40px !important; width: 90px !important;"
-							class="btn btn-sm btn-outline-success cancel_btn d-none"><img
-							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-					<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1 delete_geofences_onMap"
-							data-dismiss="modal"
-							aria-label="Close">
-						<?= lang('cancel') ?>
-					</button>
-				</div>
+			<form id="add_geo">
+				<div class="modal-header" style="padding-bottom: 0px;padding-top: 10px;">
+					<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
 
-			</div>
+					<div class="form-group row">
+						<label class="col-sm-5 col-form-label">Geoferences Name</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" name="geo_name"  placeholder="Geoferences Name">
+						</div>
+					</div>
+					<div class="float-right">
+						<button style="float: none;margin-right: 1px;" class="cancel_btn close btn btn-sm refresh_map"><i class="fas fa-redo"></i></button>
+						<button id="add_geoference_btn" type="button"
+								class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+						</button>
+						<button id="load" style="height: 40px !important; width: 90px !important;"
+								class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+								style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+								src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+						<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1 delete_geofences_onMap"
+								data-dismiss="modal"
+								aria-label="Close">
+							<?= lang('cancel') ?>
+						</button>
+					</div>
+
+					<input type="hidden" id="geometry" name="geometry"  value=""/>
+
+				</div>
+			</form>
 			<div class="modal-content">
 				<div id="map_new" style="width: 100%;height: calc(100% - 58px);"></div>
 			</div>
@@ -267,24 +197,35 @@
 	 aria-hidden="true">
 	<div class="modal-dialog  modal-full">
 		<div class="modal-content">
-			<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-				<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
-				<div class="float-right">
-					<button id="add_department_btn" type="button"
-							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
-					</button>
-					<button id="load" style="height: 40px !important; width: 90px !important;"
-							class="btn btn-sm btn-outline-success cancel_btn d-none"><img
-							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-					<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1"
-							data-dismiss="modal"
-							aria-label="Close">
-						<?= lang('cancel') ?>
-					</button>
-				</div>
+			<form  id="edit_geo">
+				<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
+					<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
+					<input type="hidden" name="edit_id" value="" />
+					<div class="form-group row">
+						<label class="col-sm-5 col-form-label">Geoferences Name</label>
+						<div class="col-sm-7">
+							<input type="text" class="form-control" name="geo_name"  placeholder="Geoferences Name">
+						</div>
+					</div>
+					<div class="float-right">
+						<button id="edit_geoference_btn" type="button"
+								class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+						</button>
+						<button id="load" style="height: 40px !important; width: 90px !important;"
+								class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+								style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+								src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+						<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1"
+								data-dismiss="modal"
+								aria-label="Close">
+							<?= lang('cancel') ?>
+						</button>
+					</div>
 
-			</div>
+					<input type="hidden" id="edit_geometry" name="edit_geometry"  value=""/>
+
+				</div>
+			</form>
 			<div class="modal-content">
 				<div id="map_settings" style="width: 100%;height: calc(100% - 58px);"></div>
 			</div>
@@ -351,6 +292,8 @@
 						geoObject_coordinates = $(this).data('coordinate')
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
 
+
+
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
@@ -382,6 +325,8 @@
 				geoObject_coordinates = th.parent('tr').children('td:first-child').children('input').attr('data-coordinate');
 				array_seting = JSON.parse("[" + geoObject_coordinates + "]");
 
+				$('input[name="edit_geometry"]').val(array_seting);
+
 				ymaps.ready(init_singleCar(array_seting));
 
 				function init_singleCar(array_seting) {
@@ -396,7 +341,7 @@
 						array_seting
 					]);
 
-					console.log(array_seting)
+					//console.log(array_seting);
 
 					myMap_geofencesSetting.geoObjects.add(myPolygon);
 
@@ -404,13 +349,24 @@
 					myMap_geofencesSetting.setBounds(myMap_geofencesSetting.geoObjects.getBounds(), {checkZoomRange: true});
 
 					myPolygon.geometry.events.add('change', function () {
-						console.log(myPolygon.geometry.getCoordinates().toString());
+						$('input[name="edit_geometry"]').val(myPolygon.geometry.getCoordinates().toString());
+
 					});
 
 					myPolygon.editor.startDrawing();
 
 				}
 			});
+
+
+			var edit_id = $(this).children('input').val();
+			$('input[name="edit_id"]').val(edit_id);
+
+			var  td_name = $(this).parent('tr').children('.name').text();
+			$('input[name="geo_name"]').val(td_name);
+
+
+
 
 		});
 	});
@@ -421,6 +377,8 @@
 		ymaps.ready(init2);
 
 		function init2() {
+
+
 			var myMap_new = new ymaps.Map("map_new", {
 				center: [55.76, 37.64],
 				zoom: 7
@@ -442,6 +400,10 @@
 
 			myPolygon.geometry.events.add('change', function () {
 				console.log(myPolygon.geometry.getCoordinates().toString());
+
+				$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
+
+
 			});
 			myPolygon.editor.startDrawing();
 
@@ -465,13 +427,26 @@
 				});
 
 				myPolygon.geometry.events.add('change', function () {
-					console.log(myPolygon.geometry.getCoordinates().toString());
+					// console.log(myPolygon.geometry.getCoordinates().toString());
+
+					$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
+
+
+
 				});
 				myPolygon.editor.startDrawing();
 
+
+
 			});
+
+
+
 		}
 	}
+
+
+
 
 	createNewGeofences();
 
@@ -537,7 +512,157 @@
 				});
 			}
 		});
-	})
+	});
 	//Bootstrap Datatable End
+
+	$(document).on('click', '#add_geoference_btn', function (e) {
+
+		var form_data = new FormData($('form#add_geo')[0]);
+		var url = '<?=base_url($this->uri->segment(1) . '/Gps/add_geoference_ax') ?>';
+		e.preventDefault();
+
+		$('input').removeClass('border border-danger');
+		$('select').parent('div').children('button').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+				scroll_top();
+
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
+			success: function (data) {
+				if (data.success == '1') {
+					close_message();
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').html(data.message);
+					var url = "<?=current_url()?>";
+					$(location).attr('href', url);
+				} else {
+					$('.alert-info').addClass('d-none');
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						loading('stop', 'submit');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
+									if (value != tmp) {
+										errors += value + '<br>';
+									}
+									tmp = value;
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+					$('.alert-danger').html(errors);
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				close_message();
+				$('.alert-info').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+			}
+		});
+
+	});
+
+
+
+	$(document).on('click', '#edit_geoference_btn', function (e) {
+
+		var form_data = new FormData($('form#edit_geo')[0]);
+		var url = '<?=base_url($this->uri->segment(1) . '/Gps/edit_geoference_ax') ?>';
+		e.preventDefault();
+
+		$('input').removeClass('border border-danger');
+		$('select').parent('div').children('button').removeClass('border border-danger');
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			dataType: 'json',
+			data: form_data,
+			contentType: false,
+			cache: false,
+			processData: false,
+			beforeSend: function () {
+				scroll_top();
+
+				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
+				$(this).addClass('bg-success2');
+				$('.alert-info').removeClass('d-none');
+				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+			},
+			success: function (data) {
+				if (data.success == '1') {
+					close_message();
+					$('.alert-success').removeClass('d-none');
+					$('.alert-success').html(data.message);
+					var url = "<?=current_url()?>";
+					$(location).attr('href', url);
+				} else {
+					$('.alert-info').addClass('d-none');
+					if ($.isArray(data.error.elements)) {
+						scroll_top();
+						loading('stop', 'submit');
+						errors = '';
+						tmp = '';
+						$.each(data.error.elements, function (index) {
+							$.each(data.error.elements[index], function (index, value) {
+								if (value != '') {
+									$('input[name="' + index + '"]').addClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+									close_message();
+									$('.alert-danger').removeClass('d-none');
+									if (value != tmp) {
+										errors += value + '<br>';
+									}
+									tmp = value;
+								} else {
+									$('input[name="' + index + '"]').removeClass('border border-danger');
+									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+								}
+							});
+						});
+					}
+					$('.alert-danger').html(errors);
+				}
+			},
+			error: function (jqXHR, textStatus) {
+				// Handle errors here
+				close_message();
+				$('.alert-info').addClass('d-none');
+				console.log('ERRORS: ' + textStatus);
+			},
+			complete: function () {
+			}
+		});
+
+	});
+
+
+
 </script>
+
 

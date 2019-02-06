@@ -248,7 +248,7 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 										</div>
 
 										<div class="navbar-nav ml-auto">
-											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?>">
+											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
 												<button
 													style="color:#00000080 !important;max-height: 40px;"
 													class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"

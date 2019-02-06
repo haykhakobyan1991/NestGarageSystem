@@ -60,7 +60,7 @@ $route['default_controller'] = 'Gps';
 $route['^(ru|hy)/gps_tracking$'] = "Gps/gps_tracking";
 $route['^(ru|hy)/speed'] = "Gps/speed";
 $route['^(ru|hy)/fuel'] = "Gps/fuel";
-$route['^(ru|hy)/geofences'] = "Gps/geofences";
+$route['^(ru|hy)/geoferences'] = "Gps/geoferences";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

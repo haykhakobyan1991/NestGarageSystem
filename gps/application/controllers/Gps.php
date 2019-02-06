@@ -76,6 +76,8 @@ class Gps extends MX_Controller {
 			$this->db->insert('user', array('token' => $token));
 		}
 
+
+
 		$this->session->set_userdata(array('token' => $token));
 	}
 
@@ -83,8 +85,10 @@ class Gps extends MX_Controller {
 
 	public function gps_tracking() {
 
+
+
 		$token = $this->session->token;
-		$this->load->authorisation('Gps', 'gps_tracking', $token);
+		$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
 
 		$data = array();
@@ -114,9 +118,236 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/fuel');
 	}
 
-	public function geofences() {
-		//$this->load->authorisation('Gps', 'gps_tracking');
-		$this->layout->view('gps_tracking/geofences');
+	public function geoferences() {
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		$data = array();
+
+		$result = $this->db->select('geoference."id",geoference."name", geoference_cordinates.lat,geoference_cordinates.long')->from('geoference')->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')->where('geoference.status', 1)->get()->result_array();
+
+		// $this->pre($result);
+
+		$new_result = array();
+
+
+		foreach ($result as $value) {
+			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';
+		}
+
+//		$this->pre($new_result);
+
+		$data['result'] = $new_result;
+
+		$this->layout->view('gps_tracking/geoferences', $data);
+	}
+
+	public function add_geoference_ax() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('geo_name', 'geo_name', 'required');
+		$this->form_validation->set_rules('geometry', 'geometry', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'geo_name' =>  form_error('geo_name'),
+				'geometry' =>  form_error('geometry')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$geo_name = $this->input->post('geo_name');
+		$geometry = $this->input->post('geometry');
+		$status = 1;
+		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token));
+
+
+		$sql = "
+				INSERT INTO 
+				  \"geoference\"
+				(name, company_id, status) VALUES 
+				( '".$geo_name."', '".$company_id."', '".$status."')
+		";
+
+		$result = $this->db->query($sql);
+
+		$geoference_id = $this->db->insert_id();
+
+
+		$geometry = explode(',', $geometry);
+		$lat = array();
+		$long = array();
+		foreach ($geometry as $key => $value) {
+			if($key == '0' || $key % 2 == 0) {
+				$lat[] = $value;
+			} else {
+				$long[] = $value;
+			}
+		}
+
+		$sql_cord = "
+		INSERT INTO 
+				  \"geoference_cordinates\"
+				(lat, long, geoference_id, status) VALUES 
+		";
+
+		foreach ($lat AS $i => $l) {
+			$sql_cord .= "('".$l."', '".$long[$i]."', '".$geoference_id."', 1),";
+		}
+
+		$sql_cord = substr($sql_cord, 0, -1);
+		$result_cord = $this->db->query($sql_cord);
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+	}
+
+
+
+	public function edit_geoference_ax() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('geo_name', 'geo_name', 'required');
+		$this->form_validation->set_rules('edit_geometry', 'edit_geometry', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'geo_name' =>  form_error('geo_name'),
+				'edit_geometry' =>  form_error('edit_geometry')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$geo_name = $this->input->post('geo_name');
+		$geometry = $this->input->post('edit_geometry');
+		$geoference_id = $this->input->post('edit_id');
+		$status = 1;
+
+		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
+
+		$this->db->update('geoference', array('name' => $geo_name), array('id' => $geoference_id));
+
+
+		$this->db->delete('geoference_cordinates', array('geoference_id' => $geoference_id));
+
+
+		$geometry = explode(',', $geometry);
+		$lat = array();
+		$long = array();
+		foreach ($geometry as $key => $value) {
+			if($key == '0' || $key % 2 == 0) {
+				$lat[] = $value;
+			} else {
+				$long[] = $value;
+			}
+		}
+
+		$sql_cord = "
+		INSERT INTO 
+				  \"geoference_cordinates\"
+				(lat, long, geoference_id, status) VALUES 
+		";
+
+		foreach ($lat AS $i => $l) {
+			$sql_cord .= "('".$l."', '".$long[$i]."', '".$geoference_id."', 1),";
+		}
+
+		$sql_cord = substr($sql_cord, 0, -1);
+		$result_cord = $this->db->query($sql_cord);
+
+		if ($result_cord){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
 	}
 
 

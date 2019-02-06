@@ -212,6 +212,16 @@
 
 					</div>
 
+					<div class="row" id="second" style="margin-top: .5rem!important; <?=(($fleet['fuel_id'] == 5 || $fleet['fuel_id'] == 6) ? 'display: flex' : 'display: none')?>">
+
+						<label class="col-sm-4 col-form-label"></label>
+
+						<input value="<?= $fleet['fuel_avg_consumption_second'] ?>" min="0" name="fuel_avg_consumption_second"
+							   type="number" class="form-control form-control-sm col-sm-7"
+							   placeholder="<?= lang('average_expense_100_km') ?>">
+
+					</div>
+
 					<div class="row" style="margin-top: .4rem !important;">
 						<label class="pl-3 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
@@ -1299,6 +1309,15 @@
 	$(document).on('change', function () {
 		$('#model_div label').css('flex', '0 0 33.333333% !important');
 		$('#model_div label').css('max-width', '33.333333% !important');
-	})
+	});
+
+	$(document).on('change', 'select[name="fuel"]', function () {
+
+		if($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
+			$('#second').show();
+		} else {
+			$('#second').hide();
+		}
+	});
 
 </script>

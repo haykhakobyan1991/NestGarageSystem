@@ -114,7 +114,7 @@
 									style="cursor: pointer;"
 									class="text-left settings_geoObject">
 									<i style="opacity: .5;" class="fas fa-edit"></i>
-									<input type="hidden" name="" value="<?=$id?>">
+									<input type="hidden" name="id_edit" value="<?=$id?>">
 								</td>
 								<td style="cursor: pointer;"><img style="opacity: .5;"
 																  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"

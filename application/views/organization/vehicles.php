@@ -99,6 +99,7 @@ endforeach;
 color: #545b62;">
 						<tr>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('attached') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('type') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') . ' ' . lang('model') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('color') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('vin') ?></th>
@@ -111,6 +112,7 @@ color: #545b62;">
 						<? foreach ($result_array as $row) : ?>
 							<tr>
 								<td><?= $row['staff'] ?></td>
+								<td><?= $row['fleet_type'] ?></td>
 								<td><?= $row['brand_model'] ?></td>
 								<td><span style="display: none">Spitak</span><span class="p-3 m-2 text-white"
 																				   style="border-radius: 50%; border: 1px solid #000; background: <?= $row['color'] ?>; display: inline-block;"></span>
@@ -128,11 +130,14 @@ color: #545b62;">
 											data-placement="top"
 											title="edit"><i class="fas fa-edit"></i></span></a>
 
-									<!--									<span style="border: none;cursor: pointer;" data-id="" id="delet_vehicles_modal"-->
-									<!--										  class="btn text-secondary"-->
-									<!--										  data-toggle2="tooltip"-->
-									<!--										  data-placement="top"-->
-									<!--										  title="delete"><i class="fas fa-trash"></i></span>-->
+
+									<span style="border: none;cursor: pointer;" data-toggle="modal"
+										  id="delete_vehicles_modal"
+										  class="text-secondary btn"
+										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
+										  data-toggle2="tooltip"
+										  data-placement="top"
+										  title="delete"><i class="fas fa-trash"></i></span></td>
 								</td>
 							</tr>
 						<? endforeach; ?>
@@ -144,3 +149,53 @@ color: #545b62;">
 	</div>
 </div>
 <!-- Veichls End -->
+
+
+<!-- Delete Modal Start -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" id="delete_vehicles"
+							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+					</button>
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
+							data-dismiss="modal"><?= lang('cancel') ?></button>
+
+					<input type="hidden" name="vehicle_id">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- Delete Modal End -->
+
+
+<script>
+	$(document).on('click', '#delete_vehicles_modal', function () {
+		vehicle_id = $(this).data('id');
+		$('input[name="vehicle_id"]').val(vehicle_id);
+	});
+
+	$(document).on('click', '#delete_vehicles', function () {
+		var id = $('input[name="vehicle_id"]').val();
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Organization/delete_vehicles/')?>';
+
+		$.post(url, {vehicle_id: id}, function (result) {
+			location.reload();
+		});
+	});
+</script>

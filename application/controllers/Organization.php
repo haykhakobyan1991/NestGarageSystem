@@ -2009,7 +2009,8 @@ class Organization extends MX_Controller {
 			  `engine_power`,
 			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 			   DATE_FORMAT(`fleet`.`registration_date`, '%d-%m-%Y') AS `creation_date`,
-			  `fleet`.`status` 
+			  `fleet`.`status`,
+			  `fleet_type`.`title_".$lng."` AS `fleet_type`
 			FROM
 			  `fleet` 
 			LEFT JOIN `staff` 
@@ -2019,6 +2020,8 @@ class Organization extends MX_Controller {
 				) 
 			LEFT JOIN `user` 
 				ON `user`.`id` = `fleet`.`registrar_user_id` 	
+			LEFT JOIN `fleet_type` 
+				ON `fleet_type`.`id` = `fleet`.`fleet_type_id` 	
 			LEFT JOIN `model` 
 				ON `model`.`id` = `fleet`.`model_id` 
 			LEFT JOIN `brand` 
@@ -2223,6 +2226,7 @@ class Organization extends MX_Controller {
 		$engine_power = str_replace(",", ".", $this->input->post('engine_power'));
 		$fuel = $this->input->post('fuel');
 		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
+		$fuel_avg_consumption_second = str_replace(",", ".", $this->input->post('fuel_avg_consumption_second'));
 		$mileage = $this->input->post('mileage');
 		$mileage_value = $this->input->post('mileage_value');
 
@@ -2571,6 +2575,7 @@ class Organization extends MX_Controller {
 					`engine_power` = ".$this->load->db_value($engine_power).",
 					`fuel_id` = ".$this->load->db_value($fuel).",
 					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
+					`fuel_avg_consumption_second` = ".$this->load->db_value($fuel_avg_consumption_second).",
 					`mileage` =  ".$this->load->db_value($mileage).",
 					`mileage_value_id` =  ".$this->load->db_value($mileage_value).",
 					`odometer` = ".$this->load->db_value($odometer).",
@@ -2730,7 +2735,7 @@ class Organization extends MX_Controller {
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
 			->join('department', 'FIND_IN_SET(department.id, staff.department_ids)', 'left')
 			->where('user.company_id', $company_id)
-			->where('department.head_staff_id <> ', 'staff.id', FALSE)
+			//->where('department.head_staff_id <> ', 'staff.id', FALSE)
 			->where('staff.status', 1)
 			->get()
 			->result_array();
@@ -2934,6 +2939,7 @@ class Organization extends MX_Controller {
 		$engine_power = str_replace(",", ".", $this->input->post('engine_power'));
 		$fuel = $this->input->post('fuel');
 		$fuel_avg_consumption = str_replace(",", ".", $this->input->post('fuel_avg_consumption'));
+		$fuel_avg_consumption_second = str_replace(",", ".", $this->input->post('fuel_avg_consumption_second'));
 		$mileage = $this->input->post('mileage');
 		$mileage_value = $this->input->post('mileage_value');
 		$odometer = $this->input->post('odometer');
@@ -2987,7 +2993,7 @@ class Organization extends MX_Controller {
 		// end fleet details variables
 
 		// validation fleet details
-		if(is_array($item)) :
+		if(is_array($item) && !empty($item) && $item[1] != '') :
 			foreach ($item as $i => $item_val) :
 				if($item_val == '') :
 					$n = 1;
@@ -3250,6 +3256,7 @@ class Organization extends MX_Controller {
 					`engine_power` = ".$this->load->db_value($engine_power).",
 					`fuel_id` = ".$this->load->db_value($fuel).",
 					`fuel_avg_consumption` = ".$this->load->db_value($fuel_avg_consumption).",
+					`fuel_avg_consumption_second` = ".$this->load->db_value($fuel_avg_consumption_second).",
 					`mileage` =  ".$this->load->db_value($mileage).",
 					`mileage_value_id` =  ".$this->load->db_value($mileage_value).",
 					`odometer` = ".$this->load->db_value($odometer).",
@@ -3304,8 +3311,9 @@ class Organization extends MX_Controller {
 
 		$this->db->update('fleet_details', array('status' => '-2'), array('fleet_id' => $fleet_id));
 
+		if (is_array($item) && !empty($item) && $item[1] != '') :
 
-		$sql_fleet_details = "
+			$sql_fleet_details = "
 			INSERT INTO `fleet_details`
 				(`items`,
 				 `value_id`,
@@ -3323,43 +3331,43 @@ class Organization extends MX_Controller {
 		";
 
 
-
-		if(is_array($item)) :
 			foreach ($item as $i => $item_val) :
-				if($item_val != '') :
+				if ($item_val != '') :
 
-					$sub_days[$i] = round((($avg_exploitation[$i]/$per_days[$i]) - $remind_before[$i]),0,PHP_ROUND_HALF_ODD);
+					$sub_days[$i] = round((($avg_exploitation[$i] / $per_days[$i]) - $remind_before[$i]), 0, PHP_ROUND_HALF_ODD);
 
-					$next_alarm_date[$i] = strtotime ( $sub_days[$i].' day' , strtotime ( $start_alarm_date[$i] ) ) ;
-					$next_alarm_date[$i] = date ( 'Y-m-d' , $next_alarm_date[$i] );
+					$next_alarm_date[$i] = strtotime($sub_days[$i] . ' day', strtotime($start_alarm_date[$i]));
+					$next_alarm_date[$i] = date('Y-m-d', $next_alarm_date[$i]);
 
 					$sql_fleet_details .= "(
-					".$this->load->db_value($item_val).",
-					".$this->load->db_value($value[$i]).",
-					".$this->load->db_value($avg_exploitation[$i]).",
-					".$this->load->db_value($start_alarm_date[$i]).",
-					".$this->load->db_value($per_days[$i]).",
-					".$this->load->db_value($more_info[$i]).",
-					".$this->load->db_value($remind_before[$i]).",
-					".$this->load->db_value($fleet_id).",
-					".$this->load->db_value($next_alarm_date[$i]).",
-					".$this->load->db_value($user_id).",
+					" . $this->load->db_value($item_val) . ",
+					" . $this->load->db_value($value[$i]) . ",
+					" . $this->load->db_value($avg_exploitation[$i]) . ",
+					" . $this->load->db_value($start_alarm_date[$i]) . ",
+					" . $this->load->db_value($per_days[$i]) . ",
+					" . $this->load->db_value($more_info[$i]) . ",
+					" . $this->load->db_value($remind_before[$i]) . ",
+					" . $this->load->db_value($fleet_id) . ",
+					" . $this->load->db_value($next_alarm_date[$i]) . ",
+					" . $this->load->db_value($user_id) . ",
 					NOW(),
 					1
 				),";
 
 				endif;
 			endforeach;
+
+			$sql_fleet_details = substr($sql_fleet_details, 0, -1);
+
+			$result_fleet_details = $this->db->query($sql_fleet_details);
+
+			if($result_fleet_details) {
+				$this->db->delete('fleet_details', array('status' => '-2'));
+			}
 		endif;
 
 
-		$sql_fleet_details = substr($sql_fleet_details, 0, -1);
 
-		$result_fleet_details = $this->db->query($sql_fleet_details);
-
-		if($result_fleet_details) {
-			$this->db->delete('fleet_details', array('status' => '-2'));
-		}
 
 
 
@@ -4025,6 +4033,31 @@ class Organization extends MX_Controller {
 		// Return success or error message
 		//echo json_encode($messages);
 		return true;
+	}
+
+
+	public function delete_vehicles() {
+
+		$this->load->authorisation('Organization', 'delete_vehicles');
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('vehicle_id');
+
+
+		$sql = "SET foreign_key_checks = 0";
+		$this->db->query($sql);
+
+
+		$this->db->delete('fleet', array('id' => $id));
+
+		return true;
+
 	}
 
 

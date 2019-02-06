@@ -170,6 +170,14 @@
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
+					<div class="row" id="second" style="margin-top: .6rem!important; display: none">
+						<label class="col-sm-4 pl-3 col-form-label"
+							   style="font-size: 15px;"></label>
+						<input value="" min="0" name="fuel_avg_consumption_second" type="number"
+							   class="form-control form-control-sm col-sm-7"
+							   placeholder="<?= lang('average_expense_100_km') ?>">
+					</div>
+
 					<div class="row" style="margin-top: .4rem !important;">
 						<label class="pl-3 col-form-label col-sm-4"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
@@ -185,6 +193,9 @@
 							endforeach; ?>
 						</select>
 					</div>
+
+
+
 					<!--					<div class="row" style="margin-top: .6rem;">-->
 					<!--						<label class="pl-3 col-form-label col-sm-4"-->
 					<!--							   style="font-size: 15px;">-->
@@ -981,6 +992,15 @@
 	$(document).on('change', function () {
 		$('.model_div label').css('flex', '0 0 33.333333%');
 		$('.model_div label').css('max-width', '33.333333%');
+	});
+
+	$(document).on('change', 'select[name="fuel"]', function () {
+
+		if($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
+			$('#second').show();
+		} else {
+			$('#second').hide();
+		}
 	})
 
 

@@ -451,7 +451,7 @@ endforeach;
 
 	$(document).on('click', '#delete_user', function () {
 		var id = $('input[name="user_id"]').val();
-		var url = '<?=base_url('Organization/delete_user/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Organization/delete_user/')?>';
 
 		$.post(url, {user_id: id}, function (result) {
 			location.reload();
@@ -461,7 +461,7 @@ endforeach;
 
 	$(document).on('click', '#add_user', function (e) {
 
-		var url = '<?=base_url($this->uri->segment(1) . '/Organization/add_user_ax') ?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/add_user_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#user')[0]);
 

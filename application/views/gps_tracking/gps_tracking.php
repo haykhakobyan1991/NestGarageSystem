@@ -12,6 +12,7 @@
 <!--		type="text/javascript"></script>-->
 
 <script type="text/javascript" src="<?= base_url('assets/js/ymap.js') ?>"></script>
+
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
 
 <style>
@@ -57,11 +58,13 @@
 		color: #6c757d !important;
 	}
 
+
+
 </style>
 
 <div class="container-fluid pl-0 pr-0" style="outline: 1px solid #ccc;">
 	<div class="row">
-		<div class="col-sm-5">
+		<div class="col-sm-5 panel-left">
 			<div class="row">
 				<div class="col-sm-12 m-2">
 
@@ -268,14 +271,16 @@
 			</div>
 		</div>
 
-		<div class="col-sm-7">
+		<div class="splitter">
+		</div>
+
+		<div class="col-sm-7 panel-right">
 			<div id="map" style="width: 100%; height: calc(100% - 150px);"></div>
 		</div>
 
 
 	</div>
 </div>
-
 
 <!-- Delete Modal start -->
 <div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
@@ -1401,6 +1406,18 @@
 		});
 
 		$('.dt-buttons.btn-group').append('<i style="cursor: pointer;" class="fas fa-ellipsis-v ml-2"></i>');
+
+
+
+		$(".panel-left").resizable({
+			handleSelector: ".splitter",
+			resizeHeight: false
+		});
+
+		$(".panel-top").resizable({
+			handleSelector: ".splitter-horizontal",
+			resizeWidth: false
+		});
 	})
 </script>
 

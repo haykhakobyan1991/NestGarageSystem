@@ -348,7 +348,7 @@
 				$('input[name="coordinate"]').each(function () {
 
 					if ($(this).is(':checked')) {
-						geoObject_coordinates = $(this).data('coordinate')
+						geoObject_coordinates = $(this).data('coordinate');
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
 
 						var rand_color = '#' + (function co(lor) {
@@ -396,8 +396,6 @@
 						array_seting
 					]);
 
-					console.log(array_seting)
-
 					myMap_geofencesSetting.geoObjects.add(myPolygon);
 
 					myMap_geofencesSetting.controls.add(new ymaps.control.ZoomControl());
@@ -411,7 +409,6 @@
 
 				}
 			});
-
 		});
 	});
 

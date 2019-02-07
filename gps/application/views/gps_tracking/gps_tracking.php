@@ -24,41 +24,53 @@
 	body {
 		overflow: hidden;
 	}
+
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
 	}
+
 	.dropdown-menu {
 		padding: 0;
 	}
+
 	.dropdown-menu a:last-child {
 		display: none;
 		top: 55px;
 		left: -15px;
 	}
+
 	.dataTables_filter label {
 		font-size: 0px !important;
 	}
+
 	#example11_filter label input {
 		height: 38px;
 	}
+
 	#example11_filter {
 		height: 37px;
 	}
+
 	td {
 		font-size: 11px !important;
 	}
+
 	.dataTables_scrollBody {
 		height: calc(100% - 315px) !important;
 	}
+
 	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
 		color: #6c757d !important;
 	}
+
 	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
 		color: #6c757d !important;
 	}
+
 	.border-5 {
 		border-width: 5px !important;
 	}
+
 	/*!* Resizable style *!*/
 	/*!* horizontal panel*!*/
 	/*.panel-container {*/
@@ -99,23 +111,29 @@
 		height: calc(100% - 150px);
 		width: 100%;
 	}
+
 	.splitter-west {
 	}
+
 	.splitter-east {
 		width: 100%;
 	}
-	.dt-button-collection.dropdown-menu{
+
+	.dt-button-collection.dropdown-menu {
 		left: -100px !important;
 	}
-	a.dt-button.dropdown-item.buttons-columnVisibility{
+
+	a.dt-button.dropdown-item.buttons-columnVisibility {
 		color: #fff !important;
 		background: #8e8f90 !important;
 	}
-	a.dt-button.dropdown-item.buttons-columnVisibility.active{
+
+	a.dt-button.dropdown-item.buttons-columnVisibility.active {
 		color: #8e8f90 !important;
 		background: #fff !important;
 	}
-	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+
+	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
 </style>
@@ -181,33 +199,31 @@
 						<th
 							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-sort-alpha-up"></i><?=lang('fleet')?>
+							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>
 						<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-map-marker-alt"></i><?=lang('location')?>
+							   class="fas fa-map-marker-alt"></i><?= lang('location') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
-							<i class="fas fa-parking pb-1"></i>
-							<i class="fas fa-arrow-alt-circle-right pb-1"></i>
-							<i class="float-left fas fa-stop-circle"></i>
+							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/triangle.svg"/>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-user"></i>
-							<?=lang('driver')?>
+							<?= lang('driver') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important;font-size: 12px !important;"
-							   class="fas fa-gas-pump"></i><?=lang('fuel')?>
+							   class="fas fa-gas-pump"></i><?= lang('fuel') ?>
 						</th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important; font-size: 12px  !important;"
-							   class="fas fa-wifi"></i><?=lang('signal')?>
+							   class="fas fa-wifi"></i><?= lang('signal') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
@@ -1802,14 +1818,10 @@
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
 
-		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display','none');
-		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display','none');
-		console.log('ddd');
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
 
-		$('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
-			var text  = $(this).text();
-			$(this).html('&#x2611; ' +text);
-		})
+
 	});
 
 	// add group
@@ -2032,30 +2044,30 @@
 
 			if (str == 'resize') {
 
-				if($('.panel-left').width() <= 565){
-					$('input[type=search]').css('display','none');
+				if ($('.panel-left').width() <= 565) {
+					$('input[type=search]').css('display', 'none');
 					$('.tools_div').removeClass('col-sm-2');
 					$('.tools_div').addClass('col-sm-3');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-3');
-					$('i.fas.fa-ellipsis-v.ml-2').css('display','none')
+					$('i.fas.fa-ellipsis-v.ml-2').css('display', 'none')
 				} else {
-					$('input[type=search]').css('display','inline-block');
+					$('input[type=search]').css('display', 'inline-block');
 					$('.tools_div').removeClass('col-sm-3');
 					$('.tools_div').addClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-3');
-					$('i.fas.fa-ellipsis-v.ml-2').css('display','block')
+					$('i.fas.fa-ellipsis-v.ml-2').css('display', 'block')
 				}
 
-				if($('.panel-left').width() <= 374){
-					$('.label_group').css('display','none');
-					$('.tools_div').css('display','none');
+				if ($('.panel-left').width() <= 374) {
+					$('.label_group').css('display', 'none');
+					$('.tools_div').css('display', 'none');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-7');
 				} else {
-					$('.label_group').css('display','block');
-					$('.tools_div').css('display','block');
+					$('.label_group').css('display', 'block');
+					$('.tools_div').css('display', 'block');
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-7');
 				}
@@ -2065,8 +2077,14 @@
 
 	});
 
-	// $(document).on('click','.dt-buttons.btn-group', function () {
-	//
+	// $(document).on('click','i.fas.fa-ellipsis-v.ml-2', function () {
+	// 	$('a.dt-button.dropdown-item.buttons-columnVisibility.active').each(function () {
+	// 		$('span', this).html('');
+	// 		console.log(this)
+	// 		text_menu = '&#x2610; ' + $('span', this).text();
+	// 		console.log(text_menu)
+	// 		$('span', this).html(text_menu);
+	// 	})
 	// });
 
 	// $(document).on('click', 'a.dt-button.dropdown-item.buttons-columnVisibility', function () {

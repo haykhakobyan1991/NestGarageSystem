@@ -357,7 +357,7 @@
 												<div class="col-md-2">
 													<label><?= lang('insurance_data') ?></label>
 													<label
-														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
+														style="width: 180px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
 														<span><?= lang('browse') ?></span>
 														<input class="btn_input" name="file_1" type="file" hidden

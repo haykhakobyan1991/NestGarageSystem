@@ -412,5 +412,8 @@ $lang['Report_period'] = 'Период отчета';
 $lang['GPS_tracking'] = 'GPS-трекинг';
 $lang['geofences'] = 'Геозоны';
 
-
+$lang['fleet'] = 'Транспортное средство';
+$lang['location'] = 'Место нахождения';
+$lang['driver'] = 'Водитель';
+$lang['signal'] = 'Сигнал';
 

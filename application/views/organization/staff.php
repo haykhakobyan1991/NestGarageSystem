@@ -646,7 +646,7 @@ endforeach;
 							<td>
 
 								<? if ($row['document_1'] != '' && $row['ext_1'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="display: inline-block; color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
@@ -655,7 +655,7 @@ endforeach;
 
 								<? }
 								if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
@@ -664,7 +664,7 @@ endforeach;
 
 								<? }
 								if ($row['document_3'] != '' && $row['ext_3'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
@@ -673,7 +673,7 @@ endforeach;
 
 								<? }
 								if ($row['document_4'] != '' && $row['ext_4'] != '') { ?>
-									<a style="color: #fff;font-size: 12px;margin: 1px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
@@ -690,20 +690,14 @@ endforeach;
 									<span style="border: none;padding-top: 5px;cursor: pointer;"
 										  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
 										  data-toggle="modal" class="float-left text-success"
-										  data-target="#edit_staff"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="edit"><i class="fas fa-edit"></i></span>
+										  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
 								<? endif; ?>
 
 								<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
 									<span style="border: none; cursor:pointer;" data-toggle="modal"
 										  id="delete_staff_modal"
 										  class="text-secondary btn"
-										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete"><i class="fas fa-trash"></i></span>
+										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i class="fas fa-trash"></i></span>
 								<? endif; ?>
 							</td>
 						</tr>

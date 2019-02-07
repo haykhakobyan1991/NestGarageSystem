@@ -413,5 +413,12 @@ $lang['Report_period'] = 'Հաշվետու ժամանակաշրջան';
 $lang['GPS_tracking'] = 'GPS- ի հետեւում';
 $lang['geofences'] = 'Գեոզոնաներ';
 
+$lang['fleet'] = 'Փոխադրամիջոց';
+$lang['location'] = 'Գտնվելու վայր';
+$lang['driver'] = 'Վարորդ';
+$lang['signal'] = 'Ազդանշան';
+
+
+
 
 

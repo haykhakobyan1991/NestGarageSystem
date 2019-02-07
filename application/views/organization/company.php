@@ -141,7 +141,7 @@ $i = '';
 							<select name="activity_country"
 									class="col selectpicker form-control form-control-sm selectpicker_1"
 									data-size="5" id="country" data-live-search="true"
-									title="<?= lang('activity_address') ?>">
+									title="<?= lang('select_country'); ?>">
 								<option value=""><?= lang('Activity_Region') ?></option>
 								<? foreach ($country as $row) : ?>
 									<option <?= ($company['activity_country_id'] == $row['id'] ? 'selected' : '') ?>

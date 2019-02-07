@@ -104,6 +104,17 @@
 	.splitter-east {
 		width: 100%;
 	}
+	.dt-button-collection.dropdown-menu{
+		left: -100px !important;
+	}
+	a.dt-button.dropdown-item.buttons-columnVisibility{
+		color: #fff !important;
+		background: #8e8f90 !important;
+	}
+	a.dt-button.dropdown-item.buttons-columnVisibility.active{
+		color: #8e8f90 !important;
+		background: #fff !important;
+	}
 </style>
 
 <div id="splitter">
@@ -162,17 +173,16 @@
 					<thead>
 					<tr>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>Select
-							all
+							<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
 						</th>
 						<th
 							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-sort-alpha-up"></i>cars
+							   class="fas fa-sort-alpha-up"></i><?=lang('fleet')?>
 						</th>
 						<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-map-marker-alt"></i> place
+							   class="fas fa-map-marker-alt"></i><?=lang('location')?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
@@ -183,18 +193,18 @@
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-user"></i>
-							Driver
+							<?=lang('driver')?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important;font-size: 12px !important;"
-							   class="fas fa-gas-pump"></i> Fuel
+							   class="fas fa-gas-pump"></i><?=lang('fuel')?>
 						</th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important; font-size: 12px  !important;"
-							   class="fas fa-wifi"></i>signal
+							   class="fas fa-wifi"></i><?=lang('signal')?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
@@ -1788,6 +1798,15 @@
 
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
+
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display','none');
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display','none');
+		console.log('ddd');
+
+		$('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
+			var text  = $(this).text();
+			$(this).html('&#x2611; ' +text);
+		})
 	});
 
 	// add group
@@ -1995,7 +2014,7 @@
 		$("#splitter").zinoSplitter({
 			panes: [
 				{
-					size: 546
+					size: 548
 				},
 				{
 					size: "100%", region: "east"
@@ -2016,12 +2035,14 @@
 					$('.tools_div').addClass('col-sm-3');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-3');
+					$('i.fas.fa-ellipsis-v.ml-2').css('display','none')
 				} else {
 					$('input[type=search]').css('display','inline-block');
 					$('.tools_div').removeClass('col-sm-3');
 					$('.tools_div').addClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-3');
+					$('i.fas.fa-ellipsis-v.ml-2').css('display','block')
 				}
 
 				if($('.panel-left').width() <= 374){
@@ -2041,11 +2062,20 @@
 
 	});
 
-	// $(document).on('change', function () {
-	// 	console.log($('.panel-left').offsetWidth);
-	// 	console.log('🎉💋💋💋');
-	// })
+	// $(document).on('click','.dt-buttons.btn-group', function () {
+	//
+	// });
 
+	// $(document).on('click', 'a.dt-button.dropdown-item.buttons-columnVisibility', function () {
+	//
+	// 	if($(this).children('.checkbox_div_checked').children('input').is(':checked')){
+	// 		$(this).prop('checked', false)
+	// 	}else{
+	//
+	// 		$(this).prop('checked', false)
+	// 	}
+	//
+	// })
 
 </script>
 

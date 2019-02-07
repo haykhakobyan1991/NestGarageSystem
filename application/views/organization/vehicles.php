@@ -125,19 +125,13 @@ color: #545b62;">
 											style="border: none;padding-top: 5px;cursor: pointer;" data-id=""
 											id="edit_vehicles_modal"
 											data-toggle="modal" class="float-left text-success"
-											data-target="#edit_vehicles"
-											data-toggle2="tooltip"
-											data-placement="top"
-											title="edit"><i class="fas fa-edit"></i></span></a>
+											data-target="#edit_vehicles"><i class="fas fa-edit"></i></span></a>
 
 
 									<span style="border: none;cursor: pointer;" data-toggle="modal"
 										  id="delete_vehicles_modal"
 										  class="text-secondary btn"
-										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"
-										  data-toggle2="tooltip"
-										  data-placement="top"
-										  title="delete"><i class="fas fa-trash"></i></span></td>
+										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i class="fas fa-trash"></i></span></td>
 								</td>
 							</tr>
 						<? endforeach; ?>

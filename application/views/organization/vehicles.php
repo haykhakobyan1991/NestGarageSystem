@@ -128,7 +128,8 @@ color: #545b62;">
 											data-target="#edit_vehicles"><i class="fas fa-edit"></i></span></a>
 
 
-									<span style="border: none;cursor: pointer;" data-toggle="modal"
+									<span style="border: none;cursor: pointer;"
+										  data-toggle="modal"
 										  id="delete_vehicles_modal"
 										  class="text-secondary btn"
 										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i class="fas fa-trash"></i></span></td>

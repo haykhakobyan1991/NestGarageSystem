@@ -12,12 +12,24 @@
 <![endif]-->
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+
+<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
+<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
+
 <!--<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"-->
 <!--		type="text/javascript"></script>-->
 
 <script type="text/javascript" src="<?= base_url('assets/js/ymap.js') ?>"></script>
 
+<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
+<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
+<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
+<script src="https://static.zinoui.com/js/front.min.js"></script>
+
+
+
 <style>
+	body{overflow: hidden;}
 	ul.pagination {
 		margin-top: 5px !important;
 	}
@@ -27,30 +39,46 @@
 	}
 
 	div#example_wrapper {
-		margin-top: -35px;
+		margin-top: -26px;
+		margin-right: 10px;
 	}
 
 	.modal-full {
 		min-width: 100%;
 		margin: 0;
 	}
+	#splitter {
+		height: calc(100% - 150px);
+		width: 100%;
+	}
+	.splitter-west {
+	}
+	.splitter-east {
+		width: 100%;
+	}
+	.zui-splitter-separator{
+		z-index: 1 !important;
+	}
+	.panel-right.splitter-west.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+		width: 100% !important;
+	}
 </style>
 <div class="container-fluid">
-	<hr class="my-2">
-	<div class="row">
-		<div class="col-sm-5">
+	<div id="splitter">
+		<div class="panel-left splitter-west" id="mydiv">
 			<div class="row">
 
-				<div class="col-sm-2" style="padding-top: 10px;">
+				<div class="number_of col-sm-2" style="padding-top: 16px;">
 					<i style="font-size: 17px;" class="fas fa-draw-polygon"></i>
 					<span class="count_cars_in_table">4</span>
 				</div>
 
-				<span style="padding-top: 11px;">Ստեղծել</span>
-				<span class=" ml-3 mr-1 mt-3"
-					  style="z-index: 999;"
+
+				<span  class="create_span ml-3 mr-1 mt-3"
+					  style="z-index: 999;cursor: pointer;"
 					  data-toggle="modal"
-					  data-target=".bd-example-modal-xl"><i class="fas fa-plus"></i>
+					  data-target=".bd-example-modal-xl">
+					<span class="create_span" >Ստեղծել</span><i class="fas fa-plus pl-2"></i>
 				</span>
 				<!--				<select name="company_type"-->
 				<!--						id="table-filter"-->
@@ -85,9 +113,6 @@
 								 title=""/></th>
 						<th class="no-sort"><i class="fas fa-edit"></i></th>
 						<th class="no-sort"><img
-								src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg" alt=""
-								title=""/></th>
-						<th class="no-sort"><img
 								src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg" alt=""
 								title=""/></th>
 					</tr>
@@ -116,14 +141,16 @@
 									<i style="opacity: .5;" class="fas fa-edit"></i>
 									<input type="hidden" name="id_edit" value="<?=$id?>">
 								</td>
-								<td style="cursor: pointer;"><img style="opacity: .5;"
-																  src="<?= base_url() ?>assets/images/gps_tracking/geofences/archives.svg"
-																  alt=""
-																  title=""/></td>
-								<td style="cursor: pointer;"><img style="opacity: .5;"
-																  src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
-																  alt=""
-																  title=""/></td>
+								<td style="cursor: pointer;"
+									data-toggle="modal"
+									id="delete_geo_modal"
+									data-target=".bd-example-modal-sm"
+									data-id="<?= $id ?>"
+								>
+									<img style="opacity: .5;" alt="" title=""
+										 src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg" />
+
+								</td>
 							</tr>
 
 							<?
@@ -138,8 +165,8 @@
 			</div>
 		</div>
 
-		<div class="col-sm-7">
-			<div id="map" style="width: 100%; height: calc(100% - 150px);"></div>
+		<div class="panel-right splitter-west splitter-east">
+			<div id="map" style="width: 100%; height:100%;"></div>
 		</div>
 	</div>
 </div>
@@ -190,6 +217,7 @@
 
 <!-- Add New Geofences Modal End -->
 
+
 <!-- Edite Geofences Modal Start -->
 
 <div id="shown" class="modal fade bd-example-modal-xl_Edite pr-0 hide" tabindex="-1" role="dialog"
@@ -199,7 +227,7 @@
 		<div class="modal-content">
 			<form  id="edit_geo">
 				<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-					<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
+					<h5 class="modal-title" id="exampleModalLabel"><?= lang('edit_geoference') ?></h5>
 					<input type="hidden" name="edit_id" value="" />
 					<div class="form-group row">
 						<label class="col-sm-5 col-form-label">Geoferences Name</label>
@@ -234,6 +262,39 @@
 </div>
 
 <!-- Edite Geofences Modal End -->
+
+
+<!-- Delete Modal Start -->
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	 aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+			</div>
+			<div class="modal-footer text-center">
+				<div style="margin: 0 auto;">
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" id="delete_geo"
+							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+					</button>
+					<button style="min-width: 94px;font-size: 14px !important;
+    line-height: 14px !important;
+    padding: 12px 24px !important;
+    font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
+							data-dismiss="modal"><?= lang('cancel') ?></button>
+
+					<input type="hidden" name="geo_id">
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<!-- Delete Modal End -->
 
 <script type="text/javascript">
 
@@ -371,6 +432,9 @@
 		});
 	});
 
+
+
+
 	//Yandex Map Modal Start
 
 	function createNewGeofences() {
@@ -380,8 +444,8 @@
 
 
 			var myMap_new = new ymaps.Map("map_new", {
-				center: [55.76, 37.64],
-				zoom: 7
+				center: [40.1533693, 44.4185276],
+				zoom: 12
 			});
 
 			var myPolygon = new ymaps.Polygon([], {}, {
@@ -444,9 +508,6 @@
 
 		}
 	}
-
-
-
 
 	createNewGeofences();
 
@@ -661,8 +722,68 @@
 
 	});
 
+</script>
 
 
+
+
+<script>
+	$(document).on('click', '#delete_geo_modal', function () {
+		geo_id = $(this).data('id');
+		$('input[name="geo_id"]').val(geo_id);
+	});
+
+	$(document).on('click', '#delete_geo', function () {
+		var id = $('input[name="geo_id"]').val();
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Gps/delete_geoference/')?>';
+
+		$.post(url, {geo_id: id}, function (result) {
+			location.reload();
+		});
+	});
+
+
+	$(function () {
+		$("#splitter").zinoSplitter({
+			panes: [
+				{
+					size: 548
+				},
+				{
+					size: "100%", region: "east"
+				}
+			],
+			resize: function (event, ui) {
+				log("resize");
+			}
+		});
+
+		function log(str) {
+
+			if (str == 'resize') {
+
+				if($('.panel-left').width() <= 565){
+					$('input[type=search]').css('display','none');
+
+					$('.create_span').css('display','none')
+					$('div#example_wrapper').css('margin-top','0');
+					$('.number_of').removeClass('col-sm-2');
+					$('.number_of').addClass('col-sm-12');
+
+				} else {
+					$('input[type=search]').css('display','inline-block');
+
+					$('.create_span').css('display','inline-block')
+					$('div#example_wrapper').css('margin-top','-26px');
+					$('.number_of').removeClass('col-sm-12');
+					$('.number_of').addClass('col-sm-2');
+				}
+
+
+			}
+		}
+
+	});
 </script>
 
 

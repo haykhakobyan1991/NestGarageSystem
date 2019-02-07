@@ -115,6 +115,9 @@
 		color: #8e8f90 !important;
 		background: #fff !important;
 	}
+	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+		width: 100% !important;
+	}
 </style>
 
 <div id="splitter">

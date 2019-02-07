@@ -194,7 +194,7 @@ class Gps extends MX_Controller {
 		$geo_name = $this->input->post('geo_name');
 		$geometry = $this->input->post('geometry');
 		$status = 1;
-		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token));
+		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
 
 
 		$sql = "
@@ -348,6 +348,28 @@ class Gps extends MX_Controller {
 		echo json_encode($messages);
 		return true;
 
+	}
+
+
+	public function delete_geoference() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('geo_id');
+
+		$this->db->delete('geoference', array('id' => $id));
+
+		$this->db->delete('geoference_cordinates', array('geoference_id' => $id));
+
+		return true;
 	}
 
 

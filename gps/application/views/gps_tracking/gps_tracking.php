@@ -158,9 +158,7 @@
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
-							<i class="fas fa-parking pb-1"></i>
-							<i class="fas fa-arrow-alt-circle-right pb-1"></i>
-							<i class="float-left fas fa-stop-circle"></i>
+							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/triangle.svg"/>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
@@ -1217,12 +1215,12 @@
 
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display','none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display','none');
-		console.log('ddd');
-
-		$('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
-			var text  = $(this).text();
-			$(this).html('&#x2611; ' +text);
-		})
+		// console.log('ddd');
+		//
+		// $('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
+		// 	var text  = $(this).text();
+		// 	$(this).html('&#x2611; ' +text);
+		// })
 	});
 
 	// add group

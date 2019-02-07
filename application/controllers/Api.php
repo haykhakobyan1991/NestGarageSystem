@@ -78,11 +78,25 @@ class Api extends MX_Controller {
 					`fleet`.*,
 					CONCAT_WS(
 						' ',
+						`staff`.`first_name`,
+						`staff`.`last_name`
+					) AS `staff`,
+					`staff`.`contact_1`,
+					`department`.`title` AS `department`,
+					CONCAT_WS(
+						' ',
 						`brand`.`title_" . $lng . "`,
 						`model`.`title_" . $lng . "`
 					) AS `brand_model`
 				FROM
 				   `fleet`
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					) 
+				LEFT JOIN `department`
+					ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)	  
 				LEFT JOIN `model` 
 					ON `model`.`id` = `fleet`.`model_id` 
 				LEFT JOIN `brand` 
@@ -117,7 +131,8 @@ class Api extends MX_Controller {
 			SELECT
 			  GROUP_CONCAT(`fleet_group`.`fleet_id`) AS `fleet_id`,
 			  `fleet_group`.`title`,
-			  `fleet_group`.`group_id`
+			  `fleet_group`.`group_id`,
+			  `fleet_group`.`default`
 			FROM
 			  `fleet_group`
 			WHERE `fleet_group`.`status` = 1

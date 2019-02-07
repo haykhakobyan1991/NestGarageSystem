@@ -98,11 +98,26 @@ class Gps extends MX_Controller {
 
 		//api call //todo urls
 		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token));
-		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token));
-
-
-		$data['result'] = json_decode($fleet_group, true);
 		$data['result_fleets'] = json_decode($fleets, true);
+
+		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token));
+		$data['result'] = json_decode($fleet_group, true);
+
+		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
+
+		 $sql_g = '
+			SELECT 
+				"id",
+				"name"
+			FROM 
+			   "geoference"
+			WHERE "status" = 1 
+			AND "company_id" = '.$company_id.'
+		';
+
+		$query_g = $this->db->query($sql_g);
+		$data['geoference'] = $query_g->result_array();
+
 
 		$this->layout->view('gps_tracking/gps_tracking', $data);
 

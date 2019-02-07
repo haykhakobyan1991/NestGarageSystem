@@ -418,7 +418,7 @@ $lang['GPS_tracking'] = 'GPS- ի հետեւում';
 $lang['geofences'] = 'Գեոզոնաներ';
 
 
-$lang['Create_New_Geofences'] = 'Ստեղծեք նոր գեոզոնա';
+
 
 
 

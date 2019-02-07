@@ -232,8 +232,8 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 												title="<?= lang('statistics') ?>">
 												<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
 											</button>
-											<label class="text-center" style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
-											<select style="margin-top: 1px" class="form-control form-control-sml">
+											<label class="text-center col-sm-2" style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+											<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>

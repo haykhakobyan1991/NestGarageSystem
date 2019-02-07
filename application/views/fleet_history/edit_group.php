@@ -22,20 +22,16 @@
 		<div class="form-group row">
 			<div class="col-sm-1"></div>
 			<label class="col-sm-2 col-form-label"><?= lang('geofences') ?></label>
-			<div class="col-sm-8">
-				<select class="form-control form-control-sm col-sm-12">
-					<option selected>value 1</option>
-					<option>value 2</option>
-					<option>value 3</option>
-					<option>value 4</option>
-					<option>value 5</option>
-				</select>
+			<div class="col-sm-8" id="gro">
+
 			</div>
 		</div>
 
 		<input type="hidden" name="edit_groups" value="<?=$selected_fleet_ids?>">
 		<input type="hidden" name="group_id" value="<?=$group_id?>">
 		<input type="hidden" name="token" value="<?=$token?>">
+		<input type="hidden" name="geoference_id" value="<?=(isset($result_selected_fleets[0]['geoference_id']) ? $result_selected_fleets[0]['geoference_id'] : '')?>">
+
 
 	</form>
 	<hr class="my-2">
@@ -85,7 +81,7 @@
 	<button id="edit_group_btn" type="button"
 			class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 	</button>
-	<button id="load" class="btn btn-sm btn-success d-none "><img
+	<button id="load" class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 			style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 			src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 	<button type="button" class="cancel_btn close btn btn-sm"
@@ -192,3 +188,4 @@
 		});
 
 </script>
+

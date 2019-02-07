@@ -415,6 +415,6 @@ $lang['GPS_tracking'] = 'GPS-трекинг';
 $lang['geofences'] = 'Геозоны';
 
 
-$lang['Create_New_Geofences'] = 'Создать новую геозону';
+
 
 

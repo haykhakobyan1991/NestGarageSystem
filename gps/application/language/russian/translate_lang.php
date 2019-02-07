@@ -416,4 +416,8 @@ $lang['fleet'] = 'Транспортное средство';
 $lang['location'] = 'Место нахождения';
 $lang['driver'] = 'Водитель';
 $lang['signal'] = 'Сигнал';
+$lang['create'] = 'Создать';
+$lang['Create_New_Geofences'] = 'Создать новую геозону';
+$lang['GeoferenceName'] = 'Название геозоны';
+$lang['edit_geoference'] = 'Редактировать геозону';
 

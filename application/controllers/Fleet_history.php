@@ -892,6 +892,7 @@ class Fleet_history extends MX_Controller {
 		$title = $this->input->post('title');
 		$groups = $this->input->post('groups');
 		$description = $this->input->post('description');
+		$geoference = $this->input->post('geoference');
 		$status = 1;
 
 		$groups_arr = explode(',', $groups);
@@ -903,6 +904,7 @@ class Fleet_history extends MX_Controller {
 				 `fleet_id`,
 				 `group_id`,
 				 `company_id`,
+				 `geoference_id`,
 				 `status`)
 			VALUES
 		";
@@ -914,6 +916,7 @@ class Fleet_history extends MX_Controller {
 					".$this->load->db_value($fleet_id).",
 					".$this->load->db_value($group_id).",
 					".$this->load->db_value($company_id).",
+					".$this->load->db_value($geoference).",
 					1
 				),";
 		}
@@ -969,6 +972,7 @@ class Fleet_history extends MX_Controller {
 			    `fleet_group`.`title`,
 			    `fleet_group`.`details`,
 			    `fleet_group`.`default`,
+			    `fleet_group`.`geoference_id`,
 			    CONCAT_WS(
 					' ',
 					`brand`.`title_".$lng."`,
@@ -1105,6 +1109,7 @@ class Fleet_history extends MX_Controller {
 		$title = $this->input->post('title');
 		$groups = $this->input->post('edit_groups');
 		$description = $this->input->post('description');
+		$geoference = $this->input->post('geoference');
 		$status = 1;
 
 		$groups_arr = explode(',', $groups);
@@ -1116,6 +1121,7 @@ class Fleet_history extends MX_Controller {
 				 `fleet_id`,
 				 `group_id`,
 				 `company_id`,
+				 `geoference_id`,
 				 `status`)
 			VALUES
 		";
@@ -1127,6 +1133,7 @@ class Fleet_history extends MX_Controller {
 					".$this->load->db_value($fleet_id).",
 					".$this->load->db_value($group_id).",
 					".$this->load->db_value($company_id).",
+					".$this->load->db_value($geoference).",
 					1
 				),";
 		}

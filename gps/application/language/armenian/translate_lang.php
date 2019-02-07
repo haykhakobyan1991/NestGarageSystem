@@ -417,6 +417,10 @@ $lang['fleet'] = 'Փոխադրամիջոց';
 $lang['location'] = 'Գտնվելու վայր';
 $lang['driver'] = 'Վարորդ';
 $lang['signal'] = 'Ազդանշան';
+$lang['create'] = 'Ստեղծել';
+$lang['Create_New_Geofences'] = 'Ստեղծեք նոր գեոզոնա';
+$lang['GeoferenceName'] = 'Գեոզոնայի անվանումը';
+$lang['edit_geoference'] = 'Խմբագրել գեոզոնան';
 
 
 

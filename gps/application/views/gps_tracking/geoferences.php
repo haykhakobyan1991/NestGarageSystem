@@ -26,7 +26,9 @@
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
 <script src="https://static.zinoui.com/js/front.min.js"></script>
 
-
+<?
+$count = count($result);
+?>
 
 <style>
 	body{overflow: hidden;}
@@ -70,7 +72,7 @@
 
 				<div class="number_of col-sm-2" style="padding-top: 16px;">
 					<i style="font-size: 17px;" class="fas fa-draw-polygon"></i>
-					<span class="count_cars_in_table">4</span>
+					<span class="count_cars_in_table"><?=$count?></span>
 				</div>
 
 
@@ -78,7 +80,7 @@
 					  style="z-index: 999;cursor: pointer;"
 					  data-toggle="modal"
 					  data-target=".bd-example-modal-xl">
-					<span class="create_span" >Ստեղծել</span><i class="fas fa-plus pl-2"></i>
+					<span class="create_span" ><?=lang('create')?></span><i class="fas fa-plus pl-2"></i>
 				</span>
 				<!--				<select name="company_type"-->
 				<!--						id="table-filter"-->
@@ -182,10 +184,10 @@
 				<div class="modal-header" style="padding-bottom: 0px;padding-top: 10px;">
 					<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
 
-					<div class="form-group row">
-						<label class="col-sm-5 col-form-label">Geoferences Name</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" name="geo_name"  placeholder="Geoferences Name">
+					<div class="form-group row mb-2">
+						<label class="col-sm-6 col-form-label"><?=lang('GeoferenceName')?></label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="geo_name"  placeholder="<?=lang('GeoferenceName')?>">
 						</div>
 					</div>
 					<div class="float-right">
@@ -229,10 +231,10 @@
 				<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
 					<h5 class="modal-title" id="exampleModalLabel"><?= lang('edit_geoference') ?></h5>
 					<input type="hidden" name="edit_id" value="" />
-					<div class="form-group row">
-						<label class="col-sm-5 col-form-label">Geoferences Name</label>
-						<div class="col-sm-7">
-							<input type="text" class="form-control" name="geo_name"  placeholder="Geoferences Name">
+					<div class="form-group row mb-0">
+						<label class="col-sm-6 col-form-label"><?=lang('GeoferenceName')?></label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" name="geo_name"  placeholder="<?=lang('GeoferenceName')?>">
 						</div>
 					</div>
 					<div class="float-right">

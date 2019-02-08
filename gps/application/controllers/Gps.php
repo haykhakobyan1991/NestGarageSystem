@@ -118,6 +118,24 @@ class Gps extends MX_Controller {
 		$query_g = $this->db->query($sql_g);
 		$data['geoference'] = $query_g->result_array();
 
+		$result = $this->db->select('geoference."id",geoference."name", geoference_cordinates.lat,geoference_cordinates.long')->from('geoference')->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')->where('geoference.status', 1)->get()->result_array();
+
+		$new_result = array();
+
+
+		foreach ($result as $value) {
+			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';
+		}
+
+		foreach ($result as $val) {
+			$new_result2[$val['id']][] = '['.$value['lat'].','.$value['long'].']';
+		}
+
+//		$this->pre($new_result);
+
+		$data['result2'] = $new_result;
+		$data['new_result'] = $new_result2;
+
 
 		$this->layout->view('gps_tracking/gps_tracking', $data);
 
@@ -139,8 +157,6 @@ class Gps extends MX_Controller {
 		$data = array();
 
 		$result = $this->db->select('geoference."id",geoference."name", geoference_cordinates.lat,geoference_cordinates.long')->from('geoference')->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')->where('geoference.status', 1)->get()->result_array();
-
-		// $this->pre($result);
 
 		$new_result = array();
 

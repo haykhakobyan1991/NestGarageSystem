@@ -136,6 +136,7 @@ class Api extends MX_Controller {
 			  GROUP_CONCAT(`fleet_group`.`fleet_id`) AS `fleet_id`,
 			  `fleet_group`.`title`,
 			  `fleet_group`.`group_id`,
+			  `fleet_group`.`geoference_id`,
 			  `fleet_group`.`default`
 			FROM
 			  `fleet_group`

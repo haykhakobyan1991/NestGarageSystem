@@ -126,7 +126,8 @@
 							<option selected value="all_val"><?= lang('all1') ?></option>
 							<? foreach ($result as $row) { ?>
 								<option data-id="<?= $row['group_id'] ?>"
-										data-default="<?= $row['default'] ?>"
+										data-default="<?= $row['default']?>"
+										data-cordinate="<?=(isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : '')?>"
 										value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
 							<? } ?>
 						</select>
@@ -632,27 +633,15 @@
 </div>
 <!-- Delete modal End -->
 
+<? foreach ($result2 as $name => $value) {
+	foreach ($value as $id => $val) {
+		?>
 
-<span class="geofences_coordinate" style="display:none;" data-gCoordinate="[40.19060653826287, 44.50844357516261],
-																		   [40.189981206597146, 44.51397965456936],
-																		   [40.18741399465704, 44.510246019620624],
-																		   [40.19060653826287, 44.50844357516261]"></span>
-<span class="geofences_coordinate" style="display:none;" data-gCoordinate="[40.13331860515059,44.44393439075485],
-								   					                       [40.09483366177357,44.54555792591108],
-								   					                       [40.148601052086335,44.54967779895795],
-								   					                       [40.13331860515059,44.44393439075485]"></span>
-<span class="geofences_coordinate" style="display:none;" data-gCoordinate="[40.188001002307885,44.52710650739624],
-								   				                           [40.17977217076603,44.520068390941155],
-								   				                           [40.174702709790814,44.52762149152713],
-								   				                           [40.173122540044034,44.54118274030644],
-								   				                           [40.18391962756528,44.5442726450916],
-								   				                           [40.188001002307885,44.52710650739624]"></span>
-<span class="geofences_coordinate" style="display:none;" data-gCoordinate="[40.182152607087005,44.48289401495332],
-								   					                       [40.179848435430564,44.49079043829316],
-								   					                       [40.181560113314845,44.50478084051483],
-								   					                       [40.187320248036535,44.502635073302926],
-								   					                       [40.189196299777905,44.487056803344416],
-								   					                       [40.182152607087005,44.48289401495332]"></span>
+		<span class="geofences_coordinate" style="display:none;" data-gCoordinate="<?= implode(',', $val) ?>"></span>
+
+		<?
+	}
+} ?>
 
 
 <script>
@@ -690,7 +679,7 @@
 		language: {
 			search: "<?=lang('search')?>",
 			emptyTable: "<?=lang('no_data')?>",
-			info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+			info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
 			infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
 			infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
 			lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
@@ -1562,12 +1551,19 @@
 	})
 
 	$(document).on('change', 'select[name="group"]', function () {
-		if ($(this).children('option:selected').data('default') == '2') {
+		if($(this).children('option:selected').data('default') == '2'){
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').hide();
 		} else {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').show();
 		}
+
+		$('.count_cars_in_table').html($('#total').text())
 	})
+
+	$(document).on('keyup', 'input[type="search"]', function () {
+		$('.count_cars_in_table').html($('#total').text())
+	});
+
 
 </script>
 

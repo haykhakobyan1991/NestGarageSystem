@@ -126,7 +126,7 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 		<a class="nav_a btn btn-sm btn-outline-success2 <?= ($controller == 'Gps' ? 'active' : '') ?> "
 		   id="gps_tracking"
-		   href="javascript:void(0)"><?= lang('GPS_tracking') ?></a>
+		   href="javascript:void(0)">GPS</a>
 
 	</div>
 

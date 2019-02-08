@@ -98,7 +98,7 @@
 					<div class="car_icon col-sm-2" style="padding-top: 10px;">
 						<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
 							 style="width: 25px;display: inline-block;"/>
-						<span class="count_cars_in_table">3</span>
+						<span class="count_cars_in_table"><?= count($result_fleets) ?></span>
 					</div>
 					<label class="label_group" style="margin-top: 10px;"><?= lang('group') ?></label>
 					<div class="label_group col-sm-3 ml-0">
@@ -109,7 +109,7 @@
 							<? foreach ($result as $row) { ?>
 								<option data-id="<?= $row['group_id'] ?>"
 										data-default="<?= $row['default']?>"
-										value="<?= $row['fleet_id'] ?>"><?= $row['title'] ?></option>
+										value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
 							<? } ?>
 						</select>
 					</div>
@@ -190,7 +190,6 @@
 					foreach ($result_fleets as $fleets) :
 						$step += 0.007;
 						$step2 += 0.009;
-
 						?>
 
 					<tr>
@@ -206,7 +205,8 @@
 							<small class="form-text text-muted"><?=$fleets['contact_1']?></small>
 						</td>
 						<td>
-							<?=$fleets['department']?>
+							<?= $fleets['department'] ?>
+							<small style="font-size: 0.1px;"><?= $fleets['fleet_group'] ?></small>
 						</td>
 						<td>
 							<div class="border-danger fuel_wrapper">
@@ -350,7 +350,7 @@
 						<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
 							<? foreach ($result_fleets as $row_fleet) : ?>
 								<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
-									class="p-1 sel_items mt-1 list-group-item"><?= $row_fleet['brand_model'] ?></li>
+									class="p-1 sel_items mt-1 list-group-item"><?= $row_fleet['brand_model'] . '  (' . $row_fleet['fleet_plate_number'] . ')' ?></li>
 							<? endforeach; ?>
 						</ul>
 					</div>
@@ -704,6 +704,17 @@
 			$(this).addClass('bg-info text-white')
 		}
 	});
+
+	// $('select[name="group"]').on( 'change', function () {
+	// 	if($(this).children('option:selected').val() != 'all_val') {
+	// 		table.search( $(this).children('option:selected').text()).draw();
+	// 		$('input[type=search]').val($(this).children('option:selected').text());
+	// 	} else {
+	// 		table.search().draw();
+	// 		$('input[type=search]').val('');
+	// 	}
+	//
+	// } );
 	$(document).on('click', '.added_lg_2', function () {
 		array = [];
 		if ($(this).hasClass('bg-info')) {
@@ -975,7 +986,11 @@
 					myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 				}
+
 			});
+			var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+			$('#map > ymaps').css('width', width_map);
+			$('#map > ymaps').css('overflow', 'scroll');
 		}
 
 		/* On Click Function Show single Car On Map */
@@ -1068,7 +1083,13 @@
 
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+
+				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
 			}
+
+
 		});
 
 
@@ -1200,7 +1221,13 @@
 						myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
 					}
 				});
+
+				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
 			}
+
+
 		});
 	});
 
@@ -1336,12 +1363,6 @@
 			});
 
 
-
-
-
-
-
-
 			// show modal
 			$('#myModal').modal('show');
 		});
@@ -1457,17 +1478,26 @@
 					size: 570
 				},
 				{
-					size: "100%", region: "east"
+					size: "100%",
+					region: "east"
 				}
 			],
 			resize: function (event, ui) {
 				log("resize");
+
 			}
 		});
 
 		function log(str) {
 
 			if (str == 'resize') {
+
+				console.log($('.panel-right').width() - $('.panel-left').width() - 4)
+				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
+
 
 				if($('.panel-left').width() <= 565){
 					$('input[type=search]').css('display','none');
@@ -1502,21 +1532,12 @@
 
 	});
 
-	// $(document).on('click','.dt-buttons.btn-group', function () {
-	//
-	// });
 
-	// $(document).on('click', 'a.dt-button.dropdown-item.buttons-columnVisibility', function () {
-	//
-	// 	if($(this).children('.checkbox_div_checked').children('input').is(':checked')){
-	// 		$(this).prop('checked', false)
-	// 	}else{
-	//
-	// 		$(this).prop('checked', false)
-	// 	}
-	//
-	// })
-
+	$(window).on('load', function () {
+		var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+		$('#map > ymaps').css('width', width_map);
+		$('#map > ymaps').css('overflow', 'scroll');
+	})
 
 	$(document).on('change', 'select[name="group"]', function () {
 		if($(this).children('option:selected').data('default') == '2'){

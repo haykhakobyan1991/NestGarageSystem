@@ -45,7 +45,7 @@
 				<? foreach ($result_fleets as $row_fleet) : ?>
 					<li data-id="<?= $row_fleet['id'] ?>"
 						class="p-1 sel_items2 mt-1 list-group-item"
-						style="cursor: pointer; <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] ?></li>
+						style="cursor: pointer; <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] . '  (' .  $row_fleet['fleet_plate_number'] . ')' ?></li>
 				<? endforeach; ?>
 			</ul>
 		</div>
@@ -69,7 +69,7 @@
 				<? foreach ($result_selected_fleets as $row_fleet) : ?>
 					<li data-id="<?= $row_fleet['id'] ?>"
 						class="p-1 added_lg_22 mt-1 list-group-item"
-						style="cursor: pointer; <?=($row_fleet['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] ?></li>
+						style="cursor: pointer; <?=($row_fleet['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] . '  (' .  $row_fleet['fleet_plate_number'] . ')' ?></li>
 				<? endforeach; ?>
 			</ul>
 

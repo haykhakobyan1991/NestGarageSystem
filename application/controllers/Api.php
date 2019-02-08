@@ -87,9 +87,12 @@ class Api extends MX_Controller {
 						' ',
 						`brand`.`title_" . $lng . "`,
 						`model`.`title_" . $lng . "`
-					) AS `brand_model`
+					) AS `brand_model`,
+					GROUP_CONCAT(`fleet_group`.`title`) AS `fleet_group`
 				FROM
 				   `fleet`
+				LEFT JOIN `fleet_group` 
+					ON `fleet_group`.`fleet_id` = `fleet`.`id`    
 				LEFT JOIN `staff` 
 					ON FIND_IN_SET(
 					  `staff`.`id`,
@@ -104,7 +107,8 @@ class Api extends MX_Controller {
 				LEFT JOIN `user` 
 					ON `user`.`id` = `fleet`.`registrar_user_id` 	
 				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "		
-				 AND `fleet`.`status` = '1'	   
+				 AND `fleet`.`status` = '1'	 
+				 GROUP BY `fleet`.`id`
 			";
 
 		$query = $this->db->query($sql);
@@ -138,6 +142,7 @@ class Api extends MX_Controller {
 			WHERE `fleet_group`.`status` = 1
 			 AND `fleet_group`.`company_id` = ".$this->load->db_value($company_id)."
 			 GROUP BY `fleet_group`.`title`
+			 ORDER BY `fleet_group`.`default` DESC, `fleet_group`.`title`
 		";
 
 		$query = $this->db->query($sql);

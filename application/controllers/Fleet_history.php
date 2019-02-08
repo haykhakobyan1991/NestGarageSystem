@@ -977,7 +977,8 @@ class Fleet_history extends MX_Controller {
 					' ',
 					`brand`.`title_".$lng."`,
 					`model`.`title_".$lng."`
-			    ) AS `brand_model`
+			    ) AS `brand_model`,
+			    `fleet`.`fleet_plate_number`
 			FROM
 			   `fleet_group`
 			LEFT JOIN `fleet` 
@@ -1017,7 +1018,8 @@ class Fleet_history extends MX_Controller {
 					' ',
 					`brand`.`title_".$lng."`,
 					`model`.`title_".$lng."`
-				) AS `brand_model`
+				) AS `brand_model`,
+				`fleet`.`fleet_plate_number`
 			FROM
 			   `fleet`
 			LEFT JOIN `model` 

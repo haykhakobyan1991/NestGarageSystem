@@ -705,16 +705,15 @@
 		}
 	});
 
-	// $('select[name="group"]').on( 'change', function () {
-	// 	if($(this).children('option:selected').val() != 'all_val') {
-	// 		table.search( $(this).children('option:selected').text()).draw();
-	// 		$('input[type=search]').val($(this).children('option:selected').text());
-	// 	} else {
-	// 		table.search().draw();
-	// 		$('input[type=search]').val('');
-	// 	}
-	//
-	// } );
+	$('select[name="group"]').on( 'change', function () {
+		$(this).children('option:selected').each(function() {
+			if($(this).val() != 'all_val'){
+				table.search($(this).text().replace("✓", "")).draw();
+			}else{
+				table.search('').draw();
+			}
+		})
+	});
 	$(document).on('click', '.added_lg_2', function () {
 		array = [];
 		if ($(this).hasClass('bg-info')) {

@@ -6,7 +6,7 @@ $i = '';
 
 <style>
 	input::-webkit-input-placeholder {
-		font-size: 12px !important;
+		font-size: 14px !important;
 	}
 </style>
 

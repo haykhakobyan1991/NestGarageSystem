@@ -24,42 +24,54 @@
 	body {
 		overflow: hidden;
 	}
+
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
 	}
+
 	.dropdown-menu {
 		padding: 0;
 	}
+
 	.dropdown-menu a:last-child {
 		display: none;
 		top: 55px;
 		left: -15px;
 	}
+
 	.dataTables_filter label {
 		font-size: 0px !important;
 	}
+
 	#example11_filter label input {
 		height: 38px;
 	}
+
 	#example11_filter {
 		height: 37px;
 	}
+
 	td {
 		font-size: 11px !important;
 	}
+
 	.dataTables_scrollBody {
 		height: calc(100% - 315px) !important;
 	}
+
 	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
 		color: #6c757d !important;
 	}
+
 	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
 		color: #6c757d !important;
 	}
+
 	.border-5 {
 		border-width: 5px !important;
 	}
-	.zui-splitter-separator{
+
+	.zui-splitter-separator {
 		z-index: 1 !important;
 	}
 
@@ -67,23 +79,29 @@
 		height: calc(100% - 150px);
 		width: 100%;
 	}
+
 	.splitter-west {
 	}
+
 	.splitter-east {
 		width: 100%;
 	}
-	.dt-button-collection.dropdown-menu{
+
+	.dt-button-collection.dropdown-menu {
 		left: -100px !important;
 	}
-	a.dt-button.dropdown-item.buttons-columnVisibility{
+
+	a.dt-button.dropdown-item.buttons-columnVisibility {
 		color: #fff !important;
 		background: #8e8f90 !important;
 	}
-	a.dt-button.dropdown-item.buttons-columnVisibility.active{
+
+	a.dt-button.dropdown-item.buttons-columnVisibility.active {
 		color: #8e8f90 !important;
 		background: #fff !important;
 	}
-	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+
+	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
 </style>
@@ -108,7 +126,7 @@
 							<option selected value="all_val"><?= lang('all1') ?></option>
 							<? foreach ($result as $row) { ?>
 								<option data-id="<?= $row['group_id'] ?>"
-										data-default="<?= $row['default']?>"
+										data-default="<?= $row['default'] ?>"
 										value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
 							<? } ?>
 						</select>
@@ -150,11 +168,11 @@
 						<th
 							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-sort-alpha-up"></i><?=lang('fleet')?>
+							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>
 						<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
-							   class="fas fa-map-marker-alt"></i><?=lang('location')?>
+							   class="fas fa-map-marker-alt"></i><?= lang('location') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
@@ -163,18 +181,18 @@
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-user"></i>
-							<?=lang('driver')?>
+							<?= lang('driver') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important;font-size: 12px !important;"
-							   class="fas fa-gas-pump"></i><?=lang('fuel')?>
+							   class="fas fa-gas-pump"></i><?= lang('fuel') ?>
 						</th>
 
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important; font-size: 12px  !important;"
-							   class="fas fa-wifi"></i><?=lang('signal')?>
+							   class="fas fa-wifi"></i><?= lang('signal') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
@@ -192,42 +210,42 @@
 						$step2 += 0.009;
 						?>
 
-					<tr>
-						<td><input type="checkbox"/></td>
-						<td>
-							<?=$fleets['brand_model']?>
-							<small class="form-text text-muted"><?=$fleets['fleet_plate_number']?></small>
-						</td>
-						<td>street 34/56</td>
-						<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
-						<td>
-							<?=$fleets['staff']?>
-							<small class="form-text text-muted"><?=$fleets['contact_1']?></small>
-						</td>
-						<td>
-							<?= $fleets['department'] ?>
-							<small style="font-size: 0.1px;"><?= $fleets['fleet_group'] ?></small>
-						</td>
-						<td>
-							<div class="border-danger fuel_wrapper">
-								<div class="fuel_first"></div>
-							</div>
-							<div class="border-danger fuel_wrapper ">
-								<div class="fuel_seccond bg-danger"></div>
-							</div>
-						</td>
-						<td>
-							<div class="bg-warning"
-								 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
-						</td>
-						<td>
-							12.12.2018
-							<small class="form-text text-muted">19:32</small>
-						</td>
-						<td class="show_car" data-coordinate='<?=$lat+$step?>, <?=$long+$step2?>'>
-							<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-						</td>
-					</tr>
+						<tr>
+							<td><input type="checkbox"/></td>
+							<td>
+								<span class="car_model"><?= $fleets['brand_model'] ?></span>
+								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
+							</td>
+							<td class="address_span">street 34/56</td>
+							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
+							<td class="staff_span">
+								<span><?= $fleets['staff'] ?></span>
+								<small class="form-text text-muted"><?= $fleets['contact_1'] ?></small>
+							</td>
+							<td>
+								<span class="span_department"><?= $fleets['department'] ?></span>
+								<small style="font-size: 0.1px;"><?= $fleets['fleet_group'] ?></small>
+							</td>
+							<td>
+								<div class="border-danger fuel_wrapper">
+									<div class="fuel_first"></div>
+								</div>
+								<div class="border-danger fuel_wrapper ">
+									<div class="fuel_seccond bg-danger"></div>
+								</div>
+							</td>
+							<td>
+								<div class="bg-warning"
+									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+							</td>
+							<td class="last_time_update">
+								12.12.2018
+								<small class="form-text text-muted">19:32</small>
+							</td>
+							<td class="show_car" data-coordinate='<?= $lat + $step ?>, <?= $long + $step2 ?>'>
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+						</tr>
 					<? endforeach; ?>
 					</tbody>
 				</table>
@@ -329,7 +347,7 @@
 								<option selected value=""><?= lang('geofences') ?></option>
 								<?
 								foreach ($geoference as $val) {
-									echo '<option value="'.$val['id'].'">'.$val['name'].'</option>';
+									echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
 								}
 								?>
 							</select>
@@ -705,11 +723,11 @@
 		}
 	});
 
-	$('select[name="group"]').on( 'change', function () {
-		$(this).children('option:selected').each(function() {
-			if($(this).val() != 'all_val'){
+	$('select[name="group"]').on('change', function () {
+		$(this).children('option:selected').each(function () {
+			if ($(this).val() != 'all_val') {
 				table.search($(this).text().replace("✓", "")).draw();
-			}else{
+			} else {
 				table.search('').draw();
 			}
 		})
@@ -924,14 +942,14 @@
 
 							carCoordinate = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>"+$(this).parent('tr').children('td:nth-child(2)').text()+"</a></span></p>" +
-									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
+								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 								balloonContentFooter: ""
 							}, {
 								iconLayout: 'default#image',
@@ -965,14 +983,14 @@
 
 					carCoordinate = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>"+$(this).parent('tr').children('td:nth-child(2)').text()+"</a></span></p>" +
-							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 						balloonContentFooter: ""
 					}, {
 						iconLayout: 'default#image',
@@ -995,6 +1013,13 @@
 		/* On Click Function Show single Car On Map */
 
 		$('.show_car').click(function () {
+
+
+			car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
+			car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
+			massage_time = $(this).parent('tr').children('.last_time_update').text();
+			driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
+			current_address = $(this).parent('tr').children('.address_span').text();
 
 			$('#map').html('');
 
@@ -1062,14 +1087,14 @@
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
 					balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>"+$(this).parent('tr').children('td:nth-child(2)').text()+"</a></span></p>" +
-						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + car_name + "</a></span></p>" +
+						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
+						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
 						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
+					"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+ driver_name + "</span></p>" +
 						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
 					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
@@ -1160,14 +1185,14 @@
 
 									carCoordinate = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-										balloonContentBody: "<p class='mb-0'><?=lang('object')?>f:<span class='ml-1'><a href='#'>"+$(this).parent('tr').children('td:nth-child(2)').text()+"</a></span></p>" +
-											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441 xs26</span></p>" +
-											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
+										"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 										balloonContentFooter: ""
 									}, {
 										iconLayout: 'default#image',
@@ -1199,14 +1224,14 @@
 
 						carCoordinate = new ymaps.Placemark([latitude, longitude], {
 							balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-							balloonContentBody: "<p class='mb-0'><?=lang('object')?>f:<span class='ml-1'><a href='#'>"+$(this).parent('tr').children('td:nth-child(2)').text()+"</a></span></p>" +
-								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>441xs26</span></p>" +
-								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>01.09.28 19:02:01 </span></p>" +
+							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>Name Lastname</span></p>" +
+								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
+							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>Lenigradian 16</span></p>",
+								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 							balloonContentFooter: ""
 						}, {
 							iconLayout: 'default#image',
@@ -1239,8 +1264,8 @@
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
 
-		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display','none');
-		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display','none');
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
+		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
 		// console.log('ddd');
 		//
 		// $('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
@@ -1346,17 +1371,15 @@
 			var select = $('#geoference');
 
 
-
-
 			select.clone().appendTo('#gro').addClass('clone');
 			$('.clone').removeClass('d-none');
 
 			var geoference_id = $('input[name="geoference_id"]').val();
 
 
-			$.each($('.clone').children('option'), function(e) {
+			$.each($('.clone').children('option'), function (e) {
 				console.log(geoference_id);
-				if($(this).val() == geoference_id) {
+				if ($(this).val() == geoference_id) {
 					$(this).prop('selected', true);
 				}
 			});
@@ -1498,30 +1521,30 @@
 				$('#map > ymaps').css('overflow', 'scroll');
 
 
-				if($('.panel-left').width() <= 565){
-					$('input[type=search]').css('display','none');
+				if ($('.panel-left').width() <= 565) {
+					$('input[type=search]').css('display', 'none');
 					$('.tools_div').removeClass('col-sm-2');
 					$('.tools_div').addClass('col-sm-3');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-3');
-					$('i.fas.fa-ellipsis-v.ml-2').css('display','none')
+					$('i.fas.fa-ellipsis-v.ml-2').css('display', 'none')
 				} else {
-					$('input[type=search]').css('display','inline-block');
+					$('input[type=search]').css('display', 'inline-block');
 					$('.tools_div').removeClass('col-sm-3');
 					$('.tools_div').addClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-3');
-					$('i.fas.fa-ellipsis-v.ml-2').css('display','block')
+					$('i.fas.fa-ellipsis-v.ml-2').css('display', 'block')
 				}
 
-				if($('.panel-left').width() <= 374){
-					$('.label_group').css('display','none');
-					$('.tools_div').css('display','none');
+				if ($('.panel-left').width() <= 374) {
+					$('.label_group').css('display', 'none');
+					$('.tools_div').css('display', 'none');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-7');
 				} else {
-					$('.label_group').css('display','block');
-					$('.tools_div').css('display','block');
+					$('.label_group').css('display', 'block');
+					$('.tools_div').css('display', 'block');
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-7');
 				}
@@ -1539,7 +1562,7 @@
 	})
 
 	$(document).on('change', 'select[name="group"]', function () {
-		if($(this).children('option:selected').data('default') == '2'){
+		if ($(this).children('option:selected').data('default') == '2') {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').hide();
 		} else {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').show();
@@ -1553,7 +1576,7 @@
 	<option selected value=""><?= lang('geofences') ?></option>
 	<?
 	foreach ($geoference as $val) {
-		echo '<option value="'.$val['id'].'">'.$val['name'].'</option>';
+		echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
 	}
 	?>
 </select>

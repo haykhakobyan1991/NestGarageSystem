@@ -124,12 +124,15 @@
 								name="group"
 								class="form-control form-control-sml sell_group_select">
 							<option selected value="all_val"><?= lang('all1') ?></option>
-							<? foreach ($result as $row) { ?>
-								<option data-id="<?= $row['group_id'] ?>"
-										data-default="<?= $row['default']?>"
-										data-cordinate="<?=(isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : '')?>"
-										value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
-							<? } ?>
+							<?
+							if (count($result) > 0) {
+								foreach ($result as $row) { ?>
+									<option data-id="<?= $row['group_id'] ?>"
+											data-default="<?= $row['default'] ?>"
+											data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : '') ?>"
+											value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
+								<? }
+							} ?>
 						</select>
 					</div>
 

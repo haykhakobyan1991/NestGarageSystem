@@ -61,10 +61,12 @@ $count = count($result);
 	.zui-splitter-separator{
 		z-index: 1 !important;
 	}
-	.panel-right.splitter-west.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
 		width: 100% !important;
 	}
 </style>
+
+
 <div class="container-fluid">
 	<div id="splitter">
 		<div class="panel-left splitter-west" id="mydiv">
@@ -335,6 +337,11 @@ $count = count($result);
 
 				}
 			});
+
+			var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
+
+			$('#map > ymaps').css('width', width_map);
+			$('#map > ymaps').css('overflow', 'scroll');
 		}
 
 
@@ -375,6 +382,11 @@ $count = count($result);
 						myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
 					}
 				});
+
+				var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
+
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
 			}
 		});
 
@@ -763,6 +775,12 @@ $count = count($result);
 		function log(str) {
 
 			if (str == 'resize') {
+
+				console.log($('.panel-right').width() - $('.panel-left').width() + 30)
+				var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
+
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
 
 				if($('.panel-left').width() <= 565){
 					$('input[type=search]').css('display','none');

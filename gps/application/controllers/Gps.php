@@ -127,11 +127,14 @@ class Gps extends MX_Controller {
 			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';
 		}
 
-		foreach ($result as $val) {
-			$new_result2[$val['id']][] = '['.$value['lat'].','.$value['long'].']';
+		foreach ($new_result as $val) {
+			foreach ($val as $id => $value) {
+				$new_result2[$id] = $value;
+			}
 		}
 
 //		$this->pre($new_result);
+//		$this->pre($new_result2);
 
 		$data['result2'] = $new_result;
 		$data['new_result'] = $new_result2;

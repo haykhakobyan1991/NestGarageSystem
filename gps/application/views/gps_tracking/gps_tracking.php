@@ -938,8 +938,8 @@
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
-								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 								balloonContentFooter: ""
@@ -955,8 +955,7 @@
 							myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 						}
 					});
-					$('')
-					myMap_show_all_cars_onChange.container.fitToViewport()
+
 				}
 
 
@@ -979,8 +978,8 @@
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').text() + "</span></p>" +
+							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 						balloonContentFooter: ""
@@ -1001,6 +1000,156 @@
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
+
+
+		//Show Geozone from selectoption
+
+		$(document).on('change', 'select[name="group"]', function () {
+
+			$(this).children('option:selected').each(function () {
+
+				geozone_coordinates = $(this).data('cordinate');
+
+				if (geozone_coordinates != '' && geozone_coordinates !== undefined) {
+
+
+					ymaps.ready(init_Geozone);
+
+					function init_Geozone() {
+
+						$('#map').html('');
+
+						var myMap_show_init_Geozone = new ymaps.Map("map", {
+							center: [55.76, 37.64],
+							zoom: 2
+						}, {suppressMapOpenBlock: true});
+
+
+						array_stting = JSON.parse("[" + geozone_coordinates + "]");
+
+						var rand_color = '#' + (function co(lor) {
+							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+						})('') + '75';
+
+						var myPolygon = new ymaps.Polygon([
+							array_stting
+						], {}, {
+							editorDrawingCursor: "crosshair",
+							fillColor: rand_color,
+							strokeColor: rand_color,
+							strokeWidth: 2
+						});
+
+						myMap_show_init_Geozone.geoObjects.add(myPolygon);
+
+						myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
+						myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
+
+
+						$('.show_car').each(function () {
+
+							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
+
+								coordinate = $(this).data('coordinate');
+								array = JSON.parse("[" + coordinate + "]");
+
+								var carCoordinate = '';
+
+								latitude = array[0];
+								longitude = array[1];
+
+								console.log(longitude)
+
+								carCoordinate = new ymaps.Placemark([latitude, longitude], {
+									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+									balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+										"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+										"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+										"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+										"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
+									balloonContentFooter: ""
+								}, {
+									iconLayout: 'default#image',
+									iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+									iconImageSize: [35, 30],
+									iconImageOffset: [-10, -35]
+								});
+
+								myMap_show_init_Geozone.geoObjects.add(carCoordinate);
+								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
+								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
+							}
+						});
+
+						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+						$('#map > ymaps').css('width', width_map);
+						$('#map > ymaps').css('overflow', 'scroll');
+					}
+
+					console.log(geozone_coordinates);
+				} else {
+					ymaps.ready(init_Geozone2);
+
+					function init_Geozone2() {
+
+						$('#map').html('');
+
+						var myMap_show_init_Geozone = new ymaps.Map("map", {
+							center: [55.76, 37.64],
+							zoom: 2
+						}, {suppressMapOpenBlock: true});
+
+						$('.show_car').each(function () {
+
+							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
+
+								coordinate = $(this).data('coordinate');
+								array = JSON.parse("[" + coordinate + "]");
+
+								var carCoordinate = '';
+
+								latitude = array[0];
+								longitude = array[1];
+
+								console.log(longitude)
+
+								carCoordinate = new ymaps.Placemark([latitude, longitude], {
+									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+									balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
+										"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+										"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+										"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
+										"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+										"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
+									balloonContentFooter: ""
+								}, {
+									iconLayout: 'default#image',
+									iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+									iconImageSize: [35, 30],
+									iconImageOffset: [-10, -35]
+								});
+
+								myMap_show_init_Geozone.geoObjects.add(carCoordinate);
+								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
+								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
+							}
+						});
+
+						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+						$('#map > ymaps').css('width', width_map);
+						$('#map > ymaps').css('overflow', 'scroll');
+					}
+				}
+
+			});
+
+		});
+
 
 		/* On Click Function Show single Car On Map */
 
@@ -1083,8 +1232,8 @@
 						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
 						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
 						"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
-					"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+ driver_name + "</span></p>" +
+						"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
 						"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
 					balloonContentFooter: ""
@@ -1181,8 +1330,8 @@
 											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
-										"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
+											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 										balloonContentFooter: ""
@@ -1220,8 +1369,8 @@
 								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>"+
-							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>"+$(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
+								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 							balloonContentFooter: ""
@@ -1554,7 +1703,7 @@
 	})
 
 	$(document).on('change', 'select[name="group"]', function () {
-		if($(this).children('option:selected').data('default') == '2'){
+		if ($(this).children('option:selected').data('default') == '2') {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').hide();
 		} else {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').show();
@@ -1567,7 +1716,6 @@
 		$('.count_cars_in_table').html($('#total').text())
 	});
 
-
 </script>
 
 
@@ -1578,6 +1726,8 @@
 		echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
 	}
 	?>
+
+
 </select>
 
 

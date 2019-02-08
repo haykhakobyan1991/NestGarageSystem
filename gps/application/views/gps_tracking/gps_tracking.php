@@ -129,7 +129,7 @@
 								foreach ($result as $row) { ?>
 									<option data-id="<?= $row['group_id'] ?>"
 											data-default="<?= $row['default'] ?>"
-											data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : '') ?>"
+											data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : 'gago') ?>"
 											value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
 								<? }
 							} ?>
@@ -1010,7 +1010,7 @@
 
 				geozone_coordinates = $(this).data('cordinate');
 
-				if (geozone_coordinates != '' && geozone_coordinates !== undefined) {
+				if (geozone_coordinates !== undefined && geozone_coordinates != 'gago') {
 
 
 					ymaps.ready(init_Geozone);
@@ -1089,7 +1089,7 @@
 						$('#map > ymaps').css('overflow', 'scroll');
 					}
 
-					console.log(geozone_coordinates);
+					console.log(geozone_coordinates+'----');
 				} else {
 					ymaps.ready(init_Geozone2);
 
@@ -1114,7 +1114,7 @@
 								latitude = array[0];
 								longitude = array[1];
 
-								console.log(longitude)
+								//console.log(longitude)
 
 								carCoordinate = new ymaps.Placemark([latitude, longitude], {
 									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
@@ -1136,7 +1136,7 @@
 
 								myMap_show_init_Geozone.geoObjects.add(carCoordinate);
 								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
-								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
+								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds(), {checkZoomRange: true});
 							}
 						});
 

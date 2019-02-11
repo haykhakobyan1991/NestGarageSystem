@@ -367,7 +367,7 @@
 					<label class="col-sm-6 col-form-label text-right col-width"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
 					<label
-						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 90px; max-width: 90px;margin-top: -20px;"
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 90px; max-width: 90px;"
 						class="btn btn-sm btn-outline-success mb-0 col-width_m">
 						<span><?= lang('browse') ?></span>
 						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
@@ -1135,9 +1135,9 @@
 		if($(window).width() > 1349){
 			$('.col-width').removeClass('col-sm-6');
 			$('.col-width').addClass('col-sm-7');
-			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '0 !important');
+			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '0');
 		}else{
-			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '-20px !important');
+			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '-20px');
 		}
 	})
 </script>

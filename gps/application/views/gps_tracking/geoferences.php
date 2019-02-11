@@ -67,6 +67,8 @@ $count = count($result);
 	}
 </style>
 
+<div class="loader" style="width: 100%;z-index: 999 !important;"></div>
+<img class="loader_svg" style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;" src="<?= base_url('assets/images/puff.svg') ?>"/>
 
 <div class="container-fluid">
 	<div id="splitter">
@@ -80,7 +82,7 @@ $count = count($result);
 
 
 				<span  class="create_span ml-3 mr-1 mt-3"
-					  style="z-index: 999;cursor: pointer;"
+					  style="z-index: 990;cursor: pointer;"
 					  data-toggle="modal"
 					  data-target=".bd-example-modal-xl">
 					<span class="create_span" ><?=lang('create')?></span><i class="fas fa-plus pl-2"></i>

@@ -1136,6 +1136,8 @@
 			$('.col-width').removeClass('col-sm-6');
 			$('.col-width').addClass('col-sm-7');
 			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '0 !important');
+		}else{
+			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '-20px !important');
 		}
 	})
 </script>

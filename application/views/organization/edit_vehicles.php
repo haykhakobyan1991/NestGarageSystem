@@ -1135,7 +1135,7 @@
 		if($(window).width() > 1349){
 			$('.col-width').removeClass('col-sm-6');
 			$('.col-width').addClass('col-sm-7');
-			$('.col-width_m').css('margin-top', '0 !important');
+			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '0 !important');
 		}
 	})
 </script>

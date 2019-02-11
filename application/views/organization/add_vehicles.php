@@ -155,7 +155,7 @@
 
 				<div class="col-sm-4">
 					<div class="row">
-						<label class="pl-3 col-form-label col-sm-4" style="font-size: 15px;"><?= lang('fuel') ?></label>
+						<label class="pl-3 col-form-label col-sm-5" style="font-size: 15px;"><?= lang('fuel') ?></label>
 						<select name="fuel" class="form-control form-control-sm selectpicker col-sm-7" data-size="5"
 								id="fleet_type" data-live-search="true" title="<?= lang('fuel_type') ?>">
 							<? foreach ($fuel as $row) : ?>
@@ -164,22 +164,22 @@
 						</select>
 					</div>
 					<div class="row" style="margin-top: .6rem!important;">
-						<label class="col-sm-4 pl-3 col-form-label"
+						<label class="col-sm-5 pl-3 col-form-label"
 							   style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
 						<input value="" min="0" name="fuel_avg_consumption" type="number"
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
 					<div class="row" id="second" style="margin-top: .6rem!important; display: none">
-						<label class="col-sm-4 pl-3 col-form-label"
-							   style="font-size: 15px;"></label>
+						<label class="col-sm-5 pl-3 col-form-label"
+							   style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
 						<input value="" min="0" name="fuel_avg_consumption_second" type="number"
 							   class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
 
 					<div class="row" style="margin-top: .4rem !important;">
-						<label class="pl-3 col-form-label col-sm-4"
+						<label class="pl-3 col-form-label col-sm-5"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
@@ -994,13 +994,25 @@
 		$('.model_div label').css('max-width', '33.333333%');
 	});
 
+	var text = $('input[name="fuel_avg_consumption"]').parent('div').children('label').text();
+
 	$(document).on('change', 'select[name="fuel"]', function () {
 
 		if($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
 			$('#second').show();
+			new_text = $(this).children('option:selected').text().split('/');
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+new_text[0]+')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+new_text[0]+')');
+			$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text+ ' ('+new_text[1]+')');
+			$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text+ ' ('+new_text[1]+')');
 		} else {
 			$('#second').hide();
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).children('option:selected').text()+')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).children('option:selected').text()+')');
 		}
+
+
+
 	})
 
 

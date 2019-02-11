@@ -185,7 +185,7 @@
 					<div class="row">
 
 						<label
-							class="col-sm-4 col-form-label"><?= lang('fuel') ?></label>
+							class="col-sm-5 col-form-label"><?= lang('fuel') ?></label>
 
 						<select name="fuel"
 								class="form-control form-control-sm selectpicker col-sm-7"
@@ -204,7 +204,7 @@
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
 
-						<label class="col-sm-4 col-form-label"><?= lang('average_expense_100_km') ?></label>
+						<label class="col-sm-5 col-form-label"><?= lang('average_expense_100_km') ?></label>
 
 						<input value="<?= $fleet['fuel_avg_consumption'] ?>" min="0" name="fuel_avg_consumption"
 							   type="number" class="form-control form-control-sm col-sm-7"
@@ -214,7 +214,7 @@
 
 					<div class="row" id="second" style="margin-top: .5rem!important; <?=(($fleet['fuel_id'] == 5 || $fleet['fuel_id'] == 6) ? 'display: flex' : 'display: none')?>">
 
-						<label class="col-sm-4 col-form-label"></label>
+						<label class="col-sm-5 col-form-label"><?= lang('average_expense_100_km') ?></label>
 
 						<input value="<?= $fleet['fuel_avg_consumption_second'] ?>" min="0" name="fuel_avg_consumption_second"
 							   type="number" class="form-control form-control-sm col-sm-7"
@@ -223,7 +223,7 @@
 					</div>
 
 					<div class="row" style="margin-top: .4rem !important;">
-						<label class="pl-3 col-form-label col-sm-4"
+						<label class="pl-3 col-form-label col-sm-5"
 							   style="font-size: 15px;"><?= lang('running') ?></label>
 						<input value="<?= $fleet['mileage'] ?>" min="0" name="mileage" type="number"
 							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
@@ -1311,13 +1311,42 @@
 		$('#model_div label').css('max-width', '33.333333% !important');
 	});
 
+
+
+	var text = $('input[name="fuel_avg_consumption"]').parent('div').children('label').text();
+
 	$(document).on('change', 'select[name="fuel"]', function () {
 
 		if($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
 			$('#second').show();
+			new_text = $(this).children('option:selected').text().split('/');
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+new_text[0]+')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+new_text[0]+')');
+			$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text+ ' ('+new_text[1]+')');
+			$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text+ ' ('+new_text[1]+')');
 		} else {
 			$('#second').hide();
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).children('option:selected').text()+')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).children('option:selected').text()+')');
 		}
+
+	});
+
+	$(window).on('load', function(){
+
+		$('select[name="fuel"]').children('option:selected').each(function(){
+			if($(this).val() == '5' || $(this).val() == '6') {
+				new_text = $(this).text().split('/');
+				$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+new_text[0]+')');
+				$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+new_text[0]+')');
+				$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text+ ' ('+new_text[1]+')');
+				$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text+ ' ('+new_text[1]+')');
+			} else {
+				$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).text()+')');
+				$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).text()+')');
+			}
+		});
+
 	});
 
 </script>

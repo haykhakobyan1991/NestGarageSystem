@@ -320,27 +320,7 @@
 							   placeholder="<?= lang('car_number') ?>">
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<div class="row">
-						<label
-							class="col-form-label col-sm-5 text-right"
-							style="font-size: 15px;padding-top: 10px;"><?= lang('registration_address') ?></label>
-						<input value="<?= $fleet['regitered_address'] ?>" name="regitered_address"
-							   type="text"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('registration_address') ?>">
-					</div>
-				</div>
-				<div class="col-sm-3">
-					<div class="row">
-						<label class="col-sm-5 col-form-label text-right"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
-						<input style="" value="<?= $fleet['owner'] ?>" name="owner" type="text"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('owner') ?>">
-						<input value="<?= $fleet['owner_staff_id'] ?>" name="owner_id" type="hidden">
-					</div>
-				</div>
+
 				<div class="col-sm-4">
 					<label class="col-sm-4 col-form-label text-right"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
@@ -369,6 +349,30 @@
 						</a><?
 					endif; ?>
 				</div>
+
+				<div class="col-sm-3 mt-2">
+					<div class="row">
+						<label class="col-form-label col-sm-5 text-right"
+							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
+						<input value="<?= $fleet['owner'] ?>" name="regitered_address" type="text"
+							   class="col-sm-7 form-control form-control-sm"
+							   placeholder="<?= $fleet['owner'] ?>">
+					</div>
+				</div>
+
+
+				<div class="col-sm-3">
+					<label class="col-sm-6 col-form-label text-right"
+						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
+					<label
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: -20px;"
+						class="btn btn-sm btn-outline-success mb-0">
+						<span><?= lang('browse') ?></span>
+						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
+							   style="display: none;" id="exampleFormControlFile1">
+					</label>
+				</div>
+
 			</div>
 			<hr class="my-2">
 		</div>

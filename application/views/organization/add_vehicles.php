@@ -273,9 +273,10 @@
 					<div class="row">
 						<label class="col-form-label col-sm-5 text-right"
 							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
-						<input value="" name="regitered_address" type="text"
+						<input value="" name="owner" type="text"
 							   class="col-sm-7 form-control form-control-sm"
 							   placeholder="<?= lang('owner') ?>">
+						<input value="" name="owner_id" type="hidden">
 					</div>
 				</div>
 				<div class="col-sm-3">

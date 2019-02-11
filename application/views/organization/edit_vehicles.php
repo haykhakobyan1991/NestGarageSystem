@@ -316,16 +316,16 @@
 							class="col-sm-3 col-form-label pl-3 text-center"
 							style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?>*</label>
 						<input value="<?= $fleet['fleet_plate_number'] ?>" name="fleet_plate_number" type="text"
-							   class="form-control form-control-sm col-sm-9"
+							   class="form-control form-control-sm col-sm-8"
 							   placeholder="<?= lang('car_number') ?>">
 					</div>
 				</div>
 
-				<div class="col-sm-4">
-					<label class="col-sm-4 col-form-label text-right"
+				<div class="col-sm-3" style="position:relative;">
+					<label class="col-sm-5 col-form-label text-right"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
 					<label
-						style="margin-left: 30px;font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success mb-0">
 						<span><?= lang('browse') ?></span>
 						<input type="file"
@@ -336,6 +336,7 @@
 					</label><?
 					if ($fleet['regitered_file'] != '') : ?>
 					<a
+						style="position: absolute;"
 						target=""
 						class="a_ext"
 						download="<?= $fleet['regitered_file'] ?>"
@@ -350,18 +351,19 @@
 					endif; ?>
 				</div>
 
-				<div class="col-sm-3 mt-2">
+				<div class="col-sm-3 ">
 					<div class="row">
 						<label class="col-form-label col-sm-5 text-right"
 							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
-						<input value="<?= $fleet['owner'] ?>" name="regitered_address" type="text"
+						<input value="<?= $fleet['owner'] ?>" name="owner" type="text"
 							   class="col-sm-7 form-control form-control-sm"
-							   placeholder="<?= $fleet['owner'] ?>">
+							   placeholder="<?= lang('owner') ?>">
+						<input value="<?= $fleet['owner_staff_id'] ?>" name="owner_id" type="hidden">
 					</div>
 				</div>
 
 
-				<div class="col-sm-3">
+				<div class="col-sm-3" style="position:relative;">
 					<label class="col-sm-6 col-form-label text-right"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
 					<label
@@ -370,7 +372,21 @@
 						<span><?= lang('browse') ?></span>
 						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
 							   style="display: none;" id="exampleFormControlFile1">
-					</label>
+					</label><?
+					if ($fleet['regitered_file'] != '') : ?>
+					<a  style="position: absolute;top: 2px;"
+						target=""
+						class="a_ext"
+						download="<?= $fleet['regitered_file'] ?>"
+						href="<?= base_url('uploads/' . $folder . '/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
+						<?
+
+						$ext = explode('.', $fleet['regitered_file']);
+						echo $this->select_ext($ext[1]);
+
+						?>
+					</a><?
+					endif; ?>
 				</div>
 
 			</div>

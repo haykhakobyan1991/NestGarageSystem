@@ -9,10 +9,12 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<!--<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>-->
-<!--<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"-->
-<!--		type="text/javascript"></script>-->
-<script type="text/javascript" src="<?= base_url('assets/js/ymap.js') ?>"></script>
+
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+		type="text/javascript"></script>
+<!--<script type="text/javascript" src="--><?//= base_url('assets/js/ymap.js') ?><!--"></script>-->
+
+
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
@@ -205,9 +207,9 @@
 					<tbody>
 
 					<?
-					$lat = 40.183605;
-					$long = 44.518732;
-					$step = 0.0001;
+					$lat = 40.140912;
+					$long = 44.428481;
+					$step = 0.00005;
 					$step2 = 0.0003;
 					foreach ($result_fleets as $fleets) :
 						$step += 0.007;

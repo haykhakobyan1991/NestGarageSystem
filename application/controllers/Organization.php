@@ -1944,6 +1944,8 @@ class Organization extends MX_Controller {
 
 		$id = $this->input->post('staff_id');
 
+		$sql = "SET foreign_key_checks = 0";
+		$this->db->query($sql);
 
 		$this->db->delete('staff', array('id' => $id));
 

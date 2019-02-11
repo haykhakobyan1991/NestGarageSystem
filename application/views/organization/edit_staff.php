@@ -36,6 +36,7 @@ $folder = $this->session->folder;
 																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
 																<?= lang('browse') ?> <input type="file" id="imgInp2"
 																							 name="photo"
+																							 accept='image/png'
 																							 onchange="readURL2(this);">
 															</span>
 														</span>

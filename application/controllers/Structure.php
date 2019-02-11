@@ -1082,6 +1082,7 @@ class Structure extends MX_Controller
 					`fleet_type`.`title_" . $lng . "` AS `fleet_type`,
 					`fuel`.`title_" . $lng . "` AS `fuel`,
 					`insurance_type`.`title_" . $lng . "` AS `insurance_type`,
+					`department`.`head_staff_id`,
 					`staff`.`id` AS `staff_id`,
 					`staff`.`first_name`,
 					`staff`.`last_name`,

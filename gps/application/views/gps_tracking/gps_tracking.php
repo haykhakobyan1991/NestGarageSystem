@@ -130,7 +130,7 @@
 									<option data-id="<?= $row['group_id'] ?>"
 											data-default="<?= $row['default'] ?>"
 											data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : 'gago') ?>"
-											value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' &#10003;' : '') ?></option>
+											value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' *' : '') ?></option>
 								<? }
 							} ?>
 						</select>

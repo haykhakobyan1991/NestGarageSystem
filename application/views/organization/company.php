@@ -40,11 +40,12 @@ $i = '';
 									<label
 										class="col-form-label col-sm-5"
 										style="font-size: 15px;"><?= lang('company_name') ?> *</label>
-									<input value="<?= $company['name'] ?>" name="company_name"
-										   type="text" class="form-control col-sm-7"
+									<input value="<?= $company['name'] ?>"
+										   name="company_name"
+										   type="text"
+										   class="form-control col-sm-7"
 										   placeholder="<?= lang('company_name') ?>">
 								</div>
-
 							</div>
 
 							<div class="col-sm-7">

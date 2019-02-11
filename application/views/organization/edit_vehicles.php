@@ -367,7 +367,7 @@
 					<label class="col-sm-6 col-form-label text-right col-width"
 						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
 					<label
-						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 90px; max-width: 90px;"
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success mb-0 col-width_m">
 						<span><?= lang('browse') ?></span>
 						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
@@ -388,7 +388,6 @@
 					</a><?
 					endif; ?>
 				</div>
-
 			</div>
 			<hr class="my-2">
 		</div>
@@ -427,7 +426,6 @@
 						<div class="card-body">
 							<div class="add_new_items">
 								<div class="row">
-
 									<div class="col-sm-3" style="margin-top: -7px;">
 										<label
 											class="col-form-label"
@@ -450,7 +448,6 @@
 											</select>
 										</div>
 									</div>
-
 									<div class="col-md-2">
 										<div class="form-group">
 											<label><?= lang('company') ?></label>
@@ -461,8 +458,6 @@
 												   placeholder="<?= lang('company') ?>">
 										</div>
 									</div>
-
-
 									<div class="col-md-2">
 										<div class="form-group">
 											<label><?= lang('reference') ?></label>
@@ -473,7 +468,6 @@
 												   placeholder="<?= lang('reference') ?>">
 										</div>
 									</div>
-
 									<div
 										class="<?= ($fleet['insurance_ext_1'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 										<label><?= lang('expiry_date') ?></label>
@@ -484,7 +478,6 @@
 											   min="1000-01-01"
 											   class="form-control form-control-sm">
 									</div>
-
 									<div class="col-sm-3">
 										<div class="form-group float-left col-sm-7">
 											<label><?= lang('insurance_data') ?></label>

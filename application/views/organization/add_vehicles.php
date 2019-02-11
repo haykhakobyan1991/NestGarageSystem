@@ -256,22 +256,26 @@
 							   class="form-control form-control-sm col-sm-9" placeholder="<?= lang('car_number') ?>">
 					</div>
 				</div>
+
+				<div class="col-sm-3">
+					<label class="col-sm-6 col-form-label text-right"
+						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
+					<label
+						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: 7px;"
+						class="btn btn-sm btn-outline-success mb-0">
+						<span><?= lang('browse') ?></span>
+						<input type="file" name="regitered_file" class="d-none form-control-file btn_input" hidden
+							   style="display: none;" id="exampleFormControlFile1">
+					</label>
+				</div>
+
 				<div class="col-sm-3 mt-2">
 					<div class="row">
 						<label class="col-form-label col-sm-5 text-right"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('registration_address') ?></label>
+							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
 						<input value="" name="regitered_address" type="text"
 							   class="col-sm-7 form-control form-control-sm"
-							   placeholder="<?= lang('registration_address') ?>">
-					</div>
-				</div>
-				<div class="col-sm-3 mt-2">
-					<div class="row">
-						<label class="col-sm-5 col-form-label text-right"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
-						<input style="" value="" name="owner" type="text" class="form-control form-control-sm col-sm-7"
 							   placeholder="<?= lang('owner') ?>">
-						<input name="owner_id" type="hidden">
 					</div>
 				</div>
 				<div class="col-sm-3">
@@ -285,6 +289,7 @@
 							   style="display: none;" id="exampleFormControlFile1">
 					</label>
 				</div>
+
 			</div>
 			<hr class="my-2">
 		</div>
@@ -438,140 +443,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="card">
-								<div class="card-header p-0" id="heading_info3">
-									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link text-success" type="button"
-												data-toggle="collapse" data-target="#collapse_info3"
-												aria-expanded="false" aria-controls="collapse_info3">
-											<?= lang('other') ?>։
-										</button>
-									</h5>
-								</div>
-								<div id="collapse_info3" class="collapse" aria-labelledby="heading_info3"
-									 data-parent="#accordionExample_info">
-									<div class="card-body">
-										<div class="add_new_items">
-											<div class="row">
-												<div class="col-sm-3">
-													<label for="type[3]" class="col-form-label"
-														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
-													<div>
-														<select name="type[3]"
-																class="selectpicker form-control form-control-sm dif_meter"
-																data-live-search="true" data-size="5"
-																title="<?= lang('insurance_type') ?>">
-															<? foreach ($insurance_type as $row) : ?>
-																<option
-																	value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-															<? endforeach; ?>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-2">
-													<div class="form-group">
-														<label for="company[3]"><?= lang('company') ?></label>
-														<input type="text" name="company[3]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
 
-												<div class="col-md-2">
-													<div class="form-group">
-														<label for="reference[3]"><?= lang('reference') ?></label>
-														<input type="text" name="reference[3]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-												<div class="col-md-2">
-													<label for="expiration[3]"><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[3]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
-												<div class="col-md-2">
-													<label><?= lang('insurance_data') ?></label>
-													<label for="file_3"
-														   style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-														   class="btn btn-sm btn-outline-secondary">
-														<span><?= lang('browse') ?></span>
-														<input class="btn_input" name="file_3" type="file" hidden
-															   style="display: none;" value="">
-													</label>
-												</div>
 
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-header p-0" id="heading_info4">
-									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link text-success" type="button"
-												data-toggle="collapse" data-target="#collapse_info4"
-												aria-expanded="false" aria-controls="collapse_info4">
-											<?= lang('other') ?>։
-										</button>
-									</h5>
-								</div>
-								<div id="collapse_info4" class="collapse" aria-labelledby="heading_info4"
-									 data-parent="#accordionExample_info">
-									<div class="card-body">
-										<div class="add_new_items">
-											<div class="row">
-												<div class="col-sm-3">
-													<label class="col-form-label"
-														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
-													<div>
-														<select name="type[4]"
-																class="selectpicker form-control form-control-sm dif_meter"
-																data-live-search="true" data-size="5"
-																title="<?= lang('insurance_type') ?>">
-															<? foreach ($insurance_type as $row) : ?>
-																<option
-																	value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
-															<? endforeach; ?>
-														</select>
-													</div>
-												</div>
-												<div class="col-md-2">
-													<div class="form-group">
-														<label><?= lang('company') ?></label>
-														<input type="text" name="company[4]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
-													</div>
-												</div>
-												<div class="col-md-2">
-													<div class="form-group">
-														<label><?= lang('reference') ?></label>
-														<input type="text" name="reference[4]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
-													</div>
-												</div>
-												<div class="col-md-2">
-													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[4]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
-												</div>
-												<div class="col-md-2">
-													<label><?= lang('insurance_data') ?></label>
-													<label
-														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
-														class="btn btn-sm btn-outline-secondary">
-														<span><?= lang('browse') ?></span>
-														<input class="btn_input" name="file_4" type="file" hidden
-															   style="display: none;" value="">
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 

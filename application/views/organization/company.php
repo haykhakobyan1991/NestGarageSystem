@@ -353,17 +353,7 @@ $i = '';
 						   class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
 
 
-						<div class="form-group mb-0" style="margin-left: 22px; float: right;"
-							 id="requisite">
-							<a style="text-decoration: none; color: #1b1e21" target="_blank"
-							   href="javascript:void(0)">
-								<label
-									style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
-									class="btn btn-sm btn-outline-success text_req">
-									<?= lang('download_requisite') ?>
-								</label>
-							</a>
-						</div>
+
 
 
 						<hr class="my-2" style="clear: both;">
@@ -710,8 +700,22 @@ $i = '';
 </div>
 </div>
 </div>
-
 </div>
+
+<div class="row" style="position: relative;">
+	<div class="form-group mb-0" style="position: absolute;right: 20px;bottom: -60px;"
+		 id="requisite">
+		<a style="text-decoration: none; color: #1b1e21" target="_blank"
+		   href="javascript:void(0)">
+			<label
+				style="font-weight: 400 !important;width: 100%;margin-top: 23px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;"
+				class="btn btn-sm btn-outline-success text_req">
+				<?= lang('download_requisite') ?>
+			</label>
+		</a>
+	</div>
+</div>
+
 </div>
 </div>
 </div>

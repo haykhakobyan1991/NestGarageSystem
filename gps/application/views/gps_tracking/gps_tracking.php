@@ -930,7 +930,6 @@
 							latitude = array[0];
 							longitude = array[1];
 
-							console.log(longitude)
 
 							carCoordinate = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
@@ -1041,10 +1040,8 @@
 						});
 
 						myMap_show_init_Geozone.geoObjects.add(myPolygon);
-
 						myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
-
 
 						$('.show_car').each(function () {
 
@@ -1057,8 +1054,6 @@
 
 								latitude = array[0];
 								longitude = array[1];
-
-								console.log(longitude)
 
 								carCoordinate = new ymaps.Placemark([latitude, longitude], {
 									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
@@ -1089,7 +1084,6 @@
 						$('#map > ymaps').css('overflow', 'scroll');
 					}
 
-					console.log(geozone_coordinates+'----');
 				} else {
 					ymaps.ready(init_Geozone2);
 
@@ -1113,8 +1107,6 @@
 
 								latitude = array[0];
 								longitude = array[1];
-
-								//console.log(longitude)
 
 								carCoordinate = new ymaps.Placemark([latitude, longitude], {
 									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
@@ -1166,8 +1158,6 @@
 
 			coordinate = $(this).data('coordinate');
 			array = JSON.parse("[" + coordinate + "]");
-			// console.log(coordinate);
-			// console.log(array);
 			ymaps.ready(init_singleCar(array));
 
 			function init_singleCar(array) {
@@ -1215,8 +1205,7 @@
 
 								$(this).trigger('click')
 							}
-							console.log(coordinate + 'geoObject_coordinates')
-							console.log($(this).data('coordinate'))
+
 
 						})
 
@@ -1318,7 +1307,7 @@
 
 									coordinate = $(this).data('coordinate');
 									array = JSON.parse("[" + coordinate + "]");
-									// console.log(coordinate);
+
 									var carCoordinate = '';
 
 									latitude = array[0];
@@ -1357,7 +1346,7 @@
 
 						coordinate = $(this).data('coordinate');
 						array = JSON.parse("[" + coordinate + "]");
-						// console.log(coordinate);
+
 						var carCoordinate = '';
 
 						latitude = array[0];
@@ -1407,7 +1396,7 @@
 
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
-		// console.log('ddd');
+
 		//
 		// $('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
 		// 	var text  = $(this).text();
@@ -1655,7 +1644,6 @@
 
 			if (str == 'resize') {
 
-				console.log($('.panel-right').width() - $('.panel-left').width() - 4)
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 
 				$('#map > ymaps').css('width', width_map);

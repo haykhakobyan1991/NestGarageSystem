@@ -95,6 +95,8 @@ $lang['deleted'] = 'удаленные';
 $lang['impossible_connectivity'] = 'Невозможное подключение';
 $lang['PleaseWait'] = 'Подождите пожалуйста';
 
+$lang['owner_passport'] = 'Паспорт владельца';
+
 //Add
 $lang['from_driver_to_vehicle'] = '<b>вадителю </b> %s - <b> добавлен транспортное средство</b> %s';
 $lang['from_department_to_driver'] = '<b>отделу</b> %s - <b>добавлен водител</b> %s';

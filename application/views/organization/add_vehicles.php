@@ -279,13 +279,13 @@
 					</div>
 				</div>
 				<div class="col-sm-3">
-					<label class="col-sm-6 col-form-label text-right"
-						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
+					<label class="col-sm-7 col-form-label text-right"
+						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
 					<label
 						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: 7px;"
 						class="btn btn-sm btn-outline-success mb-0">
 						<span><?= lang('browse') ?></span>
-						<input type="file" name="regitered_file" class="d-none form-control-file btn_input" hidden
+						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
 							   style="display: none;" id="exampleFormControlFile1">
 					</label>
 				</div>

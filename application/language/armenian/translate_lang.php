@@ -97,6 +97,8 @@ $lang['deleted'] = 'ջնջվածներ';
 $lang['impossible_connectivity'] = 'Անհնար միացում';
 $lang['PleaseWait'] = 'խնդրում ենք սպասել';
 
+$lang['owner_passport'] = 'Սեփականատիրոջ անձնագիր';
+
 //Add
 $lang['from_driver_to_vehicle'] = '<b>Վարորդ</b> %s - <b>ից դեպի Փոխադրամիջոց</b> %s';
 $lang['from_department_to_driver'] = '<b>Ստորաբաժանում</b> %s - <b>ից դեպի Վարորդ</b> %s';

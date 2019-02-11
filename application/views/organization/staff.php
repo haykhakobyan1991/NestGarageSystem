@@ -78,7 +78,7 @@ endforeach;
 							<div class="modal-header bg-dark">
 								<h6 class="text-white modal-title dar"><?= lang('staff1') ?></h6>
 							</div>
-							<div class="modal-body">
+							<div class="modal-body" id="modal-body">
 								<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
 									 src="<?= base_url('assets/images/bars.svg') ?>"/>
 							</div>
@@ -88,7 +88,7 @@ endforeach;
 				<!-- Edit staff modal end -->
 
 				<!-- Add staff Modal Start  -->
-				<form id="staff" enctype="multipart/form-data">
+
 					<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
@@ -99,6 +99,7 @@ endforeach;
 									<h6 class="text-white modal-title dar"><?= lang('new_staff') ?></h6>
 
 								</div>
+								<form id="staff" enctype="multipart/form-data">
 								<div class="modal-body">
 									<!-- Error Message -->
 
@@ -595,9 +596,10 @@ endforeach;
 										</div>
 									</div>
 								</div>
+								</form>
 							</div>
 						</div>
-				</form>
+
 				<!-- Add User Modal End -->
 
 			</div>
@@ -955,13 +957,14 @@ endforeach;
 	});
 
 
-	$(document).on('click', '#edit_staff_modal', function () {
-
+	$(document).on('click', '#edit_staff_modal', function (e) {
+		e.preventDefault();
 		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_staff_modal_ax/')?>' + $(this).data('id');
 		$.get(url, function (result) {
 
 			// update modal content
-			$('.modal-body').html(result);
+			$('#modal-body').html(result);
+
 
 			// show modal
 			$('#myModal').modal('show');

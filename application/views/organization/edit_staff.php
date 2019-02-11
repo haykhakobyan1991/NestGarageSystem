@@ -107,7 +107,7 @@ $folder = $this->session->folder;
 					<div class="row" style="margin-top: .75rem!important;">
 						<label class="col-sm-4 col-form-label"><?= lang('position') ?></label>
 						<div  id="default-suggestions"  class="col-sm-8">
-							<input type="text" class="typeahead form-control form-control-sm"
+							<input type="text" class="typeahead trd form-control form-control-sm"
 								   name="position"
 								   value="<?= $position ?>"
 								   placeholder="<?= lang('position') ?>">
@@ -119,6 +119,7 @@ $folder = $this->session->folder;
 						<div class="col-sm-8">
 							<input type="text" class="form-control form-control-sm"
 								   name="nest_card_id"
+								   VALUE="<?=$nest_card_id?>"
 								   placeholder="<?= lang('nest_card_id') ?>">
 						</div>
 					</div>
@@ -495,7 +496,8 @@ $folder = $this->session->folder;
 		}
 	}
 
-	$('#default-suggestions .typeahead').typeahead({
+
+	$('#default-suggestions .typeahead.trd').typeahead({
 			minLength: 0,
 			highlight: true
 		},
@@ -505,9 +507,11 @@ $folder = $this->session->folder;
 			source: nflTeamsWithDefaults
 		});
 
-	$('#default-suggestions .typeahead').on('typeahead:selected', function(evt, item) {
+	$('#default-suggestions .typeahead.trd').on('typeahead:selected', function(evt, item) {
 		$('input[name="head"]').val('1');
 	});
+
+
 
 </script>
 

@@ -132,7 +132,7 @@ color: #545b62;">
 					<div class="modal-header bg-dark">
 						<h6 class="text-white modal-title dar"><?= lang('department') ?></h6>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body" id="modal-body">
 						<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
 							 src="<?= base_url() ?>assets/images/bars.svg"/>
 					</div>
@@ -443,7 +443,7 @@ color: #545b62;">
 		$.get(url, function (result) {
 
 			// update modal content
-			$('.modal-body').html(result);
+			$('#modal-body').html(result);
 
 			// show modal
 			$('#myModal').modal('show');

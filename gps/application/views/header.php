@@ -23,7 +23,7 @@
 	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
 	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
-<!--	<script src="--><?//= base_url() ?><!--assets/js/generate_password.js"></script>-->
+	<!--	<script src="--><? //= base_url() ?><!--assets/js/generate_password.js"></script>-->
 
 
 	<!-- Some CSS Start-->
@@ -145,153 +145,158 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 <div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
 	if ($controller == 'Gps') { ?>
 
-							<div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
-								<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
-									<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-										<div class="navbar-nav mr-auto">
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
-												data-toggle="tooltip" data-placement="top"
-												title="<?= lang('trajectory') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
-											</button>
-<!--											<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?><!--">-->
-<!--												<button-->
-<!--													style="color:#00000080 !important;max-height: 40px;"-->
-<!--													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"-->
-<!--													data-toggle="tooltip" data-placement="top"-->
-<!--													title="--><?//= lang('geofences') ?><!--">-->
-<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
-<!--												</button>-->
-<!--											</a>-->
-											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
-												<button style="color:#00000080 !important;max-height: 40px;"
-														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
-														href="#"
-														data-toggle="tooltip" data-placement="top"
-														title="<?= lang('speed') ?>">
-													<img
-														src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
-												</button>
-											</a>
-											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
-												<button
-													style="color:#00000080 !important;max-height: 40px;"
-													class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
-													href="#"
-													data-toggle="tooltip" data-placement="top"
-													title="<?= lang('fuel') ?>">
-													<img
-														src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
-												</button>
-											</a>
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
-												href="#"
-												data-toggle="tooltip" data-placement="top"
-												title="<?= lang('engine') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
-											</button>
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
-												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
-											</button>
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
-												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
-											</button>
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
-												href="#"
-												data-toggle="tooltip" data-placement="top"
-												title="<?= lang('notification') ?>">
-												<img
-													src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
-											</button>
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
-												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
-											</button>
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
-												href="#"
-												data-toggle="tooltip" data-placement="top"
-												title="<?= lang('statistics') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
-											</button>
-											<label class="text-center col-sm-2" style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
-											<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>5</option>
-												<option>10</option>
-												<option>15</option>
-												<option>20</option>
-												<option>25</option>
-											</select>
+		<div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
+				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+					<div class="navbar-nav mr-auto">
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/trajectory') ?>">
+							<button
+								style="color:#00000080 !important;max-height: 40px;"
+								class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+								data-toggle="tooltip" data-placement="top"
+								title="<?= lang('trajectory') ?>">
+								<img src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
+							</button>
+						</a>
+						<!--											<a href="-->
+						<? //= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?><!--">-->
+						<!--												<button-->
+						<!--													style="color:#00000080 !important;max-height: 40px;"-->
+						<!--													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"-->
+						<!--													data-toggle="tooltip" data-placement="top"-->
+						<!--													title="-->
+						<? //= lang('geofences') ?><!--">-->
+						<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
+						<!--												</button>-->
+						<!--											</a>-->
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
+							<button style="color:#00000080 !important;max-height: 40px;"
+									class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+									href="#"
+									data-toggle="tooltip" data-placement="top"
+									title="<?= lang('speed') ?>">
+								<img
+									src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
+							</button>
+						</a>
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
+							<button
+								style="color:#00000080 !important;max-height: 40px;"
+								class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
+								href="#"
+								data-toggle="tooltip" data-placement="top"
+								title="<?= lang('fuel') ?>">
+								<img
+									src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
+							</button>
+						</a>
+						<button
+							style="color:#00000080 !important;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
+							href="#"
+							data-toggle="tooltip" data-placement="top"
+							title="<?= lang('engine') ?>">
+							<img src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
+						</button>
+						<button
+							style="color:#00000080 !important;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
+							href="#"
+							data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
+							<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
+						</button>
+						<button
+							style="color:#00000080 !important;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+							href="#"
+							data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
+							<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
+						</button>
+						<button
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
+							href="#"
+							data-toggle="tooltip" data-placement="top"
+							title="<?= lang('notification') ?>">
+							<img
+								src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
+						</button>
+						<button
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+							href="#"
+							data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
+							<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
+						</button>
+						<button
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+							href="#"
+							data-toggle="tooltip" data-placement="top"
+							title="<?= lang('statistics') ?>">
+							<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
+						</button>
+						<label class="text-center col-sm-2"
+							   style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+						<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>5</option>
+							<option>10</option>
+							<option>15</option>
+							<option>20</option>
+							<option>25</option>
+						</select>
 
 
-										</div>
+					</div>
 
-										<div class="navbar-nav ml-auto">
-											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
-												<button
-													style="color:#00000080 !important;max-height: 40px;"
-													class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
-													data-toggle="tooltip" data-placement="top"
-													title="<?= lang('geofences') ?>">
-													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
-												</button>
-											</a>
-<!--											<button-->
-<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
-<!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->
-<!--												href="#"><img-->
-<!--													style="margin-right: 5px;margin-left: -15px;"-->
-<!--													src="--><?//= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
-<!--													class="ml-0 mr-0 "/>-->
-<!--											</button>-->
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
-												data-toggle="modal"
-												data-target=".settings_modal" href="#">
-												<img style="margin-right: 5px;margin-left: -15px;"
-													 src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
-													 class="ml-0 mr-0 "/>
-											</button>
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
-												class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn"
-												href="#"><img
-													style="margin-right: 5px;margin-left: -15px;"
-													src="<?= base_url() ?>assets/images/gps_tracking/print.svg"
-													class="ml-0 mr-0 "/></button>
-										</div>
-									</div>
-								</nav>
-							</div>
+					<div class="navbar-nav ml-auto">
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
+							<button
+								style="color:#00000080 !important;max-height: 40px;"
+								class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
+								data-toggle="tooltip" data-placement="top"
+								title="<?= lang('geofences') ?>">
+								<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
+							</button>
+						</a>
+						<!--											<button-->
+						<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
+						<!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->
+						<!--												href="#"><img-->
+						<!--													style="margin-right: 5px;margin-left: -15px;"-->
+						<!--													src="-->
+						<? //= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
+						<!--													class="ml-0 mr-0 "/>-->
+						<!--											</button>-->
+						<button
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+							class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
+							data-toggle="modal"
+							data-target=".settings_modal" href="#">
+							<img style="margin-right: 5px;margin-left: -15px;"
+								 src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
+								 class="ml-0 mr-0 "/>
+						</button>
+						<button
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
+							class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn"
+							href="#"><img
+								style="margin-right: 5px;margin-left: -15px;"
+								src="<?= base_url() ?>assets/images/gps_tracking/print.svg"
+								class="ml-0 mr-0 "/></button>
+					</div>
+				</div>
+			</nav>
+		</div>
 
-						<? } ?>
+	<? } ?>
 
 
-
-						<script>
-							$(function () {
-								$('[data-toggle="tooltip"]').tooltip()
-							})
-						</script>
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		})
+	</script>

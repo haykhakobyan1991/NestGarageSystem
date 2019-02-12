@@ -154,13 +154,6 @@ div.fuel_seccond {
 	transition: all .3s ease-in-out;
 	padding: 2px 10px;
 }
-.fleet_name:hover {
-	color: #fff;
-	background: #00000080 ;
-	cursor: pointer;
-	padding: 2px 10px;
-}
-
 
 .generate:hover {
 	background: rgb(255, 122, 89) !important;

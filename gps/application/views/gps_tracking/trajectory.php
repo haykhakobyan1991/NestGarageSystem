@@ -288,7 +288,7 @@
 				</div>
 				<div class="col-sm-4">
 					<div class="form-group">
-						<input name="" type="number" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
+						<input name="" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
 							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
 					</div>
 				</div>
@@ -709,11 +709,10 @@
 					});
 
 				$.each(array, function (i, val) {
-					console.log('<?= base_url("assets/images/gps_tracking/navigation.svg") ?>');
+
 					myPlacemarkWithContent = new ymaps.Placemark(val, {
 						hintContent: 'A custom placemark icon with contents',
-						balloonContent: 'This one — for Christmas',
-						iconContent: '12'
+						balloonContent: 'This one — for Christmas'
 					}, {
 						iconLayout: 'default#imageWithContent',
 						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
@@ -724,7 +723,19 @@
 					myMap.geoObjects.add(myPlacemarkWithContent);
 					myMap.controls.add(new ymaps.control.ZoomControl());
 					myMap.setBounds(myMap.geoObjects.getBounds());
-				})
+				});
+
+				ket = new ymaps.Placemark([40.20058,44.566886], {
+					hintContent: 'A custom placemark icon with contents',
+					balloonContent: 'This one — for Christmas'
+				}, {
+					iconLayout: 'default#imageWithContent',
+					iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+					iconImageSize: [20, 20],
+					iconImageOffset: [-10, -10],
+					iconContentOffset: [15, 15]
+				});
+				myMap.geoObjects.add(ket);
 
 				myMap.geoObjects.add(myPolyline);
 				myMap.controls.add(new ymaps.control.ZoomControl());

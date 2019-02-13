@@ -279,21 +279,18 @@
 
 
 			<div class="row">
-				<div class="col-sm-8">
+				<div class="col-lg-8">
 					<label style="font-size: 11px !important;">Արագություն</label>
-					<input type="checkbox" class="float-right mr-4" style="margin-top: 2px;"/>
+					<input type="checkbox" class="float-right" style="margin-top: 2px;"/><br>
+
+					<label style="font-size: 11px !important;">Շարժիչ</label>
+					<input type="checkbox" class="float-right" style="margin-top: 2px;"/>
 				</div>
-				<div class="col-sm-4 p-0">
+				<div class="col-sm-4">
 					<div class="form-group">
 						<input name="" type="number" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
 							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
 					</div>
-				</div>
-			</div>
-			<div class="row" style="margin-top: -20px;">
-				<div class="col-sm-8">
-					<label style="font-size: 11px !important;">Շարժիչ</label>
-					<input type="checkbox" class="float-right mr-5" style="margin-top: 2px;"/>
 				</div>
 			</div>
 

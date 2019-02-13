@@ -45,6 +45,12 @@
 	.fleet_name {
 		cursor: pointer;
 	}
+	.big_r{
+		margin-right: 12rem !important;
+	}
+	.small_r {
+		margin-right: 7rem !important;
+	}
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -278,13 +284,13 @@
 			<div class="row">
 				<div class="col-lg-12" style="text-align: left;">
 					<label style="font-size: 11px !important;">Արագություն</label>
-					<input type="checkbox" class="rem_right float-right" style="margin-right: 7rem;margin-top: 2px;"/>
+					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-12" style="text-align: left;">
 					<label style="font-size: 11px !important;">Շարժիչ</label>
-					<input type="checkbox" class="rem_right float-right" style="margin-right: 7rem;margin-top: 2px;"/>
+					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 
@@ -780,13 +786,13 @@
 			}
 		});
 
-		$(document).ready(function () {
+		$(window).on('load', function () {
 			if($(window).width() > 1349){
-				console.log('poqr')
-				$('.rem_right').css('margin-right', '12rem !important');
+
+				$('.rem_right').addClass('big_r');
 			}else{
-				console.log('mec')
-				$('.rem_right').css('margin-right', '7rem !important');
+
+				$('.rem_right').addClass('small_r');
 			}
 		})
 

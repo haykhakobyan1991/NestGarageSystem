@@ -657,45 +657,86 @@
 		$(document).ready(function () {
 			ymaps.ready(init);
 
-			function init() {
 
-				var myMap = new ymaps.Map("map", {
+
+			function init() {
+				coordinate = '[40.1855, 44.5131], [40.1847, 44.5122], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
+
+				array = JSON.parse("[" + coordinate + "]");
+
+				myMap = new ymaps.Map("map", {
 					center: [55.745508, 37.435225],
 					zoom: 13
 				}, {
-					searchControlProvider: 'yandex#search'
+					balloonMaxWidth: 200
 				}, {suppressMapOpenBlock: true});
 
-				ymaps.route([
-					'Москва, улица Крылатские холмы',
-					{
-						point: 'Москва, метро Молодежная',
-						type: 'viaPoint'
-					},
-					[55.731272, 37.447198], // метро "Кунцевская".
-					'Москва, метро Пионерская'
-				]).then(function (route) {
-					myMap.geoObjects.add(route);
-					points.get(0).properties.set('iconContent', 'Точка отправления');
-					points.get(lastPoint).properties.set('iconContent', 'Точка прибытия');
-
-
+				myMap.events.add('click', function (e) {
+					if (!myMap.balloon.isOpen()) {
+						var coords = e.get('coords');
+						myMap.balloon.open(coords, {
+							contentHeader:'Событие!',
+							contentBody:'<p>Кто-то щелкнул по карте.</p>' +
+								'<p>Координаты щелчка: ' + [
+									coords[0].toPrecision(6),
+									coords[1].toPrecision(6)
+								].join(', ') + '</p>',
+							contentFooter:'<sup>Щелкните еще раз</sup>'
+						});
+					}
+					else {
+						myMap.balloon.close();
+					}
 				});
 
+				myMap.events.add('contextmenu', function (e) {
+					myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
+				});
 
+				myMap.events.add('balloonopen', function (e) {
+					myMap.hint.close();
+				});
+
+				var myPolyline = new ymaps.Polyline(
+					array
+				, {
+					balloonContent: "Ломаная линия"
+				}, {
+					balloonCloseButton: false,
+					strokeColor: "#60a8f0",
+					strokeWidth: 4,
+					strokeOpacity: 0.8
+				});
+
+				$.each(array, function (i, val) {
+					console.log('<?= base_url("assets/images/gps_tracking/navigation.svg") ?>');
+					myPlacemarkWithContent = new ymaps.Placemark(val, {
+						hintContent: 'A custom placemark icon with contents',
+						balloonContent: 'This one — for Christmas',
+						iconContent: '12'
+					}, {
+						iconLayout: 'default#imageWithContent',
+						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+						iconImageSize: [20, 20],
+						iconImageOffset: [-10, -10],
+						iconContentOffset: [15, 15]
+					});
+					myMap.geoObjects.add(myPlacemarkWithContent);
+					myMap.controls.add(new ymaps.control.ZoomControl());
+					myMap.setBounds(myMap.geoObjects.getBounds());
+				})
+
+				myMap.geoObjects.add(myPolyline);
+				myMap.controls.add(new ymaps.control.ZoomControl());
+				myMap.setBounds(myMap.geoObjects.getBounds());
 			}
 
-
 			$('.card-text.fleet_name').click(function () {
-
-				($(this).hasClass('fleet_name_selected')) ? $(this).removeClass('fleet_name_selected') : $(this).addClass('fleet_name_selected')
-
-			})
-
+				($(this).hasClass('fleet_name_selected')) ? $(this).removeClass('fleet_name_selected') : $(this).addClass('fleet_name_selected');
+			});
 		});
 
 		$('.selectAll_fleets').on('change', function () {
-
 			if ($('.selectAll_fleets').is(':checked')) {
 				console.log('checked')
 				$('.card-text.fleet_name').each(function () {
@@ -707,7 +748,6 @@
 					$(this).removeClass('fleet_name_selected');
 				})
 			}
-
 		});
 
 	</script>

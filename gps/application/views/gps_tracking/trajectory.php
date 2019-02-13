@@ -238,7 +238,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-2">
+		<div class="col-sm-2 p-0">
 			<div class="card">
 				<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
 																	  class="float-right mt-1 selectAll_fleets"></div>
@@ -256,208 +256,212 @@
 				</div>
 			</div>
 			<div class="row mt-1">
-				<div class="col-sm-6 p-0">
-					<div class="form-group">
-						<div class="form-group">
-							<label class="ml-1"><?= lang('from') ?>:</label>
-							<input style="font-size: 11px !important;" type="date"
-								   class="form-control form-control-sm pl-1 pr-0">
-						</div>
+				<div class="col-sm-12">
+					<div class="form-group m-0">
+						<label class="mb-1"><?= lang('from') ?>:</label>
+						<input style="font-size: 11px !important;" type="date"
+							   class="form-control form-control-sm pl-1 pr-0">
 					</div>
 				</div>
-
-				<div class="col-sm-6 p-0">
-					<div class="form-group">
-						<div class="form-group">
-							<label class="ml-1"><?= lang('to') ?>:</label>
-							<input style="font-size: 11px !important;" type="date"
-								   class="form-control form-control-sm pl-1 pr-0">
-						</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group m-0">
+						<label class="mb-1"><?= lang('to') ?>:</label>
+						<input style="font-size: 11px !important;" type="date"
+							   class="form-control form-control-sm pl-1 pr-0">
 					</div>
 				</div>
 			</div>
 
 
 			<div class="row">
-				<div class="col-lg-8">
+				<div class="col-lg-12" style="text-align: left;">
 					<label style="font-size: 11px !important;">Արագություն</label>
-					<input type="checkbox" class="float-right" style="margin-top: 2px;"/><br>
-
-					<label style="font-size: 11px !important;">Շարժիչ</label>
-					<input type="checkbox" class="float-right" style="margin-top: 2px;"/>
+					<input type="checkbox" class="rem_right float-right" style="margin-right: 7rem;margin-top: 2px;"/>
 				</div>
-				<div class="col-sm-4">
+			</div>
+			<div class="row">
+				<div class="col-sm-12" style="text-align: left;">
+					<label style="font-size: 11px !important;">Շարժիչ</label>
+					<input type="checkbox" class="rem_right float-right" style="margin-right: 7rem;margin-top: 2px;"/>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-sm-12">
 					<div class="form-group">
+						<label><?= lang('max_speed') ?></label>
 						<input name="" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
 							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
 					</div>
 				</div>
 			</div>
 
+			<div class="row">
+				<div class="container-fluid">
+					<button
+						style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
+						class="generate btn btn-sm btn-block "><?= lang('generate') ?>
+					</button>
+				</div>
+			</div>
+			<div class="card mt-3">
+				<div class="card-header">Ինֆորմացիա</div>
+				<div class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
+					<div class="card mb-1 card_hover">
+						<div class="card-body p-2" style="font-size: 11px !important;">
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
+							</div>
+							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
+							</div>
+							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
+							</div>
+						</div>
+					</div>
 
-		<div class="row">
-			<div class="container-fluid">
-				<button
-					style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
-					class="generate btn btn-sm btn-block "><?= lang('generate') ?>
-				</button>
+					<div class="card mb-1 card_hover">
+						<div class="card-body p-2" style="font-size: 11px !important;">
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
+							</div>
+							<div class="text"><span"><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
+							</div>
+							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
+							</div>
+						</div>
+					</div>
+					<div class="card mb-1 card_hover">
+						<div class="card-body p-2" style="font-size: 11px;">
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
+							</div>
+							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
+							</div>
+							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
+							</div>
+						</div>
+					</div>
+					<div class="card mb-1 card_hover">
+						<div class="card-body p-2" style="font-size: 11px;">
+
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
+							</div>
+							<div class="text"><span
+									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
+							</div>
+							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
+							</div>
+							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
+							</div>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
-		<div class="card mt-3">
-			<div class="card-header">Ինֆորմացիա</div>
-			<div class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
-				<div class="card mb-1 card_hover">
-					<div class="card-body p-2" style="font-size: 11px !important;">
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-						</div>
-						<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-						</div>
-						<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-						</div>
-					</div>
-				</div>
+		<div class="col-sm-10">
 
-				<div class="card mb-1 card_hover">
-					<div class="card-body p-2" style="font-size: 11px !important;">
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-						</div>
-						<div class="text"><span"><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-						</div>
-						<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-1 card_hover">
-					<div class="card-body p-2" style="font-size: 11px;">
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-						</div>
-						<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-						</div>
-						<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-						</div>
-					</div>
-				</div>
-				<div class="card mb-1 card_hover">
-					<div class="card-body p-2" style="font-size: 11px;">
+			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
 
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
+			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
+				<div class="container">
+					<h6><?= lang('get_information') ?></h6>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Trajectory ։ </label><span>  ---- km</span><br>
+									<label>Average Speed ։ </label><span>km/h</span><br>
+									<label>Number of exceedance: </label><span>-----</span><br>
+								</div>
+							</div>
 						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-						</div>
-						<div class="text"><span
-								style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-						</div>
-						<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-						</div>
-						<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
+									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-
+			</div>
+			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
+				<div class="container">
+					<h6><?= lang('get_information') ?></h6>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Trajectory ։ </label><span>  ---- km</span><br>
+									<label>Average Speed ։ </label><span>km/h</span><br>
+									<label>Number of exceedance: </label><span>-----</span><br>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
+									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
+				<div class="container">
+					<h6><?= lang('get_information') ?></h6>
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Trajectory ։ </label><span>  ---- km</span><br>
+									<label>Average Speed ։ </label><span>km/h</span><br>
+									<label>Number of exceedance: </label><span>-----</span><br>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="card">
+								<div class="card-body text-justify p-1">
+									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
+									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-10">
-
-		<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
-
-		<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-			<div class="container">
-				<h6><?= lang('get_information') ?></h6>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Trajectory ։ </label><span>  ---- km</span><br>
-								<label>Average Speed ։ </label><span>km/h</span><br>
-								<label>Number of exceedance: </label><span>-----</span><br>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-								<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-			<div class="container">
-				<h6><?= lang('get_information') ?></h6>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Trajectory ։ </label><span>  ---- km</span><br>
-								<label>Average Speed ։ </label><span>km/h</span><br>
-								<label>Number of exceedance: </label><span>-----</span><br>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-								<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-			<div class="container">
-				<h6><?= lang('get_information') ?></h6>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Trajectory ։ </label><span>  ---- km</span><br>
-								<label>Average Speed ։ </label><span>km/h</span><br>
-								<label>Number of exceedance: </label><span>-----</span><br>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="card">
-							<div class="card-body text-justify p-1">
-								<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-								<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 </div>
 
 <!-- Start Modal Graphic Settings -->
@@ -661,7 +665,7 @@
 
 
 			function init() {
-				coordinate = '[40.1855, 44.5131], [40.1847, 44.5122], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
+				coordinate = '[40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
 
 				array = JSON.parse("[" + coordinate + "]");
 
@@ -708,6 +712,19 @@
 						strokeOpacity: 0.8
 					});
 
+				var highSpeed = new ymaps.Polyline([
+					[40.1847, 44.5122],
+					[40.1842, 44.5115]
+				], {
+					balloonContent: "Ломаная линия"
+				}, {
+					balloonCloseButton: false,
+					strokeColor: "#ff0000",
+					strokeWidth: 4,
+					strokeOpacity: 0.9
+				});
+
+
 				$.each(array, function (i, val) {
 
 					myPlacemarkWithContent = new ymaps.Placemark(val, {
@@ -725,7 +742,7 @@
 					myMap.setBounds(myMap.geoObjects.getBounds());
 				});
 
-				ket = new ymaps.Placemark([40.20058,44.566886], {
+				ket = new ymaps.Placemark([40.20058, 44.566886], {
 					hintContent: 'A custom placemark icon with contents',
 					balloonContent: 'This one — for Christmas'
 				}, {
@@ -737,7 +754,9 @@
 				});
 				myMap.geoObjects.add(ket);
 
-				myMap.geoObjects.add(myPolyline);
+				myMap.geoObjects
+					.add(myPolyline)
+					.add(highSpeed);
 				myMap.controls.add(new ymaps.control.ZoomControl());
 				myMap.setBounds(myMap.geoObjects.getBounds());
 			}
@@ -760,6 +779,16 @@
 				})
 			}
 		});
+
+		$(document).ready(function () {
+			if($(window).width() > 1349){
+				console.log('poqr')
+				$('.rem_right').css('margin-right', '12rem !important');
+			}else{
+				console.log('mec')
+				$('.rem_right').css('margin-right', '7rem !important');
+			}
+		})
 
 	</script>
 

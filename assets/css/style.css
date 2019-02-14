@@ -220,7 +220,7 @@ input[type="number"] {
 }
 
 span.btn.btn-sm.btn-outline-success.btn-file.mr-1.span_button_uploade {
-	margin-left: 274px;
+	margin-left: 249px;
 	font-size: 14px !important;
 	line-height: 14px !important;
 	padding: 12px 24px !important;
@@ -228,7 +228,7 @@ span.btn.btn-sm.btn-outline-success.btn-file.mr-1.span_button_uploade {
 	margin-top: -69px !important;
 }
 
-@media screen and (max-width: 1349px) {
+@media only screen and (max-width: 1349px) {
 	span.btn.btn-sm.btn-outline-success.btn-file.mr-1.span_button_uploade {
 		margin-left: 274px;
 	}

@@ -396,6 +396,7 @@ $lang['captcha_incorrect'] = 'Captcha Неверный';
 $lang['email_not_unique'] = 'Электронная почта не уникальна';
 $lang['password_not_match'] = 'Пароли не совпадают';
 $lang['health_insurance'] = 'Медицинское страхование';
+$lang['km'] = 'Км.';
 
 $lang['column_visibility'] = 'Видимые поля';
 
@@ -420,4 +421,10 @@ $lang['create'] = 'Создать';
 $lang['Create_New_Geofences'] = 'Создать новую геозону';
 $lang['GeoferenceName'] = 'Название геозоны';
 $lang['edit_geoference'] = 'Редактировать геозону';
+$lang['average_speed'] = 'Средняя скорость';
+$lang['km/h'] = 'км/ч';
+$lang['Number_exceedance'] = 'Количество превышений';
+$lang['engine_turn_on'] = 'Когда двигатель включен';
+$lang['engine_turn_of'] = 'Когда двигатель выключен';
+$lang['hour'] = 'Час';
 

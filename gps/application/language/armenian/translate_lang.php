@@ -248,6 +248,7 @@ $lang['fuel'] = 'Վառելիք';
 $lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
 $lang['select_fleets_from_list'] = 'Ընտրեք Տրանսպորտային Միջոցներ Ցանկից';
 $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղեկատվությունը տեսնելու համար';
+$lang['km'] = 'կմ.';
 
 
 
@@ -421,7 +422,12 @@ $lang['create'] = 'Ստեղծել';
 $lang['Create_New_Geofences'] = 'Ստեղծեք նոր գեոզոնա';
 $lang['GeoferenceName'] = 'Գեոզոնայի անվանումը';
 $lang['edit_geoference'] = 'Խմբագրել գեոզոնան';
-
+$lang['average_speed'] = 'Միջին արագություն';
+$lang['km/h'] = 'կմ/ժ';
+$lang['Number_exceedance'] = 'Արագության գերազանցւմներ';
+$lang['engine_turn_on'] = 'Շարժիչը միացրած ժամանակ';
+$lang['engine_turn_of'] = 'Շարժիչը անջատած ժամանակ';
+$lang['hour'] = 'Ժամ';
 
 
 

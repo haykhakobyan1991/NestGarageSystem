@@ -45,9 +45,11 @@
 	.fleet_name {
 		cursor: pointer;
 	}
-	.big_r{
+
+	.big_r {
 		margin-right: 12rem !important;
 	}
+
 	.small_r {
 		margin-right: 7rem !important;
 	}
@@ -249,10 +251,11 @@
 				<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
 																	  class="float-right mt-1 selectAll_fleets"></div>
 				<div class="card-body p-0" style="max-height: 170px;overflow-y: scroll;"><?
-					foreach($result_fleets as $fleets) {
-					?>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0" data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?></p><?
-					}?>
+					foreach ($result_fleets as $fleets) {
+						?>
+						<p class="card-text fleet_name ml-1 mr-1 mb-0"
+						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?></p><?
+					} ?>
 				</div>
 			</div>
 			<div class="row mt-1">
@@ -277,13 +280,13 @@
 
 			<div class="row">
 				<div class="col-lg-12" style="text-align: left;">
-					<label style="font-size: 11px !important;">Արագություն</label>
+					<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
 					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-sm-12" style="text-align: left;">
-					<label style="font-size: 11px !important;">Շարժիչ</label>
+					<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
 					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
@@ -308,7 +311,7 @@
 				</div>
 			</div>
 			<div class="card mt-3">
-				<div class="card-header">Ինֆորմացիա</div>
+				<div class="card-header"><?= lang('information') ?></div>
 				<div class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
 					<div class="card mb-1 card_hover">
 						<div class="card-body p-2" style="font-size: 11px !important;">
@@ -395,17 +398,18 @@
 						<div class="col-sm-6">
 							<div class="card">
 								<div class="card-body text-justify p-1">
-									<label>Trajectory ։ </label><span>  ---- km</span><br>
-									<label>Average Speed ։ </label><span>km/h</span><br>
-									<label>Number of exceedance: </label><span>-----</span><br>
+									<label><?= lang('trajectory') ?>
+										։ </label><span>  ----- <?= lang('km') ?></span><br>
+									<label><?= lang('average_speed') ?> ։ </label><span> ---- <?= lang('km/h') ?></span><br>
+									<label><?= lang('Number_exceedance') ?>: </label><span> ---- </span><br>
 								</div>
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="card">
 								<div class="card-body text-justify p-1">
-									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
+									<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>
+									<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>
 								</div>
 							</div>
 						</div>
@@ -640,20 +644,6 @@
 					</form>
 				</div>
 			</div>
-			<!--			<div class="modal-footer" style="margin-right: 20px;">-->
-			<!--				<button id="add_department_btn" type="button"-->
-			<!--						class="btn btn-outline-success cancel_btn ">--><? //= lang('save') ?>
-			<!--				</button>-->
-			<!--				<button id="load" style="height: 40px !important; width: 90px !important;"-->
-			<!--						class="btn btn-sm btn-outline-success cancel_btn d-none"><img-->
-			<!--						style="height: 20px;margin: 0 auto;display: block;text-align: center;"-->
-			<!--						src="--><? //= base_url() ?><!--assets/images/bars2.svg" /></button>-->
-			<!--				<button type="button" class="cancel_btn close btn btn-sm"-->
-			<!--						data-dismiss="modal"-->
-			<!--						aria-label="Close">-->
-			<!--					--><? //= lang('cancel') ?>
-			<!--				</button>-->
-			<!--			</div>-->
 		</div>
 	</div>
 
@@ -667,7 +657,7 @@
 			function init() {
 				coordinate = '[40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
 
-				array = JSON.parse("[" + coordinate + "]");
+				array_coordinate = JSON.parse("[" + coordinate + "]");
 
 				myMap = new ymaps.Map("map", {
 					center: [55.745508, 37.435225],
@@ -680,13 +670,12 @@
 					if (!myMap.balloon.isOpen()) {
 						var coords = e.get('coords');
 						myMap.balloon.open(coords, {
-							contentHeader: 'Событие!',
-							contentBody: '<p>Кто-то щелкнул по карте.</p>' +
-								'<p>Координаты щелчка: ' + [
+							contentHeader: '',
+							contentBody: [
 									coords[0].toPrecision(6),
 									coords[1].toPrecision(6)
-								].join(', ') + '</p>',
-							contentFooter: '<sup>Щелкните еще раз</sup>'
+								].join(', ') ,
+							contentFooter: ''
 						});
 					} else {
 						myMap.balloon.close();
@@ -694,15 +683,17 @@
 				});
 
 				myMap.events.add('contextmenu', function (e) {
-					myMap.hint.open(e.get('coords'), 'Кто-то щелкнул правой кнопкой');
+					myMap.hint.open(e.get('coords'), '');
 				});
 
 				myMap.events.add('balloonopen', function (e) {
 					myMap.hint.close();
 				});
 
+				console.table(array_coordinate);
+
 				var myPolyline = new ymaps.Polyline(
-					array
+					array_coordinate
 					, {
 						balloonContent: "Ломаная линия"
 					}, {
@@ -725,11 +716,11 @@
 				});
 
 
-				$.each(array, function (i, val) {
+				$.each(array_coordinate, function (i, val) {
 
 					myPlacemarkWithContent = new ymaps.Placemark(val, {
 						hintContent: 'A custom placemark icon with contents',
-						balloonContent: 'This one — for Christmas'
+						balloonContent: 'content'
 					}, {
 						iconLayout: 'default#imageWithContent',
 						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
@@ -742,9 +733,18 @@
 					myMap.setBounds(myMap.geoObjects.getBounds());
 				});
 
-				ket = new ymaps.Placemark([40.20058, 44.566886], {
+				myMap.geoObjects
+					.add(myPolyline)
+					.add(highSpeed);
+				myMap.controls.add(new ymaps.control.ZoomControl());
+				myMap.setBounds(myMap.geoObjects.getBounds());
+
+
+
+				/* Position */
+				position = new ymaps.Placemark([40.20058, 44.566886], {
 					hintContent: 'A custom placemark icon with contents',
-					balloonContent: 'This one — for Christmas'
+					balloonContent: 'content'
 				}, {
 					iconLayout: 'default#imageWithContent',
 					iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
@@ -752,13 +752,8 @@
 					iconImageOffset: [-10, -10],
 					iconContentOffset: [15, 15]
 				});
-				myMap.geoObjects.add(ket);
+				myMap.geoObjects.add(position);
 
-				myMap.geoObjects
-					.add(myPolyline)
-					.add(highSpeed);
-				myMap.controls.add(new ymaps.control.ZoomControl());
-				myMap.setBounds(myMap.geoObjects.getBounds());
 			}
 
 			$('.card-text.fleet_name').click(function () {
@@ -781,10 +776,10 @@
 		});
 
 		$(window).on('load', function () {
-			if($(window).width() > 1349){
+			if ($(window).width() > 1349) {
 
 				$('.rem_right').addClass('big_r');
-			}else{
+			} else {
 
 				$('.rem_right').addClass('small_r');
 			}
@@ -797,7 +792,7 @@
 
 			$('.card-text.fleet_name').each(function () {
 
-				if($(this).hasClass('fleet_name_selected')) {
+				if ($(this).hasClass('fleet_name_selected')) {
 					fleet_ids.push($(this).data('id'));
 				}
 

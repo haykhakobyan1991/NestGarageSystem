@@ -21,14 +21,11 @@
 
 
 <?
-
-
 if ($this->uri->segment('3') == 'fleet_history') {
 	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
 	//---;
 	echo '<script src="' . base_url('assets/js/custom-events.js') . '"></script>';
 }
-
 $time = strtotime(mdate('%Y-%m-%d', now()));
 ?>
 
@@ -42,7 +39,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	}
 
 	.dataTables_filter > label {
-		margin-right: 65%;
+		margin-right: 54%;
 	}
 
 	.btn.disabled, .btn:disabled {
@@ -53,6 +50,18 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		cursor: none !important;
 		color: #000 !important;
 		background: #eaedf0 !important;
+	}
+
+	@media only screen and (max-width: 1349px) {
+		.dataTables_filter > label {
+			margin-right: 65%;
+		}
+		#search_{
+			left: 67%;
+		}
+		body{
+			background: red;
+		}
 	}
 
 </style>
@@ -214,7 +223,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 			<!--search-->
-			<div id="search_" style="min-height: 35px;position: absolute;top: 9px;left: 66%;display: none">
+			<div id="search_" style="min-height: 35px;position: absolute;top: 9px;left: 49%;display: none">
 			<div style="float: right;">
 				<span class="p-3"><?= lang('from') ?></span>
 				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"

@@ -416,6 +416,8 @@ $lang['Web_address'] = 'Веб адрес';
 $lang['export'] = 'Экспорт';
 $lang['insurance1'] = 'Страхование';
 $lang['insurance_data'] = 'Картины';
+$lang['address_1'] = 'Юридический адрес';
+$lang['address_2'] = 'Адрес деятельности';
 
 $lang['file'] = 'Документ';
 $lang['Report_period'] = 'Период отчета';

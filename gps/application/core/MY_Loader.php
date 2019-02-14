@@ -18,6 +18,7 @@ class MY_Loader extends MX_Loader
 	public function authorisation($controller = NULL, $page = NULL, $token = NULL, $type = '2')
 	{
 
+		$this->load->library('session');
 		$authorisation = $this->load->CallAPI('POST', $this->old_baseUrl().$this->lng().'/Api/authorisation', array('controller' => $controller, 'page' => $page, 'type' => $type, 'token' => $token));
 
 

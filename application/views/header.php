@@ -454,12 +454,8 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 						<script>
 							$(document).on('click', '#gps_tracking', function () {
 								$.post( '<?=base_url($this->uri->segment(1) . '/System_main/get_token') ?>', function( data ) {
-									$.post('<?=base_url('gps/' . $this->uri->segment(1) . '/Gps') ?>', { token: data } ) .done( function( data ) {
-										url = '<?= base_url('gps/' . ($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/gps_tracking') ?>';
+										url = '<?= base_url('gps/' . ($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/?token=') ?>'+data;
 										$( location ).attr("href", url);
-
-									});
-
 								});
 							});
 						</script>

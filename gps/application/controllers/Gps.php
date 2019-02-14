@@ -62,7 +62,7 @@ class Gps extends MX_Controller {
 
 	public function index() {
 
-		$token = $this->input->post('token');
+		$token = $this->input->get('token');
 
 
 		$sql = "
@@ -76,9 +76,11 @@ class Gps extends MX_Controller {
 			$this->db->insert('user', array('token' => $token));
 		}
 
-
+		$lng = $this->load->lng();
 
 		$this->session->set_userdata(array('token' => $token));
+
+		redirect($lng.'/gps_tracking', 'location');//todo
 	}
 
 

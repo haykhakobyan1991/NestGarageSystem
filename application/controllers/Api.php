@@ -225,7 +225,7 @@ class Api extends MX_Controller {
 		$type = $this->input->post('type');
 		$token = $this->input->post('token');
 
-		$this->load->library('session');
+
 		$this->load->helper('url');
 
 
@@ -251,7 +251,6 @@ class Api extends MX_Controller {
 
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
-
 
 
 

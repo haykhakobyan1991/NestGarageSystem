@@ -1,3 +1,4 @@
+<?$token = $this->session->token;?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
@@ -254,7 +255,7 @@
 					foreach ($result_fleets as $fleets) {
 						?>
 						<p class="card-text fleet_name ml-1 mr-1 mb-0"
-						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?></p><?
+						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' .  $fleets['fleet_plate_number'] . ')'?></p><?
 					} ?>
 				</div>
 			</div>
@@ -312,77 +313,8 @@
 			</div>
 			<div class="card mt-3">
 				<div class="card-header"><?= lang('information') ?></div>
-				<div class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
-					<div class="card mb-1 card_hover">
-						<div class="card-body p-2" style="font-size: 11px !important;">
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-							</div>
-							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-							</div>
-							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-							</div>
-						</div>
-					</div>
+				<div id="car_info" class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
 
-					<div class="card mb-1 card_hover">
-						<div class="card-body p-2" style="font-size: 11px !important;">
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-							</div>
-							<div class="text"><span"><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-							</div>
-							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-							</div>
-						</div>
-					</div>
-					<div class="card mb-1 card_hover">
-						<div class="card-body p-2" style="font-size: 11px;">
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-							</div>
-							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-							</div>
-							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-							</div>
-						</div>
-					</div>
-					<div class="card mb-1 card_hover">
-						<div class="card-body p-2" style="font-size: 11px;">
-
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('license_plate') ?>:</span><span>  455dd54</span>
-							</div>
-							<div class="text"><span
-									style="font-size: 13px;"><?= lang('type') ?>:</span><span>  Բեռնատար</span>
-							</div>
-							<div class="text"><span><?= lang('description') ?>:</span><span>  Koryun Maruqyan</span>
-							</div>
-							<div class="text"><span style="font-size: 13px;"><?= lang('contact_number') ?>:</span><span>  +(374) 55 554 443</span>
-							</div>
-						</div>
-					</div>
 
 				</div>
 			</div>
@@ -789,6 +721,8 @@
 		$(document).on('click', '.card-text.fleet_name', function () {
 
 			var fleet_ids = [];
+			var token = '<?=$token?>';
+			$('#car_info').html('')
 
 			$('.card-text.fleet_name').each(function () {
 
@@ -797,6 +731,83 @@
 				}
 
 			});
+
+			$.post( '<?=$this->load->old_baseUrl().$this->load->lng() . '/Api/get_fleet_info' ?>', { token: token, fleet_ids: fleet_ids.join(",") },  function( data ) {
+				var result = '';
+				console.log(JSON.parse(data));
+				$.each(JSON.parse(data), function(e, val){
+					result += '<div class="card mb-1 card_hover">\n'+
+						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n'+
+						'\t\t\t\t\t\t\t<div class="text"><span\n'+
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model +'</span>\n'+
+						'\t\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t\t\t<div class="text"><span\n'+
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  '+val.fleet_plate_number+'</span>\n'+
+						'\t\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t\t\t<div class="text"><span\n'+
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  '+val.fleet_type+'</span>\n'+
+						'\t\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  '+val.first_name+ ' ' + val.last_name +'</span>\n'+
+						'\t\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  '+(val.contact_1 !== null ? val.contact_1 : '')+(val.contact_2 !== null ? ', '+val.contact_2 : '')+'</span>\n'+
+						'\t\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t\t</div>\n'+
+						'\t\t\t\t\t</div>';
+				});
+
+				$('#car_info').html(result)
+			});
+
+			console.log(fleet_ids.join(","));
+
+		});
+
+
+
+		$(document).on('change', '.selectAll_fleets', function () {
+
+			var fleet_ids = [];
+			var token = '<?=$token?>';
+
+			$('#car_info').html('');
+
+				$('.card-text.fleet_name').each(function () {
+
+					if ($(this).hasClass('fleet_name_selected')) {
+						fleet_ids.push($(this).data('id'));
+					}
+
+				});
+
+
+
+				$.post( '<?=$this->load->old_baseUrl().$this->load->lng() . '/Api/get_fleet_info' ?>', { token: token, fleet_ids: fleet_ids.join(",") },  function( data ) {
+					var result = '';
+					console.log(JSON.parse(data));
+					$.each(JSON.parse(data), function(e, val){
+						result += '<div class="card mb-1 card_hover">\n'+
+							'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n'+
+							'\t\t\t\t\t\t\t<div class="text"><span\n'+
+							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model +'</span>\n'+
+							'\t\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t\t\t<div class="text"><span\n'+
+							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  '+val.fleet_plate_number+'</span>\n'+
+							'\t\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t\t\t<div class="text"><span\n'+
+							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  '+val.fleet_type+'</span>\n'+
+							'\t\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  '+val.first_name+ ' ' + val.last_name +'</span>\n'+
+							'\t\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  '+(val.contact_1 !== null ? val.contact_1 : '')+(val.contact_2 !== null ? ', '+val.contact_2 : '')+'</span>\n'+
+							'\t\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t\t</div>\n'+
+							'\t\t\t\t\t</div>';
+					});
+
+					$('#car_info').html(result)
+				});
+
+
 
 			console.log(fleet_ids.join(","));
 

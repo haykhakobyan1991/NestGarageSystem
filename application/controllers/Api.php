@@ -149,8 +149,6 @@ class Api extends MX_Controller {
 		$query = $this->db->query($sql);
 
 
-		$query = $this->db->query($sql);
-
 		echo json_encode($query->result_array());
 		return true;
 
@@ -290,6 +288,89 @@ class Api extends MX_Controller {
 		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
 		echo $row['company_id'];
 		return true;
+	}
+
+
+
+	public function get_fleet_info() {
+
+		$token = $this->input->post('token');
+
+		if ($token == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$lng = $this->load->lng();
+
+		$fleet_ids = $this->input->post('fleet_ids');
+
+
+		if ($fleet_ids != '') {
+
+			$sql = "
+				SELECT
+					`brand`.`title_" . $lng . "` AS `brand`,
+					`model`.`title_" . $lng . "` AS `model`,
+					`fleet_type`.`title_" . $lng . "` AS `fleet_type`,
+					`fuel`.`title_" . $lng . "` AS `fuel`,
+					`insurance_type`.`title_" . $lng . "` AS `insurance_type`,
+					`department`.`head_staff_id`,
+					`staff`.`id` AS `staff_id`,
+					`staff`.`first_name`,
+					`staff`.`last_name`,
+					`staff`.`contact_1`,
+					`staff`.`contact_2`,
+					`staff`.`email`,
+					`staff`.`address`,
+					`staff`.`post_code`,
+					`staff`.`position`,
+					`staff`.`nest_card_id`,
+					`staff`.`photo`,
+					`country`.`title_" . $lng . "` AS `country`,
+					`department`.`title` AS `department`,
+					`value`.`title_" . $lng . "` AS `value`,
+					`fleet`.*
+				 FROM
+				   `fleet`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id` 
+				LEFT JOIN `fleet_type`
+					ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
+				LEFT JOIN `fuel`
+					ON `fleet`.`fuel_id` = `fuel`.`id` 
+				LEFT JOIN `insurance_type`
+					ON `fleet`.`insurance_type_id_1` = `insurance_type`.`id`	
+				LEFT JOIN `staff`
+					ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	
+				LEFT JOIN `user` 
+					ON `user`.`id` = `fleet`.`registrar_user_id` 	
+				LEFT JOIN `department`
+					ON FIND_IN_SET(`department`.`id`, `staff`.`department_ids`)
+				LEFT JOIN `country`
+					ON `country`.`id` = `staff`.`country_id`
+				LEFT JOIN `value`
+					ON `value`.`id` = `fleet`.`mileage_value_id`				
+				WHERE FIND_IN_SET(`fleet`.`id`, '" . $fleet_ids . "')
+				 AND `user`.`company_id` = " . $this->load->db_value($company_id) . "
+				 ORDER BY `staff`.`id`, `fleet`.`id`
+			";
+
+
+			$query = $this->db->query($sql);
+
+			echo json_encode($query->result_array());
+			return true;
+
+		}
+
+		return true;
+
+
 	}
 
 

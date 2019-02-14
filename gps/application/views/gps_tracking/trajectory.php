@@ -248,17 +248,11 @@
 			<div class="card">
 				<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
 																	  class="float-right mt-1 selectAll_fleets"></div>
-				<div class="card-body p-0" style="max-height: 170px;overflow-y: scroll;">
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 1</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 2</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 3</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 4</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 5</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 6</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 7</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 8</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 9</p>
-					<p class="card-text fleet_name ml-1 mr-1 mb-0">Fleet 10</p>
+				<div class="card-body p-0" style="max-height: 170px;overflow-y: scroll;"><?
+					foreach($result_fleets as $fleets) {
+					?>
+					<p class="card-text fleet_name ml-1 mr-1 mb-0" data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?></p><?
+					}?>
 				</div>
 			</div>
 			<div class="row mt-1">
@@ -794,7 +788,24 @@
 
 				$('.rem_right').addClass('small_r');
 			}
-		})
+		});
+
+
+		$(document).on('click', '.card-text.fleet_name', function () {
+
+			var fleet_ids = [];
+
+			$('.card-text.fleet_name').each(function () {
+
+				if($(this).hasClass('fleet_name_selected')) {
+					fleet_ids.push($(this).data('id'));
+				}
+
+			});
+
+			console.log(fleet_ids.join(","));
+
+		});
 
 	</script>
 

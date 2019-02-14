@@ -97,7 +97,7 @@ $token = $this->session->token;
 
 
 <?
-$row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true);
+$row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true); // todo url
 
 
 ?>

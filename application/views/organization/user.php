@@ -191,7 +191,7 @@ endforeach;
 													   placeholder="<?= lang('password') ?>"
 													   id="password-input"
 													   onclick="this.focus();this.select()"
-													   readonly/>
+													   />
 												<button type="button"
 														class="btn btn-sm btn-outline-secondary  ml-3 hide_password"
 														style="border: none;outline: none;"><i class="fa fa-eye"></i>

@@ -953,6 +953,7 @@ class Organization extends MX_Controller {
 			staff.*, 
 			GROUP_CONCAT(CONCAT("<span class=\"m-1 p-2 badge badge-info\" >",  department.title , "</span>") SEPARATOR "") AS department, 
 			GROUP_CONCAT(CONCAT("<span class=\"m-1 p-2 badge badge-info\" >", CONCAT_WS(" ", head_staff.first_name, head_staff.last_name), "</span>") SEPARATOR "") AS head_staff, 
+			`department`.`head_staff_id`,
 			CONCAT_WS(" ", user.first_name, user.last_name) AS user_name')
 			->from('staff')
 			->join('user', 'staff.registrar_user_id = user.id', 'left')
@@ -2656,10 +2657,6 @@ class Organization extends MX_Controller {
 
 
 
-
-
-
-
 		if(is_array($item) && !empty($item) && $item[1] != '') :
 
 			$sql_fleet_details = "
@@ -2982,6 +2979,7 @@ class Organization extends MX_Controller {
 		$regitered_address = $this->input->post('regitered_address');
 		$regitered_number = $this->input->post('regitered_number');
 		$regitered_file = '';
+		$owners_passport_file = '';
 
 		$value_1 = $this->input->post('value_1');
 		$value1_day = str_replace(",", ".", $this->input->post('value1_day'));
@@ -3108,6 +3106,44 @@ class Organization extends MX_Controller {
 		}
 
 
+		//file config owner passport
+		$config_of['upload_path'] = set_realpath('uploads/'.$folder.'/fleet/owners_passport');
+		// $config_f['allowed_types'] = 'pdf|jpg|png|doc|docx|csv|xlsx'; //todo
+		$config_of['allowed_types'] = '*';
+		$config_of['max_size'] = '4097152'; //4 MB
+		$config_of['file_name'] = $this->uname(3, 8);
+
+
+		if(isset($_FILES['owners_passport']['name']) AND $_FILES['owners_passport']['name'] != '') {
+
+
+			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/owners_passport'))) {
+				mkdir(set_realpath('uploads/'.$folder.'/fleet/owners_passport'), 0755, true);
+				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/owners_passport/index.html'));
+			}
+
+
+
+			$this->load->library('upload', $config_of);
+			$this->upload->initialize($config_of);
+
+			if (!$this->upload->do_upload('owners_passport')) {
+				$validation_errors = array('owners_passport' => $this->upload->display_errors());
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+
+			$owners_passport_file_arr = $this->upload->data();
+
+			$owners_passport_file = "`owners_passport` = ".$this->load->db_value($owners_passport_file_arr['file_name']).",";
+
+
+
+		}
+
+
 
 		$company = $this->input->post('company');
 		//$file = $this->input->post('file');
@@ -3197,78 +3233,6 @@ class Organization extends MX_Controller {
 		}
 
 
-		$file_3 = '';
-		$ext_3 = '';
-		if(isset($_FILES['file_3']['name']) AND $_FILES['file_3']['name'] != '') {
-
-
-			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
-			}
-
-
-
-			$this->load->library('upload', $config_f_i);
-			$this->upload->initialize($config_f_i);
-
-			if (!$this->upload->do_upload('file_3')) {
-				$validation_errors = array('file_3' => $this->upload->display_errors());
-				$messages['error']['elements'][] = $validation_errors;
-				echo json_encode($messages);
-				return false;
-			}
-
-
-
-			$file_3_arr = $this->upload->data();
-
-			$file_3 = $file_3_arr['file_name'];
-
-			$file_3_array = explode('.', $file_3);
-
-			$file_3 = "`insurance_file_3` = ".$this->load->db_value($file_3_array[0]).",";
-			$ext_3 = " `insurance_ext_3` = ".$this->load->db_value($file_3_array[1]).",";
-
-
-		}
-
-
-		$file_4 = '';
-		$ext_4 = '';
-		if(isset($_FILES['file_4']['name']) AND $_FILES['file_4']['name'] != '') {
-
-
-			if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/insurance'))) {
-				mkdir(set_realpath('uploads/'.$folder.'/fleet/insurance'), 0755, true);
-				copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/insurance/index.html'));
-			}
-
-
-
-			$this->load->library('upload', $config_f_i);
-			$this->upload->initialize($config_f_i);
-
-			if (!$this->upload->do_upload('file_4')) {
-				$validation_errors = array('file_4' => $this->upload->display_errors());
-				$messages['error']['elements'][] = $validation_errors;
-				echo json_encode($messages);
-				return false;
-			}
-
-
-			$file_4_arr = $this->upload->data();
-
-			$file_4 = $file_4_arr['file_name'];
-
-			$file_4_array = explode('.', $file_4);
-
-			$file_4 = "`insurance_file_4` = ".$this->load->db_value($file_4_array[0]).",";
-			$ext_4 = " `insurance_ext_4` = ".$this->load->db_value($file_4_array[1]).",";
-
-
-		}
-
 
 		$sql = "
 				UPDATE `fleet` SET 
@@ -3302,6 +3266,7 @@ class Organization extends MX_Controller {
 					`regitered_address` = ".$this->load->db_value($regitered_address).",
 					`regitered_number` = ".$this->load->db_value($regitered_number).",
 					".$regitered_file."
+					".$owners_passport_file."
 					`insurance_company_1` = ".$this->load->db_value($company[1]).",
 				    `insurance_referance_1` = ".$this->load->db_value($reference[1]).",
 				    `insurance_type_id_1` = ".$this->load->db_value($type[1]).",
@@ -3314,18 +3279,6 @@ class Organization extends MX_Controller {
 				    `insurance_expiration_2` = ".$this->load->db_value($expiration[2]).",
 				    ".$file_2."
 				    ".$ext_2."
-				    `insurance_company_3` = ".$this->load->db_value($company[3]).",
-				    `insurance_referance_3` = ".$this->load->db_value($reference[3]).",
-				    `insurance_type_id_3` = ".$this->load->db_value($type[3]).",
-				    `insurance_expiration_3` = ".$this->load->db_value($expiration[3]).",
-				    ".$file_3."
-				    ".$ext_3."
-				    `insurance_company_4` = ".$this->load->db_value($company[4]).",
-				    `insurance_referance_4` = ".$this->load->db_value($reference[4]).",
-				    `insurance_type_id_4` = ".$this->load->db_value($type[4]).",
-				    `insurance_expiration_4` = ".$this->load->db_value($expiration[4]).",
-				    ".$file_4."
-				    ".$ext_4."
 					`status` = ".$this->load->db_value($status)."
 				WHERE `id` = ".$this->load->db_value($fleet_id)."
 			";

@@ -87,7 +87,7 @@
 							   id="password_edit"
 							   value=""
 							   onclick="this.focus();this.select()"
-							   readonly
+
 						/>
 						<button type="button"
 								class="btn btn-sm btn-outline-secondary ml-3 hide_password_edit"

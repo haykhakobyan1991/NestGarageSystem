@@ -640,7 +640,7 @@ endforeach;
 									</div>
 								</div>
 							</td>
-							<td><?= $row['position'] ?></td>
+							<td><?= ($row['head_staff_id'] == $row['id'] ? lang('head') : $row['position']) ?></td>
 							<td><?= $row['department'] ?></td>
 							<td><?= $row['head_staff'] ?></td>
 							<td><?= $row['registration_date'] ?></td>
@@ -653,8 +653,10 @@ endforeach;
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
-										<?= $row['document_1'] ?>
+										<?= lang('passport') ?>
 									</a>
+
+
 
 								<? }
 								if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
@@ -662,7 +664,7 @@ endforeach;
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
-										<?= $row['document_2'] ?>
+										<?= lang('Social_id') ?>
 									</a>
 
 								<? }
@@ -671,7 +673,7 @@ endforeach;
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
-										<?= $row['document_3'] ?>
+										<?= lang('Driving_license') ?>
 									</a>
 
 								<? }
@@ -680,7 +682,7 @@ endforeach;
 									   target="_blank"
 									   class="bg-info"
 									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
-										<?= $row['document_4'] ?>
+										<?= lang('health_insurance') ?>
 									</a>
 
 								<? } ?>

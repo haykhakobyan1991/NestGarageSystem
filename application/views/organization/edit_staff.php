@@ -403,7 +403,7 @@ $folder = $this->session->folder;
 					<div class="card-header p-0" id="headingFour">
 						<h5 class="mb-0">
 							<button class="btn btn-sm btn-link collapsed text-success" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-								<?= lang('technical_passport') ?>
+								<?= lang('health_insurance') ?>
 							</button>
 						</h5>
 					</div>
@@ -414,10 +414,10 @@ $folder = $this->session->folder;
 							<div class="add_new_items">
 								<div class="row">
 
-									<input type="hidden" name="document_4" value="<?= lang('technical_passport') ?>" />
+									<input type="hidden" name="document_4" value="<?= lang('health_insurance') ?>" />
 									<div class="col-md-3">
 										<div class="form-group">
-											<label><?= lang('technical_passport') ?></label>
+											<label><?= lang('health_insurance') ?></label>
 											<label style="width: 80%;min-width: 85px;font-size: 14px !important;line-height: 14px !important;padding: 10px 10px !important;font-weight: 400 !important;"
 												   class="btn btn-sm btn-outline-secondary">
 												<span><?= lang('browse') ?></span>

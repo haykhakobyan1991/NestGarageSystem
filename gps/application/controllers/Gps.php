@@ -97,10 +97,10 @@ class Gps extends MX_Controller {
 
 
 		//api call //todo urls
-		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
 		$data['result_fleets'] = json_decode($fleets, true);
 
-		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token));
+		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token)); //todo url
 		$data['result'] = json_decode($fleet_group, true);
 
 		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
@@ -145,17 +145,27 @@ class Gps extends MX_Controller {
 	}
 
 	public function speed() {
-		//$this->load->authorisation('Gps', 'gps_tracking');
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 		$this->layout->view('gps_tracking/speed');
 	}
 
 	public function trajectory() {
-		//$this->load->authorisation('Gps', 'gps_tracking');
-		$this->layout->view('gps_tracking/trajectory');
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$data = array();
+
+		//api call //todo urls
+		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
+		$data['result_fleets'] = json_decode($fleets, true);
+
+		$this->layout->view('gps_tracking/trajectory', $data);
 	}
 
 	public function fuel() {
-		//$this->load->authorisation('Gps', 'gps_tracking');
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 		$this->layout->view('gps_tracking/fuel');
 	}
 
@@ -308,14 +318,11 @@ class Gps extends MX_Controller {
 		}
 
 
-
-
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('geo_name', 'geo_name', 'required');
 		$this->form_validation->set_rules('edit_geometry', 'edit_geometry', 'required');
-
 
 
 		if($this->form_validation->run() == false){
@@ -336,18 +343,18 @@ class Gps extends MX_Controller {
 		}
 
 
-
-
 		$geo_name = $this->input->post('geo_name');
 		$geometry = $this->input->post('edit_geometry');
 		$geoference_id = $this->input->post('edit_id');
 		$status = 1;
 
+		//get company ID
 		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
 
+		// update geoference
 		$this->db->update('geoference', array('name' => $geo_name), array('id' => $geoference_id));
 
-
+		// delete old coordinates
 		$this->db->delete('geoference_cordinates', array('geoference_id' => $geoference_id));
 
 

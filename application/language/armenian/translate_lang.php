@@ -99,6 +99,15 @@ $lang['PleaseWait'] = 'խնդրում ենք սպասել';
 
 $lang['owner_passport'] = 'Սեփականատիրոջ անձնագիր';
 
+
+$lang['passport'] = 'Անձնագիր';
+$lang['Social_id'] = 'Սոց քարտ';
+$lang['Driving_license'] = 'Վարորդական Իրավունք';
+$lang['Technical_passport'] = 'Տեխ անձնագիր';
+
+
+
+
 //Add
 $lang['from_driver_to_vehicle'] = '<b>Վարորդ</b> %s - <b>ից դեպի Փոխադրամիջոց</b> %s';
 $lang['from_department_to_driver'] = '<b>Ստորաբաժանում</b> %s - <b>ից դեպի Վարորդ</b> %s';

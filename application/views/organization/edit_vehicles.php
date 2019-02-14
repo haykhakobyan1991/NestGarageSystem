@@ -373,15 +373,15 @@
 						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
 							   style="display: none;" id="exampleFormControlFile1">
 					</label><?
-					if ($fleet['regitered_file'] != '') : ?>
+					if ($fleet['owners_passport'] != '') : ?>
 					<a  style="position: absolute;top: 2px;"
 						target=""
 						class="a_ext"
-						download="<?= $fleet['regitered_file'] ?>"
-						href="<?= base_url('uploads/' . $folder . '/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
+						download="<?= $fleet['owners_passport'] ?>"
+						href="<?= base_url('uploads/' . $folder . '/fleet/owners_passport/') . $fleet['owners_passport'] ?>">
 						<?
 
-						$ext = explode('.', $fleet['regitered_file']);
+						$ext = explode('.', $fleet['owners_passport']);
 						echo $this->select_ext($ext[1]);
 
 						?>
@@ -1116,8 +1116,10 @@
 				$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text+ ' ('+new_text[1]+')');
 				$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text+ ' ('+new_text[1]+')');
 			} else {
-				$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).text()+')');
-				$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).text()+')');
+				if($(this).val() != '') {
+					$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).text()+')');
+					$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).text()+')');
+				}
 			}
 		});
 

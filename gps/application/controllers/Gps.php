@@ -509,7 +509,7 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$sql = "SELECT \"0\" FROM aaaa WHERE TRUE";
+		$sql = "SELECT * FROM aaaa WHERE TRUE";
 
 		$query = $this->db->query($sql);
 
@@ -520,6 +520,11 @@ class Gps extends MX_Controller {
 		echo count($result);
 		$this->pre($result);
 
+	}
+
+	public function delete_aaaa() {
+
+		$this->db->query("DELETE FROM aaaa WHERE TRUE");
 	}
 
 

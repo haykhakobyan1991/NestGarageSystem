@@ -509,17 +509,17 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$result = $this->db->select('*')->from('aaaa')->get()->result_array();
+		$result = $this->db->select('*')->from('aaaa')//->where('"1"',  '865205035287688')
+		->get()->result_array();
 
 		echo count($result);
+
+		krsort($result);
 		$this->pre($result);
 
 	}
 
-	public function delete_aaaa() {
 
-		$this->db->query("DELETE FROM aaaa WHERE TRUE");
-	}
 
 
 

@@ -12,7 +12,7 @@
 
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
-<!--<script type="text/javascript" src="--><?//= base_url('assets/js/ymap.js') ?><!--"></script>-->
+<!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
 
 
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
@@ -23,6 +23,11 @@
 <script src="https://static.zinoui.com/js/front.min.js"></script>
 
 <style>
+	html,
+	body {
+		height: 100%;
+	}
+
 	body {
 		overflow: hidden;
 	}
@@ -57,9 +62,6 @@
 		font-size: 11px !important;
 	}
 
-	.dataTables_scrollBody {
-		height: calc(100% - 315px) !important;
-	}
 
 	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
 		color: #6c757d !important;
@@ -77,10 +79,6 @@
 		z-index: 1 !important;
 	}
 
-	#splitter {
-		height: calc(100% - 150px);
-		width: 100%;
-	}
 
 	.splitter-west {
 	}
@@ -106,10 +104,14 @@
 	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
+
+
 </style>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
-<img class="loader_svg" style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;" src="<?= base_url('assets/images/puff.svg') ?>"/>
+<img class="loader_svg"
+	 style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
+	 src="<?= base_url('assets/images/puff.svg') ?>"/>
 
 <div id="splitter">
 
@@ -1709,6 +1711,29 @@
 		$('.count_cars_in_table').html($('#total').text())
 	});
 
+
+
+	$(document).ready(function () {
+		function myFunction() {
+			if (navigator.userAgent.indexOf("Firefox") != -1) {
+				var window_height = window.innerHeight - 315;
+				var window_height2 = window.innerHeight - 150;
+				$('.dataTables_scrollBody').css('height', window_height);
+				$('#splitter').css('height', window_height2);
+
+				console.log('firefox');
+				console.log(window_height);
+				console.log(window_height2);
+
+			} else {
+
+				console.log('chrome');
+				$('.dataTables_scrollBody').css('height', 'calc(100% - 315px)');
+				$('#splitter').css('height', 'calc(100% - 150px)');
+			}
+		}
+		myFunction();
+	})
 </script>
 
 
@@ -1719,7 +1744,6 @@
 		echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
 	}
 	?>
-
 
 </select>
 

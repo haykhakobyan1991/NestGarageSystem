@@ -54,6 +54,9 @@
 	.small_r {
 		margin-right: 7rem !important;
 	}
+	.card-body.p-0 p {
+		font-size: 12px;
+	}
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -119,8 +122,7 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span
-									class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -128,8 +130,7 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span
-									class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 					</div>
@@ -487,73 +488,73 @@
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option1" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg"/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option2" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option3" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg"/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option4" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/speedometer.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/speedometer.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option5" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/gas-station.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/gas-station.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option6" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/flag.svg"/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/flag.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option7" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/image.svg"/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/image.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option8" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/video-player.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/video-player.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option9" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/parking-sign.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/parking-sign.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option10" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/stop.svg"/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/stop.svg" alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option11" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/forward-right-arrow-button.svg"/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/forward-right-arrow-button.svg" alt=""/>
 								</label>
 
 							</div>
@@ -587,9 +588,11 @@
 
 
 			function init() {
-				coordinate = '[40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
+				coordinate = '[40.1869, 44.5150], [40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
+				coordinate2 = '[40.1833, 44.5084], [40.1846, 44.5100],[40.1855, 44.5110], [40.1863, 44.5120], [40.1837, 44.5157], [40.1831, 44.5148], [40.1813, 44.5146]';
 
 				array_coordinate = JSON.parse("[" + coordinate + "]");
+				array_coordinate2 = JSON.parse("[" + coordinate2 + "]");
 
 				myMap = new ymaps.Map("map", {
 					center: [55.745508, 37.435225],
@@ -604,9 +607,9 @@
 						myMap.balloon.open(coords, {
 							contentHeader: '',
 							contentBody: [
-									coords[0].toPrecision(6),
-									coords[1].toPrecision(6)
-								].join(', ') ,
+								coords[0].toPrecision(6),
+								coords[1].toPrecision(6)
+							].join(', '),
 							contentFooter: ''
 						});
 					} else {
@@ -622,8 +625,6 @@
 					myMap.hint.close();
 				});
 
-				console.table(array_coordinate);
-
 				var myPolyline = new ymaps.Polyline(
 					array_coordinate
 					, {
@@ -631,6 +632,17 @@
 					}, {
 						balloonCloseButton: false,
 						strokeColor: "#60a8f0",
+						strokeWidth: 4,
+						strokeOpacity: 0.8
+					});
+
+				var myPolyline2 = new ymaps.Polyline(
+					array_coordinate2
+					, {
+						balloonContent: "Ломаная линия"
+					}, {
+						balloonCloseButton: false,
+						strokeColor: "#e8f021",
 						strokeWidth: 4,
 						strokeOpacity: 0.8
 					});
@@ -647,6 +659,17 @@
 					strokeOpacity: 0.9
 				});
 
+				var highSpeed2 = new ymaps.Polyline([
+					[40.1846, 44.5100],
+					[40.1855, 44.5110]
+				], {
+					balloonContent: "Ломаная линия"
+				}, {
+					balloonCloseButton: false,
+					strokeColor: "#ff0000",
+					strokeWidth: 4,
+					strokeOpacity: 0.9
+				});
 
 				$.each(array_coordinate, function (i, val) {
 
@@ -665,13 +688,30 @@
 					myMap.setBounds(myMap.geoObjects.getBounds());
 				});
 
+				$.each(array_coordinate2, function (i, val) {
+
+					myPlacemarkWithContent2 = new ymaps.Placemark(val, {
+						hintContent: 'A custom placemark icon with contents',
+						balloonContent: 'content'
+					}, {
+						iconLayout: 'default#imageWithContent',
+						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+						iconImageSize: [20, 20],
+						iconImageOffset: [-10, -10],
+						iconContentOffset: [15, 15]
+					});
+					myMap.geoObjects.add(myPlacemarkWithContent2);
+					myMap.controls.add(new ymaps.control.ZoomControl());
+					myMap.setBounds(myMap.geoObjects.getBounds());
+				});
+
 				myMap.geoObjects
 					.add(myPolyline)
-					.add(highSpeed);
+					.add(highSpeed)
+					.add(myPolyline2)
+					.add(highSpeed2);
 				myMap.controls.add(new ymaps.control.ZoomControl());
 				myMap.setBounds(myMap.geoObjects.getBounds());
-
-
 
 				/* Position */
 				position = new ymaps.Placemark([40.20058, 44.566886], {
@@ -695,12 +735,12 @@
 
 		$('.selectAll_fleets').on('change', function () {
 			if ($('.selectAll_fleets').is(':checked')) {
-				console.log('checked')
+
 				$('.card-text.fleet_name').each(function () {
 					$(this).addClass('fleet_name_selected');
 				})
 			} else {
-				console.log('unchecked')
+
 				$('.card-text.fleet_name').each(function () {
 					$(this).removeClass('fleet_name_selected');
 				})

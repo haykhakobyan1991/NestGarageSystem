@@ -306,7 +306,6 @@ $lang['record'] = 'записей';
 
 
 
-
 //date
 $lang['date'] = 'Дата';
 $lang['from'] = 'От';

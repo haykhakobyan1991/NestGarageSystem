@@ -51,6 +51,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		color: #000 !important;
 		background: #eaedf0 !important;
 	}
+	.pos_abs_div{
+		z-index: 888 !important;
+	}
+
+	.dropdown-menu.show {
+		z-index: 999 !important;
+	}
 
 	@media only screen and (max-width: 1349px) {
 		.dataTables_filter > label {

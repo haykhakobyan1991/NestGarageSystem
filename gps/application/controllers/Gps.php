@@ -509,13 +509,7 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$sql = "SELECT * FROM aaaa WHERE TRUE";
-
-		$query = $this->db->query($sql);
-
-		$result  =  $query->result_array();
-
-		//$this->db->select('*')->from('aaaa')->get()->result_array();
+		$result = $this->db->select('*')->from('aaaa')->get()->result_array();
 
 		echo count($result);
 		$this->pre($result);

@@ -346,6 +346,7 @@ $lang['analog_input'] = 'Մուտքի Անալոգ';
 $lang['fleets'] = 'Տ/Մ';
 $lang['max_speed'] = 'Առավելագույն արագություն';
 $lang['get_information'] = 'Ստացված ինֆորմացիան';
+$lang['time'] = 'Ժամ';
 
 
 
@@ -428,6 +429,7 @@ $lang['Number_exceedance'] = 'Արագության գերազանցւմներ';
 $lang['engine_turn_on'] = 'Շարժիչը միացրած ժամանակ';
 $lang['engine_turn_of'] = 'Շարժիչը անջատած ժամանակ';
 $lang['hour'] = 'Ժամ';
+
 
 
 

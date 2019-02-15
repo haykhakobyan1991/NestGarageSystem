@@ -1,4 +1,4 @@
-<?$token = $this->session->token;?>
+<? $token = $this->session->token; ?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
@@ -54,6 +54,7 @@
 	.small_r {
 		margin-right: 7rem !important;
 	}
+
 	.card-body.p-0 p {
 		font-size: 12px;
 	}
@@ -122,7 +123,8 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span
+									class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -130,7 +132,8 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span
+									class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 					</div>
@@ -256,7 +259,7 @@
 					foreach ($result_fleets as $fleets) {
 						?>
 						<p class="card-text fleet_name ml-1 mr-1 mb-0"
-						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' .  $fleets['fleet_plate_number'] . ')'?></p><?
+						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' . $fleets['fleet_plate_number'] . ')' ?></p><?
 					} ?>
 				</div>
 			</div>
@@ -278,7 +281,6 @@
 					</div>
 				</div>
 			</div>
-
 
 			<div class="row mt-2">
 				<div class="col-lg-12" style="text-align: left;">
@@ -488,73 +490,84 @@
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option1" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg" alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg"
+										 alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option2" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg"
+										alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option3" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg" alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg"
+										 alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option4" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/speedometer.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/speedometer.svg"
+										alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option5" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/gas-station.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/gas-station.svg"
+										alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option6" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/flag.svg" alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/flag.svg"
+										 alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option7" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/image.svg" alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/image.svg"
+										 alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option8" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/video-player.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/video-player.svg"
+										alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option9" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/parking-sign.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/parking-sign.svg"
+										alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option10" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/stop.svg" alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/stop.svg"
+										 alt=""/>
 								</label>
 
 								<label class="btn btn-group-sm btn-outline-light"
 									   style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option11" autocomplete="off">
 									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/forward-right-arrow-button.svg" alt=""/>
+										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/forward-right-arrow-button.svg"
+										alt=""/>
 								</label>
 
 							</div>
@@ -588,11 +601,9 @@
 
 
 			function init() {
-				coordinate = '[40.1869, 44.5150], [40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1825, 44.5119]';
-				coordinate2 = '[40.1833, 44.5084], [40.1846, 44.5100],[40.1855, 44.5110], [40.1863, 44.5120], [40.1837, 44.5157], [40.1831, 44.5148], [40.1813, 44.5146]';
+				coordinate = '[40.1893, 44.5194],[40.1891, 44.5197], [40.1886, 44.5191],[40.1888, 44.5185], [40.1890, 44.5179],[40.1891, 44.5174],[40.1883, 44.5164], [40.1877, 44.5157], [40.1870, 44.5149], [40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1815, 44.5109], [40.1800, 44.5091], [40.1793, 44.5101], [40.1782, 44.5116], [40.1778, 44.5120], [40.1772, 44.5127], [40.1772, 44.5130], [40.1773, 44.5132], [40.1775, 44.5132], [40.1786, 44.5151], [40.1794, 44.5139]';
 
 				array_coordinate = JSON.parse("[" + coordinate + "]");
-				array_coordinate2 = JSON.parse("[" + coordinate2 + "]");
 
 				myMap = new ymaps.Map("map", {
 					center: [55.745508, 37.435225],
@@ -636,16 +647,7 @@
 						strokeOpacity: 0.8
 					});
 
-				var myPolyline2 = new ymaps.Polyline(
-					array_coordinate2
-					, {
-						balloonContent: "Ломаная линия"
-					}, {
-						balloonCloseButton: false,
-						strokeColor: "#e8f021",
-						strokeWidth: 4,
-						strokeOpacity: 0.8
-					});
+
 
 				var highSpeed = new ymaps.Polyline([
 					[40.1847, 44.5122],
@@ -659,23 +661,13 @@
 					strokeOpacity: 0.9
 				});
 
-				var highSpeed2 = new ymaps.Polyline([
-					[40.1846, 44.5100],
-					[40.1855, 44.5110]
-				], {
-					balloonContent: "Ломаная линия"
-				}, {
-					balloonCloseButton: false,
-					strokeColor: "#ff0000",
-					strokeWidth: 4,
-					strokeOpacity: 0.9
-				});
 
 				$.each(array_coordinate, function (i, val) {
 
 					myPlacemarkWithContent = new ymaps.Placemark(val, {
 						hintContent: 'A custom placemark icon with contents',
-						balloonContent: 'content'
+						balloonContent: '<p>Honda Fit<p>' +
+							'<p><?=lang("time")?>: 11:09:02 12:34:56</p><p><?=lang("speed")?>: 56 <?=lang("km/h")?></p><p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
 					}, {
 						iconLayout: 'default#imageWithContent',
 						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
@@ -688,28 +680,11 @@
 					myMap.setBounds(myMap.geoObjects.getBounds());
 				});
 
-				$.each(array_coordinate2, function (i, val) {
 
-					myPlacemarkWithContent2 = new ymaps.Placemark(val, {
-						hintContent: 'A custom placemark icon with contents',
-						balloonContent: 'content'
-					}, {
-						iconLayout: 'default#imageWithContent',
-						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
-						iconImageSize: [20, 20],
-						iconImageOffset: [-10, -10],
-						iconContentOffset: [15, 15]
-					});
-					myMap.geoObjects.add(myPlacemarkWithContent2);
-					myMap.controls.add(new ymaps.control.ZoomControl());
-					myMap.setBounds(myMap.geoObjects.getBounds());
-				});
 
 				myMap.geoObjects
 					.add(myPolyline)
-					.add(highSpeed)
-					.add(myPolyline2)
-					.add(highSpeed2);
+					.add(highSpeed);
 				myMap.controls.add(new ymaps.control.ZoomControl());
 				myMap.setBounds(myMap.geoObjects.getBounds());
 
@@ -772,26 +747,29 @@
 
 			});
 
-			$.post( '<?=$this->load->old_baseUrl().$this->load->lng() . '/Api/get_fleet_info' ?>', { token: token, fleet_ids: fleet_ids.join(",") },  function( data ) {
+			$.post('<?=$this->load->old_baseUrl() . $this->load->lng() . '/Api/get_fleet_info' ?>', {
+				token: token,
+				fleet_ids: fleet_ids.join(",")
+			}, function (data) {
 				var result = '';
 				console.log(JSON.parse(data));
-				$.each(JSON.parse(data), function(e, val){
-					result += '<div class="card mb-1 card_hover">\n'+
-						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n'+
-						'\t\t\t\t\t\t\t<div class="text"><span\n'+
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model +'</span>\n'+
-						'\t\t\t\t\t\t\t</div>\n'+
-						'\t\t\t\t\t\t\t<div class="text"><span\n'+
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  '+val.fleet_plate_number+'</span>\n'+
-						'\t\t\t\t\t\t\t</div>\n'+
-						'\t\t\t\t\t\t\t<div class="text"><span\n'+
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  '+val.fleet_type+'</span>\n'+
-						'\t\t\t\t\t\t\t</div>\n'+
-						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  '+val.first_name+ ' ' + val.last_name +'</span>\n'+
-						'\t\t\t\t\t\t\t</div>\n'+
-						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  '+(val.contact_1 !== null ? val.contact_1 : '')+(val.contact_2 !== null ? ', '+val.contact_2 : '')+'</span>\n'+
-						'\t\t\t\t\t\t\t</div>\n'+
-						'\t\t\t\t\t\t</div>\n'+
+				$.each(JSON.parse(data), function (e, val) {
+					result += '<div class="card mb-1 card_hover">\n' +
+						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  ' + val.first_name + ' ' + val.last_name + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t</div>';
 				});
 
@@ -803,7 +781,6 @@
 		});
 
 
-
 		$(document).on('change', '.selectAll_fleets', function () {
 
 			var fleet_ids = [];
@@ -811,42 +788,42 @@
 
 			$('#car_info').html('');
 
-				$('.card-text.fleet_name').each(function () {
+			$('.card-text.fleet_name').each(function () {
 
-					if ($(this).hasClass('fleet_name_selected')) {
-						fleet_ids.push($(this).data('id'));
-					}
+				if ($(this).hasClass('fleet_name_selected')) {
+					fleet_ids.push($(this).data('id'));
+				}
 
+			});
+
+			$.post('<?=$this->load->old_baseUrl() . $this->load->lng() . '/Api/get_fleet_info' ?>', {
+				token: token,
+				fleet_ids: fleet_ids.join(",")
+			}, function (data) {
+				var result = '';
+				console.log(JSON.parse(data));
+				$.each(JSON.parse(data), function (e, val) {
+					result += '<div class="card mb-1 card_hover">\n' +
+						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  ' + val.first_name + ' ' + val.last_name + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
+						'\t\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t\t</div>\n' +
+						'\t\t\t\t\t</div>';
 				});
 
-
-
-				$.post( '<?=$this->load->old_baseUrl().$this->load->lng() . '/Api/get_fleet_info' ?>', { token: token, fleet_ids: fleet_ids.join(",") },  function( data ) {
-					var result = '';
-					console.log(JSON.parse(data));
-					$.each(JSON.parse(data), function(e, val){
-						result += '<div class="card mb-1 card_hover">\n'+
-							'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n'+
-							'\t\t\t\t\t\t\t<div class="text"><span\n'+
-							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model +'</span>\n'+
-							'\t\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t\t\t<div class="text"><span\n'+
-							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  '+val.fleet_plate_number+'</span>\n'+
-							'\t\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t\t\t<div class="text"><span\n'+
-							'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  '+val.fleet_type+'</span>\n'+
-							'\t\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  '+val.first_name+ ' ' + val.last_name +'</span>\n'+
-							'\t\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  '+(val.contact_1 !== null ? val.contact_1 : '')+(val.contact_2 !== null ? ', '+val.contact_2 : '')+'</span>\n'+
-							'\t\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t\t</div>\n'+
-							'\t\t\t\t\t</div>';
-					});
-
-					$('#car_info').html(result)
-				});
-
+				$('#car_info').html(result)
+			});
 
 
 			console.log(fleet_ids.join(","));
@@ -854,7 +831,8 @@
 		});
 
 		$('.speed_checkbox').on('change', function () {
-			($(this).is(':checked')) ? $('.set_maxSpeed').removeClass('d-none') : $('.set_maxSpeed').addClass('d-none');
+			let speed_checkbox = $('.set_maxSpeed');
+			($(this).is(':checked')) ? speed_checkbox.removeClass('d-none') : speed_checkbox.addClass('d-none');
 		})
 
 	</script>

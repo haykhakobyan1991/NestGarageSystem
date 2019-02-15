@@ -384,6 +384,7 @@ $lang['other_info'] = 'Другая Информация';
 $lang['see'] = 'Увидеть';
 $lang['country_code'] = 'Код Страны';
 $lang['add'] = 'Добавит: ';
+$lang['time'] = 'Время';
 
 
 $lang['Field_must_be_filled_in'] = 'Поле должно быть заполнено';

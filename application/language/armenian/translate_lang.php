@@ -11,6 +11,8 @@ $lang['fill_followings_fields'] = 'Լրացրեք Հետեւյալ Դաշտեր�
 $lang['required_all'] = 'Բոլոր Դաշտերը Պարտադիր Են';
 $lang['day'] = 'օր';
 
+$lang['nest_card_id_is_not_unique'] = 'Nest Քարտ ID-ն կրկնվում է';
+
 
 //basic info
 $lang['sign_in'] = 'Մուտք';

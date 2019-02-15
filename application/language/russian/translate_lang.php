@@ -11,6 +11,7 @@ $lang['fill_followings_fields'] = 'Заполните следующие пол�
 $lang['required_all'] = 'Все поля обязательны для заполнения';
 $lang['day'] = 'День';
 
+$lang['nest_card_id_is_not_unique'] = 'Nest Card ID не уникальна';
 
 //basic info
 $lang['sign_in'] = 'Вход';

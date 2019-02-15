@@ -981,6 +981,10 @@ class Organization extends MX_Controller {
 		$this->load->library('image_lib');
 
 
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -1022,6 +1026,31 @@ class Organization extends MX_Controller {
 			return false;
 		}
 
+		$nest_card_id = $this->input->post('nest_card_id');
+
+		if($nest_card_id != '') {
+
+			$sql_n = "
+				SELECT 
+					`staff`.`id` 
+				  FROM 
+				  	`staff`
+				LEFT JOIN `user`  	
+					ON `staff`.`registrar_user_id` = `user`.`id`
+				WHERE `nest_card_id` = '" . $nest_card_id . "'
+				 AND `user`.`company_id` = '" . $company_id . "'
+		";
+
+			$query_n = $this->db->query($sql_n);
+
+			if ($query_n->num_rows() > 0) {
+				$validation_errors = array('nest_card_id' => lang('nest_card_id_is_not_unique'));
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+		}
 
 
 
@@ -1037,7 +1066,7 @@ class Organization extends MX_Controller {
 		$position = $this->input->post('position');
 		$other = $this->input->post('other');
 
-		$nest_card_id = $this->input->post('nest_card_id');
+
 
 		$document_1 = $this->input->post('document_1');
 		$reference_1 = $this->input->post('reference_1');
@@ -1526,6 +1555,9 @@ class Organization extends MX_Controller {
 		$user_id = $this->session->user_id;
 		$folder = $this->session->folder;
 
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -1567,10 +1599,36 @@ class Organization extends MX_Controller {
 			return false;
 		}
 
-
-
-
+		$nest_card_id = $this->input->post('nest_card_id');
 		$id = $this->input->post('staff_id');
+
+
+		if($nest_card_id != '') {
+
+			$sql_n = "
+					SELECT 
+						`staff`.`id` 
+					  FROM 
+						`staff`
+					LEFT JOIN `user`  	
+						ON `staff`.`registrar_user_id` = `user`.`id`
+					WHERE `nest_card_id` = '".$nest_card_id."'
+					 AND `user`.`company_id` = '".$company_id."'
+					 AND `staff`.`id`  <> '".$id."'
+			";
+
+			$query_n = $this->db->query($sql_n);
+
+			if($query_n->num_rows() > 0) {
+				$validation_errors = array('nest_card_id' => lang('nest_card_id_is_not_unique'));
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
+
+		}
+
+
 
 		$firstname = $this->input->post('firstname');
 		$lastname = $this->input->post('lastname');
@@ -1583,8 +1641,6 @@ class Organization extends MX_Controller {
 		$department = $this->input->post('department');
 		$position = $this->input->post('position');
 		$other = $this->input->post('other');
-
-		$nest_card_id = $this->input->post('nest_card_id');
 
 		$document_1 = $this->input->post('document_1');
 		$reference_1 = $this->input->post('reference_1');

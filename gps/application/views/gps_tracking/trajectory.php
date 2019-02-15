@@ -252,6 +252,7 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-2 p-0">
+			<form>
 			<div class="card">
 				<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
 																	  class="float-right mt-1 selectAll_fleets"></div>
@@ -267,8 +268,10 @@
 				<div class="col-sm-12">
 					<div class="form-group m-0">
 						<label class="mb-1"><?= lang('from') ?>:</label>
-						<input style="font-size: 11px !important;" type="date"
-							   class="form-control form-control-sm pl-1 pr-0">
+						<input
+							name="from"
+							style="font-size: 11px !important;" type="date"
+							class="form-control form-control-sm pl-1 pr-0">
 					</div>
 				</div>
 			</div>
@@ -276,8 +279,10 @@
 				<div class="col-sm-12">
 					<div class="form-group m-0">
 						<label class="mb-1"><?= lang('to') ?>:</label>
-						<input style="font-size: 11px !important;" type="date"
-							   class="form-control form-control-sm pl-1 pr-0">
+						<input
+							name="to"
+							style="font-size: 11px !important;" type="date"
+							class="form-control form-control-sm pl-1 pr-0">
 					</div>
 				</div>
 			</div>
@@ -285,7 +290,7 @@
 			<div class="row mt-2">
 				<div class="col-lg-12" style="text-align: left;">
 					<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-					<input type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
+					<input  type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 
@@ -293,7 +298,7 @@
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label><?= lang('max_speed') ?></label>
-						<input name="" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
+						<input name="speed" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
 							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
 					</div>
 				</div>
@@ -306,12 +311,27 @@
 				</div>
 			</div>
 
+		</form>
+
+
+
 			<div class="row">
 				<div class="container-fluid">
 					<button
 						style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
+						id="generate"
 						class="generate btn btn-sm btn-block "><?= lang('generate') ?>
 					</button>
+					<button
+						style="height: 40px;border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
+						id="load1"
+						class="btn btn-sm btn-block d-none">
+						<img style="height: 24px;
+														   margin: 0 auto;
+														   padding-bottom: 8px;
+														   display: block;
+														   text-align: center;"
+							 src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 				</div>
 			</div>
 			<div class="card mt-3">
@@ -597,111 +617,17 @@
 	<script>
 
 		$(document).ready(function () {
-			ymaps.ready(init);
 
 
-			function init() {
-				coordinate = '[40.1893, 44.5194],[40.1891, 44.5197], [40.1886, 44.5191],[40.1888, 44.5185], [40.1890, 44.5179],[40.1891, 44.5174],[40.1883, 44.5164], [40.1877, 44.5157], [40.1870, 44.5149], [40.1855, 44.5131], [40.1847, 44.5122],[40.1842, 44.5115], [40.1838, 44.5111], [40.1828, 44.5124], [40.1824, 44.5120], [40.1815, 44.5109], [40.1800, 44.5091], [40.1793, 44.5101], [40.1782, 44.5116], [40.1778, 44.5120], [40.1772, 44.5127], [40.1772, 44.5130], [40.1773, 44.5132], [40.1775, 44.5132], [40.1786, 44.5151], [40.1794, 44.5139]';
+			ymaps.ready(start_map);
 
-				array_coordinate = JSON.parse("[" + coordinate + "]");
-
+			function start_map() {
 				myMap = new ymaps.Map("map", {
 					center: [55.745508, 37.435225],
 					zoom: 13
-				}, {
-					balloonMaxWidth: 200
 				}, {suppressMapOpenBlock: true});
-
-				myMap.events.add('click', function (e) {
-					if (!myMap.balloon.isOpen()) {
-						var coords = e.get('coords');
-						myMap.balloon.open(coords, {
-							contentHeader: '',
-							contentBody: [
-								coords[0].toPrecision(6),
-								coords[1].toPrecision(6)
-							].join(', '),
-							contentFooter: ''
-						});
-					} else {
-						myMap.balloon.close();
-					}
-				});
-
-				myMap.events.add('contextmenu', function (e) {
-					myMap.hint.open(e.get('coords'), '');
-				});
-
-				myMap.events.add('balloonopen', function (e) {
-					myMap.hint.close();
-				});
-
-				var myPolyline = new ymaps.Polyline(
-					array_coordinate
-					, {
-						balloonContent: "Ломаная линия"
-					}, {
-						balloonCloseButton: false,
-						strokeColor: "#60a8f0",
-						strokeWidth: 4,
-						strokeOpacity: 0.8
-					});
-
-
-
-				var highSpeed = new ymaps.Polyline([
-					[40.1847, 44.5122],
-					[40.1842, 44.5115]
-				], {
-					balloonContent: "Ломаная линия"
-				}, {
-					balloonCloseButton: false,
-					strokeColor: "#ff0000",
-					strokeWidth: 4,
-					strokeOpacity: 0.9
-				});
-
-
-				$.each(array_coordinate, function (i, val) {
-
-					myPlacemarkWithContent = new ymaps.Placemark(val, {
-						hintContent: 'A custom placemark icon with contents',
-						balloonContent: '<p>Honda Fit<p>' +
-							'<p><?=lang("time")?>: 11:09:02 12:34:56</p><p><?=lang("speed")?>: 56 <?=lang("km/h")?></p><p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
-					}, {
-						iconLayout: 'default#imageWithContent',
-						iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
-						iconImageSize: [20, 20],
-						iconImageOffset: [-10, -10],
-						iconContentOffset: [15, 15]
-					});
-					myMap.geoObjects.add(myPlacemarkWithContent);
-					myMap.controls.add(new ymaps.control.ZoomControl());
-					myMap.setBounds(myMap.geoObjects.getBounds());
-				});
-
-
-
-				myMap.geoObjects
-					.add(myPolyline)
-					.add(highSpeed);
-				myMap.controls.add(new ymaps.control.ZoomControl());
-				myMap.setBounds(myMap.geoObjects.getBounds());
-
-				/* Position */
-				position = new ymaps.Placemark([40.20058, 44.566886], {
-					hintContent: 'A custom placemark icon with contents',
-					balloonContent: 'content'
-				}, {
-					iconLayout: 'default#imageWithContent',
-					iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
-					iconImageSize: [20, 20],
-					iconImageOffset: [-10, -10],
-					iconContentOffset: [15, 15]
-				});
-				myMap.geoObjects.add(position);
-
 			}
+
 
 			$('.card-text.fleet_name').click(function () {
 				($(this).hasClass('fleet_name_selected')) ? $(this).removeClass('fleet_name_selected') : $(this).addClass('fleet_name_selected');
@@ -833,6 +759,199 @@
 		$('.speed_checkbox').on('change', function () {
 			let speed_checkbox = $('.set_maxSpeed');
 			($(this).is(':checked')) ? speed_checkbox.removeClass('d-none') : speed_checkbox.addClass('d-none');
+		})
+
+		$(document).on('click', '.generate', function (e) {
+
+
+
+
+			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
+			e.preventDefault();
+			var form_data = new FormData($('form')[0]);
+			$('input').removeClass('border border-danger');
+			$('select').parent('div').children('button').removeClass('border border-danger');
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: form_data,
+				contentType: false,
+				cache: false,
+				processData: false,
+				beforeSend: function () {
+					$('#generate').addClass('d-none');
+					$('#load1').removeClass('d-none');
+				},
+				success: function (data) {
+					if (data.success == '1') {
+						close_message();
+						$('#generate').removeClass('d-none');
+						$('#load1').addClass('d-none');
+
+						$('#map').html('');
+
+						ymaps.ready(init);
+
+
+						function init() {
+
+							var coordinate = '';
+
+							$.each(data.message, function(e, val) {
+								$.each(val, function(i, value) {
+									coordinate += value.cord+',';
+								});
+							});
+
+							coordinate = coordinate.substring(0, coordinate.length - 1);
+
+							array_coordinate = JSON.parse("[" + coordinate + "]");
+
+							myMap = new ymaps.Map("map", {
+								center: [55.745508, 37.435225],
+								zoom: 13
+							}, {
+								balloonMaxWidth: 200
+							}, {suppressMapOpenBlock: true});
+
+							myMap.events.add('click', function (e) {
+								if (!myMap.balloon.isOpen()) {
+									var coords = e.get('coords');
+									myMap.balloon.open(coords, {
+										contentHeader: '',
+										contentBody: [
+											coords[0].toPrecision(6),
+											coords[1].toPrecision(6)
+										].join(', '),
+										contentFooter: ''
+									});
+								} else {
+									myMap.balloon.close();
+								}
+							});
+
+							myMap.events.add('contextmenu', function (e) {
+								myMap.hint.open(e.get('coords'), '');
+							});
+
+							myMap.events.add('balloonopen', function (e) {
+								myMap.hint.close();
+							});
+
+							var myPolyline = new ymaps.Polyline(
+								array_coordinate
+								, {
+									balloonContent: "Ломаная линия"
+								}, {
+									balloonCloseButton: false,
+									strokeColor: "#60a8f0",
+									strokeWidth: 4,
+									strokeOpacity: 0.8
+								});
+
+
+
+							var highSpeed = new ymaps.Polyline([
+								[40.1847, 44.5122],
+								[40.1842, 44.5115]
+							], {
+								balloonContent: "Ломаная линия"
+							}, {
+								balloonCloseButton: false,
+								strokeColor: "#ff0000",
+								strokeWidth: 4,
+								strokeOpacity: 0.9
+							});
+
+
+							$.each(data.message, function(e, val) {
+								$.each(val, function(i, value) {
+                                    coord_placemark = JSON.parse("[" + value.cord + "]");
+									myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0],coord_placemark[0][1]], {
+										hintContent: 'A custom placemark icon with contents',
+										balloonContent: '<p>Honda Fit<p>' +
+											'<p><?=lang("time")?>: '+value.time+'</p><p><?=lang("speed")?>: '+value.speed+' <?=lang("km/h")?></p><p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
+									}, {
+										iconLayout: 'default#imageWithContent',
+										iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+										iconImageSize: [20, 20],
+										iconImageOffset: [-10, -10],
+										iconContentOffset: [15, 15]
+									});
+									myMap.geoObjects.add(myPlacemarkWithContent);
+									myMap.controls.add(new ymaps.control.ZoomControl());
+									myMap.setBounds(myMap.geoObjects.getBounds());
+								});
+							});
+
+
+
+							myMap.geoObjects
+								.add(myPolyline)
+								.add(highSpeed);
+							myMap.controls.add(new ymaps.control.ZoomControl());
+							myMap.setBounds(myMap.geoObjects.getBounds());
+
+							/* Position */
+							position = new ymaps.Placemark([40.20058, 44.566886], {
+								hintContent: 'A custom placemark icon with contents',
+								balloonContent: 'content'
+							}, {
+								iconLayout: 'default#imageWithContent',
+								iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+								iconImageSize: [20, 20],
+								iconImageOffset: [-10, -10],
+								iconContentOffset: [15, 15]
+							});
+							myMap.geoObjects.add(position);
+
+						}
+
+					} else {
+						$('.alert-info').addClass('d-none');
+						if ($.isArray(data.error.elements)) {
+							scroll_top();
+							$('#generate').removeClass('d-none');
+							$('#load1').addClass('d-none');
+							errors = '';
+							tmp = '';
+							$.each(data.error.elements, function (index) {
+								$.each(data.error.elements[index], function (index, value) {
+									if (value != '') {
+										$('input[name="' + index + '"]').addClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+										close_message();
+										$('.alert-danger').removeClass('d-none');
+										if (value != tmp) {
+											errors += value + '<br>';
+										}
+										tmp = value;
+									} else {
+										$('input[name="' + index + '"]').removeClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+									}
+								});
+							});
+						}
+
+					}
+				},
+				error: function (jqXHR, textStatus) {
+					// Handle errors here
+					$('#generate').removeClass('d-none');
+					$('#load1').addClass('d-none');
+					close_message();
+					$('.alert-info').addClass('d-none');
+					console.log('ERRORS: ' + textStatus);
+				},
+				complete: function () {
+				}
+			});
+
+
+
 		})
 
 	</script>

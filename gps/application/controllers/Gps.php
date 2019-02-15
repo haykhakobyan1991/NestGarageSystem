@@ -162,6 +162,7 @@ class Gps extends MX_Controller {
 		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
 		$data['result_fleets'] = json_decode($fleets, true);
 
+
 		$this->layout->view('gps_tracking/trajectory', $data);
 	}
 
@@ -421,6 +422,104 @@ class Gps extends MX_Controller {
 		$this->db->delete('geoference_cordinates', array('geoference_id' => $id));
 
 		return true;
+	}
+
+
+	public function get_trajectory() {//todo
+
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('from', 'from', 'required');
+		$this->form_validation->set_rules('to', 'to', 'required');
+
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'from' => form_error('from'),
+				'to' => form_error('to')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 8854442472)->get()->result_array();
+
+		$new_result = array();
+
+		$date = '';
+
+		if(count($result) > 0) {
+
+			foreach ($result as $value) {
+
+
+				$new_result[$value['imei']][] = array(
+					'time' => $value['date'].' '.$value['time'],
+					'cord' => '['.$value['lat'].','.$value['long'].']',
+					'speed' => $value['speed'],
+					'course' => $value['course']
+				);
+				$date = $value['date'];
+			}
+
+			$result = true;
+
+		}
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = $new_result;
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+
+	}
+
+	public function aaaa() {
+
+		$sql = "SELECT \"0\" FROM aaaa WHERE TRUE";
+
+		$query = $this->db->query($sql);
+
+		$result  =  $query->result_array();
+
+		//$this->db->select('*')->from('aaaa')->get()->result_array();
+
+		echo count($result);
+		$this->pre($result);
+
 	}
 
 

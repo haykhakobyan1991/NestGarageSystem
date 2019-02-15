@@ -1629,7 +1629,6 @@
 
 	});
 
-
 	$(function () {
 		$("#splitter").zinoSplitter({
 			panes: [

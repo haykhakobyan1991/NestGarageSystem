@@ -50,9 +50,7 @@ $i = '';
 
 							<div class="col-sm-7">
 								<div class="row" style="margin-top: -2px;">
-									<label
-										class="col-form-label col-sm-5"><?= lang('company_type') ?></label>
-
+									<label class="col-form-label col-sm-5"><?= lang('company_type') ?></label>
 									<select name="company_type"
 											class="selectpicker form-control form-control-sm  col-sm-7"
 											data-size="5" id="company_type" data-live-search="true"
@@ -89,7 +87,6 @@ $i = '';
 										   type="text" class="form-control form-control-sm col-sm-7"
 										   placeholder="<?= lang('web_address') ?>">
 								</div>
-
 							</div>
 						</div>
 
@@ -108,7 +105,8 @@ $i = '';
 								<p style="float: left;margin-top: -20px;margin-left:15px;"><?= lang('upload_logo'); ?></p>
 								<div class="input-group ml-2 ml-md-2" style="display: inline-block;width: auto;">
 															<span class="input-group-btn">
-																<span class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade">
+																<span
+																	class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade">
 																	<?= lang('browse') ?> <input type="file" id="imgInp"
 																								 name="photo"
 																								 accept='image/png'
@@ -283,31 +281,34 @@ $i = '';
 
 							</div>
 
-								<div class="col-sm-4">
-									<div class="row">
-										<label class="col-sm-3 col-form-label"
-											   style="font-size: 15px;"><?= lang('phone_number') ?></label>
-										<div class="col-sm-8">
-											<input value="<?= $company['owner_contact_number'] ?>"
-												   name="owner_contact_number" type="text"
-												   class="form-control form-control-sm"
-												   placeholder="<?= lang('contact_number') ?>">
-										</div>
+							<div class="col-sm-4">
+								<div class="row">
+									<label class="col-sm-3 col-form-label"
+										   style="font-size: 15px;"><?= lang('phone_number') ?></label>
+									<div class="col-sm-8">
+										<input value="<?= $company['owner_contact_number'] ?>"
+											   name="owner_contact_number" type="text"
+											   class="form-control form-control-sm"
+											   placeholder="<?= lang('contact_number') ?>">
 									</div>
 								</div>
+							</div>
 
 
-<!--							<div class="col-sm-4">-->
-<!--								<div class="row">-->
-<!--									<label class="col-sm-3 col-form-label"-->
-<!--										   style="font-size: 15px;">--><?//= lang('owner_position') ?><!--</label>-->
-<!--									<div class="col-sm-8">-->
-<!--										<input value="--><?//= $company['owner_position'] ?><!--"-->
-<!--											   name="owner_position" type="text" class="form-control form-control-sm"-->
-<!--											   placeholder="--><?//= lang('owner_position') ?><!--">-->
-<!--									</div>-->
-<!--								</div>-->
-<!--							</div>-->
+							<!--							<div class="col-sm-4">-->
+							<!--								<div class="row">-->
+							<!--									<label class="col-sm-3 col-form-label"-->
+							<!--										   style="font-size: 15px;">-->
+							<? //= lang('owner_position') ?><!--</label>-->
+							<!--									<div class="col-sm-8">-->
+							<!--										<input value="-->
+							<? //= $company['owner_position'] ?><!--"-->
+							<!--											   name="owner_position" type="text" class="form-control form-control-sm"-->
+							<!--											   placeholder="-->
+							<? //= lang('owner_position') ?><!--">-->
+							<!--									</div>-->
+							<!--								</div>-->
+							<!--							</div>-->
 						</div>
 
 						<div class="row mt-1">
@@ -342,8 +343,6 @@ $i = '';
 						</div>
 
 
-
-
 					</div>
 
 					<div class="container mt-1">
@@ -351,9 +350,6 @@ $i = '';
 
 						<p style="float: left;margin-top: 30px;"
 						   class="display-5 font-weight-bold mb-0"><?= lang('account_type') ?></p>
-
-
-
 
 
 						<hr class="my-2" style="clear: both;">
@@ -975,9 +971,6 @@ $i = '';
 		var data = new FormData($('form#company')[0]);
 
 
-
-
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -988,7 +981,7 @@ $i = '';
 			beforeSend: function () {
 
 				var loadText = '<?=lang('PleaseWait');?>';
-				$('.text_req').html(loadText+' . . .');
+				$('.text_req').html(loadText + ' . . .');
 
 			},
 			success: function (data, textStatus, jQxhr) {

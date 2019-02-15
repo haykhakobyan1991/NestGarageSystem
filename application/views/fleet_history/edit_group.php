@@ -5,9 +5,9 @@
 			<label class="col-sm-2 col-form-label"><?= lang('company_name') ?></label>
 			<div class="col-sm-8">
 				<input name="title" type="text" class="form-control "
-					  <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '')?>
+					<?= (isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '') ?>
 					   placeholder="<?= lang('company_name') ?>"
-					   value="<?=$result_selected_fleets[0]['title']?>"
+					   value="<?= $result_selected_fleets[0]['title'] ?>"
 				>
 			</div>
 		</div>
@@ -15,7 +15,10 @@
 			<div class="col-sm-1"></div>
 			<label class="col-sm-2 col-form-label"><?= lang('more_info') ?></label>
 			<div class="col-sm-8">
-				<textarea <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '')?> name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"><?=$result_selected_fleets[0]['details']?></textarea>
+				<textarea <?= (isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'readonly' : '') ?> name="description"
+																																				type="text"
+																																				class="form-control"
+																																				placeholder="<?= lang('more_info') ?>"><?= $result_selected_fleets[0]['details'] ?></textarea>
 			</div>
 		</div>
 
@@ -27,10 +30,11 @@
 			</div>
 		</div>
 
-		<input type="hidden" name="edit_groups" value="<?=$selected_fleet_ids?>">
-		<input type="hidden" name="group_id" value="<?=$group_id?>">
-		<input type="hidden" name="token" value="<?=$token?>">
-		<input type="hidden" name="geoference_id" value="<?=(isset($result_selected_fleets[0]['geoference_id']) ? $result_selected_fleets[0]['geoference_id'] : '')?>">
+		<input type="hidden" name="edit_groups" value="<?= $selected_fleet_ids ?>">
+		<input type="hidden" name="group_id" value="<?= $group_id ?>">
+		<input type="hidden" name="token" value="<?= $token ?>">
+		<input type="hidden" name="geoference_id"
+			   value="<?= (isset($result_selected_fleets[0]['geoference_id']) ? $result_selected_fleets[0]['geoference_id'] : '') ?>">
 
 
 	</form>
@@ -45,7 +49,7 @@
 				<? foreach ($result_fleets as $row_fleet) : ?>
 					<li data-id="<?= $row_fleet['id'] ?>"
 						class="p-1 sel_items2 mt-1 list-group-item"
-						style="cursor: pointer; <?=(isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] . '  (' .  $row_fleet['fleet_plate_number'] . ')' ?></li>
+						style="cursor: pointer; <?= (isset($result_selected_fleets[0]['default']) && $result_selected_fleets[0]['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '') ?>"><?= $row_fleet['brand_model'] . '  (' . $row_fleet['fleet_plate_number'] . ')' ?></li>
 				<? endforeach; ?>
 			</ul>
 		</div>
@@ -69,7 +73,7 @@
 				<? foreach ($result_selected_fleets as $row_fleet) : ?>
 					<li data-id="<?= $row_fleet['id'] ?>"
 						class="p-1 added_lg_22 mt-1 list-group-item"
-						style="cursor: pointer; <?=($row_fleet['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '')?>"><?= $row_fleet['brand_model'] . '  (' .  $row_fleet['fleet_plate_number'] . ')' ?></li>
+						style="cursor: pointer; <?= ($row_fleet['default'] == 2 ? 'pointer-events: none; opacity: .6;' : '') ?>"><?= $row_fleet['brand_model'] . '  (' . $row_fleet['fleet_plate_number'] . ')' ?></li>
 				<? endforeach; ?>
 			</ul>
 
@@ -176,16 +180,16 @@
 	});
 
 
-		$(document).on('keyup','#sb_s2', function () {
-			var val = $(this).val().toLowerCase();
-			$('.sel_items2').hide();
-			$('.sel_items2').each(function () {
-				var text = $(this).text().toLowerCase();
-				if (text.indexOf(val) != -1) {
-					$(this).show();
-				}
-			});
+	$(document).on('keyup', '#sb_s2', function () {
+		var val = $(this).val().toLowerCase();
+		$('.sel_items2').hide();
+		$('.sel_items2').each(function () {
+			var text = $(this).text().toLowerCase();
+			if (text.indexOf(val) != -1) {
+				$(this).show();
+			}
 		});
+	});
 
 </script>
 

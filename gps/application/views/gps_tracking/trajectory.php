@@ -280,27 +280,27 @@
 			</div>
 
 
-			<div class="row">
+			<div class="row mt-2">
 				<div class="col-lg-12" style="text-align: left;">
 					<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12" style="text-align: left;">
-					<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
-					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
+					<input type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 
-
-			<div class="row">
+			<div class="row set_maxSpeed d-none">
 				<div class="col-sm-12">
 					<div class="form-group">
 						<label><?= lang('max_speed') ?></label>
 						<input name="" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
 							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
 					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12" style="text-align: left;">
+					<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
+					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 				</div>
 			</div>
 
@@ -852,6 +852,10 @@
 			console.log(fleet_ids.join(","));
 
 		});
+
+		$('.speed_checkbox').on('change', function () {
+			($(this).is(':checked')) ? $('.set_maxSpeed').removeClass('d-none') : $('.set_maxSpeed').addClass('d-none');
+		})
 
 	</script>
 

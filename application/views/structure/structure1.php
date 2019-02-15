@@ -51,7 +51,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		color: #000 !important;
 		background: #eaedf0 !important;
 	}
-	.pos_abs_div{
+
+	.pos_abs_div {
 		z-index: 888 !important;
 	}
 
@@ -63,10 +64,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		.dataTables_filter > label {
 			margin-right: 65%;
 		}
-		#search_{
+
+		#search_ {
 			left: 67%;
 		}
-		body{
+
+		body {
 			background: red;
 		}
 	}
@@ -535,7 +538,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								width: 90
 							},
 							new go.Binding("text", "title").makeTwoWay()),
-
 
 
 						$(go.TextBlock, textStyle(),

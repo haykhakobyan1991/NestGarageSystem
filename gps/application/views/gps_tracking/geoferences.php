@@ -139,7 +139,7 @@ $count = count($result);
 										   data-coordinate="<?= implode(',', $val) ?>"/>
 								</td>
 								<td class="name"><?= $name ?></td>
-								<td class="text-left">0</td>
+								<td class="text-left"><?=(isset($count_of_fleets[$id]) ? $count_of_fleets[$id] : '0')?></td>
 								<td
 									data-toggle="modal"
 									data-target=".bd-example-modal-xl_Edite"

@@ -372,6 +372,46 @@ class Api extends MX_Controller {
 
 	}
 
+	//count fleets in geoference
+	public function get_count_of_fleets() {
+
+		$token = $this->input->post('token');
+
+		if ($token == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$lng = $this->load->lng();
+
+
+		$sql = "
+			SELECT 
+			  geoference_id,
+			  COUNT(fleet_id) AS `count`
+			FROM
+			  `fleet_group` 
+			WHERE company_id = '".$company_id."' 
+			  AND geoference_id <> '' 
+			GROUP BY geoference_id 
+		";
+
+		$query = $this->db->query($sql);
+		$result = $query->result_array();
+
+		$new_array = array();
+
+		foreach ($result as $value) {
+			$new_array[$value['geoference_id']] = $value['count'];
+		}
+
+		echo json_encode($new_array);
+		return true;
+
+	}
+
 
 
 

@@ -180,6 +180,9 @@ class Gps extends MX_Controller {
 
 		$new_result = array();
 
+		$count_of_fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_count_of_fleets', array('token' => $token)); //todo url
+		$data['count_of_fleets'] = json_decode($count_of_fleets, true);
+
 
 		foreach ($result as $value) {
 			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';

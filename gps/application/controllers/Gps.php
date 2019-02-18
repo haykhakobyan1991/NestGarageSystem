@@ -468,9 +468,11 @@ class Gps extends MX_Controller {
 			return false;
 		}
 
-		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 8854442472)->get()->result_array();
+		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 2147483647)->where('gps."date"', '2019-02-15')->get()->result_array();
 
 		$new_result = array();
+
+	//	$this->pre($result);
 
 		$date = '';
 
@@ -512,11 +514,60 @@ class Gps extends MX_Controller {
 		$result = $this->db->select('*')->from('aaaa')->where('"1"',  '865205035287688')
 		->get()->result_array();
 
+		//"1", "3", "5", "7", "9", "10", "11"
+
+
+		$sql = "EXPLAIN ANALYZE SELECT * FROM aaaa WHERE \"1\" = '865205035287688';";
+
+		$query = $this->db->query($sql);
+
+		$this->pre($query->result_array());
+
 		echo count($result);
 
 		krsort($result);
 		$this->pre($result);
 
+	}
+
+	public function insert_gps() {
+
+		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11"')->from('aaaa')->where('"1"',  '2147483647')
+			->get()->result_array();
+
+		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\") VALUES ";
+
+		foreach ($result as $val) {
+
+
+			//lat
+			$lat_h = substr(floatval($val[5]), 0, 2);
+			$lat_m = substr(floatval($val[5]), 2, 10);
+
+			$lat = round($lat_h+($lat_m/60), 7);
+
+			//long
+			$long_h = substr(floatval($val[7]), 0, 2);
+			$long_m = substr(floatval($val[7]), 2, 10);
+
+			$long = round($long_h+($long_m/60), 7);
+
+			//time
+			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
+
+			//date
+			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
+
+
+
+			$sql .= "('".intval($val[1])."', '".$time."', '".$lat."', '".$long."', '".$val[9]."', '".$val[10]."','".$date."'),";
+		}
+
+		 $sql = substr($sql, 0, -1);
+
+
+
+		$query = $this->db->query($sql);
 	}
 
 

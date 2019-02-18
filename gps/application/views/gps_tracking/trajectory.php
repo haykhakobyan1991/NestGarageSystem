@@ -253,66 +253,68 @@
 	<div class="row">
 		<div class="col-sm-2 p-0">
 			<form>
-			<div class="card">
-				<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
-																	  class="float-right mt-1 selectAll_fleets"></div>
-				<div class="card-body p-0" style="max-height: 170px;overflow-y: scroll;"><?
-					foreach ($result_fleets as $fleets) {
-						?>
-						<p class="card-text fleet_name ml-1 mr-1 mb-0"
-						   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' . $fleets['fleet_plate_number'] . ')' ?></p><?
-					} ?>
-				</div>
-			</div>
-			<div class="row mt-1">
-				<div class="col-sm-12">
-					<div class="form-group m-0">
-						<label class="mb-1"><?= lang('from') ?>:</label>
-						<input
-							name="from"
-							style="font-size: 11px !important;" type="date"
-							class="form-control form-control-sm pl-1 pr-0">
+				<div class="card">
+					<div class="card-header"><?= lang('fleets') ?> <input type="checkbox"
+																		  class="float-right mt-1 selectAll_fleets">
+					</div>
+					<div class="card-body p-0" style="max-height: 170px;overflow-y: scroll;"><?
+						foreach ($result_fleets as $fleets) {
+							?>
+							<p class="card-text fleet_name ml-1 mr-1 mb-0"
+							   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' . $fleets['fleet_plate_number'] . ')' ?></p><?
+						} ?>
 					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="form-group m-0">
-						<label class="mb-1"><?= lang('to') ?>:</label>
-						<input
-							name="to"
-							style="font-size: 11px !important;" type="date"
-							class="form-control form-control-sm pl-1 pr-0">
+				<div class="row mt-1">
+					<div class="col-sm-12">
+						<div class="form-group m-0">
+							<label class="mb-1"><?= lang('from') ?>:</label>
+							<input
+								name="from"
+								style="font-size: 11px !important;" type="date"
+								class="form-control form-control-sm pl-1 pr-0">
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="row mt-2">
-				<div class="col-lg-12" style="text-align: left;">
-					<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-					<input  type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
-				</div>
-			</div>
-
-			<div class="row set_maxSpeed d-none">
-				<div class="col-sm-12">
-					<div class="form-group">
-						<label><?= lang('max_speed') ?></label>
-						<input name="speed" type="text" alt="<?= lang('max_speed') ?>" title="<?= lang('max_speed') ?>"
-							   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>" value="60">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="form-group m-0">
+							<label class="mb-1"><?= lang('to') ?>:</label>
+							<input
+								name="to"
+								style="font-size: 11px !important;" type="date"
+								class="form-control form-control-sm pl-1 pr-0">
+						</div>
 					</div>
 				</div>
-			</div>
 
-			<div class="row">
-				<div class="col-sm-12" style="text-align: left;">
-					<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
-					<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
+				<div class="row mt-2">
+					<div class="col-lg-12" style="text-align: left;">
+						<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
+						<input type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
+					</div>
 				</div>
-			</div>
 
-		</form>
+				<div class="row set_maxSpeed d-none">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label><?= lang('max_speed') ?></label>
+							<input name="speed" type="text" alt="<?= lang('max_speed') ?>"
+								   title="<?= lang('max_speed') ?>"
+								   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>"
+								   value="60">
+						</div>
+					</div>
+				</div>
 
+				<div class="row">
+					<div class="col-sm-12" style="text-align: left;">
+						<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
+						<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
+					</div>
+				</div>
+
+			</form>
 
 
 			<div class="row">
@@ -663,7 +665,7 @@
 
 			var fleet_ids = [];
 			var token = '<?=$token?>';
-			$('#car_info').html('')
+			$('#car_info').html('');
 
 			$('.card-text.fleet_name').each(function () {
 
@@ -764,8 +766,6 @@
 		$(document).on('click', '.generate', function (e) {
 
 
-
-
 			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
 			e.preventDefault();
 			var form_data = new FormData($('form')[0]);
@@ -799,9 +799,9 @@
 
 							var coordinate = '';
 
-							$.each(data.message, function(e, val) {
-								$.each(val, function(i, value) {
-									coordinate += value.cord+',';
+							$.each(data.message, function (e, val) {
+								$.each(val, function (i, value) {
+									coordinate += value.cord + ',';
 								});
 							});
 
@@ -852,7 +852,6 @@
 								});
 
 
-
 							var highSpeed = new ymaps.Polyline([
 								[40.1847, 44.5122],
 								[40.1842, 44.5115]
@@ -866,26 +865,42 @@
 							});
 
 
-							$.each(data.message, function(e, val) {
-								$.each(val, function(i, value) {
-                                    coord_placemark = JSON.parse("[" + value.cord + "]");
-									myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0],coord_placemark[0][1]], {
-										hintContent: 'A custom placemark icon with contents',
-										balloonContent: '<p>Honda Fit<p>' +
-											'<p><?=lang("time")?>: '+value.time+'</p><p><?=lang("speed")?>: '+value.speed+' <?=lang("km/h")?></p><p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
-									}, {
-										iconLayout: 'default#imageWithContent',
-										iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
-										iconImageSize: [20, 20],
-										iconImageOffset: [-10, -10],
-										iconContentOffset: [15, 15]
-									});
+							$.each(data.message, function (e, val) {
+								$.each(val, function (i, value) {
+									coord_placemark = JSON.parse("[" + value.cord + "]");
+
+									MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+										'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+									),
+
+										myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0], coord_placemark[0][1]], {
+											hintContent: 'A custom placemark icon with contents',
+											balloonContent: '<p>Honda Fit<p>' +
+															'<p><?=lang("time")?>: ' + value.time + '</p>' +
+															'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
+															'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
+										}, {
+											iconLayout: ymaps.templateLayoutFactory.createClass([
+												'<div style="transform:rotate({{options.rotate}}deg);">',
+												'{% include "default#image" %}',
+												'</div>'
+											].join('')),
+											iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
+											iconImageSize: [20, 20],
+											iconImageOffset: [-10, -10],
+											iconContentOffset: [15, 15],
+											iconRotate: value.course,
+											iconShape: {
+												type: 'Circle',
+												coordinates: [0, 0],
+												radius: 25
+											}
+										});
 									myMap.geoObjects.add(myPlacemarkWithContent);
 									myMap.controls.add(new ymaps.control.ZoomControl());
 									myMap.setBounds(myMap.geoObjects.getBounds());
 								});
 							});
-
 
 
 							myMap.geoObjects
@@ -949,7 +964,6 @@
 				complete: function () {
 				}
 			});
-
 
 
 		})

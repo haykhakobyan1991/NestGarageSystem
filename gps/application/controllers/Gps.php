@@ -509,7 +509,7 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$result = $this->db->select('*')->from('aaaa')//->where('"1"',  '865205035287688')
+		$result = $this->db->select('*')->from('aaaa')->where('"1"',  '865205035287688')
 		->get()->result_array();
 
 		echo count($result);

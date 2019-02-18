@@ -956,6 +956,8 @@
 								iconImageOffset: [-10, -35]
 							});
 
+
+
 							myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
 							myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 							myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
@@ -1718,6 +1720,9 @@
 				var window_height = window.innerHeight - 315;
 				var window_height2 = window.innerHeight - 150;
 				$('.dataTables_scrollBody').css('height', window_height);
+				console.log(window_height);
+				console.log(window_height2);
+				console.log('Firefox');
 				$('#splitter').css('height', window_height2);
 
 				console.log('firefox');

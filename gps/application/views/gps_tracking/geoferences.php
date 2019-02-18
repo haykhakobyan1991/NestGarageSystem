@@ -807,6 +807,31 @@ $count = count($result);
 		}
 
 	});
+
+	$(document).ready(function () {
+		function myFunction() {
+			if (navigator.userAgent.indexOf("Firefox") != -1) {
+				var window_height = window.innerHeight - 315;
+				var window_height2 = window.innerHeight - 150;
+				$('.dataTables_scrollBody').css('height', window_height);
+				console.log(window_height);
+				console.log(window_height2);
+				console.log('Firefox');
+				$('#splitter').css('height', window_height2);
+
+				console.log('firefox');
+				console.log(window_height);
+				console.log(window_height2);
+
+			} else {
+
+				console.log('chrome');
+				$('.dataTables_scrollBody').css('height', 'calc(100% - 315px)');
+				$('#splitter').css('height', 'calc(100% - 150px)');
+			}
+		}
+		myFunction();
+	})
 </script>
 
 

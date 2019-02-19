@@ -844,21 +844,11 @@
 								{
 									mapStateAutoApply: true
 								}).then(function (route) {
-								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.9});
+								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.7});
 								myMap.geoObjects.add(route.getPaths());
 							});
 
 
-							// var multiRoute = new ymaps.multiRouter.MultiRoute({
-							// 	// Описание опорных точек мультимаршрута.
-							// 	referencePoints: array_coordinate,
-							// 	// Параметры маршрутизации.
-							// 	params: {
-							// 		results: 1
-							// 	}
-							// }, {
-							// 	boundsAutoApply: false
-							// });
 
 
 							var highSpeed = new ymaps.Polyline([
@@ -896,7 +886,7 @@
 											].join('')),
 											iconImageHref: '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>',
 											iconImageSize: [20, 20],
-											iconImageOffset: [-10, -10],
+											iconImageOffset: [-8, -8],
 											iconContentOffset: [15, 15],
 											iconRotate: value.course,
 											iconShape: {

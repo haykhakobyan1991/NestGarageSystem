@@ -449,6 +449,8 @@ class Gps extends MX_Controller {
 
 
 
+      //todo validation fleets
+
 
 
 		if($this->form_validation->run() == false){
@@ -468,7 +470,53 @@ class Gps extends MX_Controller {
 			return false;
 		}
 
-		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', '865205035287688')->where('gps."date"', '2019-02-18')->get()->result_array();
+
+		//imei
+		$fleets = $this->input->post('fleets');
+		$fleet_arr = explode(',', $fleets);
+
+		$add_sql = 'AND ';
+
+		foreach ($fleet_arr as $fleet) {
+			if($fleet != '') {
+				$add_sql .= "gps.\"imei\" =  '".$fleet."' OR";
+			}
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+		//end imei
+
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+		//speed
+		$max_speed = 0;
+		$speed_yn = $this->input->post('speed_yn');
+		if($speed_yn == 1) {
+			$max_speed = $this->input->post('speed');
+		}
+
+
+		$sql  = "
+			SELECT 
+				gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\"
+			FROM 
+			   gps
+			WHERE gps.\"date\" >= '".$from."'
+			 AND gps.\"date\" <= '".$to."'
+			 ".$add_sql."
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
 
 		$new_result = array();
 
@@ -480,16 +528,36 @@ class Gps extends MX_Controller {
 
 			$lat = '';
 
+
+
 			foreach ($result as $value) {
 
-
 				if($lat != $value['lat']) {
-					$new_result[$value['imei']][] = array(
-						'time' => $value['date'].' '.$value['time'],
-						'cord' => '['.$value['lat'].','.$value['long'].']',
-						'speed' => $value['speed'],
-						'course' => $value['course']
-					);
+					if(round($value['speed']) > 0) {
+
+						if(((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed != 0) {
+
+							$new_result[$value['imei']][] = array(
+								'time' => $value['date'].' '.$value['time'],
+								'cord' => '['.$value['lat'].','.$value['long'].']',
+								'cord_qx' => '['.$value['lat'].','.$value['long'].']',
+								'speed' => round($value['speed']),
+								'course' => $value['course']
+							);
+
+						} else {
+
+							$new_result[$value['imei']][] = array(
+								'time' => $value['date'].' '.$value['time'],
+								'cord' => '['.$value['lat'].','.$value['long'].']',
+								'speed' => round($value['speed']),
+								'course' => $value['course']
+							);
+						}
+
+
+
+					}
 					$date = $value['date'];
 				}
 				$lat = $value['lat'];
@@ -533,6 +601,8 @@ class Gps extends MX_Controller {
 		krsort($result);
 		$this->pre($result);
 
+
+
 	}
 
 	public function insert_gps() {
@@ -549,13 +619,13 @@ class Gps extends MX_Controller {
 			$lat_h = substr(floatval($val[5]), 0, 2);
 			$lat_m = substr(floatval($val[5]), 2, 10);
 
-			$lat = round($lat_h+($lat_m/60), 7);
+			$lat = round($lat_h+($lat_m/60), 6);
 
 			//long
 			$long_h = substr(floatval($val[7]), 0, 2);
 			$long_m = substr(floatval($val[7]), 2, 10);
 
-			$long = round($long_h+($long_m/60), 7);
+			$long = round($long_h+($long_m/60), 6);
 
 			//time
 			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
@@ -565,7 +635,7 @@ class Gps extends MX_Controller {
 
 
 
-			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".$val[9]."', '".$val[10]."','".$date."', '".$val[12]."'),";
+			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$val[12]."'),";
 		}
 
 		 $sql = substr($sql, 0, -1);

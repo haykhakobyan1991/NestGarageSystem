@@ -1,4 +1,7 @@
-<? $token = $this->session->token; ?>
+<?
+$token = $this->session->token;
+$time = strtotime(mdate('%Y-%m-%d', now()));
+?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
@@ -261,16 +264,19 @@
 						foreach ($result_fleets as $fleets) {
 							?>
 							<p class="card-text fleet_name ml-1 mr-1 mb-0"
+							   data-imei="<?= $fleets['gps_tracker_imei']?>"
 							   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' . $fleets['fleet_plate_number'] . ')' ?></p><?
 						} ?>
 					</div>
 				</div>
+				<input type="hidden" name="fleets" value="">
 				<div class="row mt-1">
 					<div class="col-sm-12">
 						<div class="form-group m-0">
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
+								value="<?= date("Y-m-d", strtotime("-10 day", $time)); ?>"
 								style="font-size: 11px !important;" type="date"
 								class="form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -282,6 +288,7 @@
 							<label class="mb-1"><?= lang('to') ?>:</label>
 							<input
 								name="to"
+								value="<?= mdate('%Y-%m-%d', now()) ?>"
 								style="font-size: 11px !important;" type="date"
 								class="form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -291,7 +298,7 @@
 				<div class="row mt-2">
 					<div class="col-lg-12" style="text-align: left;">
 						<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-						<input type="checkbox" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
+						<input type="checkbox" name="speed_yn" value="1" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
 					</div>
 				</div>
 
@@ -664,6 +671,7 @@
 		$(document).on('click', '.card-text.fleet_name', function () {
 
 			var fleet_ids = [];
+			var fleet_imeis = [];
 			var token = '<?=$token?>';
 			$('#car_info').html('');
 
@@ -671,6 +679,7 @@
 
 				if ($(this).hasClass('fleet_name_selected')) {
 					fleet_ids.push($(this).data('id'));
+					fleet_imeis.push($(this).data('imei'));
 				}
 
 			});
@@ -705,6 +714,8 @@
 			});
 
 			console.log(fleet_ids.join(","));
+
+			$('input[name="fleets"]').val(fleet_imeis.join(","))
 
 		});
 
@@ -712,6 +723,7 @@
 		$(document).on('change', '.selectAll_fleets', function () {
 
 			var fleet_ids = [];
+			var fleet_imeis = [];
 			var token = '<?=$token?>';
 
 			$('#car_info').html('');
@@ -720,6 +732,7 @@
 
 				if ($(this).hasClass('fleet_name_selected')) {
 					fleet_ids.push($(this).data('id'));
+					fleet_imeis.push($(this).data('imei'));
 				}
 
 			});
@@ -755,6 +768,8 @@
 
 
 			console.log(fleet_ids.join(","));
+
+			$('input[name="fleets"]').val(fleet_imeis.join(","))
 
 		});
 
@@ -798,16 +813,33 @@
 						function init() {
 
 							var coordinate = '';
+							var coordinate_qx = '';
 
 							$.each(data.message, function (e, val) {
 								$.each(val, function (i, value) {
-									coordinate += value.cord + ',';
+									if(value.cord) {
+										coordinate += value.cord + ',';
+									}
+
+									if(value.cord_qx) {
+										coordinate_qx += value.cord_qx + ',';
+									}
+
+
 								});
 							});
 
 							coordinate = coordinate.substring(0, coordinate.length - 1);
 
 							array_coordinate = JSON.parse("[" + coordinate + "]");
+
+							//qx
+							coordinate_qx = coordinate_qx.substring(0, coordinate_qx.length - 1);
+
+							array_coordinate_qx = JSON.parse("[" + coordinate_qx + "]");
+
+							console.log(array_coordinate_qx)
+
 
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
@@ -839,6 +871,7 @@
 							});
 
 
+
 							ymaps.route(
 								array_coordinate,
 								{
@@ -850,18 +883,15 @@
 
 
 
-
-							var highSpeed = new ymaps.Polyline([
-								[40.1847, 44.5122],
-								[40.1842, 44.5115]
-							], {
-								balloonContent: "Ломаная линия"
-							}, {
-								balloonCloseButton: false,
-								strokeColor: "#ff0000",
-								strokeWidth: 4,
-								strokeOpacity: 0.9
-							});
+							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
+							// {
+							// 	balloonContent: "Ломаная линия"
+							// }, {
+							// 	balloonCloseButton: false,
+							// 	strokeColor: "#ff0000",
+							// 	strokeWidth: 4,
+							// 	strokeOpacity: 0.9
+							// });
 
 
 							$.each(data.message, function (e, val) {
@@ -884,9 +914,9 @@
 												'{% include "default#image" %}',
 												'</div>'
 											].join('')),
-											iconImageHref: '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>',
+											iconImageHref: (value.cord == value.cord_qx ? '<?= base_url("assets/images/gps_tracking/trajectory/navigation_qx.svg") ?>' :  '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>'),
 											iconImageSize: [20, 20],
-											iconImageOffset: [-8, -8],
+											iconImageOffset: [-20, -20],
 											iconContentOffset: [15, 15],
 											iconRotate: value.course,
 											iconShape: {
@@ -912,7 +942,7 @@
 							// //MultiRoute
 							// myMap.geoObjects.add(multiRoute.getPaths());
 
-							myMap.geoObjects.add(highSpeed);
+							// myMap.geoObjects.add(highSpeed);
 							myMap.controls.add(new ymaps.control.ZoomControl());
 							myMap.setBounds(myMap.geoObjects.getBounds());
 

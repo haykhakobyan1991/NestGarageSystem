@@ -625,7 +625,7 @@
 
 			function start_map() {
 				myMap = new ymaps.Map("map", {
-					center: [55.745508, 37.435225],
+					center: [40.1776192, 44.4898932],
 					zoom: 13
 				}, {suppressMapOpenBlock: true});
 			}
@@ -810,10 +810,8 @@
 							array_coordinate = JSON.parse("[" + coordinate + "]");
 
 							myMap = new ymaps.Map("map", {
-								center: [55.745508, 37.435225],
+								center: [40.1776192, 44.4898932],
 								zoom: 13
-							}, {
-								balloonMaxWidth: 200
 							}, {suppressMapOpenBlock: true});
 
 							myMap.events.add('click', function (e) {
@@ -840,16 +838,27 @@
 								myMap.hint.close();
 							});
 
-							var myPolyline = new ymaps.Polyline(
-								array_coordinate
-								, {
-									balloonContent: "Ломаная линия"
-								}, {
-									balloonCloseButton: false,
-									strokeColor: "#60a8f0",
-									strokeWidth: 4,
-									strokeOpacity: 0.8
-								});
+
+							ymaps.route(
+								array_coordinate,
+								{
+									mapStateAutoApply: true
+								}).then(function (route) {
+								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.9});
+								myMap.geoObjects.add(route.getPaths());
+							});
+
+
+							// var multiRoute = new ymaps.multiRouter.MultiRoute({
+							// 	// Описание опорных точек мультимаршрута.
+							// 	referencePoints: array_coordinate,
+							// 	// Параметры маршрутизации.
+							// 	params: {
+							// 		results: 1
+							// 	}
+							// }, {
+							// 	boundsAutoApply: false
+							// });
 
 
 							var highSpeed = new ymaps.Polyline([
@@ -876,9 +885,9 @@
 										myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0], coord_placemark[0][1]], {
 											hintContent: 'A custom placemark icon with contents',
 											balloonContent: '<p>Honda Fit<p>' +
-															'<p><?=lang("time")?>: ' + value.time + '</p>' +
-															'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
-															'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
+												'<p><?=lang("time")?>: ' + value.time + '</p>' +
+												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
+												'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
 												'<div style="transform:rotate({{options.rotate}}deg);">',
@@ -896,31 +905,26 @@
 												radius: 25
 											}
 										});
+
+									//Distance
+									distance = ymaps.formatter.distance(
+										ymaps.coordSystem.geo.getDistance([40.1862, 44.5139], [40.1795, 44.5059]),
+										[2]
+									);
+									console.log(distance);
+
 									myMap.geoObjects.add(myPlacemarkWithContent);
 									myMap.controls.add(new ymaps.control.ZoomControl());
 									myMap.setBounds(myMap.geoObjects.getBounds());
 								});
 							});
 
+							// //MultiRoute
+							// myMap.geoObjects.add(multiRoute.getPaths());
 
-							myMap.geoObjects
-								.add(myPolyline)
-								.add(highSpeed);
+							myMap.geoObjects.add(highSpeed);
 							myMap.controls.add(new ymaps.control.ZoomControl());
 							myMap.setBounds(myMap.geoObjects.getBounds());
-
-							/* Position */
-							position = new ymaps.Placemark([40.20058, 44.566886], {
-								hintContent: 'A custom placemark icon with contents',
-								balloonContent: 'content'
-							}, {
-								iconLayout: 'default#imageWithContent',
-								iconImageHref: '<?= base_url("assets/images/gps_tracking/navigation.svg") ?>',
-								iconImageSize: [20, 20],
-								iconImageOffset: [-10, -10],
-								iconContentOffset: [15, 15]
-							});
-							myMap.geoObjects.add(position);
 
 						}
 

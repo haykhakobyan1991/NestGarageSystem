@@ -916,7 +916,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											].join('')),
 											iconImageHref: (value.cord == value.cord_qx ? '<?= base_url("assets/images/gps_tracking/trajectory/navigation_qx.svg") ?>' :  '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>'),
 											iconImageSize: [20, 20],
-											iconImageOffset: [-20, -20],
+											iconImageOffset: [-5, -5],
 											iconContentOffset: [15, 15],
 											iconRotate: value.course,
 											iconShape: {

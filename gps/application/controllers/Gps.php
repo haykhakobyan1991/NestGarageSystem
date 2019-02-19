@@ -429,7 +429,7 @@ class Gps extends MX_Controller {
 
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
-
+		$token = $this->session->token;
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -522,18 +522,30 @@ class Gps extends MX_Controller {
 
 	//	$this->pre($result);
 
+
 		$date = '';
 
 		if(count($result) > 0) {
 
 			$lat = '';
-
+			$_imei = '';
+			$fleet = array();
 
 
 			foreach ($result as $value) {
 
+
+
+
 				if($lat != $value['lat']) {
+
 					if(round($value['speed']) > 0) {
+
+						if($_imei != $value['imei']) {
+							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
+							$fleet[$value['imei']] =  json_decode($fl, true);
+						}
+						$_imei = $value['imei'];
 
 						if(((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed != 0) {
 
@@ -542,6 +554,7 @@ class Gps extends MX_Controller {
 								'cord' => '['.$value['lat'].','.$value['long'].']',
 								'cord_qx' => '['.$value['lat'].','.$value['long'].']',
 								'speed' => round($value['speed']),
+								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'course' => $value['course']
 							);
 
@@ -551,6 +564,7 @@ class Gps extends MX_Controller {
 								'time' => $value['date'].' '.$value['time'],
 								'cord' => '['.$value['lat'].','.$value['long'].']',
 								'speed' => round($value['speed']),
+								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'course' => $value['course']
 							);
 						}

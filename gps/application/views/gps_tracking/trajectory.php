@@ -904,7 +904,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 										myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0], coord_placemark[0][1]], {
 											hintContent: 'A custom placemark icon with contents',
-											balloonContent: '<p>Honda Fit<p>' +
+											balloonContent: '<p>'+value.fleet+'<p>' +
 												'<p><?=lang("time")?>: ' + value.time + '</p>' +
 												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
 												'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'

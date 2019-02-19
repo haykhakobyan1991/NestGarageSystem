@@ -196,6 +196,49 @@ class Api extends MX_Controller {
 
 	}
 
+
+	public function get_SingleFleetByImei() {
+
+		$token = $this->input->post('token');
+		$imei = $this->input->post('imei');
+
+		if ($token == '' || $imei == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$lng = $this->load->lng();
+
+		$sql = "
+				SELECT 
+					`fleet`.*,
+					CONCAT_WS(
+						' ',
+						`brand`.`title_" . $lng . "`,
+						`model`.`title_" . $lng . "`
+					) AS `brand_model`
+				FROM
+				   `fleet`
+				LEFT JOIN `model` 
+					ON `model`.`id` = `fleet`.`model_id` 
+				LEFT JOIN `brand` 
+					ON `brand`.`id` = `model`.`brand_id`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `fleet`.`registrar_user_id` 	
+				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "	
+				 AND `fleet`.`gps_tracker_imei` = " . $this->load->db_value($imei) . "	
+				 AND `fleet`.`status` = '1'	   
+			";
+
+		$query = $this->db->query($sql);
+
+		echo json_encode($query->row_array());
+		return true;
+
+	}
+
 	public function get_user() {
 
 		$token = $this->input->post('token');

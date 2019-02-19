@@ -478,16 +478,21 @@ class Gps extends MX_Controller {
 
 		if(count($result) > 0) {
 
+			$lat = '';
+
 			foreach ($result as $value) {
 
 
-				$new_result[$value['imei']][] = array(
-					'time' => $value['date'].' '.$value['time'],
-					'cord' => '['.$value['lat'].','.$value['long'].']',
-					'speed' => $value['speed'],
-					'course' => $value['course']
-				);
-				$date = $value['date'];
+				if($lat != $value['lat']) {
+					$new_result[$value['imei']][] = array(
+						'time' => $value['date'].' '.$value['time'],
+						'cord' => '['.$value['lat'].','.$value['long'].']',
+						'speed' => $value['speed'],
+						'course' => $value['course']
+					);
+					$date = $value['date'];
+				}
+				$lat = $value['lat'];
 			}
 
 			$result = true;

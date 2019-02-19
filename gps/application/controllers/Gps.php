@@ -468,7 +468,7 @@ class Gps extends MX_Controller {
 			return false;
 		}
 
-		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 2147483647)->where('gps."date"', '2019-02-18')->get()->result_array();
+		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', '865205035287688')->where('gps."date"', '2019-02-18')->get()->result_array();
 
 		$new_result = array();
 
@@ -532,10 +532,10 @@ class Gps extends MX_Controller {
 
 	public function insert_gps() {
 
-		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11"')->from('aaaa')->where('"1"',  '2147483647')
+		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"',  '865205035287688')
 			->get()->result_array();
 
-		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\") VALUES ";
+		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", \"digital_button1\") VALUES ";
 
 		foreach ($result as $val) {
 
@@ -560,7 +560,7 @@ class Gps extends MX_Controller {
 
 
 
-			$sql .= "('".intval($val[1])."', '".$time."', '".$lat."', '".$long."', '".$val[9]."', '".$val[10]."','".$date."'),";
+			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".$val[9]."', '".$val[10]."','".$date."', '".$val[12]."'),";
 		}
 
 		 $sql = substr($sql, 0, -1);

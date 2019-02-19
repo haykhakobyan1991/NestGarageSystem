@@ -468,7 +468,7 @@ class Gps extends MX_Controller {
 			return false;
 		}
 
-		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 2147483647)->where('gps."date"', '2019-02-15')->get()->result_array();
+		$result = $this->db->select('gps."id", gps."lat", gps."long", gps."speed", gps."course", gps."time", gps."date", gps."imei"')->from('gps')->where('gps."imei"', 2147483647)->where('gps."date"', '2019-02-18')->get()->result_array();
 
 		$new_result = array();
 

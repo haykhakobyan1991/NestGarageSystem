@@ -497,7 +497,7 @@ class Gps extends MX_Controller {
 		}
 
 
-		$sql  = "
+	  $sql  = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -522,6 +522,31 @@ class Gps extends MX_Controller {
 
 	//	$this->pre($result);
 
+		$sql_avg = "
+			SELECT 
+				imei,
+				AVG (gps.\"speed\") AS avg_speed
+			FROM 
+			   gps
+			WHERE gps.\"date\" >= '".$from."'
+			 AND gps.\"date\" <= '".$to."'
+			 AND gps.\"speed\" <> 0
+			 ".$add_sql."
+			GROUP BY gps.\"imei\" 
+		";
+
+		$query_avg = $this->db->query($sql_avg);
+
+		$result_avg = $query_avg->result_array();
+
+		$avg_arr = array();
+
+		foreach ($result_avg as $val) {
+			$avg_arr[$val['imei']] = $val['avg_speed'];
+		}
+
+
+
 
 		$date = '';
 
@@ -530,6 +555,7 @@ class Gps extends MX_Controller {
 			$lat = '';
 			$_imei = '';
 			$fleet = array();
+
 
 
 			foreach ($result as $value) {
@@ -554,6 +580,7 @@ class Gps extends MX_Controller {
 								'cord' => '['.$value['lat'].','.$value['long'].']',
 								'cord_qx' => '['.$value['lat'].','.$value['long'].']',
 								'speed' => round($value['speed']),
+								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'course' => $value['course']
 							);
@@ -564,6 +591,7 @@ class Gps extends MX_Controller {
 								'time' => $value['date'].' '.$value['time'],
 								'cord' => '['.$value['lat'].','.$value['long'].']',
 								'speed' => round($value['speed']),
+								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'course' => $value['course']
 							);
@@ -580,6 +608,12 @@ class Gps extends MX_Controller {
 			$result = true;
 
 		}
+
+
+		//$this->pre($new_result);
+
+
+
 
 		if ($result){
 			$messages['success'] = 1;

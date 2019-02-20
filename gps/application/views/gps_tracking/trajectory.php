@@ -354,80 +354,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<div class="col-sm-10">
 
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
-
-			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-				<div class="container">
-					<h6><?= lang('get_information') ?></h6>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label><?= lang('trajectory') ?>
-										։ </label><span>  ----- <?= lang('km') ?></span><br>
-									<label><?= lang('average_speed') ?> ։ </label><span> ---- <?= lang('km/h') ?></span><br>
-									<label><?= lang('Number_exceedance') ?>: </label><span> ---- </span><br>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>
-									<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-				<div class="container">
-					<h6><?= lang('get_information') ?></h6>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label>Trajectory ։ </label><span>  ---- km</span><br>
-									<label>Average Speed ։ </label><span>km/h</span><br>
-									<label>Number of exceedance: </label><span>-----</span><br>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">
-				<div class="container">
-					<h6><?= lang('get_information') ?></h6>
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label>Trajectory ։ </label><span>  ---- km</span><br>
-									<label>Average Speed ։ </label><span>km/h</span><br>
-									<label>Number of exceedance: </label><span>-----</span><br>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="card">
-								<div class="card-body text-justify p-1">
-									<label>Engine Turned ON time: </label><span>____ Hour</span><br>
-									<label>Engine Turned OFF time: </label><span>____ Hour</span><br>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<div id="fleet_info" ></div>
 		</div>
 	</div>
 </div>
@@ -814,8 +741,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							var coordinate = '';
 							var coordinate_qx = '';
+							var qx = 0;
+
 
 							$.each(data.message, function (e, val) {
+
 								$.each(val, function (i, value) {
 									if(value.cord) {
 										coordinate += value.cord + ',';
@@ -823,11 +753,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									if(value.cord_qx) {
 										coordinate_qx += value.cord_qx + ',';
+										qx++;
 									}
-
 
 								});
 							});
+
+
 
 							coordinate = coordinate.substring(0, coordinate.length - 1);
 
@@ -893,7 +825,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							// 	strokeOpacity: 0.9
 							// });
 
-
+							var info = '';
+							var _imei = '';
 							$.each(data.message, function (e, val) {
 								$.each(val, function (i, value) {
 									coord_placemark = JSON.parse("[" + value.cord + "]");
@@ -936,6 +869,40 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									myMap.geoObjects.add(myPlacemarkWithContent);
 									myMap.controls.add(new ymaps.control.ZoomControl());
 									myMap.setBounds(myMap.geoObjects.getBounds());
+
+									if(_imei != e) {
+										 info += '<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">\n'+
+										'\t\t\t\t<div class="container">\n'+
+										'\t\t\t\t\t<h6>'+value.fleet+'</h6>\n'+
+										'\t\t\t\t\t<div class="row">\n'+
+										'\t\t\t\t\t\t<div class="col-sm-6">\n'+
+										'\t\t\t\t\t\t\t<div class="card">\n'+
+										'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n'+
+										'\t\t\t\t\t\t\t\t\t<label><?= lang('trajectory') ?>\n'+
+										'\t\t\t\t\t\t\t\t\t\t։ </label><span>  ----- <?= lang('km') ?></span><br>\n'+
+										'\t\t\t\t\t\t\t\t\t<label><?= lang('average_speed') ?> ։ </label><span> '+value.speed_avg+' <?= lang('km/h') ?></span><br>\n'+
+										'\t\t\t\t\t\t\t\t\t<label><?= lang('Number_exceedance') ?>: </label><span> '+qx+' </span><br>\n'+
+										'\t\t\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t\t<div class="col-sm-6">\n'+
+										'\t\t\t\t\t\t\t<div class="card">\n'+
+										'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n'+
+										'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n'+
+										'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n'+
+										'\t\t\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t\t</div>\n'+
+										'\t\t\t\t\t</div>\n'+
+										'\t\t\t\t</div>\n'+
+										'\t\t\t</div>';
+									}
+									_imei = e;
+
+									$('#fleet_info').html(info);
+
+
+
 								});
 							});
 

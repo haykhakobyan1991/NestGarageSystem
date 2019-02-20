@@ -506,7 +506,8 @@ class Gps extends MX_Controller {
 				gps.\"course\",
 				gps.\"time\",
 				gps.\"date\",
-				gps.\"imei\"
+				gps.\"imei\",
+				gps.\"engine\"
 			FROM 
 			   gps
 			WHERE gps.\"date\" >= '".$from."'
@@ -554,10 +555,16 @@ class Gps extends MX_Controller {
 			$lat = '';
 			$_imei = '';
 			$fleet = array();
-
+			$engine_result = array();
 
 
 			foreach ($result as $value) {
+
+				if($value['engine'] == 1) {
+					$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
+				} elseif ($value['engine'] == 0) {
+					$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+				}
 
 				if($lat != $value['lat']) {
 
@@ -605,13 +612,43 @@ class Gps extends MX_Controller {
 
 		}
 
+		// power off or on
+		$_date = '';
+		$power = array();
+		$date1 = new DateTime("00:00:00");
+		$date2 = new DateTime("00:00:00");
+
+		foreach ($engine_result as $imei => $er) {
+			foreach ($er as $on_off => $date_arr) {
+				foreach ($date_arr as $date => $time) {
+					if($_date != $date) {
+						$startTime = new DateTime($time[0]);
+						$endTime = new DateTime(end($time));
+						$duration = $startTime->diff($endTime);
+					}
+					$_date = $date;
+
+					if($on_off == 'on') {
+						$date1->add($duration);
+						$power[$imei][$on_off] = $date1->format("H:i:s");
+					} elseif ($on_off == 'off') {
+						$date2->add($duration);
+						$power[$imei][$on_off] = $date2->format("H:i:s");
+					}
+
+				}
+			}
+		}
+
 
 		//$this->pre($new_result);
 
 
+
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message'] = $new_result;
+			$messages['message']['imei'] = $new_result;
+			$messages['message']['power'] = $power;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = 'Error';

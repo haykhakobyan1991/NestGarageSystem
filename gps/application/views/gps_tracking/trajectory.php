@@ -708,6 +708,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		$(document).on('click', '.generate', function (e) {
 
+			var xsht = 0;
+			setInterval(function(){
+				xsht++;
+			}, 10);
+
 
 			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
 			e.preventDefault();
@@ -744,8 +749,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							var coordinate_qx = '';
 							var qx = 0;
 
+							console.log(data.message.imei);
 
-							$.each(data.message, function (e, val) {
+							$.each(data.message.imei, function (e, val) {
 
 								$.each(val, function (i, value) {
 									if (value.cord) {
@@ -856,7 +862,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							var info = '';
 							var _imei = '';
-							$.each(data.message, function (e, val) {
+							$.each(data.message.imei, function (e, val) {
 								$.each(val, function (i, value) {
 									coord_placemark = JSON.parse("[" + value.cord + "]");
 
@@ -911,8 +917,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											'\t\t\t\t\t\t<div class="col-sm-6">\n' +
 											'\t\t\t\t\t\t\t<div class="card">\n' +
 											'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n' +
-											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n' +
-											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_on') ?>: </label><span> '+data.message.power[e]['on']+' <?= lang('hour') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_of') ?>: </label><span> '+data.message.power[e]['off']+' <?= lang('hour') ?></span><br>\n' +
 											'\t\t\t\t\t\t\t\t</div>\n' +
 											'\t\t\t\t\t\t\t</div>\n' +
 											'\t\t\t\t\t\t</div>\n' +
@@ -975,6 +981,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					console.log('ERRORS: ' + textStatus);
 				},
 				complete: function () {
+					alert(xsht)
 				}
 			});
 

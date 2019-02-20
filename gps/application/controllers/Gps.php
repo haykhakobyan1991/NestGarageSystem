@@ -427,7 +427,7 @@ class Gps extends MX_Controller {
 
 	public function get_trajectory() {//todo
 
-		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
 		$n = 0;
 		$token = $this->session->token;
 		$result = false;

@@ -169,16 +169,16 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 						<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
 						<!--												</button>-->
 						<!--											</a>-->
-						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?>">
-							<button style="color:#00000080 !important;max-height: 40px;"
-									class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
-									href="#"
-									data-toggle="tooltip" data-placement="top"
-									title="<?= lang('speed') ?>">
-								<img
-									src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
-							</button>
-						</a>
+<!--						<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?><!--">-->
+<!--							<button style="color:#00000080 !important;max-height: 40px;"-->
+<!--									class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"-->
+<!--									href="#"-->
+<!--									data-toggle="tooltip" data-placement="top"-->
+<!--									title="--><?//= lang('speed') ?><!--">-->
+<!--								<img-->
+<!--									src="--><?//= base_url() ?><!--assets/images/gps_tracking/speedometer.svg"/>-->
+<!--							</button>-->
+<!--						</a>-->
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
 							<button
 								style="color:#00000080 !important;max-height: 40px;"

@@ -807,7 +807,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							ymaps.route(
 								array_coordinate,
 								{
-									mapStateAutoApply: true
+									mapStateAutoApply: true,
+									type: 'viaPoint'
 								}).then(function (route) {
 								console.log(route);
 								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.7});
@@ -816,6 +817,31 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								var distanc = parseFloat(route.getHumanLength());
 								$('#full_distanc').text(distanc);
 
+
+								myGeoObject_start = new ymaps.GeoObject({
+									geometry: {
+										type: "Point",
+										coordinates: array_coordinate[0]
+									},
+									properties: {iconContent: '<?=lang('start_point')?>',}
+								}, {
+									preset: 'islands#greenStretchyIcon',
+									draggable: false
+								});
+
+								myGeoObject_end = new ymaps.GeoObject({
+									geometry: {
+										type: "Point",
+										coordinates: array_coordinate[array_coordinate.length - 1]
+									},
+									properties: {iconContent: '<?=lang('end_point')?>',}
+								}, {
+									preset: 'islands#redStretchyIcon',
+									draggable: false
+								});
+								myMap.geoObjects
+									.add(myGeoObject_start)
+									.add(myGeoObject_end);
 							});
 
 							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
@@ -956,3 +982,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		})
 
 	</script>
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

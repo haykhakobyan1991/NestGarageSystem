@@ -385,6 +385,8 @@ $lang['see'] = 'Увидеть';
 $lang['country_code'] = 'Код Страны';
 $lang['add'] = 'Добавит: ';
 $lang['time'] = 'Время';
+$lang['start_point'] = 'Начальная точка';
+$lang['end_point'] = 'Конечная точка';
 
 
 $lang['Field_must_be_filled_in'] = 'Поле должно быть заполнено';

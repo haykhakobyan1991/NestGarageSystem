@@ -249,6 +249,8 @@ $lang['car_number_abbr'] = 'ՀՀ'; //Հաշվառման համարանիշ
 $lang['select_fleets_from_list'] = 'Ընտրեք Տրանսպորտային Միջոցներ Ցանկից';
 $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղեկատվությունը տեսնելու համար';
 $lang['km'] = 'կմ.';
+$lang['start_point'] = 'Սկզբնակետ';
+$lang['end_point'] = 'Վերջնակետ';
 
 
 

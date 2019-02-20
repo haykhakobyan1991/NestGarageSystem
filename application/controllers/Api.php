@@ -108,6 +108,7 @@ class Api extends MX_Controller {
 					ON `user`.`id` = `fleet`.`registrar_user_id` 	
 				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "		
 				 AND `fleet`.`status` = '1'	 
+				 AND `fleet`.`gps_tracker_exists` = '1'
 				 GROUP BY `fleet`.`id`
 			";
 

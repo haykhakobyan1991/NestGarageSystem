@@ -479,7 +479,7 @@ class Gps extends MX_Controller {
 
 		foreach ($fleet_arr as $fleet) {
 			if($fleet != '') {
-				$add_sql .= "gps.\"imei\" =  '".$fleet."' OR";
+				$add_sql .= " gps.\"imei\" =  '".$fleet."' OR";
 			}
 		}
 
@@ -547,7 +547,6 @@ class Gps extends MX_Controller {
 
 
 
-
 		$date = '';
 
 		if(count($result) > 0) {
@@ -559,9 +558,6 @@ class Gps extends MX_Controller {
 
 
 			foreach ($result as $value) {
-
-
-
 
 				if($lat != $value['lat']) {
 
@@ -613,8 +609,6 @@ class Gps extends MX_Controller {
 		//$this->pre($new_result);
 
 
-
-
 		if ($result){
 			$messages['success'] = 1;
 			$messages['message'] = $new_result;
@@ -655,10 +649,23 @@ class Gps extends MX_Controller {
 
 	public function insert_gps() {
 
+		$tr = "TRUNCATE TABLE gps";
+		$query_tr = $this->db->query($tr);
+
+		if($query_tr) {
+			echo 'TRUNCATE'.br();
+		} else {
+			echo 'TRUNCATE FALSE'.br();
+		}
+
 		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"',  '865205035287688')
 			->get()->result_array();
 
-		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", \"digital_button1\") VALUES ";
+		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", \"digital_button1\", engine, fuel) VALUES ";
+
+		$power = 0;
+		$fuel = 47;
+		$_time = '';
 
 		foreach ($result as $val) {
 
@@ -678,12 +685,23 @@ class Gps extends MX_Controller {
 			//time
 			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
 
+			if($_time != $time && $val[9] != 0) {
+				$fuel -= 0.27;
+			}
+			$_time = $time;
+
 			//date
 			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
 
+			//EFE7FBFF - power on
+			//FFFFFBFF - power off
+			if($val[12] == 'EFE7FBFF') {
+				$power = 1;
+			} elseif ($val[12] = 'FFFFFBFF') {
+				$power = 0;
+			}
 
-
-			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$val[12]."'),";
+			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$val[12]."', '".$power."', '".$fuel."'),";
 		}
 
 		 $sql = substr($sql, 0, -1);
@@ -691,6 +709,12 @@ class Gps extends MX_Controller {
 
 
 		$query = $this->db->query($sql);
+
+		if($query_tr) {
+			echo 'INSERTED'.br();
+		} else {
+			echo 'INSERT FALSE'.br();
+		}
 	}
 
 

@@ -353,10 +353,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			</div>
 		</div>
 		<div class="col-sm-10">
-
+			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
 			<div id="fleet_info"></div>
-			<div id="ajax_time" class="alert-warning font-weight-bold text-center"></div>
+
 		</div>
 	</div>
 </div>
@@ -982,7 +982,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					console.log('ERRORS: ' + textStatus);
 				},
 				complete: function () {
-					$('#ajax_time').text('Ajax_time - ' +xsht/100+ 's');
+					$('#ajax_time').html('Ajax time - ' +xsht/100+ 's');
+					$('#ajax_time').removeClass('d-none');
+					setTimeout(function () {
+						$('#ajax_time').addClass('d-none');
+					}, 4000)
 				}
 			});
 

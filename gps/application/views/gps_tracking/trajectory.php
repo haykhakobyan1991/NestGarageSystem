@@ -264,7 +264,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						foreach ($result_fleets as $fleets) {
 							?>
 							<p class="card-text fleet_name ml-1 mr-1 mb-0"
-							   data-imei="<?= $fleets['gps_tracker_imei']?>"
+							   data-imei="<?= $fleets['gps_tracker_imei'] ?>"
 							   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] . ' (' . $fleets['fleet_plate_number'] . ')' ?></p><?
 						} ?>
 					</div>
@@ -298,7 +298,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<div class="row mt-2">
 					<div class="col-lg-12" style="text-align: left;">
 						<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-						<input type="checkbox" name="speed_yn" value="1" class="speed_checkbox rem_right float-right" style="margin-top: 2px;"/>
+						<input type="checkbox" name="speed_yn" value="1" class="speed_checkbox rem_right float-right"
+							   style="margin-top: 2px;"/>
 					</div>
 				</div>
 
@@ -354,7 +355,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<div class="col-sm-10">
 
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
-			<div id="fleet_info" ></div>
+			<div id="fleet_info"></div>
 		</div>
 	</div>
 </div>
@@ -747,11 +748,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							$.each(data.message, function (e, val) {
 
 								$.each(val, function (i, value) {
-									if(value.cord) {
+									if (value.cord) {
 										coordinate += value.cord + ',';
 									}
 
-									if(value.cord_qx) {
+									if (value.cord_qx) {
 										coordinate_qx += value.cord_qx + ',';
 										qx++;
 									}
@@ -760,11 +761,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							});
 
 
-
 							coordinate = coordinate.substring(0, coordinate.length - 1);
 
 							array_coordinate = JSON.parse("[" + coordinate + "]");
 
+							console.log(array_coordinate);
 							//qx
 							coordinate_qx = coordinate_qx.substring(0, coordinate_qx.length - 1);
 
@@ -803,17 +804,19 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							});
 
 
-
 							ymaps.route(
 								array_coordinate,
 								{
 									mapStateAutoApply: true
 								}).then(function (route) {
+								console.log(route);
 								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.7});
 								myMap.geoObjects.add(route.getPaths());
+
+								var distanc = parseFloat(route.getHumanLength());
+								$('#full_distanc').text(distanc);
+
 							});
-
-
 
 							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
 							// {
@@ -837,7 +840,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 										myPlacemarkWithContent = new ymaps.Placemark([coord_placemark[0][0], coord_placemark[0][1]], {
 											hintContent: 'A custom placemark icon with contents',
-											balloonContent: '<p>'+value.fleet+'<p>' +
+											balloonContent: '<p>' + value.fleet + '<p>' +
 												'<p><?=lang("time")?>: ' + value.time + '</p>' +
 												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
 												'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
@@ -847,7 +850,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'{% include "default#image" %}',
 												'</div>'
 											].join('')),
-											iconImageHref: (value.cord == value.cord_qx ? '<?= base_url("assets/images/gps_tracking/trajectory/navigation_qx.svg") ?>' :  '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>'),
+											iconImageHref: (value.cord == value.cord_qx ? '<?= base_url("assets/images/gps_tracking/trajectory/navigation_qx.svg") ?>' : '<?= base_url("assets/images/gps_tracking/trajectory/navigation.svg") ?>'),
 											iconImageSize: [20, 20],
 											iconImageOffset: [-5, -5],
 											iconContentOffset: [15, 15],
@@ -859,48 +862,41 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											}
 										});
 
-									//Distance
-									distance = ymaps.formatter.distance(
-										ymaps.coordSystem.geo.getDistance([40.1862, 44.5139], [40.1795, 44.5059]),
-										[2]
-									);
-									console.log(distance);
 
 									myMap.geoObjects.add(myPlacemarkWithContent);
 									myMap.controls.add(new ymaps.control.ZoomControl());
 									myMap.setBounds(myMap.geoObjects.getBounds());
 
-									if(_imei != e) {
-										 info += '<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">\n'+
-										'\t\t\t\t<div class="container">\n'+
-										'\t\t\t\t\t<h6>'+value.fleet+'</h6>\n'+
-										'\t\t\t\t\t<div class="row">\n'+
-										'\t\t\t\t\t\t<div class="col-sm-6">\n'+
-										'\t\t\t\t\t\t\t<div class="card">\n'+
-										'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n'+
-										'\t\t\t\t\t\t\t\t\t<label><?= lang('trajectory') ?>\n'+
-										'\t\t\t\t\t\t\t\t\t\t։ </label><span>  ----- <?= lang('km') ?></span><br>\n'+
-										'\t\t\t\t\t\t\t\t\t<label><?= lang('average_speed') ?> ։ </label><span> '+value.speed_avg+' <?= lang('km/h') ?></span><br>\n'+
-										'\t\t\t\t\t\t\t\t\t<label><?= lang('Number_exceedance') ?>: </label><span> '+qx+' </span><br>\n'+
-										'\t\t\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t\t<div class="col-sm-6">\n'+
-										'\t\t\t\t\t\t\t<div class="card">\n'+
-										'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n'+
-										'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n'+
-										'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n'+
-										'\t\t\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t\t</div>\n'+
-										'\t\t\t\t\t</div>\n'+
-										'\t\t\t\t</div>\n'+
-										'\t\t\t</div>';
+									if (_imei != e) {
+										info += '<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mb-0">\n' +
+											'\t\t\t\t<div class="container">\n' +
+											'\t\t\t\t\t<h6>' + value.fleet + '</h6>\n' +
+											'\t\t\t\t\t<div class="row">\n' +
+											'\t\t\t\t\t\t<div class="col-sm-6">\n' +
+											'\t\t\t\t\t\t\t<div class="card">\n' +
+											'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('trajectory') ?>\n' +
+											'\t\t\t\t\t\t\t\t\t\t։ </label><span> <span id="full_distanc"></span> <?= lang('km') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('average_speed') ?> ։ </label><span> ' + value.speed_avg + ' <?= lang('km/h') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('Number_exceedance') ?>: </label><span> ' + qx + ' </span><br>\n' +
+											'\t\t\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t\t<div class="col-sm-6">\n' +
+											'\t\t\t\t\t\t\t<div class="card">\n' +
+											'\t\t\t\t\t\t\t\t<div class="card-body text-justify p-1">\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_on') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t\t<label><?= lang('engine_turn_of') ?>: </label><span> ____ <?= lang('hour') ?></span><br>\n' +
+											'\t\t\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t\t</div>\n' +
+											'\t\t\t\t\t</div>\n' +
+											'\t\t\t\t</div>\n' +
+											'\t\t\t</div>';
 									}
 									_imei = e;
 
 									$('#fleet_info').html(info);
-
 
 
 								});
@@ -960,4 +956,3 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		})
 
 	</script>
-

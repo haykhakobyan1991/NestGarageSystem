@@ -643,8 +643,6 @@ class Gps extends MX_Controller {
 
 		//$this->pre($new_result);
 
-
-
 		if ($result){
 			$messages['success'] = 1;
 			$messages['message']['imei'] = $new_result;

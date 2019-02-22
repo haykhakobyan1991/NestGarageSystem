@@ -547,29 +547,31 @@ class Gps extends MX_Controller {
 		}
 
 
-
 		$date = '';
 
 		if(count($result) > 0) {
 
 			$lat = '';
+			$long = '';
 			$_imei = '';
 			$fleet = array();
 			$engine_result = array();
 
-
 			foreach ($result as $value) {
 
+				$time = substr($value['time'], 0, -4).':'.substr($value['time'], 2, -2).':'.substr($value['time'], 4, 2);
+				$date =  date('20'.substr($value['date'], 4, 2).'-'.substr($value['date'], 2, -2).'-'.substr($value['date'], 0, -4));
+
 				if($value['engine'] == 1) {
-					$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
+					$engine_result[$value['imei']]['on'][$date][] =  $time;
 				} elseif ($value['engine'] == 0) {
-					$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+					$engine_result[$value['imei']]['off'][$date][] = $time;
 				}
 
-				if($lat != $value['lat']) {
+				if($lat != $value['lat'] && $long != $value['long']) {
 
 					if(round($value['speed']) > 0) {
-
+						$fl = '';
 						if($_imei != $value['imei']) {
 							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
 							$fleet[$value['imei']] =  json_decode($fl, true);
@@ -606,6 +608,7 @@ class Gps extends MX_Controller {
 					$date = $value['date'];
 				}
 				$lat = $value['lat'];
+				$long = $value['long'];
 			}
 
 			$result = true;
@@ -661,19 +664,23 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$result = $this->db->select('*')->from('aaaa')->where('"1"',  '865205035287688')
+		$result = $this->db->select('*')->from('"GPS"')->where('"IMEI"',  '865205035287688')
 		->get()->result_array();
 
 		//"1", "3", "5", "7", "9", "10", "11"
 
 
-		$sql = "EXPLAIN ANALYZE SELECT * FROM aaaa WHERE \"1\" = '865205035287688';";
+		$sql = "EXPLAIN ANALYZE SELECT * FROM \"GPS\" WHERE \"IMEI\" = '865205035287688';";
 
 		$query = $this->db->query($sql);
 
 		$this->pre($query->result_array());
 
 		echo count($result);
+
+//		foreach ($result as &$value) {
+//			$value[12] = str_split(base_convert($value[12], 16,2));
+//		}
 
 		krsort($result);
 		$this->pre($result);
@@ -696,7 +703,7 @@ class Gps extends MX_Controller {
 		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"',  '865205035287688')
 			->get()->result_array();
 
-		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", \"digital_button1\", engine, fuel) VALUES ";
+		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", engine, fuel, battery_supply, sos, battery_low) VALUES ";
 
 		$power = 0;
 		$fuel = 47;
@@ -718,7 +725,8 @@ class Gps extends MX_Controller {
 			$long = round($long_h+($long_m/60), 6);
 
 			//time
-			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
+//			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
+			$time = $val[3];
 
 			if($_time != $time && $val[9] != 0) {
 				$fuel -= 0.27;
@@ -726,17 +734,22 @@ class Gps extends MX_Controller {
 			$_time = $time;
 
 			//date
-			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
+//			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
+			$date =  $val[11];
 
 			//EFE7FBFF - power on
 			//FFFFFBFF - power off
-			if($val[12] == 'EFE7FBFF') {
-				$power = 1;
-			} elseif ($val[12] = 'FFFFFBFF') {
-				$power = 0;
-			}
 
-			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$val[12]."', '".$power."', '".$fuel."'),";
+			$bin = str_split(base_convert($val[12], 16,2));
+
+			$battery_supply = $bin[3]; //yes - 1, no - 0
+			$sos = $bin[13];//yes - 0, no - 1
+			$battery_low = $bin[19];//yes - 1, no - 0
+			$engine = $bin[20];//yes - 1, no - 0
+
+
+
+			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$engine."', '".$fuel."', '".$battery_supply."', '".$sos."', '".$battery_low."' ),";
 		}
 
 		 $sql = substr($sql, 0, -1);

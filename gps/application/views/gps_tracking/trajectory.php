@@ -285,8 +285,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="row">
 		<div class="col-sm-2 p-0">
 			<form>
-				<div class="card">
-					<div class="card-body " style="max-height: 170px;overflow-y: scroll;">
 						<table id="example11" class="table table-bordered p-0">
 							<thead>
 							<tr>
@@ -325,8 +323,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						</table>
 
 
-					</div>
-				</div>
 				<input type="hidden" name="fleets" value="">
 				<div class="row mt-1">
 					<div class="col-sm-12">
@@ -654,6 +650,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(document).ready(function () {
 
 			var table = $('#example11').DataTable({
+				"scrollY": "250px",
+				"scrollCollapse": true,
 				"searching": false,
 				language: {
 					search: "<?=lang('search')?>",

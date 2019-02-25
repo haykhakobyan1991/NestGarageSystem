@@ -155,6 +155,7 @@ $lang['information'] = 'Ինֆորմացիա';
 $lang['add_expenses'] = 'Ավելացնել ծախսեր';
 $lang['expenses_history'] = 'Ծախսերի պատմություն';
 $lang['deadline'] = 'Վերջնաժամկետ';
+$lang['information'] = 'Ինֆորմացիա';
 
 
 //statuses
@@ -352,6 +353,7 @@ $lang['time'] = 'Ժամ';
 
 
 
+
 //other info
 $lang['activity'] = 'Ակտիվություն';
 $lang['post_code'] = 'Փոստային Կոդ';
@@ -431,6 +433,11 @@ $lang['Number_exceedance'] = 'Արագության գերազանցւմներ';
 $lang['engine_turn_on'] = 'Շարժիչը միացրած ժամանակ';
 $lang['engine_turn_of'] = 'Շարժիչը անջատած ժամանակ';
 $lang['hour'] = 'Ժամ';
+
+$lang['Level_At_The_Beginning'] = 'Սկզբնական մակարդակ';
+$lang['total_consumption'] = 'Ընդհանուր Սպառում';
+$lang['number_charges'] = 'Լիցքավորումների քանակ';
+$lang['engine_consumption'] = 'Շարժիչի ծաղսը';
 
 
 

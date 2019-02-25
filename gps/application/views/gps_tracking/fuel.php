@@ -74,8 +74,7 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span
-									class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 						<div class="col-sm-6">
@@ -83,8 +82,7 @@
 								<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
 								<input type="number" class="form-control form-control-sm col-sm-2">
 								<div class="col-sm-1 mt-2">+</div>
-								<input type="number" class="form-control form-control-sm col-sm-2"><span
-									class="ml-1 mt-2">*A</span>
+								<input type="number" class="form-control form-control-sm col-sm-2"><span class="ml-1 mt-2">*A</span>
 							</div>
 						</div>
 					</div>
@@ -111,8 +109,6 @@
 						</div>
 					</div>
 					<hr class="my-2">
-
-
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="form-group mb-0">
@@ -235,7 +231,7 @@
 				</div>
 			</div>
 			<div class="card mt-3">
-				<div class="card-header">Ինֆորմացիա</div>
+				<div class="card-header"><?=lang('information')?></div>
 				<div class="card-body text-justify">
 					<div class="text"><span style="font-size: 13px;"><?= lang('name') ?>:</span><span>  Maz_1</span>
 					</div>
@@ -315,11 +311,11 @@
 							<div class="card mt-3">
 								<div class="card-body text-justify">
 									<ul class="list-group list-group-flush">
-										<li class="list-group-item">Level at the beginning - 117.0706 l</li>
-										<li class="list-group-item">total consumption - ***</li>
-										<li class="list-group-item">Number of charges - ***</li>
-										<li class="list-group-item">Volume of charges - ***</li>
-										<li class="list-group-item">Engine consumption - 21.61 l - ***</li>
+										<li class="list-group-item"><?=lang('Level_At_The_Beginning')?> - 117.0706 l</li>
+										<li class="list-group-item"><?=lang('total_consumption')?> - ***</li>
+										<li class="list-group-item"><?=lang('number_charges')?> - ***</li>
+<!--										<li class="list-group-item">Volume of charges - ***</li>-->
+										<li class="list-group-item"><?=lang('engine_consumption')?> - 21.61 l - ***</li>
 									</ul>
 								</div>
 							</div>

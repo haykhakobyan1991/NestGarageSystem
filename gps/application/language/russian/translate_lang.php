@@ -387,6 +387,7 @@ $lang['add'] = 'Добавит: ';
 $lang['time'] = 'Время';
 $lang['start_point'] = 'Начальная точка';
 $lang['end_point'] = 'Конечная точка';
+$lang['information'] = 'Информация';
 
 
 $lang['Field_must_be_filled_in'] = 'Поле должно быть заполнено';
@@ -429,4 +430,9 @@ $lang['Number_exceedance'] = 'Количество превышений';
 $lang['engine_turn_on'] = 'Когда двигатель включен';
 $lang['engine_turn_of'] = 'Когда двигатель выключен';
 $lang['hour'] = 'Час';
+
+$lang['Level_At_The_Beginning'] = 'Начальный уровень';
+$lang['total_consumption'] = 'Общее Потребление';
+$lang['number_charges'] = 'Счет заряда';
+$lang['engine_consumption'] = 'Расход двигателя';
 

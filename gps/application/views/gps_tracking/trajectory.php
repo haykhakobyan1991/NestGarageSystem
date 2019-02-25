@@ -905,26 +905,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				success: function (data) {
 					if (data.success == '1') {
 
-						$('#map').html('');
-						myMap = new ymaps.Map("map", {
-							center: [40.1776192, 44.4898932],
-							zoom: 13
-						}, {suppressMapOpenBlock: true});
-
 						close_message();
 						$('#generate').removeClass('d-none');
 						$('#load1').addClass('d-none');
 
 						$('#map').html('');
 
-
-
 						var coordinate = [];
 						var coordinate_qx = [];
 						var qx = [];
-
-						//	console.table(data.message.imei);
-
 
 
 						$.each(data.message.imei, function (e, val) {
@@ -944,13 +933,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							});
 						});
 
-					//	alert(1);
 
 						ymaps.ready(init);
 
 						function init() {
 
-						//	alert(1.5);
+
 
 							console.table(coordinate);
 
@@ -970,11 +958,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							$.each(data.message.imei, function (e, val) {
 
-								// alert(2);
 							if(emai != e) {
-
-							//	alert(coordinate[e])
-
 
 								array_coordinate[e] = JSON.parse("[" + coordinate[e].substring(0, coordinate[e].length - 1) + "]");
 								console.log(array_coordinate);
@@ -1011,12 +995,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 								var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
-
-								//var rand_color = colors[Math.floor(Math.random() * colors.length)];
-
-								// var rand_color =  (function co(lor) {
-								// 	return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
-								// })('');
 
 
 								ymaps.route(
@@ -1126,8 +1104,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									myMap.setBounds(myMap.geoObjects.getBounds());
 
 									if (_imei != e) {
-
-										alert(distanc[e])
 
 										if(value.engine == 1) {
 											$('.engineOnOf').removeClass('d-none');

@@ -52,10 +52,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		cursor: pointer;
 	}
 
-	.border-td-danger {
-		border: 2px #dc3545 solid !important;
-	}
-
 	.big_r {
 		margin-right: 8rem !important;
 	}
@@ -85,7 +81,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	}
 
 	#example11_wrapper div.row:nth-child(2) div.col-sm-12 {
-		padding: 0 !important;
+		padding: 5px !important;
 	}
 
 	table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
@@ -304,7 +300,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								</th>
 							</tr>
 							</thead>
-							<tbody>
+							<tbody style="overflow-y: scroll;">
 
 							<?
 							foreach ($result_fleets as $fleets) {

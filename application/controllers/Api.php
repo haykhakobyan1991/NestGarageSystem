@@ -217,11 +217,21 @@ class Api extends MX_Controller {
 					`fleet`.*,
 					CONCAT_WS(
 						' ',
+						`staff`.`first_name`,
+						`staff`.`last_name`
+					) AS `staff`,
+					CONCAT_WS(
+						' ',
 						`brand`.`title_" . $lng . "`,
 						`model`.`title_" . $lng . "`
 					) AS `brand_model`
 				FROM
 				   `fleet`
+				LEFT JOIN `staff` 
+					ON FIND_IN_SET(
+					  `staff`.`id`,
+					  `fleet`.`staff_ids`
+					)    
 				LEFT JOIN `model` 
 					ON `model`.`id` = `fleet`.`model_id` 
 				LEFT JOIN `brand` 

@@ -52,6 +52,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		cursor: pointer;
 	}
 
+	.border-td-danger {
+		border: 2px #dc3545 solid !important;
+	}
+
 	.big_r {
 		margin-right: 8rem !important;
 	}
@@ -376,7 +380,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<div class="row">
 					<div class="col-sm-12" style="text-align: left;">
 						<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
-						<input type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
+						<input name="engine" value="1" type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
 					</div>
 				</div>
 
@@ -436,10 +440,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;">
 							<?= lang('Number_exceedance') ?>
 						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
+						<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">
 							<?= lang('engine_turn_on') ?>
 						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
+						<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">
 							<?= lang('engine_turn_of') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;">
@@ -884,6 +888,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var form_data = new FormData($('form')[0]);
 			$('input').removeClass('border border-danger');
 			$('select').parent('div').children('button').removeClass('border border-danger');
+			$('.checkbox_sel_fleet').parent('td').removeClass('border-td-danger');
 
 			$.ajax({
 				url: url,
@@ -899,116 +904,176 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				},
 				success: function (data) {
 					if (data.success == '1') {
+
+						$('#map').html('');
+						myMap = new ymaps.Map("map", {
+							center: [40.1776192, 44.4898932],
+							zoom: 13
+						}, {suppressMapOpenBlock: true});
+
 						close_message();
 						$('#generate').removeClass('d-none');
 						$('#load1').addClass('d-none');
 
 						$('#map').html('');
 
-						ymaps.ready(init);
 
+
+						var coordinate = [];
+						var coordinate_qx = [];
+						var qx = [];
+
+						//	console.table(data.message.imei);
+
+
+
+						$.each(data.message.imei, function (e, val) {
+							coordinate[e] = '';
+							coordinate_qx[e] = '';
+							qx[e] = 0;
+							$.each(val, function (i, value) {
+								if (value.cord) {
+									coordinate[e] += value.cord + ',';
+								}
+
+								if (value.cord_qx) {
+									coordinate_qx[e] += value.cord_qx + ',';
+									qx[e]++;
+								}
+
+							});
+						});
+
+					//	alert(1);
+
+						ymaps.ready(init);
 
 						function init() {
 
-							var coordinate = '';
-							var coordinate_qx = '';
-							var qx = 0;
+						//	alert(1.5);
 
-							console.log(data.message.imei);
-
-							$.each(data.message.imei, function (e, val) {
-
-								$.each(val, function (i, value) {
-									if (value.cord) {
-										coordinate += value.cord + ',';
-									}
-
-									if (value.cord_qx) {
-										coordinate_qx += value.cord_qx + ',';
-										qx++;
-									}
-
-								});
-							});
+							console.table(coordinate);
 
 
-							coordinate = coordinate.substring(0, coordinate.length - 1);
-							array_coordinate = JSON.parse("[" + coordinate + "]");
-							console.log(array_coordinate);
-							//qx
-							coordinate_qx = coordinate_qx.substring(0, coordinate_qx.length - 1);
-							array_coordinate_qx = JSON.parse("[" + coordinate_qx + "]");
+							array_coordinate = [];
+							array_coordinate_qx = [];
+							var emai = '';
 
-							console.table(array_coordinate_qx);
 
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
 								zoom: 13
 							}, {suppressMapOpenBlock: true});
 
-							myMap.events.add('click', function (e) {
-								if (!myMap.balloon.isOpen()) {
-									var coords = e.get('coords');
-									myMap.balloon.open(coords, {
-										contentHeader: '',
-										contentBody: [
-											coords[0].toPrecision(6),
-											coords[1].toPrecision(6)
-										].join(', '),
-										contentFooter: ''
+
+							distanc = [];
+
+							$.each(data.message.imei, function (e, val) {
+
+								// alert(2);
+							if(emai != e) {
+
+							//	alert(coordinate[e])
+
+
+								array_coordinate[e] = JSON.parse("[" + coordinate[e].substring(0, coordinate[e].length - 1) + "]");
+								console.log(array_coordinate);
+								//qx
+
+								array_coordinate_qx[e] = JSON.parse("[" +  coordinate_qx[e].substring(0, coordinate_qx[e].length - 1) + "]");
+
+								console.table(array_coordinate_qx);
+
+
+								myMap.events.add('click', function (e) {
+									if (!myMap.balloon.isOpen()) {
+										var coords = e.get('coords');
+										myMap.balloon.open(coords, {
+											contentHeader: '',
+											contentBody: [
+												coords[0].toPrecision(6),
+												coords[1].toPrecision(6)
+											].join(', '),
+											contentFooter: ''
+										});
+									} else {
+										myMap.balloon.close();
+									}
+								});
+
+								myMap.events.add('contextmenu', function (e) {
+									myMap.hint.open(e.get('coords'), '');
+								});
+
+								myMap.events.add('balloonopen', function (e) {
+									myMap.hint.close();
+								});
+
+
+								var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
+
+								//var rand_color = colors[Math.floor(Math.random() * colors.length)];
+
+								// var rand_color =  (function co(lor) {
+								// 	return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+								// })('');
+
+
+								ymaps.route(
+									array_coordinate[e],
+									{
+										mapStateAutoApply: true
+									}).then(function (route) {
+									console.log(route);
+									route.getPaths().options.set({
+										strokeColor: colors[Math.floor(Math.random() * colors.length)],
+										strokeWidth: 5,
+										opacity: 0.7
 									});
-								} else {
-									myMap.balloon.close();
-								}
-							});
 
-							myMap.events.add('contextmenu', function (e) {
-								myMap.hint.open(e.get('coords'), '');
-							});
-
-							myMap.events.add('balloonopen', function (e) {
-								myMap.hint.close();
-							});
+									myMap.geoObjects.add(route.getPaths());
 
 
-							ymaps.route(
-								array_coordinate,
-								{
-									mapStateAutoApply: true
-								}).then(function (route) {
-								console.log(route);
-								route.getPaths().options.set({strokeColor: '0000ffff', strokeWidth: 5, opacity: 0.7});
 
-								myMap.geoObjects.add(route.getPaths());
-
-								var distanc = parseFloat(route.getHumanLength());
-								$('#full_distanc').text(distanc);
+									$('.distance').each( function() {
+										if($(this).data('value') == e) {
+											$(this).html( parseFloat(route.getHumanLength()))
+										}
+									})
 
 
-								myGeoObject_start = new ymaps.GeoObject({
-									geometry: {
-										type: "Point",
-										coordinates: array_coordinate[0]
-									},
-									properties: {iconContent: '<?=lang('start_point')?>',}
-								}, {
-									preset: 'islands#greenStretchyIcon',
-									draggable: false
+
+
+									myGeoObject_start = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][0]
+										},
+										properties: {iconContent: '<?=lang('start_point')?>',}
+									}, {
+										preset: 'islands#greenStretchyIcon',
+										draggable: false
+									});
+
+									myGeoObject_end = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][array_coordinate[e].length - 1]
+										},
+										properties: {iconContent: '<?=lang('end_point')?>',}
+									}, {
+										preset: 'islands#redStretchyIcon',
+										draggable: false
+									});
+									myMap.geoObjects
+										.add(myGeoObject_start)
+										.add(myGeoObject_end);
+
+
 								});
+							}
+							emai = e;
 
-								myGeoObject_end = new ymaps.GeoObject({
-									geometry: {
-										type: "Point",
-										coordinates: array_coordinate[array_coordinate.length - 1]
-									},
-									properties: {iconContent: '<?=lang('end_point')?>',}
-								}, {
-									preset: 'islands#redStretchyIcon',
-									draggable: false
-								});
-								myMap.geoObjects
-									.add(myGeoObject_start)
-									.add(myGeoObject_end);
 							});
 
 							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
@@ -1062,17 +1127,36 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									if (_imei != e) {
 
-										info += '<tr>\n' +
+										alert(distanc[e])
+
+										if(value.engine == 1) {
+											$('.engineOnOf').removeClass('d-none');
+											info += '<tr>\n' +
 												'<td>' + value.fleet + '</td>\n' +
-												'<td></td>\n' +
-												'<td></td>\n' +
-												'<td><span id="full_distanc"></span><?= lang("km") ?></td>\n' +
+												'<td>'+ value.fleet_plate_number +'</td>\n' +
+												'<td>' +value.staff+ '</td>\n' +
+												'<td><span class="distance" data-value="'+e+'" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' +  qx +  '</td>\n' +
+												'<td>' +  qx[e] +  '</td>\n' +
 												'<td>' +  data.message.power[e]['on'] +  '</td>\n' +
 												'<td>' +  data.message.power[e]['off'] +  '</td>\n' +
 												'<td></td>\n' +
-											'</tr>\n';
+												'</tr>\n';
+
+										} else {
+											$('.engineOnOf').addClass('d-none');
+											info += '<tr>\n' +
+												'<td>' + value.fleet + '</td>\n' +
+												'<td>'+ value.fleet_plate_number +'</td>\n' +
+												'<td>' +value.staff+ '</td>\n' +
+												'<td><span class="distance" data-value="'+e+'" ></span><?= lang("km") ?></td>\n' +
+												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
+												'<td>' +  qx[e] +  '</td>\n' +
+												'<td></td>\n' +
+												'</tr>\n';
+										}
+
+
 
 									}
 									_imei = e;
@@ -1093,7 +1177,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						}
 
 					} else {
+
+						$('#map').html('');
+						myMap = new ymaps.Map("map", {
+							center: [40.1776192, 44.4898932],
+							zoom: 13
+						}, {suppressMapOpenBlock: true});
+
 						$('.alert-info').addClass('d-none');
+						$('#generate').removeClass('d-none');
+						$('#load1').addClass('d-none');
 						if ($.isArray(data.error.elements)) {
 							scroll_top();
 							$('#generate').removeClass('d-none');
@@ -1107,6 +1200,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 										close_message();
 										$('.alert-danger').removeClass('d-none');
+
+										if(index == 'fleets') {
+											$('.checkbox_sel_fleet').parent('td').addClass('border-td-danger')
+										}
+
 										if (value != tmp) {
 											errors += value + '<br>';
 										}
@@ -1114,6 +1212,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									} else {
 										$('input[name="' + index + '"]').removeClass('border border-danger');
 										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+										$('.checkbox_sel_fleet').parent('td').removeClass('border-td-danger');
 									}
 								});
 							});

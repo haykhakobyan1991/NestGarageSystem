@@ -1833,9 +1833,6 @@ class Organization extends MX_Controller {
 
 
 
-
-
-
 		}
 
 

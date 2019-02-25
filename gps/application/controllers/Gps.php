@@ -445,11 +445,7 @@ class Gps extends MX_Controller {
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('from', 'from', 'required');
 		$this->form_validation->set_rules('to', 'to', 'required');
-
-
-
-
-      //todo validation fleets
+		$this->form_validation->set_rules('fleets', 'fleets', 'required');
 
 
 
@@ -459,7 +455,8 @@ class Gps extends MX_Controller {
 
 			$validation_errors = array(
 				'from' => form_error('from'),
-				'to' => form_error('to')
+				'to' => form_error('to'),
+				'fleets' => form_error('fleets')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -475,7 +472,7 @@ class Gps extends MX_Controller {
 		$fleets = $this->input->post('fleets');
 		$fleet_arr = explode(',', $fleets);
 
-		$add_sql = 'AND ';
+		$add_sql = 'AND (';
 
 		foreach ($fleet_arr as $fleet) {
 			if($fleet != '') {
@@ -483,7 +480,7 @@ class Gps extends MX_Controller {
 			}
 		}
 
-		$add_sql = substr($add_sql, 0, -2);
+		$add_sql = substr($add_sql, 0, -2).')';
 		//end imei
 
 		$from = $this->input->post('from');
@@ -494,10 +491,19 @@ class Gps extends MX_Controller {
 		$speed_yn = $this->input->post('speed_yn');
 		if($speed_yn == 1) {
 			$max_speed = $this->input->post('speed');
+
+			if ($max_speed == '') {
+				$validation_errors = array('speed' => lang('required'));
+				$messages['error']['elements'][] = $validation_errors;
+				echo json_encode($messages);
+				return false;
+			}
 		}
 
+		$engine =  $this->input->post('engine');
 
-	  $sql  = "
+
+	   $sql  = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -548,6 +554,8 @@ class Gps extends MX_Controller {
 
 
 		$date = '';
+		$engine_result = array();
+
 
 		if(count($result) > 0) {
 
@@ -555,17 +563,14 @@ class Gps extends MX_Controller {
 			$long = '';
 			$_imei = '';
 			$fleet = array();
-			$engine_result = array();
+
 
 			foreach ($result as $value) {
 
-				$time = substr($value['time'], 0, -4).':'.substr($value['time'], 2, -2).':'.substr($value['time'], 4, 2);
-				$date =  date('20'.substr($value['date'], 4, 2).'-'.substr($value['date'], 2, -2).'-'.substr($value['date'], 0, -4));
-
 				if($value['engine'] == 1) {
-					$engine_result[$value['imei']]['on'][$date][] =  $time;
+					$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
 				} elseif ($value['engine'] == 0) {
-					$engine_result[$value['imei']]['off'][$date][] = $time;
+					$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
 				}
 
 				if($lat != $value['lat'] && $long != $value['long']) {
@@ -587,6 +592,9 @@ class Gps extends MX_Controller {
 								'speed' => round($value['speed']),
 								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
+								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
+								'staff' => $fleet[$value['imei']]['staff'],
+								'engine' => $engine,
 								'course' => $value['course']
 							);
 
@@ -598,6 +606,9 @@ class Gps extends MX_Controller {
 								'speed' => round($value['speed']),
 								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
+								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
+								'staff' => $fleet[$value['imei']]['staff'],
+								'engine' => $engine,
 								'course' => $value['course']
 							);
 						}
@@ -621,24 +632,26 @@ class Gps extends MX_Controller {
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
 
-		foreach ($engine_result as $imei => $er) {
-			foreach ($er as $on_off => $date_arr) {
-				foreach ($date_arr as $date => $time) {
-					if($_date != $date) {
-						$startTime = new DateTime($time[0]);
-						$endTime = new DateTime(end($time));
-						$duration = $startTime->diff($endTime);
-					}
-					$_date = $date;
+		if(count($engine_result) > 0) {
+			foreach ($engine_result as $imei => $er) {
+				foreach ($er as $on_off => $date_arr) {
+					foreach ($date_arr as $date => $time) {
+						if($_date != $date) {
+							$startTime = new DateTime($time[0]);
+							$endTime = new DateTime(end($time));
+							$duration = $startTime->diff($endTime);
+						}
+						$_date = $date;
 
-					if($on_off == 'on') {
-						$date1->add($duration);
-						$power[$imei][$on_off] = $date1->format("H:i:s");
-					} elseif ($on_off == 'off') {
-						$date2->add($duration);
-						$power[$imei][$on_off] = $date2->format("H:i:s");
-					}
+						if($on_off == 'on') {
+							$date1->add($duration);
+							$power[$imei][$on_off] = $date1->format("H:i:s");
+						} elseif ($on_off == 'off') {
+							$date2->add($duration);
+							$power[$imei][$on_off] = $date2->format("H:i:s");
+						}
 
+					}
 				}
 			}
 		}
@@ -664,17 +677,19 @@ class Gps extends MX_Controller {
 
 	public function aaaa() {
 
-		$result = $this->db->select('*')->from('"GPS"')->where('"IMEI"',  '865205035287688')
+		//$sql = "DELETE FROM gps WHERE \"imei\" = '865205035287845'";
+
+		$result = $this->db->select('*')->from('"gps"')//->where('"IMEI"',  '865205035287688')
 		->get()->result_array();
 
 		//"1", "3", "5", "7", "9", "10", "11"
 
 
-		$sql = "EXPLAIN ANALYZE SELECT * FROM \"GPS\" WHERE \"IMEI\" = '865205035287688';";
+//		$sql = "EXPLAIN ANALYZE SELECT * FROM \"GPS\" WHERE \"IMEI\" = '865205035287688';";
 
-		$query = $this->db->query($sql);
+		//$query = $this->db->query($sql);
 
-		$this->pre($query->result_array());
+//		$this->pre($query->result_array());
 
 		echo count($result);
 
@@ -703,7 +718,7 @@ class Gps extends MX_Controller {
 		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"',  '865205035287688')
 			->get()->result_array();
 
-		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", engine, fuel, battery_supply, sos, battery_low) VALUES ";
+		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", engine, fuel, battery, sos, battery_low) VALUES ";
 
 		$power = 0;
 		$fuel = 47;
@@ -725,8 +740,7 @@ class Gps extends MX_Controller {
 			$long = round($long_h+($long_m/60), 6);
 
 			//time
-//			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
-			$time = $val[3];
+			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
 
 			if($_time != $time && $val[9] != 0) {
 				$fuel -= 0.27;
@@ -734,8 +748,7 @@ class Gps extends MX_Controller {
 			$_time = $time;
 
 			//date
-//			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
-			$date =  $val[11];
+			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
 
 			//EFE7FBFF - power on
 			//FFFFFBFF - power off

@@ -23,7 +23,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script src="https://static.zinoui.com/js/front.min.js"></script>
 
 
-
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
@@ -96,6 +95,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	.dataTables_scrollBody {
 		background: #fff;
 	}
+
 	table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
 
 		bottom: 30px !important;
@@ -297,42 +297,42 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="row">
 		<div class="col-sm-2 p-0">
 			<form>
-						<table id="example11" class="table table-bordered p-0">
-							<thead>
-							<tr>
-								<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-									<input class="sel_all_checkbox selectAll_fleets" style="margin-left: 5px;"
-										   type="checkbox"/>
-								</th>
-								<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-									<i style="font-size: 12px !important;color: #000 !important;"
-									   class="fas fa-sort-alpha-up"></i> <?= lang('fleet') ?>
-								</th>
-							</tr>
-							</thead>
-							<tbody style="overflow-y: scroll;">
+				<table id="example11" class="table table-bordered p-0">
+					<thead>
+					<tr>
+						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+							<input class="sel_all_checkbox selectAll_fleets" style="margin-left: 5px;"
+								   type="checkbox"/>
+						</th>
+						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+							<i style="font-size: 12px !important;color: #000 !important;"
+							   class="fas fa-sort-alpha-up"></i> <?= lang('fleet') ?>
+						</th>
+					</tr>
+					</thead>
+					<tbody style="overflow-y: scroll;">
 
-							<?
-							foreach ($result_fleets as $fleets) {
-								?>
-								<tr>
-									<td><input class="checkbox_sel_fleet" type="checkbox"/></td>
-									<td>
-										<div class="form-group form-check m-0 pl-0">
-											<label class="card-text fleet_name"
-												   data-imei="<?= $fleets['gps_tracker_imei'] ?>"
-												   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?>
-												<small class="form-text text-muted">
-													(<?= $fleets["fleet_plate_number"] ?>)
-												</small>
-											</label>
+					<?
+					foreach ($result_fleets as $fleets) {
+						?>
+						<tr>
+							<td><input class="checkbox_sel_fleet" type="checkbox"/></td>
+							<td>
+								<div class="form-group form-check m-0 pl-0">
+									<label class="card-text fleet_name"
+										   data-imei="<?= $fleets['gps_tracker_imei'] ?>"
+										   data-id="<?= $fleets['id'] ?>"><?= $fleets['brand_model'] ?>
+										<small class="form-text text-muted">
+											(<?= $fleets["fleet_plate_number"] ?>)
+										</small>
+									</label>
 
-										</div>
-									</td>
-								</tr>
-							<? }; ?>
-							</tbody>
-						</table>
+								</div>
+							</td>
+						</tr>
+					<? }; ?>
+					</tbody>
+				</table>
 
 
 				<input type="hidden" name="fleets" value="">
@@ -384,7 +384,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<div class="row">
 					<div class="col-sm-12" style="text-align: left;">
 						<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
-						<input name="engine" value="1" type="checkbox" class="rem_right float-right" style="margin-top: 2px;"/>
+						<input name="engine" value="1" type="checkbox" class="rem_right float-right"
+							   style="margin-top: 2px;"/>
 					</div>
 				</div>
 
@@ -423,42 +424,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
 			<div id="fleet_info">
 
-				<table id="example12" class="table table-bordered p-0">
-					<thead>
-					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('fleet') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('license_plate') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('driver') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('trajectory') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('average_speed') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('Number_exceedance') ?>
-						</th>
-						<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('engine_turn_on') ?>
-						</th>
-						<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">
-							<?= lang('engine_turn_of') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							Stop d time
-						</th>
-					</tr>
-					</thead>
-					<tbody class="example_12_tbody">
 
-					</tbody>
-				</table>
 
 			</div>
 
@@ -688,7 +654,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				"paging": false,
 				"order": [[1, "desc"]]
 			});
-
 
 
 			ymaps.ready(start_map);
@@ -939,99 +904,96 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							$.each(data.message.imei, function (e, val) {
 
-							if(emai != e) {
+								if (emai != e) {
 
-								array_coordinate[e] = JSON.parse("[" + coordinate[e].substring(0, coordinate[e].length - 1) + "]");
-								console.log(array_coordinate);
-								//qx
+									array_coordinate[e] = JSON.parse("[" + coordinate[e].substring(0, coordinate[e].length - 1) + "]");
+									console.log(array_coordinate);
+									//qx
 
-								array_coordinate_qx[e] = JSON.parse("[" +  coordinate_qx[e].substring(0, coordinate_qx[e].length - 1) + "]");
+									array_coordinate_qx[e] = JSON.parse("[" + coordinate_qx[e].substring(0, coordinate_qx[e].length - 1) + "]");
 
-								console.table(array_coordinate_qx);
-
-
-								myMap.events.add('click', function (e) {
-									if (!myMap.balloon.isOpen()) {
-										var coords = e.get('coords');
-										myMap.balloon.open(coords, {
-											contentHeader: '',
-											contentBody: [
-												coords[0].toPrecision(6),
-												coords[1].toPrecision(6)
-											].join(', '),
-											contentFooter: ''
-										});
-									} else {
-										myMap.balloon.close();
-									}
-								});
-
-								myMap.events.add('contextmenu', function (e) {
-									myMap.hint.open(e.get('coords'), '');
-								});
-
-								myMap.events.add('balloonopen', function (e) {
-									myMap.hint.close();
-								});
+									console.table(array_coordinate_qx);
 
 
-								var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
-
-
-								ymaps.route(
-									array_coordinate[e],
-									{
-										mapStateAutoApply: true
-									}).then(function (route) {
-									console.log(route);
-									route.getPaths().options.set({
-										strokeColor: colors[Math.floor(Math.random() * colors.length)],
-										strokeWidth: 5,
-										opacity: 0.7
-									});
-
-									myMap.geoObjects.add(route.getPaths());
-
-
-
-									$('.distance').each( function() {
-										if($(this).data('value') == e) {
-											$(this).html( parseFloat(route.getHumanLength()))
+									myMap.events.add('click', function (e) {
+										if (!myMap.balloon.isOpen()) {
+											var coords = e.get('coords');
+											myMap.balloon.open(coords, {
+												contentHeader: '',
+												contentBody: [
+													coords[0].toPrecision(6),
+													coords[1].toPrecision(6)
+												].join(', '),
+												contentFooter: ''
+											});
+										} else {
+											myMap.balloon.close();
 										}
-									})
-
-
-
-
-									myGeoObject_start = new ymaps.GeoObject({
-										geometry: {
-											type: "Point",
-											coordinates: array_coordinate[e][0]
-										},
-										properties: {iconContent: '<?=lang('start_point')?>',}
-									}, {
-										preset: 'islands#greenStretchyIcon',
-										draggable: false
 									});
 
-									myGeoObject_end = new ymaps.GeoObject({
-										geometry: {
-											type: "Point",
-											coordinates: array_coordinate[e][array_coordinate[e].length - 1]
-										},
-										properties: {iconContent: '<?=lang('end_point')?>',}
-									}, {
-										preset: 'islands#redStretchyIcon',
-										draggable: false
+									myMap.events.add('contextmenu', function (e) {
+										myMap.hint.open(e.get('coords'), '');
 									});
-									myMap.geoObjects
-										.add(myGeoObject_start)
-										.add(myGeoObject_end);
+
+									myMap.events.add('balloonopen', function (e) {
+										myMap.hint.close();
+									});
 
 
-								});
-							}
-							emai = e;
+									var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
+
+
+									ymaps.route(
+										array_coordinate[e],
+										{
+											mapStateAutoApply: true
+										}).then(function (route) {
+										console.log(route);
+										route.getPaths().options.set({
+											strokeColor: colors[Math.floor(Math.random() * colors.length)],
+											strokeWidth: 5,
+											opacity: 0.7
+										});
+
+										myMap.geoObjects.add(route.getPaths());
+
+
+										$('.distance').each(function () {
+											if ($(this).data('value') == e) {
+												$(this).html(parseFloat(route.getHumanLength()))
+											}
+										})
+
+
+										myGeoObject_start = new ymaps.GeoObject({
+											geometry: {
+												type: "Point",
+												coordinates: array_coordinate[e][0]
+											},
+											properties: {iconContent: '<?=lang('start_point')?>',}
+										}, {
+											preset: 'islands#greenStretchyIcon',
+											draggable: false
+										});
+
+										myGeoObject_end = new ymaps.GeoObject({
+											geometry: {
+												type: "Point",
+												coordinates: array_coordinate[e][array_coordinate[e].length - 1]
+											},
+											properties: {iconContent: '<?=lang('end_point')?>',}
+										}, {
+											preset: 'islands#redStretchyIcon',
+											draggable: false
+										});
+										myMap.geoObjects
+											.add(myGeoObject_start)
+											.add(myGeoObject_end);
+
+
+									});
+								}
+								emai = e;
 
 							});
 
@@ -1060,7 +1022,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											balloonContent: '<p>' + value.fleet + '<p>' +
 												'<p><?=lang("time")?>: ' + value.time + '</p>' +
 												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
-												'<p><?=lang("engine")?>: ' + (value.engine_power == 1 ? '<span class="ml-1 bg-danger" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' : '<span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' ) +'</p>'
+												'<p><?=lang("engine")?>: ' + (value.engine_power == 1 ? '<span class="ml-1 bg-danger" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' : '<span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>') + '</p>'
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
 												'<div style="transform:rotate({{options.rotate}}deg);">',
@@ -1086,50 +1048,111 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									if (_imei != e) {
 
-										if(value.engine == 1) {
+										if (value.engine == 1) {
 											$('.engineOnOf').removeClass('d-none');
 											info += '<tr>\n' +
 												'<td>' + value.fleet + '</td>\n' +
-												'<td>'+ value.fleet_plate_number +'</td>\n' +
-												'<td>' +value.staff+ '</td>\n' +
-												'<td><span class="distance" data-value="'+e+'" ></span><?= lang("km") ?></td>\n' +
+												'<td>' + value.fleet_plate_number + '</td>\n' +
+												'<td>' + value.staff + '</td>\n' +
+												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' +  qx[e] +  '</td>\n' +
-												'<td>' +  data.message.power[e]['on'] +  '</td>\n' +
-												'<td>' +  data.message.power[e]['off'] +  '</td>\n' +
-												'<td>' +  data.message.null_speed[e] +  '</td>\n' +
+												'<td>' + qx[e] + '</td>\n' +
+												'<td>' + data.message.power[e]['on'] + '</td>\n' +
+												'<td>' + data.message.power[e]['off'] + '</td>\n' +
+												'<td>' + data.message.null_speed[e] + '</td>\n' +
 												'</tr>\n';
 
 										} else {
 											$('.engineOnOf').addClass('d-none');
 											info += '<tr>\n' +
 												'<td>' + value.fleet + '</td>\n' +
-												'<td>'+ value.fleet_plate_number +'</td>\n' +
-												'<td>' +value.staff+ '</td>\n' +
-												'<td><span class="distance" data-value="'+e+'" ></span><?= lang("km") ?></td>\n' +
+												'<td>' + value.fleet_plate_number + '</td>\n' +
+												'<td>' + value.staff + '</td>\n' +
+												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' +  qx[e] +  '</td>\n' +
-												'<td>' +  data.message.null_speed[e] +  '</td>\n' +
+												'<td>' + qx[e] + '</td>\n' +
+												'<td>' + data.message.null_speed[e] + '</td>\n' +
 												'</tr>\n';
 										}
-
 
 
 									}
 									_imei = e;
 
-									$('.example_12_tbody').html(info);
+									var table_top = '<table id="example12" class="table table-bordered p-0">\n' +
+										'\t\t\t\t\t<thead>\n' +
+										'\t\t\t\t\t<tr>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("fleet") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("license_plate") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("driver") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("trajectory") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("average_speed") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("Number_exceedance") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("engine_turn_on") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("engine_turn_of") ?>\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\tStop d time\n' +
+										'\t\t\t\t\t\t</th>\n' +
+										'\t\t\t\t\t</tr>\n' +
+										'\t\t\t\t\t</thead>\n' +
+										'\t\t\t\t\t<tbody class="example_12_tbody">\n'+
+										'</tbody>\n' +
+										'\t\t\t\t</table>';
 
+
+									$('#fleet_info').html(table_top);
 
 								});
 
-
-
+								$('.example_12_tbody').html(info);
+								$('#example12').DataTable({
+									"searching": false,
+									"ordering": true,
+									"bPaginate": false,
+									"paging": false,
+									language: {
+										search: "<?=lang('search')?>",
+										emptyTable: "<?=lang('no_data')?>",
+										info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+										infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+										infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+										lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+										zeroRecords: "<?=lang('no_matching_records')?>",
+										paginate: {
+											first: "<?=lang('first')?>",
+											last: "<?=lang('last')?>",
+											next: "<?=lang('next')?>",
+											previous: "<?=lang('prev')?>"
+										}
+									},
+									dom: 'Bfrtip',
+									buttons: [
+										{
+											extend: 'excelHtml5',
+											exportOptions: {
+												columns: ':visible'
+											}
+										},
+										'colvis'
+									]
+								});
 							});
-
-
-							
-
 
 
 							// //MultiRoute
@@ -1166,7 +1189,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										close_message();
 										$('.alert-danger').removeClass('d-none');
 
-										if(index == 'fleets') {
+										if (index == 'fleets') {
 											$('.checkbox_sel_fleet').parent('td').addClass('border-td-danger')
 										}
 
@@ -1202,38 +1225,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					me.data('requestRunning', false);
 				}
-			}).done(function () {
-				var tab = $('#example12').DataTable({
-					"searching": false,
-					"ordering": true,
-					"bPaginate": false,
-					"paging": false,
-					language: {
-						search: "<?=lang('search')?>",
-						emptyTable: "<?=lang('no_data')?>",
-						info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-						infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-						infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-						lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-						zeroRecords: "<?=lang('no_matching_records')?>",
-						paginate: {
-							first: "<?=lang('first')?>",
-							last: "<?=lang('last')?>",
-							next: "<?=lang('next')?>",
-							previous: "<?=lang('prev')?>"
-						}
-					},
-					dom: 'Bfrtip',
-					buttons: [
-						{
-							extend: 'excelHtml5',
-							exportOptions: {
-								columns: ':visible'
-							}
-						},
-						'colvis'
-					]
-				});
 			});
 
 

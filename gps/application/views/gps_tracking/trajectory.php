@@ -33,6 +33,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
 <style>
+	button.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis{display: inline-block !important;}
 	.card_hover {
 		-webkit-transition: all .3s ease-in-out;
 		-moz-transition: all .3s ease-in-out;
@@ -41,7 +42,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		transition: all .3s ease-in-out;
 		cursor: pointer;
 	}
+	a.dt-button.dropdown-item.buttons-columnVisibility {
+		color: #fff !important;
+		background: #8e8f90 !important;
+	}
 
+	a.dt-button.dropdown-item.buttons-columnVisibility.active {
+		color: #8e8f90 !important;
+		background: #fff !important;
+	}
 	.card_hover:hover {
 		background-color: #a9a9a9;
 		color: #fff;
@@ -96,12 +105,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		background: #fff;
 	}
 
-	table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
-
-		bottom: 30px !important;
-
-
-	}
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -1121,38 +1124,47 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								});
 
 								$('.example_12_tbody').html(info);
-								$('#example12').DataTable({
-									"searching": false,
-									"ordering": true,
-									"bPaginate": false,
-									"paging": false,
-									language: {
-										search: "<?=lang('search')?>",
-										emptyTable: "<?=lang('no_data')?>",
-										info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-										infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-										infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-										lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-										zeroRecords: "<?=lang('no_matching_records')?>",
-										paginate: {
-											first: "<?=lang('first')?>",
-											last: "<?=lang('last')?>",
-											next: "<?=lang('next')?>",
-											previous: "<?=lang('prev')?>"
+
+							});
+
+							var table = $('#example12').DataTable({
+								"searching": true,
+								"ordering": true,
+								"bPaginate": false,
+								"paging": false,
+								language: {
+									search: "<?=lang('search')?>",
+									emptyTable: "<?=lang('no_data')?>",
+									info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+									infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+									infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+									lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+									zeroRecords: "<?=lang('no_matching_records')?>",
+									paginate: {
+										first: "<?=lang('first')?>",
+										last: "<?=lang('last')?>",
+										next: "<?=lang('next')?>",
+										previous: "<?=lang('prev')?>"
+									}
+								},
+								dom: 'Bfrtip',
+								buttons: [
+									{
+										extend: 'excelHtml5',
+										exportOptions: {
+											columns: ':visible'
 										}
 									},
-									dom: 'Bfrtip',
-									buttons: [
-										{
-											extend: 'excelHtml5',
-											exportOptions: {
-												columns: ':visible'
-											}
-										},
-										'colvis'
-									]
-								});
+									'colvis'
+								]
 							});
+							$('.buttons-excel span').html('<?=lang('export')?>');
+							$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+							$('.buttons-colvis span').text('');
+							$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+							table.buttons().container()
+								.appendTo( '#example12_wrapper #example12_filter:eq(0)' );
+							$('.dt-buttons').css('float', 'left');
 
 
 							// //MultiRoute

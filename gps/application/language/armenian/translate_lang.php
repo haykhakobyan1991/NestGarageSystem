@@ -431,8 +431,8 @@ $lang['edit_geoference'] = 'Խմբագրել գեոզոնան';
 $lang['average_speed'] = 'Միջին արագություն';
 $lang['km/h'] = 'կմ/ժ';
 $lang['Number_exceedance'] = 'Արագության գերազանցւմներ';
-$lang['engine_turn_on'] = 'Շարժիչը միացրած ժամանակ';
-$lang['engine_turn_of'] = 'Շարժիչը անջատած ժամանակ';
+$lang['engine_turn_on'] = 'Շարժիչը միացրած';
+$lang['engine_turn_of'] = 'Շարժիչը անջատած';
 $lang['hour'] = 'Ժամ';
 
 $lang['Level_At_The_Beginning'] = 'Սկզբնական մակարդակ';
@@ -441,6 +441,8 @@ $lang['number_charges'] = 'Լիցքավորումների քանակ';
 $lang['engine_consumption'] = 'Շարժիչի ծաղսը';
 
 $lang['sos_alarms'] = 'SOS ազդանշանները';
+$lang['on_road'] = 'Շարժման մեջ';
+$lang['stop'] = 'Կանգնած';
 
 
 

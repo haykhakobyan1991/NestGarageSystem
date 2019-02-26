@@ -1108,13 +1108,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										'\t\t\t\t\t\t\t<?= lang("Number_exceedance") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
 										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?= lang("engine_turn_on") ?>\n' +
+										'\t\t\t\t\t\t\t<?= lang("on_road") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
 										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
 										'\t\t\t\t\t\t\t<?= lang("engine_turn_of") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
 										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\tStop d time\n' +
+										'\t\t\t\t\t\t\t<?=lang("stop")?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
 										'\t\t\t\t\t</tr>\n' +
 										'\t\t\t\t\t</thead>\n' +

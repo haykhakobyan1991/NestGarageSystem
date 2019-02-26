@@ -427,8 +427,8 @@ $lang['edit_geoference'] = 'Редактировать геозону';
 $lang['average_speed'] = 'Средняя скорость';
 $lang['km/h'] = 'км/ч';
 $lang['Number_exceedance'] = 'Количество превышений';
-$lang['engine_turn_on'] = 'Когда двигатель включен';
-$lang['engine_turn_of'] = 'Когда двигатель выключен';
+$lang['engine_turn_on'] = 'Двигатель включен';
+$lang['engine_turn_of'] = 'Двигатель выключен';
 $lang['hour'] = 'Час';
 
 $lang['Level_At_The_Beginning'] = 'Начальный уровень';
@@ -437,4 +437,6 @@ $lang['number_charges'] = 'Счет заряда';
 $lang['engine_consumption'] = 'Расход двигателя';
 $lang['sos_alarms'] = 'SOS тревоги';
 $lang['data_time'] = 'ден/Время';
+$lang['on_road'] = 'В движении';
+$lang['stop'] = 'Остановка';
 

@@ -62,6 +62,7 @@ $route['^(ru|hy)/speed'] = "Gps/speed";
 $route['^(ru|hy)/fuel'] = "Gps/fuel";
 $route['^(ru|hy)/geoferences'] = "Gps/geoferences";
 $route['^(ru|hy)/trajectory'] = "Gps/trajectory";
+$route['^(ru|hy)/sos'] = "Gps/sos";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

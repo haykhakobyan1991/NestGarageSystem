@@ -314,7 +314,6 @@
 										<li class="list-group-item"><?=lang('Level_At_The_Beginning')?> - 117.0706 l</li>
 										<li class="list-group-item"><?=lang('total_consumption')?> - ***</li>
 										<li class="list-group-item"><?=lang('number_charges')?> - ***</li>
-<!--										<li class="list-group-item">Volume of charges - ***</li>-->
 										<li class="list-group-item"><?=lang('engine_consumption')?> - 21.61 l - ***</li>
 									</ul>
 								</div>

@@ -205,6 +205,7 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 							data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
 						</button>
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/sos') ?>">
 						<button
 							style="color:#00000080 !important;max-height: 40px;"
 							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
@@ -212,6 +213,7 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 							data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
 						</button>
+						</a>
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"

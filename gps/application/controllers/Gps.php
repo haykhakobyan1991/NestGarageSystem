@@ -179,6 +179,12 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/fuel');
 	}
 
+	public function sos() {
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		$this->layout->view('gps_tracking/sos');
+	}
+
 	public function geoferences() {
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation

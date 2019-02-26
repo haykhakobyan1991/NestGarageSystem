@@ -100,6 +100,11 @@ $token = $this->session->token;
 $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true); // todo url
 
 
+$row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/getCompanyName', array('token' => $token)), true); // todo url
+
+
+
+
 ?>
 
 <!-- Navbar Start -->
@@ -141,6 +146,8 @@ $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSyst
 	</a>
 </nav>
 <!-- Navbar End -->
+
+<input type="hidden" name="company" value="<?=$row_company['name']?>">
 
 <div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
 	if ($controller == 'Gps') { ?>

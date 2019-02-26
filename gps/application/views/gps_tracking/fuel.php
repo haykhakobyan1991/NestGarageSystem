@@ -37,6 +37,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	.dataTables_scrollBody {
 		background: #fff;
 	}
+
+	.border-td-danger {
+		border: 1px #dc3545 solid !important;
+	}
 </style>
 
 <!-- Settings Modal Start -->
@@ -300,12 +304,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					<button
 						style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
 						id="generate"
-						class="generate btn btn-sm btn-block "><?= lang('generate') ?>
+						class="mt-2 generate btn btn-sm btn-block "><?= lang('generate') ?>
 					</button>
 					<button
 						style="height: 40px;border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
 						id="load1"
-						class="btn btn-sm btn-block d-none">
+						class="mt-2 btn btn-sm btn-block d-none">
 						<img style="height: 24px;
 														   margin: 0 auto;
 														   padding-bottom: 8px;
@@ -326,41 +330,41 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		<div class="col-sm-10">
 
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-sm-12">
-						<span>Zoom</span>
-
-						<div class="btn-group btn-group-toggle" data-toggle="buttons">
-
-							<label class="btn btn-outline-secondary active">
-								<input type="radio" name="options" id="option1" autocomplete="off" checked> 1m
-							</label>
-
-							<label class="btn btn-outline-secondary">
-								<input type="radio" name="options" id="option2" autocomplete="off"> 3m
-							</label>
-
-							<label class="btn btn-outline-secondary">
-								<input type="radio" name="options" id="option3" autocomplete="off"> 6m
-							</label>
-
-							<label class="btn btn-outline-secondary">
-								<input type="radio" name="options" id="option3" autocomplete="off"> YTD
-							</label>
-
-							<label class="btn btn-outline-secondary">
-								<input type="radio" name="options" id="option3" autocomplete="off"> 1y
-							</label>
-
-							<label class="btn btn-outline-secondary">
-								<input type="radio" name="options" id="option3" autocomplete="off"> All
-							</label>
-						</div>
-
-					</div>
-				</div>
-			</div>
+<!--			<div class="container-fluid">-->
+<!--				<div class="row">-->
+<!--					<div class="col-sm-12">-->
+<!--						<span>Zoom</span>-->
+<!---->
+<!--						<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+<!---->
+<!--							<label class="btn btn-outline-secondary active">-->
+<!--								<input type="radio" name="options" id="option1" autocomplete="off" checked> 1m-->
+<!--							</label>-->
+<!---->
+<!--							<label class="btn btn-outline-secondary">-->
+<!--								<input type="radio" name="options" id="option2" autocomplete="off"> 3m-->
+<!--							</label>-->
+<!---->
+<!--							<label class="btn btn-outline-secondary">-->
+<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 6m-->
+<!--							</label>-->
+<!---->
+<!--							<label class="btn btn-outline-secondary">-->
+<!--								<input type="radio" name="options" id="option3" autocomplete="off"> YTD-->
+<!--							</label>-->
+<!---->
+<!--							<label class="btn btn-outline-secondary">-->
+<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 1y-->
+<!--							</label>-->
+<!---->
+<!--							<label class="btn btn-outline-secondary">-->
+<!--								<input type="radio" name="options" id="option3" autocomplete="off"> All-->
+<!--							</label>-->
+<!--						</div>-->
+<!---->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 
 			<div id="container" class="mt-2"></div>
 			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2">
@@ -620,7 +624,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		me.data('requestRunning', true);
 
 
-		var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
+		var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_fuel') ?>';
 
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');

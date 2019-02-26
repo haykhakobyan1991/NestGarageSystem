@@ -109,6 +109,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	.dataTables_scrollBody {
 		background: #fff;
 	}
+	.custom_width{
+		width: 11.33333% !important;
+	}
 
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
@@ -703,9 +706,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(window).on('load', function () {
 			if ($(window).width() > 1349) {
 				$('.rem_right').addClass('big_r');
-				$('.col-sm-2-custom').css('width','11.33333% !important');
+				$('.col-sm-2-custom').addClass('custom_width');
+				$('.col-sm-2-custom').removeClass('col-sm-2');
 			} else {
 				$('.rem_right').addClass('small_r');
+				$('.col-sm-2-custom').removeClass('custom_width');
+				$('.col-sm-2-custom').addClass('col-sm-2');
 			}
 		});
 
@@ -889,6 +895,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 						ymaps.ready(init);
 
+
 						function init() {
 
 
@@ -966,6 +973,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												$(this).html(parseFloat(route.getHumanLength()))
 											}
 										})
+
+
 
 
 										myGeoObject_start = new ymaps.GeoObject({
@@ -1127,104 +1136,113 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								$('.example_12_tbody').html(info);
 
 							});
-							if (as == 2) {
 
-								function initDataTable() {
-									var table = $('#example12').DataTable({
-										"searching": true,
-										"ordering": true,
-										"bPaginate": false,
-										"paging": false,
-										language: {
-											search: "<?=lang('search')?>",
-											emptyTable: "<?=lang('no_data')?>",
-											info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-											infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-											infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-											lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-											zeroRecords: "<?=lang('no_matching_records')?>",
-											paginate: {
-												first: "<?=lang('first')?>",
-												last: "<?=lang('last')?>",
-												next: "<?=lang('next')?>",
-												previous: "<?=lang('prev')?>"
-											}
-										},
-										dom: 'Bfrtip',
-										buttons: [
-											{
-												extend: 'excelHtml5',
-												title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-												autoWidth: true,
-												filename: 'trajectory',
-												exportOptions: {
-													columns: ':visible'
+							setTimeout(function () {
+
+
+								if (as == 2) {
+
+									function initDataTable() {
+										var table = $('#example12').DataTable({
+											"searching": true,
+											"ordering": true,
+											"bPaginate": false,
+											"paging": false,
+											language: {
+												search: "<?=lang('search')?>",
+												emptyTable: "<?=lang('no_data')?>",
+												info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+												infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+												infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+												lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+												zeroRecords: "<?=lang('no_matching_records')?>",
+												paginate: {
+													first: "<?=lang('first')?>",
+													last: "<?=lang('last')?>",
+													next: "<?=lang('next')?>",
+													previous: "<?=lang('prev')?>"
 												}
 											},
-											'colvis'
-										]
-									});
+											dom: 'Bfrtip',
+											buttons: [
+												{
+													extend: 'excelHtml5',
+													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text(),
+													autoWidth: true,
+													filename: 'trajectory',
+													footer: true,
+													exportOptions: {
+														columns: ':visible'
+													}
+												},
+												'colvis'
+											]
+										});
 
-									$('.buttons-excel span').html('<?=lang('export')?>');
-									$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-									$('.buttons-colvis span').text('');
-									$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
-									table.buttons().container()
-										.appendTo('#example12_wrapper #example12_filter:eq(0)');
-									$('.dt-buttons').css('float', 'left');
-								}
+										$('.buttons-excel span').html('<?=lang('export')?>');
+										$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+										$('.buttons-colvis span').text('');
+										$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+										table.buttons().container()
+											.appendTo('#example12_wrapper #example12_filter:eq(0)');
+										$('.dt-buttons').css('float', 'left');
+									}
 
-								$('.engineOnOf').remove();
-								initDataTable();
+									$('.engineOnOf').remove();
+									initDataTable();
 
-							} else {
-								function initDataTable() {
-									var table = $('#example12').DataTable({
-										"searching": true,
-										"ordering": true,
-										"bPaginate": false,
-										"paging": false,
-										language: {
-											search: "<?=lang('search')?>",
-											emptyTable: "<?=lang('no_data')?>",
-											info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-											infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-											infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-											lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-											zeroRecords: "<?=lang('no_matching_records')?>",
-											paginate: {
-												first: "<?=lang('first')?>",
-												last: "<?=lang('last')?>",
-												next: "<?=lang('next')?>",
-												previous: "<?=lang('prev')?>"
-											}
-										},
-										dom: 'Bfrtip',
-										buttons: [
-											{
-												extend: 'excelHtml5',
-												title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-												autoWidth: true,
-												filename: 'trajectory',
-												exportOptions: {
-													columns: ':visible'
+								} else {
+									function initDataTable() {
+										var table = $('#example12').DataTable({
+											"searching": true,
+											"ordering": true,
+											"bPaginate": false,
+											"paging": false,
+											language: {
+												search: "<?=lang('search')?>",
+												emptyTable: "<?=lang('no_data')?>",
+												info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+												infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+												infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+												lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+												zeroRecords: "<?=lang('no_matching_records')?>",
+												paginate: {
+													first: "<?=lang('first')?>",
+													last: "<?=lang('last')?>",
+													next: "<?=lang('next')?>",
+													previous: "<?=lang('prev')?>"
 												}
 											},
-											'colvis'
-										]
-									});
+											dom: 'Bfrtip',
+											buttons: [
+												{
+													extend: 'excelHtml5',
+													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text(),
+													autoWidth: true,
+													filename: 'trajectory',
+													exportOptions: {
+														columns: ':visible'
+													}
+												},
+												'colvis'
+											]
+										});
 
-									$('.buttons-excel span').html('<?=lang('export')?>');
-									$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-									$('.buttons-colvis span').text('');
-									$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
-									table.buttons().container()
-										.appendTo('#example12_wrapper #example12_filter:eq(0)');
-									$('.dt-buttons').css('float', 'left');
+										$('.buttons-excel span').html('<?=lang('export')?>');
+										$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+										$('.buttons-colvis span').text('');
+										$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+										table.buttons().container()
+											.appendTo('#example12_wrapper #example12_filter:eq(0)');
+										$('.dt-buttons').css('float', 'left');
+									}
+
+									initDataTable();
 								}
 
-								initDataTable();
-							}
+							}, 2500);
 
 
 							// //MultiRoute

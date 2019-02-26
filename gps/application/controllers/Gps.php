@@ -532,7 +532,7 @@ class Gps extends MX_Controller {
 			WHERE gps.\"date\" >= '".$from."'
 			 AND gps.\"date\" <= '".$to."'
 			 ".$add_sql."
-		  
+		  ORDER BY date, time
 		";
 
 		$query = $this->db->query($sql);
@@ -734,15 +734,172 @@ class Gps extends MX_Controller {
 
 	}
 
+
+	public function get_fuel() {//todo
+
+		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
+		$n = 0;
+		$token = $this->session->token;
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('from', 'from', 'required');
+		$this->form_validation->set_rules('to', 'to', 'required');
+		$this->form_validation->set_rules('fleets', 'fleets', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'from' => form_error('from'),
+				'to' => form_error('to'),
+				'fleets' => form_error('fleets')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		//imei
+		$fleets = $this->input->post('fleets');
+		$fleet_arr = explode(',', $fleets);
+
+		$add_sql = 'AND (';
+
+		foreach ($fleet_arr as $fleet) {
+			if($fleet != '') {
+				$add_sql .= " gps.\"imei\" =  '".$fleet."' OR";
+			}
+		}
+
+		$add_sql = substr($add_sql, 0, -2).')';
+		//end imei
+
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+
+
+
+		$sql  = "
+			SELECT 
+				gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"fuel\"
+			FROM 
+			   gps
+			WHERE gps.\"date\" >= '".$from."'
+			 AND gps.\"date\" <= '".$to."'
+			 ".$add_sql."
+		
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
+
+		$new_result = array();
+
+//
+//		$table = '<table id="example" class="table table-striped table-borderless w-100 dataTable no-footer">
+//					<thead class="thead_tables">
+//						<tr>
+//							<th class="table_th">'.lang('fleet').'</th>
+//							<th class="table_th">'.lang('type').'</th>
+//							<th class="table_th">'.lang('vehicle').'</th>
+//							<th class="table_th">'.lang('price').' (AMD)</th>
+//						</tr>
+//					</thead>
+//					<tbody>';
+//
+//		foreach ($result as $value) {
+//
+//			$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
+//			$fleet =  json_decode($fl, true);
+//
+//			$table .= '<tr>';
+//			$table .= '<td class="border">'.$fleet.'</td>';
+//			$table .= '<td class="border">'.lang($fleet).'</td>';
+//			$table .= '<td class="border">'.$fleet.'</td>';
+//			$table .= '<td class="price border">'.$fleet.'</td>';
+//			$table .= '</tr>';
+//
+//
+//			$new_result[] = array();
+//
+//		}
+//
+//		$table .= '</tbody>
+//		</table>';
+
+
+
+
+
+
+
+
+
+
+		$this->pre($result);
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message']['imei'] = $new_result;
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+
+	}
+
 	public function aaaa() {
 
 		//$sql = "DELETE FROM gps WHERE \"imei\" = '865205035287845'";
 
-		$result = $this->db->select('*')->from('"gps"')->order_by('id', 'desc')//->where('"IMEI"',  '865205035287688')
+		$result = $this->db->select('*')->from('"gps"')//->where('"imei"',  '865205035287845')->order_by('id', 'desc')
 		->get()->result_array();
 
 
 		echo count($result);
+//
+//		$i = 62;
+//
+//		foreach ($result as $val) {
+//$i -= 0.25;
+//			echo $sql1 = "UPDATE \"gps\" SET fuel = '".$i."' WHERE id='".$val['id']."';".br();
+//
+//		}
 
 
 		$this->pre($result);

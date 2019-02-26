@@ -344,6 +344,23 @@ class Api extends MX_Controller {
 	}
 
 
+	public function getCompanyName()
+	{
+
+		$token = $this->input->post('token');
+
+		if ($token == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+
+		$row1 = $this->db->select('name')->from('company')->where('id', $row['company_id'])->get()->row_array();
+		echo json_encode($row1);
+		return true;
+	}
+
+
 
 	public function get_fleet_info() {
 

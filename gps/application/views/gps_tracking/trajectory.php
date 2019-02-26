@@ -303,7 +303,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-2 p-0">
+		<div class="col-sm-2 p-0 col-sm-2-custom">
 			<form>
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
@@ -700,20 +700,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}
 		});
 
-
 		$(window).on('load', function () {
 			if ($(window).width() > 1349) {
-
 				$('.rem_right').addClass('big_r');
+				$('.col-sm-2-custom').css('width','11.33333% !important');
 			} else {
-
 				$('.rem_right').addClass('small_r');
 			}
 		});
 
-
 		$(document).on('click', '.card-text.fleet_name', function () {
-
 			var fleet_ids = [];
 			var fleet_imeis = [];
 			var token = '<?=$token?>';

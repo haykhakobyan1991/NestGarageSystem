@@ -1079,7 +1079,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									}
 									_imei = e;
 
-									var table_top = '<table id="example12" class="table table-bordered p-0">\n' +
+									var table_top = '<table id="example12" class="table table-striped table-borderless w-100 dataTable no-footer">\n' +
 										'\t\t\t\t\t<thead>\n' +
 										'\t\t\t\t\t<tr>\n' +
 										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +

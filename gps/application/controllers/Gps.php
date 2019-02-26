@@ -176,7 +176,7 @@ class Gps extends MX_Controller {
 		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
 		$data['result_fleets'] = json_decode($fleets, true);
 
-		$this->layout->view('gps_tracking/fuel');
+		$this->layout->view('gps_tracking/fuel', $data);
 	}
 
 	public function sos() {

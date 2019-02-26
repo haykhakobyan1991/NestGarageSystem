@@ -350,6 +350,7 @@ $lang['fleets'] = 'Տ/Մ';
 $lang['max_speed'] = 'Առավելագույն արագություն';
 $lang['get_information'] = 'Ստացված ինֆորմացիան';
 $lang['time'] = 'Ժամ';
+$lang['data_time'] = 'օր/ժամ';
 
 
 
@@ -438,6 +439,8 @@ $lang['Level_At_The_Beginning'] = 'Սկզբնական մակարդակ';
 $lang['total_consumption'] = 'Ընդհանուր Սպառում';
 $lang['number_charges'] = 'Լիցքավորումների քանակ';
 $lang['engine_consumption'] = 'Շարժիչի ծաղսը';
+
+$lang['sos_alarms'] = 'SOS ազդանշանները';
 
 
 

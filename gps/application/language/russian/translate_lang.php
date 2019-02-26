@@ -435,4 +435,6 @@ $lang['Level_At_The_Beginning'] = 'Начальный уровень';
 $lang['total_consumption'] = 'Общее Потребление';
 $lang['number_charges'] = 'Счет заряда';
 $lang['engine_consumption'] = 'Расход двигателя';
+$lang['sos_alarms'] = 'SOS тревоги';
+$lang['data_time'] = 'ден/Время';
 

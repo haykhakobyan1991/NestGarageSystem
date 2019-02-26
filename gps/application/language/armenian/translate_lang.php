@@ -443,6 +443,7 @@ $lang['engine_consumption'] = 'Շարժիչի ծաղսը';
 $lang['sos_alarms'] = 'SOS ազդանշանները';
 $lang['on_road'] = 'Շարժման մեջ';
 $lang['stop'] = 'Կանգնած';
+$lang['trajectory_speed'] = 'Հետագիծ/Արագություն';
 
 
 

@@ -109,9 +109,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	.dataTables_scrollBody {
 		background: #fff;
 	}
-	.custom_width{
-		width: 11.33333% !important;
-	}
 
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
@@ -706,12 +703,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(window).on('load', function () {
 			if ($(window).width() > 1349) {
 				$('.rem_right').addClass('big_r');
-				$('.col-sm-2-custom').addClass('custom_width');
-				$('.col-sm-2-custom').removeClass('col-sm-2');
+				$('.col-sm-2-custom').css('width','11.33333% !important');
 			} else {
 				$('.rem_right').addClass('small_r');
-				$('.col-sm-2-custom').removeClass('custom_width');
-				$('.col-sm-2-custom').addClass('col-sm-2');
 			}
 		});
 
@@ -1068,7 +1062,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td>' + value.staff + '</td>\n' +
 												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' + qx[e] + '</td>\n' +
+												'<td>' + qx[e] + '.</td>\n' +
 												'<td>' + data.message.power[e]['on'] + '</td>\n' +
 												'<td>' + data.message.power[e]['off'] + '</td>\n' +
 												'<td>' + data.message.null_speed[e] + '</td>\n' +
@@ -1081,7 +1075,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td>' + value.staff + '</td>\n' +
 												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' + qx[e] + '</td>\n' +
+												'<td>' + qx[e] + '.</td>\n' +
 												'<td>' + data.message.null_speed[e] + '</td>\n' +
 												'</tr>\n';
 											as = 2;
@@ -1219,7 +1213,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												{
 													extend: 'excelHtml5',
 													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text(),
+													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+",  <?=lang('type')?>:  <?=lang('trajectory_speed')?> ",
 													autoWidth: true,
 													filename: 'trajectory',
 													exportOptions: {
@@ -1242,7 +1236,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									initDataTable();
 								}
 
-							}, 2500);
+							}, xsht+3000);
 
 
 							// //MultiRoute

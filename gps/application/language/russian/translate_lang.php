@@ -439,4 +439,5 @@ $lang['sos_alarms'] = 'SOS тревоги';
 $lang['data_time'] = 'ден/Время';
 $lang['on_road'] = 'В движении';
 $lang['stop'] = 'Остановка';
+$lang['trajectory_speed'] = 'Траекториа/Скорость';
 

@@ -5,11 +5,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
@@ -25,6 +21,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
 <script src="https://static.zinoui.com/js/front.min.js"></script>
+
+
+
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<!--<script type="text/javascript" src="--><? //=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
@@ -82,6 +87,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	#example11_wrapper div.row:nth-child(2) div.col-sm-12 {
 		padding: 5px !important;
+	}
+
+	.border-td-danger {
+		border: 1px #dc3545 solid !important;
 	}
 
 	table.dataTable thead .sorting:before, table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:before, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:before, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:before, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:before, table.dataTable thead .sorting_desc_disabled:after {
@@ -677,37 +686,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				"order": [[1, "desc"]]
 			});
 
-			$('#example12').DataTable({
-				"searching": false,
-				"ordering": false,
-				"bPaginate": false,
-				"paging": false,
-				language: {
-					search: "<?=lang('search')?>",
-					emptyTable: "<?=lang('no_data')?>",
-					info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-					infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-					infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-					lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-					zeroRecords: "<?=lang('no_matching_records')?>",
-					paginate: {
-						first: "<?=lang('first')?>",
-						last: "<?=lang('last')?>",
-						next: "<?=lang('next')?>",
-						previous: "<?=lang('prev')?>"
-					}
-				},
-				dom: 'Bfrtip',
-				buttons: [
-					{
-						extend: 'excelHtml5',
-						exportOptions: {
-							columns: ':visible'
-						}
-					},
-					'colvis'
-				]
-			});
 
 
 			ymaps.ready(start_map);
@@ -867,18 +845,28 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$('.speed_checkbox').on('change', function () {
 			let speed_checkbox = $('.set_maxSpeed');
 			($(this).is(':checked')) ? speed_checkbox.removeClass('d-none') : speed_checkbox.addClass('d-none');
-		})
+		});
 
 		$(document).on('click', '.generate', function (e) {
-
+			// ajax time
 			var xsht = 0;
 			setInterval(function () {
 				xsht++;
 			}, 10);
+			//ajax time end
+
+			var me = $(this);
+			e.preventDefault();
+
+			if (me.data('requestRunning')) {
+				return;
+			}
+
+			me.data('requestRunning', true);
 
 
 			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
-			e.preventDefault();
+
 			var form_data = new FormData($('form')[0]);
 			$('input').removeClass('border border-danger');
 			$('select').parent('div').children('button').removeClass('border border-danger');
@@ -931,10 +919,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						ymaps.ready(init);
 
 						function init() {
-
-
-
-							console.table(coordinate);
 
 
 							array_coordinate = [];
@@ -1135,7 +1119,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 								});
+
+
+
 							});
+
+
+							
+
+
 
 							// //MultiRoute
 							// myMap.geoObjects.add(multiRoute.getPaths());
@@ -1203,7 +1195,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					$('#ajax_time').removeClass('d-none');
 					setTimeout(function () {
 						$('#ajax_time').addClass('d-none');
-					}, 4000)
+					}, 4000);
+
+					me.data('requestRunning', false);
 				}
 			});
 

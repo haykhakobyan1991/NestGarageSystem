@@ -169,6 +169,13 @@ class Gps extends MX_Controller {
 	public function fuel() {
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$data = array();
+
+		//api call //todo urls
+		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
+		$data['result_fleets'] = json_decode($fleets, true);
+
 		$this->layout->view('gps_tracking/fuel');
 	}
 
@@ -567,11 +574,15 @@ class Gps extends MX_Controller {
 
 			foreach ($result as $value) {
 
-				if($value['engine'] == 1) {
-					$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
-				} elseif ($value['engine'] == 0) {
-					$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+				if($engine == 1) {
+					if($value['engine'] == 1) {
+						$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
+					} elseif ($value['engine'] == 0) {
+						$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+					}
 				}
+
+
 
 				if($lat != $value['lat'] && $long != $value['long']) {
 
@@ -632,29 +643,34 @@ class Gps extends MX_Controller {
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
 
-		if(count($engine_result) > 0) {
-			foreach ($engine_result as $imei => $er) {
-				foreach ($er as $on_off => $date_arr) {
-					foreach ($date_arr as $date => $time) {
-						if($_date != $date) {
-							$startTime = new DateTime($time[0]);
-							$endTime = new DateTime(end($time));
-							$duration = $startTime->diff($endTime);
-						}
-						$_date = $date;
+		if($engine == 1) {
+			if (count($engine_result) > 0) {
+				foreach ($engine_result as $imei => $er) {
+					foreach ($er as $on_off => $date_arr) {
+						foreach ($date_arr as $date => $time) {
+							if ($_date != $date) {
+								$startTime = new DateTime($time[0]);
+								$endTime = new DateTime(end($time));
+								$duration = $startTime->diff($endTime);
+							}
+							$_date = $date;
 
-						if($on_off == 'on') {
-							$date1->add($duration);
-							$power[$imei][$on_off] = $date1->format("H:i:s");
-						} elseif ($on_off == 'off') {
-							$date2->add($duration);
-							$power[$imei][$on_off] = $date2->format("H:i:s");
-						}
+							if ($on_off == 'on') {
+								$date1->add($duration);
+								$power[$imei][$on_off] = $date1->format("H:i:s");
+							} elseif ($on_off == 'off') {
+								$date2->add($duration);
+								$power[$imei][$on_off] = $date2->format("H:i:s");
+							}
 
+						}
 					}
 				}
 			}
 		}
+
+
+
 
 
 		//$this->pre($new_result);
@@ -679,25 +695,13 @@ class Gps extends MX_Controller {
 
 		//$sql = "DELETE FROM gps WHERE \"imei\" = '865205035287845'";
 
-		$result = $this->db->select('*')->from('"gps"')//->where('"IMEI"',  '865205035287688')
+		$result = $this->db->select('*')->from('"gps"')->order_by('id', 'desc')//->where('"IMEI"',  '865205035287688')
 		->get()->result_array();
 
-		//"1", "3", "5", "7", "9", "10", "11"
-
-
-//		$sql = "EXPLAIN ANALYZE SELECT * FROM \"GPS\" WHERE \"IMEI\" = '865205035287688';";
-
-		//$query = $this->db->query($sql);
-
-//		$this->pre($query->result_array());
 
 		echo count($result);
 
-//		foreach ($result as &$value) {
-//			$value[12] = str_split(base_convert($value[12], 16,2));
-//		}
 
-		krsort($result);
 		$this->pre($result);
 
 

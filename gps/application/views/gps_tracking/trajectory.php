@@ -1202,6 +1202,38 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					me.data('requestRunning', false);
 				}
+			}).done(function () {
+				var tab = $('#example12').DataTable({
+					"searching": false,
+					"ordering": true,
+					"bPaginate": false,
+					"paging": false,
+					language: {
+						search: "<?=lang('search')?>",
+						emptyTable: "<?=lang('no_data')?>",
+						info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+						infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+						infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+						lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+						zeroRecords: "<?=lang('no_matching_records')?>",
+						paginate: {
+							first: "<?=lang('first')?>",
+							last: "<?=lang('last')?>",
+							next: "<?=lang('next')?>",
+							previous: "<?=lang('prev')?>"
+						}
+					},
+					dom: 'Bfrtip',
+					buttons: [
+						{
+							extend: 'excelHtml5',
+							exportOptions: {
+								columns: ':visible'
+							}
+						},
+						'colvis'
+					]
+				});
 			});
 
 

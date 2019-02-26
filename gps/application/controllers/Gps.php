@@ -516,7 +516,7 @@ class Gps extends MX_Controller {
 		$engine =  $this->input->post('engine');
 
 
-	   $sql  = "
+	    $sql  = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -532,6 +532,7 @@ class Gps extends MX_Controller {
 			WHERE gps.\"date\" >= '".$from."'
 			 AND gps.\"date\" <= '".$to."'
 			 ".$add_sql."
+		  
 		";
 
 		$query = $this->db->query($sql);
@@ -540,7 +541,6 @@ class Gps extends MX_Controller {
 
 		$new_result = array();
 
-	//	$this->pre($result);
 
 		$sql_avg = "
 			SELECT 
@@ -566,8 +566,11 @@ class Gps extends MX_Controller {
 		}
 
 
+
+
 		$date = '';
 		$engine_result = array();
+		$speed_null = array();
 
 
 		if(count($result) > 0) {
@@ -582,7 +585,7 @@ class Gps extends MX_Controller {
 
 				if($engine == 1) {
 					if($value['engine'] == 1) {
-						$engine_result[$value['imei']]['on'][$value['date']][] =  $value['time'];
+						$engine_result[$value['imei']]['on'][$value['date']][] = $value['time'];
 					} elseif ($value['engine'] == 0) {
 						$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
 					}
@@ -611,6 +614,7 @@ class Gps extends MX_Controller {
 								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
 								'staff' => $fleet[$value['imei']]['staff'],
+								'engine_power' => $value['engine'],
 								'engine' => $engine,
 								'course' => $value['course']
 							);
@@ -625,6 +629,7 @@ class Gps extends MX_Controller {
 								'fleet' => $fleet[$value['imei']]['brand_model'],
 								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
 								'staff' => $fleet[$value['imei']]['staff'],
+								'engine_power' => $value['engine'],
 								'engine' => $engine,
 								'course' => $value['course']
 							);
@@ -632,8 +637,9 @@ class Gps extends MX_Controller {
 
 
 
+					} else {
+						$speed_null[$value['imei']][$value['date']][] = $value['time'];
 					}
-					$date = $value['date'];
 				}
 				$lat = $value['lat'];
 				$long = $value['long'];
@@ -645,6 +651,7 @@ class Gps extends MX_Controller {
 
 		// power off or on
 		$_date = '';
+		$_date2 = '';
 		$power = array();
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
@@ -654,18 +661,29 @@ class Gps extends MX_Controller {
 				foreach ($engine_result as $imei => $er) {
 					foreach ($er as $on_off => $date_arr) {
 						foreach ($date_arr as $date => $time) {
-							if ($_date != $date) {
-								$startTime = new DateTime($time[0]);
-								$endTime = new DateTime(end($time));
-								$duration = $startTime->diff($endTime);
-							}
-							$_date = $date;
 
 							if ($on_off == 'on') {
-								$date1->add($duration);
+								$duration1 = 0;
+								if($_date != $date) {
+									$startTime = new DateTime($time[0]);
+									$endTime = new DateTime(end($time));
+									$duration1 = $startTime->diff($endTime);
+
+								}
+								$_date = $date;
+								$date1->add($duration1);
 								$power[$imei][$on_off] = $date1->format("H:i:s");
 							} elseif ($on_off == 'off') {
-								$date2->add($duration);
+								$duration2 = 0;
+								if($_date2 != $date) {
+									$startTime = new DateTime($time[0]);
+									$endTime = new DateTime(end($time));
+									$duration2 = $startTime->diff($endTime);
+
+								}
+								$_date2 = $date;
+
+								$date2->add($duration2);
 								$power[$imei][$on_off] = $date2->format("H:i:s");
 							}
 
@@ -675,16 +693,35 @@ class Gps extends MX_Controller {
 			}
 		}
 
+		$null_speed = array();
+		$date_ = '';
 
+		$date3 = new DateTime("00:00:00");
+		foreach ($speed_null as $imei => $d_arr) {
+			foreach ($d_arr as $date => $time) {
+				$duration = 0;
+				if($date_ != $date) {
+					$startTime = new DateTime($time[0]);
+					$endTime = new DateTime(end($time));
+					$duration = $startTime->diff($endTime);
+				}
+				$date_ = $date;
+				$date3->add($duration);
+				$null_speed[$imei] = $date3->format("H:i:s");
+			}
+		}
 
 
 
 		//$this->pre($new_result);
+		//$this->pre($power);
+		//$this->pre($null_speed);
 
 		if ($result){
 			$messages['success'] = 1;
 			$messages['message']['imei'] = $new_result;
 			$messages['message']['power'] = $power;
+			$messages['message']['null_speed'] = $null_speed;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = 'Error';

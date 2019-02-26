@@ -1060,7 +1060,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											balloonContent: '<p>' + value.fleet + '<p>' +
 												'<p><?=lang("time")?>: ' + value.time + '</p>' +
 												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
-												'<p><?=lang("engine")?>: <span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span> </p>'
+												'<p><?=lang("engine")?>: ' + (value.engine_power == 1 ? '<span class="ml-1 bg-danger" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' : '<span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' ) +'</p>'
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
 												'<div style="transform:rotate({{options.rotate}}deg);">',
@@ -1097,7 +1097,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td>' +  qx[e] +  '</td>\n' +
 												'<td>' +  data.message.power[e]['on'] +  '</td>\n' +
 												'<td>' +  data.message.power[e]['off'] +  '</td>\n' +
-												'<td></td>\n' +
+												'<td>' +  data.message.null_speed[e] +  '</td>\n' +
 												'</tr>\n';
 
 										} else {
@@ -1109,7 +1109,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td><span class="distance" data-value="'+e+'" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
 												'<td>' +  qx[e] +  '</td>\n' +
-												'<td></td>\n' +
+												'<td>' +  data.message.null_speed[e] +  '</td>\n' +
 												'</tr>\n';
 										}
 

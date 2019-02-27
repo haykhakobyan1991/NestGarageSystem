@@ -5,123 +5,24 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/trajectory.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
-<!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
-
-
-<!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
-<!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
 <script src="https://static.zinoui.com/js/front.min.js"></script>
-
-
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
-<!--<script type="text/javascript" src="--><? //=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
-<style>
-	button.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
-		display: inline-block !important;
-	}
 
-	.card_hover {
-		-webkit-transition: all .3s ease-in-out;
-		-moz-transition: all .3s ease-in-out;
-		-ms-transition: all .3s ease-in-out;
-		-o-transition: all .3s ease-in-out;
-		transition: all .3s ease-in-out;
-		cursor: pointer;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility {
-		color: #fff !important;
-		background: #8e8f90 !important;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility.active {
-		color: #8e8f90 !important;
-		background: #fff !important;
-	}
-
-	.card_hover:hover {
-		background-color: #a9a9a9;
-		color: #fff;
-	}
-
-	/*.fleet_name_selected {*/
-	/*background: #00000080;*/
-	/*color: #fff;*/
-	/*}*/
-
-	.fleet_name {
-		cursor: pointer;
-	}
-
-	.big_r {
-		margin-right: 8rem !important;
-	}
-
-	.small_r {
-		margin-right: 7rem !important;
-	}
-
-	.card-body.p-0 p {
-		font-size: 12px;
-	}
-
-	.table-bordered td {
-		padding-left: 5px !important;
-	}
-
-	div#example11_wrapper {
-		margin-top: 0px !important;
-	}
-
-	.dataTables_info {
-		display: none !important;
-	}
-
-	#example11_wrapper {
-		padding: 0 !important;
-	}
-
-	#example11_wrapper div.row:nth-child(2) div.col-sm-12 {
-		padding: 5px !important;
-	}
-
-	.border-td-danger {
-		border: 1px #dc3545 solid !important;
-	}
-
-	.dataTables_scrollBody {
-		background: #fff;
-	}
-
-	@media screen and (min-width: 1350px) {
-		.custom_style {
-			width: 11.33333% !important;
-			flex: 0 0 11.33333% !important;
-		}
-		.custom_style2{
-			width: 88.33333% !important;
-			flex: 0 0 88.33333% !important;
-			max-width: 88.33333% !important;
-		}
-	}
-</style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
 	 style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"

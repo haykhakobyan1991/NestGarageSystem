@@ -1,0 +1,88 @@
+button.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
+	display: inline-block !important;
+}
+
+.card_hover {
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-ms-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	cursor: pointer;
+}
+
+a.dt-button.dropdown-item.buttons-columnVisibility {
+	color: #fff !important;
+	background: #8e8f90 !important;
+}
+
+a.dt-button.dropdown-item.buttons-columnVisibility.active {
+	color: #8e8f90 !important;
+	background: #fff !important;
+}
+
+.card_hover:hover {
+	background-color: #a9a9a9;
+	color: #fff;
+}
+
+/*.fleet_name_selected {*/
+/*background: #00000080;*/
+/*color: #fff;*/
+/*}*/
+
+.fleet_name {
+	cursor: pointer;
+}
+
+.big_r {
+	margin-right: 8rem !important;
+}
+
+.small_r {
+	margin-right: 7rem !important;
+}
+
+.card-body.p-0 p {
+	font-size: 12px;
+}
+
+.table-bordered td {
+	padding-left: 5px !important;
+}
+
+div#example11_wrapper {
+	margin-top: 0px !important;
+}
+
+.dataTables_info {
+	display: none !important;
+}
+
+#example11_wrapper {
+	padding: 0 !important;
+}
+
+#example11_wrapper div.row:nth-child(2) div.col-sm-12 {
+	padding: 5px !important;
+}
+
+.border-td-danger {
+	border: 1px #dc3545 solid !important;
+}
+
+.dataTables_scrollBody {
+	background: #fff;
+}
+
+@media screen and (max-width: 1349px){
+	.custom_style {
+		width: 11.33333% !important;
+		flex: 0 0 11.33333% !important;
+	}
+	.custom_style2{
+		width: 88.33333% !important;
+		flex: 0 0 88.33333% !important;
+		max-width: 88.33333% !important;
+	}
+}

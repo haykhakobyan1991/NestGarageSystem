@@ -127,70 +127,56 @@
 					</thead>
 					<tbody>
 
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><!--<i class="far fa-envelope"></i>-->  <i class="far fa-envelope-open text-success"></i></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><i class="far fa-envelope text-warning"></i>  <!--<i class="far fa-envelope-open"></i>--></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><i class="far fa-envelope text-warning"></i>  <!--<i class="far fa-envelope-open"></i>--></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><i class="far fa-envelope text-warning"></i>  <!--<i class="far fa-envelope-open"></i>--></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><i class="far fa-envelope text-warning"></i>  <!--<i class="far fa-envelope-open"></i>--></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><i class="far fa-envelope text-warning"></i>  <!--<i class="far fa-envelope-open"></i>--></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><!--<i class="far fa-envelope"></i>-->  <i class="far fa-envelope-open text-success"></i></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
-					<tr>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td>dddd sddsd dsdsd</td>
-						<td style="cursor: pointer;"><!--<i class="far fa-envelope"></i>-->  <i class="far fa-envelope-open text-success"></i></td>
-						<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i></td>
-					</tr>
+					<?
+					$_datetime = '';
+					$_imei = '';
+					$counter = 0;
+					$echoDateTime = '';
+					$_echoDateTime = '';
+					foreach ($result as $row) {
+						$counter++;
+						if ($counter == 1) {
+							$_datetime = new DateTime($row['datetime']);
+						}
+
+						$token = $this->session->token;
+						if ($_imei != $row['imei']) {
+							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
+							$fleet[$row['imei']] = json_decode($fl, true);
+						}
+						$_imei = $row['imei'];
+
+
+						// datetime 10 minute interval
+						$datetime1 = new DateTime($row['datetime']);
+
+						$interval = $datetime1->diff($_datetime);
+						$elapsed = $interval->format('%i');
+
+						if ($elapsed >= 10) {
+							$echoDateTime = $row['datetime'];
+							$_datetime = new DateTime($row['datetime']);
+						}
+
+
+						if ($_echoDateTime != $echoDateTime) {
+							?>
+
+							<tr>
+								<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
+								<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
+								<td><?= $fleet[$row['imei']]['staff'] ?></td>
+								<td><?= $row['datetime'] ?></td>
+								<td class="show_car" data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
+									style="cursor: pointer;"><!--<i class="far fa-envelope"></i>-->
+									<i class="far fa-envelope text-success"></i></td>
+								<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i
+										class="fas fa-trash text-secondary"></i></td>
+							</tr>
+
+						<? }
+						$_echoDateTime = $echoDateTime;
+					} ?>
 
 					</tbody>
 				</table>
@@ -426,16 +412,16 @@
 
 <script>
 
-	$('table tr th:nth-child(2)').click(function () {
-
-		if (!$(this).hasClass('az')) {
-			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
-			$(this).addClass('az');
-		} else {
-			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-up"></i>');
-			$(this).removeClass('az');
-		}
-	});
+	// $('table tr th:nth-child(2)').click(function () {
+	//
+	// 	if (!$(this).hasClass('az')) {
+	// 		$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
+	// 		$(this).addClass('az');
+	// 	} else {
+	// 		$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-up"></i>');
+	// 		$(this).removeClass('az');
+	// 	}
+	// });
 
 
 	var table = $('#example11').DataTable({
@@ -464,7 +450,7 @@
 		],
 		"bPaginate": false,
 		"paging": false,
-		"order": [[1, "desc"]]
+		"aaSorting": []
 	});
 	table.buttons().container().appendTo('#example11_wrapper #example11_filter:eq(0)');
 
@@ -482,11 +468,116 @@
 		ymaps.ready(init_all);
 
 		function init_all() {
-			var myMap = new ymaps.Map("map", {
+			var myPlacemark,
+				myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
 			}, {suppressMapOpenBlock: true});
+
+			address = [];
+			$('.show_car').each(function () {
+
+				coordinate = $(this).data('coordinate');
+				array = JSON.parse("[" + coordinate + "]");
+
+
+				ymaps.geocode(coordinate).then(function (res) {
+					var firstGeoObject = res.geoObjects.get(0);
+					address.push(firstGeoObject.getLocalities().length ? firstGeoObject.getAddressLine() : firstGeoObject.getAdministrativeAreas());
+
+				});
+
+			//	setTimeout(function () {
+					console.log(address);
+			//	}, 3000)
+
+
+				var carCoordinate = '';
+
+				latitude = array[0];
+				longitude = array[1];
+
+				carCoordinate = new ymaps.Placemark([latitude, longitude], {
+					balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(1)').text() + "</a></span></p>" +
+						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').text() + "</span></p>" +
+						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(4)').text() + "</span></p>" +
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(3)').text() + "</span></p>" +
+						"<p class='mb-0'><?=lang('place')?>:<span id='address' class='ml-1'></span></p>",
+					balloonContentFooter: ""
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: '<?= base_url() ?>assets/images/ymap/sos.svg',
+					iconImageSize: [35, 30],
+					iconImageOffset: [-10, -35]
+				});
+
+				myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
+				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
+				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
+
+
+			});
+			var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+			$('#map > ymaps').css('width', width_map);
+			$('#map > ymaps').css('overflow', 'scroll');
 		}
+
+		$('.show_car').click(function () {
+
+			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
+			car_nummber = $(this).parent('tr').children('td:nth-child(2)').text();
+			massage_time = $(this).parent('tr').children('td:nth-child(4)').text();
+			driver_name = $(this).parent('tr').children('td:nth-child(3)').text();
+			current_address = $(this).parent('tr').children('.address_span').text();
+
+			$('#map').html('');
+
+			coordinate = $(this).data('coordinate');
+			array = JSON.parse("[" + coordinate + "]");
+			ymaps.ready(init_singleCar(array));
+
+			function init_singleCar(array) {
+				var myMap_show_singleCar = new ymaps.Map("map", {
+					center: [45.8989, 54.56566565],
+					zoom: 2
+				}, {suppressMapOpenBlock: true});
+				var carCoordinate = '';
+
+
+				//Click Function Show All Geofences
+
+				latitude = array[0];
+				longitude = array[1];
+
+				carCoordinate = new ymaps.Placemark([latitude, longitude], {
+					balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + car_name + "</a></span></p>" +
+						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
+						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
+						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
+					balloonContentFooter: ""
+				}, {
+					iconLayout: 'default#image',
+					iconImageHref: '<?= base_url() ?>assets/images/ymap/sos.svg',
+					iconImageSize: [35, 30],
+					iconImageOffset: [-10, -35]
+				});
+
+				myMap_show_singleCar.geoObjects.add(carCoordinate);
+
+				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+
+				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
+			}
+
+
+		});
+
 	});
 	/*************************
 	 **************************

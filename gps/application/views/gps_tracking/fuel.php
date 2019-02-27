@@ -236,10 +236,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input class="sel_all_checkbox selectAll_fleets" style="margin-left: 5px;"
-								   type="checkbox"/>
-						</th>
+						<th></th>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i> <?= lang('fleet') ?>
@@ -429,23 +426,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <script>
 	$(document).ready(function () {
-		$('.selectAll_fleets').on('change', function () {
-			if ($('.selectAll_fleets').is(':checked')) {
-				$('.checkbox_sel_fleet').each(function () {
-					$(this).prop('checked', true);
-					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
-
-				})
-			} else {
-				$('.checkbox_sel_fleet').each(function () {
-					$(this).prop('checked', false);
-					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
-
-				})
-			}
-		});
 
 		$(document).on('click', '.checkbox_sel_fleet', function () {
+
+			$('.checkbox_sel_fleet').each(function () {
+				$(this).prop('checked',false);
+				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
+			});
+
+			$(this).prop('checked', true);
+			$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
 			if ($(this).is(':checked')) {
 				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
 				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').trigger('click');

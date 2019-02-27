@@ -110,6 +110,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		background: #fff;
 	}
 
+	@media screen and (min-width: 1350px) {
+		.custon_style {
+			width: 11.33333% !important;
+			flex: 0 0 11.33333% !important;
+		}
+	}
 </style>
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -303,7 +309,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-2 p-0 col-sm-2-custom">
+		<div class="col-sm-2 p-0 custon_style">
 			<form>
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
@@ -421,20 +427,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			</div>
 			<div class="card mt-3">
 				<div class="card-header"><?= lang('information') ?></div>
-				<div id="car_info" class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;">
-
-
-				</div>
+				<div id="car_info" class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
 		<div class="col-sm-10">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
-			<div id="fleet_info">
-
-
-			</div>
-
+			<div id="fleet_info"></div>
 		</div>
 	</div>
 </div>
@@ -703,7 +702,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(window).on('load', function () {
 			if ($(window).width() > 1349) {
 				$('.rem_right').addClass('big_r');
-				$('.col-sm-2-custom').css('width','11.33333% !important');
 			} else {
 				$('.rem_right').addClass('small_r');
 			}

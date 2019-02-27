@@ -111,9 +111,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	}
 
 	@media screen and (min-width: 1350px) {
-		.custon_style {
+		.custom_style {
 			width: 11.33333% !important;
 			flex: 0 0 11.33333% !important;
+		}
+		.custom_style2{
+			width: 88.33333% !important;
+			flex: 0 0 88.33333% !important;
+			max-width: 88.33333% !important;
 		}
 	}
 </style>
@@ -309,7 +314,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-sm-2 p-0 custon_style">
+		<div class="col-sm-2 p-0 custom_style">
 			<form>
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
@@ -430,7 +435,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<div id="car_info" class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
-		<div class="col-sm-10">
+		<div class="col-sm-10 custom_style2">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
 			<div id="fleet_info"></div>

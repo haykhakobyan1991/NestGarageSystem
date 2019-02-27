@@ -438,12 +438,18 @@ $lang['hour'] = 'Ժամ';
 $lang['Level_At_The_Beginning'] = 'Սկզբնական մակարդակ';
 $lang['total_consumption'] = 'Ընդհանուր Սպառում';
 $lang['number_charges'] = 'Լիցքավորումների քանակ';
-$lang['engine_consumption'] = 'Շարժիչի ծաղսը';
+$lang['engine_consumption'] = 'Լիցքավորումների ծավալը';
 
 $lang['sos_alarms'] = 'SOS ազդանշանները';
 $lang['on_road'] = 'Շարժման մեջ';
 $lang['stop'] = 'Կանգնած';
 $lang['trajectory_speed'] = 'Հետագիծ/Արագություն';
+$lang['levelFinish'] = 'Մակարդակը Վերջում';
+$lang['middle'] = 'Միջին';
+$lang['drain_counter'] = 'Արտահոսքի քանակ';
+$lang['drain'] = 'Արտահոսքի չափ';
+
+
 
 
 

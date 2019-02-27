@@ -16,32 +16,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <![endif]-->
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-
-<style>
-	div#example11_wrapper {
-		margin-top: 0px !important;
-	}
-
-	.dataTables_info {
-		display: none !important;
-	}
-
-	#example11_wrapper {
-		padding: 0 !important;
-	}
-
-	#example11_wrapper div.row:nth-child(2) div.col-sm-12 {
-		padding: 5px !important;
-	}
-
-	.dataTables_scrollBody {
-		background: #fff;
-	}
-
-	.border-td-danger {
-		border: 1px #dc3545 solid !important;
-	}
-</style>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/fuel.css"/>
 
 <!-- Settings Modal Start -->
 
@@ -96,8 +71,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						</div>
 					</div>
 					<hr class="my-2">
-
-
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group row mb-0">
@@ -210,8 +183,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="add_staff" type="button"
-						class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
+				<button id="add_staff" type="button" class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 				</button>
 				<button id="load" class="btn btn-sm btn-success d-none "><img
 						style="height: 20px;margin: 0 auto;display: block;text-align: center;"
@@ -327,96 +299,48 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		<div class="col-sm-10">
 
-<!--			<div class="container-fluid">-->
-<!--				<div class="row">-->
-<!--					<div class="col-sm-12">-->
-<!--						<span>Zoom</span>-->
-<!---->
-<!--						<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
-<!---->
-<!--							<label class="btn btn-outline-secondary active">-->
-<!--								<input type="radio" name="options" id="option1" autocomplete="off" checked> 1m-->
-<!--							</label>-->
-<!---->
-<!--							<label class="btn btn-outline-secondary">-->
-<!--								<input type="radio" name="options" id="option2" autocomplete="off"> 3m-->
-<!--							</label>-->
-<!---->
-<!--							<label class="btn btn-outline-secondary">-->
-<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 6m-->
-<!--							</label>-->
-<!---->
-<!--							<label class="btn btn-outline-secondary">-->
-<!--								<input type="radio" name="options" id="option3" autocomplete="off"> YTD-->
-<!--							</label>-->
-<!---->
-<!--							<label class="btn btn-outline-secondary">-->
-<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 1y-->
-<!--							</label>-->
-<!---->
-<!--							<label class="btn btn-outline-secondary">-->
-<!--								<input type="radio" name="options" id="option3" autocomplete="off"> All-->
-<!--							</label>-->
-<!--						</div>-->
-<!---->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
+			<!--			<div class="container-fluid">-->
+			<!--				<div class="row">-->
+			<!--					<div class="col-sm-12">-->
+			<!--						<span>Zoom</span>-->
+			<!---->
+			<!--						<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary active">-->
+			<!--								<input type="radio" name="options" id="option1" autocomplete="off" checked> 1m-->
+			<!--							</label>-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary">-->
+			<!--								<input type="radio" name="options" id="option2" autocomplete="off"> 3m-->
+			<!--							</label>-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary">-->
+			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 6m-->
+			<!--							</label>-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary">-->
+			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> YTD-->
+			<!--							</label>-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary">-->
+			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 1y-->
+			<!--							</label>-->
+			<!---->
+			<!--							<label class="btn btn-outline-secondary">-->
+			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> All-->
+			<!--							</label>-->
+			<!--						</div>-->
+			<!---->
+			<!--					</div>-->
+			<!--				</div>-->
+			<!--			</div>-->
 
 			<div id="container" class="mt-2"></div>
-			<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2">
-				<div class="container">
-					<h5><?= lang('get_information') ?></h5>
-					<div class="row pb-2">
 
-						<div class="col-sm-4">
 
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<label><?= lang('from') ?> ։ </label><span>  02-12-2018 / 18:30</span><br>
-									<label><?= lang('to') ?> ։ </label><span>  22-12-2018 / 17:30</span>
-								</div>
-							</div>
+			<div id="fleet_info"></div>
 
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<p>Maz_1</p>
-								</div>
-							</div>
 
-						</div>
-
-						<div class="col-sm-4">
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item"><?= lang('Level_At_The_Beginning') ?> - 117.0706 l
-										</li>
-										<li class="list-group-item"><?= lang('total_consumption') ?> - ***</li>
-										<li class="list-group-item"><?= lang('number_charges') ?> - ***</li>
-										<li class="list-group-item"><?= lang('engine_consumption') ?> - 21.61 l - ***
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-4">
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item">Level at the end - 97.8844 l</li>
-										<li class="list-group-item">Average consumption - ***</li>
-										<li class="list-group-item">Number of discharges - ***</li>
-										<li class="list-group-item">Volume of discharges - ***</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
 		</div>
 
 
@@ -430,7 +354,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		$(document).on('click', '.checkbox_sel_fleet', function () {
 
 			$('.checkbox_sel_fleet').each(function () {
-				$(this).prop('checked',false);
+				$(this).prop('checked', false);
 				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
 			});
 
@@ -624,7 +548,58 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					$('#generate').removeClass('d-none');
 					$('#load1').addClass('d-none');
 
+					$('#fleet_info').html(data.message.fleet_info);
 
+					$('#container').highcharts({
+						chart: {
+							zoomType: 'x'
+						},
+						title: {
+							text: 'Fuel'
+						},
+						xAxis: {
+							categories: data.message.date_array,
+						},
+						yAxis: {
+							title: {
+								text: 'Exchange rate'
+							}
+						},
+						legend: {
+							enabled: false
+						},
+						plotOptions: {
+							area: {
+								fillColor: {
+									linearGradient: {
+										x1: 0,
+										y1: 0,
+										x2: 0,
+										y2: 1
+									},
+									stops: [
+										[0, Highcharts.getOptions().colors[0]],
+										[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+									]
+								},
+								marker: {
+									radius: 2
+								},
+								lineWidth: 1,
+								states: {
+									hover: {
+										lineWidth: 1
+									}
+								},
+								threshold: null
+							}
+						},
+
+						series: [{
+							name: '',
+							data: data.message.fleet_chart
+						}]
+					});
 
 				} else {
 
@@ -679,60 +654,57 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	});
 
-
-	$(function () {
-		$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=usdeur.json&callback=?', function (data) {
-			console.log(data);
-			$('#container').highcharts({
-				chart: {
-					zoomType: 'x'
-				},
+	$(document).ready(function () {
+		$('#container').highcharts({
+			chart: {
+				zoomType: 'x'
+			},
+			title: {
+				text: 'Fuel'
+			},
+			xAxis: {
+				categories: [],
+			},
+			yAxis: {
 				title: {
-					text: 'Fuel'
-				},
-				xAxis: {
-					type: 'datetime'
-				},
-				yAxis: {
-					title: {
-						text: 'Exchange rate'
-					}
-				},
-				legend: {
-					enabled: false
-				},
-				plotOptions: {
-					area: {
-						fillColor: {
-							linearGradient: {
-								x1: 0,
-								y1: 0,
-								x2: 0,
-								y2: 1
-							},
-							stops: [
-								[0, Highcharts.getOptions().colors[0]],
-								[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-							]
+					text: 'Exchange rate'
+				}
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				area: {
+					fillColor: {
+						linearGradient: {
+							x1: 0,
+							y1: 0,
+							x2: 0,
+							y2: 1
 						},
-						marker: {
-							radius: 2
-						},
-						lineWidth: 1,
-						states: {
-							hover: {
-								lineWidth: 1
-							}
-						},
-						threshold: null
-					}
-				},
+						stops: [
+							[0, Highcharts.getOptions().colors[0]],
+							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+						]
+					},
+					marker: {
+						radius: 2
+					},
+					lineWidth: 1,
+					states: {
+						hover: {
+							lineWidth: 1
+						}
+					},
+					threshold: null
+				}
+			},
 
-				series: [{
-					name: 'USD to EUR',
-					data: data
-				}]
-			});
+			series: [{
+				name: '',
+				data: []
+			}]
 		});
-	});
+	})
+
 </script>

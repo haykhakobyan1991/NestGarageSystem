@@ -10,18 +10,11 @@
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-
-
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
 <!--<script type="text/javascript" src="--><?//= base_url('assets/js/ymap.js') ?><!--"></script>-->
-
-
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>

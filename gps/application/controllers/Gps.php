@@ -832,6 +832,10 @@ class Gps extends MX_Controller {
 				gps.\"long\",
 				gps.\"speed\",
 				gps.\"course\",
+				CONCAT_WS(' ',
+					gps.\"date\",
+					gps.\"time\"
+				) datetime,
 				gps.\"time\",
 				gps.\"date\",
 				gps.\"imei\",
@@ -849,6 +853,10 @@ class Gps extends MX_Controller {
 		$result = $query->result_array();
 
 		$new_result = array();
+		$date_array = array();
+		//date_timestamp_get
+
+
 
 		$tmp = 0;
 		$_tmp = 1;
@@ -864,8 +872,29 @@ class Gps extends MX_Controller {
 		$refueling = 0;
 		$refueling_counter = 0;
 
-
+		$fleet = array();
+		$_imei = '';
 		foreach ($result as $row) {
+			$date = new DateTime($row['datetime']);
+
+
+			$new_result[] = array(
+				(float)$row['fuel']
+			);
+
+			$date_array[] = array(
+				$date->format('Y-m-d H:i:s')
+			);
+
+
+
+
+
+			if($_imei != $row['imei']) {
+				$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
+				$fleet = json_decode($fl, true);
+			}
+			$_imei = $row['imei'];
 
 			if ($tmp == 0) {
 				$levelStart = (float)$row['fuel'];
@@ -892,22 +921,69 @@ class Gps extends MX_Controller {
 
 
 
-		echo 'Уровень в начале периода '.$levelStart.br();
-		echo 'Уровень в конце периода '.$levelFinish.br();
-		echo 'Общий расход топлива '.$avg_all.br();
-		echo 'Количество заправок '.$refueling_counter.br();
-		echo 'Количество сливов '.$drain_counter.br();
-		echo 'Объём заправок '.$refueling.br();
-		echo 'Объём сливов '.$drain.br();
-		echo 'Средний '.$avg_all/$avg_counter.br();
+//		echo 'Уровень в начале периода '.$levelStart.br();
+//		echo 'Уровень в конце периода '.$levelFinish.br();
+//		echo 'Общий расход топлива '.$avg_all.br();
+//		echo 'Количество заправок '.$refueling_counter.br();
+//		echo 'Количество сливов '.$drain_counter.br();
+//		echo 'Объём заправок '.$refueling.br();
+//		echo 'Объём сливов '.$drain.br();
+//		echo 'Средний '.$avg_all/$avg_counter.br();
+
+		$fleet_info =  '<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2">
+				<div class="container">
+					<h5>'.$fleet['brand_model'] .'</h5>
+					<div class="row pb-2">
+						<div class="col-sm-4">
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<label>'.lang('from').' - </label><span>'.$from.'</span><br>
+									<label>'.lang('to') .' - </label><span>'.$to.'</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item">'.lang('Level_At_The_Beginning') .' - '.$levelStart.br().'
+										</li>
+										<li class="list-group-item">'.lang('total_consumption') .' - '.$avg_all.'</li>
+										<li class="list-group-item">'. lang('number_charges') .' - '.$refueling_counter.'</li>
+										<li class="list-group-item">'.lang('engine_consumption') .' - '.$refueling_counter.'</li>
+										<li class="list-group-item">'.lang('drain') .' - '.$drain.'</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-4">
+							<div class="card mt-3">
+								<div class="card-body text-justify">
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item">'.lang('levelFinish').' - '.$levelFinish.'</li>
+										<li class="list-group-item">'.lang('middle').' - '.$avg_all/$avg_counter.'</li>
+										<li class="list-group-item">'.lang('drain_counter').' - '.$drain_counter.'</li>
+										<li class="list-group-item">'.lang('drain').' - '.$drain.'</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>';
 
 
-		// $this->pre($result);
+
+		// $this->pre($new_result);
 
 
 		if ($result){
 			$messages['success'] = 1;
-			$messages['message']['imei'] = $new_result;
+			$messages['message']['fleet_info'] = $fleet_info;
+			$messages['message']['fleet_chart'] = $new_result;
+			$messages['message']['date_array'] = $date_array;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = 'Error';

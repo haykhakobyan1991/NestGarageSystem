@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+		type="text/javascript"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
@@ -19,64 +20,86 @@
 	body {
 		height: 100%;
 	}
+
 	body {
 		overflow: hidden;
 	}
+
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
 	}
+
 	.dropdown-menu {
 		padding: 0;
 	}
+
 	.dropdown-menu a:last-child {
 		display: none;
 		top: 55px;
 		left: -15px;
 	}
+
 	.dataTables_filter label {
 		font-size: 0px !important;
 	}
+
 	#example11_filter label input {
 		height: 30px;
 	}
+
 	#example11_filter {
 		height: 37px;
 	}
+
 	td {
 		font-size: 11px !important;
 	}
+
 	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
 		color: #6c757d !important;
 	}
+
 	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
 		color: #6c757d !important;
 	}
+
 	.border-5 {
 		border-width: 5px !important;
 	}
+
 	.zui-splitter-separator {
 		z-index: 1 !important;
 	}
+
 	.splitter-west {
 	}
+
 	.splitter-east {
 		width: 100%;
 	}
+
 	.dt-button-collection.dropdown-menu {
 		left: -100px !important;
 	}
+
 	a.dt-button.dropdown-item.buttons-columnVisibility {
 		color: #fff !important;
 		background: #8e8f90 !important;
 	}
+
 	a.dt-button.dropdown-item.buttons-columnVisibility.active {
 		color: #8e8f90 !important;
 		background: #fff !important;
 	}
+
 	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
-	td{text-align: center !important;}
+
+	td {
+		text-align: center !important;
+	}
+
 	div#example11_wrapper {
 		margin-top: -49px !important;
 	}
@@ -408,20 +431,10 @@
 	</div>
 </div>
 <!-- Delete modal End -->
+<div id="coordinate_2" class="d-none"></div>
 
-
+</div>
 <script>
-
-	// $('table tr th:nth-child(2)').click(function () {
-	//
-	// 	if (!$(this).hasClass('az')) {
-	// 		$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
-	// 		$(this).addClass('az');
-	// 	} else {
-	// 		$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-up"></i>');
-	// 		$(this).removeClass('az');
-	// 	}
-	// });
 
 
 	var table = $('#example11').DataTable({
@@ -470,32 +483,23 @@
 		function init_all() {
 			var myPlacemark,
 				myMap_show_all_cars_onChange = new ymaps.Map("map", {
-				center: [55.76, 37.64],
-				zoom: 2
-			}, {suppressMapOpenBlock: true});
+					center: [55.76, 37.64],
+					zoom: 2
+				}, {suppressMapOpenBlock: true});
 
-			address = [];
+
 			$('.show_car').each(function () {
 
 				coordinate = $(this).data('coordinate');
 				array = JSON.parse("[" + coordinate + "]");
 
 
-				ymaps.geocode(coordinate).then(function (res) {
-					var firstGeoObject = res.geoObjects.get(0);
-					address.push(firstGeoObject.getLocalities().length ? firstGeoObject.getAddressLine() : firstGeoObject.getAdministrativeAreas());
-
-				});
-
-			//	setTimeout(function () {
-					console.log(address);
-			//	}, 3000)
-
 
 				var carCoordinate = '';
 
 				latitude = array[0];
 				longitude = array[1];
+
 
 				carCoordinate = new ymaps.Placemark([latitude, longitude], {
 					balloonContentHeader: "<p><?=lang('basic_information')?></p>",
@@ -512,10 +516,18 @@
 					iconImageOffset: [-10, -35]
 				});
 
+				ymaps.geocode(coordinate).then(function (res) {
+
+					var firstGeoObject = res.geoObjects.get(0);
+					address = firstGeoObject.getLocalities().length ? firstGeoObject.getAddressLine() : firstGeoObject.getAdministrativeAreas();
+					coordinate_2 += '<span class="address_span">'+address+'</span>';
+					$('#coordinate_2').html(coordinate_2);
+
+				});
+
 				myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-
 
 			});
 			var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;

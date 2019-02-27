@@ -597,22 +597,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 	$(document).on('click', '.generate', function (e) {
-		// ajax time
-		var xsht = 0;
-		setInterval(function () {
-			xsht++;
-		}, 10);
-		//ajax time end
-
-		var me = $(this);
-		e.preventDefault();
-
-		if (me.data('requestRunning')) {
-			return;
-		}
-
-		me.data('requestRunning', true);
-
 
 		var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_fuel') ?>';
 
@@ -689,13 +673,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
-				$('#ajax_time').html('Ajax time - ' + xsht / 100 + 's');
-				$('#ajax_time').removeClass('d-none');
-				setTimeout(function () {
-					$('#ajax_time').addClass('d-none');
-				}, 4000);
-
-				me.data('requestRunning', false);
 			}
 		});
 

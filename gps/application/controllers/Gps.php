@@ -841,7 +841,7 @@ class Gps extends MX_Controller {
 			WHERE gps.\"date\" >= '".$from."'
 			 AND gps.\"date\" <= '".$to."'
 			 ".$add_sql."
-		
+			ORDER BY id desc
 		";
 
 		$query = $this->db->query($sql);
@@ -850,149 +850,59 @@ class Gps extends MX_Controller {
 
 		$new_result = array();
 
-		$zapravkaCount = 0;
-		$zapravkaCounter = 0;
-		$slivCount = 0;
-		$slivCounter = 0;
+		$tmp = 0;
+		$_tmp = 1;
+		$step = -0.9;
+		$array_length = count($result);
 
-		$zapravkaObyom = 0;
-		$slivObyom = 0;
+		$avg_all = 0;
+		$avg_counter = 0;
 
-		$lastUroven = -1;
+		$drain = 0;
+		$drain_counter = 0;
 
-		$totalDistance = 0;
-		$bernvac = 0;
+		$refueling = 0;
+		$refueling_counter = 0;
 
-		$ancumnerCount = 0;
 
-		$R = 6371;
-
-		$a = 0;
 		foreach ($result as $row) {
 
-//			if(isset($lastButton5)){
-//
-//				if(($row["button_5"]==1 && $lastButton5==0) || ($row["button_5"]==0 && $lastButton5==1)){
-//
-//					$ancumnerCount++;
-//
-//				}
-//
-//			}
-
-//			$lastButton5=$row["button_5"];
-
-			if (isset($last)) {
-
-//				if($row["button_6"]==1 && $last["button_6"]==0){
-//					$bernvac++;
-//				}
-
-				$lat1 = $last["lat"];
-				$lon1 = $last["long"];
-				$lat2 = $row["lat"];
-				$lon2 = $row["long"];
-
-				$dd = acos(sin($lat1) * sin($lat2) + cos($lat1) * cos($lat2) * cos($lon2 - $lon1)) * $R;
-
-				if (strtolower($dd) == "nan") {
-					$dd = 0;
-				}
-
-				$totalDistance += $dd;
+			if ($tmp == 0) {
+				$levelStart = (float)$row['fuel'];
 			}
 
-			$last = $row;
+			$levelFinish = (float)$row['fuel'];
 
-
-			if ($a == 0) {
-				$urovenStart = (float)$row["adc_1"] * $carData["coific_1"];
-				$uroven2Start = (float)$row["adc_2"];
+			if($_tmp < $array_length) {
+				if(((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
+					$avg_all += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
+					$avg_counter++;
+				} elseif((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step)) {
+					$drain += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
+					$drain_counter++;
+				} else  {
+					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);;
+					$refueling_counter++;
+				}
 			}
 
-			$urovenFinish = (float)$row["adc_1"] * $carData["coific_1"];
-			$uroven2Finish = (float)$row["adc_2"];
-
-
-			if ($lastUroven != -1) {
-
-				if ($lastUroven - (float)$row["adc_1"] >= 1) {
-					if ($slivCounter == 0) {
-						$slivCount++;
-						$slivStart = $lastUroven * $carData["coific_1"];
-					}
-					$slivCounter = 1;
-				} else {
-					if ($slivCounter == 1) {
-						$slivObyom += $slivStart - ($lastUroven * $carData["coific_1"]);
-					}
-					$slivCounter = 0;
-				}
-
-				if ((float)$row["adc_1"] - $lastUroven >= 1) {
-					if ($zapravkaCounter == 0) {
-						$zapravkaCount++;
-						$zapravkaStart = $lastUroven;
-					}
-					$zapravkaCounter = 1;
-				} else {
-					if ($zapravkaCounter == 1) {
-						$zapravkaObyom += ($lastUroven * $carData["coific_1"]) - $zapravkaStart;
-					}
-					$zapravkaCounter = 0;
-				}
-
-			}
-
-			$lastUroven = (float)$row["adc_1"];
-
-
-			$a++;
-
+			$tmp++;
+			$_tmp++;
 		}
 
-//
-//		$table = '<table id="example" class="table table-striped table-borderless w-100 dataTable no-footer">
-//					<thead class="thead_tables">
-//						<tr>
-//							<th class="table_th">'.lang('fleet').'</th>
-//							<th class="table_th">'.lang('type').'</th>
-//							<th class="table_th">'.lang('vehicle').'</th>
-//							<th class="table_th">'.lang('price').' (AMD)</th>
-//						</tr>
-//					</thead>
-//					<tbody>';
-//
-//		foreach ($result as $value) {
-//
-//			$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
-//			$fleet =  json_decode($fl, true);
-//
-//			$table .= '<tr>';
-//			$table .= '<td class="border">'.$fleet.'</td>';
-//			$table .= '<td class="border">'.lang($fleet).'</td>';
-//			$table .= '<td class="border">'.$fleet.'</td>';
-//			$table .= '<td class="price border">'.$fleet.'</td>';
-//			$table .= '</tr>';
-//
-//
-//			$new_result[] = array();
-//
-//		}
-//
-//		$table .= '</tbody>
-//		</table>';
 
 
+		echo 'Уровень в начале периода '.$levelStart.br();
+		echo 'Уровень в конце периода '.$levelFinish.br();
+		echo 'Общий расход топлива '.$avg_all.br();
+		echo 'Количество заправок '.$refueling_counter.br();
+		echo 'Количество сливов '.$drain_counter.br();
+		echo 'Объём заправок '.$refueling.br();
+		echo 'Объём сливов '.$drain.br();
+		echo 'Средний '.$avg_all/$avg_counter.br();
 
 
-
-
-
-
-
-
-		$this->pre($result);
+		// $this->pre($result);
 
 
 		if ($result){

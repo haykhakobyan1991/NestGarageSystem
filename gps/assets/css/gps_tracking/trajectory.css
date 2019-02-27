@@ -75,7 +75,7 @@ div#example11_wrapper {
 	background: #fff;
 }
 
-@media screen and (max-width: 1349px){
+@media only screen and (max-width: 1349px){
 	.custom_style {
 		width: 11.33333% !important;
 		flex: 0 0 11.33333% !important;

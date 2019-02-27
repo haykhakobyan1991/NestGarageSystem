@@ -193,19 +193,18 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 								href="#"
 								data-toggle="tooltip" data-placement="top"
 								title="<?= lang('fuel') ?>">
-								<img
-									src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
+								<img src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
 							</button>
 						</a>
-						<button
-							style="color:#00000080 !important;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
-
-							href="#"
-							data-toggle="tooltip" data-placement="top"
-							title="<?= lang('engine') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
-						</button>
+<!--						<button-->
+<!--							style="color:#00000080 !important;max-height: 40px;"-->
+<!--							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "-->
+<!---->
+<!--							href="#"-->
+<!--							data-toggle="tooltip" data-placement="top"-->
+<!--							title="--><?//= lang('engine') ?><!--">-->
+<!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/engine.svg"/>-->
+<!--						</button>-->
 						<button
 							style="color:#00000080 !important;max-height: 40px;"
 							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
@@ -228,8 +227,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							href="#"
 							data-toggle="tooltip" data-placement="top"
 							title="<?= lang('notification') ?>">
-							<img
-								src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
+							<img src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
 						</button>
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
@@ -258,10 +256,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							<option>20</option>
 							<option>25</option>
 						</select>
-
-
 					</div>
-
 					<div class="navbar-nav ml-auto">
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
 							<button

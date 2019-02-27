@@ -434,12 +434,16 @@ $lang['hour'] = 'Час';
 $lang['Level_At_The_Beginning'] = 'Начальный уровень';
 $lang['total_consumption'] = 'Общее Потребление';
 $lang['number_charges'] = 'Счет заряда';
-$lang['engine_consumption'] = 'Расход двигателя';
+$lang['engine_consumption'] = 'Объём заправок';
 $lang['sos_alarms'] = 'SOS тревоги';
 $lang['data_time'] = 'ден/Время';
 $lang['on_road'] = 'В движении';
 $lang['stop'] = 'Остановка';
 $lang['trajectory_speed'] = 'Траекториа/Скорость';
+$lang['levelFinish'] = 'Уровень в конце периода';
+$lang['middle'] = 'Средний';
+$lang['drain_counter'] = 'Количество сливов';
+$lang['drain'] = 'Объём сливов';
 
 $lang['seeAll'] = 'Увидеть все';
 

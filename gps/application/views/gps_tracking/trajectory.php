@@ -607,9 +607,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		$(window).on('load', function () {
 			if ($(window).width() > 1349) {
+				console.log('hello')
 				$('.rem_right').addClass('big_r');
+				$('.custom_style').css('width','width: 11.33333% !important');
+				$('.custom_style').css('flex','0 0 11.33333% !important');
+				$('.custom_style2').css('width','88.33333% !important');
+				$('.custom_style2').css('flex','0 0 88.33333% !important');
+				$('.custom_style2').css('max-width','88.33333% !important');
 			} else {
 				$('.rem_right').addClass('small_r');
+				console.log('bye')
 			}
 		});
 

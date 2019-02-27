@@ -94,10 +94,16 @@
 			<div class="col-sm-12 mt-2">
 
 				<div class="form-group row ml-2">
-					<div class="car_icon col-sm-6" style="padding-top: 10px;">
+					<div class="car_icon col-sm-4" style="padding-top: 7px;">
 						<span class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
 					</div>
+					<div id="seeAll" class="col-sm-4" style="padding-top: 7px;">
+						<span class="count_cars_in_table"><?= lang('seeAll') ?></span>
+						<img style="cursor: pointer" src="<?= base_url('assets/images/gps_tracking/eye.svg') ?>"/>
+					</div>
 				</div>
+
+
 
 
 				<table id="example11" class="table table-bordered" style="width:100%">
@@ -133,10 +139,16 @@
 					$counter = 0;
 					$echoDateTime = '';
 					$_echoDateTime = '';
+
+					$unread = 0;
 					foreach ($result as $row) {
 						$counter++;
 						if ($counter == 1) {
 							$_datetime = new DateTime($row['datetime']);
+						}
+
+						if($row['sos_visibility'] == '-1') {
+							$unread++;
 						}
 
 						$token = $this->session->token;
@@ -153,7 +165,7 @@
 						$interval = $datetime1->diff($_datetime);
 						$elapsed = $interval->format('%i');
 
-						if ($elapsed >= 10) {
+						if ($elapsed >= 5) {
 							$echoDateTime = $row['datetime'];
 							$_datetime = new DateTime($row['datetime']);
 						}
@@ -523,7 +535,28 @@
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
 
+
+		$('#seeAll').click(function () {
+			$('#map').html('');
+
+			ymaps.ready(init_all);
+		});
+
 		$('.show_car').click(function () {
+
+			if($(this).children('i').hasClass('fa-envelope')) {
+				$(this).children('i').removeClass('fa-envelope');
+				$(this).children('i').removeClass('text-success');
+				$(this).children('i').addClass('fa-envelope-open');
+				$(this).children('i').addClass('text-warning');
+			} else {
+				$(this).children('i').addClass('fa-envelope');
+				$(this).children('i').addClass('text-success');
+				$(this).children('i').removeClass('fa-envelope-open');
+				$(this).children('i').removeClass('text-warning');
+			}
+
+
 
 			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
 			car_nummber = $(this).parent('tr').children('td:nth-child(2)').text();

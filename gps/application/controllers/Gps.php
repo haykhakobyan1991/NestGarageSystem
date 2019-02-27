@@ -135,6 +135,9 @@ class Gps extends MX_Controller {
 			}
 		}
 
+
+
+
 //		$this->pre($new_result);
 //		$this->pre($new_result2);
 
@@ -192,6 +195,7 @@ class Gps extends MX_Controller {
 				gps.\"long\",
 				gps.\"speed\",
 				gps.\"course\",
+				gps.\"sos_visibility\",
 				CONCAT_WS(' ',
 					gps.\"date\",
 					gps.\"time\"

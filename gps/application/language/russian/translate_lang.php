@@ -441,3 +441,5 @@ $lang['on_road'] = 'В движении';
 $lang['stop'] = 'Остановка';
 $lang['trajectory_speed'] = 'Траекториа/Скорость';
 
+$lang['seeAll'] = 'Увидеть все';
+

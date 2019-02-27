@@ -445,6 +445,8 @@ $lang['on_road'] = 'Շարժման մեջ';
 $lang['stop'] = 'Կանգնած';
 $lang['trajectory_speed'] = 'Հետագիծ/Արագություն';
 
+$lang['seeAll'] = 'Տեսնել բոլորը';
+
 
 
 

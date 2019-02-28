@@ -952,41 +952,40 @@ class Gps extends MX_Controller
 			$_tmp++;
 		}
 
-
-//		echo 'Уровень в начале периода '.$levelStart.br();
-//		echo 'Уровень в конце периода '.$levelFinish.br();
-//		echo 'Общий расход топлива '.$avg_all.br();
-//		echo 'Количество заправок '.$refueling_counter.br();
-//		echo 'Количество сливов '.$drain_counter.br();
-//		echo 'Объём заправок '.$refueling.br();
-//		echo 'Объём сливов '.$drain.br();
-//		echo 'Средний '.$avg_all/$avg_counter.br();
+		//echo 'Уровень в начале периода '.$levelStart.br();
+		//echo 'Уровень в конце периода '.$levelFinish.br();
+		//echo 'Общий расход топлива '.$avg_all.br();
+		//echo 'Количество заправок '.$refueling_counter.br();
+		//echo 'Количество сливов '.$drain_counter.br();
+		//echo 'Объём заправок '.$refueling.br();
+		//echo 'Объём сливов '.$drain.br();
+		//echo 'Средний '.$avg_all/$avg_counter.br();
 
 		$fleet_info = '<table id="example12" class="table table-striped table-borderless w-100 dataTable no-footer">
 	<thead>
 		<tr>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("fleets").'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("Level_At_The_Beginning").'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('total_consumption').'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("number_charges").'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('engine_consumption').'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('drain').'</th>
-			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('levelFinish').'</th>
-			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">'.lang('middle').'</th>
-			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">'.lang('drain_counter').'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang("fleets") . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang("Level_At_The_Beginning") . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('total_consumption') . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang("number_charges") . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('engine_consumption') . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('drain') . '</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('levelFinish') . '</th>
+			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">' . lang('middle') . '</th>
+			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">' . lang('drain_counter') . '</th>
 		</tr>
 	</thead>
 	<tbody class="example_12_tbody">
 		<tr>
-			<td style="text-align: center;">'.$fleet['brand_model'].'</td>
-			<td style="text-align: center;">'.$levelStart.'</td>
-			<td style="text-align: center;">'.$avg_all.'</td>
-			<td style="text-align: center;">'.$refueling_counter.'</td>
-			<td style="text-align: center;">'.$refueling_counter.'</td>
-			<td style="text-align: center;">'.$drain.'</td>
-			<td style="text-align: center;">'.$levelFinish.'</td>
-			<td style="text-align: center;">'.$avg_all / $avg_counter.'</td>
-			<td style="text-align: center;">'.$drain_counter.'</td>
+			<td style="text-align: center;">' . $fleet['brand_model'] . '</td>
+			<td style="text-align: center;">' . $levelStart . '</td>
+			<td style="text-align: center;">' . $avg_all . '</td>
+			<td style="text-align: center;">' . $refueling_counter . '</td>
+			<td style="text-align: center;">' . $refueling_counter . '</td>
+			<td style="text-align: center;">' . $drain . '</td>
+			<td style="text-align: center;">' . $levelFinish . '</td>
+			<td style="text-align: center;">' . $avg_all / $avg_counter . '</td>
+			<td style="text-align: center;">' . $drain_counter . '</td>
 		</tr>
 	</tbody>
 </table>';

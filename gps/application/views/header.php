@@ -305,4 +305,8 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 		$(function () {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
+
+		$('.print-btn').click(function () {
+			window.print();
+		})
 	</script>

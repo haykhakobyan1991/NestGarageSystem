@@ -532,7 +532,7 @@
 							var newContent = res.geoObjects.get(0) ?
 								res.geoObjects.get(0).properties.get('name') :
 								'Couldn\'t detect address.';
-							carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !importnat;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+							carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
 						});
 
 				});
@@ -620,7 +620,7 @@
 						var newContent = res.geoObjects.get(0) ?
 							res.geoObjects.get(0).properties.get('name') :
 							'Couldn\'t detect address.';
-						carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !importnat;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+						carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
 					});
 
 				});

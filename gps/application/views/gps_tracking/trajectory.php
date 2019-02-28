@@ -9,7 +9,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/trajectory.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+		type="text/javascript"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
@@ -333,7 +334,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			</div>
 			<div class="card mt-3">
 				<div class="card-header"><?= lang('information') ?></div>
-				<div id="car_info" class="card-body text-justify p-1" style="max-height: 300px;overflow-y: scroll;"></div>
+				<div id="car_info" class="card-body text-justify p-1"
+					 style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
 		<div class="col-sm-10 custom_style2">
@@ -869,8 +871,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										})
 
 
-
-
 										myGeoObject_start = new ymaps.GeoObject({
 											geometry: {
 												type: "Point",
@@ -931,7 +931,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<p><?=lang("engine")?>: ' + (value.engine_power == 1 ? '<span class="ml-1 bg-danger" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' : '<span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>') + '</p>'
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
-												'<div style="transform:rotate({{options.rotate}}deg);">',
+												'<div class="qweqwe" style="transform:rotate({{options.rotate}}deg);">',
 												'{% include "default#image" %}',
 												'</div>'
 											].join('')),
@@ -1062,7 +1062,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												{
 													extend: 'excelHtml5',
 													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text(),
+													messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
 													autoWidth: true,
 													filename: 'trajectory',
 													footer: true,
@@ -1113,7 +1113,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												{
 													extend: 'excelHtml5',
 													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-													messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text()+",  <?=lang('type')?>:  <?=lang('trajectory_speed')?> ",
+													messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text() + ",  <?=lang('type')?>:  <?=lang('trajectory_speed')?> ",
 													autoWidth: true,
 													filename: 'trajectory',
 													exportOptions: {
@@ -1136,7 +1136,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									initDataTable();
 								}
 
-							}, xsht+3000);
+							}, xsht + 3000);
 
 
 							// //MultiRoute

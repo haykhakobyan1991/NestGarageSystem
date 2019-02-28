@@ -156,6 +156,8 @@
 					<tbody>
 
 					<?
+					$lng = $this->load->lng();
+
 					$_datetime = '';
 					$_imei = '';
 					$counter = 0;
@@ -176,7 +178,7 @@
 
 						$token = $this->session->token;
 						if ($_imei != $row['imei']) {
-							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
+							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
 							$fleet[$row['imei']] = json_decode($fl, true);
 						}
 						$_imei = $row['imei'];

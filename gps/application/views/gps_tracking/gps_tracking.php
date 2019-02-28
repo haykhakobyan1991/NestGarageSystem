@@ -118,7 +118,6 @@
 	<div class="panel-left splitter-west" id="mydiv">
 		<div class="row">
 			<div class="col-sm-12 m-2">
-
 				<div class="form-group row ml-2">
 					<div class="car_icon col-sm-2" style="padding-top: 10px;">
 						<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
@@ -164,7 +163,7 @@
 								data-toggle="modal"
 								data-target=".del_group_modal"
 								style="width: 20px;padding: 2px !important;">
-							<i class="custom_fas_trash fas fa-trash"></i>
+							 <i class="custom_fas_trash fas fa-trash"></i>
 
 					</div>
 				</div>
@@ -229,7 +228,7 @@
 						$imei = $val['imei'];
 					}
 
-
+					$i = 0;
 					foreach ($result_fleets as $fleets) :
 						?>
 
@@ -239,7 +238,7 @@
 								<span class="car_model"><?= $fleets['brand_model'] ?></span>
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
-							<td class="address_span">street 34/56</td>
+							<td class="address_span" data-address="<?=$i?>">street 34/56</td>
 							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
 							<td class="staff_span">
 								<span><?= $fleets['staff'] ?></span>
@@ -272,7 +271,9 @@
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 						</tr>
-					<? endforeach; ?>
+					<?
+					$i++;
+					endforeach; ?>
 					</tbody>
 				</table>
 
@@ -949,6 +950,9 @@
 							console.log(course)
 							array = JSON.parse("[" + coordinate + "]");
 
+							// Определяем адрес по координатам (обратное геокодирование).
+
+
 							var carCoordinate = '';
 
 							latitude = array[0];
@@ -998,7 +1002,7 @@
 
 
 			});
-
+			address_arr = [];
 			$('.show_car').each(function () {
 				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
@@ -1010,6 +1014,15 @@
 
 					latitude = array[0];
 					longitude = array[1];
+
+					ymaps.geocode(coordinate).then(function (res) {
+						var firstGeoObject = res.geoObjects.get(0);
+
+						address_arr.push(firstGeoObject.getAddressLine());
+
+					});
+
+
 
 					MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
@@ -1049,6 +1062,23 @@
 				}
 
 			});
+
+			setTimeout(function () {
+
+
+
+
+			//$.each(address_arr, function (e, val) {
+			 var e = 0;
+				$('.address_span').each(function () {
+					//alert(address_arr[e]);
+					$(this).html(address_arr[e]);
+					e++;
+				});
+
+			//});
+			}, 2500);
+
 			var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');

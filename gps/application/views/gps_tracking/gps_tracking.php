@@ -238,7 +238,7 @@
 								<span class="car_model"><?= $fleets['brand_model'] ?></span>
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
-							<td class="address_span" data-address="<?=$i?>">street 34/56</td>
+							<td class="address_span" data-address="<?=$i?>"></td>
 							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
 							<td class="staff_span">
 								<span><?= $fleets['staff'] ?></span>

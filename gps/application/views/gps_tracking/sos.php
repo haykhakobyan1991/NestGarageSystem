@@ -127,8 +127,6 @@
 				</div>
 
 
-
-
 				<table id="example11" class="table table-bordered" style="width:100%">
 					<thead>
 					<tr>
@@ -170,7 +168,7 @@
 							$_datetime = new DateTime($row['datetime']);
 						}
 
-						if($row['sos_visibility'] == '-1') {
+						if ($row['sos_visibility'] == '-1') {
 							$unread++;
 						}
 
@@ -443,7 +441,6 @@
 	</div>
 </div>
 <!-- Delete modal End -->
-<div id="coordinate_2" class="d-none"></div>
 
 </div>
 <script>
@@ -506,7 +503,6 @@
 				array = JSON.parse("[" + coordinate + "]");
 
 
-
 				var carCoordinate = '';
 
 				latitude = array[0];
@@ -518,8 +514,7 @@
 					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(1)').text() + "</a></span></p>" +
 						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').text() + "</span></p>" +
 						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(4)').text() + "</span></p>" +
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(3)').text() + "</span></p>" +
-						"<p class='mb-0'><?=lang('place')?>:<span id='address' class='ml-1'></span></p>",
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(3)').text() + "</span></p>",
 					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
@@ -528,14 +523,20 @@
 					iconImageOffset: [-10, -35]
 				});
 
-				ymaps.geocode(coordinate).then(function (res) {
+				carCoordinate.events.add('balloonopen', function (e) {
+					carCoordinate.properties.set('balloonContent', "Loading data...");
 
-					var firstGeoObject = res.geoObjects.get(0);
-					address = firstGeoObject.getLocalities().length ? firstGeoObject.getAddressLine() : firstGeoObject.getAdministrativeAreas();
-					coordinate_2 += '<span class="address_span">'+address+'</span>';
-					$('#coordinate_2').html(coordinate_2);
+						ymaps.geocode(carCoordinate.geometry.getCoordinates(), {
+							results: 1
+						}).then(function (res) {
+							var newContent = res.geoObjects.get(0) ?
+								res.geoObjects.get(0).properties.get('name') :
+								'Couldn\'t detect address.';
+							carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !importnat;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+						});
 
 				});
+
 
 				myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
@@ -556,18 +557,19 @@
 
 		$('.show_car').click(function () {
 
-			if($(this).children('i').hasClass('fa-envelope')) {
+			if ($(this).children('i').hasClass('fa-envelope')) {
 				$(this).children('i').removeClass('fa-envelope');
 				$(this).children('i').removeClass('text-success');
 				$(this).children('i').addClass('fa-envelope-open');
+				$(this).addClass('envelope_open');
 				$(this).children('i').addClass('text-warning');
 			} else {
 				$(this).children('i').addClass('fa-envelope');
 				$(this).children('i').addClass('text-success');
 				$(this).children('i').removeClass('fa-envelope-open');
+				$(this).removeClass('envelope_open');
 				$(this).children('i').removeClass('text-warning');
 			}
-
 
 
 			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
@@ -600,14 +602,27 @@
 					balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + car_name + "</a></span></p>" +
 						"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
 						"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
-						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
-						"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
+						"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>",
 					balloonContentFooter: ""
 				}, {
 					iconLayout: 'default#image',
 					iconImageHref: '<?= base_url() ?>assets/images/ymap/sos.svg',
 					iconImageSize: [35, 30],
 					iconImageOffset: [-10, -35]
+				});
+
+				carCoordinate.events.add('balloonopen', function (e) {
+					carCoordinate.properties.set('balloonContent', "Loading data...");
+
+					ymaps.geocode(carCoordinate.geometry.getCoordinates(), {
+						results: 1
+					}).then(function (res) {
+						var newContent = res.geoObjects.get(0) ?
+							res.geoObjects.get(0).properties.get('name') :
+							'Couldn\'t detect address.';
+						carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !importnat;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+					});
+
 				});
 
 				myMap_show_singleCar.geoObjects.add(carCoordinate);
@@ -692,6 +707,34 @@
 
 		myFunction();
 	})
+
+
+	$(document).ready(function () {
+		var count_unread = 0;
+		$('.far.fa-envelope.text-success').each(function () {
+			count_unread++;
+			$('.count_unread').text(count_unread)
+		});
+
+		$('.show_car').click(function () {
+			count_unread = 0;
+			$('.far.fa-envelope.text-success').each(function () {
+				count_unread++;
+				$('.count_unread').text(count_unread)
+			});
+
+			if($(this).hasClass('envelope_open')){
+				count_unread = 0;
+				$('.far.fa-envelope.text-success').each(function () {
+					count_unread++;
+					$('.count_unread').text(count_unread)
+				});
+			}
+		});
+
+
+	});
+
 </script>
 
 

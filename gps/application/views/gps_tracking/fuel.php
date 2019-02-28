@@ -638,6 +638,55 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					}
 
 				}
+
+
+				function initDataTable() {
+					var table = $('#example12').DataTable({
+						"searching": true,
+						"ordering": true,
+						"bPaginate": false,
+						"paging": false,
+						language: {
+							search: "<?=lang('search')?>",
+							emptyTable: "<?=lang('no_data')?>",
+							info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+							infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+							infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+							lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+							zeroRecords: "<?=lang('no_matching_records')?>",
+							paginate: {
+								first: "<?=lang('first')?>",
+								last: "<?=lang('last')?>",
+								next: "<?=lang('next')?>",
+								previous: "<?=lang('prev')?>"
+							}
+						},
+						dom: 'Bfrtip',
+						buttons: [
+							{
+								extend: 'excelHtml5',
+								title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+								messageTop: "<?=lang('company')?>: "+$('input[name="company"]').val()+",  <?=lang('user')?>: "+$('.username_login > a').text(),
+								autoWidth: true,
+								filename: 'trajectory',
+								footer: true,
+								exportOptions: {
+									columns: ':visible'
+								}
+							},
+							'colvis'
+						]
+					});
+
+					$('.buttons-excel span').html('<?=lang('export')?>');
+					$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+					$('.buttons-colvis span').text('');
+					$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+					table.buttons().container()
+						.appendTo('#example12_wrapper #example12_filter:eq(0)');
+					$('.dt-buttons').css('float', 'left');
+				}
+
 			},
 			error: function (jqXHR, textStatus) {
 				// Handle errors here

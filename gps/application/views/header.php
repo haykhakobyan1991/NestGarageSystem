@@ -219,7 +219,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							href="#"
 							data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
-							<a href="#" style="position: absolute" class="badge badge-warning count_unread"></a>
+							<a href="#" style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;" class="badge count_unread"></a>
 						</button>
 						</a>
 						<button

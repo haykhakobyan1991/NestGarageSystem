@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Gps extends MX_Controller {
+class Gps extends MX_Controller
+{
 
 	/**
 	 * Structure constructor.
 	 * @property
 	 */
-	public function __construct() {
+	public function __construct()
+	{
 
 		parent::__construct();
 
@@ -29,11 +31,11 @@ class Gps extends MX_Controller {
 	}
 
 
-
 	/**
 	 * @param $element
 	 */
-	public function pre($element) {
+	public function pre($element)
+	{
 
 		echo '<pre class="mt-5">';
 		print_r($element);
@@ -44,7 +46,8 @@ class Gps extends MX_Controller {
 	/**
 	 * @return bool
 	 */
-	public function access_denied() {
+	public function access_denied()
+	{
 		$message = 'Access Denied';
 		show_error($message, '403', $heading = '403 Access is prohibited');
 		return false;
@@ -54,25 +57,26 @@ class Gps extends MX_Controller {
 	 * @param $data
 	 * @return string
 	 */
-	public function hash($data) {
+	public function hash($data)
+	{
 		return hash('sha256', $data);
 	}
 
 
-
-	public function index() {
+	public function index()
+	{
 
 		$token = $this->input->get('token');
 
 
 		$sql = "
-			SELECT token FROM \"user\" where token = '".$token."'
+			SELECT token FROM \"user\" where token = '" . $token . "'
 		";
 
 		$query = $this->db->query($sql);
 		$num_rows = $query->num_rows();
 
-		if($num_rows == 0) {
+		if ($num_rows == 0) {
 			$this->db->insert('user', array('token' => $token));
 		}
 
@@ -80,13 +84,12 @@ class Gps extends MX_Controller {
 
 		$this->session->set_userdata(array('token' => $token));
 
-		redirect($lng.'/gps_tracking', 'location');//todo
+		redirect($lng . '/gps_tracking', 'location');//todo
 	}
 
 
-
-	public function gps_tracking() {
-
+	public function gps_tracking()
+	{
 
 
 		$token = $this->session->token;
@@ -107,14 +110,14 @@ class Gps extends MX_Controller {
 
 		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
 
-		 $sql_g = '
+		$sql_g = '
 			SELECT 
 				"id",
 				"name"
 			FROM 
 			   "geoference"
 			WHERE "status" = 1 
-			AND "company_id" = '.$company_id.'
+			AND "company_id" = ' . $company_id . '
 		';
 
 		$query_g = $this->db->query($sql_g);
@@ -126,7 +129,7 @@ class Gps extends MX_Controller {
 
 
 		foreach ($result as $value) {
-			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';
+			$new_result[$value['name']][$value['id']][] = '[' . $value['lat'] . ',' . $value['long'] . ']';
 		}
 
 		foreach ($new_result as $val) {
@@ -138,12 +141,12 @@ class Gps extends MX_Controller {
 		//---- get last location ----
 		$add_sql = '';
 		foreach (json_decode($fleets, true) as $row) {
-			$add_sql .= " gps.\"imei\" = '".$row['gps_tracker_imei']."' OR";
+			$add_sql .= " gps.\"imei\" = '" . $row['gps_tracker_imei'] . "' OR";
 		}
 
 		$add_sql = substr($add_sql, 0, -2);
 
-		$sql  = "
+		$sql = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -156,7 +159,7 @@ class Gps extends MX_Controller {
 				gps.\"engine\"
 			FROM 
 			   gps
-			WHERE ".$add_sql."
+			WHERE " . $add_sql . "
 		 	ORDER BY imei, date desc, time desc
 		";
 
@@ -166,11 +169,9 @@ class Gps extends MX_Controller {
 		$result_l = $query->result_array();
 
 
-
 //		$this->pre($new_result);
 //		$this->pre($new_result2);
 //		$this->pre($result_l);
-
 
 
 		$data['result2'] = $new_result;
@@ -182,13 +183,15 @@ class Gps extends MX_Controller {
 
 	}
 
-	public function speed() {
+	public function speed()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 		$this->layout->view('gps_tracking/speed');
 	}
 
-	public function trajectory() {
+	public function trajectory()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
@@ -202,7 +205,8 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/trajectory', $data);
 	}
 
-	public function fuel() {
+	public function fuel()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
@@ -215,13 +219,14 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/fuel', $data);
 	}
 
-	public function sos() {
+	public function sos()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
 		$data = array();
 
-		$sql  = "
+		$sql = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -248,7 +253,8 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/sos', $data);
 	}
 
-	public function geoferences() {
+	public function geoferences()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 		$data = array();
@@ -262,7 +268,7 @@ class Gps extends MX_Controller {
 
 
 		foreach ($result as $value) {
-			$new_result[$value['name']][$value['id']][] = '['.$value['lat'].','.$value['long'].']';
+			$new_result[$value['name']][$value['id']][] = '[' . $value['lat'] . ',' . $value['long'] . ']';
 		}
 
 //		$this->pre($new_result);
@@ -272,7 +278,8 @@ class Gps extends MX_Controller {
 		$this->layout->view('gps_tracking/geoferences', $data);
 	}
 
-	public function add_geoference_ax() {
+	public function add_geoference_ax()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
@@ -292,8 +299,6 @@ class Gps extends MX_Controller {
 		}
 
 
-
-
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_error_delimiters('', '');
@@ -301,25 +306,22 @@ class Gps extends MX_Controller {
 		$this->form_validation->set_rules('geometry', 'geometry', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'geo_name' =>  form_error('geo_name'),
-				'geometry' =>  form_error('geometry')
+				'geo_name' => form_error('geo_name'),
+				'geometry' => form_error('geometry')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
-
-
 
 
 		$geo_name = $this->input->post('geo_name');
@@ -332,7 +334,7 @@ class Gps extends MX_Controller {
 				INSERT INTO 
 				  \"geoference\"
 				(name, company_id, status) VALUES 
-				( '".$geo_name."', '".$company_id."', '".$status."')
+				( '" . $geo_name . "', '" . $company_id . "', '" . $status . "')
 		";
 
 		$result = $this->db->query($sql);
@@ -344,7 +346,7 @@ class Gps extends MX_Controller {
 		$lat = array();
 		$long = array();
 		foreach ($geometry as $key => $value) {
-			if($key == '0' || $key % 2 == 0) {
+			if ($key == '0' || $key % 2 == 0) {
 				$lat[] = $value;
 			} else {
 				$long[] = $value;
@@ -358,13 +360,13 @@ class Gps extends MX_Controller {
 		";
 
 		foreach ($lat AS $i => $l) {
-			$sql_cord .= "('".$l."', '".$long[$i]."', '".$geoference_id."', 1),";
+			$sql_cord .= "('" . $l . "', '" . $long[$i] . "', '" . $geoference_id . "', 1),";
 		}
 
 		$sql_cord = substr($sql_cord, 0, -1);
 		$result_cord = $this->db->query($sql_cord);
 
-		if ($result){
+		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
 		} else {
@@ -379,8 +381,8 @@ class Gps extends MX_Controller {
 	}
 
 
-
-	public function edit_geoference_ax() {
+	public function edit_geoference_ax()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
@@ -407,19 +409,19 @@ class Gps extends MX_Controller {
 		$this->form_validation->set_rules('edit_geometry', 'edit_geometry', 'required');
 
 
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'geo_name' =>  form_error('geo_name'),
-				'edit_geometry' =>  form_error('edit_geometry')
+				'geo_name' => form_error('geo_name'),
+				'edit_geometry' => form_error('edit_geometry')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
@@ -444,7 +446,7 @@ class Gps extends MX_Controller {
 		$lat = array();
 		$long = array();
 		foreach ($geometry as $key => $value) {
-			if($key == '0' || $key % 2 == 0) {
+			if ($key == '0' || $key % 2 == 0) {
 				$lat[] = $value;
 			} else {
 				$long[] = $value;
@@ -458,13 +460,13 @@ class Gps extends MX_Controller {
 		";
 
 		foreach ($lat AS $i => $l) {
-			$sql_cord .= "('".$l."', '".$long[$i]."', '".$geoference_id."', 1),";
+			$sql_cord .= "('" . $l . "', '" . $long[$i] . "', '" . $geoference_id . "', 1),";
 		}
 
 		$sql_cord = substr($sql_cord, 0, -1);
 		$result_cord = $this->db->query($sql_cord);
 
-		if ($result_cord){
+		if ($result_cord) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
 		} else {
@@ -479,7 +481,8 @@ class Gps extends MX_Controller {
 	}
 
 
-	public function delete_geoference() {
+	public function delete_geoference()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
@@ -501,7 +504,8 @@ class Gps extends MX_Controller {
 	}
 
 
-	public function get_trajectory() {//todo
+	public function get_trajectory()
+	{//todo
 
 		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
 		$n = 0;
@@ -524,8 +528,7 @@ class Gps extends MX_Controller {
 		$this->form_validation->set_rules('fleets', 'fleets', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
@@ -538,7 +541,7 @@ class Gps extends MX_Controller {
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
@@ -551,12 +554,12 @@ class Gps extends MX_Controller {
 		$add_sql = 'AND (';
 
 		foreach ($fleet_arr as $fleet) {
-			if($fleet != '') {
-				$add_sql .= " gps.\"imei\" =  '".$fleet."' OR";
+			if ($fleet != '') {
+				$add_sql .= " gps.\"imei\" =  '" . $fleet . "' OR";
 			}
 		}
 
-		$add_sql = substr($add_sql, 0, -2).')';
+		$add_sql = substr($add_sql, 0, -2) . ')';
 		//end imei
 
 		$from = $this->input->post('from');
@@ -565,7 +568,7 @@ class Gps extends MX_Controller {
 		//speed
 		$max_speed = 0;
 		$speed_yn = $this->input->post('speed_yn');
-		if($speed_yn == 1) {
+		if ($speed_yn == 1) {
 			$max_speed = $this->input->post('speed');
 
 			if ($max_speed == '') {
@@ -576,10 +579,10 @@ class Gps extends MX_Controller {
 			}
 		}
 
-		$engine =  $this->input->post('engine');
+		$engine = $this->input->post('engine');
 
 
-	    $sql  = "
+		$sql = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -592,9 +595,9 @@ class Gps extends MX_Controller {
 				gps.\"engine\"
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '".$from."'
-			 AND gps.\"date\" <= '".$to."'
-			 ".$add_sql."
+			WHERE gps.\"date\" >= '" . $from . "'
+			 AND gps.\"date\" <= '" . $to . "'
+			 " . $add_sql . "
 		  ORDER BY date, time
 		";
 
@@ -611,10 +614,10 @@ class Gps extends MX_Controller {
 				AVG (gps.\"speed\") AS avg_speed
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '".$from."'
-			 AND gps.\"date\" <= '".$to."'
+			WHERE gps.\"date\" >= '" . $from . "'
+			 AND gps.\"date\" <= '" . $to . "'
 			 AND gps.\"speed\" <> 0
-			 ".$add_sql."
+			 " . $add_sql . "
 			GROUP BY gps.\"imei\" 
 		";
 
@@ -629,14 +632,12 @@ class Gps extends MX_Controller {
 		}
 
 
-
-
 		$date = '';
 		$engine_result = array();
 		$speed_null = array();
 
 
-		if(count($result) > 0) {
+		if (count($result) > 0) {
 
 			$lat = '';
 			$long = '';
@@ -646,8 +647,8 @@ class Gps extends MX_Controller {
 
 			foreach ($result as $value) {
 
-				if($engine == 1) {
-					if($value['engine'] == 1) {
+				if ($engine == 1) {
+					if ($value['engine'] == 1) {
 						$engine_result[$value['imei']]['on'][$value['date']][] = $value['time'];
 					} elseif ($value['engine'] == 0) {
 						$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
@@ -655,23 +656,22 @@ class Gps extends MX_Controller {
 				}
 
 
+				if ($lat != $value['lat'] && $long != $value['long']) {
 
-				if($lat != $value['lat'] && $long != $value['long']) {
-
-					if(round($value['speed']) > 0) {
+					if (round($value['speed']) > 0) {
 						$fl = '';
-						if($_imei != $value['imei']) {
+						if ($_imei != $value['imei']) {
 							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
-							$fleet[$value['imei']] =  json_decode($fl, true);
+							$fleet[$value['imei']] = json_decode($fl, true);
 						}
 						$_imei = $value['imei'];
 
-						if(((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed != 0) {
+						if (((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed != 0) {
 
 							$new_result[$value['imei']][] = array(
-								'time' => $value['date'].' '.$value['time'],
-								'cord' => '['.$value['lat'].','.$value['long'].']',
-								'cord_qx' => '['.$value['lat'].','.$value['long'].']',
+								'time' => $value['date'] . ' ' . $value['time'],
+								'cord' => '[' . $value['lat'] . ',' . $value['long'] . ']',
+								'cord_qx' => '[' . $value['lat'] . ',' . $value['long'] . ']',
 								'speed' => round($value['speed']),
 								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
@@ -685,8 +685,8 @@ class Gps extends MX_Controller {
 						} else {
 
 							$new_result[$value['imei']][] = array(
-								'time' => $value['date'].' '.$value['time'],
-								'cord' => '['.$value['lat'].','.$value['long'].']',
+								'time' => $value['date'] . ' ' . $value['time'],
+								'cord' => '[' . $value['lat'] . ',' . $value['long'] . ']',
 								'speed' => round($value['speed']),
 								'speed_avg' => round($avg_arr[$value['imei']], 2),
 								'fleet' => $fleet[$value['imei']]['brand_model'],
@@ -697,7 +697,6 @@ class Gps extends MX_Controller {
 								'course' => $value['course']
 							);
 						}
-
 
 
 					} else {
@@ -719,7 +718,7 @@ class Gps extends MX_Controller {
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
 
-		if($engine == 1) {
+		if ($engine == 1) {
 			if (count($engine_result) > 0) {
 				foreach ($engine_result as $imei => $er) {
 					foreach ($er as $on_off => $date_arr) {
@@ -727,7 +726,7 @@ class Gps extends MX_Controller {
 
 							if ($on_off == 'on') {
 								$duration1 = 0;
-								if($_date != $date) {
+								if ($_date != $date) {
 									$startTime = new DateTime($time[0]);
 									$endTime = new DateTime(end($time));
 									$duration1 = $startTime->diff($endTime);
@@ -738,7 +737,7 @@ class Gps extends MX_Controller {
 								$power[$imei][$on_off] = $date1->format("H:i:s");
 							} elseif ($on_off == 'off') {
 								$duration2 = 0;
-								if($_date2 != $date) {
+								if ($_date2 != $date) {
 									$startTime = new DateTime($time[0]);
 									$endTime = new DateTime(end($time));
 									$duration2 = $startTime->diff($endTime);
@@ -763,7 +762,7 @@ class Gps extends MX_Controller {
 		foreach ($speed_null as $imei => $d_arr) {
 			foreach ($d_arr as $date => $time) {
 				$duration = 0;
-				if($date_ != $date) {
+				if ($date_ != $date) {
 					$startTime = new DateTime($time[0]);
 					$endTime = new DateTime(end($time));
 					$duration = $startTime->diff($endTime);
@@ -775,12 +774,11 @@ class Gps extends MX_Controller {
 		}
 
 
-
 		//$this->pre($new_result);
 		//$this->pre($power);
 		//$this->pre($null_speed);
 
-		if ($result){
+		if ($result) {
 			$messages['success'] = 1;
 			$messages['message']['imei'] = $new_result;
 			$messages['message']['power'] = $power;
@@ -798,7 +796,8 @@ class Gps extends MX_Controller {
 	}
 
 
-	public function get_fuel() {//todo
+	public function get_fuel()
+	{//todo
 
 		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
 		$n = 0;
@@ -821,8 +820,7 @@ class Gps extends MX_Controller {
 		$this->form_validation->set_rules('fleets', 'fleets', 'required');
 
 
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
@@ -835,7 +833,7 @@ class Gps extends MX_Controller {
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
@@ -848,21 +846,19 @@ class Gps extends MX_Controller {
 		$add_sql = 'AND (';
 
 		foreach ($fleet_arr as $fleet) {
-			if($fleet != '') {
-				$add_sql .= " gps.\"imei\" =  '".$fleet."' OR";
+			if ($fleet != '') {
+				$add_sql .= " gps.\"imei\" =  '" . $fleet . "' OR";
 			}
 		}
 
-		$add_sql = substr($add_sql, 0, -2).')';
+		$add_sql = substr($add_sql, 0, -2) . ')';
 		//end imei
 
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
 
 
-
-
-		$sql  = "
+		$sql = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",
@@ -879,9 +875,9 @@ class Gps extends MX_Controller {
 				gps.\"fuel\"
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '".$from."'
-			 AND gps.\"date\" <= '".$to."'
-			 ".$add_sql."
+			WHERE gps.\"date\" >= '" . $from . "'
+			 AND gps.\"date\" <= '" . $to . "'
+			 " . $add_sql . "
 			ORDER BY id desc
 		";
 
@@ -892,7 +888,6 @@ class Gps extends MX_Controller {
 		$new_result = array();
 		$date_array = array();
 		//date_timestamp_get
-
 
 
 		$tmp = 0;
@@ -924,10 +919,7 @@ class Gps extends MX_Controller {
 			);
 
 
-
-
-
-			if($_imei != $row['imei']) {
+			if ($_imei != $row['imei']) {
 				$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
 				$fleet = json_decode($fl, true);
 			}
@@ -939,14 +931,14 @@ class Gps extends MX_Controller {
 
 			$levelFinish = (float)$row['fuel'];
 
-			if($_tmp < $array_length) {
-				if(((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
+			if ($_tmp < $array_length) {
+				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
 					$avg_all += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$avg_counter++;
-				} elseif((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step)) {
+				} elseif ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step)) {
 					$drain += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$drain_counter++;
-				} else  {
+				} else {
 					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);;
 					$refueling_counter++;
 				}
@@ -955,7 +947,6 @@ class Gps extends MX_Controller {
 			$tmp++;
 			$_tmp++;
 		}
-
 
 
 //		echo 'Уровень в начале периода '.$levelStart.br();
@@ -967,56 +958,40 @@ class Gps extends MX_Controller {
 //		echo 'Объём сливов '.$drain.br();
 //		echo 'Средний '.$avg_all/$avg_counter.br();
 
-		$fleet_info =  '<div class="jumbotron jumbotron-fluid pt-2 pl-0 pr-0 pb-1 mt-2">
-				<div class="container">
-					<h5>'.$fleet['brand_model'] .'</h5>
-					<div class="row pb-2">
-						<div class="col-sm-4">
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<label>'.lang('from').' - </label><span>'.$from.'</span><br>
-									<label>'.lang('to') .' - </label><span>'.$to.'</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item">'.lang('Level_At_The_Beginning') .' - '.$levelStart.br().'
-										</li>
-										<li class="list-group-item">'.lang('total_consumption') .' - '.$avg_all.'</li>
-										<li class="list-group-item">'. lang('number_charges') .' - '.$refueling_counter.'</li>
-										<li class="list-group-item">'.lang('engine_consumption') .' - '.$refueling_counter.'</li>
-										<li class="list-group-item">'.lang('drain') .' - '.$drain.'</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-4">
-							<div class="card mt-3">
-								<div class="card-body text-justify">
-									<ul class="list-group list-group-flush">
-										<li class="list-group-item">'.lang('levelFinish').' - '.$levelFinish.'</li>
-										<li class="list-group-item">'.lang('middle').' - '.$avg_all/$avg_counter.'</li>
-										<li class="list-group-item">'.lang('drain_counter').' - '.$drain_counter.'</li>
-										<li class="list-group-item">'.lang('drain').' - '.$drain.'</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>';
-
+		$fleet_info = '<table id="example12" class="table table-striped table-borderless w-100 dataTable no-footer">
+	<thead>
+		<tr>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("fleets").'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("Level_At_The_Beginning").'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('total_consumption').'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang("number_charges").'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('engine_consumption').'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('drain').'</th>
+			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">'.lang('levelFinish').'</th>
+			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">'.lang('middle').'</th>
+			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">'.lang('drain_counter').'</th>
+		</tr>
+	</thead>
+	<tbody class="example_12_tbody">
+		<tr>
+			<td style="text-align: center;">'.$fleet['brand_model'].'</td>
+			<td style="text-align: center;">'.$levelStart.'</td>
+			<td style="text-align: center;">'.$avg_all.'</td>
+			<td style="text-align: center;">'.$refueling_counter.'</td>
+			<td style="text-align: center;">'.$refueling_counter.'</td>
+			<td style="text-align: center;">'.$drain.'</td>
+			<td style="text-align: center;">'.$levelFinish.'</td>
+			<td style="text-align: center;">'.$avg_all / $avg_counter.'</td>
+			<td style="text-align: center;">'.$drain_counter.'</td>
+		</tr>
+	</tbody>
+</table>';
 
 
 		// $this->pre($new_result);
 
 
-		if ($result){
+		if ($result) {
 			$messages['success'] = 1;
 			$messages['message']['fleet_info'] = $fleet_info;
 			$messages['message']['fleet_chart'] = $new_result;
@@ -1033,7 +1008,8 @@ class Gps extends MX_Controller {
 
 	}
 
-	public function aaaa() {
+	public function aaaa()
+	{
 
 		//$sql = "DELETE FROM gps WHERE \"imei\" = '865205035287845'";
 
@@ -1055,21 +1031,21 @@ class Gps extends MX_Controller {
 		$this->pre($result);
 
 
-
 	}
 
-	public function insert_gps() {
+	public function insert_gps()
+	{
 
 		$tr = "TRUNCATE TABLE gps";
 		$query_tr = $this->db->query($tr);
 
-		if($query_tr) {
-			echo 'TRUNCATE'.br();
+		if ($query_tr) {
+			echo 'TRUNCATE' . br();
 		} else {
-			echo 'TRUNCATE FALSE'.br();
+			echo 'TRUNCATE FALSE' . br();
 		}
 
-		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"',  '865205035287688')
+		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"', '865205035287688')
 			->get()->result_array();
 
 		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", engine, fuel, battery, sos, battery_low) VALUES ";
@@ -1085,29 +1061,29 @@ class Gps extends MX_Controller {
 			$lat_h = substr(floatval($val[5]), 0, 2);
 			$lat_m = substr(floatval($val[5]), 2, 10);
 
-			$lat = round($lat_h+($lat_m/60), 6);
+			$lat = round($lat_h + ($lat_m / 60), 6);
 
 			//long
 			$long_h = substr(floatval($val[7]), 0, 2);
 			$long_m = substr(floatval($val[7]), 2, 10);
 
-			$long = round($long_h+($long_m/60), 6);
+			$long = round($long_h + ($long_m / 60), 6);
 
 			//time
-			$time = substr($val[3], 0, -4).':'.substr($val[3], 2, -2).':'.substr($val[3], 4, 2);
+			$time = substr($val[3], 0, -4) . ':' . substr($val[3], 2, -2) . ':' . substr($val[3], 4, 2);
 
-			if($_time != $time && $val[9] != 0) {
+			if ($_time != $time && $val[9] != 0) {
 				$fuel -= 0.27;
 			}
 			$_time = $time;
 
 			//date
-			$date =  date('20'.substr($val[11], 4, 2).'-'.substr($val[11], 2, -2).'-'.substr($val[11], 0, -4));
+			$date = date('20' . substr($val[11], 4, 2) . '-' . substr($val[11], 2, -2) . '-' . substr($val[11], 0, -4));
 
 			//EFE7FBFF - power on
 			//FFFFFBFF - power off
 
-			$bin = str_split(base_convert($val[12], 16,2));
+			$bin = str_split(base_convert($val[12], 16, 2));
 
 			$battery_supply = $bin[3]; //yes - 1, no - 0
 			$sos = $bin[13];//yes - 0, no - 1
@@ -1115,25 +1091,20 @@ class Gps extends MX_Controller {
 			$engine = $bin[20];//yes - 1, no - 0
 
 
-
-			$sql .= "('".($val[1])."', '".$time."', '".$lat."', '".$long."', '".($val[9] * 1.609344)."', '".$val[10]."','".$date."', '".$engine."', '".$fuel."', '".$battery_supply."', '".$sos."', '".$battery_low."' ),";
+			$sql .= "('" . ($val[1]) . "', '" . $time . "', '" . $lat . "', '" . $long . "', '" . ($val[9] * 1.609344) . "', '" . $val[10] . "','" . $date . "', '" . $engine . "', '" . $fuel . "', '" . $battery_supply . "', '" . $sos . "', '" . $battery_low . "' ),";
 		}
 
-		 $sql = substr($sql, 0, -1);
-
+		$sql = substr($sql, 0, -1);
 
 
 		$query = $this->db->query($sql);
 
-		if($query_tr) {
-			echo 'INSERTED'.br();
+		if ($query_tr) {
+			echo 'INSERTED' . br();
 		} else {
-			echo 'INSERT FALSE'.br();
+			echo 'INSERT FALSE' . br();
 		}
 	}
-
-
-
 
 
 }

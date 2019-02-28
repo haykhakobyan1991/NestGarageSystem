@@ -177,7 +177,7 @@
 							<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
 						</th>
 						<th
-							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;min-width: 200px;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>

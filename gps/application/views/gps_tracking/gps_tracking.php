@@ -173,11 +173,11 @@
 				<table id="example11" class="table table-bordered" style="width:100%">
 					<thead>
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+						<th style="font-weight: 500;color: transparent;font-size: 1px !important;">
 							<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
 						</th>
 						<th
-							style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;min-width: 200px;">
+							style="font-weight: 500;color: transparent;font-size: 1px !important;min-width: 200px;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>
@@ -189,14 +189,14 @@
 							class="text-center">
 							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/triangle.svg"/>
 						</th>
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
+						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-user"></i>
 							<?= lang('driver') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
+						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important;font-size: 12px !important;"
 							   class="fas fa-gas-pump"></i><?= lang('fuel') ?>
 						</th>

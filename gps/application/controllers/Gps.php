@@ -135,14 +135,47 @@ class Gps extends MX_Controller {
 			}
 		}
 
+		//---- get last location ----
+		$add_sql = '';
+		foreach (json_decode($fleets, true) as $row) {
+			$add_sql .= " gps.\"imei\" = '".$row['gps_tracker_imei']."' OR";
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+
+		$sql  = "
+			SELECT 
+				gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"engine\"
+			FROM 
+			   gps
+			WHERE ".$add_sql."
+		 	ORDER BY imei, date desc, time desc
+		";
+
+
+		$query = $this->db->query($sql);
+
+		$result_l = $query->result_array();
 
 
 
 //		$this->pre($new_result);
 //		$this->pre($new_result2);
+//		$this->pre($result_l);
+
+
 
 		$data['result2'] = $new_result;
 		$data['new_result'] = $new_result2;
+		$data['last_location'] = $result_l;
 
 
 		$this->layout->view('gps_tracking/gps_tracking', $data);

@@ -102,7 +102,7 @@ class Gps extends MX_Controller
 
 
 		//api call //todo urls
-		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token)); //todo url +
 		$data['result_fleets'] = json_decode($fleets, true);
 
 		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token)); //todo url

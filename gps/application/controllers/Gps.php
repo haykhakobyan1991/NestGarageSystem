@@ -160,7 +160,11 @@ class Gps extends MX_Controller
 			FROM 
 			   gps
 			WHERE " . $add_sql . "
-		 	ORDER BY imei, date desc, time desc
+		 	ORDER BY imei, 
+		 	CONCAT_WS (' ',
+		 	   gps.\"date\",
+			   gps.\"time\"
+		    ) desc
 		";
 
 

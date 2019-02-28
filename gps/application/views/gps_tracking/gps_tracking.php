@@ -212,13 +212,25 @@
 					<tbody>
 
 					<?
-					$lat = 40.140912;
-					$long = 44.428481;
-					$step = 0.00005;
-					$step2 = 0.0003;
+
+					$tmp = 0;
+					$imei = '';
+					$arr = array();
+
+					foreach ($last_location as $val) {
+						if($imei != $val['imei']) {
+							if($tmp == 0) {
+								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course']);
+							}
+							$tmp = 1;
+						} else {
+							$tmp = 0;
+						}
+						$imei = $val['imei'];
+					}
+
+
 					foreach ($result_fleets as $fleets) :
-						$step += 0.007;
-						$step2 += 0.009;
 						?>
 
 						<tr>
@@ -250,10 +262,10 @@
 									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 							</td>
 							<td class="last_time_update">
-								12.12.2018
-								<small class="form-text text-muted">19:32</small>
+								<?=$arr[$fleets['gps_tracker_imei']]['date']?>
+								<small class="form-text text-muted"><?=$arr[$fleets['gps_tracker_imei']]['time']?></small>
 							</td>
-							<td class="show_car" data-coordinate='<?= $lat + $step ?>, <?= $long + $step2 ?>'>
+							<td class="show_car" data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>' data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 						</tr>

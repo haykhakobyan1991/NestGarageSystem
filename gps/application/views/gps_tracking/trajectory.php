@@ -1215,9 +1215,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 
-		$(document).ready(function () {
-			$('.count_unread').text('18')
-		})
+
 	</script>
 
 

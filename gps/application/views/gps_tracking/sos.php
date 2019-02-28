@@ -127,7 +127,8 @@
 				</div>
 
 
-				<table id="example11" class="table table-bordered" style="width:100%">
+				<table id="example11" class="table table-striped table-borderless w-100 dataTable no-footer"
+					   style="width:100%">
 					<thead>
 					<tr>
 						<th style="font-size: 12px !important;font-weight: 500;">
@@ -161,16 +162,17 @@
 					$echoDateTime = '';
 					$_echoDateTime = '';
 
+					$id = '';
+
 					$unread = 0;
 					foreach ($result as $row) {
 						$counter++;
 						if ($counter == 1) {
 							$_datetime = new DateTime($row['datetime']);
+							$id = $row['id'];
 						}
 
-						if ($row['sos_visibility'] == '-1') {
-							$unread++;
-						}
+
 
 						$token = $this->session->token;
 						if ($_imei != $row['imei']) {
@@ -180,36 +182,58 @@
 						$_imei = $row['imei'];
 
 
-						// datetime 10 minute interval
+						// datetime 2 minute interval
 						$datetime1 = new DateTime($row['datetime']);
 
 						$interval = $datetime1->diff($_datetime);
 						$elapsed = $interval->format('%i');
 
-						if ($elapsed >= 5) {
+						if ($elapsed >= 2) {
+							$id = $row['id'];
 							$echoDateTime = $row['datetime'];
 							$_datetime = new DateTime($row['datetime']);
 						}
 
 
 						if ($_echoDateTime != $echoDateTime) {
+
+							if ($row['sos_visibility'] == '-1') {
+								$unread++;
+							}
+
+							if($row['sos_visibility'] != '2') {
+
 							?>
+
 
 							<tr>
 								<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
 								<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
 								<td><?= $fleet[$row['imei']]['staff'] ?></td>
-								<td><?= $row['datetime'] ?></td>
-								<td class="show_car" data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
-									style="cursor: pointer;"><!--<i class="far fa-envelope"></i>-->
-									<i class="far fa-envelope text-success"></i></td>
-								<td style="cursor: pointer;" data-toggle="modal" data-target=".bd-example-modal-sm"><i
+								<td><?= $echoDateTime ?></td>
+								<td data-id="<?= $id ?>" class="show_car"
+									data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
+									style="cursor: pointer;">
+									<?
+									if ($row['sos_visibility'] == -1) {
+										echo '<i class="far fa-envelope text-success"></i>';
+									} elseif ($row['sos_visibility'] == 1) {
+										echo '<i class="far fa-envelope-open text-warning"></i>';
+									}
+									?>
+								</td>
+								<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
+									data-target=".bd-example-modal-sm"><i
 										class="fas fa-trash text-secondary"></i></td>
 							</tr>
 
-						<? }
+						<?
+							}
+						}
 						$_echoDateTime = $echoDateTime;
-					} ?>
+					}
+					$unread = $this->session->set_userdata('unread', $unread);
+					?>
 
 					</tbody>
 				</table>
@@ -434,7 +458,7 @@
     font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
 							data-dismiss="modal"><?= lang('cancel') ?></button>
 
-					<input type="hidden" name="staff_id">
+					<input type="hidden" name="sos_id">
 				</div>
 			</div>
 		</div>
@@ -555,21 +579,78 @@
 			ymaps.ready(init_all);
 		});
 
+
+		$('.delete_sos').on('click', function () {
+			var id = $(this).parent('tr').children('td.show_car').data('id');
+			$('input[name="sos_id"]').val(id);
+
+		});
+
+
+		$('.yes_btn').click(function () {
+
+			data_id = $('input[name="sos_id"]').val();
+
+			$('.del_group_modal').modal('toggle');
+
+			$('.show_car').each(function () {
+				if ($(this).data('id') == data_id) {
+					$(this).parent('tr').remove();
+				}
+			});
+
+			unread = 0;
+			$('.far.fa-envelope.text-success').each(function () {
+				unread++;
+			});
+			$('.count_unread').text(unread);
+
+
+			$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
+				sos_visibility: 2,
+				gps_id: $('input[name="sos_id"]').val(),
+				count_unread: unread
+			});
+
+		});
+
+
 		$('.show_car').click(function () {
 
 			if ($(this).children('i').hasClass('fa-envelope')) {
 				$(this).children('i').removeClass('fa-envelope');
 				$(this).children('i').removeClass('text-success');
 				$(this).children('i').addClass('fa-envelope-open');
-				$(this).addClass('envelope_open');
 				$(this).children('i').addClass('text-warning');
 			} else {
 				$(this).children('i').addClass('fa-envelope');
 				$(this).children('i').addClass('text-success');
 				$(this).children('i').removeClass('fa-envelope-open');
-				$(this).removeClass('envelope_open');
 				$(this).children('i').removeClass('text-warning');
+
 			}
+
+			unread = 0;
+			$('.far.fa-envelope.text-success').each(function () {
+				unread++;
+			});
+			$('.count_unread').text(unread);
+
+
+			if ($(this).children('i').hasClass('fa-envelope')) {
+				$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
+					sos_visibility: 1,
+					gps_id: $(this).data('id'),
+					count_unread: unread
+				});
+			} else {
+				$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
+					sos_visibility: -1,
+					gps_id: $(this).data('id'),
+					count_unread: unread
+				});
+			}
+
 
 
 			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
@@ -715,23 +796,6 @@
 			count_unread++;
 			$('.count_unread').text(count_unread)
 		});
-
-		$('.show_car').click(function () {
-			count_unread = 0;
-			$('.far.fa-envelope.text-success').each(function () {
-				count_unread++;
-				$('.count_unread').text(count_unread)
-			});
-
-			if($(this).hasClass('envelope_open')){
-				count_unread = 0;
-				$('.far.fa-envelope.text-success').each(function () {
-					count_unread++;
-					$('.count_unread').text(count_unread)
-				});
-			}
-		});
-
 
 	});
 

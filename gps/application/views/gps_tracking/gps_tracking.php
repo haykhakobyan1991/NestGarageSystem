@@ -1773,9 +1773,7 @@
 		myFunction();
 	})
 
-	$(document).ready(function () {
-		$('.count_unread').text('18')
-	})
+
 </script>
 
 

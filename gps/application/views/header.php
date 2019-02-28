@@ -92,18 +92,64 @@
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
 $token = $this->session->token;
-?>
+
+$unread = $this->session->unread;
+
+if(!$unread) {
+
+	$sql = "
+				SELECT 
+					gps.\"id\",
+					gps.\"lat\",
+					gps.\"long\",
+					gps.\"speed\",
+					gps.\"course\",
+					gps.\"sos_visibility\",
+					CONCAT_WS(' ',
+						gps.\"date\",
+						gps.\"time\"
+					) datetime,
+					gps.\"imei\",
+					gps.\"fuel\"
+				FROM 
+				   gps
+				WHERE sos = '1'
+				ORDER BY imei, date, time
+			";
+
+	$query = $this->db->query($sql);
+	$result = $query->result_array();
+
+	$_datetime = '';
+	$counter = 0;
+	$unread = 0;
+
+	foreach ($result as $row) {
+		$counter++;
+		if ($counter == 1) {
+			$_datetime = new DateTime($row['datetime']);
+		}
+
+		// datetime 2 minute interval
+		$datetime1 = new DateTime($row['datetime']);
+
+		$interval = $datetime1->diff($_datetime);
+		$elapsed = $interval->format('%i');
+
+		if ($elapsed >= 2) {
+			$_datetime = new DateTime($row['datetime']);
+			if ($row['sos_visibility'] == -1) {
+				$unread++;
+			}
+		}
+
+	}
+	$unread = $this->session->set_userdata('unread', $unread);
+}
 
 
-
-<?
 $row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true); // todo url
-
-
 $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/getCompanyName', array('token' => $token)), true); // todo url
-
-
-
 
 ?>
 
@@ -219,7 +265,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							href="#"
 							data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
-							<a href="#" style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;" class="badge count_unread"></a>
+							<a href="#" style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;" class="badge count_unread"><?=$unread?></a>
 						</button>
 						</a>
 						<button

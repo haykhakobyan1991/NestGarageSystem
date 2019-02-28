@@ -1011,6 +1011,41 @@ class Gps extends MX_Controller
 
 	}
 
+
+
+	public function sos_visibility() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('gps_id');
+		$sos_visibility = $this->input->post('sos_visibility');
+		$count_unread = $this->input->post('count_unread');
+
+		if($sos_visibility == 1) {
+			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
+		} elseif ($sos_visibility == -1) {
+			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
+		} elseif ($sos_visibility == 2) {
+			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
+		}
+
+		$this->session->set_userdata('unread', $count_unread);
+
+
+		return true;
+
+
+	}
+
+
 	public function aaaa()
 	{
 

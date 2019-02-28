@@ -956,7 +956,7 @@
 
 
 							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-								'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+								'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 							),
 
 								myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -972,7 +972,7 @@
 									balloonContentFooter: ""
 								}, {
 									iconLayout: ymaps.templateLayoutFactory.createClass([
-										'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+										'<div style="transform:rotate({{options.rotate}}deg);">',
 										'{% include "default#image" %}',
 										'</div>'
 									].join('')),
@@ -1012,7 +1012,7 @@
 					longitude = array[1];
 
 					MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-						'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 					),
 
 						myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1028,7 +1028,7 @@
 							balloonContentFooter: ""
 						}, {
 							iconLayout: ymaps.templateLayoutFactory.createClass([
-								'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+								'<div style="transform:rotate({{options.rotate}}deg);">',
 								'{% include "default#image" %}',
 								'</div>'
 							].join('')),
@@ -1111,7 +1111,7 @@
 								longitude = array[1];
 
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-									'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
 
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1127,7 +1127,7 @@
 										balloonContentFooter: ""
 									}, {
 										iconLayout: ymaps.templateLayoutFactory.createClass([
-											'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+											'<div style="transform:rotate({{options.rotate}}deg);">',
 											'{% include "default#image" %}',
 											'</div>'
 										].join('')),
@@ -1181,7 +1181,7 @@
 								longitude = array[1];
 
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-									'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
 
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1197,7 +1197,7 @@
 										balloonContentFooter: ""
 									}, {
 										iconLayout: ymaps.templateLayoutFactory.createClass([
-											'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+											'<div style="transform:rotate({{options.rotate}}deg);">',
 											'{% include "default#image" %}',
 											'</div>'
 										].join('')),
@@ -1303,7 +1303,7 @@
 				longitude = array[1];
 
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-					'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 				),
 
 					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1319,7 +1319,7 @@
 						balloonContentFooter: ""
 					}, {
 						iconLayout: ymaps.templateLayoutFactory.createClass([
-							'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+							'<div style="transform:rotate({{options.rotate}}deg);">',
 							'{% include "default#image" %}',
 							'</div>'
 						].join('')),
@@ -1416,7 +1416,7 @@
 									longitude = array[1];
 
 									MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-										'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+										'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 									),
 
 										myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1432,7 +1432,7 @@
 											balloonContentFooter: ""
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
-												'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+												'<div style="transform:rotate({{options.rotate}}deg);">',
 												'{% include "default#image" %}',
 												'</div>'
 											].join('')),
@@ -1470,7 +1470,7 @@
 						longitude = array[1];
 
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-							'<div class="erererererre" style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
 
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
@@ -1486,7 +1486,7 @@
 								balloonContentFooter: ""
 							}, {
 								iconLayout: ymaps.templateLayoutFactory.createClass([
-									'<div class="rrrrrr" style="transform:rotate({{options.rotate}}deg);">',
+									'<div style="transform:rotate({{options.rotate}}deg);">',
 									'{% include "default#image" %}',
 									'</div>'
 								].join('')),

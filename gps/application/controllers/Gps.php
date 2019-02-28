@@ -101,14 +101,14 @@ class Gps extends MX_Controller
 		$lng = $this->load->lng();
 
 
-		//api call //todo urls
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token)); //todo url +
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
-		$fleet_group = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_FleetGroup', array('token' => $token)); //todo url
+		$fleet_group = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_FleetGroup', array('token' => $token));
 		$data['result'] = json_decode($fleet_group, true);
 
-		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
 
 		$sql_g = '
 			SELECT 
@@ -200,9 +200,11 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
 		$data = array();
+		$lng = $this->load->lng();
 
-		//api call //todo urls
-		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
+
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 
@@ -215,9 +217,10 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
 		$data = array();
+		$lng = $this->load->lng();
 
-		//api call //todo urls
-		$fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_AllFleets', array('token' => $token)); //todo url
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 		$this->layout->view('gps_tracking/fuel', $data);
@@ -262,12 +265,13 @@ class Gps extends MX_Controller
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 		$data = array();
+		$lng = $this->load->lng();
 
 		$result = $this->db->select('geoference."id",geoference."name", geoference_cordinates.lat,geoference_cordinates.long')->from('geoference')->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')->where('geoference.status', 1)->get()->result_array();
 
 		$new_result = array();
 
-		$count_of_fleets = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_count_of_fleets', array('token' => $token)); //todo url
+		$count_of_fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_count_of_fleets', array('token' => $token));
 		$data['count_of_fleets'] = json_decode($count_of_fleets, true);
 
 
@@ -292,6 +296,7 @@ class Gps extends MX_Controller
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
 
 		$result = false;
 
@@ -331,7 +336,7 @@ class Gps extends MX_Controller
 		$geo_name = $this->input->post('geo_name');
 		$geometry = $this->input->post('geometry');
 		$status = 1;
-		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
 
 
 		$sql = "
@@ -395,6 +400,7 @@ class Gps extends MX_Controller
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 		$n = 0;
 		$user_id = $this->session->user_id;
+		$lng = $this->load->lng();
 
 		$result = false;
 
@@ -437,7 +443,7 @@ class Gps extends MX_Controller
 		$status = 1;
 
 		//get company ID
-		$company_id = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_companyId', array('token' => $token)); //todo url
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
 
 		// update geoference
 		$this->db->update('geoference', array('name' => $geo_name), array('id' => $geoference_id));
@@ -514,6 +520,7 @@ class Gps extends MX_Controller
 		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
 		$n = 0;
 		$token = $this->session->token;
+		$lng = $this->load->lng();
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -665,7 +672,7 @@ class Gps extends MX_Controller
 					if (round($value['speed']) > 0) {
 						$fl = '';
 						if ($_imei != $value['imei']) {
-							$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei'])); //todo url
+							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei']));
 							$fleet[$value['imei']] = json_decode($fl, true);
 						}
 						$_imei = $value['imei'];
@@ -806,6 +813,7 @@ class Gps extends MX_Controller
 		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
 		$n = 0;
 		$token = $this->session->token;
+		$lng = $this->load->lng();
 		$result = false;
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
@@ -924,7 +932,7 @@ class Gps extends MX_Controller
 
 
 			if ($_imei != $row['imei']) {
-				$fl = $this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
+				$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei']));
 				$fleet = json_decode($fl, true);
 			}
 			$_imei = $row['imei'];

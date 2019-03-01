@@ -364,15 +364,15 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
 											</button>
 											</a>
-											<button
-												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
-												href="#"
-												data-toggle="tooltip" data-placement="top"
-												title="<?= lang('notification') ?>">
-												<img
-													src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
-											</button>
+<!--											<button-->
+<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+<!--												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"-->
+<!--												href="#"-->
+<!--												data-toggle="tooltip" data-placement="top"-->
+<!--												title="--><?//= lang('notification') ?><!--">-->
+<!--												<img-->
+<!--													src="--><?//= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
+<!--											</button>-->
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "

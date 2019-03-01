@@ -45,6 +45,12 @@
 					<thead>
 					<tr>
 						<th style="font-size: 12px !important;font-weight: 500;">
+							<i class="far fa-envelope"></i>
+						</th>
+						<th style="font-size: 12px !important;font-weight: 500;min-width: 100px;">
+							<?= lang('data_time') ?>
+						</th>
+						<th style="font-size: 12px !important;font-weight: 500;">
 							<?= lang('fleet') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;">
@@ -52,12 +58,6 @@
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;">
 							<?= lang('driver') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;min-width: 100px;">
-							<?= lang('data_time') ?>
-						</th>
-						<th style="font-size: 12px !important;font-weight: 500;">
-							<i class="far fa-envelope"></i>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;">
 							<i class="fas fa-trash text-secondary"></i>
@@ -122,10 +122,6 @@
 
 
 							<tr>
-								<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
-								<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
-								<td><?= $fleet[$row['imei']]['staff'] ?></td>
-								<td><?= $echoDateTime ?></td>
 								<td data-id="<?= $id ?>" class="show_car"
 									data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
 									style="cursor: pointer;">
@@ -137,6 +133,12 @@
 									}
 									?>
 								</td>
+								<td><?= $echoDateTime ?></td>
+								<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
+								<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
+								<td><?= $fleet[$row['imei']]['staff'] ?></td>
+
+
 								<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
 									data-target=".bd-example-modal-sm"><i
 										class="fas fa-trash text-secondary"></i></td>

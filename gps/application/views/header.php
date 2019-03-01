@@ -268,14 +268,14 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							<a href="#" style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;" class="badge count_unread"><?=$unread?></a>
 						</button>
 						</a>
-						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
-							href="#"
-							data-toggle="tooltip" data-placement="top"
-							title="<?= lang('notification') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
-						</button>
+<!--						<button-->
+<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+<!--							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"-->
+<!--							href="#"-->
+<!--							data-toggle="tooltip" data-placement="top"-->
+<!--							title="--><?//= lang('notification') ?><!--">-->
+<!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
+<!--						</button>-->
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "

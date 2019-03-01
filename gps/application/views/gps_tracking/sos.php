@@ -33,10 +33,6 @@
 					<div class="car_icon col-sm-4" style="padding-top: 7px;">
 						<span class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
 					</div>
-					<div id="seeAll" class="col-sm-4" style="padding-top: 7px;">
-						<span class="count_cars_in_table"><?= lang('seeAll') ?></span>
-						<img style="cursor: pointer" src="<?= base_url('assets/images/gps_tracking/eye.svg') ?>"/>
-					</div>
 				</div>
 
 
@@ -88,10 +84,9 @@
 						}
 
 
-
 						$token = $this->session->token;
 						if ($_imei != $row['imei']) {
-							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
+							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei'])); //todo url
 							$fleet[$row['imei']] = json_decode($fl, true);
 						}
 						$_imei = $row['imei'];
@@ -116,35 +111,35 @@
 								$unread++;
 							}
 
-							if($row['sos_visibility'] != '2') {
+							if ($row['sos_visibility'] != '2') {
 
-							?>
-
-
-							<tr>
-								<td data-id="<?= $id ?>" class="show_car"
-									data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
-									style="cursor: pointer;">
-									<?
-									if ($row['sos_visibility'] == -1) {
-										echo '<i class="far fa-envelope text-success"></i>';
-									} elseif ($row['sos_visibility'] == 1) {
-										echo '<i class="far fa-envelope-open text-warning"></i>';
-									}
-									?>
-								</td>
-								<td><?= $echoDateTime ?></td>
-								<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
-								<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
-								<td><?= $fleet[$row['imei']]['staff'] ?></td>
+								?>
 
 
-								<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
-									data-target=".bd-example-modal-sm"><i
-										class="fas fa-trash text-secondary"></i></td>
-							</tr>
+								<tr>
+									<td data-id="<?= $id ?>" class="show_car"
+										data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
+										style="cursor: pointer;">
+										<?
+										if ($row['sos_visibility'] == -1) {
+											echo '<i class="far fa-envelope text-success"></i>';
+										} elseif ($row['sos_visibility'] == 1) {
+											echo '<i class="far fa-envelope-open text-warning"></i>';
+										}
+										?>
+									</td>
+									<td><?= $echoDateTime ?></td>
+									<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
+									<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
+									<td><?= $fleet[$row['imei']]['staff'] ?></td>
 
-						<?
+
+									<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
+										data-target=".bd-example-modal-sm"><i
+											class="fas fa-trash text-secondary"></i></td>
+								</tr>
+
+								<?
 							}
 						}
 						$_echoDateTime = $echoDateTime;
@@ -160,7 +155,7 @@
 	</div>
 
 
-	<div class=" panel-right splitter-east">
+	<div class=" panel-right splitter-east" style="position: relative">
 		<div id="map" style="width: 100%;height: 100%;"></div>
 	</div>
 </div>
@@ -465,16 +460,16 @@
 				});
 
 				carCoordinate.events.add('balloonopen', function (e) {
-					carCoordinate.properties.set('balloonContent', "Loading data...");
+					carCoordinate.properties.set('balloonContentFooter', "Loading data...");
 
-						ymaps.geocode(carCoordinate.geometry.getCoordinates(), {
-							results: 1
-						}).then(function (res) {
-							var newContent = res.geoObjects.get(0) ?
-								res.geoObjects.get(0).properties.get('name') :
-								'Couldn\'t detect address.';
-							carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
-						});
+					ymaps.geocode(carCoordinate.geometry.getCoordinates(), {
+						results: 1
+					}).then(function (res) {
+						var newContent = res.geoObjects.get(0) ?
+							res.geoObjects.get(0).properties.get('name') :
+							'Couldn\'t detect address.';
+						carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+					});
 
 				});
 
@@ -488,13 +483,6 @@
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
-
-
-		$('#seeAll').click(function () {
-			$('#map').html('');
-
-			ymaps.ready(init_all);
-		});
 
 
 		$('.delete_sos').on('click', function () {
@@ -528,6 +516,9 @@
 				gps_id: $('input[name="sos_id"]').val(),
 				count_unread: unread
 			});
+
+			$("#map").html('');
+			ymaps.ready(init_all);
 
 		});
 
@@ -569,7 +560,6 @@
 			}
 
 
-
 			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
 			car_nummber = $(this).parent('tr').children('td:nth-child(2)').text();
 			massage_time = $(this).parent('tr').children('td:nth-child(4)').text();
@@ -589,6 +579,19 @@
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';
 
+				firstButton = new ymaps.control.Button('<div id="seeAll">\n' +
+					'\t\t\t<span class="count_cars_in_table"><?= lang("all1") ?></span>\n' +
+					'\t\t\t<img style="cursor: pointer" src="<?= base_url("assets/images/gps_tracking/eye.svg") ?>"/>\n' +
+					'\t\t</div>')
+
+				firstButton.events.add(['select', 'deselect'], function (e) {
+					if (e.get('type') == 'select') {
+						$('#map').html('');
+						ymaps.ready(init_all);
+					}
+				});
+
+				myMap_show_singleCar.controls.add(firstButton, {float: 'left'});
 
 				//Click Function Show All Geofences
 
@@ -610,7 +613,7 @@
 				});
 
 				carCoordinate.events.add('balloonopen', function (e) {
-					carCoordinate.properties.set('balloonContent', "Loading data...");
+					carCoordinate.properties.set('balloonContentFooter', "Loading data...");
 
 					ymaps.geocode(carCoordinate.geometry.getCoordinates(), {
 						results: 1

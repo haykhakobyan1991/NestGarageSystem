@@ -7,6 +7,7 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
@@ -15,95 +16,7 @@
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
 <script src="https://static.zinoui.com/js/front.min.js"></script>
-<style>
-	html,
-	body {
-		height: 100%;
-	}
-
-	body {
-		overflow: hidden;
-	}
-
-	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
-		display: none;
-	}
-
-	.dropdown-menu {
-		padding: 0;
-	}
-
-	.dropdown-menu a:last-child {
-		display: none;
-		top: 55px;
-		left: -15px;
-	}
-
-	.dataTables_filter label {
-		font-size: 0px !important;
-	}
-
-	#example11_filter label input {
-		height: 30px;
-	}
-
-	#example11_filter {
-		height: 37px;
-	}
-
-	td {
-		font-size: 11px !important;
-	}
-
-	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
-		color: #6c757d !important;
-	}
-
-	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
-		color: #6c757d !important;
-	}
-
-	.border-5 {
-		border-width: 5px !important;
-	}
-
-	.zui-splitter-separator {
-		z-index: 1 !important;
-	}
-
-	.splitter-west {
-	}
-
-	.splitter-east {
-		width: 100%;
-	}
-
-	.dt-button-collection.dropdown-menu {
-		left: -100px !important;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility {
-		color: #fff !important;
-		background: #8e8f90 !important;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility.active {
-		color: #8e8f90 !important;
-		background: #fff !important;
-	}
-
-	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
-		width: 100% !important;
-	}
-
-	td {
-		text-align: center !important;
-	}
-
-	div#example11_wrapper {
-		margin-top: -49px !important;
-	}
-</style>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/sos.css"/>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"

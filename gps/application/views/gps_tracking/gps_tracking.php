@@ -27,85 +27,63 @@
 	body {
 		height: 100%;
 	}
-
 	body {
 		overflow: hidden;
 	}
-
 	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
 		display: none;
 	}
-
 	.dropdown-menu {
 		padding: 0;
 	}
-
 	.dropdown-menu a:last-child {
 		display: none;
 		top: 55px;
 		left: -15px;
 	}
-
 	.dataTables_filter label {
 		font-size: 0px !important;
 	}
-
 	#example11_filter label input {
 		height: 38px;
 	}
-
 	#example11_filter {
 		height: 37px;
 	}
-
 	td {
 		font-size: 11px !important;
 	}
-
-
 	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
 		color: #6c757d !important;
 	}
-
 	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
 		color: #6c757d !important;
 	}
-
 	.border-5 {
 		border-width: 5px !important;
 	}
-
 	.zui-splitter-separator {
 		z-index: 1 !important;
 	}
-
-
 	.splitter-west {
 	}
-
 	.splitter-east {
 		width: 100%;
 	}
-
 	.dt-button-collection.dropdown-menu {
 		left: -100px !important;
 	}
-
 	a.dt-button.dropdown-item.buttons-columnVisibility {
 		color: #fff !important;
 		background: #8e8f90 !important;
 	}
-
 	a.dt-button.dropdown-item.buttons-columnVisibility.active {
 		color: #8e8f90 !important;
 		background: #fff !important;
 	}
-
 	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
-
-
 </style>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
@@ -163,7 +141,7 @@
 								data-toggle="modal"
 								data-target=".del_group_modal"
 								style="width: 20px;padding: 2px !important;">
-							 <i class="custom_fas_trash fas fa-trash"></i>
+							<i class="custom_fas_trash fas fa-trash"></i>
 
 					</div>
 				</div>
@@ -211,11 +189,9 @@
 					<tbody>
 
 					<?
-
 					$tmp = 0;
 					$imei = '';
 					$arr = array();
-
 					foreach ($last_location as $val) {
 						if ($imei != $val['imei']) {
 							if ($tmp == 0) {
@@ -227,7 +203,6 @@
 						}
 						$imei = $val['imei'];
 					}
-
 					$i = 0;
 					foreach ($result_fleets as $fleets) :
 						?>
@@ -271,8 +246,8 @@
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 						</tr>
-					<?
-					$i++;
+						<?
+						$i++;
 					endforeach; ?>
 					</tbody>
 				</table>
@@ -671,9 +646,7 @@
 
 
 <script>
-
 	$('table tr th:nth-child(2)').click(function () {
-
 		if (!$(this).hasClass('az')) {
 			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
 			$(this).addClass('az');
@@ -682,15 +655,12 @@
 			$(this).removeClass('az');
 		}
 	});
-
 	$('td input').each(function () {
 		$(this).prop('checked', true);
 	});
 	$('.sel_all_checkbox').prop('checked', true);
-
 	$('.sel_all_checkbox').on('change', function () {
 		if ($('input.sel_all_checkbox').is(':checked')) {
-
 			$('td input').each(function () {
 				$(this).prop('checked', true);
 			});
@@ -700,7 +670,6 @@
 			});
 		}
 	});
-
 	var table = $('#example11').DataTable({
 		language: {
 			search: "<?=lang('search')?>",
@@ -737,7 +706,6 @@
 			$(this).addClass('bg-info text-white')
 		}
 	});
-
 	$('select[name="group"]').on('change', function () {
 		$(this).children('option:selected').each(function () {
 			if ($(this).val() != 'all_val') {
@@ -764,8 +732,6 @@
 			}
 		});
 	});
-
-
 	$(document).on('click', '.add_lg_2', function () {
 		$('.sel_items').each(function () {
 			if ($(this).hasClass('bg-info')) {
@@ -775,20 +741,13 @@
 				$(this).removeClass('bg-info text-white sel_items');
 			}
 		});
-
-
 		// group input
-
 		var group = '';
-
 		$('.lg_2  li').each(function (e) {
 			group += $(this).data('id') + ','
 		});
-
 		var groups = group.substring(0, group.length - 1);
-
 		$('input[name="groups"]').val(groups);
-
 		// end group input
 		//$('.select_all').prop('checked', false);
 	});
@@ -803,21 +762,14 @@
 				$('.tab-pane').children('form').remove();
 			}
 		});
-
 		// group input
-
 		var group = '';
-
 		$('.lg_2  li').each(function (e) {
 			group += $(this).data('id') + ','
 		});
-
 		var groups = group.substring(0, group.length - 1);
-
 		$('input[name="groups"]').val(groups);
-
 		// end group input
-
 		//$('.select_all_2').prop('checked', false);
 	});
 	$('.select_all').on('change', function () {
@@ -881,43 +833,31 @@
 	});
 </script>
 <script type="text/javascript">
-
 	/***************************
 	 ****************************
 	 *** [ Yandex Map Start ] ***
 	 ****************************
 	 ***************************/
-
 	//-------------------------------------------------
-
-
 	// Show All Cars On Maps /--------------
 	$(document).ready(function () {
-
 		ymaps.ready(init_all);
-
 		function init_all() {
 			var myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
 			}, {suppressMapOpenBlock: true});
-
 			firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 			myMap_show_all_cars_onChange.controls.add(firstButton, {float: 'right'});
-
 			//Click Function Show All Geofences
 			firstButton.events.add(['select', 'deselect'], function (e) {
-
 				if (e.get('type') == 'select') {
 					$('.geofences_coordinate').each(function () {
-
 						geoObject_coordinates = $(this).attr('data-gCoordinate');
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
-
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {}, {
@@ -926,43 +866,27 @@
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
 						myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
-
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-
 					});
 					myMap_show_all_cars_onChange.container.fitToViewport()
-
-
 				} else {
-
 					ymaps.ready(init_all);
-
 					$('.show_car').each(function () {
 						$('#map').html('');
-
 						if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 							coordinate = $(this).data('coordinate');
 							course = $(this).data('course');
 							console.log(course)
 							array = JSON.parse("[" + coordinate + "]");
-
 							// Определяем адрес по координатам (обратное геокодирование).
-
-
 							var carCoordinate = '';
-
 							latitude = array[0];
 							longitude = array[1];
-
-
 							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 								'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 							),
-
 								myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 									balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -990,44 +914,29 @@
 										radius: 25
 									}
 								});
-
-
 							myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 							myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 							myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 						}
 					});
-
 				}
-
-
 			});
 			address_arr = [];
 			$('.show_car').each(function () {
 				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 					coordinate = $(this).data('coordinate');
 					course = $(this).data('course');
 					array = JSON.parse("[" + coordinate + "]");
-
 					var carCoordinate = '';
-
 					latitude = array[0];
 					longitude = array[1];
-
 					ymaps.geocode(coordinate).then(function (res) {
 						var firstGeoObject = res.geoObjects.get(0);
-
 						address_arr.push(firstGeoObject.getAddressLine());
-
 					});
-
-
-
 					MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 					),
-
 						myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 							balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1055,65 +964,41 @@
 								radius: 25
 							}
 						});
-
 					myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 					myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 				}
-
 			});
-
 			setTimeout(function () {
-
-
-
-
-			//$.each(address_arr, function (e, val) {
-			 var e = 0;
+				//$.each(address_arr, function (e, val) {
+				var e = 0;
 				$('.address_span').each(function () {
 					//alert(address_arr[e]);
 					$(this).html(address_arr[e]);
 					e++;
 				});
-
-			//});
+				//});
 			}, 2500);
-
 			var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
-
-
 		//Show Geozone from selectoption
-
 		$(document).on('change', 'select[name="group"]', function () {
-
 			$(this).children('option:selected').each(function () {
-
 				geozone_coordinates = $(this).data('cordinate');
-
 				if (geozone_coordinates !== undefined && geozone_coordinates != 'gago') {
-
-
 					ymaps.ready(init_Geozone);
-
 					function init_Geozone() {
-
 						$('#map').html('');
-
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
 							center: [55.76, 37.64],
 							zoom: 2
 						}, {suppressMapOpenBlock: true});
-
-
 						array_stting = JSON.parse("[" + geozone_coordinates + "]");
-
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
-
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {}, {
@@ -1122,28 +1007,20 @@
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
 						myMap_show_init_Geozone.geoObjects.add(myPolygon);
 						myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
-
 						$('.show_car').each(function () {
-
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 								coordinate = $(this).data('coordinate');
 								course = $(this).data('course');
 								array = JSON.parse("[" + coordinate + "]");
-
 								var carCoordinate = '';
-
 								latitude = array[0];
 								longitude = array[1];
-
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
-
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1171,49 +1048,35 @@
 											radius: 25
 										}
 									});
-
 								myMap_show_init_Geozone.geoObjects.add(myPlacemarkWithContent);
 								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
 							}
 						});
-
 						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 						$('#map > ymaps').css('width', width_map);
 						$('#map > ymaps').css('overflow', 'scroll');
 					}
-
 				} else {
 					ymaps.ready(init_Geozone2);
-
 					function init_Geozone2() {
-
 						$('#map').html('');
-
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
 							center: [55.76, 37.64],
 							zoom: 2
 						}, {suppressMapOpenBlock: true});
-
 						$('.show_car').each(function () {
-
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 								coordinate = $(this).data('coordinate');
 								course = $(this).data('course');
 								course = $(this).data('course');
-
 								array = JSON.parse("[" + coordinate + "]");
-
 								var carCoordinate = '';
-
 								latitude = array[0];
 								longitude = array[1];
-
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
-
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1241,65 +1104,47 @@
 											radius: 25
 										}
 									});
-
 								myMap_show_init_Geozone.geoObjects.add(myPlacemarkWithContent);
 								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds(), {checkZoomRange: true});
 							}
 						});
-
 						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 						$('#map > ymaps').css('width', width_map);
 						$('#map > ymaps').css('overflow', 'scroll');
 					}
 				}
-
 			});
-
 		});
-
-
 		/* On Click Function Show single Car On Map */
-
 		$('.show_car').click(function () {
-
-
 			car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
 			car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
 			massage_time = $(this).parent('tr').children('.last_time_update').text();
 			driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
 			current_address = $(this).parent('tr').children('.address_span').text();
-
 			$('#map').html('');
-
 			coordinate = $(this).data('coordinate');
 			course = $(this).data('course');
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
-
 			function init_singleCar(array) {
 				var myMap_show_singleCar = new ymaps.Map("map", {
 					center: [45.8989, 54.56566565],
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';
-
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 				myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
-
 				//Click Function Show All Geofences
 				firstButton.events.add(['select', 'deselect'], function (e) {
-
 					if (e.get('type') == 'select') {
 						$('.geofences_coordinate').each(function () {
-
 							geoObject_coordinates = $(this).attr('data-gCoordinate');
 							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 							var rand_color = '#' + (function co(lor) {
 								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 							})('') + '75';
-
 							myPolygon = new ymaps.Polygon([
 								array_stting
 							], {}, {
@@ -1308,34 +1153,23 @@
 								strokeColor: rand_color,
 								strokeWidth: 2
 							});
-
 							myMap_show_singleCar.geoObjects.add(myPolygon);
 							myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 							myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds());
-
 						});
-
 					} else {
-
 						$('.show_car').each(function () {
 							if (coordinate == $(this).data('coordinate')) {
-
 								$(this).trigger('click')
 							}
-
-
 						})
-
 					}
 				});
-
 				latitude = array[0];
 				longitude = array[1];
-
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 				),
-
 					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + car_name + "</a></span></p>" +
@@ -1363,49 +1197,34 @@
 							radius: 25
 						}
 					});
-
 				myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
-
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
-
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
-
-
 		});
-
-
 		/* On Change checkbox  */
-
 		$('tr td input , th input').on('change', function () {
 			$('#map').html('');
 			ymaps.ready(init_all);
-
 			function init_all() {
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
-
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 				myMap_show_all_cars.controls.add(firstButton, {float: 'right'});
-
-
 				//Click Function Show All Geofences
 				firstButton.events.add(['select', 'deselect'], function (e) {
 					if (e.get('type') == 'select') {
 						$('.geofences_coordinate').each(function () {
-
 							geoObject_coordinates = $(this).attr('data-gCoordinate');
 							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 							var rand_color = '#' + (function co(lor) {
 								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 							})('') + '75';
-
 							myPolygon = new ymaps.Polygon([
 								array_stting
 							], {}, {
@@ -1414,41 +1233,29 @@
 								strokeColor: rand_color,
 								strokeWidth: 2
 							});
-
 							myMap_show_all_cars.geoObjects.add(myPolygon);
 							myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
 							myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds());
-
 						});
 					} else {
 						$('#map').html('');
-
 						ymaps.ready(init_all);
-
 						function init_all() {
 							var myMap_show_all_cars = new ymaps.Map("map", {
 								center: [55.76, 37.64],
 								zoom: 2
 							}, {suppressMapOpenBlock: true});
-
-
 							$('.show_car').each(function () {
-
 								if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 									coordinate = $(this).data('coordinate');
 									course = $(this).data('course');
 									array = JSON.parse("[" + coordinate + "]");
-
 									var carCoordinate = '';
-
 									latitude = array[0];
 									longitude = array[1];
-
 									MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 										'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 									),
-
 										myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 											balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 											balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1476,7 +1283,6 @@
 												radius: 25
 											}
 										});
-
 									myMap_show_all_cars.geoObjects.add(myPlacemarkWithContent);
 									myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
 									myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
@@ -1485,24 +1291,17 @@
 						}
 					}
 				});
-
-
 				$('.show_car').each(function () {
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 						coordinate = $(this).data('coordinate');
 						course = $(this).data('course');
 						array = JSON.parse("[" + coordinate + "]");
-
 						var carCoordinate = '';
-
 						latitude = array[0];
 						longitude = array[1];
-
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
-
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1530,54 +1329,42 @@
 									radius: 25
 								}
 							});
-
 						myMap_show_all_cars.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
 					}
 				});
-
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
-
-
 		});
 	});
-
 	/*************************
 	 **************************
 	 *** [ Yandex Map End ] ***
 	 **************************
 	 *************************/
-
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
-
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
-
 		//
 		// $('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
 		// 	var text  = $(this).text();
 		// 	$(this).html('&#x2611; ' +text);
 		// })
 	});
-
 	// add group
 	$(document).on('click', '#add_group', function (e) {
-
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/add_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_add')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
 		$('ul.list-group.lg_2').parent('div').removeClass('border-5 border-danger');
 		loading('start', 'add_group');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -1592,7 +1379,6 @@
 				loading('start', 'add_group');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
-
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -1605,7 +1391,6 @@
 				} else {
 					close_message();
 					loading('stop', 'add_group');
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'add_group');
@@ -1618,16 +1403,13 @@
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (index == 'groups') {
 										$('ul.list-group.lg_2').parent('div').addClass('border-5 border-danger');
 									}
-
 									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -1636,9 +1418,7 @@
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -1647,53 +1427,36 @@
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
-
 			}
 		});
 	});
-
 	// get edit modal
 	$(document).on('click', '#edit_group_modal', function () {
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id') + '/<?=$this->session->token?>';
 		$.get(url, function (result) {
 			// update modal content
 			$('.body-m').html(result);
-
 			var select = $('#geoference');
-
-
 			select.clone().appendTo('#gro').addClass('clone');
 			$('.clone').removeClass('d-none');
-
 			var geoference_id = $('input[name="geoference_id"]').val();
-
-
 			$.each($('.clone').children('option'), function (e) {
 				console.log(geoference_id);
 				if ($(this).val() == geoference_id) {
 					$(this).prop('selected', true);
 				}
 			});
-
-
 			// show modal
 			$('#myModal').modal('show');
 		});
-
 	});
-
-
 	$(document).on('click', '#edit_group_btn', function (e) {
-
-
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_edit')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -1725,7 +1488,6 @@
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (value != tmp) {
 										errors += value;
 									}
@@ -1749,8 +1511,6 @@
 			}
 		});
 	});
-
-
 	$(document).on('click', '.delete_btn', function () {
 		group_id = $('select[name="group"] option:selected').data('id');
 		$('input[name="group_id"]').val(group_id);
@@ -1758,16 +1518,12 @@
 	$(document).on('click', '#delete_group', function () {
 		var id = $('input[name="group_id"]').val();
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
-
 		$.post(url, {group_id, id}, function (result) {
 			location.reload();
 		});
 	});
-
-
 	var dataTable_label = $('.dataTables_filter label').text();
 	$('.dataTables_filter input').attr('placeholder', dataTable_label);
-
 	var elem = $('.dataTables_filter label');
 	// $(elem).html($(elem).html().replace($(elem).text(), ''));
 </script>
@@ -1778,11 +1534,8 @@
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		});
-
 		$('.dt-buttons.btn-group').append('<i style="cursor: pointer;" class="fas fa-ellipsis-v ml-2"></i>');
-
 	});
-
 	$(function () {
 		$("#splitter").zinoSplitter({
 			panes: [
@@ -1796,20 +1549,13 @@
 			],
 			resize: function (event, ui) {
 				log("resize");
-
 			}
 		});
-
 		function log(str) {
-
 			if (str == 'resize') {
-
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
-
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
-
-
 				if ($('.panel-left').width() <= 565) {
 					$('input[type=search]').css('display', 'none');
 					$('.tools_div').removeClass('col-sm-2');
@@ -1825,7 +1571,6 @@
 					$('.car_icon').removeClass('col-sm-3');
 					$('i.fas.fa-ellipsis-v.ml-2').css('display', 'block')
 				}
-
 				if ($('.panel-left').width() <= 374) {
 					$('.label_group').css('display', 'none');
 					$('.tools_div').css('display', 'none');
@@ -1837,34 +1582,25 @@
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-7');
 				}
-
 			}
 		}
-
 	});
-
-
 	$(window).on('load', function () {
 		var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 		$('#map > ymaps').css('width', width_map);
 		$('#map > ymaps').css('overflow', 'scroll');
 	})
-
 	$(document).on('change', 'select[name="group"]', function () {
 		if ($(this).children('option:selected').data('default') == '2') {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').hide();
 		} else {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').show();
 		}
-
 		$('.count_cars_in_table').html($('#total').text())
 	});
-
 	$(document).on('keyup', 'input[type="search"]', function () {
 		$('.count_cars_in_table').html($('#total').text())
 	});
-
-
 	$(document).ready(function () {
 		function myFunction() {
 			if (navigator.userAgent.indexOf("Firefox") != -1) {
@@ -1875,23 +1611,17 @@
 				console.log(window_height2);
 				console.log('Firefox');
 				$('#splitter').css('height', window_height2);
-
 				console.log('firefox');
 				console.log(window_height);
 				console.log(window_height2);
-
 			} else {
-
 				console.log('chrome');
 				$('.dataTables_scrollBody').css('height', 'calc(100% - 315px)');
 				$('#splitter').css('height', 'calc(100% - 150px)');
 			}
 		}
-
 		myFunction();
 	})
-
-
 </script>
 
 
@@ -1905,5 +1635,3 @@
 
 
 </select>
-
-

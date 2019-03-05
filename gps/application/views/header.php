@@ -251,13 +251,15 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 <!--							title="--><?//= lang('engine') ?><!--">-->
 <!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/engine.svg"/>-->
 <!--						</button>-->
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/load') ?>">
 						<button
 							style="color:#00000080 !important;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
+							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 <?= ($page == 'load' ? 'active' : '') ?>"
 							href="#"
 							data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
 						</button>
+						</a>
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/sos') ?>">
 						<button
 							style="color:#00000080 !important;max-height: 40px;position: relative"
@@ -276,13 +278,15 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 <!--							title="--><?//= lang('notification') ?><!--">-->
 <!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
 <!--						</button>-->
+						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/event') ?>">
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
+							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'event' ? 'active' : '') ?>"
 							href="#"
 							data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
 							<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
 						</button>
+						</a>
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "

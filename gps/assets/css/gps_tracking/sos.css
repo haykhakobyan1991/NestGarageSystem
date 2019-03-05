@@ -7,10 +7,6 @@ body {
 	overflow: hidden;
 }
 
-.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
-	display: none;
-}
-
 .dropdown-menu {
 	padding: 0;
 }
@@ -60,10 +56,6 @@ td {
 	width: 100%;
 }
 
-.dt-button-collection.dropdown-menu {
-	left: -100px !important;
-}
-
 a.dt-button.dropdown-item.buttons-columnVisibility {
 	color: #fff !important;
 	background: #8e8f90 !important;
@@ -84,4 +76,8 @@ td {
 
 div#example11_wrapper {
 	margin-top: -49px !important;
+}
+
+button.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis{
+	display: inline-block !important;
 }

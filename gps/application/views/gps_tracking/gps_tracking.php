@@ -888,6 +888,7 @@
 		ymaps.ready(init_all);
 
 		function init_all() {
+
 			var myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
@@ -923,8 +924,8 @@
 						myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 
 					});
-					myMap_show_all_cars_onChange.container.fitToViewport()
 
+					myMap_show_all_cars_onChange.container.fitToViewport()
 
 				} else {
 
@@ -935,16 +936,14 @@
 
 						if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
-
 							coordinate = $(this).data('coordinate');
 							course = $(this).data('course');
-							console.log(course)
+
 							array = JSON.parse("[" + coordinate + "]");
 							var carCoordinate = '';
 
 							latitude = array[0];
 							longitude = array[1];
-
 
 							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 								'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
@@ -977,20 +976,6 @@
 										radius: 25
 									}
 								});
-
-							myPlacemarkWithContent.events.add('balloonopen', function (e) {
-								myPlacemarkWithContent.properties.set('balloonContent', "Loading data...");
-
-								ymaps.geocode(myPlacemarkWithContent.geometry.getCoordinates(), {
-									results: 1
-								}).then(function (res) {
-									var newContent = res.geoObjects.get(0) ?
-										res.geoObjects.get(0).properties.get('name') :
-										'Couldn\'t detect address.';
-									myPlacemarkWithContent.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
-								});
-
-							});
 
 							myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 							myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
@@ -1052,25 +1037,27 @@
 							}
 						});
 
-					myPlacemarkWithContent.events.add('balloonopen', function (e) {
-						myPlacemarkWithContent.properties.set('balloonContent', "Loading data...");
+					// myPlacemarkWithContent.events.add('balloonopen', function (e) {
+					// 	myPlacemarkWithContent.properties.set('balloonContentFooter', "Loading data...");
 
-						ymaps.geocode(myPlacemarkWithContent.geometry.getCoordinates(), {
-							results: 1
-						}).then(function (res) {
-							var newContent = res.geoObjects.get(0) ?
-								res.geoObjects.get(0).properties.get('name') :
-								'Couldn\'t detect address.';
-							myPlacemarkWithContent.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
-						});
+					// 	ymaps.geocode(myPlacemarkWithContent.geometry.getCoordinates(), {
+					// 		results: 1
+					// 	}).then(function (res) {
+					// 		var newContent = res.geoObjects.get(0) ?
+					// 			res.geoObjects.get(0).properties.get('name') :
+					// 			'Couldn\'t detect address.';
+					// 		myPlacemarkWithContent.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
+					// 	});
 
-					});
+					// });
 
 					myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 					myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 				}
-
+				setTimeout(function () {
+					console.log($(this).parent('tr').children('.place').children('span').text());
+				},2500);
 
 			});
 
@@ -1078,7 +1065,7 @@
 			setTimeout(function () {
 				var e = 0;
 				$('.address_span').each(function () {
-					//alert(address_arr[e]);
+
 					$(this).html(address_arr[e]);
 					e++;
 				});
@@ -1675,17 +1662,13 @@
 				}
 			});
 
-
 			// show modal
 			$('#myModal').modal('show');
 		});
-
 	});
 
 
 	$(document).on('click', '#edit_group_btn', function (e) {
-
-
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_edit')[0]);
@@ -1843,7 +1826,6 @@
 
 	});
 
-
 	$(window).on('load', function () {
 		var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 		$('#map > ymaps').css('width', width_map);
@@ -1864,7 +1846,6 @@
 		$('.count_cars_in_table').html($('#total').text())
 	});
 
-
 	$(document).ready(function () {
 		function myFunction() {
 			if (navigator.userAgent.indexOf("Firefox") != -1) {
@@ -1881,9 +1862,7 @@
 		myFunction();
 	})
 
-
 </script>
-
 
 <select class="sell_group_select form-control form-control-sm col-sm-12 d-none" name="geoference" id="geoference">
 	<option selected value=""><?= lang('geofences') ?></option>
@@ -1895,5 +1874,3 @@
 
 
 </select>
-
-

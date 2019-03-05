@@ -193,7 +193,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 			<div class="modal-footer">
@@ -255,7 +254,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					</tbody>
 				</table>
 
-
 				<input type="hidden" name="fleets" value="">
 				<div class="row mt-1">
 					<div class="col-sm-12">
@@ -281,37 +279,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						</div>
 					</div>
 				</div>
-
-				<div class="row mt-2">
-					<div class="col-lg-12" style="text-align: left;">
-						<label style="font-size: 11px !important;"><?= lang('speed') ?></label>
-						<input type="checkbox" name="speed_yn" value="1" class="speed_checkbox rem_right float-right"
-							   style="margin-top: 2px;"/>
-					</div>
-				</div>
-
-				<div class="row set_maxSpeed d-none">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label><?= lang('max_speed') ?></label>
-							<input name="speed" type="text" alt="<?= lang('max_speed') ?>"
-								   title="<?= lang('max_speed') ?>"
-								   class="form-control form-control-sm" placeholder="<?= lang('max_speed') ?>"
-								   value="60">
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-sm-12" style="text-align: left;">
-						<label style="font-size: 11px !important;"><?= lang('engine') ?></label>
-						<input name="engine" value="1" type="checkbox" class="rem_right float-right"
-							   style="margin-top: 2px;"/>
-					</div>
-				</div>
-
 			</form>
-
 
 			<div class="row">
 				<div class="container-fluid">
@@ -1032,7 +1000,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							});
 
 							setTimeout(function () {
+
+
 								if (as == 2) {
+
 									function initDataTable() {
 										var table = $('#example12').DataTable({
 											"searching": true,
@@ -1212,8 +1183,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 
-
 	</script>
+
 
 
 

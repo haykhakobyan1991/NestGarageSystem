@@ -14,11 +14,19 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/fuel.css"/>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
 <!-- Settings Modal Start -->
+
+<style>
+	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis{display: inline-block !important;}
+	a.dt-button.dropdown-item.buttons-columnVisibility {color: #fff !important;background: #8e8f90 !important;}
+	a.dt-button.dropdown-item.buttons-columnVisibility.active {color: #8e8f90 !important;background: #fff !important;}
+</style>
 
 <div class="modal fade bd-example-modal-lg settings_modal" tabindex="-1" role="dialog"
 	 aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -639,11 +647,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 				}
 
-
 				function initDataTable() {
 					var table = $('#example12').DataTable({
-						"searching": true,
-						"ordering": true,
+						"searching": false,
+						"ordering": false,
 						"bPaginate": false,
 						"paging": false,
 						language: {
@@ -684,8 +691,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
 					table.buttons().container()
 						.appendTo('#example12_wrapper #example12_filter:eq(0)');
-					$('.dt-buttons').css('float', 'left');
+					$('.dt-buttons').css('float', 'right');
+					$('.dt-buttons').css('margin-top','5px');
+
 				}
+
+				initDataTable();
 
 			},
 			error: function (jqXHR, textStatus) {

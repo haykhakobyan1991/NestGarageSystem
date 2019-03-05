@@ -5,18 +5,18 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
 <script src="https://static.zinoui.com/js/front.min.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/sos.css"/>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -27,15 +27,14 @@
 
 	<div class="panel-left splitter-west" id="mydiv">
 		<div class="row">
-			<div class="col-sm-12 mt-2">
-
-				<div class="form-group row ml-2">
-					<div class="car_icon col-sm-4" style="padding-top: 7px;">
-						<span class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
-					</div>
+			<div class="form-group row ml-2">
+				<div class="car_icon col-sm-12 ml-2">
+					<span class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
 				</div>
-
-
+			</div>
+		</div>
+		<div class="row" style="margin-top: 30px;">
+			<div class="col-sm-12 mt-2">
 				<table id="example11" class="table table-striped table-borderless w-100 dataTable no-footer"
 					   style="width:100%">
 					<thead>
@@ -382,37 +381,62 @@
 <script>
 
 
-	var table = $('#example11').DataTable({
-		language: {
-			search: "<?=lang('search')?>",
-			emptyTable: "<?=lang('no_data')?>",
-			info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-			infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-			infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-			lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-			zeroRecords: "<?=lang('no_matching_records')?>",
-			paginate: {
-				first: "<?=lang('first')?>",
-				last: "<?=lang('last')?>",
-				next: "<?=lang('next')?>",
-				previous: "<?=lang('prev')?>"
-			}
-		},
-		"columnDefs": [{
-			"targets": [5],
-			"orderable": false
-		}],
-		dom: 'Bfrtip',
-		buttons: [
-			'colvis'
-		],
-		"bPaginate": false,
-		"paging": false,
-		"aaSorting": []
+	function initDataTable() {
+
+		var from_date = $('tbody').children('tr:first-child').children('td:nth-child(2)').text();
+		var to_date   = $('tbody').children('tr:last-child').children('td:nth-child(2)').text();
+
+		console.log(from_date);
+		console.log(to_date);
+
+		var table = $('#example11').DataTable({
+			"searching": true,
+			"ordering": true,
+			"bPaginate": false,
+			"paging": false,
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				}
+			},
+			dom: 'Bfrtip',
+			buttons: [
+				{
+					extend: 'excelHtml5',
+					title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + from_date + '  <?=lang('to')?> ' + to_date,
+					messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
+					autoWidth: true,
+					filename: 'sos',
+					exportOptions: {
+						columns: ':visible'
+					}
+				},
+				'colvis'
+			]
+		});
+
+		$('.buttons-excel span').html('<?=lang('export')?>');
+		$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+		$('.buttons-colvis span').text('');
+		$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+		table.buttons().container()
+			.appendTo('#example12_wrapper #example12_filter:eq(0)');
+		$('.dt-buttons').css('float', 'left');
+	}
+
+	$(window).on('load', function () {
+		initDataTable();
 	});
-	table.buttons().container().appendTo('#example11_wrapper #example11_filter:eq(0)');
-
-
 </script>
 <script type="text/javascript">
 
@@ -432,15 +456,12 @@
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
 
-
 			$('.show_car').each(function () {
 
 				coordinate = $(this).data('coordinate');
 				array = JSON.parse("[" + coordinate + "]");
 
-
 				var carCoordinate = '';
-
 				latitude = array[0];
 				longitude = array[1];
 

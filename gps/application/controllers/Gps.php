@@ -226,6 +226,38 @@ class Gps extends MX_Controller
 		$this->layout->view('gps_tracking/fuel', $data);
 	}
 
+	public function load()
+	{
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$data = array();
+		$lng = $this->load->lng();
+
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$data['result_fleets'] = json_decode($fleets, true);
+
+		$this->layout->view('gps_tracking/load', $data);
+	}
+
+	public function event()
+	{
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+
+		$data = array();
+		$lng = $this->load->lng();
+
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$data['result_fleets'] = json_decode($fleets, true);
+
+		$this->layout->view('gps_tracking/event', $data);
+	}
+
+
+
 	public function sos()
 	{
 		$token = $this->session->token;

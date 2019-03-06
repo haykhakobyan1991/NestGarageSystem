@@ -267,7 +267,6 @@
 							</td>
 							<td class="show_car"
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
-								data-imei='<?= $fleets['gps_tracker_imei'] ?>'
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
@@ -895,8 +894,16 @@
 				zoom: 2
 			}, {suppressMapOpenBlock: true});
 
-			firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
+			firstButton = new ymaps.control.Button({
+				data: {
+					content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
+				},
+				options: {
+					selectOnClick: true
+				}
+			});
 			myMap_show_all_cars_onChange.controls.add(firstButton, {float: 'right'});
+
 
 			//Click Function Show All Geofences
 			firstButton.events.add(['select', 'deselect'], function (e) {
@@ -929,73 +936,14 @@
 					myMap_show_all_cars_onChange.container.fitToViewport()
 
 				} else {
-
+					$('#map').html('');
 					ymaps.ready(init_all);
-
-					$('.show_car').each(function () {
-						$('#map').html('');
-
-						if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
-							coordinate = $(this).data('coordinate');
-							course = $(this).data('course');
-
-
-							array = JSON.parse("[" + coordinate + "]");
-							var carCoordinate = '';
-
-							latitude = array[0];
-							longitude = array[1];
-
-
-
-
-
-
-
-							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-								'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
-							),
-
-								myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
-									balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-									balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-										"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
-										"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-										"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-										"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-										"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-										"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-										"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
-									balloonContentFooter: ""
-								}, {
-									iconLayout: ymaps.templateLayoutFactory.createClass([
-										'<div style="transform:rotate({{options.rotate}}deg);">',
-										'{% include "default#image" %}',
-										'</div>'
-									].join('')),
-									iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-									iconImageSize: [35, 30],
-									iconImageOffset: [-10, -35],
-									iconRotate: course,
-									iconShape: {
-										type: 'Circle',
-										coordinates: [0, 0],
-										radius: 25
-									}
-								});
-
-							myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
-							myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
-							myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-						}
-					});
-
 				}
 
 
 			});
 			address_arr = [];
+
 			$('.show_car').each(function () {
 				if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
@@ -1017,6 +965,8 @@
 						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 					),
 
+
+
 						myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 							balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='#'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
@@ -1025,7 +975,7 @@
 								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
 								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>" +
 								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 							balloonContentFooter: ""
 						}, {
@@ -1045,27 +995,10 @@
 							}
 						});
 
-					// myPlacemarkWithContent.events.add('balloonopen', function (e) {
-					// 	myPlacemarkWithContent.properties.set('balloonContentFooter', "Loading data...");
-
-					// 	ymaps.geocode(myPlacemarkWithContent.geometry.getCoordinates(), {
-					// 		results: 1
-					// 	}).then(function (res) {
-					// 		var newContent = res.geoObjects.get(0) ?
-					// 			res.geoObjects.get(0).properties.get('name') :
-					// 			'Couldn\'t detect address.';
-					// 		myPlacemarkWithContent.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
-					// 	});
-
-					// });
-
 					myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 					myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
 				}
-				setTimeout(function () {
-					console.log($(this).parent('tr').children('.place').children('span').text());
-				},2500);
 
 			});
 
@@ -1073,7 +1006,7 @@
 			setTimeout(function () {
 				var e = 0;
 				$('.address_span').each(function () {
-
+					//alert(address_arr[e]);
 					$(this).html(address_arr[e]);
 					e++;
 				});
@@ -1141,7 +1074,7 @@
 
 								latitude = array[0];
 								longitude = array[1];
-
+								alert('2');
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
@@ -1285,7 +1218,14 @@
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';
 
-				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
+				firstButton = new ymaps.control.Button({
+					data: {
+						content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
+					},
+					options: {
+						selectOnClick: true
+					}
+				});
 				myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
 
 				//Click Function Show All Geofences
@@ -1487,7 +1427,6 @@
 
 						coordinate = $(this).data('coordinate');
 						course = $(this).data('course');
-
 						array = JSON.parse("[" + coordinate + "]");
 
 						var carCoordinate = '';
@@ -1554,11 +1493,6 @@
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
 
-		//
-		// $('a.dt-button.dropdown-item.buttons-columnVisibility').each(function () {
-		// 	var text  = $(this).text();
-		// 	$(this).html('&#x2611; ' +text);
-		// })
 	});
 
 	// add group
@@ -1665,7 +1599,6 @@
 
 
 			$.each($('.clone').children('option'), function (e) {
-				console.log(geoference_id);
 				if ($(this).val() == geoference_id) {
 					$(this).prop('selected', true);
 				}

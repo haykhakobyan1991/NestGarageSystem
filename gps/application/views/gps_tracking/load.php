@@ -706,7 +706,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			me.data('requestRunning', true);
 
 
-			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory') ?>';
+			var url = '<?=base_url($this->uri->segment(1) . '/Gps/get_trajectory_load') ?>';
 
 			var form_data = new FormData($('form')[0]);
 			$('input').removeClass('border border-danger');
@@ -895,8 +895,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											hintContent: 'A custom placemark icon with contents',
 											balloonContent: '<p>' + value.fleet + '<p>' +
 												'<p><?=lang("time")?>: ' + value.time + '</p>' +
-												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>' +
-												'<p><?=lang("engine")?>: ' + (value.engine_power == 1 ? '<span class="ml-1 bg-danger" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>' : '<span class="ml-1 bg-success" style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></span>') + '</p>'
+												'<p><?=lang("speed")?>: ' + value.speed + ' <?=lang("km/h")?></p>'
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([
 												'<div class="qweqwe" style="transform:rotate({{options.rotate}}deg);">',
@@ -922,32 +921,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									if (_imei != e) {
 
-										if (value.engine == 1) {
+
 											$('.engineOnOf').removeClass('d-none');
 											info += '<tr>\n' +
 												'<td>' + value.fleet + '</td>\n' +
 												'<td>' + value.fleet_plate_number + '</td>\n' +
 												'<td>' + value.staff + '</td>\n' +
 												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
-												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' + qx[e] + '.</td>\n' +
-												'<td>' + data.message.power[e]['on'] + '</td>\n' +
-												'<td>' + data.message.power[e]['off'] + '</td>\n' +
-												'<td>' + data.message.null_speed[e] + '</td>\n' +
+												'<td>' + data.message.load[e]['on'] + '</td>\n' +
+												'<td>' + data.message.load[e]['off'] + '</td>\n' +
+
 												'</tr>\n';
-											as = 1;
-										} else {
-											info += '<tr>\n' +
-												'<td>' + value.fleet + '</td>\n' +
-												'<td>' + value.fleet_plate_number + '</td>\n' +
-												'<td>' + value.staff + '</td>\n' +
-												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
-												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
-												'<td>' + qx[e] + '.</td>\n' +
-												'<td>' + data.message.null_speed[e] + '</td>\n' +
-												'</tr>\n';
-											as = 2;
-										}
 
 
 									}
@@ -968,20 +952,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
 										'\t\t\t\t\t\t\t<?= lang("trajectory") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
-										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?= lang("average_speed") ?>\n' +
+										'\t\t\t\t\t\t<th  style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("load_yes") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
-										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?= lang("Number_exceedance") ?>\n' +
-										'\t\t\t\t\t\t</th>\n' +
-										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?= lang("on_road") ?>\n' +
-										'\t\t\t\t\t\t</th>\n' +
-										'\t\t\t\t\t\t<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?= lang("engine_turn_of") ?>\n' +
-										'\t\t\t\t\t\t</th>\n' +
-										'\t\t\t\t\t\t<th style="font-size: 12px !important;font-weight: 500;">\n' +
-										'\t\t\t\t\t\t\t<?=lang("stop")?>\n' +
+										'\t\t\t\t\t\t<th  style="font-size: 12px !important;font-weight: 500;">\n' +
+										'\t\t\t\t\t\t\t<?= lang("load_no") ?>\n' +
 										'\t\t\t\t\t\t</th>\n' +
 										'\t\t\t\t\t</tr>\n' +
 										'\t\t\t\t\t</thead>\n' +
@@ -1000,9 +975,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							});
 
 							setTimeout(function () {
-
-
-								if (as == 2) {
 
 									function initDataTable() {
 										var table = $('#example12').DataTable({
@@ -1051,58 +1023,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										$('.dt-buttons').css('float', 'left');
 									}
 
-									$('.engineOnOf').remove();
 									initDataTable();
-
-								} else {
-									function initDataTable() {
-										var table = $('#example12').DataTable({
-											"searching": true,
-											"ordering": true,
-											"bPaginate": false,
-											"paging": false,
-											language: {
-												search: "<?=lang('search')?>",
-												emptyTable: "<?=lang('no_data')?>",
-												info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-												infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-												infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-												lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-												zeroRecords: "<?=lang('no_matching_records')?>",
-												paginate: {
-													first: "<?=lang('first')?>",
-													last: "<?=lang('last')?>",
-													next: "<?=lang('next')?>",
-													previous: "<?=lang('prev')?>"
-												}
-											},
-											dom: 'Bfrtip',
-											buttons: [
-												{
-													extend: 'excelHtml5',
-													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-													messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text() + ",  <?=lang('type')?>:  <?=lang('trajectory_speed')?> ",
-													autoWidth: true,
-													filename: 'trajectory',
-													exportOptions: {
-														columns: ':visible'
-													}
-												},
-												'colvis'
-											]
-										});
-
-										$('.buttons-excel span').html('<?=lang('export')?>');
-										$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-										$('.buttons-colvis span').text('');
-										$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
-										table.buttons().container()
-											.appendTo('#example12_wrapper #example12_filter:eq(0)');
-										$('.dt-buttons').css('float', 'left');
-									}
-
-									initDataTable();
-								}
 
 							}, xsht + 3000);
 

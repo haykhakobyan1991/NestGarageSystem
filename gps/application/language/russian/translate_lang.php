@@ -445,5 +445,8 @@ $lang['middle'] = 'Средний';
 $lang['drain_counter'] = 'Количество сливов';
 $lang['drain'] = 'Объём сливов';
 
+$lang['load_yes'] = 'Загружен';
+$lang['load_no'] = 'Не Загружен';
+
 $lang['seeAll'] = 'Увидеть все';
 

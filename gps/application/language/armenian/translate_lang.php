@@ -450,6 +450,10 @@ $lang['drain_counter'] = 'Արտահոսքի քանակ';
 $lang['drain'] = 'Արտահոսքի չափ';
 
 
+$lang['load_yes'] = 'Բեռնված';
+$lang['load_no'] = 'Չբեռնված';
+
+
 
 $lang['seeAll'] = 'Տեսնել բոլորը';
 

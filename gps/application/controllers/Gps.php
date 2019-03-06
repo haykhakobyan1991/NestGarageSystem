@@ -1156,6 +1156,232 @@ class Gps extends MX_Controller
 	}
 
 
+	public function get_trajectory_load ()
+	{//todo
+
+		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
+		$n = 0;
+		$token = $this->session->token;
+		$lng = $this->load->lng();
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('from', 'from', 'required');
+		$this->form_validation->set_rules('to', 'to', 'required');
+		$this->form_validation->set_rules('fleets', 'fleets', 'required');
+
+
+		if ($this->form_validation->run() == false) {
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'from' => form_error('from'),
+				'to' => form_error('to'),
+				'fleets' => form_error('fleets')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		//imei
+		$fleets = $this->input->post('fleets');
+		$fleet_arr = explode(',', $fleets);
+
+		$add_sql = 'AND (';
+
+		foreach ($fleet_arr as $fleet) {
+			if ($fleet != '') {
+				$add_sql .= " gps.\"imei\" =  '" . $fleet . "' OR";
+			}
+		}
+
+		$add_sql = substr($add_sql, 0, -2) . ')';
+		//end imei
+
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+
+		$sql = "
+			SELECT 
+				gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"load\",
+				gps.\"engine\"
+			FROM 
+			   gps
+			WHERE gps.\"date\" >= '" . $from . "'
+			 AND gps.\"date\" <= '" . $to . "'
+			 " . $add_sql . "
+		  ORDER BY date, time
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
+
+		$new_result = array();
+
+
+		$date = '';
+		$load_result = array();
+		$speed_null = array();
+
+
+		if (count($result) > 0) {
+
+			$lat = '';
+			$long = '';
+			$_imei = '';
+			$fleet = array();
+
+
+			foreach ($result as $value) {
+
+				if (round($value['speed']) > 0) {
+					if ($value['load'] == 1) {
+						$load_result[$value['imei']]['on'][$value['date']][] = $value['time'];
+					} elseif ($value['load'] == -1) {
+						$load_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+					}
+				}
+
+
+				if ($lat != $value['lat'] && $long != $value['long']) {
+
+					if (round($value['speed']) > 0) {
+						$fl = '';
+						if ($_imei != $value['imei']) {
+							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei']));
+							$fleet[$value['imei']] = json_decode($fl, true);
+						}
+						$_imei = $value['imei'];
+
+						if ($value['load'] == 1) {
+
+							$new_result[$value['imei']][] = array(
+								'time' => $value['date'] . ' ' . $value['time'],
+								'cord' => '[' . $value['lat'] . ',' . $value['long'] . ']',
+								'cord_qx' => '[' . $value['lat'] . ',' . $value['long'] . ']',
+								'speed' => round($value['speed']),
+								'fleet' => $fleet[$value['imei']]['brand_model'],
+								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
+								'staff' => $fleet[$value['imei']]['staff'],
+								'course' => $value['course']
+							);
+
+						} else {
+
+							$new_result[$value['imei']][] = array(
+								'time' => $value['date'] . ' ' . $value['time'],
+								'cord' => '[' . $value['lat'] . ',' . $value['long'] . ']',
+								'speed' => round($value['speed']),
+								'fleet' => $fleet[$value['imei']]['brand_model'],
+								'fleet_plate_number' => $fleet[$value['imei']]['fleet_plate_number'],
+								'staff' => $fleet[$value['imei']]['staff'],
+								'course' => $value['course']
+							);
+						}
+
+
+					}
+				}
+				$lat = $value['lat'];
+				$long = $value['long'];
+			}
+
+			$result = true;
+
+		}
+
+		// load off or on
+		$_date = '';
+		$_date2 = '';
+		$load = array();
+		$date1 = new DateTime("00:00:00");
+		$date2 = new DateTime("00:00:00");
+
+
+		if (count($load_result) > 0) {
+			foreach ($load_result as $imei => $er) {
+				foreach ($er as $on_off => $date_arr) {
+					foreach ($date_arr as $date => $time) {
+
+						if ($on_off == 'on') {
+							$duration1 = 0;
+							if ($_date != $date) {
+								$startTime = new DateTime($time[0]);
+								$endTime = new DateTime(end($time));
+								$duration1 = $startTime->diff($endTime);
+
+							}
+							$_date = $date;
+							$date1->add($duration1);
+							$load[$imei][$on_off] = $date1->format("H:i:s");
+						} elseif ($on_off == 'off') {
+							$duration2 = 0;
+							if ($_date2 != $date) {
+								$startTime = new DateTime($time[0]);
+								$endTime = new DateTime(end($time));
+								$duration2 = $startTime->diff($endTime);
+
+							}
+							$_date2 = $date;
+
+							$date2->add($duration2);
+							$load[$imei][$on_off] = $date2->format("H:i:s");
+						}
+
+					}
+				}
+			}
+		}
+
+
+		//$this->pre($new_result);
+		//$this->pre($power);
+		//$this->pre($null_speed);
+
+		if ($result) {
+			$messages['success'] = 1;
+			$messages['message']['imei'] = $new_result;
+			$messages['message']['load'] = $load;
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = 'Error';
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+
+	}
+
+
 	public function aaaa()
 	{
 

@@ -93,7 +93,7 @@ class Gps extends MX_Controller
 
 
 		$token = $this->session->token;
-		$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 
 		$data = array();
@@ -190,14 +190,14 @@ class Gps extends MX_Controller
 	public function speed()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 		$this->layout->view('gps_tracking/speed');
 	}
 
 	public function trajectory()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
 		$lng = $this->load->lng();
@@ -214,7 +214,7 @@ class Gps extends MX_Controller
 	public function fuel()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
 		$lng = $this->load->lng();
@@ -229,7 +229,7 @@ class Gps extends MX_Controller
 	public function load()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
 		$lng = $this->load->lng();
@@ -244,7 +244,7 @@ class Gps extends MX_Controller
 	public function event()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
 		$lng = $this->load->lng();
@@ -261,7 +261,7 @@ class Gps extends MX_Controller
 	public function sos()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
 
@@ -295,7 +295,7 @@ class Gps extends MX_Controller
 	public function geoferences()
 	{
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 		$data = array();
 		$lng = $this->load->lng();
 
@@ -322,7 +322,7 @@ class Gps extends MX_Controller
 	{
 
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -426,7 +426,7 @@ class Gps extends MX_Controller
 	{
 
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$this->load->library('session');
 		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
@@ -527,7 +527,7 @@ class Gps extends MX_Controller
 	{
 
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
 			// Return error
@@ -1056,7 +1056,7 @@ class Gps extends MX_Controller
 	public function sos_visibility() {
 
 		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
 			// Return error
@@ -1069,20 +1069,90 @@ class Gps extends MX_Controller
 		$sos_visibility = $this->input->post('sos_visibility');
 		$count_unread = $this->input->post('count_unread');
 
-		if($sos_visibility == 1) {
-			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
-		} elseif ($sos_visibility == -1) {
-			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
-		} elseif ($sos_visibility == 2) {
-			$this->db->update('gps', array('sos_visibility' => $sos_visibility), array('id' => $id));
-		}
-
 		$this->session->set_userdata('unread', $count_unread);
+
+		$sql = "UPDATE gps SET sos_visibility = '" . $sos_visibility . "' WHERE id = '" . $id . "'";
+		$query = $this->db->query($sql);
+
+
+		if ($query) {
+			echo 1;
+		} else {
+			echo -1;
+		}
 
 
 		return true;
 
 
+	}
+	
+	
+	public function get_location() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$fleets = $this->input->post('fleets');
+		
+		$add_sql = '';
+		foreach (explode(',', $fleets) as $imei) {
+			$add_sql .= " gps.\"imei\" = '" . $imei . "' OR";
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+		
+		$sql = "
+			SELECT 
+				gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"engine\"
+			FROM 
+			   gps
+			WHERE " . $add_sql . "
+		 	ORDER BY imei, 
+		 	CONCAT_WS (' ',
+		 	   gps.\"date\",
+			   gps.\"time\"
+		    ) desc
+		";
+
+
+		$query = $this->db->query($sql);
+
+		$last_location = $query->result_array();
+
+		$tmp = 0;
+		$imei = '';
+		$arr = array();
+
+		foreach ($last_location as $val) {
+			if ($imei != $val['imei']) {
+				if ($tmp == 0) {
+					$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course']);
+				}
+				$tmp = 1;
+			} else {
+				$tmp = 0;
+			}
+			$imei = $val['imei'];
+		}
+
+		echo json_encode($arr);
+		return true;
 	}
 
 
@@ -1183,6 +1253,9 @@ class Gps extends MX_Controller
 			echo 'INSERT FALSE' . br();
 		}
 	}
+	
+	
+	
 
 
 }

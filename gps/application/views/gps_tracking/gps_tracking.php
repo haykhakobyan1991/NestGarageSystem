@@ -267,6 +267,7 @@
 							</td>
 							<td class="show_car"
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
+								data-imei='<?= $fleets['gps_tracker_imei'] ?>'
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
@@ -939,11 +940,18 @@
 							coordinate = $(this).data('coordinate');
 							course = $(this).data('course');
 
+
 							array = JSON.parse("[" + coordinate + "]");
 							var carCoordinate = '';
 
 							latitude = array[0];
 							longitude = array[1];
+
+
+
+
+
+
 
 							MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 								'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
@@ -1479,6 +1487,7 @@
 
 						coordinate = $(this).data('coordinate');
 						course = $(this).data('course');
+
 						array = JSON.parse("[" + coordinate + "]");
 
 						var carCoordinate = '';

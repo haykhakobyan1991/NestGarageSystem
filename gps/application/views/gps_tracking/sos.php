@@ -568,13 +568,13 @@
 
 			if ($(this).children('i').hasClass('fa-envelope')) {
 				$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
-					sos_visibility: 1,
+					sos_visibility: -1,
 					gps_id: $(this).data('id'),
 					count_unread: unread
 				});
 			} else {
 				$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
-					sos_visibility: -1,
+					sos_visibility: 1,
 					gps_id: $(this).data('id'),
 					count_unread: unread
 				});

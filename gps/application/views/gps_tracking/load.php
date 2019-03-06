@@ -281,7 +281,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				</div>
 			</form>
 
-			<div class="row">
+			<div class="row mt-2">
 				<div class="container-fluid">
 					<button
 						style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"

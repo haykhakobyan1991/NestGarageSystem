@@ -253,7 +253,26 @@ class Gps extends MX_Controller
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
+
+
+
+
 		$this->layout->view('gps_tracking/event', $data);
+	}
+
+	public function load_data() {
+		$this->db->select("id, title, class, extract(epoch FROM start_date)*1000 as start, extract(epoch FROM end_date)*1000 as end");
+		$query = $this->db->get('event');
+
+		$events = $query->result();
+
+
+
+		if($events !== NULL) {
+			echo json_encode(array('success' => 1, 'result' => $events));
+		} else {
+			echo json_encode(array('success' => 0, 'error' => 'Event not found'));
+		}
 	}
 
 

@@ -267,6 +267,7 @@
 							</td>
 							<td class="show_car"
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
+								data-id="<?=$fleets['id']?>"
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>

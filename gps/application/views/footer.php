@@ -16,11 +16,10 @@
 
 			var input = $(this).parents('.input-group').find(':text'),
 				log = label;
-
 			if (input.length) {
 				input.val(log);
 			} else {
-				if (log) alert(log);
+				if (log) console.log(log);
 			}
 
 		});

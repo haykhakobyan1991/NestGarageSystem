@@ -61,6 +61,7 @@ $autoload['packages'] = array();
 $autoload['libraries'] = array('layout', 'database', 'session');
 
 
+
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
@@ -90,7 +91,10 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('html', 'url', 'file', 'form', 'path');
+$autoload['helper'] = array('html', 'url', 'file', 'form', 'text', 'path');
+
+
+
 
 /*
 | -------------------------------------------------------------------

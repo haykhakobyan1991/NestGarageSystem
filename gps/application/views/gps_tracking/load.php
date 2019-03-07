@@ -1004,7 +1004,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
 													messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
 													autoWidth: true,
-													filename: 'trajectory',
+													filename: 'load',
 													footer: true,
 													exportOptions: {
 														columns: ':visible'

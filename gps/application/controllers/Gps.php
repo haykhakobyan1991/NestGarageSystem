@@ -268,14 +268,13 @@ class Gps extends MX_Controller
 		}
 
 
-
-
 		$prefs = array(
-			'month_type'   => 'long',
-			'show_other_days'     => true,
-			'show_next_prev' => TRUE,
-			'next_prev_url'   => base_url().$lng.'/event'
+			'month_type' => 'long',
+			'show_other_days' => true,
+			'show_next_prev' => true,
+			'next_prev_url' => base_url() . $lng . '/event'
 		);
+
 		$this->load->library('calendar',$prefs); // Load calender library
 
 		$d = array(

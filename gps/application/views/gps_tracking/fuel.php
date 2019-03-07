@@ -23,9 +23,19 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <!-- Settings Modal Start -->
 
 <style>
-	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis{display: inline-block !important;}
-	a.dt-button.dropdown-item.buttons-columnVisibility {color: #fff !important;background: #8e8f90 !important;}
-	a.dt-button.dropdown-item.buttons-columnVisibility.active {color: #8e8f90 !important;background: #fff !important;}
+	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
+		display: inline-block !important;
+	}
+
+	a.dt-button.dropdown-item.buttons-columnVisibility {
+		color: #fff !important;
+		background: #8e8f90 !important;
+	}
+
+	a.dt-button.dropdown-item.buttons-columnVisibility.active {
+		color: #8e8f90 !important;
+		background: #fff !important;
+	}
 </style>
 
 <div class="modal fade bd-example-modal-lg settings_modal" tabindex="-1" role="dialog"
@@ -692,7 +702,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					table.buttons().container()
 						.appendTo('#example12_wrapper #example12_filter:eq(0)');
 					$('.dt-buttons').css('float', 'right');
-					$('.dt-buttons').css('margin-top','5px');
+					$('.dt-buttons').css('margin-top', '5px');
 
 				}
 
@@ -766,8 +776,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}]
 		});
 	})
-
-
 
 
 </script>

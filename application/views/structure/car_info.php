@@ -135,7 +135,7 @@ $folder = $this->session->folder;
 
 								<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
 									<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/edit_vehicles/'.$row['id'])?>"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
-									<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/gps_tracking')?>"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>
+									<a class="dropdown-item" target="_blank" href="<?=base_url('gps/'.($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/gps_tracking')?>"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>
 
 								</div>
 							</div>

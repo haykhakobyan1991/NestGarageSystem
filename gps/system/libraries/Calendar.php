@@ -69,7 +69,7 @@ class CI_Calendar {
 	 *
 	 * @var string
 	 */
-	public $start_day = 'sunday';
+	public $start_day = 'monday';
 
 	/**
 	 * How to display months
@@ -473,30 +473,30 @@ class CI_Calendar {
 	public function default_template()
 	{
 		return array(
-			'table_open'				=> '<table border="0" cellpadding="4" cellspacing="0">',
-			'heading_row_start'			=> '<tr>',
-			'heading_previous_cell'		=> '<th><a href="{previous_url}">&lt;&lt;</a></th>',
-			'heading_title_cell'		=> '<th colspan="{colspan}">{heading}</th>',
-			'heading_next_cell'			=> '<th><a href="{next_url}">&gt;&gt;</a></th>',
+			'table_open'				=> '<table border="0" cellpadding="4" cellspacing="0" class="table table-light  w-100 ">',
+			'heading_row_start'			=> '<thead><tr>',
+			'heading_previous_cell'		=> '<th><a href="{previous_url}"><i class="fas fa-angle-left"></i></a></th>',
+			'heading_title_cell'		=> '<th class="text-center" colspan="{colspan}">{heading}</th>',
+			'heading_next_cell'			=> '<th><a href="{next_url}"><i class="fas fa-angle-right"></i></a></th>',
 			'heading_row_end'			=> '</tr>',
-			'week_row_start'			=> '<tr>',
-			'week_day_cell'				=> '<td>{week_day}</td>',
-			'week_row_end'				=> '</tr>',
+			'week_row_start'			=> '<tr >',
+			'week_day_cell'				=> '<th class="font-weight-bold">{week_day}</th>',
+			'week_row_end'				=> '</tr></thead><tbody>',
 			'cal_row_start'				=> '<tr>',
-			'cal_cell_start'			=> '<td>',
-			'cal_cell_start_today'		=> '<td>',
-			'cal_cell_start_other'		=> '<td style="color: #666;">',
-			'cal_cell_content'			=> '<a href="{content}">{day}</a>',
-			'cal_cell_content_today'	=> '<a href="{content}"><strong>{day}</strong></a>',
-			'cal_cell_no_content'		=> '{day}',
-			'cal_cell_no_content_today'	=> '<strong>{day}</strong>',
+			'cal_cell_start'			=> '<td style="">',
+			'cal_cell_start_today'		=> '<td style="">',
+			'cal_cell_start_other'		=> '<td style="color: #666; background: #dee2e6;">',
+			'cal_cell_content'			=> '{day}<span class="badge badge-pill badge-primary event" style="cursor: pointer; display: block; background-color: rgb(121,134,203)">{content}</span>',
+			'cal_cell_content_today'	=> '<a href="{content}"><span style="cursor: pointer;">{day}</span></a>',
+			'cal_cell_no_content'		=> '<span style="cursor: pointer;">{day}</span>',
+			'cal_cell_no_content_today'	=> '<span class="badge badge-pill badge-primary">{day}</span>',
 			'cal_cell_blank'			=> '&nbsp;',
-			'cal_cell_other'			=> '{day}',
+			'cal_cell_other'			=> '<span style="cursor: pointer;">{day}</span>',
 			'cal_cell_end'				=> '</td>',
 			'cal_cell_end_today'		=> '</td>',
 			'cal_cell_end_other'		=> '</td>',
 			'cal_row_end'				=> '</tr>',
-			'table_close'				=> '</table>'
+			'table_close'				=> '<tbody></table>'
 		);
 	}
 

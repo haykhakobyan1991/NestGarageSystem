@@ -253,6 +253,38 @@ class Gps extends MX_Controller
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
+		$local_time = time();
+
+		if($this->uri->segment(3) != '') {
+			$year	= $this->uri->segment(3);
+		} else {
+			$year	= date('Y', $local_time);
+		}
+
+		if($this->uri->segment(4) != '') {
+			$month	= $this->uri->segment(4);
+		} else {
+			$month	= date('m', $local_time);
+		}
+
+
+
+
+		$prefs = array(
+			'month_type'   => 'long',
+			'show_other_days'     => true,
+			'show_next_prev' => TRUE,
+			'next_prev_url'   => base_url().$lng.'/event'
+		);
+		$this->load->library('calendar',$prefs); // Load calender library
+
+		$d = array(
+			3  => 'My event',
+			8  => "International women's Day"
+		);
+
+		$data['calendar'] =  $this->calendar->generate($year, $month, $d);
+
 
 
 

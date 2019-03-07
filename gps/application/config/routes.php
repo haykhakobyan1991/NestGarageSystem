@@ -65,6 +65,7 @@ $route['^(ru|hy)/trajectory'] = "Gps/trajectory";
 $route['^(ru|hy)/sos'] = "Gps/sos";
 $route['^(ru|hy)/load'] = "Gps/load";
 $route['^(ru|hy)/event'] = "Gps/event";
+$route['^(ru|hy)/event/(:any)/(:any)'] = "Gps/event/$1/$2";
 
 $route['change_lang'] = "System_main/change_lang";
 $route['access_denied'] = "User/access_denied";

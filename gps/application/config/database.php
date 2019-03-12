@@ -101,14 +101,49 @@ $query_builder = TRUE;
 //$db['default']['database'] = 'pg_test'; //set databse
 //$db['default']['dbdriver'] = 'pdo'; //set driver here
 
+/// ///////////// ///
+///  elephant SQL ///
+/// ///////////// ///
+
+//$db['default'] = array(
+//	'dsn' => 'pgsql:host=pellefant.db.elephantsql.com;port=5432;dbname=tfeqtlrz;user=tfeqtlrz;password=my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS',
+//	'hostname' => 'pellefant.db.elephantsql.com',
+//	'username' => 'tfeqtlrz',
+//	'password' => 'my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS',
+//	'database' => 'tfeqtlrz',
+//	'dbdriver' => 'postgre',
+//	'dbprefix' => '',
+//	'pconnect' => FALSE,
+//	'db_debug' => (ENVIRONMENT !== 'production'),
+//	'cache_on' => FALSE,
+//	'cachedir' => '',
+//	'char_set' => 'utf8',
+//	'dbcollat' => 'utf8_general_ci',
+//	'swap_pre' => '',
+//	'encrypt' => FALSE,
+//	'compress' => FALSE,
+//	'stricton' => FALSE,
+//	'failover' => array(),
+//	'save_queries' => TRUE
+//);
+//
+//$db['default']['hostname'] = 'pgsql:host=pellefant.db.elephantsql.com;dbname=tfeqtlrz'; //set host
+//$db['default']['username'] = 'tfeqtlrz'; //set username
+//$db['default']['password'] = 'my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS'; //set password
+//$db['default']['database'] = 'tfeqtlrz'; //set databse
+//$db['default']['dbdriver'] = 'pdo'; //set driver here
+
+/// ///////////// ///
+///  local SQL ///
+/// ///////////// ///
 
 $db['default'] = array(
-	'dsn' => 'pgsql:host=pellefant.db.elephantsql.com;port=5432;dbname=tfeqtlrz;user=tfeqtlrz;password=my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS',
-	'hostname' => 'pellefant.db.elephantsql.com',
-	'username' => 'tfeqtlrz',
-	'password' => 'my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS',
-	'database' => 'tfeqtlrz',
-	'dbdriver' => 'postgre',
+	'dsn' => 'pgsql:host=localhost;port=5432;dbname=nestgragesystem;user=postgres;password=',
+	'hostname' => 'localhost',
+	'username' => 'postgres',
+	'password' => '',
+	'database' => 'nestgragesystem',
+	'dbdriver' => 'postgres',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
@@ -124,10 +159,10 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db['default']['hostname'] = 'pgsql:host=pellefant.db.elephantsql.com;dbname=tfeqtlrz'; //set host
-$db['default']['username'] = 'tfeqtlrz'; //set username
-$db['default']['password'] = 'my8tu5wFB1ea4QCrBApfBlJQtbVYJIAS'; //set password
-$db['default']['database'] = 'tfeqtlrz'; //set databse
+$db['default']['hostname'] = 'pgsql:host=localhost;dbname=nestgragesystem'; //set host
+$db['default']['username'] = 'postgres'; //set username
+$db['default']['password'] = ''; //set password
+$db['default']['database'] = 'nestgragesystem'; //set databse
 $db['default']['dbdriver'] = 'pdo'; //set driver here
 
 

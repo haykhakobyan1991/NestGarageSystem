@@ -928,8 +928,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td>' + value.fleet_plate_number + '</td>\n' +
 												'<td>' + value.staff + '</td>\n' +
 												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
-												'<td>' + data.message.load[e]['on'] + '</td>\n' +
-												'<td>' + data.message.load[e]['off'] + '</td>\n' +
+												'<td>' + (data.message.load[e]['on'] === undefined ? '00:00:00' : data.message.load[e]['on']) + '</td>\n' +
+												'<td>' + (data.message.load[e]['off'] === undefined ? '00:00:00' : data.message.load[e]['off']) + '</td>\n' +
 
 												'</tr>\n';
 

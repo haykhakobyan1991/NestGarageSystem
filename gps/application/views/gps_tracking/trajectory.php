@@ -963,8 +963,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
 												'<td>' + value.speed_avg + '<?= lang("km/h") ?></td>\n' +
 												'<td>' + qx[e] + '.</td>\n' +
-												'<td>' + data.message.power[e]['on'] + '</td>\n' +
-												'<td>' + data.message.power[e]['off'] + '</td>\n' +
+												'<td>' + (data.message.power[e]['on'] === undefined ? '00:00:00' : data.message.power[e]['on']) + '</td>\n' +
+												'<td>' + (data.message.power[e]['off'] === undefined ? '00:00:00' : data.message.power[e]['off']) + '</td>\n' +
 												'<td>' + data.message.null_speed[e] + '</td>\n' +
 												'</tr>\n';
 											as = 1;

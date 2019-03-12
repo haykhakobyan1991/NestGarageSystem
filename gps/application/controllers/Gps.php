@@ -737,22 +737,29 @@ class Gps extends MX_Controller
 			$_imei = '';
 			$fleet = array();
 
+			$eng = '';
+			$eng_res = array();
+			$key_arr = array();
+			$tmp = 0;
 
-			foreach ($result as $value) {
 
-				if ($engine == 1) {
-					if ($value['engine'] == 1) {
-						$engine_result[$value['imei']]['on'][$value['date']][] = $value['time'];
-					} elseif ($value['engine'] == 0) {
-						$engine_result[$value['imei']]['off'][$value['date']][] = $value['time'];
-					}
-				}
-
+			foreach ($result as $key => $value) {
 
 				if ($lat != $value['lat'] && $long != $value['long']) {
 
 					if (round($value['speed']) > 0) {
-						$fl = '';
+
+						if ($engine == 1) {
+							if ($tmp == 0) {
+								$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
+							}
+							$tmp++;
+							if ($eng != $value['engine']) {
+								$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
+							}
+							$eng = $value['engine'];
+						}
+
 						if ($_imei != $value['imei']) {
 							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei']));
 							$fleet[$value['imei']] = json_decode($fl, true);
@@ -792,82 +799,69 @@ class Gps extends MX_Controller
 						}
 
 
-					} else {
-						$speed_null[$value['imei']][$value['date']][] = $value['time'];
 					}
+
 				}
 				$lat = $value['lat'];
 				$long = $value['long'];
+
+				if (intval($value['speed']) === 0) {
+					$speed_null[$value['imei']][] = array($value['speed'] => new DateTime($value['date'] . ' ' . $value['time']));
+				} else {
+					$speed_null[$value['imei']][] = array($value['speed'] => new DateTime($value['date'] . ' ' . $value['time']));
+				}
 			}
 
-			$result = true;
+			//$result = true;
 
 		}
 
+
 		// power off or on
-		$_date = '';
-		$_date2 = '';
 		$power = array();
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
+		foreach ($eng_res as $imei => $eng_arr) {
+			foreach ($eng_arr as $k => $e_arr) {
+				if ($k > 0) {
 
-		if ($engine == 1) {
-			if (count($engine_result) > 0) {
-				foreach ($engine_result as $imei => $er) {
-					foreach ($er as $on_off => $date_arr) {
-						foreach ($date_arr as $date => $time) {
+					$first = $eng_arr[$k - 1][key($eng_arr[$k - 1])];
 
-							if ($on_off == 'on') {
-								$duration1 = 0;
-								if ($_date != $date) {
-									$startTime = new DateTime($time[0]);
-									$endTime = new DateTime(end($time));
-									$duration1 = $startTime->diff($endTime);
-
-								}
-								$_date = $date;
-								$date1->add($duration1);
-								$power[$imei][$on_off] = $date1->format("H:i:s");
-							} elseif ($on_off == 'off') {
-								$duration2 = 0;
-								if ($_date2 != $date) {
-									$startTime = new DateTime($time[0]);
-									$endTime = new DateTime(end($time));
-									$duration2 = $startTime->diff($endTime);
-
-								}
-								$_date2 = $date;
-
-								$date2->add($duration2);
-								$power[$imei][$on_off] = $date2->format("H:i:s");
-							}
-
-						}
+					if (key($e_arr) == 1) {
+						$duration2 = $first->diff($e_arr[key($e_arr)]);
+						$date2->add($duration2);
+						$power[$imei]['off'] = $date2->format("H:i:s");
+					} elseif (key($e_arr) == 0) {
+						$duration1 = $first->diff($e_arr[key($eng_arr[$k])]);
+						$date1->add($duration1);
+						$power[$imei]['on'] = $date1->format("H:i:s");
 					}
+
 				}
 			}
 		}
 
+
+		// speed null
 		$null_speed = array();
-		$date_ = '';
-
 		$date3 = new DateTime("00:00:00");
-		foreach ($speed_null as $imei => $d_arr) {
-			foreach ($d_arr as $date => $time) {
-				$duration = 0;
-				if ($date_ != $date) {
-					$startTime = new DateTime($time[0]);
-					$endTime = new DateTime(end($time));
-					$duration = $startTime->diff($endTime);
+		foreach ($speed_null as $imei => $sp_arr) {
+			foreach ($sp_arr as $k => $s_arr) {
+				if ($k > 0) {
+					$last = $sp_arr[$k - 1][key($sp_arr[$k - 1])];
+
+					if (key($s_arr) == 0) {
+						$duration = $last->diff($s_arr[key($sp_arr[$k])]);
+						$date3->add($duration);
+						$null_speed[$imei] = $date3->format("H:i:s");
+					}
+
 				}
-				$date_ = $date;
-				$date3->add($duration);
-				$null_speed[$imei] = $date3->format("H:i:s");
 			}
 		}
 
 
-		//$this->pre($new_result);
+//		$this->pre($speed_null);
 		//$this->pre($power);
 		//$this->pre($null_speed);
 
@@ -1307,16 +1301,19 @@ class Gps extends MX_Controller
 			$long = '';
 			$_imei = '';
 			$fleet = array();
-
-
+			$tmp = 0;
+			$load = '';
 			foreach ($result as $value) {
 
 				if (round($value['speed']) > 0) {
-					if ($value['load'] == 1) {
-						$load_result[$value['imei']]['on'][$value['date']][] = $value['time'];
-					} elseif ($value['load'] == -1) {
-						$load_result[$value['imei']]['off'][$value['date']][] = $value['time'];
+					if ($tmp == 0) {
+						$load_result[$value['imei']][] = array($value['load'] => new DateTime($value['date'] . ' ' . $value['time']));
 					}
+					$tmp++;
+					if ($load != $value['load']) {
+						$load_result[$value['imei']][] = array($value['load'] => new DateTime($value['date'] . ' ' . $value['time']));
+					}
+					$load = $value['load'];
 				}
 
 
@@ -1367,42 +1364,25 @@ class Gps extends MX_Controller
 
 		}
 
-		// load off or on
-		$_date = '';
-		$_date2 = '';
+		// load  yes no
 		$load = array();
 		$date1 = new DateTime("00:00:00");
 		$date2 = new DateTime("00:00:00");
-
-
 		if (count($load_result) > 0) {
-			foreach ($load_result as $imei => $er) {
-				foreach ($er as $on_off => $date_arr) {
-					foreach ($date_arr as $date => $time) {
+			foreach ($load_result as $imei => $load_arr) {
+				foreach ($load_arr as $k => $l_arr) {
+					if ($k > 0) {
+						//$this->pre($eng_arr[$k - 1]);
+						$last = $load_arr[$k - 1][key($load_arr[$k - 1])];
 
-						if ($on_off == 'on') {
-							$duration1 = 0;
-							if ($_date != $date) {
-								$startTime = new DateTime($time[0]);
-								$endTime = new DateTime(end($time));
-								$duration1 = $startTime->diff($endTime);
-
-							}
-							$_date = $date;
-							$date1->add($duration1);
-							$load[$imei][$on_off] = $date1->format("H:i:s");
-						} elseif ($on_off == 'off') {
-							$duration2 = 0;
-							if ($_date2 != $date) {
-								$startTime = new DateTime($time[0]);
-								$endTime = new DateTime(end($time));
-								$duration2 = $startTime->diff($endTime);
-
-							}
-							$_date2 = $date;
-
+						if (key($l_arr) == 1) {
+							$duration2 = $last->diff($l_arr[key($load_arr[$k])]);
 							$date2->add($duration2);
-							$load[$imei][$on_off] = $date2->format("H:i:s");
+							$load[$imei]['off'] = $date2->format("H:i:s");
+						} elseif (key($l_arr) == -1) {
+							$duration1 = $last->diff($l_arr[key($load_arr[$k])]);
+							$date1->add($duration1);
+							$load[$imei]['on'] = $date1->format("H:i:s");
 						}
 
 					}

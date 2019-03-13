@@ -9,8 +9,8 @@
 		vertical-align: top !important;
 	}
 	td {
-		max-width: 40px;
-		min-width: 40px;
+		max-width: 120px;
+		min-width: 120px;
 		text-align: center;
 		vertical-align: top !important;
 
@@ -23,6 +23,16 @@
 		display: inline-block;
 		padding: 2px;
 		color: #fff;
+	}
+
+	.card {
+		width: 100%;
+		z-index: 999;
+		right: 0;
+		color: #000;
+		position: absolute;
+		display: none;
+		box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
 	}
 </style>
 
@@ -52,13 +62,15 @@ echo $calendar;
 					<div class="form-group">
 						<div class="md-form">
 							<label>Start Time</label>
-							<input name="from" placeholder="Start Time" type="time" id="input_starttime" class="form-control timepicker">
+							<input name="from" placeholder="Start Time" type="time" id="input_starttime"
+								   class="form-control timepicker" value="00:01">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="md-form">
 							<label>End Time</label>
-							<input name="to" placeholder="End Time" type="time" id="input_endtime" class="form-control timepicker">
+							<input name="to" placeholder="End Time" type="time" id="input_endtime"
+								   class="form-control timepicker" value="23:59">
 						</div>
 					</div>
 					<div class="form-group">
@@ -92,6 +104,17 @@ echo $calendar;
 
 
 <script>
+	const $menu = $('.card');
+
+	$(document).mouseup(function (e) {
+		if (!$menu.is(e.target) // if the target of the click isn't the container...
+			&& $menu.has(e.target).length === 0) // ... nor a descendant of the container
+		{
+			$menu.fadeOut();
+		}
+	});
+
+
 
 	$('#add_event').click(function  () {
 		var new_event = $('input[name="title"]').val();
@@ -125,15 +148,27 @@ echo $calendar;
 
 
 	$('.event').click(function () {
-		alert();
+		$('.card').fadeOut();
+		$(this).children('.card').fadeIn()
 	});
+
+	$('.event .card').click(function (e) {
+		e.stopPropagation();
+	})
 
 	$('.cancel_btn').click(function () {
 		$('input[name="title"]').val('');
 		$('textarea[name="description"]').val('');
-		$('input[name="from"]').val('');
-		$('input[name="to"]').val('');
+		$('input[name="from"]').val('00:01');
+		$('input[name="to"]').val('23:59');
 	});
+
+	$(document).ready(function () {
+		width = $('td').width();
+		$('.card').css('left', width)
+	})
+
+
 
 
 

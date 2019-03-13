@@ -296,7 +296,18 @@ class Gps extends MX_Controller
 		$event = array();
 		foreach ($result as $row) {
 			if(substr($row['date'], 0, 7) == $year.'-'.$month) {
-				$event[intval(substr($row['date'], 8))][] = '<span class="badge badge-pill badge-primary event m-1" style="cursor: pointer; display: block; background-color: rgb(121,134,203)">'.$row['title'].'</span>';
+				$event[intval(substr($row['date'], 8))][] = '
+					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">
+						<div class="card">
+							<div class="card-header text-left">'.$row['title'].'
+								<div class="float-right">	
+									<i class=" fas fa-pen"></i>
+									<i class="ml-1 fas fa-trash-alt"></i>
+								</div>
+							</div>
+							<div class="card-body text-left">'.$row['description'].'</div>
+						</div>'.$row['title'].'
+					</span>';
 			}
 		}
 
@@ -1474,9 +1485,9 @@ class Gps extends MX_Controller
 					start,
 					\"end\"
 				) VALUES (
-					'".$title."',
+					".$this->load->db_value($title).",
 					'".$date."',
-					'".$description."',
+					".$this->load->db_value($description).",
 					'".$from."',
 					'".$to."'
 				)

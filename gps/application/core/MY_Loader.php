@@ -54,7 +54,7 @@ class MY_Loader extends MX_Loader
 	 */
 	public function escape($data)
 	{
-		return mysqli_escape_string($this->db->db_connect(), $data);
+		return str_replace("'", "''", remove_invisible_characters($data, FALSE));
 	}
 
 	/**

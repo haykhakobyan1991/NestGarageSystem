@@ -496,7 +496,7 @@ class CI_Calendar {
 			'cal_cell_no_content'		=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}</span>',
 			'cal_cell_no_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="width: 100%; display: inline-block"><span class="today" >{day}</span></span>',
 			'cal_cell_blank'			=> '&nbsp;',
-			'cal_cell_other'			=> '<span  style="padding: 2px">{day}</span>',
+			'cal_cell_other'			=> '<span style="padding: 2px">{day}</span>',
 			'cal_cell_end'				=> '</td>',
 			'cal_cell_end_today'		=> '</td>',
 			'cal_cell_end_other'		=> '</td>',

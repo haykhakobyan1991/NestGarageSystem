@@ -1413,7 +1413,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 </div>
 
 
-<script>//---;
+<script>//-----;
 	$(window).on('load', function () {
 
 

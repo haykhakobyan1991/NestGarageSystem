@@ -51,8 +51,14 @@ echo $calendar;
 				<form>
 					<div class="form-group">
 						<div class="md-form">
-							<label>Time</label>
-							<input name="from" placeholder="Selected time" type="time" id="input_starttime" class="form-control timepicker">
+							<label>Start Time</label>
+							<input name="from" placeholder="Start Time" type="time" id="input_starttime" class="form-control timepicker">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="md-form">
+							<label>End Time</label>
+							<input name="to" placeholder="End Time" type="time" id="input_endtime" class="form-control timepicker">
 						</div>
 					</div>
 					<div class="form-group">
@@ -91,7 +97,15 @@ echo $calendar;
 		var new_event = $('input[name="title"]').val();
 		console.log(new_event)
 		var day = $('input[name="day"]').val();
-		console.log(day)
+		console.log(day);
+
+		$.post('<?=base_url($this->uri->segment(1) . '/Gps/add_event_ax') ?>', {
+			title: new_event,
+			description: $('textarea[name="description"]').val(),
+			from: $('input[name="from"]').val(),
+			to: $('input[name="to"]').val(),
+			day: day
+		});
 
 		$('td.current').each(function () {
 
@@ -100,18 +114,22 @@ echo $calendar;
 			}
 
 		});
+
 	});
 
 	$('td').click(function () {
 		var day = $(this).data('day');
-		console.log(day)
+		console.log(day);
 		$('input[name="day"]').val(day);
-	})
+	});
 
 	$('.cancel_btn').click(function () {
 		$('input[name="title"]').val('');
-		$('textarea[name="description"]').text('');
+		$('textarea[name="description"]').val('');
 		$('input[name="from"]').val('');
-	})
+		$('input[name="to"]').val('');
+	});
+
+
 
 </script>

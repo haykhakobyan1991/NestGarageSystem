@@ -277,15 +277,35 @@ class Gps extends MX_Controller
 
 		$this->load->library('calendar',$prefs); // Load calender library
 
-		$d = array(
-			3  => 'My event',
-			8  => "International women's Day"
-		);
 
-		$data['calendar'] =  $this->calendar->generate($year, $month, $d);
+		 $sql = "
+			SELECT 
+				id,
+				title,
+				description,
+				date
+			FROM
+				event
+			WHERE  date	LIKE '".$year.'-'.$month."%'
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
+
+		$event = array();
+		foreach ($result as $row) {
+			if(substr($row['date'], 0, 7) == $year.'-'.$month) {
+				$event[intval(substr($row['date'], 8))][] = $row['title'];
+			}
+		}
+
+
+		$this->pre($event);
 
 
 
+		$data['calendar'] =  $this->calendar->generate($year, $month, $event);
 
 
 		$this->layout->view('gps_tracking/event', $data);
@@ -742,6 +762,18 @@ class Gps extends MX_Controller
 			$key_arr = array();
 			$tmp = 0;
 
+			foreach ($result as $k => $row) { //todo
+				if (intval($row['speed']) === 0) {
+					if ($k > 0) {
+						if (isset($result[$k + 1]['lat']) && isset($result[$k + 1]['long']) && $row['lat'] == $result[$k + 1]['lat'] && $row['long'] == $result[$k + 1]['long']) {
+							unset($result[$k]);
+						}
+					}
+				}
+			}
+
+			// $this->pre($result);
+
 
 			foreach ($result as $key => $value) {
 
@@ -766,7 +798,7 @@ class Gps extends MX_Controller
 						}
 						$_imei = $value['imei'];
 
-						if (((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed != 0) {
+						if (((intval($value['speed']) - intval($max_speed)) > 0) && $max_speed > 0) {
 
 							$new_result[$value['imei']][] = array(
 								'time' => $value['date'] . ' ' . $value['time'],
@@ -818,25 +850,27 @@ class Gps extends MX_Controller
 
 
 		// power off or on
-		$power = array();
-		$date1 = new DateTime("00:00:00");
-		$date2 = new DateTime("00:00:00");
-		foreach ($eng_res as $imei => $eng_arr) {
-			foreach ($eng_arr as $k => $e_arr) {
-				if ($k > 0) {
+		if ($engine == 1) {
+			$power = array();
+			$date1 = new DateTime("00:00:00");
+			$date2 = new DateTime("00:00:00");
+			foreach ($eng_res as $imei => $eng_arr) {
+				foreach ($eng_arr as $k => $e_arr) {
+					if ($k > 0) {
 
-					$first = $eng_arr[$k - 1][key($eng_arr[$k - 1])];
+						$first = $eng_arr[$k - 1][key($eng_arr[$k - 1])];
 
-					if (key($e_arr) == 1) {
-						$duration2 = $first->diff($e_arr[key($e_arr)]);
-						$date2->add($duration2);
-						$power[$imei]['off'] = $date2->format("H:i:s");
-					} elseif (key($e_arr) == 0) {
-						$duration1 = $first->diff($e_arr[key($eng_arr[$k])]);
-						$date1->add($duration1);
-						$power[$imei]['on'] = $date1->format("H:i:s");
+						if (key($e_arr) == 1) {
+							$duration2 = $first->diff($e_arr[key($e_arr)]);
+							$date2->add($duration2);
+							$power[$imei]['off'] = $date2->format("H:i:s");
+						} elseif (key($e_arr) == 0) {
+							$duration1 = $first->diff($e_arr[key($eng_arr[$k])]);
+							$date1->add($duration1);
+							$power[$imei]['on'] = $date1->format("H:i:s");
+						}
+
 					}
-
 				}
 			}
 		}
@@ -1407,6 +1441,56 @@ class Gps extends MX_Controller
 		// Return success or error message
 		echo json_encode($messages);
 		return true;
+
+
+	}
+
+
+	public function add_event_ax() {
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$title = $this->input->post('title');
+		$date = $this->input->post('day');
+		$description = $this->input->post('description');
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+
+
+		$sql = "
+			INSERT INTO event 
+				(
+					title,
+					\"date\",
+					description,
+					start,
+					\"end\"
+				) VALUES (
+					'".$title."',
+					'".$date."',
+					'".$description."',
+					'".$from."',
+					'".$to."'
+				)
+		
+		";
+
+		$query = $this->db->query($sql);
+
+
+		if($query) {
+			echo 1;
+		} else {
+			echo 0;
+		}
 
 
 	}

@@ -282,6 +282,8 @@ class Gps extends MX_Controller
 			SELECT 
 				id,
 				title,
+				start,
+				\"end\",
 				description,
 				date
 			FROM
@@ -297,7 +299,7 @@ class Gps extends MX_Controller
 		foreach ($result as $row) {
 			if(substr($row['date'], 0, 7) == $year.'-'.$month) {
 				$event[intval(substr($row['date'], 8))][] = '
-					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">
+					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">'.$row['title'].'
 						<div class="card">
 							<div class="card-header text-left">'.$row['title'].'
 								<div class="ml-2 float-right">	
@@ -305,8 +307,11 @@ class Gps extends MX_Controller
 									<i class="ml-1 fas fa-trash-alt"></i>
 								</div>
 							</div>
-							<div class="card-body text-left">'.$row['description'].'</div>
-						</div>'.$row['title'].'
+							<div class="card-body text-left">
+								<div>'.$row['start'].' - '.$row['end'].'</div>
+								<div class="mt-2">'.$row['description'].'</div>
+							</div>
+						</div>
 					</span>';
 			}
 		}

@@ -288,12 +288,17 @@ class CI_Calendar {
 				{
 					$out .= ($is_current_month === TRUE && $day == $cur_day) ? $this->replacements['cal_cell_start_today'] : $this->replacements['cal_cell_start'];
 
-					if (isset($data[$day]))
+					if (isset($data[$day]) && !is_array($data[$day]))
 					{
 						// Cells with content
 						$temp = ($is_current_month === TRUE && $day == $cur_day) ?
 								$this->replacements['cal_cell_content_today'] : $this->replacements['cal_cell_content'];
 						$out .= str_replace(array('{content}', '{day}'), array($data[$day], $day), $temp);
+					} elseif (isset($data[$day]) && is_array($data[$day])) {
+						// Cells with content
+						$temp = ($is_current_month === TRUE && $day == $cur_day) ?
+							$this->replacements['cal_cell_content_today'] : $this->replacements['cal_cell_content'];
+						$out .= str_replace(array('{content}', '{day}'), array(implode('', $data[$day]), $day), $temp);
 					}
 					else
 					{
@@ -483,15 +488,15 @@ class CI_Calendar {
 			'week_day_cell'				=> '<th class="font-weight-bold">{week_day}</th>',
 			'week_row_end'				=> '</tr></thead><tbody>',
 			'cal_row_start'				=> '<tr>',
-			'cal_cell_start'			=> '<td class="current" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer;">',
-			'cal_cell_start_today'		=> '<td class="current" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer;">',
+			'cal_cell_start'			=> '<td class="current"  style="cursor: pointer;">',
+			'cal_cell_start_today'		=> '<td class="current"  style="cursor: pointer;">',
 			'cal_cell_start_other'		=> '<td data-day="" style="color: #666; background: #dee2e6;">',
-			'cal_cell_content'			=> '<span style="cursor: pointer;">{day}</span><span class="badge badge-pill badge-primary event" style="cursor: pointer; display: block; background-color: rgb(121,134,203)">{content}</span>',
-			'cal_cell_content_today'	=> '<span style="cursor: pointer;">{day}</span>',//todo {content} kar
-			'cal_cell_no_content'		=> '<span style="cursor: pointer;">{day}</span>',
-			'cal_cell_no_content_today'	=> '<span class="today">{day}</span>',
+			'cal_cell_content'			=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}</span>{content}',
+			'cal_cell_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer; width: 100%; display: inline-block"><span class="today" >{day}</span></span>{content}',
+			'cal_cell_no_content'		=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}</span>',
+			'cal_cell_no_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="width: 100%; display: inline-block"><span class="today" >{day}</span></span>',
 			'cal_cell_blank'			=> '&nbsp;',
-			'cal_cell_other'			=> '<span style="cursor: pointer; padding: 2px;">{day}</span>',
+			'cal_cell_other'			=> '<span  style="padding: 2px">{day}</span>',
 			'cal_cell_end'				=> '</td>',
 			'cal_cell_end_today'		=> '</td>',
 			'cal_cell_end_other'		=> '</td>',

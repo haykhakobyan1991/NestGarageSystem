@@ -32,8 +32,8 @@ echo $calendar;
 
 <script>
 	$(document).ready(function () {
-		$('td.current').each(function () {
-			$(this).attr('data-day', $('input[name="ym"]').val()+'-'+$(this).children('span:first-child').text());
+		$('td.current .modal_add').each(function () {
+			$(this).attr('data-day', $('input[name="ym"]').val()+'-'+$(this).parent('td').children('span:first-child').text());
 		})
 	})
 </script>
@@ -107,7 +107,7 @@ echo $calendar;
 			day: day
 		});
 
-		$('td.current').each(function () {
+		$('td.current .modal_add').each(function () {
 
 			if($(this).data('day') == day){
 				$(this).append('<span class="mt-1 badge badge-pill badge-primary event" style="cursor: pointer; display: block; background-color: rgb(121,134,203)">'+new_event+'</span>')
@@ -117,10 +117,15 @@ echo $calendar;
 
 	});
 
-	$('td').click(function () {
+	$('.modal_add').click(function () {
 		var day = $(this).data('day');
 		console.log(day);
 		$('input[name="day"]').val(day);
+	});
+
+
+	$('.event').click(function () {
+		alert();
 	});
 
 	$('.cancel_btn').click(function () {

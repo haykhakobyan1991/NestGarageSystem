@@ -296,12 +296,12 @@ class Gps extends MX_Controller
 		$event = array();
 		foreach ($result as $row) {
 			if(substr($row['date'], 0, 7) == $year.'-'.$month) {
-				$event[intval(substr($row['date'], 8))][] = $row['title'];
+				$event[intval(substr($row['date'], 8))][] = '<span class="badge badge-pill badge-primary event m-1" style="cursor: pointer; display: block; background-color: rgb(121,134,203)">'.$row['title'].'</span>';
 			}
 		}
 
 
-		$this->pre($event);
+		//$this->pre($event);
 
 
 

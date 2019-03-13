@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Structure extends MX_Controller
 {
 
-	/**
+	/***
 	 * Structure constructor.
 	 * @property
 	 */

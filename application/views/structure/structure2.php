@@ -1405,7 +1405,6 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 	});
 
-
 </script>
 
 <div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px; z-index: 9999">

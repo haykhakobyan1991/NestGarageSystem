@@ -26,7 +26,8 @@
 	}
 
 	.card {
-		width: 100%;
+		width: max-content;
+		min-width: 100%;
 		z-index: 999;
 		right: 0;
 		color: #000;

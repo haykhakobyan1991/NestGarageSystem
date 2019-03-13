@@ -300,7 +300,7 @@ class Gps extends MX_Controller
 					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">
 						<div class="card">
 							<div class="card-header text-left">'.$row['title'].'
-								<div class="float-right">	
+								<div class="ml-2 float-right">	
 									<i class=" fas fa-pen"></i>
 									<i class="ml-1 fas fa-trash-alt"></i>
 								</div>

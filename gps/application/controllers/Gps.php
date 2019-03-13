@@ -301,7 +301,7 @@ class Gps extends MX_Controller
 						<div class="card">
 							<div class="card-header text-left">'.$row['title'].'
 								<div class="ml-2 float-right">	
-									<i class=" fas fa-pen"></i>
+									<i data-toggle="modal" data-target="#exampleModalCenter" class=" fas fa-pen"></i>
 									<i class="ml-1 fas fa-trash-alt"></i>
 								</div>
 							</div>

@@ -149,13 +149,10 @@ echo $calendar;
 
 
 	$('.event').click(function () {
-		$('.card').fadeOut();
 		$(this).children('.card').fadeIn()
 	});
 
-	$('.event .card').click(function (e) {
-		e.stopPropagation();
-	})
+
 
 	$('.cancel_btn').click(function () {
 		$('input[name="title"]').val('');

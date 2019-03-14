@@ -70,7 +70,7 @@ class Gps extends MX_Controller
 
 
 		$sql = "
-			SELECT token FROM \"user\" where token = '" . $token . "'
+			SELECT token FROM \"user\" where token = '" . $token . "' LIMIT 1
 		";
 
 		$query = $this->db->query($sql);
@@ -303,8 +303,8 @@ class Gps extends MX_Controller
 						<div class="card">
 							<div class="card-header text-left">'.$row['title'].'
 								<div class="ml-2 float-right">	
-									<i data-toggle="modal" data-target="#exampleModalCenter" class=" fas fa-pen"></i>
-									<i class="ml-1 fas fa-trash-alt"></i>
+									<i id="edit_event_modal" data-id="'.$row['id'].'" data-toggle="modal" data-target="#myModal" class=" fas fa-pen"></i>
+									<i id="delete_event_modal" data-id="'.$row['id'].'" data-toggle="modal" data-target="#delMod" class="ml-1 fas fa-trash-alt"></i>
 								</div>
 							</div>
 							<div class="card-body text-left">
@@ -324,25 +324,254 @@ class Gps extends MX_Controller
 		$data['calendar'] =  $this->calendar->generate($year, $month, $event);
 
 
-		$this->layout->view('gps_tracking/event', $data);
+		$this->layout->view('event/event', $data);
 	}
 
-	public function load_data() {
-		$this->db->select("id, title, class, extract(epoch FROM start_date)*1000 as start, extract(epoch FROM end_date)*1000 as end");
-		$query = $this->db->get('event');
 
-		$events = $query->result();
+	public function add_event_ax() {
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
 
+		$result = false;
 
-		if($events !== NULL) {
-			echo json_encode(array('success' => 1, 'result' => $events));
-		} else {
-			echo json_encode(array('success' => 0, 'error' => 'Event not found'));
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
 		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('from', 'from', 'required');
+		$this->form_validation->set_rules('to', 'to', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'from' =>  form_error('from'),
+				'to' =>  form_error('to')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+		$title = $this->input->post('title');
+		$date = $this->input->post('day');
+		$description = $this->input->post('description');
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+
+
+		$sql = "
+			INSERT INTO event 
+				(
+					title,
+					\"date\",
+					description,
+					start,
+					\"end\"
+				) VALUES (
+					".$this->load->db_value($title).",
+					'".$date."',
+					".$this->load->db_value($description).",
+					'".$from."',
+					'".$to."'
+				)
+		
+		";
+
+		$query = $this->db->query($sql);
+
+
+		if ($query){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+
+
 	}
 
 
+	public function edit_event_modal_ax() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+		$id = $this->uri->segment(4);
+		$this->load->helper('url');
+		$this->load->helper('form');
+		$lng = $this->load->lng();
+
+		if($id == NULL) {
+			$message = 'Undifined ID';
+			show_error($message, '404', $heading = '404 Page Not Found');
+			return false;
+		}
+
+
+		$sql = "SELECT
+                   id,
+                   start,
+                   \"end\",
+                   title,
+                   description,
+                   date
+                FROM 
+                   event
+                WHERE id =  ".$this->load->db_value($id)."
+                LIMIT 1";
+
+		$query = $this->db->query($sql);
+		$row = $query->row_array();
+
+
+		$this->load->view('event/edit_event', $row);
+
+	}
+
+
+	public function edit_event_ax() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+		$user_id = $this->session->user_id;
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('from', 'from', 'required');
+		$this->form_validation->set_rules('to', 'to', 'required');
+
+
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'title' =>  form_error('title'),
+				'from' =>  form_error('from'),
+				'to' =>  form_error('to')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+
+
+		$id = $this->input->post('event_id');
+		$day = $this->input->post('day');
+		$title = $this->input->post('title');
+		$description = $this->input->post('description');
+		$from = $this->input->post('from');
+		$to = $this->input->post('to');
+
+
+
+
+		$sql = "
+				UPDATE 
+				  event
+				SET
+				  title = ".$this->load->db_value($title).",
+				  date = ".$this->load->db_value($day).",
+				  description = ".$this->load->db_value($description).",
+				  start = ".$this->load->db_value($from).",
+				  \"end\" = ".$this->load->db_value($to)."
+				WHERE id =   ".$this->load->db_value($id)."
+			";
+
+		$result = $this->db->query($sql);
+
+
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
+
+	public function delete_event() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$id = $this->input->post('event_id');
+
+
+		$this->db->delete('event', array('id' => $id));
+
+		return true;
+
+	}
 
 	public function sos()
 	{
@@ -1462,54 +1691,21 @@ class Gps extends MX_Controller
 	}
 
 
-	public function add_event_ax() {
-		$token = $this->session->token;
-		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
-
-		if ($this->input->server('REQUEST_METHOD') != 'POST') {
-			// Return error
-			$messages['error'] = 'error_message';
-			$this->access_denied();
-			return false;
-		}
-
-		$title = $this->input->post('title');
-		$date = $this->input->post('day');
-		$description = $this->input->post('description');
-		$from = $this->input->post('from');
-		$to = $this->input->post('to');
 
 
 
-		$sql = "
-			INSERT INTO event 
-				(
-					title,
-					\"date\",
-					description,
-					start,
-					\"end\"
-				) VALUES (
-					".$this->load->db_value($title).",
-					'".$date."',
-					".$this->load->db_value($description).",
-					'".$from."',
-					'".$to."'
-				)
-		
-		";
-
-		$query = $this->db->query($sql);
 
 
-		if($query) {
-			echo 1;
-		} else {
-			echo 0;
-		}
 
 
-	}
+
+
+
+
+
+
+
+
 
 
 	public function aaaa()

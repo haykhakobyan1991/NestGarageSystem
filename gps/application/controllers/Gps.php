@@ -187,6 +187,74 @@ class Gps extends MX_Controller
 
 	}
 
+	public function changDataCoordinate() {
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+
+		$user_id = $this->session->user_id;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$fleets = $this->input->post('fleets');
+		$add_sql = '';
+		foreach ($fleets as $imei) {
+			$add_sql .= " gps.\"imei\" = '" . $imei . "' OR";
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+
+		 $sql = "
+			SELECT 
+			    gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"engine\" 
+			FROM 
+			   gps 
+			WHERE $add_sql ORDER BY imei, 
+		 	CONCAT_WS (' ',
+		 	   gps.\"date\",
+			   gps.\"time\"
+		    ) desc
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
+
+		$tmp = 0;
+		$imei = '';
+		$arr = array();
+
+		foreach ($result as $val) {
+			if ($imei != $val['imei']) {
+				if ($tmp == 0) {
+					$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course']);
+				}
+				$tmp = 1;
+			} else {
+				$tmp = 0;
+			}
+			$imei = $val['imei'];
+		}
+
+		echo json_encode($arr);
+		return true;
+
+	}
+
 	public function speed()
 	{
 		$token = $this->session->token;
@@ -1692,122 +1760,6 @@ class Gps extends MX_Controller
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	public function aaaa()
-	{
-
-		//$sql = "DELETE FROM gps WHERE \"imei\" = '865205035287845'";
-
-		$result = $this->db->select('*')->from('"gps"')//->where('"imei"',  '865205035287845')->order_by('id', 'desc')
-		->get()->result_array();
-
-
-		echo count($result);
-//
-//		$i = 62;
-//
-//		foreach ($result as $val) {
-//$i -= 0.25;
-//			echo $sql1 = "UPDATE \"gps\" SET fuel = '".$i."' WHERE id='".$val['id']."';".br();
-//
-//		}
-
-
-		$this->pre($result);
-
-
-	}
-
-	public function insert_gps()
-	{
-
-		$tr = "TRUNCATE TABLE gps";
-		$query_tr = $this->db->query($tr);
-
-		if ($query_tr) {
-			echo 'TRUNCATE' . br();
-		} else {
-			echo 'TRUNCATE FALSE' . br();
-		}
-
-		$result = $this->db->select('"1", "3", "5", "7", "9", "10", "11", "12"')->from('aaaa')->where('"1"', '865205035287688')
-			->get()->result_array();
-
-		$sql = "INSERT INTO gps (imei,\"time\",lat,long,speed,course,\"date\", engine, fuel, battery, sos, battery_low) VALUES ";
-
-		$power = 0;
-		$fuel = 47;
-		$_time = '';
-
-		foreach ($result as $val) {
-
-
-			//lat
-			$lat_h = substr(floatval($val[5]), 0, 2);
-			$lat_m = substr(floatval($val[5]), 2, 10);
-
-			$lat = round($lat_h + ($lat_m / 60), 6);
-
-			//long
-			$long_h = substr(floatval($val[7]), 0, 2);
-			$long_m = substr(floatval($val[7]), 2, 10);
-
-			$long = round($long_h + ($long_m / 60), 6);
-
-			//time
-			$time = substr($val[3], 0, -4) . ':' . substr($val[3], 2, -2) . ':' . substr($val[3], 4, 2);
-
-			if ($_time != $time && $val[9] != 0) {
-				$fuel -= 0.27;
-			}
-			$_time = $time;
-
-			//date
-			$date = date('20' . substr($val[11], 4, 2) . '-' . substr($val[11], 2, -2) . '-' . substr($val[11], 0, -4));
-
-			//EFE7FBFF - power on
-			//FFFFFBFF - power off
-
-			$bin = str_split(base_convert($val[12], 16, 2));
-
-			$battery_supply = $bin[3]; //yes - 1, no - 0
-			$sos = $bin[13];//yes - 0, no - 1
-			$battery_low = $bin[19];//yes - 1, no - 0
-			$engine = $bin[20];//yes - 1, no - 0
-
-
-			$sql .= "('" . ($val[1]) . "', '" . $time . "', '" . $lat . "', '" . $long . "', '" . ($val[9] * 1.609344) . "', '" . $val[10] . "','" . $date . "', '" . $engine . "', '" . $fuel . "', '" . $battery_supply . "', '" . $sos . "', '" . $battery_low . "' ),";
-		}
-
-		$sql = substr($sql, 0, -1);
-
-
-		$query = $this->db->query($sql);
-
-		if ($query_tr) {
-			echo 'INSERTED' . br();
-		} else {
-			echo 'INSERT FALSE' . br();
-		}
-	}
-	
-	
-	
 
 
 }

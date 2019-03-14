@@ -272,6 +272,7 @@
 							<td class="show_car"
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
 								data-id="<?=$fleets['id']?>"
+								data-imei="<?=$fleets['gps_tracker_imei']?>"
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
@@ -905,7 +906,7 @@
 
 								latitude = array[0];
 								longitude = array[1];
-								alert('2');
+								// alert('2');
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
@@ -1646,5 +1647,32 @@
 	}
 	?>
 
-
 </select>
+
+
+<script>
+	var fleet_ids =[];
+	$('.show_car').each(function () {
+		fleet_ids.push($(this).data('imei'));
+	});
+
+	setInterval(function () {
+		var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
+
+		$.post(url, {fleets: fleet_ids}, function (result) {
+
+			$.each(JSON.parse(result), function (e, val) {
+				$('.show_car').each(function () {
+
+						if(e == $(this).data('imei')) {
+							$(this).attr('data-coordinate',  val.lat+', '+val.long);
+
+						}
+
+				});
+			})
+
+		});
+	}, 1000)
+
+</script>

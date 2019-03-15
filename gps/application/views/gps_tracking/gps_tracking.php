@@ -1656,6 +1656,12 @@
 		fleet_ids.push($(this).data('imei'));
 	});
 
+	$.fn.mydata=function(key, variable){
+		$(this).data(key, variable).trigger('datachange', key);
+	};
+
+
+
 	setInterval(function () {
 		var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
 
@@ -1665,7 +1671,8 @@
 				$('.show_car').each(function () {
 
 						if(e == $(this).data('imei')) {
-							$(this).attr('data-coordinate',  val.lat+', '+val.long);
+							// $(this).attr('data-coordinate',  val.lat+', '+val.long);
+							$(this).mydata('coordinate', val.lat+', '+val.long);
 
 						}
 

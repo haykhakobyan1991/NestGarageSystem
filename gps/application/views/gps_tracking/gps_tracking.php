@@ -1612,7 +1612,7 @@
 
 			}
 		}
-
+//ddddddd
 	});
 
 	$(window).on('load', function () {

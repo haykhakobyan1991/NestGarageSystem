@@ -93,10 +93,9 @@ class Gps extends MX_Controller
 
 
 		$token = $this->session->token;
-		$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+		$this->load->authorisation('Gps', 'gps_tracking', $token); //authorisation
 
 
-		
 		$data = array();
 
 		$lng = $this->load->lng();

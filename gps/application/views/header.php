@@ -287,26 +287,26 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 							<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
 						</button>
 						</a>
-						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
-							href="#"
-							data-toggle="tooltip" data-placement="top"
-							title="<?= lang('statistics') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
-						</button>
-						<label class="text-center col-sm-2"
-							   style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
-						<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>5</option>
-							<option>10</option>
-							<option>15</option>
-							<option>20</option>
-							<option>25</option>
-						</select>
+<!--						<button-->
+<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+<!--							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "-->
+<!--							href="#"-->
+<!--							data-toggle="tooltip" data-placement="top"-->
+<!--							title="--><?//= lang('statistics') ?><!--">-->
+<!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/statistics.svg"/>-->
+<!--						</button>-->
+<!--						<label class="text-center col-sm-2"-->
+<!--							   style="padding: 10px 6px 0px 10px;">--><?//= lang('update') ?><!--</label>-->
+<!--						<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">-->
+<!--							<option>1</option>-->
+<!--							<option>2</option>-->
+<!--							<option>3</option>-->
+<!--							<option>5</option>-->
+<!--							<option>10</option>-->
+<!--							<option>15</option>-->
+<!--							<option>20</option>-->
+<!--							<option>25</option>-->
+<!--						</select>-->
 					</div>
 					<div class="navbar-nav ml-auto">
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
@@ -327,15 +327,15 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 						<? //= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
 						<!--													class="ml-0 mr-0 "/>-->
 						<!--											</button>-->
-						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
-							class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
-							data-toggle="modal"
-							data-target=".settings_modal" href="#">
-							<img style="margin-right: 5px;margin-left: -15px;"
-								 src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
-								 class="ml-0 mr-0 "/>
-						</button>
+<!--						<button-->
+<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
+<!--							class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"-->
+<!--							data-toggle="modal"-->
+<!--							data-target=".settings_modal" href="#">-->
+<!--							<img style="margin-right: 5px;margin-left: -15px;"-->
+<!--								 src="--><?//= base_url() ?><!--assets/images/gps_tracking/settings-work-tool.svg"-->
+<!--								 class="ml-0 mr-0 "/>-->
+<!--						</button>-->
 						<button
 							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
 							class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn"

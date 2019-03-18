@@ -7,15 +7,12 @@
 <!--[if lt IE 9]>
 <script src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-
 <script src="https://gojs.net/latest/extensions/Robot.js"></script>
-
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
-<!--<script type="text/javascript" src="--><? //=base_url('assets/js/dataTables//vfs_fonts.js')?><!--"></script>-->
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
@@ -25,15 +22,12 @@
 	canvas {
 		background: #fff;
 	}
-
 	.row.bg-secondary {
 		min-height: 194px;
 	}
-
 	.modal {
 		top: 30% !important;
 	}
-
 	#fleet_filter {
 		border: 1px solid;
 		position: absolute;
@@ -43,7 +37,6 @@
 		padding: 10px 15px 10px 30px;
 		border-radius: 5px;
 	}
-
 	.dataTables_filter > label {
 		margin-right: 70%;
 	}
@@ -51,15 +44,12 @@
 	.btn.disabled, .btn:disabled {
 		opacity: 1 !important;
 	}
-
 	.bootstrap-select.disabled, .bootstrap-select > .disabled {
 		cursor: none !important;
 		color: #000 !important;
 		background: #eaedf0 !important;
 	}
 </style>
-
-
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
 	echo '<script src="https://code.highcharts.com/highcharts.js"></script>';
@@ -72,14 +62,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 //filter structure (only cars)
 $structure_array = json_decode($structure, true);
-
 foreach ($structure_array as $key => $info) {
-
 	if (preg_match("/^(d)/", $info['key']) || preg_match("/^(c)/", $info['key']) || preg_match("/^(h)/", $info['key'])) {
 		unset($structure_array[$key]);
 	}
-
-
 }
 
 $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
@@ -100,12 +86,8 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			</div>
 			<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
 			<div>
-				<div id="myInspector">
-
-				</div>
+				<div id="myInspector"></div>
 			</div>
-
-
 			<div>
 				<textarea id="mySavedModel" style="display:none;">
 					{"class": "go.TreeModel",
@@ -114,16 +96,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			</textarea>
 			</div>
 		</div>
-
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
-
-
 	</div>
 	<span class="selected_information "></span>
-
-
 </div>
-
 
 <div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
 	<nav class="mt-2">
@@ -133,104 +109,77 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			   data-toggle="tab" href="#nav-1"
 			   role="tab" aria-controls="nav-1"
 			   aria-selected="true"><?= lang('inspection') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="2" id="nav-2-tab"
 			   data-toggle="tab" href="#nav-2"
 			   role="tab" aria-controls="nav-2"
 			   aria-selected="false"><?= lang('fuel_consumption') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="3" id="nav-3-tab"
 			   data-toggle="tab" href="#nav-3"
 			   role="tab" aria-controls="nav-3"
 			   aria-selected="false"><?= lang('fine') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="4" id="nav-4-tab"
 			   data-toggle="tab" href="#nav-4"
 			   role="tab" aria-controls="nav-4"
 			   aria-selected="false"><?= lang('accident') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="5" id="nav-5-tab"
 			   data-toggle="tab" href="#nav-5"
 			   role="tab" aria-controls="nav-5"
 			   aria-selected="false"><?= lang('insurance') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="6" id="nav-6-tab"
 			   data-toggle="tab" href="#nav-6"
 			   role="tab" aria-controls="nav-6"
 			   aria-selected="false"><?= lang('spares') ?></a>
-
 			<a class="nav-item nav-link tab_nav"
 			   data-tab="7" id="nav-7-tab"
 			   data-toggle="tab" href="#nav-7"
 			   role="tab" aria-controls="nav-7"
 			   aria-selected="false"><?= lang('repair') ?></a>
-
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="8" id="nav-8-tab"-->
 			<!--			   data-toggle="tab" href="#nav-8"-->
 			<!--			   role="tab" aria-controls="nav-8"-->
 			<!--			   aria-selected="false">--><? //=lang('wheel')?><!--</a>-->
-
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="9" id="nav-9-tab"-->
 			<!--			   data-toggle="tab" href="#nav-9"-->
 			<!--			   role="tab" aria-controls="nav-9"-->
 			<!--			   aria-selected="false">--><? //=lang('brake')?><!--</a>-->
-
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="10" id="nav-10-tab"-->
 			<!--			   data-toggle="tab" href="#nav-10"-->
 			<!--			   role="tab" aria-controls="nav-10"-->
 			<!--			   aria-selected="false">--><? //=lang('grease')?><!--</a>-->
-
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="11" id="nav-11-tab"-->
 			<!--			   data-toggle="tab" href="#nav-11"-->
 			<!--			   role="tab" aria-controls="nav-11"-->
 			<!--			   aria-selected="false">--><? //=lang('filter')?><!--</a>-->
-
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="12" id="nav-12-tab"-->
 			<!--			   data-toggle="tab" href="#nav-12"-->
 			<!--			   role="tab" aria-controls="nav-12"-->
 			<!--			   aria-selected="false">--><? //=lang('battery')?><!--</a>-->
-
 		</div>
 	</nav>
 
-
 	<div class="tab-content" id="nav-tabContent" style="position: relative">
-
 		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"></div>
-
 		<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"></div>
-
 		<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"></div>
-
 		<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"></div>
-
 		<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"></div>
-
 		<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"></div>
-
 		<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"></div>
-
 		<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"></div>
-
 		<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab"></div>
-
 		<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab"></div>
-
 		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
-
 		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
-
-
 		<!--search-->
 		<div id="search_" style="min-height: 35px;position: absolute;top: 9px;left: 66%;display: none">
 			<div style="float: right;">
@@ -269,11 +218,9 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 				<span class="p-3"><?= lang('from') ?></span>
 				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
-
 				<span class="p-3"><?= lang('to') ?></span>
 				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
 					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
-
 				<button style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
@@ -281,8 +228,6 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 						class="ml-2 save_cancel_btn btn btn-success"><?= lang('see') ?>
 				</button>
 			</div>
-
-
 		</div>
 
 		<hr class="my-2">
@@ -308,83 +253,84 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 
 	// This button assumes data binding to the "checked" property.
-	go.GraphObject.defineBuilder("TriStateCheckBoxButton", function (args) {
-		var button = /** @type {Panel} */ (
-			go.GraphObject.make("Button",
-				{
-					"ButtonBorder.fill": "white",
-					"ButtonBorder.stroke": "gray",
-					width: 14,
-					height: 14,
-					margin: 2
-				},
-				go.GraphObject.make(go.Shape,
-					{
-						name: "ButtonIcon",
-						geometryString: "M0 4 L3 9 9 0",  // a "check" mark
-						strokeWidth: 2,
-						stretch: go.GraphObject.Fill,  // this Shape expands to fill the Button
-						geometryStretch: go.GraphObject.Uniform,  // the check mark fills the Shape without distortion
-						background: null,
-						visible: false  // visible set to false: not checked, unless data.checked is true
-					},
-					new go.Binding("visible", "checked", function (p) {
-						return p === true || p === null;
-					}),
-					new go.Binding("stroke", "checked", function (p) {
-						return p === null ? null : "black";
-					}),
-					new go.Binding("background", "checked", function (p) {
-						return p === null ? "gray" : null;
-					})
-				)
-			)
-		);
-
-		function updateCheckBoxesDown(node, val) {
-			node.diagram.model.setDataProperty(node.data, "checked", val);
-			node.findTreeChildrenNodes().each(function (child) {
-				updateCheckBoxesDown(child, val);
-			})
-		}
-
-		function updateCheckBoxesUp(node) {
-			var parent = node.findTreeParentNode();
-			if (parent !== null) {
-				var anychecked = parent.findTreeChildrenNodes().any(function (n) {
-					return n.data.checked !== false && n.data.checked !== undefined;
-				});
-				var allchecked = parent.findTreeChildrenNodes().all(function (n) {
-					return n.data.checked === true;
-				});
-				node.diagram.model.setDataProperty(parent.data, "checked", (allchecked ? true : (anychecked ? null : false)));
-				updateCheckBoxesUp(parent);
-			}
-		}
-
-		button.click = function (e, button) {
-			if (!button.isEnabledObject()) return;
-			var diagram = e.diagram;
-			if (diagram === null || diagram.isReadOnly) return;
-			if (diagram.model.isReadOnly) return;
-			e.handled = true;
-			var shape = button.findObject("ButtonIcon");
-			diagram.startTransaction("checkbox");
-			// Assume the name of the data property is "checked".
-			var node = button.part;
-			var oldval = node.data.checked;
-			var newval = (oldval !== true);  // newval will always be either true or false, never null
-			// Set this data.checked property and those of all its children to the same value
-			updateCheckBoxesDown(node, newval);
-			// Walk up the tree and update all of their checkboxes
-			updateCheckBoxesUp(node);
-			// support extra side-effects without clobbering the click event handler:
-			if (typeof button["_doClick"] === "function") button["_doClick"](e, button);
-			diagram.commitTransaction("checkbox");
-		};
-
-		return button;
-	});
+	// go.GraphObject.defineBuilder("TriStateCheckBoxButton", function (args) {
+	// 	// var button = (
+	// 	// 	go.GraphObject.make("Button",
+	// 	// 		{
+	// 	// 			"ButtonBorder.fill": "transparent",
+	// 	// 			"ButtonBorder.stroke": "transparent",
+	// 	// 			width: 1,
+	// 	// 			height: 1,
+	// 	// 			margin: 0
+	// 	// 		},
+	// 	// 		go.GraphObject.make(go.Shape,
+	// 	// 			{
+	// 	// 				name: "ButtonIcon",
+	// 	// 				geometryString: "M0 4 L3 9 9 0",  // a "check" mark
+	// 	// 				strokeWidth: 2,
+	// 	// 				stretch: go.GraphObject.Fill,  // this Shape expands to fill the Button
+	// 	// 				geometryStretch: go.GraphObject.Uniform,  // the check mark fills the Shape without distortion
+	// 	// 				background: null,
+	// 	// 				visible: false  // visible set to false: not checked, unless data.checked is true
+	// 	// 			},
+	// 	// 			new go.Binding("visible", "checked", function (p) {
+	// 	// 				return p === true || p === null;
+	// 	// 			}),
+	// 	// 			new go.Binding("stroke", "checked", function (p) {
+	// 	// 				return p === null ? null : "black";
+	// 	// 			}),
+	// 	// 			new go.Binding("background", "checked", function (p) {
+	// 	// 				return p === null ? "gray" : null;
+	// 	// 			})
+	// 	// 		)
+	// 	// 	)
+	// 	// );
+	//
+	// 	// function updateCheckBoxesDown(node, val) {
+	// 	// 	node.diagram.model.setDataProperty(node.data, "checked", val);
+	// 	// 	node.findTreeChildrenNodes().each(function (child) {
+	// 	// 		updateCheckBoxesDown(child, val);
+	// 	// 	})
+	// 	// }
+	//
+	// 	// function updateCheckBoxesUp(node) {
+	// 	// 	var parent = node.findTreeParentNode();
+	// 	// 	if (parent !== null) {
+	// 	// 		var anychecked = parent.findTreeChildrenNodes().any(function (n) {
+	// 	// 			return n.data.checked !== false && n.data.checked !== undefined;
+	// 	// 		});
+	// 	// 		var allchecked = parent.findTreeChildrenNodes().all(function (n) {
+	// 	// 			return n.data.checked === true;
+	// 	// 		});
+	// 	// 		node.diagram.model.setDataProperty(parent.data, "checked", (allchecked ? true : (anychecked ? null : false)));
+	// 	// 		updateCheckBoxesUp(parent);
+	// 	// 	}
+	// 	// }
+	//
+	// 	// button.click = function (e, button) {
+	// 	//
+	// 	// 	if (!button.isEnabledObject()) return;
+	// 	// 	var diagram = e.diagram;
+	// 	// 	if (diagram === null || diagram.isReadOnly) return;
+	// 	// 	if (diagram.model.isReadOnly) return;
+	// 	// 	e.handled = true;
+	// 	// 	var shape = button.findObject("ButtonIcon");
+	// 	// 	// diagram.startTransaction("checkbox");
+	// 	// 	// Assume the name of the data property is "checked".
+	// 	// 	// var node = button.part;
+	// 	// 	// var oldval = node.data.checked;
+	// 	// 	// var newval = (oldval !== true);  // newval will always be either true or false, never null
+	// 	// 	// Set this data.checked property and those of all its children to the same value
+	// 	// 	// updateCheckBoxesDown(node, newval);
+	// 	// 	// Walk up the tree and update all of their checkboxes
+	// 	// 	// updateCheckBoxesUp(node);
+	// 	// 	// support extra side-effects without clobbering the click event handler:
+	// 	// 	// if (typeof button["_doClick"] === "function") button["_doClick"](e, button);
+	// 	// 	// diagram.commitTransaction("checkbox");
+	// 	// };
+	//
+	// 	// return button;
+	// });
 
 	function init() {
 
@@ -420,7 +366,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					selectionAdorned: false,
 					// a custom function to allow expanding/collapsing on double-click
 					// this uses similar logic to a TreeExpanderButton
-					doubleClick: function (e, node) {
+					doubleClick: function(e, node) {
 						var cmd = myDiagram.commandHandler;
 						if (node.isTreeExpanded) {
 							if (!cmd.canCollapseTree(node)) return;
@@ -435,14 +381,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 						}
 					}
 				},
-				$("TreeExpanderButton",
-					{
-						width: 14,
-						"ButtonBorder.fill": "whitesmoke",
-						"ButtonBorder.stroke": "lightgray",
-						"_buttonFillOver": "rgba(0,128,255,0.25)",
-						"_buttonStrokeOver": null
-					}),
+				$("TreeExpanderButton"),
 				$(go.Panel, "Horizontal",
 					{
 						padding: 3,
@@ -453,7 +392,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					new go.Binding("background", "isSelected", function (s) {
 						return (s ? "lightblue" : "white");
 					}).ofObject(),
-					$("TriStateCheckBoxButton"),
+
 					$(go.TextBlock,
 						{font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 2, 0, 2)},
 						new go.Binding("stroke", "isHighlighted", function (h) {
@@ -1186,7 +1125,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					selectionAdorned: false,
 					// a custom function to allow expanding/collapsing on double-click
 					// this uses similar logic to a TreeExpanderButton
-					doubleClick: function (e, node) {
+					doubleClick: function(e, node) {
 						var cmd = myDiagram.commandHandler;
 						if (node.isTreeExpanded) {
 							if (!cmd.canCollapseTree(node)) return;
@@ -1201,14 +1140,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 						}
 					}
 				},
-				$("TreeExpanderButton",
-					{
-						width: 14,
-						"ButtonBorder.fill": "whitesmoke",
-						"ButtonBorder.stroke": "lightgray",
-						"_buttonFillOver": "rgba(0,128,255,0.25)",
-						"_buttonStrokeOver": null
-					}),
+				$("TreeExpanderButton"),
 				$(go.Panel, "Horizontal",
 					{
 						padding: 3,
@@ -1219,7 +1151,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					new go.Binding("background", "isSelected", function (s) {
 						return (s ? "lightblue" : "white");
 					}).ofObject(),
-					$("TriStateCheckBoxButton"),
+
 					$(go.TextBlock,
 						{
 							font: '9pt Verdana, sans-serif',
@@ -1232,11 +1164,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 							return h ? "#ff7a59" : color;
 						}).ofObject()),
 
-					$(go.TextBlock,
-						{
-							font: 'bold ,9pt Verdana, sans-serif',
-							margin: new go.Margin(0, 5, 0, 2)
-						},
+				  	$(go.TextBlock,{
+								font: 'bold ,9pt Verdana, sans-serif',
+								margin: new go.Margin(0, 5, 0, 2)
+					  },
 
 						new go.Binding("text", "title", function (s) {
 							return " " + s;
@@ -1294,7 +1225,6 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 				myDiagram.highlightCollection(results);
 
-
 				// try to center the diagram at the first node that was found
 				if (results.count > 0) myDiagram.centerRect(results.first().actualBounds);
 			} else {
@@ -1323,14 +1253,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 	}
 
 	function load_new() {
-
 		myDiagram.model = go.Model.fromJson('{"class": "go.TreeModel","nodeDataArray": <?=json_encode($structure_array)?>}');
 	}
 
 
 	$(document).ready(function () {
 		init();
-
 		diagramListener();
 	});
 
@@ -1471,7 +1399,3 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 <input type="hidden" name="selecteds">
 <input type="hidden" name="line_date">
-
-
-
-

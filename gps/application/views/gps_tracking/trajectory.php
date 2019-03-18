@@ -78,7 +78,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="<?= date("Y-m-d", strtotime("-10 day", $time)); ?>"
+								value="2019-02-24<?//= date("Y-m-d", strtotime("-10 day", $time)); ?>"
 								style="font-size: 11px !important;" type="date"
 								class="form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -453,17 +453,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					result += '<div class="card mb-1 card_hover">\n' +
 						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  ' + val.first_name + ' ' + val.last_name + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span style=""><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t</div>';
@@ -1013,8 +1013,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					console.log('ERRORS: ' + textStatus);
 				},
 				complete: function () {
-					$('#ajax_time').html('Ajax time - ' + xsht / 100 + 's');
-					$('#ajax_time').removeClass('d-none');
+					// $('#ajax_time').html('Ajax time - ' + xsht / 100 + 's');
+					// $('#ajax_time').removeClass('d-none');
 					setTimeout(function () {
 						$('#ajax_time').addClass('d-none');
 					}, 4000);

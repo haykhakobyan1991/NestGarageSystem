@@ -96,6 +96,7 @@ class Gps extends MX_Controller
 		$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 
+		
 		$data = array();
 
 		$lng = $this->load->lng();
@@ -1163,8 +1164,8 @@ class Gps extends MX_Controller
 
 
 		// power off or on
+		$power = array();
 		if ($engine == 1) {
-			$power = array();
 			$date1 = new DateTime("00:00:00");
 			$date2 = new DateTime("00:00:00");
 			foreach ($eng_res as $imei => $eng_arr) {

@@ -770,9 +770,9 @@ $lng = $this->load->lng();
 			$('.show_car').each(function () {
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
-				course = 76;
+				var course = $(this).data('course');
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-				console.log('val ===>' + array[1]);
+				console.log(course);
 
 				var imei = $(this).data('imei');
 
@@ -852,9 +852,8 @@ $lng = $this->load->lng();
 
 						// alert($('input[name="'+$(this).data('imei')+'"]').val())
 						//if(changed == $(this).data('imei')) {
-						course = $(this).data('cource');
+						course = $(this).data('course');
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-						console.log('val ===>' + array[1]);
 
 						var carCoordinate = '';
 						latitude = array[0];
@@ -1040,6 +1039,7 @@ $lng = $this->load->lng();
 			data_imei = $(this).data('imei');
 
 
+
 			$('#map').html('');
 
 
@@ -1145,7 +1145,6 @@ $lng = $this->load->lng();
 					// get changed element name
 					setTimeout(function () {
 
-						course = 76;
 						array = JSON.parse("[" + $('input[name="' + data_imei + '"]').val() + "]");
 
 						latitude = array[0];

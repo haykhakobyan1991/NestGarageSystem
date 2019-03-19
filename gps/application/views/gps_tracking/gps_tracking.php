@@ -223,7 +223,7 @@ $lng = $this->load->lng();
 					foreach ($last_location as $val) {
 						if ($imei != $val['imei']) {
 							if ($tmp == 0) {
-								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['course']);
+								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['speed']);
 							}
 							$tmp = 1;
 						} else {

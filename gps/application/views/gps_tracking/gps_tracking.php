@@ -708,7 +708,6 @@ $lng = $this->load->lng();
 
 	$(document).ready(function () {
 
-
 		ymaps.ready(init_all);
 
 		function init_all() {
@@ -716,6 +715,57 @@ $lng = $this->load->lng();
 				center: [40.28566, 44.54990333],
 				zoom: 10
 			}, {suppressMapOpenBlock: true});
+
+			firstButton = new ymaps.control.Button({
+				data: {
+					content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
+				},
+				options: {
+					selectOnClick: true
+				}
+			});
+			myMap_show_all_cars_onChange.controls.add(firstButton, {float: 'right'});
+
+
+			//Click Function Show All Geofences
+			firstButton.events.add(['select', 'deselect'], function (e) {
+
+				if (e.get('type') == 'select') {
+					$('.geofences_coordinate').each(function () {
+
+						geoObject_coordinates = $(this).attr('data-gCoordinate');
+						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+
+						var rand_color = '#' + (function co(lor) {
+							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+						})('') + '75';
+
+						var myPolygon = new ymaps.Polygon([
+							array_stting
+						], {}, {
+							editorDrawingCursor: "crosshair",
+							fillColor: rand_color,
+							strokeColor: rand_color,
+							strokeWidth: 2
+						});
+
+						myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
+						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
+						myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
+
+					});
+
+					myMap_show_all_cars_onChange.container.fitToViewport()
+
+				} else {
+					$('#map').html('');
+					ymaps.ready(init_all);
+
+				}
+
+			});
+
+
 			address_arr = [];
 			$('.show_car').each(function () {
 
@@ -729,10 +779,14 @@ $lng = $this->load->lng();
 				var carCoordinate = '';
 				latitude = array[0];
 				longitude = array[1];
+
 				ymaps.geocode($(this).data('coordinate')).then(function (res) {
 					var firstGeoObject = res.geoObjects.get(0);
 					address_arr[imei] = firstGeoObject.getAddressLine();
 				});
+
+				console.log(address_arr);
+
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 				),
@@ -865,7 +919,6 @@ $lng = $this->load->lng();
 
 		}
 
-
 		//Show Geozone from selectoption
 
 		$(document).on('change', 'select[name="group"]', function () {
@@ -965,78 +1018,8 @@ $lng = $this->load->lng();
 					}
 
 				} else {
-					ymaps.ready(init_Geozone2);
-
-					function init_Geozone2() {
-
-						$('#map').html('');
-
-						var myMap_show_init_Geozone = new ymaps.Map("map", {
-							center: [55.76, 37.64],
-							zoom: 2
-						}, {suppressMapOpenBlock: true});
-
-
-						$('.show_car').each(function () {
-
-							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
-								coordinate = $(this).data('coordinate');
-								console.log(coordinate);
-								course = $(this).data('course');
-								course = $(this).data('course');
-
-								array = JSON.parse("[" + coordinate + "]");
-
-								var carCoordinate = '';
-
-								latitude = array[0];
-								longitude = array[1];
-
-								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
-								),
-
-									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
-										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
-											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
-										balloonContentFooter: ""
-									}, {
-										iconLayout: ymaps.templateLayoutFactory.createClass([
-											'<div style="transform:rotate({{options.rotate}}deg);">',
-											'{% include "default#image" %}',
-											'</div>'
-										].join('')),
-										iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-										iconImageSize: [35, 30],
-										iconImageOffset: [-10, -35],
-										iconRotate: course,
-										iconShape: {
-											type: 'Circle',
-											coordinates: [0, 0],
-											radius: 25
-										}
-									});
-
-
-								myMap_show_init_Geozone.geoObjects.add(myPlacemarkWithContent);
-								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
-								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds(), {checkZoomRange: true});
-							}
-						});
-
-
-						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
-						$('#map > ymaps').css('width', width_map);
-						$('#map > ymaps').css('overflow', 'scroll');
-					}
+					$('#map').html('');
+					ymaps.ready(init_all);
 				}
 
 			});
@@ -1047,117 +1030,124 @@ $lng = $this->load->lng();
 		/* On Click Function Show single Car On Map */
 
 		$('.show_car').click(function () {
-			car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
-			car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
-			massage_time = $(this).parent('tr').children('.last_time_update').text();
-			driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
-			current_address = $(this).parent('tr').children('.address_span').text();
-			data_id = $(this).data('id');
 
-			$('#map').html('');
+				car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
+				car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
+				massage_time = $(this).parent('tr').children('.last_time_update').text();
+				driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
+				current_address = $(this).parent('tr').children('.address_span').text();
+				data_id = $(this).data('id');
 
-			coordinate = $(this).data('coordinate');
-			course = $(this).data('course');
-			array = JSON.parse("[" + coordinate + "]");
-			ymaps.ready(init_singleCar(array));
+				$('#map').html('');
 
-			function init_singleCar(array) {
-				var myMap_show_singleCar = new ymaps.Map("map", {
-					center: [45.8989, 54.56566565],
-					zoom: 2
-				}, {suppressMapOpenBlock: true});
-				var carCoordinate = '';
+				coordinate = $(this).data('coordinate');
+				course = $(this).data('course');
+				array = JSON.parse("[" + coordinate + "]");
+				ymaps.ready(init_singleCar(array));
 
-				firstButton = new ymaps.control.Button({
-					data: {
-						content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
-					},
-					options: {
-						selectOnClick: true
-					}
-				});
-				myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
+				function init_singleCar(array) {
+					var myMap_show_singleCar = new ymaps.Map("map", {
+						center: [45.8989, 54.56566565],
+						zoom: 2
+					}, {suppressMapOpenBlock: true});
+					var carCoordinate = '';
 
-				//Click Function Show All Geofences
-				firstButton.events.add(['select', 'deselect'], function (e) {
+					firstButton = new ymaps.control.Button({
+						data: {
+							content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
+						},
+						options: {
+							selectOnClick: true
+						}
+					});
+					myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
 
-					if (e.get('type') == 'select') {
-						$('.geofences_coordinate').each(function () {
+					//Click Function Show All Geofences
+					firstButton.events.add(['select', 'deselect'], function (e) {
 
-							geoObject_coordinates = $(this).attr('data-gCoordinate');
-							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+						if (e.get('type') == 'select') {
+							$('.geofences_coordinate').each(function () {
 
-							var rand_color = '#' + (function co(lor) {
-								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
-							})('') + '75';
+								geoObject_coordinates = $(this).attr('data-gCoordinate');
+								array_stting = JSON.parse("[" + geoObject_coordinates + "]");
 
-							myPolygon = new ymaps.Polygon([
-								array_stting
-							], {}, {
-								editorDrawingCursor: "crosshair",
-								fillColor: rand_color,
-								strokeColor: rand_color,
-								strokeWidth: 2
+								var rand_color = '#' + (function co(lor) {
+									return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+								})('') + '75';
+
+								myPolygon = new ymaps.Polygon([
+									array_stting
+								], {}, {
+									editorDrawingCursor: "crosshair",
+									fillColor: rand_color,
+									strokeColor: rand_color,
+									strokeWidth: 2
+								});
+
+								myMap_show_singleCar.geoObjects.add(myPolygon);
+								myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+								myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds());
+
 							});
 
-							myMap_show_singleCar.geoObjects.add(myPolygon);
-							myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
-							myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds());
-
-						});
-
-					} else {
-						$('.show_car').each(function () {
-							if (coordinate == $(this).data('coordinate')) {
-								$(this).trigger('click')
-							}
-						})
-					}
-				});
-
-				latitude = array[0];
-				longitude = array[1];
-
-				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
-				),
-
-					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
-						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
-							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
-							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
-							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
-							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
-						balloonContentFooter: ""
-					}, {
-						iconLayout: ymaps.templateLayoutFactory.createClass([
-							'<div style="transform:rotate({{options.rotate}}deg);">',
-							'{% include "default#image" %}',
-							'</div>'
-						].join('')),
-						iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-						iconImageSize: [35, 30],
-						iconImageOffset: [-10, -35],
-						iconRotate: course,
-						iconShape: {
-							type: 'Circle',
-							coordinates: [0, 0],
-							radius: 25
+						} else {
+							$('.show_car').each(function () {
+								if (coordinate == $(this).data('coordinate')) {
+									$(this).trigger('click')
+								}
+							})
 						}
 					});
 
-				myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
-				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
-				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+					latitude = array[0];
+					longitude = array[1];
 
-				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
-				$('#map > ymaps').css('width', width_map);
-				$('#map > ymaps').css('overflow', 'scroll');
-			}
+					MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+					),
+
+						myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
+							balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
+								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
+								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
+								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
+								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
+							balloonContentFooter: ""
+						}, {
+							iconLayout: ymaps.templateLayoutFactory.createClass([
+								'<div style="transform:rotate({{options.rotate}}deg);">',
+								'{% include "default#image" %}',
+								'</div>'
+							].join('')),
+							iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+							iconImageSize: [35, 30],
+							iconImageOffset: [-10, -35],
+							iconRotate: course,
+							iconShape: {
+								type: 'Circle',
+								coordinates: [0, 0],
+								radius: 25
+							}
+						});
+
+					myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
+					myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+					myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+
+					var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+					$('#map > ymaps').css('width', width_map);
+					$('#map > ymaps').css('overflow', 'scroll');
+				}
+
+
+				$('input.coords').on('change', function (event) {
+
+				})
+
 
 
 		});

@@ -109,7 +109,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
 		<div id="sample" style="position: relative;">
-			<div id="myDiagramDiv" style="height:300px;"></div>
+			<div id="myDiagramDiv" style="height:400px;"></div>
 			<button name="" data-toggle="modal" data-target=".bd-example-modal-lg"
 					class="btn btn-sm btn-outline-secondary mt-1" id="SaveButton"
 					style="position: absolute;bottom: -55px;;right: 4px;z-index: 999;"

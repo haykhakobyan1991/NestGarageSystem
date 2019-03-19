@@ -23,6 +23,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
+<!--todo-->
+<script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css" />
+
+
+<style>
+	button.btn.btn-outline-secondary.border-left-0 {
+		padding: 0 !important;
+	}
+</style>
+
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
@@ -79,8 +90,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<input
 								name="from"
 								value="2019-02-24<?//= date("Y-m-d", strtotime("-10 day", $time)); ?>"
-								style="font-size: 11px !important;" type="date"
-								class="form-control form-control-sm pl-1 pr-0">
+								style="font-size: 11px !important;" type=""
+								data-date-format="yyyy-mm-dd"
+								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
 				</div>
@@ -91,8 +103,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<input
 								name="to"
 								value="<?= mdate('%Y-%m-%d', now()) ?>"
-								style="font-size: 11px !important;" type="date"
-								class="form-control form-control-sm pl-1 pr-0">
+								style="font-size: 11px !important;" type=""
+								data-date-format="yyyy-mm-dd"
+								class="datepickerTo form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
 				</div>
@@ -504,17 +517,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					result += '<div class="card mb-1 card_hover">\n' +
 						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  ' + val.first_name + ' ' + val.last_name + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span style="font-size: 13px;"><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
+						'\t\t\t\t\t\t\t<div class="text"><span style=""><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t</div>';
@@ -1024,6 +1037,21 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			});
 
 
+		});
+
+
+		$('.datepickerFrom').datepicker({
+			uiLibrary: 'bootstrap4',
+			format: 'yyyy-mm-dd',
+			startDate: '-3d',
+			iconsLibrary: 'fontawesome'
+		});
+
+		$('.datepickerTo').datepicker({
+			uiLibrary: 'bootstrap4',
+			format: 'yyyy-mm-dd',
+			startDate: '-3d',
+			iconsLibrary: 'fontawesome'
 		});
 
 

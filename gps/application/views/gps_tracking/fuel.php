@@ -20,6 +20,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
+<!--todo-->
+<script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css" />
+
 <!-- Settings Modal Start -->
 
 <style>
@@ -35,6 +39,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	a.dt-button.dropdown-item.buttons-columnVisibility.active {
 		color: #8e8f90 !important;
 		background: #fff !important;
+	}
+
+	button.btn.btn-outline-secondary.border-left-0 {
+		padding: 0 !important;
 	}
 </style>
 
@@ -88,8 +96,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<input
 								name="from"
 								value="2019-02-20<?//= date("Y-m-d", strtotime("-10 day", $time)); ?>"
-								style="font-size: 11px !important;" type="date"
-								class="form-control form-control-sm pl-1 pr-0">
+								style="font-size: 11px !important;" type=""
+								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
 				</div>
@@ -100,8 +108,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<input
 								name="to"
 								value="<?= mdate('%Y-%m-%d', now()) ?>"
-								style="font-size: 11px !important;" type="date"
-								class="form-control form-control-sm pl-1 pr-0">
+								style="font-size: 11px !important;" type=""
+								class="datepickerTo form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
 				</div>
@@ -598,6 +606,21 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			}]
 		});
 	})
+
+
+	$('.datepickerFrom').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		startDate: '-3d',
+		iconsLibrary: 'fontawesome'
+	});
+
+	$('.datepickerTo').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		startDate: '-3d',
+		iconsLibrary: 'fontawesome'
+	});
 
 
 </script>

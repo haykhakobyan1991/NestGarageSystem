@@ -223,7 +223,7 @@ $lng = $this->load->lng();
 					foreach ($last_location as $val) {
 						if ($imei != $val['imei']) {
 							if ($tmp == 0) {
-								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course']);
+								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['course']);
 							}
 							$tmp = 1;
 						} else {
@@ -273,6 +273,7 @@ $lng = $this->load->lng();
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
 								data-id="<?= $fleets['id'] ?>"
 								data-imei="<?= $fleets['gps_tracker_imei'] ?>"
+								data-speed="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>"
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>

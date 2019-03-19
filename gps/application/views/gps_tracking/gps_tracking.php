@@ -772,6 +772,7 @@ $lng = $this->load->lng();
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $(this).data('course');
+				var speed = $(this).data('speed');
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 				console.log(course);
 
@@ -796,7 +797,7 @@ $lng = $this->load->lng();
 						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+" <?=lang('km/h')?></span></p>" +
 							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
@@ -854,6 +855,7 @@ $lng = $this->load->lng();
 						// alert($('input[name="'+$(this).data('imei')+'"]').val())
 						//if(changed == $(this).data('imei')) {
 						course = $(this).data('course');
+						speed = $(this).data('speed');
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 
 						var carCoordinate = '';
@@ -871,7 +873,7 @@ $lng = $this->load->lng();
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+"<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
@@ -967,6 +969,7 @@ $lng = $this->load->lng();
 								coordinate = $(this).data('coordinate')
 								console.log(coordinate)
 								course = $(this).data('course');
+								speed = $(this).data('speed');
 								array = JSON.parse("[" + coordinate + "]");
 
 								var carCoordinate = '';
@@ -983,7 +986,7 @@ $lng = $this->load->lng();
 										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+"<?=lang('km/h')?></span></p>" +
 											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
@@ -1046,6 +1049,7 @@ $lng = $this->load->lng();
 
 			coordinate = $(this).data('coordinate');
 			course = $(this).data('course');
+			speed = $(this).data('speed');
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
 
@@ -1114,7 +1118,7 @@ $lng = $this->load->lng();
 						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
-							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+"<?=lang('km/h')?></span></p>" +
 							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
@@ -1160,7 +1164,7 @@ $lng = $this->load->lng();
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
-									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+"<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
@@ -1272,21 +1276,9 @@ $lng = $this->load->lng();
 				$('.show_car').each(function () {
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
-
-						// $('input.coords').on('change', function () {
-						// 	// get changed element name
-						// 	setTimeout(function () {
-						//
-						// 		course = 76;
-						// 		array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-						//
-						// 	}, 500)
-						// })
-
-
-
-
-
+						course = $(this).data('course');
+						speed = $(this).data('speed');
+						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 
 						latitude = array[0];
@@ -1301,7 +1293,7 @@ $lng = $this->load->lng();
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>"+speed+"<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +

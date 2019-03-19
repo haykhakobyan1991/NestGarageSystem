@@ -12,11 +12,11 @@
 
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
+
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
-
-
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
+
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
@@ -770,9 +770,9 @@ $lng = $this->load->lng();
 			$('.show_car').each(function () {
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
-				course = 76;
+				var course = $(this).data('course');
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-				console.log('val ===>' + array[1]);
+				console.log(course);
 
 				var imei = $(this).data('imei');
 
@@ -852,9 +852,8 @@ $lng = $this->load->lng();
 
 						// alert($('input[name="'+$(this).data('imei')+'"]').val())
 						//if(changed == $(this).data('imei')) {
-						course = 76;
+						course = $(this).data('course');
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-						console.log('val ===>' + array[1]);
 
 						var carCoordinate = '';
 						latitude = array[0];
@@ -1031,127 +1030,194 @@ $lng = $this->load->lng();
 
 		$('.show_car').click(function () {
 
-				car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
-				car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
-				massage_time = $(this).parent('tr').children('.last_time_update').text();
-				driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
-				current_address = $(this).parent('tr').children('.address_span').text();
-				data_id = $(this).data('id');
+			car_name = $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text();
+			car_nummber = $(this).parent('tr').children('td:nth-child(2)').children('small').text();
+			massage_time = $(this).parent('tr').children('.last_time_update').text();
+			driver_name = $(this).parent('tr').children('.staff_span').children('span').text();
+			current_address = $(this).parent('tr').children('.address_span').text();
+			data_id = $(this).data('id');
+			data_imei = $(this).data('imei');
 
-				$('#map').html('');
 
-				coordinate = $(this).data('coordinate');
-				course = $(this).data('course');
-				array = JSON.parse("[" + coordinate + "]");
-				ymaps.ready(init_singleCar(array));
 
-				function init_singleCar(array) {
-					var myMap_show_singleCar = new ymaps.Map("map", {
-						center: [45.8989, 54.56566565],
-						zoom: 2
-					}, {suppressMapOpenBlock: true});
-					var carCoordinate = '';
+			$('#map').html('');
 
-					firstButton = new ymaps.control.Button({
-						data: {
-							content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
-						},
-						options: {
-							selectOnClick: true
-						}
-					});
-					myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
 
-					//Click Function Show All Geofences
-					firstButton.events.add(['select', 'deselect'], function (e) {
+			coordinate = $(this).data('coordinate');
+			course = $(this).data('course');
+			array = JSON.parse("[" + coordinate + "]");
+			ymaps.ready(init_singleCar(array));
 
-						if (e.get('type') == 'select') {
-							$('.geofences_coordinate').each(function () {
+			function init_singleCar(array) {
+				var myMap_show_singleCar = new ymaps.Map("map", {
+					center: [45.8989, 54.56566565],
+					zoom: 2
+				}, {suppressMapOpenBlock: true});
+				var carCoordinate = '';
 
-								geoObject_coordinates = $(this).attr('data-gCoordinate');
-								array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+				firstButton = new ymaps.control.Button({
+					data: {
+						content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
+					},
+					options: {
+						selectOnClick: true
+					}
+				});
+				myMap_show_singleCar.controls.add(firstButton, {float: 'right'});
 
-								var rand_color = '#' + (function co(lor) {
-									return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
-								})('') + '75';
+				//Click Function Show All Geofences
+				firstButton.events.add(['select', 'deselect'], function (e) {
+					rand_color_arr = [];
+					if (e.get('type') == 'select') {
+						$('.geofences_coordinate').each(function () {
+							geoObject_coordinates = $(this).attr('data-gCoordinate');
+							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+							var rand_color = '#' + (function co(lor) {
+								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+							})('') + '75';
 
-								myPolygon = new ymaps.Polygon([
-									array_stting
-								], {}, {
-									editorDrawingCursor: "crosshair",
-									fillColor: rand_color,
-									strokeColor: rand_color,
-									strokeWidth: 2
-								});
 
-								myMap_show_singleCar.geoObjects.add(myPolygon);
-								myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
-								myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds());
+							//Get Colors
+							rand_color_arr.push(rand_color);
 
+							myPolygon = new ymaps.Polygon([
+								array_stting
+							], {}, {
+								editorDrawingCursor: "crosshair",
+								fillColor: rand_color,
+								strokeColor: rand_color,
+								strokeWidth: 2
 							});
+							myMap_show_singleCar.geoObjects.add(myPolygon);
+							myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+							myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds());
+						});
+					} else {
+						$('.show_car').each(function () {
+							if (coordinate == $(this).data('coordinate')) {
+								$(this).trigger('click')
+							}
+						})
+					}
+				});
 
-						} else {
-							$('.show_car').each(function () {
-								if (coordinate == $(this).data('coordinate')) {
-									$(this).trigger('click')
-								}
-							})
+				latitude = array[0];
+				longitude = array[1];
+
+				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+				),
+
+					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
+						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
+							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
+							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
+							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
+							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+							"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
+						balloonContentFooter: ""
+					}, {
+						iconLayout: ymaps.templateLayoutFactory.createClass([
+							'<div style="transform:rotate({{options.rotate}}deg);">',
+							'{% include "default#image" %}',
+							'</div>'
+						].join('')),
+						iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+						iconImageSize: [35, 30],
+						iconImageOffset: [-10, -35],
+						iconRotate: course,
+						iconShape: {
+							type: 'Circle',
+							coordinates: [0, 0],
+							radius: 25
 						}
 					});
 
-					latitude = array[0];
-					longitude = array[1];
+				myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
+				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
+				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
 
-					MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-						'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
-					),
 
-						myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
-							balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-							balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
-								"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
-								"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
-								"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-								"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-								"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
-								"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-								"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
-							balloonContentFooter: ""
-						}, {
-							iconLayout: ymaps.templateLayoutFactory.createClass([
-								'<div style="transform:rotate({{options.rotate}}deg);">',
-								'{% include "default#image" %}',
-								'</div>'
-							].join('')),
-							iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-							iconImageSize: [35, 30],
-							iconImageOffset: [-10, -35],
-							iconRotate: course,
-							iconShape: {
-								type: 'Circle',
-								coordinates: [0, 0],
-								radius: 25
-							}
+				$('input.coords').on('change', function () {
+					// get changed element name
+					setTimeout(function () {
+
+						array = JSON.parse("[" + $('input[name="' + data_imei + '"]').val() + "]");
+
+						latitude = array[0];
+						longitude = array[1];
+
+						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
+						),
+
+							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
+								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
+								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + data_id + "' target='_blank'>" + car_name + "</a></span></p>" +
+									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + car_nummber + "</span></p>" +
+									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + massage_time + "</span></p>" +
+									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + driver_name + "</span></p>" +
+									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + current_address + "</span></p>",
+								balloonContentFooter: ""
+							}, {
+								iconLayout: ymaps.templateLayoutFactory.createClass([
+									'<div style="transform:rotate({{options.rotate}}deg);">',
+									'{% include "default#image" %}',
+									'</div>'
+								].join('')),
+								iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
+								iconImageSize: [35, 30],
+								iconImageOffset: [-10, -35],
+								iconRotate: course,
+								iconShape: {
+									type: 'Circle',
+									coordinates: [0, 0],
+									radius: 25
+								}
+							});
+						myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
+					}, 500);
+
+					myMap_show_singleCar.geoObjects.removeAll(myPlacemarkWithContent);
+
+					rc = 0;
+					$('.geofences_coordinate').each(function () {
+						geoObject_coordinates = $(this).attr('data-gCoordinate');
+						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+						var rand_color = rand_color_arr[rc];
+						myPolygon = new ymaps.Polygon([
+							array_stting
+						], {}, {
+							editorDrawingCursor: "crosshair",
+							fillColor: rand_color,
+							strokeColor: rand_color,
+							strokeWidth: 2
 						});
+						myMap_show_singleCar.geoObjects.add(myPolygon);
 
-					myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
-					myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
-					myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
+						rc++;
+					});
 
-					var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
-					$('#map > ymaps').css('width', width_map);
-					$('#map > ymaps').css('overflow', 'scroll');
-				}
+				});
+
+				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
+				$('#map > ymaps').css('width', width_map);
+				$('#map > ymaps').css('overflow', 'scroll');
+			}
 
 
-				$('input.coords').on('change', function (event) {
+			$('input.coords').on('change', function (event) {
 
-				})
-
+			})
 
 
 		});
-
 
 		/* On Change checkbox  */
 
@@ -1197,67 +1263,7 @@ $lng = $this->load->lng();
 						});
 					} else {
 						$('#map').html('');
-
-						ymaps.ready(init_all);
-
-						function init_all() {
-							var myMap_show_all_cars = new ymaps.Map("map", {
-								center: [55.76, 37.64],
-								zoom: 2
-							}, {suppressMapOpenBlock: true});
-
-
-							$('.show_car').each(function () {
-
-								if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
-									coordinate = $(this).data('coordinate');
-									course = $(this).data('course');
-									array = JSON.parse("[" + coordinate + "]");
-
-									var carCoordinate = '';
-
-									latitude = array[0];
-									longitude = array[1];
-
-									MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
-										'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
-									),
-
-										myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
-											balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-											balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
-												"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
-												"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>55 km/h</span></p>" +
-												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
-												"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-												"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
-												"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
-											balloonContentFooter: ""
-										}, {
-											iconLayout: ymaps.templateLayoutFactory.createClass([
-												'<div style="transform:rotate({{options.rotate}}deg);">',
-												'{% include "default#image" %}',
-												'</div>'
-											].join('')),
-											iconImageHref: '<?= base_url() ?>assets/images/ymap/car.svg',
-											iconImageSize: [35, 30],
-											iconImageOffset: [-10, -35],
-											iconRotate: course,
-											iconShape: {
-												type: 'Circle',
-												coordinates: [0, 0],
-												radius: 25
-											}
-										});
-
-									myMap_show_all_cars.geoObjects.add(myPlacemarkWithContent);
-									myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
-									myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
-								}
-							});
-						}
+						ymaps.ready(init_all());
 					}
 				});
 
@@ -1265,9 +1271,20 @@ $lng = $this->load->lng();
 				$('.show_car').each(function () {
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
-						coordinate = $(this).data('coordinate');
-						course = $(this).data('course');
-						array = JSON.parse("[" + coordinate + "]");
+
+						// $('input.coords').on('change', function () {
+						// 	// get changed element name
+						// 	setTimeout(function () {
+						//
+						// 		course = 76;
+						// 		array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
+						//
+						// 	}, 500)
+						// })
+
+
+
+
 
 						var carCoordinate = '';
 
@@ -1677,7 +1694,7 @@ $lng = $this->load->lng();
 					$('.show_car').each(function () {
 
 						if (e == $(this).data('imei')) {
-							console.log($(this).attr('data-coordinate'));
+							//console.log($(this).attr('data-coordinate'));
 
 							if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')

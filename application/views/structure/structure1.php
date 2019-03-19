@@ -105,8 +105,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <!--  Modal End -->
 
 <div class="content m-1">
-
-
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 text-right bg-white ">
 		<div id="sample" style="position: relative;">
 			<div id="myDiagramDiv" style="height:400px;"></div>
@@ -118,9 +116,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		<textarea class="d-none" id="mySavedModel" title=""> </textarea>
 		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 	</div>
-
-	<span class="selected_information "></span>
-
+	<span class="selected_information"></span>
 </div>
 
 

@@ -81,8 +81,10 @@ class System_main extends CI_Controller {
 			$url = explode('/', $url_array[1]);
 		}
 
-		if (in_array($url[0], $all_lang_arr)) {
-			$start = 1;
+		if (isset($url[0])) {
+			if (in_array($url[0], $all_lang_arr)) {
+				$start = 1;
+			}
 		}
 
 		for ($i = $start; $i < count($url); $i++) {

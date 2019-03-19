@@ -461,15 +461,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				fleet_ids: fleet_ids.join(",")
 			}, function (data) {
 				var result = '';
-				console.log(JSON.parse(data));
+				//console.log(JSON.parse(data));
 				$.each(JSON.parse(data), function (e, val) {
-					result += '<div class="card mb-1 card_hover">\n' +
-						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
+					result += '<div class="card mb-1 ">\n' +
+						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 10px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;'+
+						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span> ' + val.fleet_plate_number + '</span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
 						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
@@ -485,7 +486,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$('#car_info').html(result)
 			});
 
-			console.log(fleet_ids.join(","));
+			//console.log(fleet_ids.join(","));
 
 			$('input[name="fleets"]').val(fleet_imeis.join(","))
 
@@ -512,12 +513,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				fleet_ids: fleet_ids.join(",")
 			}, function (data) {
 				var result = '';
-				console.log(JSON.parse(data));
+				//console.log(JSON.parse(data));
 				$.each(JSON.parse(data), function (e, val) {
-					result += '<div class="card mb-1 card_hover">\n' +
-						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
+					result += '<div class="card mb-1 ">\n' +
+						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 10px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>:</span>&nbsp;'+
+						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
 						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
@@ -537,7 +539,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			});
 
 
-			console.log(fleet_ids.join(","));
+			//console.log(fleet_ids.join(","));
 
 			$('input[name="fleets"]').val(fleet_imeis.join(","))
 
@@ -599,6 +601,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						var qx = [];
 
 
+
 						$.each(data.message.imei, function (e, val) {
 							coordinate[e] = '';
 							coordinate_qx[e] = '';
@@ -636,18 +639,19 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							distanc = [];
 
+							//console.log(data.message.imei)
+
 							$.each(data.message.imei, function (e, val) {
 
 								if (emai != e) {
 
 									array_coordinate[e] = JSON.parse("[" + coordinate[e].substring(0, coordinate[e].length - 1) + "]");
-									console.log(array_coordinate);
+									//console.log(array_coordinate);
 									//qx
 
 									array_coordinate_qx[e] = JSON.parse("[" + coordinate_qx[e].substring(0, coordinate_qx[e].length - 1) + "]");
 
-									console.table(array_coordinate_qx);
-
+								   //console.table(array_coordinate_qx);
 
 									myMap.events.add('click', function (e) {
 										if (!myMap.balloon.isOpen()) {
@@ -682,7 +686,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										{
 											mapStateAutoApply: true
 										}).then(function (route) {
-										console.log(route);
+										//console.log(route);
 										route.getPaths().options.set({
 											strokeColor: colors[Math.floor(Math.random() * colors.length)],
 											strokeWidth: 5,

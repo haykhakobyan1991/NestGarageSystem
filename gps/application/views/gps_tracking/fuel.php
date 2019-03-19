@@ -285,10 +285,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var result = '';
 			console.log(JSON.parse(data));
 			$.each(JSON.parse(data), function (e, val) {
-				result += '<div class="card mb-1 card_hover">\n' +
+				result += '<div class="card mb-1 ">\n' +
 					'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
-					'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;'+
+					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
 					'\t\t\t\t\t\t\t</div>\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
 					'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
@@ -341,7 +342,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				result += '<div class="card mb-1 card_hover">\n' +
 					'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
-					'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("name") ?>:</span><span> ' + val.brand + ' ' + val.model + '</span>\n' +
+					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;'+
+					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
 					'\t\t\t\t\t\t\t</div>\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
 					'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +

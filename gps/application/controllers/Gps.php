@@ -321,6 +321,15 @@ class Gps extends MX_Controller
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
+
+		$staffs = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/getAllStaffs', array('token' => $token));
+		$data['result_staffs'] = json_decode($staffs, true);
+
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().'Api/get_companyId', array('token' => $token));
+
+		// end api call
+
+
 		$local_time = time();
 
 		if($this->uri->segment(3) != '') {
@@ -350,13 +359,14 @@ class Gps extends MX_Controller
 			SELECT 
 				id,
 				title,
-				start,
-				\"end\",
 				description,
+				staff_id,
+				fleet_id,
 				date
 			FROM
 				event
 			WHERE  date	LIKE '".$year.'-'.$month."%'
+			 AND company_id = '".$company_id."'
 		";
 
 		$query = $this->db->query($sql);
@@ -376,7 +386,6 @@ class Gps extends MX_Controller
 								</div>
 							</div>
 							<div class="card-body text-left">
-								<div>'.$row['start'].' - '.$row['end'].'</div>
 								<div class="mt-2">'.$row['description'].'</div>
 							</div>
 						</div>
@@ -419,8 +428,6 @@ class Gps extends MX_Controller
 		// $this->config->set_item('language', 'armenian');
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('from', 'from', 'required');
-		$this->form_validation->set_rules('to', 'to', 'required');
 
 
 
@@ -431,9 +438,7 @@ class Gps extends MX_Controller
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title'),
-				'from' =>  form_error('from'),
-				'to' =>  form_error('to')
+				'title' =>  form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -447,8 +452,9 @@ class Gps extends MX_Controller
 		$title = $this->input->post('title');
 		$date = $this->input->post('day');
 		$description = $this->input->post('description');
-		$from = $this->input->post('from');
-		$to = $this->input->post('to');
+		$staff = $this->input->post('staff');
+		$fleet = $this->input->post('fleet');
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().'Api/get_companyId', array('token' => $token));
 
 
 
@@ -458,16 +464,17 @@ class Gps extends MX_Controller
 					title,
 					\"date\",
 					description,
-					start,
-					\"end\"
+					staff_id,
+					fleet_id,
+					company_id
 				) VALUES (
 					".$this->load->db_value($title).",
 					'".$date."',
 					".$this->load->db_value($description).",
-					'".$from."',
-					'".$to."'
+					".$this->load->db_value($staff).",
+					".$this->load->db_value($fleet).",
+					".$this->load->db_value($company_id)."
 				)
-		
 		";
 
 		$query = $this->db->query($sql);
@@ -508,10 +515,10 @@ class Gps extends MX_Controller
 
 		$sql = "SELECT
                    id,
-                   start,
-                   \"end\",
                    title,
                    description,
+                   staff_id,
+                   fleet_id,
                    date
                 FROM 
                    event
@@ -551,8 +558,6 @@ class Gps extends MX_Controller
 		// $this->config->set_item('language', 'armenian');
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
-		$this->form_validation->set_rules('from', 'from', 'required');
-		$this->form_validation->set_rules('to', 'to', 'required');
 
 
 
@@ -563,9 +568,7 @@ class Gps extends MX_Controller
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title'),
-				'from' =>  form_error('from'),
-				'to' =>  form_error('to')
+				'title' =>  form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
@@ -583,8 +586,6 @@ class Gps extends MX_Controller
 		$day = $this->input->post('day');
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
-		$from = $this->input->post('from');
-		$to = $this->input->post('to');
 
 
 
@@ -595,9 +596,7 @@ class Gps extends MX_Controller
 				SET
 				  title = ".$this->load->db_value($title).",
 				  date = ".$this->load->db_value($day).",
-				  description = ".$this->load->db_value($description).",
-				  start = ".$this->load->db_value($from).",
-				  \"end\" = ".$this->load->db_value($to)."
+				  description = ".$this->load->db_value($description)."
 				WHERE id =   ".$this->load->db_value($id)."
 			";
 

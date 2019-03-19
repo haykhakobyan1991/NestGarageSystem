@@ -485,6 +485,48 @@ class Api extends MX_Controller {
 
 
 
+	public function getAllStaffs() {
+
+		$token = $this->input->post('token');
+
+		if ($token == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$lng = $this->load->lng();
+
+		$sql = "
+				SELECT 
+					`staff`.`id`,
+					CONCAT_WS(
+						' ',
+						`staff`.`first_name`,
+						`staff`.`last_name`
+					) AS `name`
+				FROM
+				   `staff`
+				LEFT JOIN `fleet`
+					ON FIND_IN_SET(`staff`.`id`, `fleet`.`staff_ids`)	   
+				LEFT JOIN `user` 
+					ON `user`.`id` = `staff`.`registrar_user_id` 	
+				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "		
+				 AND `staff`.`status` = '1'	 
+				 AND `fleet`.`gps_tracker_exists` = '1'
+				 GROUP BY `staff`.`id`
+			";
+
+		$query = $this->db->query($sql);
+
+		echo json_encode($query->result_array());
+		return true;
+
+	}
+
+
+
 
 }
 //end of class

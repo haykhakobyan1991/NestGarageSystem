@@ -249,19 +249,30 @@ class CI_Calendar {
 			$out .= str_replace('{previous_url}', $this->next_prev_url.$adjusted_date['year'].'/'.$adjusted_date['month'], $this->replacements['heading_previous_cell'])."\n";
 		}
 
-		// Heading containing the month/year
-		$colspan = ($this->show_next_prev === TRUE) ? 5 : 7;
 
-		$this->replacements['heading_title_cell'] = str_replace('{colspan}', $colspan,
-								str_replace('{heading}', '<input name="ym" type="hidden" value="'.$year.'-'.$month.'">'.$this->get_month_name($month).'&nbsp;'.$year, $this->replacements['heading_title_cell']));
-
-		$out .= $this->replacements['heading_title_cell']."\n";
 
 		// "next" month link
 		if ($this->show_next_prev === TRUE)
 		{
 			$adjusted_date = $this->adjust_date($month + 1, $year);
 			$out .= str_replace('{next_url}', $this->next_prev_url.$adjusted_date['year'].'/'.$adjusted_date['month'], $this->replacements['heading_next_cell']);
+		}
+
+		// Heading containing the month/year
+		$colspan = ($this->show_next_prev === TRUE) ? 3 : 7;
+
+		$this->replacements['heading_title_cell'] = str_replace('{colspan}', $colspan,
+			str_replace('{heading}', '<input name="ym" type="hidden" value="'.$year.'-'.$month.'">'.$this->get_month_name($month).'&nbsp;'.$year, $this->replacements['heading_title_cell']));
+
+		$out .= $this->replacements['heading_title_cell']."\n";
+
+		if ($this->show_next_prev === TRUE) {
+			$mt = date('m');
+			$yh = date('Y');
+
+			$this->replacements['heading_today_cell'] = str_replace('{today}', $this->next_prev_url.$yh.'/'.$mt, $this->replacements['heading_today_cell']);
+
+			$out .= $this->replacements['heading_today_cell'] . "\n";
 		}
 
 		$out .= "\n".$this->replacements['heading_row_end']."\n\n"
@@ -483,6 +494,7 @@ class CI_Calendar {
 			'heading_previous_cell'		=> '<th><a href="{previous_url}"><i class="fas fa-angle-left"></i></a></th>',
 			'heading_title_cell'		=> '<th class="text-center" colspan="{colspan}">{heading}</th>',
 			'heading_next_cell'			=> '<th><a href="{next_url}"><i class="fas fa-angle-right"></i></a></th>',
+			'heading_today_cell'		=> '<th colspan="2" ><a href="{today}"><button class="btn btn-google  btn-small ">Today</button></a></th>',
 			'heading_row_end'			=> '</tr>',
 			'week_row_start'			=> '<tr>',
 			'week_day_cell'				=> '<th class="font-weight-bold">{week_day}</th>',
@@ -491,10 +503,10 @@ class CI_Calendar {
 			'cal_cell_start'			=> '<td class="current"  style="cursor: pointer;">',
 			'cal_cell_start_today'		=> '<td class="current"  style="cursor: pointer;">',
 			'cal_cell_start_other'		=> '<td data-day="" style="color: #666; background: #dee2e6;">',
-			'cal_cell_content'			=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}</span>{content}',
-			'cal_cell_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer; width: 100%; display: inline-block"><span class="today" >{day}</span></span>{content}',
-			'cal_cell_no_content'		=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}</span>',
-			'cal_cell_no_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="width: 100%; display: inline-block"><span class="today" >{day}</span></span>',
+			'cal_cell_content'			=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}<span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>{content}',
+			'cal_cell_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer; width: 100%; display: inline-block"><span class="today" >{day}</span><span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>{content}',
+			'cal_cell_no_content'		=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}<span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>',
+			'cal_cell_no_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="width: 100%; display: inline-block"><span class="today" >{day}</span><span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>',
 			'cal_cell_blank'			=> '&nbsp;',
 			'cal_cell_other'			=> '<span style="padding: 2px">{day}</span>',
 			'cal_cell_end'				=> '</td>',
@@ -528,7 +540,7 @@ class CI_Calendar {
 		{
 			$today = array('cal_cell_start_today', 'cal_cell_content_today', 'cal_cell_no_content_today', 'cal_cell_end_today');
 
-			foreach (array('table_open', 'table_close', 'heading_row_start', 'heading_previous_cell', 'heading_title_cell', 'heading_next_cell', 'heading_row_end', 'week_row_start', 'week_day_cell', 'week_row_end', 'cal_row_start', 'cal_cell_start', 'cal_cell_content', 'cal_cell_no_content', 'cal_cell_blank', 'cal_cell_end', 'cal_row_end', 'cal_cell_start_today', 'cal_cell_content_today', 'cal_cell_no_content_today', 'cal_cell_end_today', 'cal_cell_start_other', 'cal_cell_other', 'cal_cell_end_other') as $val)
+			foreach (array('table_open', 'table_close', 'heading_row_start', 'heading_previous_cell', 'heading_title_cell', 'heading_next_cell','heading_today_cell', 'heading_row_end', 'week_row_start', 'week_day_cell', 'week_row_end', 'cal_row_start', 'cal_cell_start', 'cal_cell_content', 'cal_cell_no_content', 'cal_cell_blank', 'cal_cell_end', 'cal_row_end', 'cal_cell_start_today', 'cal_cell_content_today', 'cal_cell_no_content_today', 'cal_cell_end_today', 'cal_cell_start_other', 'cal_cell_other', 'cal_cell_end_other') as $val)
 			{
 				if (preg_match('/\{'.$val.'\}(.*?)\{\/'.$val.'\}/si', $this->template, $match))
 				{

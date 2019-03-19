@@ -103,7 +103,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="row getChild" data-url="<?= base_url('System_main/get_child') ?>"
+					<div class="row getChild" data-url="<?= base_url($lang.'/System_main/get_child') ?>"
 						 data-result="model_div" data-response="model" data-res_type="select" data-lang="<?= $lang ?>"
 						 id="brand">
 

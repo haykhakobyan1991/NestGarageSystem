@@ -93,7 +93,7 @@
 				<div class="col-sm-4">
 					<div class="row">
 						<div class="w-100 getChild" style="padding-right: 6px;"
-							 data-url="<?= base_url('System_main/get_child') ?>"
+							 data-url="<?= base_url($lang.'/System_main/get_child') ?>"
 							 data-result="model_div"
 							 data-response="model"
 							 data-res_type="select"

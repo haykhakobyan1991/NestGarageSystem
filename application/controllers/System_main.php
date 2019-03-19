@@ -121,7 +121,7 @@ class System_main extends CI_Controller {
 
 		if ($result->num_rows() > 0) {
 			if ($response_type == 'select') {
-				echo '<label class=" col-form-label col-sm-2">Մոդել *</label>
+				echo '<label class=" col-form-label col-sm-2">'.lang('model').' *</label>
 
 						<select name="model"
 								class="col selectpicker form-control form-control-sm col-sm-7"

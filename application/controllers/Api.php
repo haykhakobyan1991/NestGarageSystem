@@ -527,6 +527,45 @@ class Api extends MX_Controller {
 
 
 
+	public function get_SingleStaff() {
+
+		$token = $this->input->post('token');
+		$staff_id = $this->input->post('staff_id');
+
+		if ($token == '' || $staff_id == '') {
+			return false;
+		}
+
+		$row = $this->db->select('company_id')->from('user')->where('token', $token)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$lng = $this->load->lng();
+
+		$sql = "
+				SELECT 
+					CONCAT_WS(
+						' ',
+						`staff`.`first_name`,
+						`staff`.`last_name`
+					) AS `name`
+				FROM
+				   `staff`
+				LEFT JOIN `user` 
+					ON `user`.`id` = `staff`.`registrar_user_id` 	
+				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "	
+				 AND `staff`.`id` = " . $this->load->db_value($staff_id) . "	
+				 AND `staff`.`status` = '1'	   
+			";
+
+		$query = $this->db->query($sql);
+
+		echo json_encode($query->row_array());
+		return true;
+
+	}
+
+
+
 
 }
 //end of class

@@ -377,6 +377,9 @@ class Gps extends MX_Controller
 		$event = array();
 		foreach ($result as $row) {
 			if (substr($row['date'], 0, 7) == $year . '-' . $month) {
+				$fleet = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleet', array('token' => $token, 'fleet_id' => $row['fleet_id'])),true);
+				$staff = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleStaff', array('token' => $token, 'staff_id' => $row['staff_id'])),true);
+
 				$event[intval(substr($row['date'], 8))][] = '
 					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">' . $row['title'] . '
 						<div class="card">
@@ -387,7 +390,10 @@ class Gps extends MX_Controller
 								</div>
 							</div>
 							<div class="card-body text-left">
-								<div class="mt-2">' . $row['description'] . '</div>
+								'.($staff['name'] != '' ? '<div class="">' . lang('driver') . ': ' . $staff['name'] . '</div>' : '').'
+								'.($fleet['brand_model'] != '' ? '<div class="'.($staff['name'] != '' ? 'mt-2' : '').'">' . lang('fleet') . ': ' . $fleet['brand_model'] . '</div>' : '').'
+								<div class="'.($fleet['brand_model'] != '' ? 'mt-2' : '').'">' . $row['description'] . '</div>
+								
 							</div>
 						</div>
 					</span>';
@@ -503,6 +509,7 @@ class Gps extends MX_Controller
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$lng = $this->load->lng();
+		$data = array();
 
 		if ($id == NULL) {
 			$message = 'Undifined ID';
@@ -510,6 +517,18 @@ class Gps extends MX_Controller
 			return false;
 		}
 
+
+
+		//api call
+
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
+		$data['result_fleets'] = json_decode($fleets, true);
+
+
+		$staffs = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/getAllStaffs', array('token' => $token));
+		$data['result_staffs'] = json_decode($staffs, true);
+
+		// end api call
 
 		$sql = "SELECT
                    id,
@@ -526,8 +545,10 @@ class Gps extends MX_Controller
 		$query = $this->db->query($sql);
 		$row = $query->row_array();
 
+		$data['row'] = $row;
 
-		$this->load->view('event/edit_event', $row);
+
+		$this->load->view('event/edit_event', $data);
 
 	}
 
@@ -580,6 +601,9 @@ class Gps extends MX_Controller
 		$day = $this->input->post('day');
 		$title = $this->input->post('title');
 		$description = $this->input->post('description');
+		$staff = $this->input->post('staff');
+		$fleet = $this->input->post('fleet');
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
 
 
 		$sql = "
@@ -588,6 +612,9 @@ class Gps extends MX_Controller
 				SET
 				  title = " . $this->load->db_value($title) . ",
 				  date = " . $this->load->db_value($day) . ",
+				  staff_id = " . $this->load->db_value($staff) . ",
+				  fleet_id = " . $this->load->db_value($fleet) . ",
+				  company_id = " . $this->load->db_value($company_id) . ",
 				  description = " . $this->load->db_value($description) . "
 				WHERE id =   " . $this->load->db_value($id) . "
 			";

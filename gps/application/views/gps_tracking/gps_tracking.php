@@ -729,6 +729,7 @@ $lng = $this->load->lng();
 
 
 			//Click Function Show All Geofences
+			rand_color_arr = [];
 			firstButton.events.add(['select', 'deselect'], function (e) {
 
 				if (e.get('type') == 'select') {
@@ -740,6 +741,9 @@ $lng = $this->load->lng();
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
+
+						//Get Colors
+						rand_color_arr.push(rand_color);
 
 						var myPolygon = new ymaps.Polygon([
 							array_stting
@@ -909,6 +913,23 @@ $lng = $this->load->lng();
 					});
 				}, 500);
 				myMap_show_all_cars_onChange.geoObjects.removeAll(myPlacemarkWithContent);
+				rc = 0;
+				$('.geofences_coordinate').each(function () {
+					geoObject_coordinates = $(this).attr('data-gCoordinate');
+					array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+					var rand_color = rand_color_arr[rc];
+					myPolygon = new ymaps.Polygon([
+						array_stting
+					], {}, {
+						editorDrawingCursor: "crosshair",
+						fillColor: rand_color,
+						strokeColor: rand_color,
+						strokeWidth: 2
+					});
+					myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
+
+					rc++;
+				});
 			});
 
 		}

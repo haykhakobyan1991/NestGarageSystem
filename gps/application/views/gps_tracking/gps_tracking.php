@@ -933,23 +933,23 @@ $lng = $this->load->lng();
 					});
 				}, 500);
 				myMap_show_all_cars_onChange.geoObjects.removeAll(myPlacemarkWithContent);
-				rc = 0;
-				$('.geofences_coordinate').each(function () {
-					geoObject_coordinates = $(this).attr('data-gCoordinate');
-					array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-					var rand_color = rand_color_arr[rc];
-					myPolygon = new ymaps.Polygon([
-						array_stting
-					], {}, {
-						editorDrawingCursor: "crosshair",
-						fillColor: rand_color,
-						strokeColor: rand_color,
-						strokeWidth: 2
-					});
-					myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
-
-					rc++;
-				});
+				// rc = 0;
+				// $('.geofences_coordinate').each(function () {
+				// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
+				// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+				// 	var rand_color = rand_color_arr[rc];
+				// 	myPolygon = new ymaps.Polygon([
+				// 		array_stting
+				// 	], {}, {
+				// 		editorDrawingCursor: "crosshair",
+				// 		fillColor: rand_color,
+				// 		strokeColor: rand_color,
+				// 		strokeWidth: 2
+				// 	});
+				// 	myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
+				//
+				// 	rc++;
+				// });
 			});
 
 		}
@@ -1858,11 +1858,9 @@ $lng = $this->load->lng();
 		$('.show_car').each(function () {
 
 
-
-
-			if($('input[name="s_'+$(this).data('imei')+'"]').val()  < 5 && $('input[name="e_'+$(this).data('imei')+'"]').val() == 1){
+			if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 1) {
 				$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
-			} else if($('input[name="s_'+$(this).data('imei')+'"]').val()  < 5 && $('input[name="e_'+$(this).data('imei')+'"]').val() == 0){
+			} else if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 0) {
 				$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
 			} else {
 				$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')

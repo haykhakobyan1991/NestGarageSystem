@@ -1804,7 +1804,10 @@ $lng = $this->load->lng();
 						if (e == $(this).data('imei')) {
 							//console.log($(this).attr('data-coordinate'));
 
-							if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
+							// if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
+							// 	$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
+							// }
+							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
 							}
 							$(this).attr('data-coordinate', val.lat + ', ' + val.long);

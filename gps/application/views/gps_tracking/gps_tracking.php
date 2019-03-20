@@ -796,7 +796,7 @@ $lng = $this->load->lng();
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $(this).data('course');
-				var speed = $(this).data('speed');
+				var speed = $('input[name="'+$(this).data('imei')+'"]').val();
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 
 				var imei = $(this).data('imei');
@@ -876,7 +876,7 @@ $lng = $this->load->lng();
 						// alert($('input[name="'+$(this).data('imei')+'"]').val())
 						//if(changed == $(this).data('imei')) {
 						course = $(this).data('course');
-						speed = $(this).data('speed');
+						var speed = $('input[name="'+$(this).data('imei')+'"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 						latitude = array[0];
@@ -1002,7 +1002,7 @@ $lng = $this->load->lng();
 								coordinate = $(this).data('coordinate');
 								console.log(coordinate);
 								course = $(this).data('course');
-								speed = $(this).data('speed');
+								var speed = $('input[name="'+$(this).data('imei')+'"]').val();
 								array = JSON.parse("[" + coordinate + "]");
 
 								var carCoordinate = '';
@@ -1081,7 +1081,7 @@ $lng = $this->load->lng();
 
 			coordinate = $(this).data('coordinate');
 			course = $(this).data('course');
-			speed = $(this).data('speed');
+			var speed = $('input[name="'+$(this).data('imei')+'"]').val();
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
 
@@ -1316,7 +1316,7 @@ $lng = $this->load->lng();
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 						course = $(this).data('course');
-						speed = $(this).data('speed');
+						speed = $('input[name="'+$(this).data('imei')+'"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 
@@ -1373,7 +1373,7 @@ $lng = $this->load->lng();
 									// alert($('input[name="'+$(this).data('imei')+'"]').val())
 									//if(changed == $(this).data('imei')) {
 									course = $(this).data('course');
-									speed = $(this).data('speed');
+									speed = $('input[name="'+$(this).data('imei')+'"]').val();
 									array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 									var carCoordinate = '';
 									latitude = array[0];

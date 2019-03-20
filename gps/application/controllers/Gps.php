@@ -1068,6 +1068,7 @@ class Gps extends MX_Controller
 			$long = '';
 			$_imei = '';
 			$fleet = array();
+			$imei1 = '';
 
 			$eng = '';
 			$eng_res = array();
@@ -1094,9 +1095,12 @@ class Gps extends MX_Controller
 					if (round($value['speed']) > 0) {
 
 						if ($engine == 1) {
-							if ($tmp == 0) {
-								$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
+							if($imei1 != $value['imei']) {
+								if ($tmp == 0 || $tmp == 1) {
+									$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
+								}
 							}
+							$imei1 = $value['imei'];
 							$tmp++;
 							if ($eng != $value['engine']) {
 								$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
@@ -1159,6 +1163,7 @@ class Gps extends MX_Controller
 			//$result = true;
 
 		}
+
 
 
 		// power off or on

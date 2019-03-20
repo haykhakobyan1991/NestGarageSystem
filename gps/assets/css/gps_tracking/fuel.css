@@ -22,4 +22,15 @@ div#example11_wrapper {
 	border: 1px #dc3545 solid !important;
 }
 
+@media screen and (min-width: 1820px){
+	.custom_style {
+		width: 11.33333% !important;
+		flex: 0 0 11.33333% !important;
+	}
+	.custom_style2{
+		width: 88.33333% !important;
+		flex: 0 0 88.33333% !important;
+		max-width: 88.33333% !important;
+	}
+}
 

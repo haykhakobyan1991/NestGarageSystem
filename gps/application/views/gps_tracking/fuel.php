@@ -22,7 +22,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <!--todo-->
 <script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css" />
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
 
 <!-- Settings Modal Start -->
 
@@ -51,7 +51,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<hr class="my-2">
 	<div class="row">
 
-		<div class="col-sm-2 p-0">
+		<div class="col-sm-2 p-0 custom_style">
 			<form>
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
@@ -95,7 +95,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="2019-02-20<?//= date("Y-m-d", strtotime("-10 day", $time)); ?>"
+								value="2019-02-20<? //= date("Y-m-d", strtotime("-10 day", $time)); ?>"
 								style="font-size: 11px !important;" type=""
 								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -145,7 +145,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		</div>
 
 
-		<div class="col-sm-10">
+		<div class="col-sm-10 custom_style2">
 
 			<!--			<div class="container-fluid">-->
 			<!--				<div class="row">-->
@@ -285,11 +285,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var result = '';
 			console.log(JSON.parse(data));
 			$.each(JSON.parse(data), function (e, val) {
+
+				var brand_name = val.brand + ' ' + val.model;
+				(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13) + '...' : sbstr = brand_name;
+
 				result += '<div class="card mb-1 ">\n' +
 					'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
-					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;'+
-					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
+					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;' +
+					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="' + val.brand + ' ' + val.model + '" >' + sbstr + '</a></span>\n' +
 					'\t\t\t\t\t\t\t</div>\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
 					'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
@@ -339,11 +343,15 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			var result = '';
 			console.log(JSON.parse(data));
 			$.each(JSON.parse(data), function (e, val) {
+
+				var brand_name = val.brand + ' ' + val.model;
+				(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13) + '...' : sbstr = brand_name;
+
 				result += '<div class="card mb-1 card_hover">\n' +
 					'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
-					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;'+
-					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" >' + val.brand + ' ' + val.model + '</a></span>\n' +
+					'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>&nbsp;' +
+					'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="' + sbstr + '" >' + val.brand + ' ' + val.model + '</a></span>\n' +
 					'\t\t\t\t\t\t\t</div>\n' +
 					'\t\t\t\t\t\t\t<div class="text"><span\n' +
 					'\t\t\t\t\t\t\t\t\tstyle="font-size: 13px;"><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +

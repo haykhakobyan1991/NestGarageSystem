@@ -221,7 +221,7 @@ class Gps extends MX_Controller
 				gps.\"time\",
 				gps.\"date\",
 				gps.\"imei\",
-				gps.\"engine\" 
+				gps.\"engine\"
 			FROM 
 			   gps 
 			WHERE $add_sql ORDER BY imei, 
@@ -242,7 +242,7 @@ class Gps extends MX_Controller
 		foreach ($result as $val) {
 			if ($imei != $val['imei']) {
 				if ($tmp == 0) {
-					$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course']);
+					$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['speed'], 'engine' => $val['engine']);
 				}
 				$tmp = 1;
 			} else {

@@ -223,7 +223,7 @@ $lng = $this->load->lng();
 					foreach ($last_location as $val) {
 						if ($imei != $val['imei']) {
 							if ($tmp == 0) {
-								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['speed']);
+								$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['speed'], 'engine' => $val['engine']);
 							}
 							$tmp = 1;
 						} else {
@@ -243,7 +243,24 @@ $lng = $this->load->lng();
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
 							<td class="address_span" data-imei="<?= $fleets['gps_tracker_imei'] ?>"></td>
-							<td class="text-center"><i class="text-warning fas fa-parking"></i></td>
+							<td class="text-center car_status">
+								<?
+								if ($arr[$fleets['gps_tracker_imei']]['speed'] < 5 && $arr[$fleets['gps_tracker_imei']]['engine'] == 1) {
+
+									?>
+									<i class="text-danger fas fa-stop-circle"></i>
+									<?
+								} elseif ($arr[$fleets['gps_tracker_imei']]['speed'] < 5 && $arr[$fleets['gps_tracker_imei']]['engine'] == 0) {
+									?>
+									<i class="text-warning fas fa-parking"></i>
+									<?
+								} else {
+									?>
+									<i class="text-success fas fa-play"></i>
+									<?
+								}
+								?>
+							</td>
 							<td class="staff_span">
 								<span><?= $fleets['staff'] ?></span>
 								<small class="form-text text-muted"><?= $fleets['contact_1'] ?></small>
@@ -274,11 +291,16 @@ $lng = $this->load->lng();
 								data-id="<?= $fleets['id'] ?>"
 								data-imei="<?= $fleets['gps_tracker_imei'] ?>"
 								data-speed="<?= round($arr[$fleets['gps_tracker_imei']]['speed'], 2) ?>"
+								data-engine="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>"
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
 							<input class="coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
+							<input class="speeds" type="hidden" name="s_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
+							<input class="engines" type="hidden" name="e_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
 						</tr>
 						<?
 						$i++;
@@ -696,8 +718,7 @@ $lng = $this->load->lng();
 	$(document).on('click', '.fleets_ul li', function () {
 		$(this).toggleClass('fleets_ul_active');
 	});
-</script>
-<script type="text/javascript">
+
 
 	/***************************
 	 ****************************
@@ -777,7 +798,6 @@ $lng = $this->load->lng();
 				var course = $(this).data('course');
 				var speed = $(this).data('speed');
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-				console.log(course);
 
 				var imei = $(this).data('imei');
 
@@ -1413,7 +1433,6 @@ $lng = $this->load->lng();
 							});
 						}, 500);
 						myMap_show_all_cars.geoObjects.removeAll(myPlacemarkWithContent);
-						console.log(rand_color_arr);
 
 						rc = 0;
 						$('.geofences_coordinate').each(function () {
@@ -1799,6 +1818,8 @@ $lng = $this->load->lng();
 			$.post(url, {fleets: fleet_ids}, function (result) {
 
 				$.each(JSON.parse(result), function (e, val) {
+
+
 					$('.show_car').each(function () {
 
 						if (e == $(this).data('imei')) {
@@ -1809,6 +1830,16 @@ $lng = $this->load->lng();
 							}
 							$(this).attr('data-coordinate', val.lat + ', ' + val.long);
 
+							if ($(this).attr('data-speed') != val.speed) {
+								$('input[name="s_' + e + '"]').val(val.speed).trigger('change')
+							}
+							$(this).attr('data-speed', val.speed);
+
+							if ($(this).attr('data-engine') != val.engine) {
+								$('input[name="e_' + e + '"]').val(val.engine).trigger('change')
+							}
+							$(this).attr('data-engine', val.engine);
+
 						}
 					});
 				});
@@ -1818,6 +1849,29 @@ $lng = $this->load->lng();
 		}, 5000)
 
 	});
+
+
+	/* Parking Stop Driving*/
+
+
+	$('input.speeds, input.engines').on('change', function () {
+		$('.show_car').each(function () {
+
+
+
+
+			if($('input[name="s_'+$(this).data('imei')+'"]').val()  < 5 && $('input[name="e_'+$(this).data('imei')+'"]').val() == 1){
+				$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
+			} else if($('input[name="s_'+$(this).data('imei')+'"]').val()  < 5 && $('input[name="e_'+$(this).data('imei')+'"]').val() == 0){
+				$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
+			} else {
+				$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
+			}
+
+
+		})
+	});
+
 
 </script>
 

@@ -761,7 +761,6 @@ $lng = $this->load->lng();
 				} else {
 					$('#map').html('');
 					ymaps.ready(init_all);
-
 				}
 
 			});
@@ -829,11 +828,9 @@ $lng = $this->load->lng();
 					});
 				});
 
-
 				myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-
 
 			});
 
@@ -857,7 +854,6 @@ $lng = $this->load->lng();
 						course = $(this).data('course');
 						speed = $(this).data('speed');
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-
 						var carCoordinate = '';
 						latitude = array[0];
 						longitude = array[1];
@@ -905,10 +901,6 @@ $lng = $this->load->lng();
 								}
 							});
 						});
-
-
-						console.log(myPlacemarkWithContent)
-
 
 						myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
@@ -1332,7 +1324,7 @@ $lng = $this->load->lng();
 	});
 
 
-	/*************************
+	 /*************************
 	 **************************
 	 *** [ Yandex Map End ] ***
 	 **************************
@@ -1340,7 +1332,6 @@ $lng = $this->load->lng();
 
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
 		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
-
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
 

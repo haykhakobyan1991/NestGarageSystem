@@ -958,8 +958,8 @@ $lng = $this->load->lng();
 						$('.show_car').each(function () {
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
-								coordinate = $(this).data('coordinate')
-								console.log(coordinate)
+								coordinate = $(this).data('coordinate');
+								console.log(coordinate);
 								course = $(this).data('course');
 								speed = $(this).data('speed');
 								array = JSON.parse("[" + coordinate + "]");
@@ -1266,6 +1266,8 @@ $lng = $this->load->lng();
 
 
 				$('.show_car').each(function () {
+
+
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 						course = $(this).data('course');

@@ -102,13 +102,13 @@ class Gps extends MX_Controller
 
 
 		//api call
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
-		$fleet_group = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_FleetGroup', array('token' => $token));
+		$fleet_group = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_FleetGroup', array('token' => $token));
 		$data['result'] = json_decode($fleet_group, true);
 
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
 
 		$sql_g = '
 			SELECT 
@@ -187,7 +187,8 @@ class Gps extends MX_Controller
 
 	}
 
-	public function changDataCoordinate() {
+	public function changDataCoordinate()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -210,7 +211,7 @@ class Gps extends MX_Controller
 
 		$add_sql = substr($add_sql, 0, -2);
 
-		 $sql = "
+		$sql = "
 			SELECT 
 			    gps.\"id\",
 				gps.\"lat\",
@@ -272,7 +273,7 @@ class Gps extends MX_Controller
 
 
 		//api call
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 
@@ -288,7 +289,7 @@ class Gps extends MX_Controller
 		$lng = $this->load->lng();
 
 		//api call
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 		$this->layout->view('gps_tracking/fuel', $data);
@@ -303,7 +304,7 @@ class Gps extends MX_Controller
 		$lng = $this->load->lng();
 
 		//api call
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 		$this->layout->view('gps_tracking/load', $data);
@@ -318,30 +319,30 @@ class Gps extends MX_Controller
 		$lng = $this->load->lng();
 
 		//api call
-		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_AllFleets', array('token' => $token));
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
 
 
-		$staffs = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/getAllStaffs', array('token' => $token));
+		$staffs = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/getAllStaffs', array('token' => $token));
 		$data['result_staffs'] = json_decode($staffs, true);
 
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().'Api/get_companyId', array('token' => $token));
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
 
 		// end api call
 
 
 		$local_time = time();
 
-		if($this->uri->segment(3) != '') {
-			$year	= $this->uri->segment(3);
+		if ($this->uri->segment(3) != '') {
+			$year = $this->uri->segment(3);
 		} else {
-			$year	= date('Y', $local_time);
+			$year = date('Y', $local_time);
 		}
 
-		if($this->uri->segment(4) != '') {
-			$month	= $this->uri->segment(4);
+		if ($this->uri->segment(4) != '') {
+			$month = $this->uri->segment(4);
 		} else {
-			$month	= date('m', $local_time);
+			$month = date('m', $local_time);
 		}
 
 
@@ -352,10 +353,10 @@ class Gps extends MX_Controller
 			'next_prev_url' => base_url() . $lng . '/event'
 		);
 
-		$this->load->library('calendar',$prefs); // Load calender library
+		$this->load->library('calendar', $prefs); // Load calender library
 
 
-		 $sql = "
+		$sql = "
 			SELECT 
 				id,
 				title,
@@ -365,8 +366,8 @@ class Gps extends MX_Controller
 				date
 			FROM
 				event
-			WHERE  date	LIKE '".$year.'-'.$month."%'
-			 AND company_id = '".$company_id."'
+			WHERE  date	LIKE '" . $year . '-' . $month . "%'
+			 AND company_id = '" . $company_id . "'
 		";
 
 		$query = $this->db->query($sql);
@@ -375,18 +376,18 @@ class Gps extends MX_Controller
 
 		$event = array();
 		foreach ($result as $row) {
-			if(substr($row['date'], 0, 7) == $year.'-'.$month) {
+			if (substr($row['date'], 0, 7) == $year . '-' . $month) {
 				$event[intval(substr($row['date'], 8))][] = '
-					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">'.$row['title'].'
+					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">' . $row['title'] . '
 						<div class="card">
-							<div class="card-header text-left">'.$row['title'].'
+							<div class="card-header text-left">' . $row['title'] . '
 								<div class="ml-2 float-right">	
-									<i id="edit_event_modal" data-id="'.$row['id'].'" data-toggle="modal" data-target="#myModal" class=" fas fa-pen"></i>
-									<i id="delete_event_modal" data-id="'.$row['id'].'" data-toggle="modal" data-target="#delMod" class="ml-1 fas fa-trash-alt"></i>
+									<i id="edit_event_modal" data-id="' . $row['id'] . '" data-toggle="modal" data-target="#myModal" class=" fas fa-pen"></i>
+									<i id="delete_event_modal" data-id="' . $row['id'] . '" data-toggle="modal" data-target="#delMod" class="ml-1 fas fa-trash-alt"></i>
 								</div>
 							</div>
 							<div class="card-body text-left">
-								<div class="mt-2">'.$row['description'].'</div>
+								<div class="mt-2">' . $row['description'] . '</div>
 							</div>
 						</div>
 					</span>';
@@ -397,15 +398,15 @@ class Gps extends MX_Controller
 		//$this->pre($event);
 
 
-
-		$data['calendar'] =  $this->calendar->generate($year, $month, $event);
+		$data['calendar'] = $this->calendar->generate($year, $month, $event);
 
 
 		$this->layout->view('event/event', $data);
 	}
 
 
-	public function add_event_ax() {
+	public function add_event_ax()
+	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
@@ -430,21 +431,18 @@ class Gps extends MX_Controller
 		$this->form_validation->set_rules('title', 'title', 'required');
 
 
-
-
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title')
+				'title' => form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
@@ -454,8 +452,7 @@ class Gps extends MX_Controller
 		$description = $this->input->post('description');
 		$staff = $this->input->post('staff');
 		$fleet = $this->input->post('fleet');
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().'Api/get_companyId', array('token' => $token));
-
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
 
 
 		$sql = "
@@ -468,19 +465,19 @@ class Gps extends MX_Controller
 					fleet_id,
 					company_id
 				) VALUES (
-					".$this->load->db_value($title).",
-					'".$date."',
-					".$this->load->db_value($description).",
-					".$this->load->db_value($staff).",
-					".$this->load->db_value($fleet).",
-					".$this->load->db_value($company_id)."
+					" . $this->load->db_value($title) . ",
+					'" . $date . "',
+					" . $this->load->db_value($description) . ",
+					" . $this->load->db_value($staff) . ",
+					" . $this->load->db_value($fleet) . ",
+					" . $this->load->db_value($company_id) . "
 				)
 		";
 
 		$query = $this->db->query($sql);
 
 
-		if ($query){
+		if ($query) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
 		} else {
@@ -496,7 +493,8 @@ class Gps extends MX_Controller
 	}
 
 
-	public function edit_event_modal_ax() {
+	public function edit_event_modal_ax()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -506,7 +504,7 @@ class Gps extends MX_Controller
 		$this->load->helper('form');
 		$lng = $this->load->lng();
 
-		if($id == NULL) {
+		if ($id == NULL) {
 			$message = 'Undifined ID';
 			show_error($message, '404', $heading = '404 Page Not Found');
 			return false;
@@ -522,7 +520,7 @@ class Gps extends MX_Controller
                    date
                 FROM 
                    event
-                WHERE id =  ".$this->load->db_value($id)."
+                WHERE id =  " . $this->load->db_value($id) . "
                 LIMIT 1";
 
 		$query = $this->db->query($sql);
@@ -534,7 +532,8 @@ class Gps extends MX_Controller
 	}
 
 
-	public function edit_event_ax() {
+	public function edit_event_ax()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -560,26 +559,21 @@ class Gps extends MX_Controller
 		$this->form_validation->set_rules('title', 'title', 'required');
 
 
-
-
-
-		if($this->form_validation->run() == false){
+		if ($this->form_validation->run() == false) {
 			//validation errors
 			$n = 1;
 
 			$validation_errors = array(
-				'title' =>  form_error('title')
+				'title' => form_error('title')
 			);
 			$messages['error']['elements'][] = $validation_errors;
 		}
 
 
-		if($n == 1) {
+		if ($n == 1) {
 			echo json_encode($messages);
 			return false;
 		}
-
-
 
 
 		$id = $this->input->post('event_id');
@@ -588,24 +582,20 @@ class Gps extends MX_Controller
 		$description = $this->input->post('description');
 
 
-
-
 		$sql = "
 				UPDATE 
 				  event
 				SET
-				  title = ".$this->load->db_value($title).",
-				  date = ".$this->load->db_value($day).",
-				  description = ".$this->load->db_value($description)."
-				WHERE id =   ".$this->load->db_value($id)."
+				  title = " . $this->load->db_value($title) . ",
+				  date = " . $this->load->db_value($day) . ",
+				  description = " . $this->load->db_value($description) . "
+				WHERE id =   " . $this->load->db_value($id) . "
 			";
 
 		$result = $this->db->query($sql);
 
 
-
-
-		if ($result){
+		if ($result) {
 			$messages['success'] = 1;
 			$messages['message'] = lang('success');
 		} else {
@@ -619,7 +609,8 @@ class Gps extends MX_Controller
 	}
 
 
-	public function delete_event() {
+	public function delete_event()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -685,7 +676,7 @@ class Gps extends MX_Controller
 
 		$new_result = array();
 
-		$count_of_fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_count_of_fleets', array('token' => $token));
+		$count_of_fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_count_of_fleets', array('token' => $token));
 		$data['count_of_fleets'] = json_decode($count_of_fleets, true);
 
 
@@ -750,7 +741,7 @@ class Gps extends MX_Controller
 		$geo_name = $this->input->post('geo_name');
 		$geometry = $this->input->post('geometry');
 		$status = 1;
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
 
 
 		$sql = "
@@ -857,7 +848,7 @@ class Gps extends MX_Controller
 		$status = 1;
 
 		//get company ID
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_companyId', array('token' => $token));
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
 
 		// update geoference
 		$this->db->update('geoference', array('name' => $geo_name), array('id' => $geoference_id));
@@ -1095,13 +1086,14 @@ class Gps extends MX_Controller
 					if (round($value['speed']) > 0) {
 
 						if ($engine == 1) {
-							if($imei1 != $value['imei']) {
-								if ($tmp == 0 || $tmp == 1) {
+							if ($imei1 != $value['imei']) {
+								if ($tmp == 0) {
 									$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
 								}
+								$tmp++;
 							}
 							$imei1 = $value['imei'];
-							$tmp++;
+
 							if ($eng != $value['engine']) {
 								$eng_res[$value['imei']][] = array($value['engine'] => new DateTime($value['date'] . ' ' . $value['time']));
 							}
@@ -1109,7 +1101,7 @@ class Gps extends MX_Controller
 						}
 
 						if ($_imei != $value['imei']) {
-							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei']));
+							$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $value['imei']));
 							$fleet[$value['imei']] = json_decode($fl, true);
 						}
 						$_imei = $value['imei'];
@@ -1160,10 +1152,10 @@ class Gps extends MX_Controller
 				}
 			}
 
+
 			//$result = true;
 
 		}
-
 
 
 		// power off or on
@@ -1359,7 +1351,7 @@ class Gps extends MX_Controller
 
 
 			if ($_imei != $row['imei']) {
-				$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl().$lng.'/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei']));
+				$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei']));
 				$fleet = json_decode($fl, true);
 			}
 			$_imei = $row['imei'];
@@ -1447,8 +1439,8 @@ class Gps extends MX_Controller
 	}
 
 
-
-	public function sos_visibility() {
+	public function sos_visibility()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -1481,9 +1473,10 @@ class Gps extends MX_Controller
 
 
 	}
-	
-	
-	public function get_location() {
+
+
+	public function get_location()
+	{
 
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
@@ -1496,14 +1489,14 @@ class Gps extends MX_Controller
 		}
 
 		$fleets = $this->input->post('fleets');
-		
+
 		$add_sql = '';
 		foreach (explode(',', $fleets) as $imei) {
 			$add_sql .= " gps.\"imei\" = '" . $imei . "' OR";
 		}
 
 		$add_sql = substr($add_sql, 0, -2);
-		
+
 		$sql = "
 			SELECT 
 				gps.\"id\",
@@ -1551,7 +1544,7 @@ class Gps extends MX_Controller
 	}
 
 
-	public function get_trajectory_load ()
+	public function get_trajectory_load()
 	{//todo
 
 		$messages = array('success' => '0', 'message' => array(), 'error' => '', 'fields' => '');
@@ -1644,6 +1637,7 @@ class Gps extends MX_Controller
 		$date = '';
 		$load_result = array();
 		$speed_null = array();
+		$imei1 = '';
 
 
 		if (count($result) > 0) {
@@ -1656,11 +1650,15 @@ class Gps extends MX_Controller
 			$load = '';
 			foreach ($result as $value) {
 
+
 				if (round($value['speed']) > 0) {
-					if ($tmp == 0) {
-						$load_result[$value['imei']][] = array($value['load'] => new DateTime($value['date'] . ' ' . $value['time']));
+					if ($imei1 != $value['imei']) {
+						if ($tmp == 0) {
+							$load_result[$value['imei']][] = array($value['load'] => new DateTime($value['date'] . ' ' . $value['time']));
+						}
+						$tmp++;
 					}
-					$tmp++;
+					$imei1 = $value['imei'];
 					if ($load != $value['load']) {
 						$load_result[$value['imei']][] = array($value['load'] => new DateTime($value['date'] . ' ' . $value['time']));
 					}
@@ -1761,9 +1759,6 @@ class Gps extends MX_Controller
 
 
 	}
-
-
-
 
 
 }

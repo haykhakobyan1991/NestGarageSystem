@@ -1309,7 +1309,7 @@ class Gps extends MX_Controller
 			WHERE gps.\"date\" >= '" . $from . "'
 			 AND gps.\"date\" <= '" . $to . "'
 			 " . $add_sql . "
-			ORDER BY id desc
+			ORDER BY id 
 		";
 
 		$query = $this->db->query($sql);
@@ -1369,7 +1369,7 @@ class Gps extends MX_Controller
 				} elseif ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step)) {
 					$drain += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$drain_counter++;
-				} else {
+				} elseif ((float)$row['fuel'] - (float)$result[$_tmp]['fuel'] < (float)($step)) {
 					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);;
 					$refueling_counter++;
 				}
@@ -1396,10 +1396,10 @@ class Gps extends MX_Controller
 			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('total_consumption') . '</th>
 			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang("number_charges") . '</th>
 			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('engine_consumption') . '</th>
+			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">' . lang('drain_counter') . '</th>
 			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('drain') . '</th>
 			<th style="font-size: 12px !important;font-weight: 500;text-align: center;">' . lang('levelFinish') . '</th>
 			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">' . lang('middle') . '</th>
-			<th class="engineOnOf" style="font-size: 12px !important;font-weight: 500;">' . lang('drain_counter') . '</th>
 		</tr>
 	</thead>
 	<tbody class="example_12_tbody">
@@ -1407,12 +1407,12 @@ class Gps extends MX_Controller
 			<td style="text-align: center;">' . $fleet['brand_model'] . '</td>
 			<td style="text-align: center;">' . $levelStart . '</td>
 			<td style="text-align: center;">' . $avg_all . '</td>
-			<td style="text-align: center;">' . $refueling_counter . '</td>
+			<td style="text-align: center;">' . $refueling . '</td>
 			<td style="text-align: center;">' . $refueling_counter . '</td>
 			<td style="text-align: center;">' . $drain . '</td>
+			<td style="text-align: center;">' . $drain_counter . '</td>
 			<td style="text-align: center;">' . $levelFinish . '</td>
 			<td style="text-align: center;">' . $avg_all / $avg_counter . '</td>
-			<td style="text-align: center;">' . $drain_counter . '</td>
 		</tr>
 	</tbody>
 </table>';

@@ -718,7 +718,7 @@ $lng = $this->load->lng();
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $(this).data('course');
-				var speed = $('input[name="' + $(this).data('imei') + '"]').val();
+				var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 				var imei = $(this).data('imei');
 				var carCoordinate = '';
@@ -796,7 +796,7 @@ $lng = $this->load->lng();
 
 						var th = $(this);
 						course = $(this).data('course');
-						var speed = $('input[name="' + $(this).data('imei') + '"]').val();
+						var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 						latitude = array[0];
@@ -915,7 +915,7 @@ $lng = $this->load->lng();
 
 								coordinate = $(this).data('coordinate');
 								course = $(this).data('course');
-								var speed = $('input[name="' + $(this).data('imei') + '"]').val();
+								var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 								array = JSON.parse("[" + coordinate + "]");
 
 								var carCoordinate = '';
@@ -992,9 +992,9 @@ $lng = $this->load->lng();
 			$('#map').html('');
 
 
-			coordinate = $(this).data('coordinate');
+			coordinate = $('input[name="' + $(this).data('imei') + '"]').val();
 			course = $(this).data('course');
-			var speed = $('input[name="' + $(this).data('imei') + '"]').val();
+			var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
 
@@ -1140,23 +1140,23 @@ $lng = $this->load->lng();
 
 					myMap_show_singleCar.geoObjects.removeAll(myPlacemarkWithContent);
 
-					rc = 0;
-					$('.geofences_coordinate').each(function () {
-						geoObject_coordinates = $(this).attr('data-gCoordinate');
-						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-						var rand_color = rand_color_arr[rc];
-						myPolygon = new ymaps.Polygon([
-							array_stting
-						], {}, {
-							editorDrawingCursor: "crosshair",
-							fillColor: rand_color,
-							strokeColor: rand_color,
-							strokeWidth: 2
-						});
-						myMap_show_singleCar.geoObjects.add(myPolygon);
-
-						rc++;
-					});
+					// rc = 0;
+					// $('.geofences_coordinate').each(function () {
+					// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
+					// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+					// 	var rand_color = rand_color_arr[rc];
+					// 	myPolygon = new ymaps.Polygon([
+					// 		array_stting
+					// 	], {}, {
+					// 		editorDrawingCursor: "crosshair",
+					// 		fillColor: rand_color,
+					// 		strokeColor: rand_color,
+					// 		strokeWidth: 2
+					// 	});
+					// 	myMap_show_singleCar.geoObjects.add(myPolygon);
+					//
+					// 	rc++;
+					// });
 
 				});
 
@@ -1237,7 +1237,7 @@ $lng = $this->load->lng();
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 						course = $(this).data('course');
-						speed = $('input[name="' + $(this).data('imei') + '"]').val();
+						speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 
@@ -1294,7 +1294,7 @@ $lng = $this->load->lng();
 									// alert($('input[name="'+$(this).data('imei')+'"]').val())
 									//if(changed == $(this).data('imei')) {
 									course = $(this).data('course');
-									speed = $('input[name="' + $(this).data('imei') + '"]').val();
+									speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 									array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 									var carCoordinate = '';
 									latitude = array[0];

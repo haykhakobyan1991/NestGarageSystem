@@ -810,7 +810,6 @@ $lng = $this->load->lng();
 						});
 
 
-
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
@@ -1090,6 +1089,17 @@ $lng = $this->load->lng();
 						}
 					});
 
+				myPlacemarkWithContent.events.add('balloonopen', function (e) {
+					var car_number = $('.car_number').text();
+					//console.log(car_number);
+					$('td small').each(function () {
+						if ($(this).text() == car_number) {
+							var get_address = $(this).parent('td').parent('tr').children('.address_span').text();
+							$('.place_span').text(get_address)
+						}
+					});
+				});
+
 				myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
@@ -1135,7 +1145,21 @@ $lng = $this->load->lng();
 									radius: 25
 								}
 							});
+
+
+						myPlacemarkWithContent.events.add('balloonopen', function (e) {
+							var car_number = $('.car_number').text();
+							//console.log(car_number);
+							$('td small').each(function () {
+								if ($(this).text() == car_number) {
+									var get_address = $(this).parent('td').parent('tr').children('.address_span').text();
+									$('.place_span').text(get_address)
+								}
+							});
+						});
 						myMap_show_singleCar.geoObjects.add(myPlacemarkWithContent);
+
+
 					}, 500);
 
 					myMap_show_singleCar.geoObjects.removeAll(myPlacemarkWithContent);

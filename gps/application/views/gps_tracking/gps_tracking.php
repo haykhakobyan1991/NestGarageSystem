@@ -795,7 +795,7 @@ $lng = $this->load->lng();
 					$('.show_car').each(function () {
 
 						var th = $(this);
-						course = $(this).data('course');
+						course = $(this).attr('data-course');
 						var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
@@ -1140,23 +1140,6 @@ $lng = $this->load->lng();
 
 					myMap_show_singleCar.geoObjects.removeAll(myPlacemarkWithContent);
 
-					// rc = 0;
-					// $('.geofences_coordinate').each(function () {
-					// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
-					// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-					// 	var rand_color = rand_color_arr[rc];
-					// 	myPolygon = new ymaps.Polygon([
-					// 		array_stting
-					// 	], {}, {
-					// 		editorDrawingCursor: "crosshair",
-					// 		fillColor: rand_color,
-					// 		strokeColor: rand_color,
-					// 		strokeWidth: 2
-					// 	});
-					// 	myMap_show_singleCar.geoObjects.add(myPolygon);
-					//
-					// 	rc++;
-					// });
 
 				});
 

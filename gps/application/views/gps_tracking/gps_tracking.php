@@ -7,8 +7,9 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
+
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.core.css">
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
 
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
@@ -17,96 +18,13 @@
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
 
-<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.position.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.draggable.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.splitter.min.js') ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/zino/front.min.js') ?>"></script>
 
-<style>
-	html,
-	body {
-		height: 100%;
-	}
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
 
-	body {
-		overflow: hidden;
-	}
-
-	.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis {
-		display: none;
-	}
-
-	.dropdown-menu {
-		padding: 0;
-	}
-
-	.dropdown-menu a:last-child {
-		display: none;
-		top: 55px;
-		left: -15px;
-	}
-
-	.dataTables_filter label {
-		font-size: 0px !important;
-	}
-
-	#example11_filter label input {
-		height: 38px;
-	}
-
-	#example11_filter {
-		height: 37px;
-	}
-
-	td {
-		font-size: 11px !important;
-	}
-
-
-	.custom_fas_trash:hover, .custom_fas_trash:active, .custom_fas_trash:focus {
-		color: #6c757d !important;
-	}
-
-	.custom_fas_trash_btn, .custom_fas_trash_btn:hover i, .custom_fas_trash_btn:focus i, .custom_fas_trash_btn:active i {
-		color: #6c757d !important;
-	}
-
-	.border-5 {
-		border-width: 5px !important;
-	}
-
-	.zui-splitter-separator {
-		z-index: 1 !important;
-	}
-
-
-	.splitter-west {
-	}
-
-	.splitter-east {
-		width: 100%;
-	}
-
-	.dt-button-collection.dropdown-menu {
-		left: -100px !important;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility {
-		color: #fff !important;
-		background: #8e8f90 !important;
-	}
-
-	a.dt-button.dropdown-item.buttons-columnVisibility.active {
-		color: #8e8f90 !important;
-		background: #fff !important;
-	}
-
-	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
-		width: 100% !important;
-	}
-
-
-</style>
 
 <?
 $lng = $this->load->lng();
@@ -168,7 +86,6 @@ $lng = $this->load->lng();
 								data-target=".del_group_modal"
 								style="width: 20px;padding: 2px !important;">
 							<i class="custom_fas_trash fas fa-trash"></i>
-
 					</div>
 				</div>
 
@@ -190,7 +107,7 @@ $lng = $this->load->lng();
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
-							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/triangle.svg"/>
+							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/parking.svg"/>
 						</th>
 						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
@@ -514,9 +431,7 @@ $lng = $this->load->lng();
 	}
 } ?>
 
-
 <script>
-
 	$('table tr th:nth-child(2)').click(function () {
 
 		if (!$(this).hasClass('az')) {
@@ -733,10 +648,12 @@ $lng = $this->load->lng();
 		ymaps.ready(init_all);
 
 		function init_all() {
+			var myPlacemark;
 			var myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [40.28566, 44.54990333],
 				zoom: 10
 			}, {suppressMapOpenBlock: true});
+
 
 			firstButton = new ymaps.control.Button({
 				data: {
@@ -768,7 +685,12 @@ $lng = $this->load->lng();
 
 						var myPolygon = new ymaps.Polygon([
 							array_stting
-						], {}, {
+						], {
+
+							hintContent: 'Перетащи меня!'
+							// balloonContent: 'Прямоугольник 2'
+
+						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
 							strokeColor: rand_color,
@@ -796,11 +718,9 @@ $lng = $this->load->lng();
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $(this).data('course');
-				var speed = $('input[name="'+$(this).data('imei')+'"]').val();
+				var speed = $('input[name="' + $(this).data('imei') + '"]').val();
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-
 				var imei = $(this).data('imei');
-
 				var carCoordinate = '';
 				latitude = array[0];
 				longitude = array[1];
@@ -809,8 +729,6 @@ $lng = $this->load->lng();
 					var firstGeoObject = res.geoObjects.get(0);
 					address_arr[imei] = firstGeoObject.getAddressLine();
 				});
-
-				console.log(address_arr);
 
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
@@ -852,6 +770,7 @@ $lng = $this->load->lng();
 					});
 				});
 
+
 				myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
@@ -869,22 +788,29 @@ $lng = $this->load->lng();
 			$('input.coords').on('change', function (event) {
 				// get changed element name
 				var changed = event.target.name;
+
 				setTimeout(function () {
+
 
 					$('.show_car').each(function () {
 
-						// alert($('input[name="'+$(this).data('imei')+'"]').val())
-						//if(changed == $(this).data('imei')) {
+						var th = $(this);
 						course = $(this).data('course');
-						var speed = $('input[name="'+$(this).data('imei')+'"]').val();
+						var speed = $('input[name="' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 						latitude = array[0];
 						longitude = array[1];
-						ymaps.geocode($(this).data('coordinate')).then(function (res) {
+
+
+						ymaps.geocode($('input[name="' + $(this).data('imei') + '"]').val()).then(function (res) {
 							var firstGeoObject = res.geoObjects.get(0);
-							address_arr.push(firstGeoObject.getAddressLine());
+							address = firstGeoObject.getAddressLine();
+							th.parent('tr').children('.address_span').text(address);
 						});
+
+
+
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
@@ -929,27 +855,10 @@ $lng = $this->load->lng();
 						myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 
-						//}
 					});
 				}, 500);
 				myMap_show_all_cars_onChange.geoObjects.removeAll(myPlacemarkWithContent);
-				// rc = 0;
-				// $('.geofences_coordinate').each(function () {
-				// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
-				// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-				// 	var rand_color = rand_color_arr[rc];
-				// 	myPolygon = new ymaps.Polygon([
-				// 		array_stting
-				// 	], {}, {
-				// 		editorDrawingCursor: "crosshair",
-				// 		fillColor: rand_color,
-				// 		strokeColor: rand_color,
-				// 		strokeWidth: 2
-				// 	});
-				// 	myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
-				//
-				// 	rc++;
-				// });
+
 			});
 
 		}
@@ -985,7 +894,12 @@ $lng = $this->load->lng();
 
 						var myPolygon = new ymaps.Polygon([
 							array_stting
-						], {}, {
+						], {
+
+							hintContent: 'Перетащи меня!'
+							// balloonContent: 'Прямоугольник 2'
+
+						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
 							strokeColor: rand_color,
@@ -1000,9 +914,8 @@ $lng = $this->load->lng();
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 								coordinate = $(this).data('coordinate');
-								console.log(coordinate);
 								course = $(this).data('course');
-								var speed = $('input[name="'+$(this).data('imei')+'"]').val();
+								var speed = $('input[name="' + $(this).data('imei') + '"]').val();
 								array = JSON.parse("[" + coordinate + "]");
 
 								var carCoordinate = '';
@@ -1081,7 +994,7 @@ $lng = $this->load->lng();
 
 			coordinate = $(this).data('coordinate');
 			course = $(this).data('course');
-			var speed = $('input[name="'+$(this).data('imei')+'"]').val();
+			var speed = $('input[name="' + $(this).data('imei') + '"]').val();
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
 
@@ -1113,13 +1026,17 @@ $lng = $this->load->lng();
 								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 							})('') + '75';
 
-
 							//Get Colors
 							rand_color_arr.push(rand_color);
 
 							myPolygon = new ymaps.Polygon([
 								array_stting
-							], {}, {
+							], {
+
+								hintContent: 'Перетащи меня!'
+								// balloonContent: 'Прямоугольник 2'
+
+							}, {
 								editorDrawingCursor: "crosshair",
 								fillColor: rand_color,
 								strokeColor: rand_color,
@@ -1250,7 +1167,6 @@ $lng = $this->load->lng();
 
 
 			$('input.coords').on('change', function (event) {
-
 			})
 
 
@@ -1291,7 +1207,12 @@ $lng = $this->load->lng();
 
 							myPolygon = new ymaps.Polygon([
 								array_stting
-							], {}, {
+							], {
+
+								hintContent: 'Перетащи меня!'
+								// balloonContent: 'Прямоугольник 2'
+
+							}, {
 								editorDrawingCursor: "crosshair",
 								fillColor: rand_color,
 								strokeColor: rand_color,
@@ -1316,7 +1237,7 @@ $lng = $this->load->lng();
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 						course = $(this).data('course');
-						speed = $('input[name="'+$(this).data('imei')+'"]').val();
+						speed = $('input[name="' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
 
@@ -1373,7 +1294,7 @@ $lng = $this->load->lng();
 									// alert($('input[name="'+$(this).data('imei')+'"]').val())
 									//if(changed == $(this).data('imei')) {
 									course = $(this).data('course');
-									speed = $('input[name="'+$(this).data('imei')+'"]').val();
+									speed = $('input[name="' + $(this).data('imei') + '"]').val();
 									array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 									var carCoordinate = '';
 									latitude = array[0];
@@ -1428,7 +1349,6 @@ $lng = $this->load->lng();
 
 									//}
 
-
 								}
 							});
 						}, 500);
@@ -1461,10 +1381,8 @@ $lng = $this->load->lng();
 			}
 
 
-		})
-		;
-	})
-	;
+		});
+	});
 
 
 	/*************************
@@ -1872,8 +1790,6 @@ $lng = $this->load->lng();
 
 		})
 	});
-
-
 </script>
 
 

@@ -44,6 +44,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	button.btn.btn-outline-secondary.border-left-0 {
 		padding: 0 !important;
 	}
+	.highcharts-credits{
+		display: none !important;
+	}
 </style>
 
 
@@ -413,7 +416,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							zoomType: 'x'
 						},
 						title: {
-							text: 'Fuel'
+							text: '<?=lang('fuel')?> ()'
 						},
 						xAxis: {
 							categories: data.message.date_array,

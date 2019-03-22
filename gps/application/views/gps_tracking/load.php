@@ -887,7 +887,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							// //MultiRoute
 							// myMap.geoObjects.add(multiRoute.getPaths());
-
 							// myMap.geoObjects.add(highSpeed);
 							myMap.controls.add(new ymaps.control.ZoomControl());
 							myMap.setBounds(myMap.geoObjects.getBounds());

@@ -218,6 +218,8 @@ $lng = $this->load->lng();
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
 							<input class="engines" type="hidden" name="e_<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
+							<input class="courses" type="hidden" name="c_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 						</tr>
 						<?
 						$i++;
@@ -717,7 +719,7 @@ $lng = $this->load->lng();
 			$('.show_car').each(function () {
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
-				var course = $(this).data('course');
+				var course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 				var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 				var imei = $(this).data('imei');
@@ -795,7 +797,7 @@ $lng = $this->load->lng();
 					$('.show_car').each(function () {
 
 						var th = $(this);
-						course = $(this).attr('data-course');
+						course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 						var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 						var carCoordinate = '';
@@ -913,7 +915,7 @@ $lng = $this->load->lng();
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 
 								coordinate = $(this).data('coordinate');
-								course = $(this).data('course');
+								course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 								var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 								array = JSON.parse("[" + coordinate + "]");
 
@@ -992,7 +994,7 @@ $lng = $this->load->lng();
 
 
 			coordinate = $('input[name="' + $(this).data('imei') + '"]').val();
-			course = $(this).data('course');
+			course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 			var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
@@ -1765,6 +1767,9 @@ $lng = $this->load->lng();
 
 							if ($(this).attr('data-engine') != val.engine) {
 								$('input[name="e_' + e + '"]').val(val.engine).trigger('change')
+							}
+							if ($(this).attr('data-course') != val.course) {
+								$('input[name="c_' + e + '"]').val(val.course).trigger('change')
 							}
 							$(this).attr('data-engine', val.engine);
 

@@ -41,6 +41,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	 src="<?= base_url('assets/images/puff.svg') ?>"/>
 
 <div class="container-fluid">
+
+
 	<div class="row">
 		<div class="col-sm-2 p-0 custom_style">
 			<form>
@@ -641,12 +643,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
 								zoom: 13
+							}, {
+								minZoom: 11,
+								maxZoom: 17
 							}, {suppressMapOpenBlock: true});
 
 
-							distanc = [];
+							distance = [];
 
-							//console.log(data.message.imei)
 
 							$.each(data.message.imei, function (e, val) {
 
@@ -727,13 +731,58 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									myMap.geoObjects
 										.add(myGeoObject_start)
 										.add(myGeoObject_end)
-										.add(myGeoObject)
+										.add(myGeoObject);
+
+
+									var array_coordinate_length = array_coordinate[e];
+
+									function calculateDistance(array_coordinate_length) {
+										var f = 0;
+										var g;
+										var c = array_coordinate_length;
+										var d = c.length;
+										if (d > 1) {
+											var a = 1;
+											for (var b = 0; a < d; b++) {
+												g = ymaps.coordSystem.geo.getDistance(c[b], c[a]);
+												f = g + f;
+												a++
+											}
+											var h = Math.round(f);
+										} else {
+											var h = 0;
+										}
+
+										distance[e] = h/1000;
+
+										return true
+									}
+									calculateDistance(array_coordinate_length);
+
+
 
 
 								}
 								emai = e;
 
+
+
+
 							});
+
+
+							setTimeout(function () {
+
+
+									console.log(distance);
+									$('.distance').each(function () {
+
+
+											$(this).html(distance[$(this).data('value')]);
+
+
+									})
+							},1500)
 
 							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
 							// {
@@ -747,6 +796,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 							var info = '';
 							var _imei = '';
+
 							$.each(data.message.imei, function (e, val) {
 								$.each(val, function (i, value) {
 									coord_placemark = JSON.parse("[" + value.cord + "]");
@@ -811,10 +861,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 												'<td>' + data.message.null_speed[e] + '</td>\n' +
 												'</tr>\n';
 											as = 2;
+
 										}
 
-
 									}
+
 									_imei = e;
 
 									var table_top = '<table id="example12" class="table table-striped table-borderless w-100 dataTable no-footer">\n' +
@@ -1060,6 +1111,4 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 	</script>
-
-
 

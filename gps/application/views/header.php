@@ -87,7 +87,7 @@
 	</style>
 	<!-- Some CSS end -->
 </head>
-<body>
+<body >
 <?
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
@@ -366,7 +366,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 
 	<div class="modal fade settings_modal" tabindex="-1" role="dialog"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-dialog modal-sm ">
 			<div class="modal-content settings_modal_content">
 				<div class="modal-header bg-dark">
 					<h6 class="modal-title text-white"><?= lang('settings') ?></h6>
@@ -376,27 +376,27 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 						<div class="form-group row mb-0">
 							<label class="col-sm-8 col-form-label"><?=lang('Nominal_speed')?></label>
 							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="60">
+								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('nominal_speed')?>">
 							</div>
 						</div>
 						<div class="form-group row mb-0">
 
 							<label class="col-sm-8 col-form-label"><?=lang('Threshold_of_refueling')?></label>
 							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="2">
+								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('threshold_of_refueling')?>">
 							</div>
 						</div>
 						<div class="form-group row mb-0">
 
 							<label class="col-sm-8 col-form-label"><?=lang('Drain_threshold')?></label>
 							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="2">
+								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('drain_threshold')?>">
 							</div>
 						</div>
 						<div class="form-group row mb-0">
 							<label class="col-sm-8 col-form-label"><?=lang('parking_time')?></label>
 							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="2">
+								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('parking_time')?>">
 							</div>
 						</div>
 

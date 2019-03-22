@@ -1,5 +1,5 @@
 <?php
-$config['default_lang'] = 'hy';
-$config['activity_average'] = 3;
-$config['activity_weak'] = 10;
-$config['activity_wary_weak'] = 15;
+$config['nominal_speed'] = 60;
+$config['threshold_of_refueling'] = 2;
+$config['drain_threshold'] = 2;
+$config['parking_time'] = 2;

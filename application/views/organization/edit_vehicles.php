@@ -51,6 +51,12 @@
 		font-size: 27px;
 		padding-top: 27px !important;
 	}
+	
+	.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active{
+		background: #fff !important;
+		color: #212529 !important;
+	}
+	
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -1164,5 +1170,8 @@
 		}
 	})
 
+	$('.dropdown-item').click(function () {
+		return false;
+	})
 
 </script>

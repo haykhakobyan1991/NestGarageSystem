@@ -25,7 +25,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <!--todo-->
 <script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css" />
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
 
 
 <style>
@@ -89,7 +89,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="2019-02-24<?//= date("Y-m-d", strtotime("-10 day", $time)); ?>"
+								value="2019-02-24<? //= date("Y-m-d", strtotime("-10 day", $time)); ?>"
 								style="font-size: 11px !important;" type=""
 								data-date-format="yyyy-mm-dd"
 								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
@@ -465,13 +465,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$.each(JSON.parse(data), function (e, val) {
 
 					var brand_name = val.brand + ' ' + val.model;
-					(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13)+'...' : sbstr = brand_name;
+					(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13) + '...' : sbstr = brand_name;
 
 					result += '<div class="card mb-1 ">\n' +
 						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>'+
-						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="'+ val.brand + ' ' + val.model +'">' + sbstr + '</a></span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>: </span>' +
+						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="' + val.brand + ' ' + val.model + '">' + sbstr + '</a></span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
 						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span> ' + val.fleet_plate_number + '</span>\n' +
@@ -521,13 +521,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$.each(JSON.parse(data), function (e, val) {
 
 					var brand_name = val.brand + ' ' + val.model;
-					(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13)+'...' : sbstr = brand_name;
+					(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13) + '...' : sbstr = brand_name;
 
 					result += '<div class="card mb-1 ">\n' +
 						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>:</span>'+
-						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="'+ val.brand + ' ' + val.model +'">' + sbstr + '</a></span>\n' +
+						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>:</span>' +
+						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="' + val.brand + ' ' + val.model + '">' + sbstr + '</a></span>\n' +
 						'\t\t\t\t\t\t\t</div>\n' +
 						'\t\t\t\t\t\t\t<div class="text"><span\n' +
 						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
@@ -609,7 +609,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						var qx = [];
 
 
-
 						$.each(data.message.imei, function (e, val) {
 							coordinate[e] = '';
 							coordinate_qx[e] = '';
@@ -659,7 +658,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									array_coordinate_qx[e] = JSON.parse("[" + coordinate_qx[e].substring(0, coordinate_qx[e].length - 1) + "]");
 
-								   //console.table(array_coordinate_qx);
+									//console.table(array_coordinate_qx);
 
 									myMap.events.add('click', function (e) {
 										if (!myMap.balloon.isOpen()) {
@@ -686,58 +685,52 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									});
 
 
-									var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
+									var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40', '1abc9c', '2c3e50', 'd35400', 'f1c40f', 'E91E63', '9C27B0', '673AB7', '3F51B5', '2196F3', '03A9F4', '00BCD4', '009688', '4CAF50', '8BC34A', 'CDDC39', 'FFEB3B', 'FFC107', 'FF9800', 'FF5722', '795548', '9E9E9E', '607D8B'];
 
 
-									ymaps.route(
-										array_coordinate[e],
-										{
-											mapStateAutoApply: true
-										}).then(function (route) {
-										//console.log(route);
-										route.getPaths().options.set({
-											strokeColor: colors[Math.floor(Math.random() * colors.length)],
-											strokeWidth: 5,
-											opacity: 0.7
-										});
-
-										myMap.geoObjects.add(route.getPaths());
-
-
-										$('.distance').each(function () {
-											if ($(this).data('value') == e) {
-												$(this).html(parseFloat(route.getHumanLength()))
-											}
-										})
-
-
-										myGeoObject_start = new ymaps.GeoObject({
-											geometry: {
-												type: "Point",
-												coordinates: array_coordinate[e][0]
-											},
-											properties: {iconContent: '<?=lang('start_point')?>',}
-										}, {
-											preset: 'islands#greenStretchyIcon',
-											draggable: false
-										});
-
-										myGeoObject_end = new ymaps.GeoObject({
-											geometry: {
-												type: "Point",
-												coordinates: array_coordinate[e][array_coordinate[e].length - 1]
-											},
-											properties: {iconContent: '<?=lang('end_point')?>',}
-										}, {
-											preset: 'islands#redStretchyIcon',
-											draggable: false
-										});
-										myMap.geoObjects
-											.add(myGeoObject_start)
-											.add(myGeoObject_end);
-
-
+									var myGeoObject = new ymaps.GeoObject({
+										geometry: {
+											type: "LineString",
+											coordinates: array_coordinate[e]
+										},
+										properties: {
+											hintContent: "Я геообъект",
+											balloonContent: "Меня можно перетащить"
+										}
+									}, {
+										strokeColor: colors[Math.floor(Math.random() * colors.length)],
+										strokeWidth: 5,
+										opacity: 0.7
 									});
+
+
+									myGeoObject_start = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][0]
+										},
+										properties: {iconContent: '<?=lang('start_point')?>',}
+									}, {
+										preset: 'islands#greenStretchyIcon',
+										draggable: false
+									});
+
+									myGeoObject_end = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][array_coordinate[e].length - 1]
+										},
+										properties: {iconContent: '<?=lang('end_point')?>',}
+									}, {
+										preset: 'islands#redStretchyIcon',
+										draggable: false
+									});
+									myMap.geoObjects
+										.add(myGeoObject_start)
+										.add(myGeoObject_end)
+										.add(myGeoObject)
+
+
 								}
 								emai = e;
 
@@ -1065,7 +1058,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			startDate: '-3d',
 			iconsLibrary: 'fontawesome'
 		});
-
 
 
 	</script>

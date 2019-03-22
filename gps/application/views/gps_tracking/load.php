@@ -737,15 +737,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								})
 							}, 1500);
 
-							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
-							// {
-							// 	balloonContent: "Ломаная линия"
-							// }, {
-							// 	balloonCloseButton: false,
-							// 	strokeColor: "#ff0000",
-							// 	strokeWidth: 4,
-							// 	strokeOpacity: 0.9
-							// });
 
 							var info = '';
 							var _imei = '';

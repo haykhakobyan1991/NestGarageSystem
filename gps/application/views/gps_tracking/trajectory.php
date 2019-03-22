@@ -694,8 +694,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											coordinates: array_coordinate[e]
 										},
 										properties: {
-											hintContent: "Я геообъект",
-											balloonContent: "Меня можно перетащить"
+											hintContent: ""
 										}
 									}, {
 										strokeColor: colors[Math.floor(Math.random() * colors.length)],

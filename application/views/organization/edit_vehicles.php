@@ -89,31 +89,44 @@
 												data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											GPS
 										</button>
+
+										<?
+
+										$gnss_tracker = json_decode($gnss_tracker, true);
+
+										if($gnss_tracker == '' || $gnss_tracker == 'empty') {
+											$gnss_exist = lang('no');
+											$gnss_model = '';
+											$fuel_sensor = lang('no');
+											$imei = '';
+											$coefficientA = '';
+											$coefficientK = '';
+										} else {
+
+											$gnss_exist = lang('yes');
+											$gnss_model = $gnss_tracker['gnss_model'];
+											$fuel_sensor = ($gnss_tracker['fuel_sensor'] == 1 ? lang('yes') : lang('no'));
+											$imei = $gnss_tracker['imei'];
+											$coefficientA = ($gnss_tracker['fuel_sensor'] == 1 ? $gnss_tracker['coefficient_a'] : '');
+											$coefficientK = ($gnss_tracker['fuel_sensor'] == 1 ? $gnss_tracker['coefficient_k'] : '');
+										}
+
+										?>
+
 										<div class="dropdown-menu" style="font-size: 11px;">
-											<a class="dropdown-item" href="#">GNSS Tracker: Այո</a>
+											<a class="dropdown-item" href="#">GNSS Tracker: <?=$gnss_exist?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Tracker Model: ST-901</a>
-											<a class="dropdown-item" href="#">Tracker IMEI: 865205035287688</a>
+											<a class="dropdown-item" href="#">Tracker Model: <?=$gnss_model?></a>
+											<a class="dropdown-item" href="#">Tracker IMEI: <?=$imei?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Վառելիքի տվիչ: Այո</a>
+											<a class="dropdown-item" href="#">Վառելիքի տվիչ: <?=$fuel_sensor?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Գործակից A: 2</a>
-											<a class="dropdown-item" href="#">Գործակից K: 2</a>
+											<a class="dropdown-item" href="#">Գործակից A: <?=$coefficientA?></a>
+											<a class="dropdown-item" href="#">Գործակից K: <?=$coefficientK?></a>
 										</div>
 									</div>
 								</div>
-								<!--								<label class="pl-3 col-form-label col-sm-5 text-right" style="padding-left: 45px !important;-->
-								<!--    font-size: 15px !important;">--><? //= lang('GPS_Exist') ?><!--</label>-->
-								<!--								<input style="margin-top: 13px;width: 18px;height: 18px;" type="checkbox"-->
-								<!--									   name="gps_exist"-->
-								<!--									   value="1" --><? //= $fleet['gps_tracker_exists'] == 1 ? 'checked' : '' ?>
-								<!--									   id="fleet_type"/>-->
-								<!--								<div class="col-sm-6">-->
-								<!--									<input value="-->
-								<? //= $fleet['gps_tracker_imei'] ?><!--" name="gps_tracker_imei" type="text"-->
-								<!--										   class="form-control form-control-sm"-->
-								<!--										   placeholder="-->
-								<? //= lang('GPS_Tracker_IMEI') ?><!--">-->
+
 							</div>
 						</div>
 					</div>

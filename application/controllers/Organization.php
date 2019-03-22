@@ -2940,6 +2940,10 @@ class Organization extends MX_Controller {
 		$this->db->update('fleet', array('total_value_1' => $total_value_1, 'total_value_2' =>  $total_value_2), array('id' => $data['fleet']['id'])); //todo mtacel
 
 
+		//api for gps
+		$data['gnss_tracker'] = $this->CallAPI('POST', base_url('/gps/System_main/gnss_tracker'), array('imei' => $data['fleet']['gps_tracker_imei']));
+
+
 		$this->layout->view('organization/edit_vehicles', $data);
 
 	}
@@ -4089,6 +4093,39 @@ class Organization extends MX_Controller {
 
 		return true;
 
+	}
+
+	public function CallAPI ($method, $url, $data = false)
+	{
+		$curl = curl_init();
+
+		switch ($method) {
+			case "POST":
+				curl_setopt($curl, CURLOPT_POST, 1);
+
+				if ($data)
+					curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+				break;
+			case "PUT":
+				curl_setopt($curl, CURLOPT_PUT, 1);
+				break;
+			default:
+				if ($data)
+					$url = sprintf("%s?%s", $url, http_build_query($data));
+		}
+
+		// Optional Authentication:
+		curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+		curl_setopt($curl, CURLOPT_USERPWD, "username:password");
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+		$result = curl_exec($curl);
+
+		curl_close($curl);
+
+		return $result;
 	}
 
 

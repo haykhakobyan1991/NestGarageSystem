@@ -203,5 +203,27 @@ class System_main extends CI_Controller {
 		return true;
 	}
 
+
+	public function gnss_tracker() {
+
+		$imei = $this->input->post('imei');
+
+
+		if ($imei == '') {
+			return false;
+		}
+
+		$row = $this->db->select('*')->from('tracking')->where('imei', $imei)->get()->row_array();
+
+		if(!empty($row)) {
+			echo json_encode($row);
+		} else {
+			echo json_encode('empty');
+		}
+
+		return true;
+
+	}
+
 }
 //end of class

@@ -772,7 +772,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									$(this).html(distance[$(this).data('value')]);
 
 								})
-							}, 1500)
+							}, 1500);
 
 
 							var info = '';

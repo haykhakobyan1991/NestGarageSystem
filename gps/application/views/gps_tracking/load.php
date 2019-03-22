@@ -612,7 +612,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							}, {suppressMapOpenBlock: true});
 
 
-							distanc = [];
+							distance = [];
 
 							$.each(data.message.imei, function (e, val) {
 
@@ -652,62 +652,90 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									});
 
 
-									var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40'];
+									var colors = ['6c757d', '007bff', '28a745', 'fd7e14', 'dc3545', '343a40', '1abc9c', '2c3e50', 'd35400', 'f1c40f', 'E91E63', '9C27B0', '673AB7', '3F51B5', '2196F3', '03A9F4', '00BCD4', '009688', '4CAF50', '8BC34A', 'CDDC39', 'FFEB3B', 'FFC107', 'FF9800', 'FF5722', '795548', '9E9E9E', '607D8B'];
 
 
-									ymaps.route(
-										array_coordinate[e],
-										{
-											mapStateAutoApply: true
-										}).then(function (route) {
-										console.log(route);
-										route.getPaths().options.set({
-											strokeColor: colors[Math.floor(Math.random() * colors.length)],
-											strokeWidth: 5,
-											opacity: 0.7
-										});
-
-										myMap.geoObjects.add(route.getPaths());
-
-
-										$('.distance').each(function () {
-											if ($(this).data('value') == e) {
-												$(this).html(parseFloat(route.getHumanLength()))
-											}
-										})
-
-
-										myGeoObject_start = new ymaps.GeoObject({
-											geometry: {
-												type: "Point",
-												coordinates: array_coordinate[e][0]
-											},
-											properties: {iconContent: '<?=lang('start_point')?>',}
-										}, {
-											preset: 'islands#greenStretchyIcon',
-											draggable: false
-										});
-
-										myGeoObject_end = new ymaps.GeoObject({
-											geometry: {
-												type: "Point",
-												coordinates: array_coordinate[e][array_coordinate[e].length - 1]
-											},
-											properties: {iconContent: '<?=lang('end_point')?>',}
-										}, {
-											preset: 'islands#redStretchyIcon',
-											draggable: false
-										});
-										myMap.geoObjects
-											.add(myGeoObject_start)
-											.add(myGeoObject_end);
-
-
+									var myGeoObject = new ymaps.GeoObject({
+										geometry: {
+											type: "LineString",
+											coordinates: array_coordinate[e]
+										},
+										properties: {
+											hintContent: ""
+										}
+									}, {
+										strokeColor: colors[Math.floor(Math.random() * colors.length)],
+										strokeWidth: 5,
+										opacity: 0.7
 									});
+
+
+									myGeoObject_start = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][0]
+										},
+										properties: {iconContent: '<?=lang('start_point')?>',}
+									}, {
+										preset: 'islands#greenStretchyIcon',
+										draggable: false
+									});
+
+									myGeoObject_end = new ymaps.GeoObject({
+										geometry: {
+											type: "Point",
+											coordinates: array_coordinate[e][array_coordinate[e].length - 1]
+										},
+										properties: {iconContent: '<?=lang('end_point')?>',}
+									}, {
+										preset: 'islands#redStretchyIcon',
+										draggable: false
+									});
+									myMap.geoObjects
+										.add(myGeoObject_start)
+										.add(myGeoObject_end)
+										.add(myGeoObject);
+
+
+									var array_coordinate_length = array_coordinate[e];
+
+									function calculateDistance(array_coordinate_length) {
+										var f = 0;
+										var g;
+										var c = array_coordinate_length;
+										var d = c.length;
+										if (d > 1) {
+											var a = 1;
+											for (var b = 0; a < d; b++) {
+												g = ymaps.coordSystem.geo.getDistance(c[b], c[a]);
+												f = g + f;
+												a++
+											}
+											var h = Math.round(f);
+										} else {
+											var h = 0;
+										}
+
+										distance[e] = h / 1000;
+
+										return true
+									}
+
+									calculateDistance(array_coordinate_length);
+
 								}
 								emai = e;
 
 							});
+
+
+							setTimeout(function () {
+								$('.distance').each(function () {
+
+									$(this).html(distance[$(this).data('value')]);
+
+								})
+							}, 1500);
 
 							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
 							// {

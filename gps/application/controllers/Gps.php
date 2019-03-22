@@ -1315,6 +1315,29 @@ class Gps extends MX_Controller
 		$from = $this->input->post('from');
 		$to = $this->input->post('to');
 
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
+
+		$sql_config = "
+			SELECT 
+				threshold_of_refueling,
+				drain_threshold
+			FROM 
+				config
+			WHERE company_id = '".$company_id."'	
+		";
+
+		$query_config = $this->db->query($sql_config);
+		$config = $query_config->row_array();
+
+		$threshold_of_refueling = $this->config->item('threshold_of_refueling');
+		$drain_threshold = $this->config->item('drain_threshold');
+
+		if($query_config->num_rows() == 1) {
+			$threshold_of_refueling = $config['threshold_of_refueling'];
+			$drain_threshold = $config['drain_threshold'];
+		}
+
+
 
 		$sql = "
 			SELECT 
@@ -1340,7 +1363,6 @@ class Gps extends MX_Controller
 		";
 
 		$query = $this->db->query($sql);
-
 		$result = $query->result_array();
 
 		$new_result = array();
@@ -1350,7 +1372,8 @@ class Gps extends MX_Controller
 
 		$tmp = 0;
 		$_tmp = 1;
-		$step = -0.9;
+		$step_refueling = -$threshold_of_refueling;
+		$step_drain = -$drain_threshold;
 		$array_length = count($result);
 
 		$avg_all = 0;
@@ -1377,6 +1400,7 @@ class Gps extends MX_Controller
 			);
 
 
+
 			if ($_imei != $row['imei']) {
 				$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei']));
 				$fleet = json_decode($fl, true);
@@ -1390,13 +1414,13 @@ class Gps extends MX_Controller
 			$levelFinish = (float)$row['fuel'];
 
 			if ($_tmp < $array_length) {
-				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
+				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_refueling)) && ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_drain)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
 					$avg_all += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$avg_counter++;
-				} elseif ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step)) {
+				} elseif ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step_drain)) {
 					$drain += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$drain_counter++;
-				} elseif ((float)$row['fuel'] - (float)$result[$_tmp]['fuel'] < (float)($step)) {
+				} elseif ((float)$row['fuel'] - (float)$result[$_tmp]['fuel'] < (float)($step_refueling)) {
 					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);;
 					$refueling_counter++;
 				}
@@ -1436,8 +1460,8 @@ class Gps extends MX_Controller
 			<td style="text-align: center;">' . $avg_all . '</td>
 			<td style="text-align: center;">' . $refueling . '</td>
 			<td style="text-align: center;">' . $refueling_counter . '</td>
-			<td style="text-align: center;">' . $drain . '</td>
 			<td style="text-align: center;">' . $drain_counter . '</td>
+			<td style="text-align: center;">' . $drain . '</td>
 			<td style="text-align: center;">' . $levelFinish . '</td>
 			<td style="text-align: center;">' . $avg_all / $avg_counter . '</td>
 		</tr>

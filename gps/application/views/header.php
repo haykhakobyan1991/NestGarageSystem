@@ -364,6 +364,30 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 
 	<!-- Settings Modal Start -->
 
+
+	<?
+
+		$lng = $this->load->lng();
+		$token = $this->session->token;
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
+
+		$sql = "
+			SELECT 
+				id,
+				nominal_speed,
+				threshold_of_refueling,
+				drain_threshold,
+				parking_time
+			FROM 
+				config
+			WHERE company_id = '".$company_id."'	
+		";
+
+		$query = $this->db->query($sql);
+		$config = $query->row_array();
+
+	?>
+
 	<div class="modal fade settings_modal" tabindex="-1" role="dialog"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-sm ">
@@ -373,37 +397,158 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<div class="form-group row mb-0">
-							<label class="col-sm-8 col-form-label"><?=lang('Nominal_speed')?></label>
-							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('nominal_speed')?>">
-							</div>
-						</div>
-						<div class="form-group row mb-0">
 
-							<label class="col-sm-8 col-form-label"><?=lang('Threshold_of_refueling')?></label>
-							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('threshold_of_refueling')?>">
+							<div class="form-group row mb-0">
+								<label class="col-sm-8 col-form-label"><?=lang('Nominal_speed')?></label>
+								<div class="col-sm-4">
+									<input type="number" name="nominal_speed" class="form-control"  value="<?=(isset($config['nominal_speed']) ? $config['nominal_speed'] : $this->config->item('nominal_speed'))?>">
+								</div>
 							</div>
-						</div>
-						<div class="form-group row mb-0">
+							<div class="form-group row mb-0">
 
-							<label class="col-sm-8 col-form-label"><?=lang('Drain_threshold')?></label>
-							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('drain_threshold')?>">
+								<label class="col-sm-8 col-form-label"><?=lang('Threshold_of_refueling')?></label>
+								<div class="col-sm-4">
+									<input type="number" name="threshold_of_refueling" class="form-control"  value="<?=(isset($config['threshold_of_refueling']) ? $config['threshold_of_refueling'] : $this->config->item('threshold_of_refueling'))?>">
+								</div>
 							</div>
-						</div>
-						<div class="form-group row mb-0">
-							<label class="col-sm-8 col-form-label"><?=lang('parking_time')?></label>
-							<div class="col-sm-4">
-								<input type="text" name="" class="form-control" disabled value="<?=$this->config->item('parking_time')?>">
-							</div>
-						</div>
+							<div class="form-group row mb-0">
 
+								<label class="col-sm-8 col-form-label"><?=lang('Drain_threshold')?></label>
+								<div class="col-sm-4">
+									<input type="number" name="drain_threshold" class="form-control"  value="<?=(isset($config['drain_threshold']) ? $config['drain_threshold'] : $this->config->item('drain_threshold'))?>">
+								</div>
+							</div>
+							<div class="form-group row mb-0">
+								<label class="col-sm-8 col-form-label"><?=lang('parking_time')?></label>
+								<div class="col-sm-4">
+									<input type="number" name="parking_time" class="form-control"  value="<?=(isset($config['parking_time']) ? $config['parking_time'] : $this->config->item('parking_time'))?>">
+								</div>
+							</div>
 
 					</div>
+				</div>
+
+				<div class="modal-footer pb-0" style="margin-right: 22px;">
+					<button id="config" type="button"
+							class="btn btn-outline-success cancel_btn mb-2"><?= lang('save') ?>
+					</button>
+					<button id="load" style="height: 40px !important; width: 90px !important;"
+							class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+					<button type="button" class="cancel_btn close btn btn-sm mb-2"
+							data-dismiss="modal"
+							aria-label="Close">
+						<?= lang('cancel') ?>
+					</button>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Settings Modal End -->
+
+
+	<script>
+
+		$(document).on('click', '#config', function (e) {
+
+			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/System_main/config_ax') ?>';
+			e.preventDefault();
+
+			var nominal_speed = $('input[name="nominal_speed"]').val();
+			var threshold_of_refueling = $('input[name="threshold_of_refueling"]').val();
+			var drain_threshold = $('input[name="drain_threshold"]').val();
+			var parking_time = $('input[name="parking_time"]').val();
+
+			var form_data = new FormData();
+
+			form_data.append('nominal_speed', nominal_speed);
+			form_data.append('threshold_of_refueling', threshold_of_refueling);
+			form_data.append('drain_threshold', drain_threshold);
+			form_data.append('parking_time', parking_time);
+
+
+
+			$('input').removeClass('border border-danger');
+			$('input').parent('td').removeClass('border border-danger');
+			$('select').removeClass('border border-danger');
+			loading('start', 'add_department_btn');
+
+			$.ajax({
+				url: url,
+				type: 'POST',
+				dataType: 'json',
+				data: form_data,
+				contentType: false,
+				cache: false,
+				processData: false,
+				beforeSend: function () {
+					scroll_top();
+					close_message();
+					loading('start', 'config');
+					$('.alert-info').removeClass('d-none');
+					$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+				},
+				success: function (data) {
+					if (data.success == '1') {
+						close_message();
+
+
+						$('.alert-success').removeClass('d-none');
+						$('.alert-success').text(data.message);
+
+						loading('stop', 'config');
+
+
+						var url = "<?=current_url()?>";
+
+						$(location).attr('href', url);
+
+
+					} else {
+						close_message();
+						loading('stop', 'config');
+
+						if ($.isArray(data.error.elements)) {
+							scroll_top();
+							loading('stop', 'config');
+							errors = '';
+							tmp = '';
+							$.each(data.error.elements, function (index) {
+								$.each(data.error.elements[index], function (index, value) {
+									if (value != '') {
+										$('input[name="' + index + '"]').addClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
+										close_message();
+										$('.alert-danger').removeClass('d-none');
+
+										if (value != tmp) {
+											errors += value;
+										}
+										tmp = value;
+
+									} else {
+										$('input[name="' + index + '"]').removeClass('border border-danger');
+										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
+									}
+								});
+							});
+						}
+
+						$('.alert-danger').html(errors);
+
+					}
+				},
+				error: function (jqXHR, textStatus) {
+					// Handle errors here
+					$('p#success').addClass('d-none');
+					console.log('ERRORS: ' + textStatus);
+				},
+				complete: function () {
+
+				}
+			});
+		})
+
+
+	</script>

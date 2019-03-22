@@ -97,5 +97,111 @@ class System_main extends CI_Controller {
 
 	}
 
+
+	public function config_ax() {
+
+
+		$this->load->library('session');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$n = 0;
+
+
+		$result = false;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_error_delimiters('', '');
+		$this->form_validation->set_rules('nominal_speed', 'nominal_speed', 'required');
+		$this->form_validation->set_rules('threshold_of_refueling', 'threshold_of_refueling', 'required');
+		$this->form_validation->set_rules('drain_threshold', 'drain_threshold', 'required');
+		$this->form_validation->set_rules('parking_time', 'parking_time', 'required');
+
+
+
+		if($this->form_validation->run() == false){
+			//validation errors
+			$n = 1;
+
+			$validation_errors = array(
+				'nominal_speed' =>  form_error('nominal_speed'),
+				'threshold_of_refueling' =>  form_error('threshold_of_refueling'),
+				'drain_threshold' =>  form_error('drain_threshold'),
+				'parking_time' =>  form_error('parking_time')
+			);
+			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+		if($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
+
+
+		$lng = $this->load->lng();
+		$token = $this->session->token;
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
+
+		$nominal_speed = $this->input->post('nominal_speed');
+		$threshold_of_refueling = $this->input->post('threshold_of_refueling');
+		$drain_threshold = $this->input->post('drain_threshold');
+		$parking_time = $this->input->post('parking_time');
+
+
+		$sql = "
+			SELECT 
+				id
+			FROM 
+				config
+			WHERE company_id = '".$company_id."'	
+		";
+
+		$query = $this->db->query($sql);
+		$num_rows = $query->num_rows();
+
+
+		if($num_rows == 0) {
+
+			$sql = "
+				INSERT INTO config (company_id, nominal_speed, threshold_of_refueling, drain_threshold, parking_time) 
+				VALUES ($company_id, $nominal_speed, $threshold_of_refueling, $drain_threshold, $parking_time)
+			";
+			$result = $this->db->query($sql);
+		} else {
+
+			$sql = "
+				UPDATE config set
+					company_id = $company_id, 
+					nominal_speed = $nominal_speed, 
+					threshold_of_refueling = $threshold_of_refueling, 
+					drain_threshold = $drain_threshold, 
+					parking_time = $parking_time 
+			";
+
+			$result = $this->db->query($sql);
+		}
+
+
+		if ($result){
+			$messages['success'] = 1;
+			$messages['message'] = lang('success');
+		} else {
+			$messages['success'] = 0;
+			$messages['error'] = lang('error');
+		}
+
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
+	}
+
 }
 //end of class

@@ -753,46 +753,27 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 											var h = 0;
 										}
 
-										distance[e] = h/1000;
+										distance[e] = h / 1000;
 
 										return true
 									}
+
 									calculateDistance(array_coordinate_length);
-
-
-
 
 								}
 								emai = e;
-
-
-
 
 							});
 
 
 							setTimeout(function () {
+								$('.distance').each(function () {
 
+									$(this).html(distance[$(this).data('value')]);
 
-									console.log(distance);
-									$('.distance').each(function () {
+								})
+							}, 1500)
 
-
-											$(this).html(distance[$(this).data('value')]);
-
-
-									})
-							},1500)
-
-							// var highSpeed = new ymaps.Polyline(array_coordinate_qx,
-							// {
-							// 	balloonContent: "Ломаная линия"
-							// }, {
-							// 	balloonCloseButton: false,
-							// 	strokeColor: "#ff0000",
-							// 	strokeWidth: 4,
-							// 	strokeOpacity: 0.9
-							// });
 
 							var info = '';
 							var _imei = '';

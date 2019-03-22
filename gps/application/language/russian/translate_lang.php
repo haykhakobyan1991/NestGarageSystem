@@ -450,3 +450,8 @@ $lang['load_no'] = 'Не Загружен';
 
 $lang['seeAll'] = 'Увидеть все';
 
+$lang['Nominal_speed'] = 'Номинальная скорость';
+$lang['Threshold_of_refueling'] = 'Порог заправкаи л.';
+$lang['Drain_threshold'] = 'Порог слива  л.';
+$lang['parking_time'] = 'Парковка м.';
+

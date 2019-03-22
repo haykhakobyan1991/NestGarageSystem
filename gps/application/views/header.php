@@ -328,7 +328,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 						<!--													class="ml-0 mr-0 "/>-->
 						<!--											</button>-->
 						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important; display: none"
+							style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
 							class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
 							data-toggle="modal"
 							data-target=".settings_modal" href="#">
@@ -364,184 +364,44 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 
 	<!-- Settings Modal Start -->
 
-	<div class="modal fade bd-example-modal-lg settings_modal" tabindex="-1" role="dialog"
+	<div class="modal fade settings_modal" tabindex="-1" role="dialog"
 		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
+		<div class="modal-dialog modal-sm modal-dialog-centered">
 			<div class="modal-content settings_modal_content">
 				<div class="modal-header bg-dark">
-					<h5 class="modal-title text-white"><?= lang('settings') ?></h5>
+					<h6 class="modal-title text-white"><?= lang('settings') ?></h6>
 				</div>
 				<div class="modal-body">
 					<div class="container-fluid">
-						<div class="row">
+						<div class="form-group row mb-0">
+							<label class="col-sm-8 col-form-label"><?=lang('Nominal_speed')?></label>
 							<div class="col-sm-4">
-								<div class="form-group row mb-0">
-									<label class="col-sm-7"><?= lang('analog_input') ?>: 1</label>
-									<input class="col-sm-1 mt-1" type="checkbox"/>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group row mb-0">
-									<label class="col-sm-7 text-right"><?= lang('analog_input') ?>: 2</label>
-									<input class="col-sm-1 mt-1" type="checkbox"/>
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group row mb-0">
-									<label class="col-sm-8 text-right"><?= lang('analog_input') ?>: 1 + 2</label>
-									<input class="col-sm-1 mt-1" type="checkbox"/>
-								</div>
+								<input type="text" name="" class="form-control" disabled value="60">
 							</div>
 						</div>
-						<hr class="my-2">
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-						</div>
-						<hr class="my-2">
+						<div class="form-group row mb-0">
 
+							<label class="col-sm-8 col-form-label"><?=lang('Threshold_of_refueling')?></label>
+							<div class="col-sm-4">
+								<input type="text" name="" class="form-control" disabled value="2">
+							</div>
+						</div>
+						<div class="form-group row mb-0">
 
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group row mb-0">
-									<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
-									<input type="number" class="form-control form-control-sm col-sm-2">
-									<div class="col-sm-1 mt-2">+</div>
-									<input type="number" class="form-control form-control-sm col-sm-2"><span
-										class="ml-1 mt-2">*A</span>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group row mb-0">
-									<label class="col-sm-4 mt-2"><?= lang('coefficient') ?></label>
-									<input type="number" class="form-control form-control-sm col-sm-2">
-									<div class="col-sm-1 mt-2">+</div>
-									<input type="number" class="form-control form-control-sm col-sm-2"><span
-										class="ml-1 mt-2">*A</span>
-								</div>
+							<label class="col-sm-8 col-form-label"><?=lang('Drain_threshold')?></label>
+							<div class="col-sm-4">
+								<input type="text" name="" class="form-control" disabled value="2">
 							</div>
 						</div>
-						<hr class="my-2">
+						<div class="form-group row mb-0">
+							<label class="col-sm-8 col-form-label"><?=lang('parking_time')?></label>
+							<div class="col-sm-4">
+								<input type="text" name="" class="form-control" disabled value="2">
+							</div>
+						</div>
 
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('engine') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('cargo') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('sos') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-						</div>
-						<hr class="my-2">
-
-
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-							<div class="col-sm-4">
-								<div class="form-group mb-0">
-									<label class=""><?= lang('titles') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10">
-								</div>
-							</div>
-						</div>
-						<hr class="my-2">
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group mb-0">
-									<label><?= lang('default_speed') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10"/>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group mb-0">
-									<label><?= lang('readout_time') ?></label>
-									<input type="text" class="form-control form-control-sm col-sm-10"/>
-								</div>
-							</div>
-						</div>
-						<hr class="my-2">
-						<div class="row">
-							<div class="col-sm-4">
-								<div class="form-group row mb-0">
-									<label
-										class="colnavbar navbar-expand-lg navbar-light bg-light pl-0 pr-0-sm-6"><?= lang('event') ?></label>
-									<input class="col-sm-1 mt-1" type="checkbox"/>
-								</div>
-							</div>
-						</div>
-						<hr class="my-2">
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group row mb-0 pl-3">
-									<select class="form-control form-control-sm col-sm-10">
-										<option selected>value 1</option>
-										<option>value 2</option>
-										<option>value 3</option>
-										<option>value 4</option>
-										<option>value 5</option>
-									</select>
-									<div class="col-sm-2">
-										<button class="btn btn-sm btn-secondary"
-												style="-webkit-border-radius: 50% !important;-moz-border-radius: 50% !important;border-radius: 50% !important;width: 30px !important;height: 30px !important;padding: 0 !important;line-height: unset !important;">
-											+
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
 
 					</div>
-				</div>
-				<div class="modal-footer">
-					<button id="add_staff" type="button"
-							class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
-					</button>
-					<button id="load" class="btn btn-sm btn-success d-none "><img
-							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-							src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-					<button type="button" class="cancel_btn close btn btn-sm"
-							data-dismiss="modal"
-							aria-label="Close">
-						<?= lang('cancel') ?>
-					</button>
 				</div>
 			</div>
 		</div>

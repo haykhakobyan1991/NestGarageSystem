@@ -456,6 +456,11 @@ $lang['load_no'] = 'Չբեռնված';
 
 
 $lang['seeAll'] = 'Տեսնել բոլորը';
+$lang['Nominal_speed'] = 'Արագության նոմինալ';
+$lang['Threshold_of_refueling'] = 'Լիցքաորման շեմ լ';
+$lang['Drain_threshold'] = 'Դատարկման շեմ լ';
+$lang['parking_time'] = 'Կայանում ր.';
+
 
 
 

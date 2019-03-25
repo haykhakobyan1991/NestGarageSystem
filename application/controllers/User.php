@@ -608,6 +608,8 @@ class User extends CI_Controller {
 
 		} else {
 
+			$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
+
 			$sql = "INSERT INTO `user`
 					SET 
 					 `role_id` = '1',
@@ -616,6 +618,7 @@ class User extends CI_Controller {
 					 `email` = ".$this->load->db_value($email).",
 					 `photo` = ".$this->load->db_value($google_photo).",
 					 `google_id` = ".$this->load->db_value($google_id).",
+					 `folder` = ".$this->load->db_value($folder).",
 					 `username` = ".$this->load->db_value($username).",
 					 `status` = '1'";
 
@@ -706,6 +709,8 @@ class User extends CI_Controller {
 
 		} else {
 
+			$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
+
 			$sql = "INSERT INTO `user`
 					SET 
 					 `role_id` = '1',
@@ -714,6 +719,7 @@ class User extends CI_Controller {
 					 `email` = ".$this->load->db_value($email).",
 					 `photo` = ".$this->load->db_value($fb_photo).",
 					 `fb_id` = ".$this->load->db_value($fb_id).",
+					 `folder` = ".$this->load->db_value($folder).",
 					 `username` = ".$this->load->db_value($username).",
 					 `status` = '1'";
 

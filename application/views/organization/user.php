@@ -191,7 +191,7 @@ endforeach;
 													   placeholder="<?= lang('password') ?>"
 													   id="password-input"
 													   onclick="this.focus();this.select()"
-													   />
+												/>
 												<button type="button"
 														class="btn btn-sm btn-outline-secondary  ml-3 hide_password"
 														style="border: none;outline: none;"><i class="fa fa-eye"></i>
@@ -200,8 +200,8 @@ endforeach;
 														type="button"
 														class="save_cancel_btn btn btn-success ml-3"
 														style="font-size: 12px !important;line-height: 14px !important;padding: 12px 17px !important;font-weight: 500 !important;">
-													<i  class="fas fa-sync-alt"
-														style="margin-right: 8px;"></i><?= lang('generate') ?>
+													<i class="fas fa-sync-alt"
+													   style="margin-right: 8px;"></i><?= lang('generate') ?>
 												</button>
 											</div>
 										</div>
@@ -255,7 +255,8 @@ endforeach;
 								<button id="add_user" type="button"
 										class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 								</button>
-								<button id="load" style="height: 40px !important; width: 93px !important;"  class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+								<button id="load" style="height: 40px !important; width: 93px !important;"
+										class="btn btn-sm btn-outline-success cancel_btn d-none"><img
 										style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 										src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 								<button type="button" class="cancel_btn close btn btn-sm"
@@ -312,14 +313,14 @@ endforeach;
 					   style="width:100%">
 					<thead style="background: #fff;color: #545b62;">
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('Name/Email')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('status')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('activity')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('type')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('name')?>․</th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('Created_Date')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('by_whom')?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?=lang('last_access')?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('Name/Email') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('status') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('activity') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('type') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('login') ?>․</th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('Created_Date') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('by_whom') ?></th>
+						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_access') ?></th>
 						<th style="font-size: 12px !important;font-weight500;min-width: 50px !important;"></th>
 					</tr>
 					</thead>
@@ -387,10 +388,15 @@ endforeach;
 											  data-toggle="modal" class="float-left text-success"
 											  data-target="#edit_user"><i class="fas fa-edit"></i></span>
 
-								<span style="border: none;cursor: pointer;" data-toggle="modal"
-									  id="delete_user_modal"
-									  class="text-secondary btn"
-									  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i class="fas fa-trash"></i></span></td>
+
+								<? if ($this->session->user_id != $row['id'] && $row['parent_user_id'] != '' && $this->session->user_id == $row['parent_user_id']) { ?>
+									<span style="border: none;cursor: pointer;" data-toggle="modal"
+										  id="delete_user_modal"
+										  class="text-secondary btn"
+										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i
+											class="fas fa-trash"></i></span>
+								<? } ?>
+							</td>
 						</tr>
 					<? endforeach; ?>
 
@@ -445,7 +451,7 @@ endforeach;
 
 	$(document).on('click', '#delete_user', function () {
 		var id = $('input[name="user_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Organization/delete_user/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/delete_user/')?>';
 
 		$.post(url, {user_id: id}, function (result) {
 			location.reload();

@@ -51,12 +51,12 @@
 		font-size: 27px;
 		padding-top: 27px !important;
 	}
-	
-	.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active{
+
+	.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
 		background: #fff !important;
 		color: #212529 !important;
 	}
-	
+
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -94,13 +94,14 @@
 
 										$gnss_tracker = json_decode($gnss_tracker, true);
 
-										if($gnss_tracker == '' || $gnss_tracker == 'empty') {
+										if ($gnss_tracker == '' || $gnss_tracker == 'empty') {
 											$gnss_exist = lang('no');
 											$gnss_model = '';
 											$fuel_sensor = lang('no');
 											$imei = '';
 											$coefficientA = '';
 											$coefficientK = '';
+
 										} else {
 
 											$gnss_exist = lang('yes');
@@ -114,15 +115,15 @@
 										?>
 
 										<div class="dropdown-menu" style="font-size: 11px;">
-											<a class="dropdown-item" href="#">GNSS Tracker: <?=$gnss_exist?></a>
+											<a class="dropdown-item" href="#">GNSS Tracker: <?= $gnss_exist ?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Tracker Model: <?=$gnss_model?></a>
-											<a class="dropdown-item" href="#">Tracker IMEI: <?=$imei?></a>
+											<a class="dropdown-item" href="#">Tracker Model: <?= $gnss_model ?></a>
+											<a class="dropdown-item" href="#">Tracker IMEI: <?= $imei ?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Վառելիքի տվիչ: <?=$fuel_sensor?></a>
+											<a class="dropdown-item" href="#">Վառելիքի տվիչ: <?= $fuel_sensor ?></a>
 											<div class="dropdown-divider"></div>
-											<a class="dropdown-item" href="#">Գործակից A: <?=$coefficientA?></a>
-											<a class="dropdown-item" href="#">Գործակից K: <?=$coefficientK?></a>
+											<a class="dropdown-item" href="#">Գործակից A: <?= $coefficientA ?></a>
+											<a class="dropdown-item" href="#">Գործակից K: <?= $coefficientK ?></a>
 										</div>
 									</div>
 								</div>

@@ -772,7 +772,6 @@ $lng = $this->load->lng();
 					});
 				});
 
-
 				myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
@@ -1678,7 +1677,6 @@ $lng = $this->load->lng();
 			}
 		}
 
-//ddddddd
 	});
 
 	$(window).on('load', function () {
@@ -1751,7 +1749,6 @@ $lng = $this->load->lng();
 
 						if (e == $(this).data('imei')) {
 							//console.log($(this).attr('data-coordinate'));
-
 							// if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
 							// 	$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
 							// }

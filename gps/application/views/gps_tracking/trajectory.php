@@ -46,6 +46,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="row">
 		<div class="col-sm-2 p-0 custom_style">
 			<form>
+
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
 					<tr>
@@ -170,7 +171,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		</div>
 		<div class="col-sm-10 custom_style2">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
-			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;"></div>
+			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;position: relative;">
+				<div id="map_loader" style="display:none;position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100%;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
+			</div>
 			<div id="fleet_info"></div>
 		</div>
 	</div>
@@ -561,6 +564,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 		$(document).on('click', '.generate', function (e) {
+
+			$('#map_loader').css('display', 'block');
+
+
+
 			// ajax time
 			var xsht = 0;
 			setInterval(function () {
@@ -770,6 +778,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 								$('.distance').each(function () {
 
 									$(this).html(distance[$(this).data('value')]);
+
+									$('#map_loader').fadeOut('slow');
 
 								})
 							}, 1500);

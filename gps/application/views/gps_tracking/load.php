@@ -925,7 +925,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 										if (value != tmp) {
 											errors += value + '<br>';
 										}
+
 										tmp = value;
+
 									} else {
 										$('input[name="' + index + '"]').removeClass('border border-danger');
 										$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');

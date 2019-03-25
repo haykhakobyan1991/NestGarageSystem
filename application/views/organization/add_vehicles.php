@@ -195,7 +195,6 @@
 					</div>
 
 
-
 					<!--					<div class="row" style="margin-top: .6rem;">-->
 					<!--						<label class="pl-3 col-form-label col-sm-4"-->
 					<!--							   style="font-size: 15px;">-->

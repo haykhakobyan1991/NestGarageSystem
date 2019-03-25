@@ -637,7 +637,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						});
 
 
-						ymaps.ready(init);
+						ymaps.ready(init,$('#map_loader').fadeOut('slow'));
 
 
 						function init() {
@@ -779,7 +779,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									$(this).html(distance[$(this).data('value')]);
 
-									$('#map_loader').fadeOut('slow');
 
 								})
 							}, 1500);

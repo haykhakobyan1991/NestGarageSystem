@@ -8,7 +8,6 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
-<script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 
 <!-- Structure Start -->
 <style>
@@ -28,25 +27,18 @@ if ($this->uri->segment('3') == 'fleet_history') {
 	//---;
 	echo '<script src="' . base_url('assets/js/custom-events.js') . '"></script>';
 }
-
 $time = strtotime(mdate('%Y-%m-%d', now()));
-
-
-
 ?>
 
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="content m-1">
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
-
-
 		<div id="sample" style="position:relative;">
 			<div>
 				<table id="example11" class="table table-striped table-hover">
 					<thead>
 					<tr>
-
 						<th><?= lang('type') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('license_plate') ?></th>
@@ -62,10 +54,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 					<? foreach ($structure as $row) { ?>
 						<tr>
-
-
 							<td>
-
 								<li class="list-group-item d-flex justify-content-between align-items-center p-0" style="background: transparent;border: none;">
 									<?=
 									$row['fleet_type'] .
@@ -83,7 +72,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 								</li>
 							</td>
-
 							<td data-id="<?= $row['fleet_id'] ?>"><?= $row['model'] ?></td>
 							<td><?= $row['fleet_plate_number'] ?></td>
 							<td><?= $row['driver'] ?></td>
@@ -97,20 +85,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					<? } ?>
 					</tbody>
 				</table>
-
-				<div id="myInspector">
-
-				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-
-
-
 <script>
-
 	$(document).ready(function () {
 		// Setup - add a text input to each footer cell
 		$('#example11 thead tr').clone(true).appendTo('#example11 thead');
@@ -153,6 +133,5 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 </script>
-
 
 

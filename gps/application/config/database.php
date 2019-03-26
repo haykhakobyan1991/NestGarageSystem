@@ -138,11 +138,11 @@ $query_builder = TRUE;
 /// ///////////// ///
 
 $db['default'] = array(
-	'dsn' => 'pgsql:host=localhost;port=5432;dbname=nestgragesystem;user=postgres;password=',
+	'dsn' => 'pgsql:host=localhost;port=5432;dbname=nestgaragesystem;user=postgres;password=',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => '',
-	'database' => 'nestgragesystem',
+	'database' => 'nestgaragesystem',
 	'dbdriver' => 'postgres',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -159,10 +159,10 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db['default']['hostname'] = 'pgsql:host=localhost;dbname=nestgragesystem'; //set host
+$db['default']['hostname'] = 'pgsql:host=localhost;dbname=nestgaragesystem'; //set host
 $db['default']['username'] = 'postgres'; //set username
 $db['default']['password'] = ''; //set password
-$db['default']['database'] = 'nestgragesystem'; //set databse
+$db['default']['database'] = 'nestgaragesystem'; //set databse
 $db['default']['dbdriver'] = 'pdo'; //set driver here
 
 

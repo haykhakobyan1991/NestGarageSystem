@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ec57c1ac-d7e9-458c-94eb-3d25983346fb" name="Default Changelist" comment="Hayk">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php" beforeDir="false" afterPath="$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gps/application/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/gps/application/config/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gps/application/controllers/Gps.php" beforeDir="false" afterPath="$PROJECT_DIR$/gps/application/controllers/Gps.php" afterDir="false" />
     </list>
     <ignored path=".idea/" />
     <ignored path="application/log" />
@@ -28,7 +29,23 @@
     <option name="HIDDEN_KINDS">
       <set />
     </option>
-    <expand />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nestgarage_system@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nestgarage_system@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="nestgarage_system@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="nestgarage_system: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+    </expand>
     <select />
   </component>
   <component name="FavoritesManager">
@@ -37,10 +54,91 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/fuel.php">
+        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/trajectory.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16146">
-              <caret line="706" column="36" selection-start-line="706" selection-start-column="32" selection-end-line="706" selection-end-column="36" />
+            <state relative-caret-position="-289">
+              <caret line="87" column="60" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+              <folding>
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#2;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#3;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#4;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#5;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#6;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#7;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#8;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#9;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#10;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#5;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#6;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gps/application/controllers/Gps.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="655">
+              <caret line="1467" column="99" selection-start-line="1467" selection-start-column="99" selection-end-line="1467" selection-end-column="99" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gps/application/views/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1422">
+              <caret line="553" column="13" selection-start-line="553" selection-start-column="13" selection-end-line="553" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://04e7deb0-eb70-4412-a7f1-11ba4ddd109b/schema/nestgarage_system/table/fleet">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://04e7deb0-eb70-4412-a7f1-11ba4ddd109b/schema/nestgarage_system/table/fleet_type">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -48,51 +146,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/load.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4807">
-              <caret line="209" column="18" selection-start-line="209" selection-start-column="18" selection-end-line="209" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/event.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/trajectory.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24771">
-              <caret line="1081" selection-start-line="1081" selection-end-line="1081" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1143">
-              <caret line="885" column="35" selection-start-line="885" selection-start-column="35" selection-end-line="885" selection-end-column="35" />
+            <state relative-caret-position="323">
+              <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
               <folding>
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#0;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#1;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#2;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#3;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#4;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#5;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#6;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#7;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#8;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#9;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#label#10;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#5;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#0;n#div#6;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
@@ -102,10 +178,78 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/sos.php">
+        <entry file="file://$PROJECT_DIR$/system/libraries/Profiler.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10948">
-              <caret line="482" column="8" selection-start-line="482" selection-start-column="8" selection-end-line="494" selection-end-column="19" />
+            <state relative-caret-position="-8795">
+              <folding>
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#96#102#0" expanded="true" />
+                <element signature="e#102#108#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="e#147#153#0" expanded="true" />
+                <element signature="e#153#159#0" expanded="true" />
+                <element signature="e#205#211#0" expanded="true" />
+                <element signature="e#239#245#0" expanded="true" />
+                <element signature="e#245#251#0" expanded="true" />
+                <element signature="e#251#257#0" expanded="true" />
+                <element signature="e#342#348#0" expanded="true" />
+                <element signature="e#348#354#0" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#117#123#0" expanded="true" />
+                <element signature="e#123#129#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#90#96#0" expanded="true" />
+                <element signature="e#96#102#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#91#97#0" expanded="true" />
+                <element signature="e#97#103#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#92#98#0" expanded="true" />
+                <element signature="e#98#104#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#101#107#0" expanded="true" />
+                <element signature="e#107#113#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#91#97#0" expanded="true" />
+                <element signature="e#97#103#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="e#165#171#0" expanded="true" />
+                <element signature="e#171#177#0" expanded="true" />
+                <element signature="e#226#232#0" expanded="true" />
+                <element signature="e#232#238#0" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#table#0;n#fieldset#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+                <element signature="e#88#94#0" expanded="true" />
+                <element signature="e#94#100#0" expanded="true" />
+                <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/system/libraries/Migration.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="402" column="14" selection-start-line="402" selection-start-column="14" selection-end-line="402" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -121,39 +265,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sos()</find>
-      <find>example11</find>
-      <find>init</find>
-      <find>html5</find>
-      <find>mess</find>
-      <find>displ</find>
-      <find>display: none</find>
-      <find>&lt;table</find>
-      <find>.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis</find>
-      <find>success</find>
-      <find>table</find>
-      <find>messageTop</find>
-      <find>box.</find>
-      <find>speed_yn</find>
+      <find>get_fleet_info</find>
+      <find>object</find>
+      <find>console</find>
+      <find>$.post('&lt;?=$this-&gt;load-&gt;old_baseUrl()</find>
+      <find>trajectory</find>
+      <find>get_l</find>
+      <find>load()</find>
+      <find>_load</find>
       <find>event</find>
-      <find>example12</find>
-      <find>map</find>
-      <find>events.add</find>
-      <find>if</find>
-      <find>alert</find>
-      <find>console.log(</find>
-      <find>loading</find>
-      <find>.add</find>
-      <find>myPlacemarkWithContent</find>
-      <find>console.log</find>
-      <find>properties</find>
-      <find>first</find>
-      <find>firstButton</find>
-      <find>selectO</find>
-      <find>alert(</find>
+      <find>get_SingleFleet</find>
+      <find>single</find>
+      <find>event()</find>
+      <find>config</find>
+      <find>my</find>
+      <find>settings_modal</find>
+      <find>footer</find>
+      <find>nominal_speed</find>
+      <find>fuel</find>
+      <find>no</find>
+      <find>$company_id</find>
+      <find>$step</find>
+      <find>edit_ve</find>
+      <find>user()</find>
+      <find>folder</find>
+      <find>$folder</find>
+      <find>edit_user</find>
+      <find>from</find>
+      <find>signIN</find>
+      <find>??</find>
+      <find>calendar</find>
     </findStrings>
     <replaceStrings>
-      <replace>7</replace>
       <replace>4</replace>
       <replace>&lt;input title=&quot;&quot;</replace>
       <replace>form-control</replace>
@@ -183,6 +326,7 @@
       <replace>ծախս</replace>
       <replace>width() + 30</replace>
       <replace>children</replace>
+      <replace>nestgaragesystem</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -194,30 +338,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/views/fleet_history/expenses_history.php" />
-        <option value="$PROJECT_DIR$/application/views/structure/car_info.php" />
-        <option value="$PROJECT_DIR$/application/views/organization/department.php" />
-        <option value="$PROJECT_DIR$/application/views/organization/staff.php" />
-        <option value="$PROJECT_DIR$/application/views/organization/vehicles.php" />
-        <option value="$PROJECT_DIR$/application/views/organization/user.php" />
-        <option value="$USER_HOME$/Desktop/stop.svg" />
-        <option value="$USER_HOME$/Desktop/parking-sign.svg" />
-        <option value="$USER_HOME$/Desktop/play-button.svg" />
-        <option value="$USER_HOME$/Desktop/triangle.svg" />
-        <option value="$PROJECT_DIR$/gps/assets/images/gps_tracking/triangle.svg" />
-        <option value="$PROJECT_DIR$/assets/js/main.js" />
-        <option value="$PROJECT_DIR$/gps/assets/js/main.js" />
-        <option value="$USER_HOME$/Desktop/yandex.html" />
-        <option value="$PROJECT_DIR$/application/views/organization/add_vehicles.php" />
-        <option value="$PROJECT_DIR$/application/views/organization/edit_vehicles.php" />
-        <option value="$PROJECT_DIR$/gps/assets/css/gps_tracking/gps_tracking.css" />
-        <option value="$PROJECT_DIR$/assets/css/gps_tracking/gps_tracking.css" />
-        <option value="$USER_HOME$/Desktop/geo.kml" />
-        <option value="$PROJECT_DIR$/assets/css/style.css" />
-        <option value="$PROJECT_DIR$/application/views/organization/company.php" />
-        <option value="$PROJECT_DIR$/application/views/fleet_history/edit_group.php" />
-        <option value="$PROJECT_DIR$/application/views/structure/structure1.php" />
-        <option value="$PROJECT_DIR$/gps/assets/images/gps_tracking/navigation2.svg" />
         <option value="$PROJECT_DIR$/gps/assets/images/ymap/car.svg" />
         <option value="$PROJECT_DIR$/gps/assets/images/gps_tracking/navigation.svg" />
         <option value="$PROJECT_DIR$/gps/assets/images/gps_tracking/aaa.svg" />
@@ -232,27 +352,51 @@
         <option value="$PROJECT_DIR$/gps/application/language/russian/translate_lang.php" />
         <option value="$PROJECT_DIR$/application/language/armenian/translate_lang.php" />
         <option value="$PROJECT_DIR$/application/language/russian/translate_lang.php" />
-        <option value="$PROJECT_DIR$/application/views/header.php" />
         <option value="$PROJECT_DIR$/gps/application/language/armenian/translate_lang.php" />
         <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/sos.php" />
         <option value="$PROJECT_DIR$/gps/assets/css/gps_tracking/sos.css" />
         <option value="$PROJECT_DIR$/gps/assets/css/gps_tracking/fuel.css" />
-        <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/fuel.php" />
         <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/event.php" />
-        <option value="$PROJECT_DIR$/gps/application/views/header.php" />
         <option value="$PROJECT_DIR$/gps/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/gps/application/controllers/Gps.php" />
+        <option value="$PROJECT_DIR$/gps/application/config/database.php" />
+        <option value="$PROJECT_DIR$/application/controllers/System_main.php" />
+        <option value="$PROJECT_DIR$/application/views/organization/add_vehicles.php" />
+        <option value="$PROJECT_DIR$/gps/application/views/event/event.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/abad052c-2824-41b6-a706-6f8a650d1e78/console_1.sql" />
+        <option value="$PROJECT_DIR$/application/views/header.php" />
+        <option value="$PROJECT_DIR$/gps/system/libraries/Calendar.php" />
+        <option value="$PROJECT_DIR$/gps/application/config/config.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/abad052c-2824-41b6-a706-6f8a650d1e78/console_2.sql" />
+        <option value="$PROJECT_DIR$/application/controllers/Api.php" />
+        <option value="$PROJECT_DIR$/gps/application/views/event/edit_event.php" />
+        <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/reddit-php-sdk/index.php" />
+        <option value="$PROJECT_DIR$/gps/application/config/my.php" />
+        <option value="$PROJECT_DIR$/gps/application/controllers/System_main.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Organization.php" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/application/views/organization/edit_vehicles.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/api/index.php" />
+        <option value="$PROJECT_DIR$/application/views/organization/user.php" />
+        <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/fuel.php" />
+        <option value="$PROJECT_DIR$/application/controllers/User.php" />
         <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/load.php" />
         <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/trajectory.php" />
-        <option value="$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php" />
+        <option value="$PROJECT_DIR$/gps/application/views/header.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMessage.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleHeaderFactory.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php" />
+        <option value="$PROJECT_DIR$/../GrDoN/elmasys/application/config/application.ini" />
+        <option value="$PROJECT_DIR$/../GrDoN/elmasys/.htaccess" />
+        <option value="$PROJECT_DIR$/gps/application/controllers/Gps.php" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="x" value="-145" />
+    <option name="y" value="5" />
+    <option name="width" value="1385" />
+    <option name="height" value="755" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,6 +404,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -270,6 +415,55 @@
             <path>
               <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="language" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="language" type="462c0819:PsiDirectoryNode" />
+              <item name="armenian" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="organization" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
               <item name="gps" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -277,6 +471,20 @@
               <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
               <item name="gps" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -284,6 +492,14 @@
               <item name="gps" type="462c0819:PsiDirectoryNode" />
               <item name="application" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="gps" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="event" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
@@ -293,19 +509,29 @@
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="gps_tracking" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="NestGarageSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="NestGarageSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="system" type="462c0819:PsiDirectoryNode" />
+              <item name="libraries" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DatabaseDriversLRU" value="postgresql&#10;mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/application/session/tl_sessionf528764d624db129b32c21fbca0cb8d61hehkaare0fbuninipe10njhrvrjbcpf" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../blog" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -316,19 +542,19 @@
     <option name="SHOW_DIALOG" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\js" />
-      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\images\gps_tracking" />
-      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\images\ymap" />
-      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\assets\images" />
-      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\assets\images\gps_tracking\geofences" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\images\gps_tracking" />
       <recent name="D:\OSPanel\domains\localhost\NestGarageSystem\application\views\structure" />
       <recent name="D:\OSPanel\domains\localhost\NestGarageSystem\assets\images" />
       <recent name="D:\OSPanel\domains\localhost\NestGarageSystem\application\logs" />
       <recent name="D:\OSPanel\domains\localhost\NestGarageSystem\application\controllers" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\localhost\NestGarageSystem\gps\assets\webfonts" />
+      <recent name="D:\OpenServer\domains\localhost\NestGarageSystem\gps\assets\css\datepicker" />
+      <recent name="D:\OpenServer\domains\localhost\NestGarageSystem\gps\assets\js\datepicker" />
+      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\js" />
+      <recent name="C:\OSPanel\domains\localhost\NestGarageSystem\gps\assets\images\gps_tracking" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -478,139 +704,14 @@
       <workItem from="1551683770525" duration="15246000" />
       <workItem from="1551766949350" duration="23568000" />
       <workItem from="1551853126542" duration="1141000" />
-    </task>
-    <task id="LOCAL-00167" summary="Hayk">
-      <created>1550045538311</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1550045538312</updated>
-    </task>
-    <task id="LOCAL-00168" summary="Hayk">
-      <created>1550046477066</created>
-      <option name="number" value="00168" />
-      <option name="presentableId" value="LOCAL-00168" />
-      <option name="project" value="LOCAL" />
-      <updated>1550046477066</updated>
-    </task>
-    <task id="LOCAL-00169" summary="Hayk">
-      <created>1550047506766</created>
-      <option name="number" value="00169" />
-      <option name="presentableId" value="LOCAL-00169" />
-      <option name="project" value="LOCAL" />
-      <updated>1550047506766</updated>
-    </task>
-    <task id="LOCAL-00170" summary="Hayk">
-      <created>1550057037152</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1550057037152</updated>
-    </task>
-    <task id="LOCAL-00171" summary="Hayk">
-      <created>1550062856312</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1550062856312</updated>
-    </task>
-    <task id="LOCAL-00172" summary="Hayk">
-      <created>1550063543569</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1550063543569</updated>
-    </task>
-    <task id="LOCAL-00173" summary="Hayk">
-      <created>1550149011720</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1550149011721</updated>
-    </task>
-    <task id="LOCAL-00174" summary="Hayk">
-      <created>1550213690715</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1550213690715</updated>
-    </task>
-    <task id="LOCAL-00175" summary="Hayk">
-      <created>1550215379932</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1550215379933</updated>
-    </task>
-    <task id="LOCAL-00176" summary="Hayk">
-      <created>1550231861939</created>
-      <option name="number" value="00176" />
-      <option name="presentableId" value="LOCAL-00176" />
-      <option name="project" value="LOCAL" />
-      <updated>1550231861939</updated>
-    </task>
-    <task id="LOCAL-00177" summary="Hayk">
-      <created>1550484705956</created>
-      <option name="number" value="00177" />
-      <option name="presentableId" value="LOCAL-00177" />
-      <option name="project" value="LOCAL" />
-      <updated>1550484705957</updated>
-    </task>
-    <task id="LOCAL-00178" summary="Hayk">
-      <created>1550560126231</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1550560126232</updated>
-    </task>
-    <task id="LOCAL-00179" summary="Hayk">
-      <created>1550561284812</created>
-      <option name="number" value="00179" />
-      <option name="presentableId" value="LOCAL-00179" />
-      <option name="project" value="LOCAL" />
-      <updated>1550561284812</updated>
-    </task>
-    <task id="LOCAL-00180" summary="Hayk">
-      <created>1550662864700</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1550662864700</updated>
-    </task>
-    <task id="LOCAL-00181" summary="Hayk">
-      <created>1550672101805</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1550672101805</updated>
-    </task>
-    <task id="LOCAL-00182" summary="Hayk">
-      <created>1550679836191</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1550679836192</updated>
-    </task>
-    <task id="LOCAL-00183" summary="Hayk">
-      <created>1550680278084</created>
-      <option name="number" value="00183" />
-      <option name="presentableId" value="LOCAL-00183" />
-      <option name="project" value="LOCAL" />
-      <updated>1550680278084</updated>
-    </task>
-    <task id="LOCAL-00184" summary="Hayk">
-      <created>1551092769344</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1551092769345</updated>
-    </task>
-    <task id="LOCAL-00185" summary="Hayk">
-      <created>1551108206344</created>
-      <option name="number" value="00185" />
-      <option name="presentableId" value="LOCAL-00185" />
-      <option name="project" value="LOCAL" />
-      <updated>1551108206344</updated>
+      <workItem from="1552909924171" duration="14808000" />
+      <workItem from="1552976242496" duration="33416000" />
+      <workItem from="1553062690061" duration="13783000" />
+      <workItem from="1553159572844" duration="10724000" />
+      <workItem from="1553184906485" duration="1189000" />
+      <workItem from="1553248956829" duration="21415000" />
+      <workItem from="1553495836974" duration="12227000" />
+      <workItem from="1553582027601" duration="11118000" />
     </task>
     <task id="LOCAL-00186" summary="Hayk">
       <created>1551108479715</created>
@@ -822,11 +923,144 @@
       <option name="project" value="LOCAL" />
       <updated>1551767074344</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="Tiko">
+      <created>1552924818408</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1552924818408</updated>
+    </task>
+    <task id="LOCAL-00217" summary="Tiko">
+      <created>1552978988819</created>
+      <option name="number" value="00217" />
+      <option name="presentableId" value="LOCAL-00217" />
+      <option name="project" value="LOCAL" />
+      <updated>1552978988820</updated>
+    </task>
+    <task id="LOCAL-00218" summary="Hayk">
+      <created>1552983716756</created>
+      <option name="number" value="00218" />
+      <option name="presentableId" value="LOCAL-00218" />
+      <option name="project" value="LOCAL" />
+      <updated>1552983716757</updated>
+    </task>
+    <task id="LOCAL-00219" summary="Hayk">
+      <created>1553006884632</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1553006884632</updated>
+    </task>
+    <task id="LOCAL-00220" summary="Tiko">
+      <created>1553007287296</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1553007287296</updated>
+    </task>
+    <task id="LOCAL-00221" summary="Tiko">
+      <created>1553007351713</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1553007351713</updated>
+    </task>
+    <task id="LOCAL-00222" summary="Tikooooo">
+      <created>1553010283809</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1553010283809</updated>
+    </task>
+    <task id="LOCAL-00223" summary="Tiko">
+      <created>1553017172399</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1553017172399</updated>
+    </task>
+    <task id="LOCAL-00224" summary="Tiko">
+      <created>1553063688002</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1553063688002</updated>
+    </task>
+    <task id="LOCAL-00225" summary="Tiko">
+      <created>1553065769953</created>
+      <option name="number" value="00225" />
+      <option name="presentableId" value="LOCAL-00225" />
+      <option name="project" value="LOCAL" />
+      <updated>1553065769953</updated>
+    </task>
+    <task id="LOCAL-00226" summary="Tikooooo">
+      <created>1553070378205</created>
+      <option name="number" value="00226" />
+      <option name="presentableId" value="LOCAL-00226" />
+      <option name="project" value="LOCAL" />
+      <updated>1553070378206</updated>
+    </task>
+    <task id="LOCAL-00227" summary="TIKO">
+      <created>1553084836610</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1553084836611</updated>
+    </task>
+    <task id="LOCAL-00228" summary="Tiko">
+      <created>1553091970405</created>
+      <option name="number" value="00228" />
+      <option name="presentableId" value="LOCAL-00228" />
+      <option name="project" value="LOCAL" />
+      <updated>1553091970405</updated>
+    </task>
+    <task id="LOCAL-00229" summary="Tiko">
+      <created>1553258008587</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1553258008587</updated>
+    </task>
+    <task id="LOCAL-00230" summary="Hayk">
+      <created>1553266465932</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1553266465932</updated>
+    </task>
+    <task id="LOCAL-00231" summary="Tigran Mkrtchyan">
+      <created>1553275745300</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1553275745301</updated>
+    </task>
+    <task id="LOCAL-00232" summary="Hayk">
+      <created>1553510611997</created>
+      <option name="number" value="00232" />
+      <option name="presentableId" value="LOCAL-00232" />
+      <option name="project" value="LOCAL" />
+      <updated>1553510611998</updated>
+    </task>
+    <task id="LOCAL-00233" summary="Hayk">
+      <created>1553511604587</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1553511604587</updated>
+    </task>
+    <task id="LOCAL-00234" summary="Tigran">
+      <created>1553587803811</created>
+      <option name="number" value="00234" />
+      <option name="presentableId" value="LOCAL-00234" />
+      <option name="project" value="LOCAL" />
+      <updated>1553587803813</updated>
+    </task>
+    <option name="localTasksCounter" value="235" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1473398000" />
+    <option name="totallyTimeSpent" value="1592078000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -838,10 +1072,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5023328" side_tool="true" weight="0.120272316" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4976672" visible="true" weight="0.11497731" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4976672" visible="true" weight="0.1359275" />
       <window_info x="574" y="97" width="525" height="749" id="Structure" order="2" side_tool="true" type="WINDOWED" weight="0.2734375" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="0" weight="0.32970452" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.45659164" />
@@ -854,15 +1089,39 @@
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989339" weight="0.592535" />
-      <window_info anchor="bottom" id="Database Console" order="11" weight="0.64094317" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5010661" weight="0.31881803" />
+      <window_info anchor="bottom" id="Database Console" order="11" weight="0.6388102" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5010661" weight="0.3186969" />
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="bottom" id="TODO" order="14" weight="0.2690513" />
-      <window_info anchor="right" id="Database" order="0" weight="0.32980332" />
+      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.18656716" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Favorites" order="0" sideWeight="0.5023328" side_tool="true" weight="0.120272316" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4976672" visible="true" weight="0.13486141" />
+      <window_info x="574" y="97" width="525" height="749" id="Structure" order="2" side_tool="true" type="WINDOWED" weight="0.2734375" />
+      <window_info anchor="bottom" id="Command Line Tools Console" order="0" weight="0.32970452" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.45659164" />
+      <window_info anchor="bottom" id="Docker" order="2" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="3" />
+      <window_info anchor="bottom" id="Find" order="4" weight="0.329718" />
+      <window_info anchor="bottom" id="Database Changes" order="5" show_stripe_button="false" weight="0.3278867" />
+      <window_info anchor="bottom" id="Run" order="6" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4989339" weight="0.592535" />
+      <window_info anchor="bottom" id="Database Console" order="11" weight="0.6388102" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5010661" weight="0.3186969" />
+      <window_info anchor="bottom" id="Messages" order="13" />
+      <window_info anchor="bottom" id="TODO" order="14" weight="0.2690513" />
+      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.18656716" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -909,358 +1168,498 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="HAYK" />
-    <MESSAGE value="Tiko" />
     <MESSAGE value="HaykHakobyan" />
+    <MESSAGE value="Tikooooo" />
     <MESSAGE value="TIKO" />
+    <MESSAGE value="Tiko" />
+    <MESSAGE value="Tigran Mkrtchyan" />
     <MESSAGE value="Hayk" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hayk" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/application/views/organization/vehicles.php</url>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Tigran" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tigran" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/footer.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/abad052c-2824-41b6-a706-6f8a650d1e78/console_1.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="53" column="65" selection-start-line="53" selection-start-column="65" selection-end-line="53" selection-end-column="65" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="156" column="34" lean-forward="true" selection-start-line="156" selection-start-column="34" selection-end-line="157" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="679">
-          <caret line="191" lean-forward="true" selection-start-line="191" selection-end-line="191" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/yandex.html" />
-    <entry file="file://$PROJECT_DIR$/assets/css/gps_tracking/gps_tracking.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="137" column="37" lean-forward="true" selection-start-line="137" selection-start-column="37" selection-end-line="137" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/css/gps_tracking/gps_tracking.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/organization/edit_vehicles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="1093" column="61" lean-forward="true" selection-start-line="1093" selection-start-column="61" selection-end-line="1093" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/geo.kml" />
-    <entry file="file://$PROJECT_DIR$/application/views/organization/add_vehicles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15045">
-          <caret line="887" column="4" selection-start-line="887" selection-start-column="4" selection-end-line="895" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/fleet_history/edit_group.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
-          <caret line="6" column="66" selection-start-line="6" selection-start-column="66" selection-end-line="6" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1541">
-          <caret line="3191" column="4" selection-start-line="3191" selection-start-column="4" selection-end-line="3191" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="110" column="28" lean-forward="true" selection-start-line="110" selection-start-column="28" selection-end-line="110" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/block.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="248" column="16" selection-start-line="248" selection-start-column="16" selection-end-line="248" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/ymap/car.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/triangle.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/geofences/car-front.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/navigation2.svg" />
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/navigation.svg" />
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/trajectory/navigation.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/gas-station.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/images/gps_tracking/aaa.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/layouts/default.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/svg.html" />
-    <entry file="file://$USER_HOME$/Desktop/yandex.js" />
-    <entry file="file://$PROJECT_DIR$/application/views/structure/structure1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1978">
-          <caret line="86" column="66" selection-start-line="86" selection-start-column="59" selection-end-line="86" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/fleet_history/expenses_history.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="13" column="67" selection-start-line="13" selection-start-column="67" selection-end-line="13" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/js/Fileserver.js" />
-    <entry file="file://$PROJECT_DIR$/application/views/structure/vehicle_grease.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="294" column="38" selection-start-line="294" selection-start-column="38" selection-end-line="294" selection-end-column="38" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/structure/vehicle_inspection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="237" column="39" selection-start-line="237" selection-start-column="16" selection-end-line="237" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/organization/company.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-21728">
-          <caret line="52" column="110" selection-start-line="52" selection-start-column="110" selection-end-line="52" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="213" column="36" lean-forward="true" selection-start-line="213" selection-start-column="36" selection-end-line="213" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/css/gps_tracking/trajectory.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1157">
-          <caret line="90" column="1" lean-forward="true" selection-start-line="90" selection-start-column="1" selection-end-line="90" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/geoferences.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="619" column="26" selection-start-line="619" selection-start-column="26" selection-end-line="619" selection-end-column="26" />
-          <folding>
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/speed.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4301">
-          <caret line="187" column="72" selection-start-line="187" selection-start-column="72" selection-end-line="187" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/go.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="277" column="380" selection-start-line="277" selection-start-column="380" selection-end-line="277" selection-end-column="380" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/language/russian/translate_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="437" column="26" selection-start-line="437" selection-start-column="26" selection-end-line="437" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/armenian/translate_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="341" column="10" selection-start-line="341" selection-start-column="7" selection-end-line="341" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/language/russian/translate_lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="339" column="21" lean-forward="true" selection-start-line="339" selection-start-column="21" selection-end-line="339" selection-end-column="21" />
+        <state>
+          <caret column="43" selection-start-column="43" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="362" column="32" lean-forward="true" selection-start-line="362" selection-start-column="32" selection-end-line="362" selection-end-column="32" />
+        <state relative-caret-position="514">
+          <caret line="422" column="60" selection-start-line="415" selection-start-column="48" selection-end-line="422" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/language/armenian/translate_lang.php">
+    <entry file="file://$PROJECT_DIR$/gps/system/libraries/Calendar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="452" lean-forward="true" selection-start-line="452" selection-end-line="452" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/css/gps_tracking/sos.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="566">
-          <caret line="58" selection-start-line="58" selection-end-line="66" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/assets/css/gps_tracking/fuel.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="759">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1886">
-          <caret line="286" column="94" lean-forward="true" selection-start-line="286" selection-start-column="94" selection-end-line="286" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="618">
-          <caret line="66" column="39" lean-forward="true" selection-start-line="66" selection-start-column="39" selection-end-line="66" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/controllers/Gps.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="963">
-          <caret line="254" lean-forward="true" selection-start-line="254" selection-end-line="254" />
+        <state relative-caret-position="294">
+          <caret line="501" column="50" selection-start-line="501" selection-start-column="50" selection-end-line="501" selection-end-column="50" />
           <folding>
-            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#3;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#th#8;n#tr#0;n#thead#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#1;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#7;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#8;n#tr#0;n#tbody#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/fuel.php">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/abad052c-2824-41b6-a706-6f8a650d1e78/console_2.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16146">
-          <caret line="706" column="36" selection-start-line="706" selection-start-column="32" selection-end-line="706" selection-end-column="36" />
+        <state relative-caret-position="72">
+          <caret line="1114" column="180" selection-start-line="4" selection-end-line="1115" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/load.php">
+    <entry file="file://$PROJECT_DIR$/gps/application/views/event/event.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4807">
-          <caret line="209" column="18" selection-start-line="209" selection-start-column="18" selection-end-line="209" selection-end-column="18" />
+        <state relative-caret-position="1938">
+          <caret line="114" column="26" selection-start-line="99" selection-start-column="20" selection-end-line="114" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/event.php">
+    <entry file="file://$PROJECT_DIR$/../GrDoN/reddit-php-sdk/index.php" />
+    <entry file="file://$PROJECT_DIR$/gps/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="17" selection-start-line="1" selection-start-column="17" selection-end-line="1" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/trajectory.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24771">
-          <caret line="1081" selection-start-line="1081" selection-end-line="1081" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/sos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10948">
-          <caret line="482" column="8" selection-start-line="482" selection-start-column="8" selection-end-line="494" selection-end-column="19" />
+        <state relative-caret-position="425">
+          <caret line="25" column="60" selection-start-line="25" selection-start-column="60" selection-end-line="25" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/gps_tracking.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1143">
-          <caret line="885" column="35" selection-start-line="885" selection-start-column="35" selection-end-line="885" selection-end-column="35" />
+        <state relative-caret-position="29546">
+          <caret line="1757" column="29" selection-start-line="1757" selection-start-column="29" selection-end-line="1757" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/event/edit_event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="81" selection-start-line="38" selection-start-column="81" selection-end-line="38" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/organization/edit_department.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="952">
+          <caret line="56" column="81" selection-start-line="51" selection-start-column="4" selection-end-line="56" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/event">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/core/MY_Config.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/language/armenian/translate_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="461" column="19" selection-start-line="461" selection-start-column="7" selection-end-line="461" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/geoference">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/gps">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/my.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/organization/department.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="269" column="4" selection-start-line="269" selection-start-column="4" selection-end-line="354" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/web-forms.rnc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="890">
+          <caret line="287" column="24" selection-start-line="287" selection-start-column="19" selection-end-line="287" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/config">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/GrDoN/nestgaragesystem_public_config.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/core/MY_Loader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3983">
           <folding>
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/language/armenian/translate_lang.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="9" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/config/my.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/controllers/System_main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3655">
+          <caret line="215" column="71" selection-start-line="215" selection-start-column="71" selection-end-line="215" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/core/MY_Loader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4182">
+          <caret line="246" column="26" selection-start-line="246" selection-start-column="26" selection-end-line="246" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/api/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="53" selection-start-line="20" selection-start-column="53" selection-end-line="20" selection-end-column="53" />
+          <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/organization/edit_vehicles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1372">
+          <caret line="109" column="62" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://abad052c-2824-41b6-a706-6f8a650d1e78/database/nestgaragesystem/schema/public/table/tracking">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7582">
+          <caret line="446" column="43" selection-start-line="446" selection-start-column="43" selection-end-line="446" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/sos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8092">
+          <caret line="482" column="8" selection-start-line="482" selection-start-column="8" selection-end-line="494" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/speed.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/fuel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6018">
+          <caret line="358" column="31" selection-start-line="358" selection-start-column="31" selection-end-line="358" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Organization.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64736">
+          <caret line="3808" column="15" selection-start-line="3808" selection-start-column="8" selection-end-line="3808" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="13226">
+          <caret line="778" column="32" selection-start-line="778" selection-start-column="32" selection-end-line="778" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/organization/user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6647">
+          <caret line="391" column="161" selection-start-line="391" selection-start-column="161" selection-end-line="391" selection-end-column="161" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://04e7deb0-eb70-4412-a7f1-11ba4ddd109b/schema/nestgarage_system/table/fleet">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/trajectory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-289">
+          <caret line="87" column="60" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tbody#0;n#table#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#2;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#form#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#2;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#3;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#4;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#5;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#6;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#7;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#8;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#9;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#10;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#5;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#6;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/User_agent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="756">
+          <caret line="647" column="34" selection-start-line="647" selection-start-column="20" selection-end-line="647" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://04e7deb0-eb70-4412-a7f1-11ba4ddd109b/schema/nestgarage_system/table/fleet_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/gps_tracking/load.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="91" column="70" selection-start-line="91" selection-start-column="70" selection-end-line="91" selection-end-column="70" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#3;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#4;n#div#2;n#div#0;n#div#1;n#div#2;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#0;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#1;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#2;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#3;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#4;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#5;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#6;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#7;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#8;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#9;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#label#10;n#div#1;n#div#4;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#5;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#6;n#form#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/Profiler.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8795">
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#96#102#0" expanded="true" />
+            <element signature="e#102#108#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="e#147#153#0" expanded="true" />
+            <element signature="e#153#159#0" expanded="true" />
+            <element signature="e#205#211#0" expanded="true" />
+            <element signature="e#239#245#0" expanded="true" />
+            <element signature="e#245#251#0" expanded="true" />
+            <element signature="e#251#257#0" expanded="true" />
+            <element signature="e#342#348#0" expanded="true" />
+            <element signature="e#348#354#0" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#117#123#0" expanded="true" />
+            <element signature="e#123#129#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#90#96#0" expanded="true" />
+            <element signature="e#96#102#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#91#97#0" expanded="true" />
+            <element signature="e#97#103#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#92#98#0" expanded="true" />
+            <element signature="e#98#104#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#101#107#0" expanded="true" />
+            <element signature="e#107#113#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#91#97#0" expanded="true" />
+            <element signature="e#97#103#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="e#165#171#0" expanded="true" />
+            <element signature="e#171#177#0" expanded="true" />
+            <element signature="e#226#232#0" expanded="true" />
+            <element signature="e#232#238#0" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#legend#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#fieldset#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#!!top" expanded="true" />
+            <element signature="e#88#94#0" expanded="true" />
+            <element signature="e#94#100#0" expanded="true" />
+            <element signature="n#style#0;n#td#1;n#tr#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/basic/requirements.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1836" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMessage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="489" column="33" selection-start-line="489" selection-start-column="33" selection-end-line="489" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleHeaderFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="45" column="50" lean-forward="true" selection-start-line="45" selection-start-column="50" selection-end-line="45" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/basic/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Mime/SimpleMimeEntity.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="300" column="41" selection-start-line="300" selection-start-column="41" selection-end-line="300" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/views/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1422">
+          <caret line="553" column="13" selection-start-line="553" selection-start-column="13" selection-end-line="553" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/elmasys/application/config/application.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1547">
+          <caret line="103" column="31" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../GrDoN/elmasys/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="67" column="18" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/system/libraries/Migration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="402" column="14" selection-start-line="402" selection-start-column="14" selection-end-line="402" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gps/application/controllers/Gps.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="1467" column="99" selection-start-line="1467" selection-start-column="99" selection-end-line="1467" selection-end-column="99" />
         </state>
       </provider>
     </entry>

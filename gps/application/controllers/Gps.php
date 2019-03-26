@@ -1387,6 +1387,8 @@ class Gps extends MX_Controller
 
 		$fleet = array();
 		$_imei = '';
+		$levelStart = 0;
+		$levelFinish = 0;
 		foreach ($result as $row) {
 			$date = new DateTime($row['datetime']);
 
@@ -1463,7 +1465,7 @@ class Gps extends MX_Controller
 			<td style="text-align: center;">' . $drain_counter . '</td>
 			<td style="text-align: center;">' . $drain . '</td>
 			<td style="text-align: center;">' . $levelFinish . '</td>
-			<td style="text-align: center;">' . $avg_all / $avg_counter . '</td>
+			<td style="text-align: center;">' . ($avg_counter == 0 ? 0 : $avg_all / $avg_counter ) . '</td>
 		</tr>
 	</tbody>
 </table>';

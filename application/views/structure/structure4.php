@@ -12,20 +12,6 @@
 
 <!-- Structure Start -->
 <style>
-
-	.row.bg-secondary {
-		min-height: 194px;
-	}
-
-	.modal {
-		top: 30% !important;
-	}
-
-
-	.row.btn-group.mt-2.mt-md-2 {
-		display: none !important;
-	}
-
 	td, th {
 		border: 1px solid #c1c9d2 !important;
 	}

@@ -1387,8 +1387,10 @@ class Gps extends MX_Controller
 
 		$fleet = array();
 		$_imei = '';
+
 		$levelStart = 0;
 		$levelFinish = 0;
+
 		foreach ($result as $row) {
 			$date = new DateTime($row['datetime']);
 
@@ -1457,7 +1459,7 @@ class Gps extends MX_Controller
 	</thead>
 	<tbody class="example_12_tbody">
 		<tr>
-			<td style="text-align: center;">' . $fleet['brand_model'] . '</td>
+			<td style="text-align: center;">' . (isset($fleet['brand_model']) ? $fleet['brand_model'] : '') . '</td>
 			<td style="text-align: center;">' . $levelStart . '</td>
 			<td style="text-align: center;">' . $avg_all . '</td>
 			<td style="text-align: center;">' . $refueling . '</td>

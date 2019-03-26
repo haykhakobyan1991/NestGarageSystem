@@ -326,6 +326,7 @@ class Structure extends MX_Controller
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
 			  `fleet_type`.`title_" . $lng . "` AS `fleet_type`,
+			  `fleet_type`.`id` AS `fleet_type_id`,
 			   CONCAT_WS(
 				' ',
 				`brand`.`title_" . $lng . "`,

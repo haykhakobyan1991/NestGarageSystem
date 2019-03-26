@@ -1,7 +1,6 @@
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/structure1.css"/>
 <!-- Structure Start -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
@@ -22,9 +21,6 @@
 
 <!-- Structure Start -->
 <style>
-	/*canvas {*/
-	/*background: #fff;*/
-	/*}*/
 
 	.row.bg-secondary {
 		min-height: 194px;
@@ -34,31 +30,17 @@
 		top: 30% !important;
 	}
 
-	/*#fleet_filter {*/
-	/*border: 1px solid;*/
-	/*position: absolute;*/
-	/*z-index: 999;*/
-	/*right: 60px;*/
-	/*top: 20px;*/
-	/*padding: 10px 15px 10px 30px;*/
-	/*border-radius: 5px;*/
-	/*}*/
 
-	/*.btn.disabled, .btn:disabled {*/
-	/*opacity: 1 !important;*/
-	/*}*/
-
-	/*.bootstrap-select.disabled, .bootstrap-select > .disabled {*/
-	/*cursor: none !important;*/
-	/*color: #000 !important;*/
-	/*background: #eaedf0 !important;*/
-	/*}*/
 	.row.btn-group.mt-2.mt-md-2 {
 		display: none !important;
 	}
 
 	td, th {
 		border: 1px solid #c1c9d2 !important;
+	}
+
+	thead tr:nth-child(2) th:last-child input {
+		display: none;
 	}
 </style>
 
@@ -93,7 +75,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <div class="content m-1">
-	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0">
+	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
 
 
 		<div id="sample" style="position:relative;">
@@ -106,7 +88,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div>
 
 
-				<table id="example11" class="table table-striped table-borderless dataTable">
+				<table id="example11" class="table table-striped table-hover">
 					<thead>
 					<tr>
 
@@ -117,7 +99,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
+						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i
+								class="pr-2 fas fa-edit"></i></th>
 					</tr>
 					</thead>
 					<tbody style="overflow-y: scroll;">
@@ -125,30 +108,39 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					<? foreach ($structure as $row) { ?>
 						<tr>
 
-							<td><?= $row['fleet_type'] ?></td>
+
+							<td>
+
+								<li class="list-group-item d-flex justify-content-between align-items-center p-0" style="background: transparent;border: none;">
+									<?=
+									$row['fleet_type'] .
+									'<span style="background: transparent;" class="badge badge-light badge-pill"><img src="' . ($row['fleet_type_id'] == 1 ? base_url('assets/img/fleet_type/car.png') :
+										($row['fleet_type_id'] == 2 ? base_url('assets/img/fleet_type/delivery-truck.png') :
+											($row['fleet_type_id'] == 3 ? base_url('assets/img/fleet_type/construction-tool-vehicle-with-crane-lifting-materials.png') :
+												($row['fleet_type_id'] == 4 ? base_url('assets/img/fleet_type/construction-truck.png') :
+													($row['fleet_type_id'] == 5 ? base_url('assets/img/fleet_type/bus-side-view.png') :
+														($row['fleet_type_id'] == 6 ? base_url('assets/img/fleet_type/minivan.png') :
+															($row['fleet_type_id'] == 7 ? base_url('assets/img/fleet_type/car-with-trailer.png') : ''
+															))))))) . '"></span>';
+
+
+									?>
+
+								</li>
+							</td>
+
 							<td data-id="<?= $row['fleet_id'] ?>"><?= $row['model'] ?></td>
 							<td><?= $row['fleet_plate_number'] ?></td>
 							<td><?= $row['driver'] ?></td>
 							<td><?= $row['department'] ?></td>
 							<td><?= $row['head'] ?></td>
 							<td><?= $row['company'] ?></td>
-							<td><a href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/edit_vehicles/'.$row['fleet_id'])?>"><i class="pr-2 fas fa-edit text-success"></i></a></td>
+							<td>
+								<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/edit_vehicles/' . $row['fleet_id']) ?>"><i
+										class="pr-2 fas fa-edit text-success"></i></a></td>
 						</tr>
 					<? } ?>
 					</tbody>
-					<tfoot>
-					<tr>
-
-						<td class="col_search"><?= lang('type') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('license_plate') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('driver') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></td>
-						<td class="col_search" style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></td>
-						<td style="font-size: 1px;color: transparent;"></td>
-					</tr>
-					</tfoot>
 				</table>
 
 				<div id="myInspector">
@@ -1479,41 +1471,45 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		}
 	});
 
-	// Setup - add a text input to each footer cell
-	$('#example11 tfoot td.col_search').each(function () {
-		var title = $(this).text();
-		$(this).html('<input class="text-center" type="text" placeholder="' + title + '" />');
-	});
 
-	var table = $('#example11').DataTable({
-		language: {
-			search: "<?=lang('search')?>",
-			emptyTable: "<?=lang('no_data')?>",
-			info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-			infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-			infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-			lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-			zeroRecords: "<?=lang('no_matching_records')?>",
-			paginate: {
-				first: "<?=lang('first')?>",
-				last: "<?=lang('last')?>",
-				next: "<?=lang('next')?>",
-				previous: "<?=lang('prev')?>"
-			}
-		},
-		"columnDefs": [
-			{ "orderable": false, "targets": [0, 7] }
-		]
-	});
+	$(document).ready(function () {
+		// Setup - add a text input to each footer cell
+		$('#example11 thead tr').clone(true).appendTo('#example11 thead');
+		$('#example11 thead tr:eq(1) th').each(function (i) {
+			var title = $(this).text();
+			$(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
 
-	// Apply the search
-	table.columns().every(function () {
-		var that = this;
+			$('input', this).on('keyup change', function () {
+				if (table.column(i).search() !== this.value) {
+					table
+						.column(i)
+						.search(this.value)
+						.draw();
+				}
+			});
+		});
 
-		$('input', this.footer()).on('keyup change', function () {
-			if (that.search() !== this.value) {
-				that.search(this.value).draw();
-			}
+		var table = $('#example11').DataTable({
+			language: {
+				search: "<?=lang('search')?>",
+				emptyTable: "<?=lang('no_data')?>",
+				info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+				zeroRecords: "<?=lang('no_matching_records')?>",
+				paginate: {
+					first: "<?=lang('first')?>",
+					last: "<?=lang('last')?>",
+					next: "<?=lang('next')?>",
+					previous: "<?=lang('prev')?>"
+				}
+			},
+			orderCellsTop: true,
+			fixedHeader: true,
+			"columnDefs": [
+				{"orderable": false, "targets": [0, 7]}
+			]
 		});
 	});
 

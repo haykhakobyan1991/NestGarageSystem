@@ -92,7 +92,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="<?= date("Y-m-d", strtotime("-10 day", $time)); ?>"
+								value="<?= date("Y-m-d", strtotime("-5 day", $time)); ?>"
 								style="font-size: 11px !important;" type=""
 								data-date-format="yyyy-mm-dd"
 								class="datepickerFrom form-control form-control-sm pl-1 pr-0">

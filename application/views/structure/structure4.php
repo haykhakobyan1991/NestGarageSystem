@@ -8,7 +8,6 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
-
 <!-- Structure Start -->
 <style>
 	td, th {
@@ -19,15 +18,21 @@
 		display: none;
 	}
 
-	#nav-tab > a:nth-child(1),#nav-tab > a:nth-child(2),#nav-tab > a:nth-child(3),#nav-tab > a:nth-child(4){
+	#nav-tab > a:nth-child(1), #nav-tab > a:nth-child(2), #nav-tab > a:nth-child(3), #nav-tab > a:nth-child(4) {
 		display: none;
 	}
+
 	div.dataTables_wrapper div.dataTables_filter {
 		margin-right: 155px;
 	}
-	.btn-group.ml-auto{K
-		z-index: 999 !important;
+
+	.btn-group.ml-auto {
+		K z-index: 999 !important;
 		margin-right: 12px;
+	}
+
+	table td {
+		padding: 1px !important;
 	}
 </style>
 
@@ -47,7 +52,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
 		<div id="sample" style="position:relative;">
 			<div>
-				<table id="example11" class="table table-striped">
+				<table id="example11" class="table table-striped" style="font-size: 12px;">
 					<thead>
 					<tr>
 						<th><?= lang('type') ?></th>
@@ -57,14 +62,16 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
+						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i
+								class="pr-2 fas fa-edit"></i></th>
 					</tr>
 					</thead>
 					<tbody style="overflow-y: scroll;">
 					<? foreach ($structure as $row) { ?>
 						<tr>
 							<td>
-								<li class="list-group-item d-flex justify-content-between align-items-center p-0" style="background: transparent;border: none;">
+								<li class="list-group-item d-flex justify-content-between align-items-center p-0"
+									style="background: transparent;border: none;">
 									<?=
 									$row['fleet_type'] .
 									'<span style="background: transparent;" class="badge badge-light badge-pill"><img src="' . ($row['fleet_type_id'] == 1 ? base_url('assets/img/fleet_type/car.png') :

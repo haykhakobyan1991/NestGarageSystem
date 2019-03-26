@@ -784,13 +784,13 @@ class User extends CI_Controller {
 			'img_width' => '150',
 			'img_height' => 50,
 			'expiration' => 3600,
-			'font_size'	=> 16,
+			'font_size' => 16,
 			'captcha_case_sensitive' => true,
-			'colors'	=> array(
-				'background'	=> array(255,255,255),
-				'border'	=> array(206,212,218),
-				'text'		=> array(40,167,69),
-				'grid'		=> array(255,193,7)
+			'colors' => array(
+				'background' => array(255, 255, 255),
+				'border' => array(206, 212, 218),
+				'text' => array(40, 167, 69),
+				'grid' => array(255, 193, 7)
 			)
 		);
 		$captcha = create_captcha($values);

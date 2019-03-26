@@ -18,6 +18,17 @@
 	thead tr:nth-child(2) th:last-child input {
 		display: none;
 	}
+
+	#nav-tab > a:nth-child(1),#nav-tab > a:nth-child(2),#nav-tab > a:nth-child(3),#nav-tab > a:nth-child(4){
+		display: none;
+	}
+	div.dataTables_wrapper div.dataTables_filter {
+		margin-right: 155px;
+	}
+	.btn-group.ml-auto{K
+		z-index: 999 !important;
+		margin-right: 12px;
+	}
 </style>
 
 
@@ -32,11 +43,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
-<div class="content m-1">
+<div class="content m-1" style="margin-top: -54px !important;">
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
 		<div id="sample" style="position:relative;">
 			<div>
-				<table id="example11" class="table table-striped table-hover">
+				<table id="example11" class="table table-striped">
 					<thead>
 					<tr>
 						<th><?= lang('type') ?></th>
@@ -46,12 +57,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i
-								class="pr-2 fas fa-edit"></i></th>
+						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
 					</tr>
 					</thead>
 					<tbody style="overflow-y: scroll;">
-
 					<? foreach ($structure as $row) { ?>
 						<tr>
 							<td>
@@ -66,8 +75,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 														($row['fleet_type_id'] == 6 ? base_url('assets/img/fleet_type/minivan.png') :
 															($row['fleet_type_id'] == 7 ? base_url('assets/img/fleet_type/car-with-trailer.png') : ''
 															))))))) . '"></span>';
-
-
 									?>
 
 								</li>

@@ -1173,10 +1173,8 @@ $lng = $this->load->lng();
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
 
-
 			$('input.coords').on('change', function (event) {
 			})
-
 
 		});
 
@@ -1362,23 +1360,23 @@ $lng = $this->load->lng();
 						}, 500);
 						myMap_show_all_cars.geoObjects.removeAll(myPlacemarkWithContent);
 
-						rc = 0;
-						$('.geofences_coordinate').each(function () {
-							geoObject_coordinates = $(this).attr('data-gCoordinate');
-							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-							var rand_color = rand_color_arr[rc];
-							myPolygon = new ymaps.Polygon([
-								array_stting
-							], {}, {
-								editorDrawingCursor: "crosshair",
-								fillColor: rand_color,
-								strokeColor: rand_color,
-								strokeWidth: 2
-							});
-							myMap_show_all_cars.geoObjects.add(myPolygon);
-
-							rc++;
-						});
+						// rc = 0;
+						// $('.geofences_coordinate').each(function () {
+						// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
+						// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
+						// 	var rand_color = rand_color_arr[rc];
+						// 	myPolygon = new ymaps.Polygon([
+						// 		array_stting
+						// 	], {}, {
+						// 		editorDrawingCursor: "crosshair",
+						// 		fillColor: rand_color,
+						// 		strokeColor: rand_color,
+						// 		strokeWidth: 2
+						// 	});
+						// 	myMap_show_all_cars.geoObjects.add(myPolygon);
+						//
+						// 	rc++;
+						// });
 					}
 				);
 

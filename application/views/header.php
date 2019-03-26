@@ -256,27 +256,26 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 											<button type="button"
 													style="width: 40px;height: 40px;padding: 0 !important;"
 													class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
-												<img width="20" src="<?= base_url('assets/images/trees1.svg') ?>">
+												<i class="fas fa-sitemap"></i>
 											</button>
 										</a>
 										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/' . $this->uri->segment(3)) ?>">
 											<button type="button"
 													style="width: 40px;height: 40px;padding: 0 !important;"
 													class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
-												<img width="20" src="<?= base_url('assets/images/trees2.svg') ?>">
+												<i class="fas fa-stream"></i>
 											</button>
 										</a>
-										<!--										<a href="-->
-										<?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure3/' . $this->uri->segment(3)) ?><!--">-->
-										<!--											<button type="button"-->
-										<!--													style="width: 40px;height: 40px;padding: 0 !important;"-->
-										<!--													class="m-1 btn btn-outline-secondary -->
-										<?//= ($page == 'structure3' ? 'active' : '') ?><!--"-->
-										<!--													style="">-->
-										<!--												<img width="20" src="-->
-										<?//= base_url('assets/images/trees3.svg') ?><!--">-->
-										<!--											</button>-->
-										<!--										</a>-->
+																				<a href="
+										<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure4/' . $this->uri->segment(3)) ?>">
+																					<button type="button"
+																							style="width: 40px;height: 40px;padding: 0 !important;"
+																							class="m-1 btn btn-outline-secondary
+										<?= ($page == 'structure4' ? 'active' : '') ?>"
+																							style="">
+																						<i class="fas fa-table"></i>
+																					</button>
+																				</a>
 
 										</div><?
 									}
@@ -289,11 +288,11 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							if ($page == 'structure1' || $page == 'structure2') {
 								?>
 								<div class="row btn-group mt-2 mt-md-2"
-									 style="right: 130px;z-index: 999;position: absolute;top: 77px;">
+									 style="right: 155px;z-index: 999;position: absolute;top: 77px;">
 									<input class="form-control col-7" type="search" id="mySearch"
 										   onkeypress="if (event.keyCode === 13) searchDiagram()">
-									<a class="nav_a btn btn-sm btn-outline-success2 active ml-2"
-									   onclick="searchDiagram()"><?= lang('search') ?></a>
+									<a class="nav_a btn btn-sm btn-outline-success2 active ml-1" style="padding: 9px 20px !important;"
+									   onclick="searchDiagram()"><i class="fas fa-search"></i></a>
 								</div>
 							<? } ?>
 							</div><?

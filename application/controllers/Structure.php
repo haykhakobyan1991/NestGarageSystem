@@ -273,6 +273,135 @@ class Structure extends MX_Controller
 
 	}
 
+
+	public function structure4()
+	{
+
+
+
+		$user_id = $this->session->user_id;
+		$folder = $this->session->folder;
+		$lng = $this->load->lng();
+		$data = array();
+
+		$sql_add_user = "
+			SELECT
+				CONCAT_WS(
+					' ',
+					`first_name`,
+					`last_name`
+			  	) AS `name`
+			FROM
+			  `user`
+			WHERE `id` = '" . $user_id . "'	  	
+		";
+
+		$query_add_user = $this->db->query($sql_add_user);
+
+		$data['user'] = $query_add_user->row_array();
+
+
+		$row = $this->db->select('company_id')->from('user')->where('id', $user_id)->get()->row_array();
+		$company_id = $row['company_id'];
+
+		$sql = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`head_staff`.`first_name`,
+				`head_staff`.`last_name`
+			  ) AS `head`,
+			  `head_staff`.`photo` AS `head_staff_photo`,
+			  `head_staff`.`id` AS `head_staff_id`,
+			  CONCAT_WS(
+				' ',
+				`staff`.`first_name`,
+				`staff`.`last_name`
+			  ) AS `driver`,
+			  `staff`.`photo` AS `driver_photo`,
+			  `staff`.`id` AS `driver_id`,
+			  `department`.`id` AS `department_id`,
+			  `department`.`title` AS `department`,
+			  `company`.`id` AS `company_id`,
+			  `company`.`name` AS `company`,
+			  `company`.`logo` AS `company_logo`,
+			  `fleet_type`.`title_" . $lng . "` AS `fleet_type`,
+			   CONCAT_WS(
+				' ',
+				`brand`.`title_" . $lng . "`,
+				`model`.`title_" . $lng . "`
+			  ) AS `model`,
+			  `fleet`.`id` AS `fleet_id`,
+			  `fleet`.`fleet_plate_number`
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id` 
+			  LEFT JOIN department 
+				ON department.`company_id` = company.id 
+				 AND `department`.`status` = '1'
+			  LEFT JOIN staff AS head_staff 
+				ON department.`head_staff_id` = head_staff.id 
+				 AND `head_staff`.`status` = '1'
+			  LEFT JOIN `staff`
+				ON FIND_IN_SET(
+				  `department`.`id`,
+				  `staff`.`department_ids`
+				) 
+				/*AND `staff`.`Id` <> `head_staff`.`Id` new*/
+				AND `staff`.`status` = '1'
+				/*todo*/
+			  LEFT JOIN `fleet` 
+				ON FIND_IN_SET(
+				  `staff`.`id`,
+				  `fleet`.`staff_ids`
+				) 
+				AND `fleet`.`status` = '1'
+			  LEFT JOIN `fleet_type`
+				ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 		
+			WHERE company.id = '" . $company_id . "' 
+			/*AND `staff`.`id` <> `head_staff`.`id` todo*/
+			GROUP BY `fleet`.`id`
+			ORDER BY `head_staff`.`id`,
+			  `department`.`id`, /*todo*/
+			  `staff`.`id`,
+			  `fleet`.`id` 
+		";
+
+
+		$result = $this->db->query($sql);
+
+
+		$structure_array = $result->result_array();
+
+
+		$structure_arr = array();
+		$cmp_id = '';
+		$department_id = '';
+		$driver_id = '';
+		$fleet_id = '';
+
+
+
+
+		$structure_arr = array_values(array_unique($structure_arr, SORT_REGULAR));
+
+		$data['structure'] = $structure_array;
+
+
+		//$this->pre($structure_arr);
+		//$this->pre($from_to_arr);
+
+		$this->layout->view('structure/structure4', $data);
+
+	}
+
+
+
 	public function structure2()
 	{
 		$this->load->authorisation();
@@ -510,6 +639,9 @@ class Structure extends MX_Controller
 
 		$this->layout->view('structure/structure3', $data);
 	}
+
+
+
 
 
 	public function change_from_to_ax()

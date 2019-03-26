@@ -71,6 +71,8 @@ $route['^(ru|hy)/structure2'] = "Structure/structure2";
 $route['^(ru|hy)/structure2/(:any)$'] = "Structure/structure2/$1";
 $route['^(ru|hy)/structure3'] = "Structure/structure3";
 $route['^(ru|hy)/structure3/(:any)$'] = "Structure/structure3/$1";
+$route['^(ru|hy)/structure4'] = "Structure/structure4";
+$route['^(ru|hy)/structure4/(:any)$'] = "Structure/structure4/$1";
 
 //fleet history
 $route['^(ru|hy)/expenses_history$'] = "Fleet_history/expenses_history";

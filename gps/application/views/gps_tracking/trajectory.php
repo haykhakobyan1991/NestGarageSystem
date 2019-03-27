@@ -933,7 +933,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 									function initDataTable() {
 										var table = $('#example12').DataTable({
 											"searching": true,
-											"ordering": true,
+											"ordering": false,
 											"bPaginate": false,
 											"paging": false,
 											language: {
@@ -984,7 +984,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 									function initDataTable() {
 										var table = $('#example12').DataTable({
 											"searching": true,
-											"ordering": true,
+											"ordering": false,
 											"bPaginate": false,
 											"paging": false,
 											language: {

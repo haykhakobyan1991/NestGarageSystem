@@ -1030,7 +1030,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 									initDataTable();
 								}
 
-							}, xsht + 3000);
+							}, xsht + 2000);
 
 
 							// //MultiRoute

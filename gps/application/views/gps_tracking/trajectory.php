@@ -56,8 +56,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 					<thead>
 					<tr>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input class="sel_all_checkbox selectAll_fleets" style="margin-left: 5px;"
-								   type="checkbox"/>
+
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
@@ -378,6 +377,25 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 	<script>
 
 		$(document).ready(function () {
+
+
+			$(document).on('click', '.checkbox_sel_fleet', function () {
+
+				$('.checkbox_sel_fleet').each(function () {
+					$(this).prop('checked', false);
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
+				});
+
+				$(this).prop('checked', true);
+				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
+				if ($(this).is(':checked')) {
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').trigger('click');
+				} else {
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').trigger('click');
+				}
+			});
 
 			var table = $('#example11').DataTable({
 				"scrollY": "250px",

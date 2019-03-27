@@ -1059,8 +1059,8 @@ class Gps extends MX_Controller
 				AVG (gps.\"speed\") AS avg_speed
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '" . $from . "'
-			 AND gps.\"date\" <= '" . $to . "'
+			WHERE CONCAT_WS(' ', gps.\"date\", gps.\"time\") >= '" . $from . "'
+			 AND CONCAT_WS(' ', gps.\"date\", gps.\"time\") <= '" . $to . "'
 			 AND gps.\"speed\" <> 0
 			 " . $add_sql . "
 			GROUP BY gps.\"imei\" 
@@ -1184,54 +1184,52 @@ class Gps extends MX_Controller
 
 			//$result = true;
 
-		}
+
+			// power off or on
+			$power = array();
+			if ($engine == 1) {
+				$date1 = new DateTime("00:00:00");
+				$date2 = new DateTime("00:00:00");
+				foreach ($eng_res as $imei => $eng_arr) {
+					foreach ($eng_arr as $k => $e_arr) {
+						if ($k > 0) {
+
+							$first = $eng_arr[$k - 1][key($eng_arr[$k - 1])];
+
+							if (key($e_arr) == 1) {
+								$duration2 = $first->diff($e_arr[key($e_arr)]);
+								$date2->add($duration2);
+								$power[$imei]['off'] = $date2->format("H:i:s");
+							} elseif (key($e_arr) == 0) {
+								$duration1 = $first->diff($e_arr[key($eng_arr[$k])]);
+								$date1->add($duration1);
+								$power[$imei]['on'] = $date1->format("H:i:s");
+							}
+
+						}
+					}
+				}
+			}
 
 
-		// power off or on
-		$power = array();
-		if ($engine == 1) {
-			$date1 = new DateTime("00:00:00");
-			$date2 = new DateTime("00:00:00");
-			foreach ($eng_res as $imei => $eng_arr) {
-				foreach ($eng_arr as $k => $e_arr) {
+			// speed null
+			$null_speed = array();
+			$date3 = new DateTime("00:00:00");
+			foreach ($speed_null as $imei => $sp_arr) {
+				foreach ($sp_arr as $k => $s_arr) {
 					if ($k > 0) {
+						$last = $sp_arr[$k - 1][key($sp_arr[$k - 1])];
 
-						$first = $eng_arr[$k - 1][key($eng_arr[$k - 1])];
-
-						if (key($e_arr) == 1) {
-							$duration2 = $first->diff($e_arr[key($e_arr)]);
-							$date2->add($duration2);
-							$power[$imei]['off'] = $date2->format("H:i:s");
-						} elseif (key($e_arr) == 0) {
-							$duration1 = $first->diff($e_arr[key($eng_arr[$k])]);
-							$date1->add($duration1);
-							$power[$imei]['on'] = $date1->format("H:i:s");
+						if (key($s_arr) == 0) {
+							$duration = $last->diff($s_arr[key($sp_arr[$k])]);
+							$date3->add($duration);
+							$null_speed[$imei] = $date3->format("H:i:s");
 						}
 
 					}
 				}
 			}
 		}
-
-
-		// speed null
-		$null_speed = array();
-		$date3 = new DateTime("00:00:00");
-		foreach ($speed_null as $imei => $sp_arr) {
-			foreach ($sp_arr as $k => $s_arr) {
-				if ($k > 0) {
-					$last = $sp_arr[$k - 1][key($sp_arr[$k - 1])];
-
-					if (key($s_arr) == 0) {
-						$duration = $last->diff($s_arr[key($sp_arr[$k])]);
-						$date3->add($duration);
-						$null_speed[$imei] = $date3->format("H:i:s");
-					}
-
-				}
-			}
-		}
-
 
 //		$this->pre($speed_null);
 		//$this->pre($power);

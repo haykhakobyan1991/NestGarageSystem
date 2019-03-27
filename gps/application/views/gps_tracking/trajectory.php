@@ -1,6 +1,8 @@
 <?
+
 $token = $this->session->token;
-$time = strtotime(mdate('%Y-%m-%d', now()));
+$time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
+
 ?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
@@ -26,6 +28,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <!--todo-->
 <script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
 <link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
+
+
+
 
 
 <style>
@@ -92,9 +97,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="<?= date("Y-m-d", strtotime("-5 day", $time)); ?>"
+								value="<?= date("Y-m-d H:i", strtotime("-5 day", $time)); ?>"
 								style="font-size: 11px !important;" type=""
-								data-date-format="yyyy-mm-dd"
+								data-date-format="yyyy-mm-dd HH:ii"
 								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
@@ -105,9 +110,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('to') ?>:</label>
 							<input
 								name="to"
-								value="<?= mdate('%Y-%m-%d', now()) ?>"
+								value="<?= mdate('%Y-%m-%d %H:%i', now()) ?>"
 								style="font-size: 11px !important;" type=""
-								data-date-format="yyyy-mm-dd"
+								data-date-format="yyyy-mm-dd HH:ii"
 								class="datepickerTo form-control form-control-sm pl-1 pr-0">
 						</div>
 					</div>
@@ -1086,18 +1091,20 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 
-		$('.datepickerFrom').datepicker({
+		$('.datepickerFrom').datetimepicker({
 			uiLibrary: 'bootstrap4',
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd HH:MM',
 			startDate: '-3d',
-			iconsLibrary: 'fontawesome'
+			iconsLibrary: 'fontawesome',
+			footer: true
 		});
 
-		$('.datepickerTo').datepicker({
+		$('.datepickerTo').datetimepicker({
 			uiLibrary: 'bootstrap4',
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd HH:MM',
 			startDate: '-3d',
-			iconsLibrary: 'fontawesome'
+			iconsLibrary: 'fontawesome',
+			footer: true
 		});
 
 

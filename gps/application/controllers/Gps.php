@@ -28,6 +28,8 @@ class Gps extends MX_Controller
 
 		$this->load->load_lang('translate', $lng);
 
+		date_default_timezone_set('Asia/Yerevan');//todo
+
 	}
 
 

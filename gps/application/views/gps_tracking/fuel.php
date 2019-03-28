@@ -426,7 +426,6 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 								text: ''
 							}
 						},
-
 						legend: {
 							enabled: false
 						},

@@ -1,22 +1,18 @@
 <?
-
 $token = $this->session->token;
 $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
-
 ?>
+
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/trajectory.css"/>
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
+
+<!--YandexMap-->
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
+
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
@@ -25,12 +21,9 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
-<!--todo-->
+<!--DatetimePicker-->
 <script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
 <link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
-
-
-
 
 
 <style>
@@ -173,11 +166,10 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 					 style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
-		<div class="col-sm-10 custom_style2">
+		<div id="map_loader" style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
+		<div class="col-sm-10 custom_style2" style="position: relative">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
-			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;position: relative;">
-				<div id="map_loader" style="display:none;position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100%;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
-			</div>
+			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important"></div>
 			<div id="fleet_info"></div>
 		</div>
 	</div>
@@ -802,8 +794,6 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 									$(this).html(distance[$(this).data('value')]);
 
-									$('#map_loader').fadeOut('slow');
-
 								})
 							}, 1500);
 
@@ -1030,6 +1020,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 									initDataTable();
 								}
 
+								$('#map_loader').fadeOut('slow');
+
 							}, xsht + 2000);
 
 
@@ -1057,6 +1049,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 							scroll_top();
 							$('#generate').removeClass('d-none');
 							$('#load1').addClass('d-none');
+							$('#map_loader').fadeOut('slow');
 							errors = '';
 							tmp = '';
 							$.each(data.error.elements, function (index) {
@@ -1084,6 +1077,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 							});
 						} else {
 							$('#fleet_info').html('')
+							$('#map_loader').fadeOut('slow');
 						}
 
 					}
@@ -1129,4 +1123,3 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 
 	</script>
-

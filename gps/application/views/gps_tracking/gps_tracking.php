@@ -184,7 +184,7 @@ $lng = $this->load->lng();
 							</td>
 							<td>
 								<span class="span_department"><?= $fleets['department'] ?></span>
-								<small style="font-size: 0.1px;"><?= $fleets['fleet_group'] ?></small>
+								<small style="font-size: 1px;display: none !important;"><?= $fleets['fleet_group'] ?></small>
 							</td>
 							<td>
 								<div class="border-danger fuel_wrapper">
@@ -714,13 +714,16 @@ $lng = $this->load->lng();
 
 			});
 
-
+			var bg_color_on_loade = '';
 			address_arr = [];
 			$('.show_car').each(function () {
+
+				($(this).data('engine') == 1) ? bg_color_on_loade = 'bg-success' : bg_color_on_loade = 'bg-danger';
 
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 				var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
+				var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
 				array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
 				var imei = $(this).data('imei');
 				var carCoordinate = '';
@@ -730,7 +733,7 @@ $lng = $this->load->lng();
 				ymaps.geocode($(this).data('coordinate')).then(function (res) {
 					var firstGeoObject = res.geoObjects.get(0);
 					address_arr[imei] = firstGeoObject.getAddressLine();
-				});
+				})
 
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
@@ -741,7 +744,7 @@ $lng = $this->load->lng();
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + " <?=lang('km/h')?></span></p>" +
-							"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+							"<p class='mb-0'><?=lang('engine') ?>:<span class='ml-1 "+bg_color_on_loade+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 						balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
@@ -792,14 +795,21 @@ $lng = $this->load->lng();
 
 				setTimeout(function () {
 
-
+					var bg_color = '';
 					$('.show_car').each(function () {
 
 						var th = $(this);
 						course = $('input[name="c_' + $(this).data('imei') + '"]').val();
+
 						var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
+
+						var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
+
+						(engine == 1 ? bg_color = 'bg-success' : bg_color = 'bg-danger');
+
 						var carCoordinate = '';
+
 						latitude = array[0];
 						longitude = array[1];
 
@@ -820,7 +830,7 @@ $lng = $this->load->lng();
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 								balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"

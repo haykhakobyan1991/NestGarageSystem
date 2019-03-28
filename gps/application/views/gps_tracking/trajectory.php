@@ -1082,6 +1082,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 									}
 								});
 							});
+						} else {
+							$('#fleet_info').html('')
 						}
 
 					}

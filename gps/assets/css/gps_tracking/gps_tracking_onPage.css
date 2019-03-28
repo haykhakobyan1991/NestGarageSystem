@@ -23,6 +23,7 @@ body {
 
 .dataTables_filter label {
 	font-size: 0px !important;
+	/*ffff*/
 }
 
 #example11_filter label input {

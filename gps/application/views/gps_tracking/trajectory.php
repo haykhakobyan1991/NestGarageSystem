@@ -580,7 +580,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 		$(document).on('click', '.generate', function (e) {
 
-			$('#map_loader').css('display', 'block');
+			var height = $(window).height();
+			$('#map_loader').css({'display': 'block', 'height': height});
 
 
 

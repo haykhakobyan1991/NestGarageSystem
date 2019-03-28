@@ -1,20 +1,17 @@
 <?
 $token = $this->session->token;
-$time = strtotime(mdate('%Y-%m-%d', now()));
+$time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 ?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/trajectory.css"/>
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
+
+<!--YandexMap-->
 <script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
 		type="text/javascript"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
+
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
@@ -23,11 +20,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
-
-<!--todo-->
+<!--DatetimePicker-->
 <script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
-<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css" />
-
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
 
 <style>
 	button.btn.btn-outline-secondary.border-left-0 {
@@ -48,10 +43,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<table id="example11" class="table table-bordered p-0">
 					<thead>
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input class="sel_all_checkbox selectAll_fleets" style="margin-left: 5px;"
-								   type="checkbox"/>
-						</th>
+						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;"></th>
 						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i> <?= lang('fleet') ?>
@@ -89,7 +81,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('from') ?>:</label>
 							<input
 								name="from"
-								value="<?= date("Y-m-d", strtotime("-5 day", $time)); ?>"
+								value="<?= date("Y-m-d H:i", strtotime("-5 day", $time)); ?>"
 								style="font-size: 11px !important;" type=""
 								class="datepickerFrom form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -101,7 +93,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<label class="mb-1"><?= lang('to') ?>:</label>
 							<input
 								name="to"
-								value="<?= mdate('%Y-%m-%d', now()) ?>"
+								value="<?= mdate('%Y-%m-%d %H:%i', now()) ?>"
 								style="font-size: 11px !important;" type=""
 								class="datepickerTo form-control form-control-sm pl-1 pr-0">
 						</div>
@@ -134,11 +126,10 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					 style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
-		<div class="col-sm-10 custom_style2">
+		<div id="map_loader" style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
+		<div class="col-sm-10 custom_style2" style="position: relative">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
-			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important;position: relative;">
-				<div id="map_loader" style="display:none;position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100%;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
-			</div>
+			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important"></div>
 			<div id="fleet_info"></div>
 		</div>
 	</div>
@@ -339,6 +330,25 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		$(document).ready(function () {
 
+
+			$(document).on('click', '.checkbox_sel_fleet', function () {
+
+				$('.checkbox_sel_fleet').each(function () {
+					$(this).prop('checked', false);
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
+				});
+
+				$(this).prop('checked', true);
+				$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
+				if ($(this).is(':checked')) {
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').addClass('fleet_name_selected');
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').trigger('click');
+				} else {
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').removeClass('fleet_name_selected');
+					$(this).parent('td').parent('tr').children('td:nth-child(2)').children('div').children('label').trigger('click');
+				}
+			});
+
 			var table = $('#example11').DataTable({
 				"scrollY": "250px",
 				"scrollCollapse": true,
@@ -530,7 +540,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		$(document).on('click', '.generate', function (e) {
 
-			$('#map_loader').css('display', 'block');
+			var height = $(window).height();
+			$('#map_loader').css({'display': 'block', 'height': height});
+
 
 			// ajax time
 			var xsht = 0;
@@ -841,7 +853,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									function initDataTable() {
 										var table = $('#example12').DataTable({
 											"searching": true,
-											"ordering": true,
+											"ordering": false,
 											"bPaginate": false,
 											"paging": false,
 											language: {
@@ -887,11 +899,13 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 									initDataTable();
 
+								$('#map_loader').fadeOut('slow');
+
 							}, xsht + 3000);
 
 							myMap.controls.add(new ymaps.control.ZoomControl());
 							myMap.setBounds(myMap.geoObjects.getBounds());
-							$('#map_loader').fadeOut('slow');
+
 						}
 
 					} else {
@@ -905,6 +919,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						$('.alert-info').addClass('d-none');
 						$('#generate').removeClass('d-none');
 						$('#load1').addClass('d-none');
+						$('#map_loader').fadeOut('slow');
+
 						if ($.isArray(data.error.elements)) {
 							scroll_top();
 							$('#generate').removeClass('d-none');
@@ -936,6 +952,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 									}
 								});
 							});
+						} else {
+							$('#fleet_info').html('')
+							$('#map_loader').fadeOut('slow');
 						}
 
 					}
@@ -963,18 +982,20 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 
-		$('.datepickerFrom').datepicker({
+		$('.datepickerFrom').datetimepicker({
 			uiLibrary: 'bootstrap4',
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd HH:MM',
 			startDate: '-3d',
-			iconsLibrary: 'fontawesome'
+			iconsLibrary: 'fontawesome',
+			footer: true
 		});
 
-		$('.datepickerTo').datepicker({
+		$('.datepickerTo').datetimepicker({
 			uiLibrary: 'bootstrap4',
-			format: 'yyyy-mm-dd',
+			format: 'yyyy-mm-dd HH:MM',
 			startDate: '-3d',
-			iconsLibrary: 'fontawesome'
+			iconsLibrary: 'fontawesome',
+			footer: true
 		});
 
 

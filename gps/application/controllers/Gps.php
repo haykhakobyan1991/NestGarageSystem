@@ -1680,8 +1680,8 @@ class Gps extends MX_Controller
 				gps.\"engine\"
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '" . $from . "'
-			 AND gps.\"date\" <= '" . $to . "'
+			WHERE  CONCAT_WS(' ', gps.\"date\", gps.\"time\") >= '" . $from . "'
+			 AND CONCAT_WS(' ', gps.\"date\", gps.\"time\") <= '" . $to . "'
 			 " . $add_sql . "
 		  ORDER BY date, time
 		";

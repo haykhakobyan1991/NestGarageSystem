@@ -1356,8 +1356,8 @@ class Gps extends MX_Controller
 				gps.\"fuel\"
 			FROM 
 			   gps
-			WHERE gps.\"date\" >= '" . $from . "'
-			 AND gps.\"date\" <= '" . $to . "'
+			WHERE CONCAT_WS(' ', gps.\"date\", gps.\"time\") >= '" . $from . "'
+			 AND CONCAT_WS(' ', gps.\"date\", gps.\"time\") <= '" . $to . "'
 			 " . $add_sql . "
 			ORDER BY id 
 		";
@@ -1375,6 +1375,8 @@ class Gps extends MX_Controller
 		$step_refueling = -$threshold_of_refueling;
 		$step_drain = -$drain_threshold;
 		$array_length = count($result);
+
+		$fuel = '';
 
 		$avg_all = 0;
 		$avg_counter = 0;
@@ -1404,10 +1406,10 @@ class Gps extends MX_Controller
 			);
 
 
-
 			if ($_imei != $row['imei']) {
 				$fl = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleetByImei', array('token' => $token, 'imei' => $row['imei']));
 				$fleet = json_decode($fl, true);
+				$fuel = $fleet['fuel'];
 			}
 			$_imei = $row['imei'];
 
@@ -1421,11 +1423,11 @@ class Gps extends MX_Controller
 				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_refueling)) && ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_drain)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
 					$avg_all += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$avg_counter++;
-				} elseif ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step_drain)) {
+				} else if ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step_drain)) {
 					$drain += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$drain_counter++;
-				} elseif ((float)$row['fuel'] - (float)$result[$_tmp]['fuel'] < (float)($step_refueling)) {
-					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);;
+				} else if ((float)$row['fuel'] - (float)$result[$_tmp]['fuel'] < (float)($step_refueling)) {
+					$refueling += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$refueling_counter++;
 				}
 			}
@@ -1481,6 +1483,7 @@ class Gps extends MX_Controller
 			$messages['message']['fleet_info'] = $fleet_info;
 			$messages['message']['fleet_chart'] = $new_result;
 			$messages['message']['date_array'] = $date_array;
+			$messages['message']['fuel'] = $fuel;
 		} else {
 			$messages['success'] = 0;
 			$messages['error'] = 'Error';

@@ -220,6 +220,7 @@ class Api extends MX_Controller {
 						`staff`.`first_name`,
 						`staff`.`last_name`
 					) AS `staff`,
+					`fuel`.`title_" . $lng . "` AS `fuel`,
 					CONCAT_WS(
 						' ',
 						`brand`.`title_" . $lng . "`,
@@ -236,6 +237,8 @@ class Api extends MX_Controller {
 					ON `model`.`id` = `fleet`.`model_id` 
 				LEFT JOIN `brand` 
 					ON `brand`.`id` = `model`.`brand_id`
+				LEFT JOIN `fuel` 
+					ON `fuel`.`id` = `fleet`.`fuel_id`	
 				LEFT JOIN `user` 
 					ON `user`.`id` = `fleet`.`registrar_user_id` 	
 				WHERE `user`.`company_id` = " . $this->load->db_value($company_id) . "	

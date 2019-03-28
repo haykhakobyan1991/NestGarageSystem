@@ -62,6 +62,13 @@
 		opacity: 1 !important;
 	}
 
+	#today {
+		border: 1px solid rgb(255, 122, 89) !important;
+		color: #fff !important;
+		background: rgb(255, 122, 89) !important;
+		transition: all .3s ease-in-out;
+	}
+
 
 
 </style>

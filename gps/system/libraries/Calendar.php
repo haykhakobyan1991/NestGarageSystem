@@ -494,7 +494,7 @@ class CI_Calendar {
 			'heading_previous_cell'		=> '<th><a href="{previous_url}"><i class="fas fa-angle-left"></i></a></th>',
 			'heading_title_cell'		=> '<th class="text-center" colspan="{colspan}">{heading}</th>',
 			'heading_next_cell'			=> '<th><a href="{next_url}"><i class="fas fa-angle-right"></i></a></th>',
-			'heading_today_cell'		=> '<th colspan="2" ><a href="{today}"><button class="btn btn-google  btn-small ">Today</button></a></th>',
+			'heading_today_cell'		=> '<th colspan="2" ><a href="{today}"><button id="today" class="btn btn-google  btn-small ">Today</button></a></th>',
 			'heading_row_end'			=> '</tr>',
 			'week_row_start'			=> '<tr>',
 			'week_day_cell'				=> '<th class="font-weight-bold">{week_day}</th>',

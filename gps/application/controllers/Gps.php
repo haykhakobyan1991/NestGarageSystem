@@ -1464,8 +1464,8 @@ class Gps extends MX_Controller
 			<td style="text-align: center;">' . (isset($fleet['brand_model']) ? $fleet['brand_model'] : '') . '</td>
 			<td style="text-align: center;">' . $levelStart . '</td>
 			<td style="text-align: center;">' . $avg_all . '</td>
-			<td style="text-align: center;">' . $refueling . '</td>
 			<td style="text-align: center;">' . $refueling_counter . '</td>
+			<td style="text-align: center;">' . $refueling . '</td>
 			<td style="text-align: center;">' . $drain_counter . '</td>
 			<td style="text-align: center;">' . $drain . '</td>
 			<td style="text-align: center;">' . $levelFinish . '</td>

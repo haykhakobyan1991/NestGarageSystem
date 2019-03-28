@@ -1419,8 +1419,9 @@ class Gps extends MX_Controller
 
 			$levelFinish = (float)$row['fuel'];
 
+
 			if ($_tmp < $array_length) {
-				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_refueling)) && ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_drain)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] <= 0) {
+				if (((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_refueling)) && ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] >= (float)($step_drain)) && (float)$result[$_tmp]['fuel'] - (float)$row['fuel'] > 0) {
 					$avg_all += abs((float)$result[$_tmp]['fuel'] - (float)$row['fuel']);
 					$avg_counter++;
 				} else if ((float)$result[$_tmp]['fuel'] - (float)$row['fuel'] < (float)($step_drain)) {

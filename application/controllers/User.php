@@ -27,6 +27,12 @@ class User extends CI_Controller {
 
 		$this->load->load_lang('translate', $lng);
 
+		$this->load->library('user_agent');
+
+		if($this->agent->is_mobile()) {
+			$this->access_denied();
+		}
+
 	}
 
 

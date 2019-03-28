@@ -150,47 +150,9 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 		<div class="col-sm-10 custom_style2">
 
-			<!--			<div class="container-fluid">-->
-			<!--				<div class="row">-->
-			<!--					<div class="col-sm-12">-->
-			<!--						<span>Zoom</span>-->
-			<!---->
-			<!--						<div class="btn-group btn-group-toggle" data-toggle="buttons">-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary active">-->
-			<!--								<input type="radio" name="options" id="option1" autocomplete="off" checked> 1m-->
-			<!--							</label>-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary">-->
-			<!--								<input type="radio" name="options" id="option2" autocomplete="off"> 3m-->
-			<!--							</label>-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary">-->
-			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 6m-->
-			<!--							</label>-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary">-->
-			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> YTD-->
-			<!--							</label>-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary">-->
-			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> 1y-->
-			<!--							</label>-->
-			<!---->
-			<!--							<label class="btn btn-outline-secondary">-->
-			<!--								<input type="radio" name="options" id="option3" autocomplete="off"> All-->
-			<!--							</label>-->
-			<!--						</div>-->
-			<!---->
-			<!--					</div>-->
-			<!--				</div>-->
-			<!--			</div>-->
-
 			<div id="container" class="mt-2"></div>
 
-
 			<div id="fleet_info"></div>
-
 
 		</div>
 
@@ -200,7 +162,64 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 
 <script>
+
+	function init_highcharts() {
+		$('#container').highcharts({
+			chart: {
+				zoomType: 'x'
+			},
+			title: {
+				text: '<?= lang('fuel') ?>'
+			},
+			xAxis: {
+				categories: [],
+			},
+			yAxis: {
+				title: {
+					text: ''
+				}
+			},
+			legend: {
+				enabled: false
+			},
+			plotOptions: {
+				area: {
+					fillColor: {
+						linearGradient: {
+							x1: 0,
+							y1: 0,
+							x2: 0,
+							y2: 1
+						},
+						stops: [
+							[0, Highcharts.getOptions().colors[0]],
+							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+						]
+					},
+					marker: {
+						radius: 2
+					},
+					lineWidth: 1,
+					states: {
+						hover: {
+							lineWidth: 1
+						}
+					},
+					threshold: null
+				}
+			},
+
+			series: [{
+				name: '',
+				data: []
+			}]
+		});
+	}
+
+
 	$(document).ready(function () {
+
+		init_highcharts();
 
 		$(document).on('click', '.checkbox_sel_fleet', function () {
 
@@ -462,6 +481,58 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 						}]
 					});
 
+
+					function initDataTable() {
+						var table = $('#example12').DataTable({
+							"searching": false,
+							"ordering": false,
+							"bPaginate": false,
+							"paging": false,
+							language: {
+								search: "<?=lang('search')?>",
+								emptyTable: "<?=lang('no_data')?>",
+								info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+								infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+								infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+								lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+								zeroRecords: "<?=lang('no_matching_records')?>",
+								paginate: {
+									first: "<?=lang('first')?>",
+									last: "<?=lang('last')?>",
+									next: "<?=lang('next')?>",
+									previous: "<?=lang('prev')?>"
+								}
+							},
+							dom: 'Bfrtip',
+							buttons: [
+								{
+									extend: 'excelHtml5',
+									title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+									messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
+									autoWidth: true,
+									filename: 'trajectory',
+									footer: true,
+									exportOptions: {
+										columns: ':visible'
+									}
+								},
+								'colvis'
+							]
+						});
+
+						$('.buttons-excel span').html('<?=lang('export')?>');
+						$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+						$('.buttons-colvis span').text('');
+						$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+						table.buttons().container()
+							.appendTo('#example12_wrapper #example12_filter:eq(0)');
+						$('.dt-buttons').css('float', 'right');
+						$('.dt-buttons').css('margin-top', '5px');
+
+					}
+
+					initDataTable();
+
 				} else {
 
 					$('.alert-info').addClass('d-none');
@@ -496,60 +567,15 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 								}
 							});
 						});
+					} else {
+						$('#fleet_info').html('');
+						init_highcharts();
 					}
 
-				}
-
-				function initDataTable() {
-					var table = $('#example12').DataTable({
-						"searching": false,
-						"ordering": false,
-						"bPaginate": false,
-						"paging": false,
-						language: {
-							search: "<?=lang('search')?>",
-							emptyTable: "<?=lang('no_data')?>",
-							info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-							infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-							infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-							lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-							zeroRecords: "<?=lang('no_matching_records')?>",
-							paginate: {
-								first: "<?=lang('first')?>",
-								last: "<?=lang('last')?>",
-								next: "<?=lang('next')?>",
-								previous: "<?=lang('prev')?>"
-							}
-						},
-						dom: 'Bfrtip',
-						buttons: [
-							{
-								extend: 'excelHtml5',
-								title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-								messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
-								autoWidth: true,
-								filename: 'trajectory',
-								footer: true,
-								exportOptions: {
-									columns: ':visible'
-								}
-							},
-							'colvis'
-						]
-					});
-
-					$('.buttons-excel span').html('<?=lang('export')?>');
-					$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-					$('.buttons-colvis span').text('');
-					$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
-					table.buttons().container()
-						.appendTo('#example12_wrapper #example12_filter:eq(0)');
-					$('.dt-buttons').css('float', 'right');
-					$('.dt-buttons').css('margin-top', '5px');
 
 				}
 
-				initDataTable();
+
 
 			},
 			error: function (jqXHR, textStatus) {
@@ -567,58 +593,7 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 
 	});
 
-	$(document).ready(function () {
-		$('#container').highcharts({
-			chart: {
-				zoomType: 'x'
-			},
-			title: {
-				text: '<?= lang('fuel') ?>'
-			},
-			xAxis: {
-				categories: [],
-			},
-			yAxis: {
-				title: {
-					text: ''
-				}
-			},
-			legend: {
-				enabled: false
-			},
-			plotOptions: {
-				area: {
-					fillColor: {
-						linearGradient: {
-							x1: 0,
-							y1: 0,
-							x2: 0,
-							y2: 1
-						},
-						stops: [
-							[0, Highcharts.getOptions().colors[0]],
-							[1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
-						]
-					},
-					marker: {
-						radius: 2
-					},
-					lineWidth: 1,
-					states: {
-						hover: {
-							lineWidth: 1
-						}
-					},
-					threshold: null
-				}
-			},
 
-			series: [{
-				name: '',
-				data: []
-			}]
-		});
-	})
 
 
 	$('.datepickerFrom').datetimepicker({

@@ -503,7 +503,7 @@ $lng = $this->load->lng();
 	$('select[name="group"]').on('change', function () {
 		$(this).children('option:selected').each(function () {
 			if ($(this).val() != 'all_val') {
-				table.search($(this).text().replace("✓", "")).draw();
+				table.search($(this).text().replace("*", "")).draw();
 			} else {
 				table.search('').draw();
 			}

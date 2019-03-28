@@ -63,7 +63,7 @@ td {
 }
 
 .dt-button-collection.dropdown-menu {
-	left: -100px !important;
+	left: 40px !important;
 }
 
 a.dt-button.dropdown-item.buttons-columnVisibility {
@@ -78,4 +78,8 @@ a.dt-button.dropdown-item.buttons-columnVisibility.active {
 
 .panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 	width: 100% !important;
+}
+
+.p_inherit {
+	position: inherit !important;
 }

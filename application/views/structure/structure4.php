@@ -14,7 +14,7 @@
 		border: 1px solid #c1c9d2 !important;
 	}
 
-	thead tr:nth-child(2) th:last-child input {
+	thead tr:nth-child(1) th:last-child input {
 		display: none;
 	}
 
@@ -27,7 +27,7 @@
 	}
 
 	.btn-group.ml-auto {
-		K z-index: 999 !important;
+		z-index: 999 !important;
 		margin-right: 12px;
 	}
 
@@ -108,8 +108,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	$(document).ready(function () {
 		// Setup - add a text input to each footer cell
 		$('#example11 thead tr').clone(true).appendTo('#example11 thead');
-		$('#example11 thead tr:eq(1) th').each(function (i) {
+		$('#example11 thead tr:eq(0) th').each(function (i) {
 			var title = $(this).text();
+
 			$(this).html('<input class="form-control form-control-sm" type="text" placeholder="' + title + '" />');
 
 			$('input', this).on('keyup change', function () {
@@ -138,10 +139,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					previous: "<?=lang('prev')?>"
 				}
 			},
-			orderCellsTop: true,
-			fixedHeader: true,
 			"columnDefs": [
-				{"orderable": false, "targets": [0, 7]}
+				{"orderable": false, "targets": [7]}
 			]
 		});
 	});

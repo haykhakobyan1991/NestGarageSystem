@@ -984,7 +984,7 @@ $lng = $this->load->lng();
 			array = JSON.parse("[" + coordinates + "]");
 
 
-			myMap_show_all_cars_onChange.setCenter(array, 12, {
+			myMap_show_all_cars_onChange.setCenter(array, 19, {
 				checkZoomRange: true
 			});
 

@@ -1371,9 +1371,11 @@ $lng = $this->load->lng();
 		$('.show_car').each(function () {
 			fleet_ids.push($(this).data('imei'));
 		});
+		var time = 0;
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
 			$.post(url, {fleets: fleet_ids}, function (result) {
+
 				$.each(JSON.parse(result), function (e, val) {
 					$('.show_car').each(function () {
 						if (e == $(this).data('imei')) {
@@ -1381,10 +1383,15 @@ $lng = $this->load->lng();
 							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
 
 							if(val.carStatus == 2) {
-								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i><small class="form-text text-muted">'+val.timing+'</small>')
+								time++;
+								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
+									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
+								}
 							} else if(val.carStatus == -1) {
-								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i><small class="form-text text-muted">'+val.timing+'</small>')
+								time = 0;
+								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
 							} else {
+								time = 0;
 								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
 							}
 

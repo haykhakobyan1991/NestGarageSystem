@@ -132,11 +132,9 @@ $lng = $this->load->lng();
 					<tbody>
 
 					<?
-
 					$tmp = 0;
 					$imei = '';
 					$arr = array();
-
 					foreach ($last_location as $val) {
 						if ($imei != $val['imei']) {
 							if ($tmp == 0) {
@@ -148,7 +146,6 @@ $lng = $this->load->lng();
 						}
 						$imei = $val['imei'];
 					}
-
 					$i = 0;
 					foreach ($result_fleets as $fleets) :
 						?>
@@ -163,7 +160,6 @@ $lng = $this->load->lng();
 							<td class="text-center car_status">
 								<?
 								if ($arr[$fleets['gps_tracker_imei']]['speed'] < 5 && $arr[$fleets['gps_tracker_imei']]['engine'] == 1) {
-
 									?>
 									<i class="text-danger fas fa-stop-circle"></i>
 									<?
@@ -212,13 +208,13 @@ $lng = $this->load->lng();
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
 							</td>
-							<input class="coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
+							<input class="global_change coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
-							<input class="speeds" type="hidden" name="s_<?= $fleets['gps_tracker_imei'] ?>"
+							<input class="global_change speeds" type="hidden" name="s_<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
-							<input class="engines" type="hidden" name="e_<?= $fleets['gps_tracker_imei'] ?>"
+							<input class="global_change engines" type="hidden" name="e_<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
-							<input class="courses" type="hidden" name="c_<?= $fleets['gps_tracker_imei'] ?>"
+							<input class="global_change courses" type="hidden" name="c_<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 						</tr>
 						<?
@@ -435,7 +431,6 @@ $lng = $this->load->lng();
 
 <script>
 	$('table tr th:nth-child(2)').click(function () {
-
 		if (!$(this).hasClass('az')) {
 			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
 			$(this).addClass('az');
@@ -444,15 +439,12 @@ $lng = $this->load->lng();
 			$(this).removeClass('az');
 		}
 	});
-
 	$('td input').each(function () {
 		$(this).prop('checked', true);
 	});
 	$('.sel_all_checkbox').prop('checked', true);
-
 	$('.sel_all_checkbox').on('change', function () {
 		if ($('input.sel_all_checkbox').is(':checked')) {
-
 			$('td input').each(function () {
 				$(this).prop('checked', true);
 			});
@@ -462,7 +454,6 @@ $lng = $this->load->lng();
 			});
 		}
 	});
-
 	var table = $('#example11').DataTable({
 		language: {
 			search: "<?=lang('search')?>",
@@ -499,7 +490,6 @@ $lng = $this->load->lng();
 			$(this).addClass('bg-info text-white')
 		}
 	});
-
 	$('select[name="group"]').on('change', function () {
 		$(this).children('option:selected').each(function () {
 			if ($(this).val() != 'all_val') {
@@ -526,8 +516,6 @@ $lng = $this->load->lng();
 			}
 		});
 	});
-
-
 	$(document).on('click', '.add_lg_2', function () {
 		$('.sel_items').each(function () {
 			if ($(this).hasClass('bg-info')) {
@@ -537,17 +525,13 @@ $lng = $this->load->lng();
 				$(this).removeClass('bg-info text-white sel_items');
 			}
 		});
-
 		// group input
 		var group = '';
-
 		$('.lg_2  li').each(function (e) {
 			group += $(this).data('id') + ','
 		});
-
 		var groups = group.substring(0, group.length - 1);
 		$('input[name="groups"]').val(groups);
-
 		// end group input
 		//$('.select_all').prop('checked', false);
 	});
@@ -563,16 +547,12 @@ $lng = $this->load->lng();
 			}
 		});
 		// group input
-
 		var group = '';
-
 		$('.lg_2  li').each(function (e) {
 			group += $(this).data('id') + ','
 		});
-
 		var groups = group.substring(0, group.length - 1);
 		$('input[name="groups"]').val(groups);
-
 		// end group input
 		//$('.select_all_2').prop('checked', false);
 	});
@@ -635,28 +615,19 @@ $lng = $this->load->lng();
 	$(document).on('click', '.fleets_ul li', function () {
 		$(this).toggleClass('fleets_ul_active');
 	});
-
-
 	/***************************
 	 ****************************
 	 *** [ Yandex Map Start ] ***
 	 ****************************
 	 ***************************/
-
-
-
 	$(document).ready(function () {
-
 		ymaps.ready(init_all);
-
 		function init_all() {
 			var myPlacemark;
 			myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [40.28566, 44.54990333],
 				zoom: 10
 			}, {suppressMapOpenBlock: true});
-
-
 			firstButton = new ymaps.control.Button({
 				data: {
 					content: "<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>"
@@ -666,60 +637,43 @@ $lng = $this->load->lng();
 				}
 			});
 			myMap_show_all_cars_onChange.controls.add(firstButton, {float: 'right'});
-
-
 			//Click Function Show All Geofences
 			rand_color_arr = [];
 			firstButton.events.add(['select', 'deselect'], function (e) {
-
 				if (e.get('type') == 'select') {
 					$('.geofences_coordinate').each(function () {
-
 						geoObject_coordinates = $(this).attr('data-gCoordinate');
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
-
 						//Get Colors
 						rand_color_arr.push(rand_color);
-
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {
-
 							hintContent: 'Перетащи меня!'
 							// balloonContent: 'Прямоугольник 2'
-
 						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
 						myMap_show_all_cars_onChange.geoObjects.add(myPolygon);
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-
 					});
-
 					myMap_show_all_cars_onChange.container.fitToViewport()
-
 				} else {
 					$('#map').html('');
 					ymaps.ready(init_all);
 				}
-
 			});
-
 			var bg_color_on_loade = '';
 			address_arr = [];
 			$('.show_car').each(function () {
-
 				($(this).data('engine') == 1) ? bg_color_on_loade = 'bg-success' : bg_color_on_loade = 'bg-danger';
-
 				// alert($('input[name="'+$(this).data('imei')+'"]').val())
 				var course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 				var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
@@ -729,12 +683,10 @@ $lng = $this->load->lng();
 				var carCoordinate = '';
 				latitude = array[0];
 				longitude = array[1];
-
 				ymaps.geocode($(this).data('coordinate')).then(function (res) {
 					var firstGeoObject = res.geoObjects.get(0);
 					address_arr[imei] = firstGeoObject.getAddressLine();
 				})
-
 				MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 					'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 				),
@@ -774,53 +726,36 @@ $lng = $this->load->lng();
 						}
 					});
 				});
-
 				myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_all_cars_onChange.setBounds(myMap_show_all_cars_onChange.geoObjects.getBounds());
-
 			});
-
-
 			$(window).on('load', function () {
 				$('.address_span').each(function () {
 					$(this).text(address_arr[$(this).data('imei')])
 				})
 			});
+			$('.global_change').on('change', function (event) {
 
-
-			$('input.coords').on('change', function (event) {
 				// get changed element name
 				var changed = event.target.name;
-
 				setTimeout(function () {
-
 					var bg_color = '';
 					$('.show_car').each(function () {
-
 						var th = $(this);
 						course = $('input[name="c_' + $(this).data('imei') + '"]').val();
-
 						var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-
 						var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
-
 						(engine == 1 ? bg_color = 'bg-success' : bg_color = 'bg-danger');
-
 						var carCoordinate = '';
-
 						latitude = array[0];
 						longitude = array[1];
-
-
 						ymaps.geocode($('input[name="' + $(this).data('imei') + '"]').val()).then(function (res) {
 							var firstGeoObject = res.geoObjects.get(0);
 							address = firstGeoObject.getAddressLine();
 							th.parent('tr').children('.address_span').text(address);
 						});
-
-
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
@@ -850,7 +785,6 @@ $lng = $this->load->lng();
 									radius: 25
 								}
 							});
-
 						myPlacemarkWithContent.events.add('balloonopen', function (e) {
 							var car_number = $('.car_number').text();
 							//console.log(car_number);
@@ -861,89 +795,68 @@ $lng = $this->load->lng();
 								}
 							});
 						});
-
 						myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
-
 					});
 				}, 500);
 				myMap_show_all_cars_onChange.geoObjects.removeAll(myPlacemarkWithContent);
-
 			});
-
 		}
-
 		//Show Geozone from selectoption
-
 		$(document).on('change', 'select[name="group"]', function () {
-
 			$(this).children('option:selected').each(function () {
-
 				geozone_coordinates = $(this).data('cordinate');
-
 				if (geozone_coordinates !== undefined && geozone_coordinates != 'gago') {
-
-
 					ymaps.ready(init_Geozone);
-
 					function init_Geozone() {
-
 						$('#map').html('');
-
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
 							center: [55.76, 37.64],
 							zoom: 2
 						}, {suppressMapOpenBlock: true});
-
-
 						array_stting = JSON.parse("[" + geozone_coordinates + "]");
-
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
-
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {
-
 							hintContent: 'Перетащи меня!'
 							// balloonContent: 'Прямоугольник 2'
-
 						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
 						myMap_show_init_Geozone.geoObjects.add(myPolygon);
 						myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
-
+						var bg_color = '';
 						$('.show_car').each(function () {
 							if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 								coordinate = $(this).data('coordinate');
 								course = $('input[name="c_' + $(this).data('imei') + '"]').val();
 								var speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
+								var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
+
+								(engine == 1 ? bg_color = 'bg-success' : bg_color = 'bg-danger');
+
 								array = JSON.parse("[" + coordinate + "]");
-
 								var carCoordinate = '';
-
 								latitude = array[0];
 								longitude = array[1];
 								// alert('2');
 								MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 									'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 								),
-
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
@@ -964,93 +877,66 @@ $lng = $this->load->lng();
 											radius: 25
 										}
 									});
-
 								myMap_show_init_Geozone.geoObjects.add(myPlacemarkWithContent);
 								myMap_show_init_Geozone.controls.add(new ymaps.control.ZoomControl());
 								myMap_show_init_Geozone.setBounds(myMap_show_init_Geozone.geoObjects.getBounds());
 							}
 						});
-
 						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 						$('#map > ymaps').css('width', width_map);
 						$('#map > ymaps').css('overflow', 'scroll');
 					}
-
 				} else {
 					$('#map').html('');
 					ymaps.ready(init_all);
 				}
-
 			});
-
 		});
-
-
 		/* On Click Function Show single Car On Map */
-
 		$('.show_car').click(function () {
-
 			coordinates = $(this).data('coordinate');
 			array = JSON.parse("[" + coordinates + "]");
-
-
 			myMap_show_all_cars_onChange.setCenter(array, 19, {
 				checkZoomRange: true
 			});
-
 		});
-
 		/* On Change checkbox  */
-
 		$('tr td input , th input').on('change', function () {
 			$('#map').html('');
 			ymaps.ready(init_all);
-
 			function init_all() {
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
 				}, {suppressMapOpenBlock: true});
-
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 				myMap_show_all_cars.controls.add(firstButton, {float: 'right'});
-
-
 				//Click Function Show All Geofences
 				rand_color_arr = [];
 				firstButton.events.add(['select', 'deselect'], function (e) {
 					if (e.get('type') == 'select') {
 						$('.geofences_coordinate').each(function () {
-
 							geoObject_coordinates = $(this).attr('data-gCoordinate');
 							array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 							var rand_color = '#' + (function co(lor) {
 								return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 							})('') + '75';
-
-
 							//Get Colors
 							rand_color_arr.push(rand_color);
-
 							myPolygon = new ymaps.Polygon([
 								array_stting
 							], {
-
 								hintContent: 'Перетащи меня!'
 								// balloonContent: 'Прямоугольник 2'
-
 							}, {
 								editorDrawingCursor: "crosshair",
 								fillColor: rand_color,
 								strokeColor: rand_color,
 								strokeWidth: 2
 							});
-
 							myMap_show_all_cars.geoObjects.add(myPolygon);
 							myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
 							myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds());
-
 						});
 					} else {
 						$('#map').html('');
@@ -1058,31 +944,28 @@ $lng = $this->load->lng();
 					}
 				});
 
-
+				var bg_color = '';
 				$('.show_car').each(function () {
-
-
 					if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
-
 						course = $(this).data('course');
 						speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 						array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
-						var carCoordinate = '';
 
+						var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
+						(engine == 1 ? bg_color = 'bg-success' : bg_color = 'bg-danger');
+						var carCoordinate = '';
 						latitude = array[0];
 						longitude = array[1];
-
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
-
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
@@ -1103,27 +986,25 @@ $lng = $this->load->lng();
 									radius: 25
 								}
 							});
-
 						myMap_show_all_cars.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
 					}
 				});
-
-
-				$('input.coords').on('change', function (event) {
+				$('.global_change').on('change', function (event) {
 						// get changed element name
 						var changed = event.target.name;
 						setTimeout(function () {
-
 							$('.show_car').each(function () {
-
 								if ($(this).parent('tr').children('td:first-child').children('input').is(':checked')) {
 									// alert($('input[name="'+$(this).data('imei')+'"]').val())
 									//if(changed == $(this).data('imei')) {
 									course = $(this).data('course');
 									speed = $('input[name="s_' + $(this).data('imei') + '"]').val();
 									array = JSON.parse("[" + $('input[name="' + $(this).data('imei') + '"]').val() + "]");
+
+									var engine = $('input[name="e_' + $(this).data('imei') + '"]').val();
+									(engine == 1 ? bg_color = 'bg-success' : bg_color = 'bg-danger');
 									var carCoordinate = '';
 									latitude = array[0];
 									longitude = array[1];
@@ -1140,7 +1021,7 @@ $lng = $this->load->lng();
 												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 												"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 											balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
@@ -1160,7 +1041,6 @@ $lng = $this->load->lng();
 												radius: 25
 											}
 										});
-
 									myPlacemarkWithContent.events.add('balloonopen', function (e) {
 										var car_number = $('.car_number').text();
 										//console.log(car_number);
@@ -1171,17 +1051,13 @@ $lng = $this->load->lng();
 											}
 										});
 									});
-
 									myMap_show_all_cars.geoObjects.add(myPlacemarkWithContent);
 									myMap_show_all_cars.controls.add(new ymaps.control.ZoomControl());
-
 									//}
-
 								}
 							});
 						}, 500);
 						myMap_show_all_cars.geoObjects.removeAll(myPlacemarkWithContent);
-
 						// rc = 0;
 						// $('.geofences_coordinate').each(function () {
 						// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
@@ -1201,44 +1077,32 @@ $lng = $this->load->lng();
 						// });
 					}
 				);
-
-
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
-
-
 		});
 	});
-
-
 	/*************************
 	 **************************
 	 *** [ Yandex Map End ] ***
 	 **************************
 	 *************************/
-
 	$(document).on('click', '.fas.fa-ellipsis-v', function () {
-		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click')
+		$('.btn.btn-secondary.buttons-collection.dropdown-toggle.buttons-colvis').trigger('click');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(4)').css('display', 'none');
 		$('.dt-button.dropdown-item.buttons-columnVisibility:nth-child(1)').css('display', 'none');
-
 	});
-
 	// add group
 	$(document).on('click', '#add_group', function (e) {
-
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/add_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_add')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
 		$('ul.list-group.lg_2').parent('div').removeClass('border-5 border-danger');
 		loading('start', 'add_group');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -1253,7 +1117,6 @@ $lng = $this->load->lng();
 				loading('start', 'add_group');
 				$('.alert-info').removeClass('d-none');
 				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
-
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -1266,7 +1129,6 @@ $lng = $this->load->lng();
 				} else {
 					close_message();
 					loading('stop', 'add_group');
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'add_group');
@@ -1279,16 +1141,13 @@ $lng = $this->load->lng();
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (index == 'groups') {
 										$('ul.list-group.lg_2').parent('div').addClass('border-5 border-danger');
 									}
-
 									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -1297,9 +1156,7 @@ $lng = $this->load->lng();
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -1308,48 +1165,35 @@ $lng = $this->load->lng();
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
-
 			}
 		});
 	});
-
 	// get edit modal
 	$(document).on('click', '#edit_group_modal', function () {
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_modal_ax/')?>' + $('select[name="group"] option:selected').data('id') + '/<?=$this->session->token?>';
 		$.get(url, function (result) {
 			// update modal content
 			$('.body-m').html(result);
-
 			var select = $('#geoference');
-
-
 			select.clone().appendTo('#gro').addClass('clone');
 			$('.clone').removeClass('d-none');
-
 			var geoference_id = $('input[name="geoference_id"]').val();
-
-
 			$.each($('.clone').children('option'), function (e) {
 				if ($(this).val() == geoference_id) {
 					$(this).prop('selected', true);
 				}
 			});
-
 			// show modal
 			$('#myModal').modal('show');
 		});
 	});
-
-
 	$(document).on('click', '#edit_group_btn', function (e) {
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/edit_group_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#group_edit')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -1381,7 +1225,6 @@ $lng = $this->load->lng();
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (value != tmp) {
 										errors += value;
 									}
@@ -1405,8 +1248,6 @@ $lng = $this->load->lng();
 			}
 		});
 	});
-
-
 	$(document).on('click', '.delete_btn', function () {
 		group_id = $('select[name="group"] option:selected').data('id');
 		$('input[name="group_id"]').val(group_id);
@@ -1414,16 +1255,12 @@ $lng = $this->load->lng();
 	$(document).on('click', '#delete_group', function () {
 		var id = $('input[name="group_id"]').val();
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
-
 		$.post(url, {group_id, id}, function (result) {
 			location.reload();
 		});
 	});
-
-
 	var dataTable_label = $('.dataTables_filter label').text();
 	$('.dataTables_filter input').attr('placeholder', dataTable_label);
-
 	var elem = $('.dataTables_filter label');
 	// $(elem).html($(elem).html().replace($(elem).text(), ''));
 </script>
@@ -1434,13 +1271,9 @@ $lng = $this->load->lng();
 		$('.sell_group_select').on('change', function () {
 			($(this).val() == 'all_val') ? $('.delete_btn').css('display', 'none') : $('.delete_btn').css('display', 'inline-block');
 		});
-
 		$('.car_icon ').append('<i style="cursor: pointer;position: absolute;cursor: pointer;left: -2px;top: 15px;" class="fas fa-ellipsis-v ml-2"></i>');
 		$('#example11_filter').children('.dt-buttons.btn-group').addClass('p_inherit');
-
-
 	});
-
 	$(function () {
 		$("#splitter").zinoSplitter({
 			panes: [
@@ -1454,20 +1287,13 @@ $lng = $this->load->lng();
 			],
 			resize: function (event, ui) {
 				log("resize");
-
 			}
 		});
-
 		function log(str) {
-
 			if (str == 'resize') {
-
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
-
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
-
-
 				if ($('.panel-left').width() <= 565) {
 					$('input[type=search]').css('display', 'none');
 					$('.tools_div').removeClass('col-sm-2');
@@ -1481,7 +1307,6 @@ $lng = $this->load->lng();
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-3');
 				}
-
 				if ($('.panel-left').width() <= 374) {
 					$('.label_group').css('display', 'none');
 					$('.tools_div').css('display', 'none');
@@ -1493,32 +1318,25 @@ $lng = $this->load->lng();
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-7');
 				}
-
 			}
 		}
-
 	});
-
 	$(window).on('load', function () {
 		var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 		$('#map > ymaps').css('width', width_map);
 		$('#map > ymaps').css('overflow', 'scroll');
 	})
-
 	$(document).on('change', 'select[name="group"]', function () {
 		if ($(this).children('option:selected').data('default') == '2') {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').hide();
 		} else {
 			$('button.custom_fas_trash_btn.btn.btn-sm.btn-outline-secondary.delete_btn').show();
 		}
-
 		$('.count_cars_in_table').html($('#total').text())
 	});
-
 	$(document).on('keyup', 'input[type="search"]', function () {
 		$('.count_cars_in_table').html($('#total').text())
 	});
-
 	$(document).ready(function () {
 		function myFunction() {
 			if (navigator.userAgent.indexOf("Firefox") != -1) {
@@ -1531,10 +1349,8 @@ $lng = $this->load->lng();
 				$('#splitter').css('height', 'calc(100% - 150px)');
 			}
 		}
-
 		myFunction();
 	})
-
 </script>
 
 <select class="sell_group_select form-control form-control-sm col-sm-12 d-none" name="geoference" id="geoference">
@@ -1551,22 +1367,14 @@ $lng = $this->load->lng();
 <script>
 	$(document).ready(function () {
 		var fleet_ids = [];
-
 		$('.show_car').each(function () {
 			fleet_ids.push($(this).data('imei'));
 		});
-
-
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
-
 			$.post(url, {fleets: fleet_ids}, function (result) {
-
 				$.each(JSON.parse(result), function (e, val) {
-
-
 					$('.show_car').each(function () {
-
 						if (e == $(this).data('imei')) {
 							//console.log($(this).attr('data-coordinate'));
 							// if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
@@ -1576,12 +1384,10 @@ $lng = $this->load->lng();
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
 							}
 							$(this).attr('data-coordinate', val.lat + ', ' + val.long);
-
 							if ($(this).attr('data-speed') != val.speed) {
 								$('input[name="s_' + e + '"]').val(val.speed).trigger('change')
 							}
 							$(this).attr('data-speed', val.speed);
-
 							if ($(this).attr('data-engine') != val.engine) {
 								$('input[name="e_' + e + '"]').val(val.engine).trigger('change')
 							}
@@ -1589,25 +1395,22 @@ $lng = $this->load->lng();
 								$('input[name="c_' + e + '"]').val(val.course).trigger('change')
 							}
 							$(this).attr('data-engine', val.engine);
-
 						}
 					});
 				});
-
-
 			});
 		}, 5000)
-
 	});
-
-
 	/* Parking Stop Driving*/
+	var parking_time = $('input[name="parking_time"]').val();
+	parking_by_seccond = parking_time * 600;
 
+	setInterval(function() {
 
-	$('input.speeds, input.engines').on('change', function () {
+	}, parking_by_seccond);
+
+	$('.global_change').on('change', function () {
 		$('.show_car').each(function () {
-
-
 			if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 1) {
 				$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
 			} else if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 0) {
@@ -1615,8 +1418,6 @@ $lng = $this->load->lng();
 			} else {
 				$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
 			}
-
-
 		})
 	});
 </script>

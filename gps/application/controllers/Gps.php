@@ -259,11 +259,11 @@ class Gps extends MX_Controller
 					if($val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = 2;
 					} elseif ($val['speed'] < 5 && $val['engine'] == 1) {
-						$carStatus = 2;
+						$carStatus = -1;
 					} elseif ($val['speed'] > 5 && $val['engine'] == 0) {
-						$carStatus = 2;
+						$carStatus = -1;
 					} elseif ($val['speed'] > 5 && $val['engine'] == 1) {
-						$carStatus = 2;
+						$carStatus = 1;
 					} elseif($val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = -1;
 					} else {

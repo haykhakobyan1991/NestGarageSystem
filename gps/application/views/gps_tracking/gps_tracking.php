@@ -1378,6 +1378,8 @@ $lng = $this->load->lng();
 					$('.show_car').each(function () {
 						if (e == $(this).data('imei')) {
 
+							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
+
 							if(val.carStatus == 2) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i><small class="form-text text-muted">'+val.timing+'</small>')
 							} else if(val.carStatus == -1) {

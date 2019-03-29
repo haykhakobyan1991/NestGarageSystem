@@ -1368,11 +1368,12 @@ $lng = $this->load->lng();
 <script>
 	$(document).ready(function () {
 		var fleet_ids = [];
+		var arr = [];
 		$('.show_car').each(function () {
 			fleet_ids.push($(this).data('imei'));
+			arr[$(this).data('imei')] = 0;
 		});
 
-		var time = 0;
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
 			$.post(url, {fleets: fleet_ids}, function (result) {
@@ -1383,25 +1384,24 @@ $lng = $this->load->lng();
 
 							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
 
-							console.log(time * 5 +' <-|-> '+$('input[name="parking_time"]').val() * 60);
-
-							//--todo--
 							if(val.carStatus == 2) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 							} else if(val.carStatus == -1) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>');
-								time++;
-								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
+								arr[e]++;
+								if(arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 								}
 							} else {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>');
-								time++;
-								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
+								if(val.speed > 5) {
+									arr[e] = 0;
+								}
+								arr[e]++;
+								if(arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 								}
 							}
-							//--todo--
 
 
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {

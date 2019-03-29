@@ -293,6 +293,23 @@ class MY_Loader extends MX_Loader
 		return $result;
 	}
 
+	public function getTime($day, $hour, $minute, $second)
+	{
+		if ($day > 0) {
+			return $day . lang('day');
+		} else {
+			if ($hour > 0) {
+				return $hour . lang('hour');
+			} else {
+				if ($minute > 0) {
+					return $minute . lang('minute');
+				} else {
+					return $second . lang('second');
+				}
+			}
+		}
+	}
+
 
 
 

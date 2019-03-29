@@ -261,22 +261,22 @@ class Gps extends MX_Controller
 
 					if($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = 2;
-						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					} elseif ($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 1) {
 						$carStatus = 2;
-						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 0) {
 						$carStatus = 2;
-						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 1) {
 						$carStatus = 2;
-						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					} elseif($minutes <= 2 && $val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = -1;
-						$timing = $interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					} else {
 						$carStatus = 1;
-						$timing = $interval->i.' minutes';
+						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
 					}
 
 

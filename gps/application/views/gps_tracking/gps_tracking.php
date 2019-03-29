@@ -1379,9 +1379,9 @@ $lng = $this->load->lng();
 						if (e == $(this).data('imei')) {
 
 							if(val.carStatus == 2) {
-								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
+								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i><small class="form-text text-muted">'+val.timing+'</small>')
 							} else if(val.carStatus == -1) {
-								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
+								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i><small class="form-text text-muted">'+val.timing+'</small>')
 							} else {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
 							}

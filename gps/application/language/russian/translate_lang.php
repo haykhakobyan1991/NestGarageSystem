@@ -455,3 +455,6 @@ $lang['Threshold_of_refueling'] = 'Порог заправкаи л.';
 $lang['Drain_threshold'] = 'Порог слива  л.';
 $lang['parking_time'] = 'Парковка м.';
 
+$lang['minute'] = 'минут';
+$lang['second'] = 'сек.';
+

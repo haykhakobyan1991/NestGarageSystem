@@ -240,11 +240,58 @@ class Gps extends MX_Controller
 		$tmp = 0;
 		$imei = '';
 		$arr = array();
+		$carStatus = '';
+		$timing = '';
 
 		foreach ($result as $val) {
+
 			if ($imei != $val['imei']) {
+
+				//new DateTime
 				if ($tmp == 0) {
-					$arr[$val['imei']] = array('lat' => $val['lat'], 'long' => $val['long'], 'date' => $val['date'], 'time' => $val['time'], 'course' => $val['course'], 'speed' => $val['speed'], 'engine' => $val['engine']);
+
+					$newDateTime = new DateTime();
+					$lastDateTime = new DateTime($val['date'] . ' ' . $val['time']);
+					$interval = $newDateTime->diff($lastDateTime);
+
+					$minutes = ($interval->days * 24 * 60) +
+						($interval->h * 60) + $interval->i;
+
+
+
+					if($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 0) {
+						$carStatus = 2;
+						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+					} elseif ($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 1) {
+						$carStatus = 2;
+						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 0) {
+						$carStatus = 2;
+						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 1) {
+						$carStatus = 2;
+						$timing = $interval->days.'day '.$interval->h.'hour '.$interval->i.' minutes';
+					} elseif($minutes <= 2 && $val['speed'] < 5 && $val['engine'] == 0) {
+						$carStatus = -1;
+						$timing = $interval->i.' minutes';
+					} else {
+						$carStatus = 1;
+						$timing = $interval->i.' minutes';
+					}
+
+
+
+					$arr[$val['imei']] = array(
+						'lat' => $val['lat'],
+						'long' => $val['long'],
+						'date' => $val['date'],
+						'time' => $val['time'],
+						'course' => $val['course'],
+						'speed' => $val['speed'],
+						'engine' => $val['engine'],
+						'carStatus' => $carStatus,
+						'timing' => $timing
+					);
 				}
 				$tmp = 1;
 			} else {

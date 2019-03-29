@@ -69,13 +69,21 @@
 		transition: all .3s ease-in-out;
 	}
 
+	.fas.fa-angle-left {
+		color: rgb(255, 122, 89) !important;
+		font-size: 16px;
+	}
+
+	.fas.fa-angle-right {
+		color: rgb(255, 122, 89) !important;
+		font-size: 16px;
+	}
+
 
 
 </style>
 
-<?
-echo $calendar;
-?>
+<?=$calendar?>
 
 <script>
 	$(document).ready(function () {

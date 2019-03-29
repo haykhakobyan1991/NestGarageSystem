@@ -159,6 +159,7 @@ $lng = $this->load->lng();
 							<td class="address_span" data-imei="<?= $fleets['gps_tracker_imei'] ?>"></td>
 							<td class="text-center car_status">
 								<?
+								//start 1, stop (-1), parking (2)
 								if ($arr[$fleets['gps_tracker_imei']]['speed'] < 5 && $arr[$fleets['gps_tracker_imei']]['engine'] == 1) {
 									?>
 									<i class="text-danger fas fa-stop-circle"></i>
@@ -1376,10 +1377,16 @@ $lng = $this->load->lng();
 				$.each(JSON.parse(result), function (e, val) {
 					$('.show_car').each(function () {
 						if (e == $(this).data('imei')) {
-							//console.log($(this).attr('data-coordinate'));
-							// if ($(this).attr('data-coordinate') != val.lat + ', ' + val.long) {
-							// 	$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
-							// }
+
+							if(val.carStatus == 2) {
+								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
+							} else if(val.carStatus == -1) {
+								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
+							} else {
+								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
+							}
+
+
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
 							}
@@ -1401,25 +1408,7 @@ $lng = $this->load->lng();
 			});
 		}, 5000)
 	});
-	/* Parking Stop Driving*/
-	var parking_time = $('input[name="parking_time"]').val();
-	parking_by_seccond = parking_time * 600;
 
-	setInterval(function() {
-
-	}, parking_by_seccond);
-
-	$('.global_change').on('change', function () {
-		$('.show_car').each(function () {
-			if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 1) {
-				$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
-			} else if ($('input[name="s_' + $(this).data('imei') + '"]').val() < 5 && $('input[name="e_' + $(this).data('imei') + '"]').val() == 0) {
-				$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
-			} else {
-				$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
-			}
-		})
-	});
 </script>
 
 

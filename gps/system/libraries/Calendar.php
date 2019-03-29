@@ -502,7 +502,7 @@ class CI_Calendar {
 			'cal_row_start'				=> '<tr>',
 			'cal_cell_start'			=> '<td class="current"  style="cursor: pointer;">',
 			'cal_cell_start_today'		=> '<td class="current"  style="cursor: pointer;">',
-			'cal_cell_start_other'		=> '<td data-day="" style="color: #666; background: #dee2e6;">',
+			'cal_cell_start_other'		=> '<td data-day="" style="color: #666777; background: #dee2e6;">',
 			'cal_cell_content'			=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}<span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>{content}',
 			'cal_cell_content_today'	=> '<span class="modal_add" data-toggle="modal" data-target="#exampleModalCenter" data-day="" style="cursor: pointer; width: 100%; display: inline-block"><span class="today" >{day}</span><span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>{content}',
 			'cal_cell_no_content'		=> '<span class="modal_add" data-day=""  data-toggle="modal" data-target="#exampleModalCenter" style="cursor: pointer; width: 100%; display: inline-block">{day}<span style="opacity: 0;" class="float-right"><i class="fas fa-plus"></i></span></span>',

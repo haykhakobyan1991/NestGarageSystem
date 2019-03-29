@@ -240,7 +240,7 @@ class Gps extends MX_Controller
 		$tmp = 0;
 		$imei = '';
 		$arr = array();
-		$carStatus = '';
+		$carStatus = 1;
 		$timing = '';
 
 		foreach ($result as $val) {
@@ -255,7 +255,7 @@ class Gps extends MX_Controller
 					$interval = $newDateTime->diff($lastDateTime);
 
 					$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
-
+					//2 - parking, -1 - stop, 1 - play
 					if($val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = 2;
 					} elseif ($val['speed'] < 5 && $val['engine'] == 1) {
@@ -264,12 +264,7 @@ class Gps extends MX_Controller
 						$carStatus = -1;
 					} elseif ($val['speed'] > 5 && $val['engine'] == 1) {
 						$carStatus = 1;
-					} elseif($val['speed'] < 5 && $val['engine'] == 0) {
-						$carStatus = -1;
-					} else {
-						$carStatus = 1;
 					}
-
 
 
 					$arr[$val['imei']] = array(

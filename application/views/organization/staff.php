@@ -86,35 +86,28 @@ endforeach;
 					</div>
 				</div>
 				<!-- Edit staff modal end -->
-
 				<!-- Add staff Modal Start  -->
-
 					<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
 						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
 						<div class="modal-dialog modal-lg">
 							<div class="modal-content">
 								<div class="modal-header bg-dark">
-
 									<h6 class="text-white modal-title dar"><?= lang('new_staff') ?></h6>
-
 								</div>
 								<form id="staff" enctype="multipart/form-data">
 								<div class="modal-body">
 									<!-- Error Message -->
-
 									<div class="for_message">
 										<div class="alert alert-success d-none" role="alert"></div>
 										<div class="alert alert-danger  d-none" role="alert"></div>
 										<div class="alert alert-info  d-none" role="alert"></div>
 									</div>
-
 									<div class="row">
 										<div class="col-sm-12 col-md-6 col-6">
 											<h5><?= lang('staff_information') ?></h5>
 											<p><?= lang('fill_followings_fields') ?></p>
 										</div>
-
 										<div class="col-sm-12 col-md-6 col-6">
 											<h5 style="padding-top: 10px;margin-left: 116px;float: none;display: unset;"><?= lang('picture') ?></h5>
 											<div class="media">
@@ -122,10 +115,10 @@ endforeach;
 													 id='img-upload2'
 													 style="width: 100px;margin-top: -30px;" alt=""
 													 src="<?= base_url('assets/images/no_choose_image.svg') ?>">
-												<div class="media-body">
+												<div class="media-body col-sm-12" style="position: relative;padding: 0;">
 													<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
 													<div class="input-group ml-2 ml-md-2">
-														<span class="input-group-btn">
+														<span class="input-group-btn" style="position:absolute; right: 18px;">
 															<span
 																class="btn btn-outline-success btn-file"
 																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
@@ -138,19 +131,14 @@ endforeach;
 														<input type="text" class="form-control form-control-sm"
 															   readonly
 															   style="display: none;">
-
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-
 									<hr class="my-2">
-
 									<div class="row mt-1">
-
 										<div class="col-sm-12 col-md-12 col-12  pl-md-4 pl-4 pr-md-4 pr-4">
-
 											<div class="row">
 												<div class="col-sm-6">
 													<div class="row">
@@ -221,8 +209,6 @@ endforeach;
 														</div>
 													</div>
 												</div>
-
-
 												<div class="col-sm-6">
 													<div class="row">
 														<label

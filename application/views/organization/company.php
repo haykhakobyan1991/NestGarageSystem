@@ -8,6 +8,11 @@ $i = '';
 	input::-webkit-input-placeholder {
 		font-size: 14px !important;
 	}
+
+	button.btn.dropdown-toggle, button.btn.dropdown-toggle.btn-sm {
+		color: #000000 !important;
+	}
+
 </style>
 
 <!--  Company  Start-->
@@ -94,7 +99,9 @@ $i = '';
 					</div>
 
 
-					<div class="col-sm-3">
+					<div class="col-sm-5" style="position: relative !important;">
+
+
 						<h5 style="margin-left: 64px;float: none;display: unset;"><?= lang('logo') ?></h5>
 						<div class="media">
 							<img class="align-self-start" id='img-upload'
@@ -103,16 +110,15 @@ $i = '';
 								 src="<?= ($company['logo'] != '' ? base_url('uploads/' . $folder . '/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
 							<div class="media-body" style="margin-top: 25px;">
 								<p style="float: left;margin-top: -20px;margin-left:15px;"><?= lang('upload_logo'); ?></p>
-								<div class="input-group ml-2 ml-md-2" style="display: inline-block;width: auto;">
-															<span class="input-group-btn">
-																<span
-																	class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade">
-																	<?= lang('browse') ?> <input type="file" id="imgInp"
-																								 name="photo"
-																								 accept='image/png'
-																	>
-																</span>
-															</span>
+								<div class="input-group col-sm-12" style="position: relative;">
+									<span class="input-group-btn" style="position: absolute;
+    right: -5px;
+    top: 17px;">
+										<span
+											class="btn btn-sm btn-outline-success btn-file mr-1 span_button_uploade"><?= lang('browse') ?> <input
+												type="file" id="imgInp" name="photo" accept='image/png'>
+										</span>
+									</span>
 									<input type="text" class="form-control form-control-sm" readonly
 										   style="display: none;" title=""/>
 									<input type="hidden" name="u_logo"
@@ -122,20 +128,11 @@ $i = '';
 							</div>
 						</div>
 					</div>
-
-
 				</div>
-
 				<hr class="my-2 mt-1">
-
 				<div class="row mt-3">
-
-
 					<div class="col-sm-6">
-						<label
-							class="col-sm-6 col-form-label"
-							style="padding-left: 0;"><?= lang('address_1') ?></label>
-
+						<label class="col-sm-6 col-form-label" style="padding-left: 0;"><?= lang('address_1') ?></label>
 						<div class="form-row">
 							<select name="activity_country"
 									class="col selectpicker form-control form-control-sm selectpicker_1"
@@ -177,8 +174,6 @@ $i = '';
 									   type="text" class="form-control form-control-sm"
 									   placeholder="<?= lang('Activity_address') ?>">
 							</div>
-
-
 						</div>
 
 						<div class="row mt-1">
@@ -198,7 +193,6 @@ $i = '';
 									   placeholder="<?= lang('phone_number') ?>">
 							</div>
 						</div>
-
 					</div>
 
 

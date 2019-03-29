@@ -1383,16 +1383,21 @@ $lng = $this->load->lng();
 							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
 
 							if(val.carStatus == 2) {
+								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
+							} else if(val.carStatus == -1) {
+								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>');
 								time++;
 								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
-									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>')
+									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
+									time = 0;
 								}
-							} else if(val.carStatus == -1) {
-								time = 0;
-								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>')
 							} else {
-								time = 0;
-								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>')
+								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>');
+								time++;
+								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
+									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
+									time = 0;
+								}
 							}
 
 

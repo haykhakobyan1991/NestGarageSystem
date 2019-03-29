@@ -1371,6 +1371,7 @@ $lng = $this->load->lng();
 		$('.show_car').each(function () {
 			fleet_ids.push($(this).data('imei'));
 		});
+
 		var time = 0;
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
@@ -1382,6 +1383,9 @@ $lng = $this->load->lng();
 
 							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
 
+							console.log(time * 5 +' <-|-> '+$('input[name="parking_time"]').val() * 60);
+
+							//--todo--
 							if(val.carStatus == 2) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 							} else if(val.carStatus == -1) {
@@ -1389,16 +1393,15 @@ $lng = $this->load->lng();
 								time++;
 								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
-									time = 0;
 								}
 							} else {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>');
 								time++;
 								if(time * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
-									time = 0;
 								}
 							}
+							//--todo--
 
 
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
@@ -1420,7 +1423,26 @@ $lng = $this->load->lng();
 					});
 				});
 			});
-		}, 5000)
+		}, 5000);
+
+
+
+		//setInterval(function () {
+		//	var url = '<?//=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/getCarStatus/')?>//';
+		//	$.post(url, {fleets: fleet_ids}, function (result) {
+		//
+		//		$.each(JSON.parse(result), function (e, val) {
+		//			$('.show_car').each(function () {
+		//				if (e == $(this).data('imei')) {
+		//
+		//				}
+		//			});
+		//		});
+		//	});
+		//}, 2000)
+
+
+
 	});
 
 </script>

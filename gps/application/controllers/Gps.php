@@ -1853,5 +1853,132 @@ class Gps extends MX_Controller
 	}
 
 
+
+	public function getCarStatus()
+	{
+
+		$token = $this->session->token;
+		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+
+		$user_id = $this->session->user_id;
+
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$messages['error'] = 'error_message';
+			$this->access_denied();
+			return false;
+		}
+
+		$fleets = $this->input->post('fleets');
+		$add_sql = '';
+		foreach ($fleets as $imei) {
+			$add_sql .= " gps.\"imei\" = '" . $imei . "' OR";
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+
+		$sql = "
+			SELECT 
+			    gps.\"id\",
+				gps.\"lat\",
+				gps.\"long\",
+				gps.\"speed\",
+				gps.\"course\",
+				gps.\"time\",
+				gps.\"date\",
+				gps.\"imei\",
+				gps.\"engine\"
+			FROM 
+			   gps 
+			WHERE $add_sql ORDER BY imei, 
+		 	CONCAT_WS (' ',
+		 	   gps.\"date\",
+			   gps.\"time\"
+		    ) desc
+		";
+
+		$query = $this->db->query($sql);
+
+		$result = $query->result_array();
+
+		$tmp = 0;
+		$imei = '';
+		$arr = array();
+		$carStatus = 1;
+		$timing = '';
+
+		$engine = '';
+		$speed = '';
+
+		$newDateTime = new DateTime();
+
+		foreach ($result as $val) {
+
+
+			if ($imei != $val['imei']) {
+				$lastDateTime = new DateTime($val['date'] . ' ' . $val['time']);
+				$interval = $newDateTime->diff($lastDateTime);
+
+				$minutes = ($interval->days * 24 * 60) +
+					($interval->h * 60) + $interval->i;
+
+			}
+			$imei = $val['imei'];
+
+
+				if($engine != $val['engine'] && $speed != $val['speed']) {
+					//engine on && speed > 5
+
+					echo $val['imei'].'<-|->'.$val['course'].br();
+
+
+//					$minutes = ($interval->days * 24 * 60) +
+//						($interval->h * 60) + $interval->i;
+//
+//
+//					if($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 0) {
+//						$carStatus = 2;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					} elseif ($minutes > 2 && $val['speed'] < 5 && $val['engine'] == 1) {
+//						$carStatus = 2;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 0) {
+//						$carStatus = 2;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					} elseif ($minutes > 2 && $val['speed'] > 5 && $val['engine'] == 1) {
+//						$carStatus = 2;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					} elseif($minutes <= 2 && $val['speed'] < 5 && $val['engine'] == 0) {
+//						$carStatus = -1;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					} else {
+//						$carStatus = 1;
+//						$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+//					}
+
+					$arr[$val['imei']] = array(
+						'carStatus' => $carStatus,
+						'timing' => $timing
+					);
+
+					print_r($arr);
+
+				}
+				$engine = $val['engine'];
+				$speed = $val['speed'];
+
+
+
+		//	}
+
+		}
+
+		echo json_encode($arr);
+		return true;
+
+	}
+
+
 }
 //end of class

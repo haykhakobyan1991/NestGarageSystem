@@ -61,9 +61,11 @@
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
+
+<form>
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;padding-bottom: 10px;"
 	 aria-labelledby="list-company-list">
-	<form>
+
 
 		<div class="for_message">
 			<div class="alert alert-success d-none " role="alert"></div>

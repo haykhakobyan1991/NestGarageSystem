@@ -1374,9 +1374,11 @@ $lng = $this->load->lng();
 			arr[$(this).data('imei')] = 0;
 		});
 
+		var parking_time = $('input[name="parking_time"]').val();
+
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
-			$.post(url, {fleets: fleet_ids}, function (result) {
+			$.post(url, {fleets: fleet_ids, parking_time: parking_time}, function (result) {
 
 				$.each(JSON.parse(result), function (e, val) {
 					$('.show_car').each(function () {

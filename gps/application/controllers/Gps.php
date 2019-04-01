@@ -205,6 +205,9 @@ class Gps extends MX_Controller
 			return false;
 		}
 
+		//parking time
+		$parking_time = $this->input->post('parking_time');
+
 		$fleets = $this->input->post('fleets');
 		$add_sql = '';
 		foreach ($fleets as $imei) {
@@ -243,6 +246,9 @@ class Gps extends MX_Controller
 		$carStatus = 1;
 		$timing = '';
 
+
+
+
 		foreach ($result as $val) {
 
 			if ($imei != $val['imei']) {
@@ -254,14 +260,26 @@ class Gps extends MX_Controller
 					$lastDateTime = new DateTime($val['date'] . ' ' . $val['time']);
 					$interval = $newDateTime->diff($lastDateTime);
 
+					$minutes = ($interval->days * 24 * 60) +
+						($interval->h * 60) + $interval->i;
+
 					$timing = $this->load->getTime($interval->days, $interval->h, $interval->i, $interval->s);
+
 					//2 - parking, -1 - stop, 1 - play
-					if($val['speed'] < 5 && $val['engine'] == 0) {
+					if ($val['speed'] < 5 && $val['engine'] == 0) {
 						$carStatus = 2;
 					} elseif ($val['speed'] < 5 && $val['engine'] == 1) {
-						$carStatus = -1;
+						if ($minutes > $parking_time) {
+							$carStatus = 2;
+						} else {
+							$carStatus = -1;
+						}
 					} elseif ($val['speed'] > 5 && $val['engine'] == 0) {
-						$carStatus = -1;
+						if ($minutes > $parking_time) {
+							$carStatus = 2;
+						} else {
+							$carStatus = -1;
+						}
 					} elseif ($val['speed'] > 5 && $val['engine'] == 1) {
 						$carStatus = 1;
 					}

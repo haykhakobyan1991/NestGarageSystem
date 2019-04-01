@@ -3023,8 +3023,7 @@ class Organization extends MX_Controller {
 		$mileage_value = $this->input->post('mileage_value');
 		$odometer = $this->input->post('odometer');
 		$other = $this->input->post('other');
-		$gps_tracker_exists = $this->input->post('gps_exist');
-		$gps_tracker_imei = $this->input->post('gps_tracker_imei');
+
 		$status = ($this->input->post('status') == '' ? 1 : $this->input->post('status'));
 
 
@@ -3316,8 +3315,6 @@ class Organization extends MX_Controller {
 					`value2_id` = ".$this->load->db_value($value_2).",
 					`value1_day` = ".$this->load->db_value($value1_day).",
 					`value2_day` = ".$this->load->db_value($value2_day).",
-					`gps_tracker_exists` = ".$this->load->db_value($gps_tracker_exists).",
-					`gps_tracker_imei` = ".$this->load->db_value($gps_tracker_imei).",
 					`auto_increment` = ".$this->load->db_value($auto_increment).",
 					".$auto_increment_date."
 					`regitered_address` = ".$this->load->db_value($regitered_address).",

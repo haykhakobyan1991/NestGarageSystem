@@ -469,16 +469,16 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 			var token = '<?=$token?>';
 			$('#car_info').html('');
 
-			$('.card-text.fleet_name').each(function () {
-				if ($(this).hasClass('fleet_name_selected')) {
-					fleet_ids.push($(this).data('id'));
-					fleet_imeis.push($(this).data('imei'));
-				}
-			});
+
+			if ($(this).hasClass('fleet_name_selected')) {
+				fleet_ids = $(this).data('id');
+				fleet_imeis = $(this).data('imei');
+			}
+
 
 			$.post('<?=$this->load->old_baseUrl() . $this->load->lng() . '/Api/get_fleet_info' ?>', {
 				token: token,
-				fleet_ids: fleet_ids.join(",")
+				fleet_ids: fleet_ids
 			}, function (data) {
 				var result = '';
 				//console.log(JSON.parse(data));
@@ -510,68 +510,13 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 				$('#car_info').html(result)
 			});
 
-			//console.log(fleet_ids.join(","));
 
-			$('input[name="fleets"]').val(fleet_imeis.join(","))
-
-		});
-
-
-		$(document).on('change', '.selectAll_fleets', function () {
-
-			var fleet_ids = [];
-			var fleet_imeis = [];
-			var token = '<?=$token?>';
-
-			$('#car_info').html('');
-
-			$('.card-text.fleet_name').each(function () {
-				if ($(this).hasClass('fleet_name_selected')) {
-					fleet_ids.push($(this).data('id'));
-					fleet_imeis.push($(this).data('imei'));
-				}
-			});
-
-			$.post('<?=$this->load->old_baseUrl() . $this->load->lng() . '/Api/get_fleet_info' ?>', {
-				token: token,
-				fleet_ids: fleet_ids.join(",")
-			}, function (data) {
-				var result = '';
-				//console.log(JSON.parse(data));
-				$.each(JSON.parse(data), function (e, val) {
-
-					var brand_name = val.brand + ' ' + val.model;
-					(brand_name.length > 13) ? sbstr = brand_name.substring(0, 13) + '...' : sbstr = brand_name;
-
-					result += '<div class="card mb-1 ">\n' +
-						'\t\t\t\t\t\t<div class="card-body p-2" style="font-size: 11px !important;">\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle="" ><?= lang("vehicle") ?>:</span>' +
-						'\t\t\t\t\t\t\t\t\t<span><a href="<?=$this->load->old_baseUrl() . $this->load->lng() . "/edit_vehicles/"?>' + val.id + '" target="_blank" title="' + val.brand + ' ' + val.model + '">' + sbstr + '</a></span>\n' +
-						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("license_plate") ?>:</span><span>  ' + val.fleet_plate_number + '</span>\n' +
-						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span\n' +
-						'\t\t\t\t\t\t\t\t\tstyle=""><?= lang("type") ?>:</span><span>  ' + val.fleet_type + '</span>\n' +
-						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span><?= lang("driver") ?>:</span><span>  ' + val.first_name + ' ' + val.last_name + '</span>\n' +
-						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t\t<div class="text"><span style=""><?= lang("contact_number") ?>:</span><span>  ' + (val.contact_1 !== null ? val.contact_1 : '') + (val.contact_2 !== null ? ', ' + val.contact_2 : '') + '</span>\n' +
-						'\t\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t\t</div>\n' +
-						'\t\t\t\t\t</div>';
-				});
-
-				$('#car_info').html(result)
-			});
-
-
-			//console.log(fleet_ids.join(","));
-
-			$('input[name="fleets"]').val(fleet_imeis.join(","))
+			$('input[name="fleets"]').val(fleet_imeis)
 
 		});
+
+
+
 
 		$('.speed_checkbox').on('change', function () {
 			let speed_checkbox = $('.set_maxSpeed');

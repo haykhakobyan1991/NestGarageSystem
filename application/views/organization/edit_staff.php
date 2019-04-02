@@ -30,21 +30,23 @@ $folder = $this->session->folder;
 				<div class="media-body col-sm-12" style="position: relative;padding: 0;">
 					<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
 					<div class="input-group ml-2 ml-md-2">
-														<span class="input-group-btn"
-															  style="position:absolute; right: 18px;">
-															<span
-																class="btn btn-outline-success btn-file"
-																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
-																<?= lang('browse') ?> <input type="file" id="imgInp2"
-																							 name="photo"
-																							 accept='image/png'
-																							 onchange="readURL2(this);">
-															</span>
-														</span>
+						<span class="input-group-btn"
+									 style="position:absolute; right: 18px;">
+							<span id="remove_picture2"
+								  class="btn btn-sm btn-outline-secondary mr-3"><i
+									class="fas fa-times"></i></span>
+							<span
+								class="btn btn-outline-success btn-file"
+								style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
+								<?= lang('browse') ?> <input type="file" id="imgInp2"
+															 name="photo"
+															 accept='image/png'
+															 onchange="readURL2(this);">
+							</span>
+						</span>
 						<input type="text" class="form-control form-control-sm"
 							   readonly
 							   style="display: none;">
-
 					</div>
 				</div>
 			</div>
@@ -536,6 +538,9 @@ $folder = $this->session->folder;
 		$('input[name="head"]').val('1');
 	});
 
-
+	$('#remove_picture2').click(function () {
+		$('#img-upload2').attr('src', '<?= base_url('assets/images/no_choose_image.svg') ?>');
+		$('#imgInp2').val('');
+	})
 </script>
 

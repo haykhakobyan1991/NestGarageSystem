@@ -25,6 +25,15 @@
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
 
+<style>
+	th:nth-child(2):after {
+		content: none !important;
+	}
+
+	th:nth-child(2):before {
+		content: none !important;
+	}
+</style>
 
 <?
 $lng = $this->load->lng();
@@ -43,7 +52,7 @@ $lng = $this->load->lng();
 				<div class="form-group row ml-2">
 					<div class="car_icon col-sm-2" style="padding-top: 10px;">
 						<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
-							 style="width: 25px;display: inline-block;"/>
+							 style="width: 25px;display: inline-block;margin-left: 20px;"/>
 						<span class="count_cars_in_table"><?= count($result_fleets) ?></span>
 					</div>
 					<label class="label_group" style="margin-top: 10px;"><?= lang('group') ?></label>
@@ -96,12 +105,13 @@ $lng = $this->load->lng();
 						<th style="font-weight: 500;color: transparent;font-size: 1px !important;">
 							<input class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
 						</th>
+						<th style="font-size: 12px !important;font-weight: 500;"></th>
 						<th
 							style="font-weight: 500;color: transparent;font-size: 1px !important;min-width: 200px;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>
-						<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+						<th style="min-width: 150px;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-map-marker-alt"></i><?= lang('location') ?>
 						</th>
@@ -121,12 +131,12 @@ $lng = $this->load->lng();
 							   class="fas fa-gas-pump"></i><?= lang('fuel') ?>
 						</th>
 
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent !important;font-size: 1px !important;">
+						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="color: #000 !important; font-size: 12px  !important;"
 							   class="fas fa-wifi"></i><?= lang('signal') ?>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('last_activity') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"></th>
+
 					</tr>
 					</thead>
 					<tbody>
@@ -152,6 +162,26 @@ $lng = $this->load->lng();
 
 						<tr>
 							<td><input type="checkbox"/></td>
+							<td class="show_car"
+								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
+								data-id="<?= $fleets['id'] ?>"
+								data-imei="<?= $fleets['gps_tracker_imei'] ?>"
+								data-speed="<?= round($arr[$fleets['gps_tracker_imei']]['speed'], 2) ?>"
+								data-engine="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>"
+								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
+								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+							</td>
+							<input class="global_change coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
+							<input class="global_change speeds" type="hidden"
+								   name="s_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
+							<input class="global_change engines" type="hidden"
+								   name="e_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
+							<input class="global_change courses" type="hidden"
+								   name="c_<?= $fleets['gps_tracker_imei'] ?>"
+								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 							<td>
 								<span class="car_model"><?= $fleets['brand_model'] ?></span>
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
@@ -181,7 +211,8 @@ $lng = $this->load->lng();
 							</td>
 							<td>
 								<span class="span_department"><?= $fleets['department'] ?></span>
-								<small style="font-size: 1px;display: none !important;"><?= $fleets['fleet_group'] ?></small>
+								<small
+									style="font-size: 1px;display: none !important;"><?= $fleets['fleet_group'] ?></small>
 							</td>
 							<td>
 								<div class="border-danger fuel_wrapper">
@@ -200,23 +231,7 @@ $lng = $this->load->lng();
 								<small
 									class="form-text text-muted"><?= $arr[$fleets['gps_tracker_imei']]['time'] ?></small>
 							</td>
-							<td class="show_car"
-								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
-								data-id="<?= $fleets['id'] ?>"
-								data-imei="<?= $fleets['gps_tracker_imei'] ?>"
-								data-speed="<?= round($arr[$fleets['gps_tracker_imei']]['speed'], 2) ?>"
-								data-engine="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>"
-								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
-							</td>
-							<input class="global_change coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
-							<input class="global_change speeds" type="hidden" name="s_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
-							<input class="global_change engines" type="hidden" name="e_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
-							<input class="global_change courses" type="hidden" name="c_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
+
 						</tr>
 						<?
 						$i++;
@@ -431,7 +446,7 @@ $lng = $this->load->lng();
 } ?>
 
 <script>
-	$('table tr th:nth-child(2)').click(function () {
+	$('table tr th:nth-child(3)').click(function () {
 		if (!$(this).hasClass('az')) {
 			$(this).html('<i style="font-size: 12px !important;color: #000 !important;" class="fas fa-sort-alpha-down"></i>');
 			$(this).addClass('az');
@@ -472,7 +487,7 @@ $lng = $this->load->lng();
 			}
 		},
 		"columnDefs": [{
-			"targets": [0, 2, 3, 4, 5, 6, 7, 8, 9],
+			"targets": [0, 3, 4, 5, 6, 7, 8, 9],
 			"orderable": false
 		}],
 		dom: 'Bfrtip',
@@ -623,6 +638,7 @@ $lng = $this->load->lng();
 	 ***************************/
 	$(document).ready(function () {
 		ymaps.ready(init_all);
+
 		function init_all() {
 			var myPlacemark;
 			myMap_show_all_cars_onChange = new ymaps.Map("map", {
@@ -654,7 +670,6 @@ $lng = $this->load->lng();
 							array_stting
 						], {
 							hintContent: 'Перетащи меня!'
-							// balloonContent: 'Прямоугольник 2'
 						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
@@ -697,7 +712,7 @@ $lng = $this->load->lng();
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + " <?=lang('km/h')?></span></p>" +
-							"<p class='mb-0'><?=lang('engine') ?>:<span class='ml-1 "+bg_color_on_loade+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+							"<p class='mb-0'><?=lang('engine') ?>:<span class='ml-1 " + bg_color_on_loade + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 						balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
@@ -733,11 +748,10 @@ $lng = $this->load->lng();
 			});
 			$(window).on('load', function () {
 				$('.address_span').each(function () {
-					$(this).text(address_arr[$(this).data('imei')])
+					$(this).text(address_arr[$(this).data('imei')]);
 				})
 			});
 			$('.global_change').on('change', function (event) {
-
 				// get changed element name
 				var changed = event.target.name;
 				setTimeout(function () {
@@ -766,7 +780,7 @@ $lng = $this->load->lng();
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 								balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
@@ -803,12 +817,14 @@ $lng = $this->load->lng();
 				myMap_show_all_cars_onChange.geoObjects.removeAll(myPlacemarkWithContent);
 			});
 		}
+
 		//Show Geozone from selectoption
 		$(document).on('change', 'select[name="group"]', function () {
 			$(this).children('option:selected').each(function () {
 				geozone_coordinates = $(this).data('cordinate');
 				if (geozone_coordinates !== undefined && geozone_coordinates != 'gago') {
 					ymaps.ready(init_Geozone);
+
 					function init_Geozone() {
 						$('#map').html('');
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
@@ -823,7 +839,6 @@ $lng = $this->load->lng();
 							array_stting
 						], {
 							hintContent: 'Перетащи меня!'
-							// balloonContent: 'Прямоугольник 2'
 						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
@@ -857,7 +872,7 @@ $lng = $this->load->lng();
 											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
@@ -905,6 +920,7 @@ $lng = $this->load->lng();
 		$('tr td input , th input').on('change', function () {
 			$('#map').html('');
 			ymaps.ready(init_all);
+
 			function init_all() {
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
@@ -966,7 +982,7 @@ $lng = $this->load->lng();
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
 									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
@@ -1022,7 +1038,7 @@ $lng = $this->load->lng();
 												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
-												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 "+bg_color+"' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
+												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 												"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
 											balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
@@ -1059,23 +1075,6 @@ $lng = $this->load->lng();
 							});
 						}, 500);
 						myMap_show_all_cars.geoObjects.removeAll(myPlacemarkWithContent);
-						// rc = 0;
-						// $('.geofences_coordinate').each(function () {
-						// 	geoObject_coordinates = $(this).attr('data-gCoordinate');
-						// 	array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-						// 	var rand_color = rand_color_arr[rc];
-						// 	myPolygon = new ymaps.Polygon([
-						// 		array_stting
-						// 	], {}, {
-						// 		editorDrawingCursor: "crosshair",
-						// 		fillColor: rand_color,
-						// 		strokeColor: rand_color,
-						// 		strokeWidth: 2
-						// 	});
-						// 	myMap_show_all_cars.geoObjects.add(myPolygon);
-						//
-						// 	rc++;
-						// });
 					}
 				);
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
@@ -1290,6 +1289,7 @@ $lng = $this->load->lng();
 				log("resize");
 			}
 		});
+
 		function log(str) {
 			if (str == 'resize') {
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
@@ -1350,6 +1350,7 @@ $lng = $this->load->lng();
 				$('#splitter').css('height', 'calc(100% - 150px)');
 			}
 		}
+
 		myFunction();
 	})
 </script>
@@ -1384,23 +1385,23 @@ $lng = $this->load->lng();
 					$('.show_car').each(function () {
 						if (e == $(this).data('imei')) {
 
-							$(this).parent('tr').children('.last_time_update').html(val.date+'<small class="form-text text-muted">'+val.time+'</small>');
+							$(this).parent('tr').children('.last_time_update').html(val.date + '<small class="form-text text-muted">' + val.time + '</small>');
 
-							if(val.carStatus == 2) {
+							if (val.carStatus == 2) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
-							} else if(val.carStatus == -1) {
+							} else if (val.carStatus == -1) {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-danger fas fa-stop-circle"></i>');
 								arr[e]++;
-								if(arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
+								if (arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 								}
 							} else {
 								$(this).parent('tr').children('td.car_status').html('<i class="text-success fas fa-play"></i>');
-								if(val.speed > 5) {
+								if (val.speed > 5) {
 									arr[e] = 0;
 								}
 								arr[e]++;
-								if(arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
+								if (arr[e] * 5 >= $('input[name="parking_time"]').val() * 60) {
 									$(this).parent('tr').children('td.car_status').html('<i class="text-warning fas fa-parking"></i>');
 								}
 							}
@@ -1426,24 +1427,6 @@ $lng = $this->load->lng();
 				});
 			});
 		}, 5000);
-
-
-
-		//setInterval(function () {
-		//	var url = '<?//=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/getCarStatus/')?>//';
-		//	$.post(url, {fleets: fleet_ids}, function (result) {
-		//
-		//		$.each(JSON.parse(result), function (e, val) {
-		//			$('.show_car').each(function () {
-		//				if (e == $(this).data('imei')) {
-		//
-		//				}
-		//			});
-		//		});
-		//	});
-		//}, 2000)
-
-
 
 	});
 

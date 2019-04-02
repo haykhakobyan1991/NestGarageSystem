@@ -173,6 +173,8 @@ class Structure extends MX_Controller
 			  `company`.`id` AS `company_id`,
 			  `company`.`name` AS `company`,
 			  `company`.`logo` AS `company_logo`,
+			  `fleet_type`.`title_" . $lng . "` AS `fleet_type`,
+			  `fleet_type`.`id` AS `fleet_type_id`,
 			   CONCAT_WS(
 				' ',
 				`brand`.`title_" . $lng . "`,
@@ -204,6 +206,8 @@ class Structure extends MX_Controller
 				  `fleet`.`staff_ids`
 				) 
 				AND `fleet`.`status` = '1'
+			 LEFT JOIN `fleet_type`
+				ON `fleet`.`fleet_type_id` = `fleet_type`.`id`
 			  LEFT JOIN `model` 
 				ON `fleet`.`model_id` = `model`.`id` 
 			  LEFT JOIN `brand` 
@@ -250,7 +254,14 @@ class Structure extends MX_Controller
 			$driver_id = $value['driver_id'];
 
 			if ($value['fleet_id'] != $fleet_id && $value['fleet_id'] != '') :
-				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['model'], 'title' => $value['fleet_plate_number'], 'img' => base_url('assets/img/car.svg'), 'to' => true);
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['model'], 'title' => $value['fleet_plate_number'], 'img' => ($value['fleet_type_id'] == 1 ? base_url('assets/img/fleet_type/gojs_fleet_type/car.png') :
+					($value['fleet_type_id'] == 2 ? base_url('assets/img/fleet_type/gojs_fleet_type/delivery-truck.png') :
+						($value['fleet_type_id'] == 3 ? base_url('assets/img/fleet_type/gojs_fleet_type/construction-tool-vehicle-with-crane-lifting-materials.png') :
+							($value['fleet_type_id'] == 4 ? base_url('assets/img/fleet_type/gojs_fleet_type/construction-truck.png') :
+								($value['fleet_type_id'] == 5 ? base_url('assets/img/fleet_type/gojs_fleet_type/bus-side-view.png') :
+									($value['fleet_type_id'] == 6 ? base_url('assets/img/fleet_type/gojs_fleet_type/minivan.png') :
+										($value['fleet_type_id'] == 7 ? base_url('assets/img/fleet_type/gojs_fleet_type/car-with-trailer.png') : ''
+										))))))), 'to' => true);
 			endif;
 			$fleet_id = $value['fleet_id'];
 
@@ -276,7 +287,6 @@ class Structure extends MX_Controller
 
 	public function structure4()
 	{
-
 
 
 		$user_id = $this->session->user_id;
@@ -387,8 +397,6 @@ class Structure extends MX_Controller
 		$fleet_id = '';
 
 
-
-
 		$structure_arr = array_values(array_unique($structure_arr, SORT_REGULAR));
 
 		$data['structure'] = $structure_array;
@@ -400,7 +408,6 @@ class Structure extends MX_Controller
 		$this->layout->view('structure/structure4', $data);
 
 	}
-
 
 
 	public function structure2()
@@ -642,9 +649,6 @@ class Structure extends MX_Controller
 	}
 
 
-
-
-
 	public function change_from_to_ax()
 	{
 
@@ -704,7 +708,6 @@ class Structure extends MX_Controller
 			}
 
 		endforeach;
-
 
 
 		if (!isset($new_data_arr['c_h']) || !isset($new_data_arr['h_d']) || !isset($new_data_arr['d_f'])) {

@@ -87,7 +87,7 @@
 	</style>
 	<!-- Some CSS end -->
 </head>
-<body >
+<body>
 <?
 $controller = $this->router->fetch_class();
 $page = $this->router->fetch_method();
@@ -95,7 +95,7 @@ $token = $this->session->token;
 
 $unread = $this->session->unread;
 
-if(!$unread) {
+if (!$unread) {
 
 	$sql = "
 				SELECT 
@@ -193,7 +193,7 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 </nav>
 <!-- Navbar End -->
 
-<input type="hidden" name="company" value="<?=$row_company['name']?>">
+<input type="hidden" name="company" value="<?= $row_company['name'] ?>">
 
 <div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
 	if ($controller == 'Gps') { ?>
@@ -222,16 +222,18 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 						<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
 						<!--												</button>-->
 						<!--											</a>-->
-<!--						<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?><!--">-->
-<!--							<button style="color:#00000080 !important;max-height: 40px;"-->
-<!--									class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"-->
-<!--									href="#"-->
-<!--									data-toggle="tooltip" data-placement="top"-->
-<!--									title="--><?//= lang('speed') ?><!--">-->
-<!--								<img-->
-<!--									src="--><?//= base_url() ?><!--assets/images/gps_tracking/speedometer.svg"/>-->
-<!--							</button>-->
-<!--						</a>-->
+						<!--						<a href="-->
+						<? //= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?><!--">-->
+						<!--							<button style="color:#00000080 !important;max-height: 40px;"-->
+						<!--									class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"-->
+						<!--									href="#"-->
+						<!--									data-toggle="tooltip" data-placement="top"-->
+						<!--									title="--><? //= lang('speed') ?><!--">-->
+						<!--								<img-->
+						<!--									src="-->
+						<? //= base_url() ?><!--assets/images/gps_tracking/speedometer.svg"/>-->
+						<!--							</button>-->
+						<!--						</a>-->
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
 							<button
 								style="color:#00000080 !important;max-height: 40px;"
@@ -242,71 +244,77 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 								<img src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
 							</button>
 						</a>
-<!--						<button-->
-<!--							style="color:#00000080 !important;max-height: 40px;"-->
-<!--							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "-->
-<!---->
-<!--							href="#"-->
-<!--							data-toggle="tooltip" data-placement="top"-->
-<!--							title="--><?//= lang('engine') ?><!--">-->
-<!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/engine.svg"/>-->
-<!--						</button>-->
+						<!--						<button-->
+						<!--							style="color:#00000080 !important;max-height: 40px;"-->
+						<!--							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "-->
+						<!---->
+						<!--							href="#"-->
+						<!--							data-toggle="tooltip" data-placement="top"-->
+						<!--							title="--><? //= lang('engine') ?><!--">-->
+						<!--							<img src="-->
+						<? //= base_url() ?><!--assets/images/gps_tracking/engine.svg"/>-->
+						<!--						</button>-->
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/load') ?>">
-						<button
-							style="color:#00000080 !important;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 <?= ($page == 'load' ? 'active' : '') ?>"
-							href="#"
-							data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
-						</button>
+							<button
+								style="color:#00000080 !important;max-height: 40px;"
+								class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 <?= ($page == 'load' ? 'active' : '') ?>"
+								href="#"
+								data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
+								<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
+							</button>
 						</a>
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/sos') ?>">
-						<button
-							style="color:#00000080 !important;max-height: 40px;position: relative"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'sos' ? 'active' : '') ?>"
-							href="#"
-							data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
-							<a href="#" style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;" class="badge count_unread"><?=$unread?></a>
-						</button>
+							<button
+								style="color:#00000080 !important;max-height: 40px;position: relative"
+								class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'sos' ? 'active' : '') ?>"
+								href="#"
+								data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
+								<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
+								<a href="#"
+								   style="position: absolute;color: #fff !important;background: rgb(255, 122, 89) !important;"
+								   class="badge count_unread"><?= $unread ?></a>
+							</button>
 						</a>
-						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"
-							href="#"
-							data-toggle="tooltip" data-placement="top"
-							title="<?= lang('notification') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/notification.svg"/>
-						</button>
+						<!--						<button-->
+						<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+						<!--							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"-->
+						<!--							href="#"-->
+						<!--							data-toggle="tooltip" data-placement="top"-->
+						<!--							title="--><? //= lang('notification') ?><!--">-->
+						<!--							<img src="-->
+						<? //= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
+						<!--						</button>-->
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/event') ?>">
-						<button
-							style="color:#00000080 !important;display: inline-block;max-height: 40px;"
-							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'event' ? 'active' : '') ?>"
-							href="#"
-							data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
-						</button>
+							<button
+								style="color:#00000080 !important;display: inline-block;max-height: 40px;"
+								class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'event' ? 'active' : '') ?>"
+								href="#"
+								data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
+								<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
+							</button>
 						</a>
-<!--						<button-->
-<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
-<!--							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "-->
-<!--							href="#"-->
-<!--							data-toggle="tooltip" data-placement="top"-->
-<!--							title="--><?//= lang('statistics') ?><!--">-->
-<!--							<img src="--><?//= base_url() ?><!--assets/images/gps_tracking/statistics.svg"/>-->
-<!--						</button>-->
-<!--						<label class="text-center col-sm-2"-->
-<!--							   style="padding: 10px 6px 0px 10px;">--><?//= lang('update') ?><!--</label>-->
-<!--						<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">-->
-<!--							<option>1</option>-->
-<!--							<option>2</option>-->
-<!--							<option>3</option>-->
-<!--							<option>5</option>-->
-<!--							<option>10</option>-->
-<!--							<option>15</option>-->
-<!--							<option>20</option>-->
-<!--							<option>25</option>-->
-<!--						</select>-->
+						<!--						<button-->
+						<!--							style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+						<!--							class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "-->
+						<!--							href="#"-->
+						<!--							data-toggle="tooltip" data-placement="top"-->
+						<!--							title="--><? //= lang('statistics') ?><!--">-->
+						<!--							<img src="-->
+						<? //= base_url() ?><!--assets/images/gps_tracking/statistics.svg"/>-->
+						<!--						</button>-->
+						<!--						<label class="text-center col-sm-2"-->
+						<!--							   style="padding: 10px 6px 0px 10px;">-->
+						<? //= lang('update') ?><!--</label>-->
+						<!--						<select style="margin-top: 1px; width: 100px;" class="form-control form-control-sml;">-->
+						<!--							<option>1</option>-->
+						<!--							<option>2</option>-->
+						<!--							<option>3</option>-->
+						<!--							<option>5</option>-->
+						<!--							<option>10</option>-->
+						<!--							<option>15</option>-->
+						<!--							<option>20</option>-->
+						<!--							<option>25</option>-->
+						<!--						</select>-->
 					</div>
 					<div class="navbar-nav ml-auto">
 						<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geoferences') ?>">
@@ -363,11 +371,11 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 	<!-- Settings Modal Start -->
 	<?
 
-		$lng = $this->load->lng();
-		$token = $this->session->token;
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
+	$lng = $this->load->lng();
+	$token = $this->session->token;
+	$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_companyId', array('token' => $token));
 
-		$sql = "
+	$sql = "
 			SELECT 
 				id,
 				nominal_speed,
@@ -376,11 +384,11 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 				parking_time
 			FROM 
 				config
-			WHERE company_id = '".$company_id."'	
+			WHERE company_id = '" . $company_id . "'	
 		";
 
-		$query = $this->db->query($sql);
-		$config = $query->row_array();
+	$query = $this->db->query($sql);
+	$config = $query->row_array();
 
 	?>
 
@@ -394,32 +402,36 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 				<div class="modal-body">
 					<div class="container-fluid">
 
-							<div class="form-group row mb-0">
-								<label class="col-sm-8 col-form-label"><?=lang('Nominal_speed')?></label>
-								<div class="col-sm-4">
-									<input type="number" name="nominal_speed" class="form-control"  value="<?=(isset($config['nominal_speed']) ? $config['nominal_speed'] : $this->config->item('nominal_speed'))?>">
-								</div>
+						<div class="form-group row mb-0">
+							<label class="col-sm-8 col-form-label"><?= lang('Nominal_speed') ?></label>
+							<div class="col-sm-4">
+								<input type="number" name="nominal_speed" class="form-control"
+									   value="<?= (isset($config['nominal_speed']) ? $config['nominal_speed'] : $this->config->item('nominal_speed')) ?>">
 							</div>
-							<div class="form-group row mb-0">
+						</div>
+						<div class="form-group row mb-0">
 
-								<label class="col-sm-8 col-form-label"><?=lang('Threshold_of_refueling')?></label>
-								<div class="col-sm-4">
-									<input type="number" name="threshold_of_refueling" class="form-control"  value="<?=(isset($config['threshold_of_refueling']) ? $config['threshold_of_refueling'] : $this->config->item('threshold_of_refueling'))?>">
-								</div>
+							<label class="col-sm-8 col-form-label"><?= lang('Threshold_of_refueling') ?></label>
+							<div class="col-sm-4">
+								<input type="number" name="threshold_of_refueling" class="form-control"
+									   value="<?= (isset($config['threshold_of_refueling']) ? $config['threshold_of_refueling'] : $this->config->item('threshold_of_refueling')) ?>">
 							</div>
-							<div class="form-group row mb-0">
+						</div>
+						<div class="form-group row mb-0">
 
-								<label class="col-sm-8 col-form-label"><?=lang('Drain_threshold')?></label>
-								<div class="col-sm-4">
-									<input type="number" name="drain_threshold" class="form-control"  value="<?=(isset($config['drain_threshold']) ? $config['drain_threshold'] : $this->config->item('drain_threshold'))?>">
-								</div>
+							<label class="col-sm-8 col-form-label"><?= lang('Drain_threshold') ?></label>
+							<div class="col-sm-4">
+								<input type="number" name="drain_threshold" class="form-control"
+									   value="<?= (isset($config['drain_threshold']) ? $config['drain_threshold'] : $this->config->item('drain_threshold')) ?>">
 							</div>
-							<div class="form-group row mb-0">
-								<label class="col-sm-8 col-form-label"><?=lang('parking_time')?></label>
-								<div class="col-sm-4">
-									<input type="number" name="parking_time" class="form-control"  value="<?=(isset($config['parking_time']) ? $config['parking_time'] : $this->config->item('parking_time'))?>">
-								</div>
+						</div>
+						<div class="form-group row mb-0">
+							<label class="col-sm-8 col-form-label"><?= lang('parking_time') ?></label>
+							<div class="col-sm-4">
+								<input type="number" name="parking_time" class="form-control"
+									   value="<?= (isset($config['parking_time']) ? $config['parking_time'] : $this->config->item('parking_time')) ?>">
 							</div>
+						</div>
 
 					</div>
 				</div>
@@ -462,7 +474,6 @@ $row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGa
 			form_data.append('threshold_of_refueling', threshold_of_refueling);
 			form_data.append('drain_threshold', drain_threshold);
 			form_data.append('parking_time', parking_time);
-
 
 
 			$('input').removeClass('border border-danger');

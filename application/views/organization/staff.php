@@ -87,15 +87,15 @@ endforeach;
 				</div>
 				<!-- Edit staff modal end -->
 				<!-- Add staff Modal Start  -->
-					<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
-						 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
+					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
 
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="modal-header bg-dark">
-									<h6 class="text-white modal-title dar"><?= lang('new_staff') ?></h6>
-								</div>
-								<form id="staff" enctype="multipart/form-data">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+							<div class="modal-header bg-dark">
+								<h6 class="text-white modal-title dar"><?= lang('new_staff') ?></h6>
+							</div>
+							<form id="staff" enctype="multipart/form-data">
 								<div class="modal-body">
 									<!-- Error Message -->
 									<div class="for_message">
@@ -115,10 +115,15 @@ endforeach;
 													 id='img-upload2'
 													 style="width: 100px;margin-top: -30px;" alt=""
 													 src="<?= base_url('assets/images/no_choose_image.svg') ?>">
-												<div class="media-body col-sm-12" style="position: relative;padding: 0;">
+												<div class="media-body col-sm-12"
+													 style="position: relative;padding: 0;">
 													<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
 													<div class="input-group ml-2 ml-md-2">
-														<span class="input-group-btn" style="position:absolute; right: 18px;">
+														<span class="input-group-btn"
+															  style="position:absolute; right: 18px;">
+															<span id="remove_picture"
+																  class="btn btn-sm btn-outline-secondary mr-3"><i
+																	class="fas fa-times"></i></span>
 															<span
 																class="btn btn-outline-success btn-file"
 																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
@@ -582,122 +587,122 @@ endforeach;
 										</div>
 									</div>
 								</div>
-								</form>
-							</div>
+							</form>
 						</div>
+					</div>
 
-				<!-- Add User Modal End -->
+					<!-- Add User Modal End -->
 
-			</div>
-			<hr class="my-2">
+				</div>
+				<hr class="my-2">
 
-			<div class="row  m-0 col-sm-12 col-md-12"
-				 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
+				<div class="row  m-0 col-sm-12 col-md-12"
+					 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
 
 
-				<table id="example2" class="table table-striped table-borderless" style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
-					<tr>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('position') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('section') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('head') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('Created_Date') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('by_whom') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;"><?= lang('document') ?></th>
-						<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
-					</tr>
-					</thead>
-					<tbody>
-					<? foreach ($staff as $row) : ?>
+					<table id="example2" class="table table-striped table-borderless" style="width:100%">
+						<thead style="background: #fff;color: #545b62;">
 						<tr>
-							<td>
-								<div class="media">
-									<img
-										style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
-										class="mr-3"
-										src="<?= ($row['photo'] != '' ? base_url('uploads/' . $folder . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
-										alt="Generic placeholder image">
-									<div class="media-body">
-										<?= $row['first_name'] . ' ' . $row['last_name'] ?>
-										<small class="phone_number form-text text-muted">
-											<?= $row['contact_1'] ?>
-										</small>
-									</div>
-								</div>
-							</td>
-							<td><?= ($row['head_staff_id'] == $row['id'] ? lang('head') : $row['position']) ?></td>
-							<td><?= $row['department'] ?></td>
-							<td><?= $row['head_staff'] ?></td>
-							<td><?= $row['registration_date'] ?></td>
-							<td><?= $row['user_name'] ?></td>
-
-							<td>
-
-								<? if ($row['document_1'] != '' && $row['ext_1'] != '') { ?>
-									<a style="display: inline-block; color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-									   target="_blank"
-									   class="bg-info"
-									   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
-										<?= lang('passport') ?>
-									</a>
-
-
-
-								<? }
-								if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
-									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-									   target="_blank"
-									   class="bg-info"
-									   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
-										<?= lang('Social_id') ?>
-									</a>
-
-								<? }
-								if ($row['document_3'] != '' && $row['ext_3'] != '') { ?>
-									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-									   target="_blank"
-									   class="bg-info"
-									   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
-										<?= lang('Driving_license') ?>
-									</a>
-
-								<? }
-								if ($row['document_4'] != '' && $row['ext_4'] != '') { ?>
-									<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
-									   target="_blank"
-									   class="bg-info"
-									   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
-										<?= lang('health_insurance') ?>
-									</a>
-
-								<? } ?>
-
-							</td>
-
-							<td colspan="2"><?
-								if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
-									?>
-									<span style="border: none;padding-top: 5px;cursor: pointer;"
-										  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-										  data-toggle="modal" class="float-left text-success"
-										  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
-								<? endif; ?>
-
-								<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
-									<span style="border: none; cursor:pointer;" data-toggle="modal"
-										  id="delete_staff_modal"
-										  class="text-secondary btn"
-										  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i class="fas fa-trash"></i></span>
-								<? endif; ?>
-							</td>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('position') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('section') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('head') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('Created_Date') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('by_whom') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;"><?= lang('document') ?></th>
+							<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
 						</tr>
-					<? endforeach; ?>
-				</table>
+						</thead>
+						<tbody>
+						<? foreach ($staff as $row) : ?>
+							<tr>
+								<td>
+									<div class="media">
+										<img
+											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
+											class="mr-3"
+											src="<?= ($row['photo'] != '' ? base_url('uploads/' . $folder . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
+											alt="Generic placeholder image">
+										<div class="media-body">
+											<?= $row['first_name'] . ' ' . $row['last_name'] ?>
+											<small class="phone_number form-text text-muted">
+												<?= $row['contact_1'] ?>
+											</small>
+										</div>
+									</div>
+								</td>
+								<td><?= ($row['head_staff_id'] == $row['id'] ? lang('head') : $row['position']) ?></td>
+								<td><?= $row['department'] ?></td>
+								<td><?= $row['head_staff'] ?></td>
+								<td><?= $row['registration_date'] ?></td>
+								<td><?= $row['user_name'] ?></td>
+
+								<td>
+
+									<? if ($row['document_1'] != '' && $row['ext_1'] != '') { ?>
+										<a style="display: inline-block; color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+										   target="_blank"
+										   class="bg-info"
+										   href="<?= ($row['ext_1'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_1'] . '.' . $row['ext_1'] : 'javascript:void(0)') ?>">
+											<?= lang('passport') ?>
+										</a>
+
+
+									<? }
+									if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
+										<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+										   target="_blank"
+										   class="bg-info"
+										   href="<?= ($row['ext_2'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_2'] . '.' . $row['ext_2'] : 'javascript:void(0)') ?>">
+											<?= lang('Social_id') ?>
+										</a>
+
+									<? }
+									if ($row['document_3'] != '' && $row['ext_3'] != '') { ?>
+										<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+										   target="_blank"
+										   class="bg-info"
+										   href="<?= ($row['ext_3'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_3'] . '.' . $row['ext_3'] : 'javascript:void(0)') ?>">
+											<?= lang('Driving_license') ?>
+										</a>
+
+									<? }
+									if ($row['document_4'] != '' && $row['ext_4'] != '') { ?>
+										<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
+										   target="_blank"
+										   class="bg-info"
+										   href="<?= ($row['ext_4'] != '' ? base_url('uploads/' . $folder . '/staff/files/') . $row['file_4'] . '.' . $row['ext_4'] : 'javascript:void(0)') ?>">
+											<?= lang('health_insurance') ?>
+										</a>
+
+									<? } ?>
+
+								</td>
+
+								<td colspan="2"><?
+									if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
+										?>
+										<span style="border: none;padding-top: 5px;cursor: pointer;"
+											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
+											  data-toggle="modal" class="float-left text-success"
+											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
+									<? endif; ?>
+
+									<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
+										<span style="border: none; cursor:pointer;" data-toggle="modal"
+											  id="delete_staff_modal"
+											  class="text-secondary btn"
+											  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i
+												class="fas fa-trash"></i></span>
+									<? endif; ?>
+								</td>
+							</tr>
+						<? endforeach; ?>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </div>
 
@@ -1060,4 +1065,9 @@ endforeach;
 		}
 
 	});
+
+	$('#remove_picture').click(function () {
+		$('#img-upload2').attr('src', '<?= base_url('assets/images/no_choose_image.svg') ?>');
+		$('#imgInp2').val('');
+	})
 </script>

@@ -306,6 +306,8 @@ $count = count($result);
 			var myMap_show_all_geofances = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
+			},{
+				maxZoom: 18
 			}, {suppressMapOpenBlock: true});
 
 			$('input[name="coordinate"]').each(function () {
@@ -350,7 +352,9 @@ $count = count($result);
 				var myMap_show_all_geofances = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
-				}, { suppressMapOpenBlock: true });
+				},{
+				maxZoom: 18
+			}, { suppressMapOpenBlock: true });
 
 				$('input[name="coordinate"]').each(function () {
 
@@ -405,6 +409,8 @@ $count = count($result);
 					var myMap_geofencesSetting = new ymaps.Map("map_settings", {
 						center: [54.45454, 53.4665],
 						zoom: 2
+					},{
+						maxZoom: 18
 					}, {suppressMapOpenBlock: true});
 
 
@@ -456,6 +462,8 @@ $count = count($result);
 			var myMap_new = new ymaps.Map("map_new", {
 				center: [40.1533693, 44.4185276],
 				zoom: 12
+			},{
+				maxZoom: 18
 			});
 
 			var myPolygon = new ymaps.Polygon([], {}, {

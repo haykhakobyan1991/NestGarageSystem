@@ -424,6 +424,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 				myMap = new ymaps.Map("map", {
 					center: [40.1776192, 44.4898932],
 					zoom: 13
+				},{
+					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 			}
 
@@ -612,9 +614,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
 								zoom: 13
-							}, {
-								minZoom: 11,
-								maxZoom: 17
+							},{
+								maxZoom: 18
 							}, {suppressMapOpenBlock: true});
 
 
@@ -986,6 +987,8 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 						myMap = new ymaps.Map("map", {
 							center: [40.1776192, 44.4898932],
 							zoom: 13
+						},{
+							maxZoom: 18
 						}, {suppressMapOpenBlock: true});
 
 						$('.alert-info').addClass('d-none');

@@ -1063,7 +1063,6 @@ endforeach;
 					.selectpicker('refresh');
 			});
 		}
-
 	});
 
 	$('#remove_picture').click(function () {

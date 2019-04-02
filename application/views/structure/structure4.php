@@ -62,8 +62,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i
-								class="pr-2 fas fa-edit"></i></th>
+						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
 					</tr>
 					</thead>
 					<tbody style="overflow-y: scroll;">

@@ -269,6 +269,8 @@
 				myMap_show_all_cars_onChange = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
+				},{
+					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 
 			$('.show_car').each(function () {
@@ -412,6 +414,8 @@
 				var myMap_show_singleCar = new ymaps.Map("map", {
 					center: [45.8989, 54.56566565],
 					zoom: 2
+				},{
+					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';
 

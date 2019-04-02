@@ -94,7 +94,7 @@ $lng = $this->load->lng();
 								data-toggle="modal"
 								data-target=".del_group_modal"
 								style="width: 20px;padding: 2px !important;">
-							<i class="custom_fas_trash fas fa-trash"></i>
+							<i class="custom_fas_trash fas fa-trash"></i></button>
 					</div>
 				</div>
 
@@ -107,11 +107,11 @@ $lng = $this->load->lng();
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
 						<th
-							style="font-weight: 500;color: transparent;font-size: 1px !important;min-width: 200px;">
+							style="font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i><?= lang('fleet') ?>
 						</th>
-						<th style="min-width: 150px;font-weight: 500;color: transparent;font-size: 1px !important;">
+						<th style="min-width: 150px;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-map-marker-alt"></i><?= lang('location') ?>
 						</th>
@@ -644,6 +644,8 @@ $lng = $this->load->lng();
 			myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [40.28566, 44.54990333],
 				zoom: 10
+			},{
+				maxZoom: 18
 			}, {suppressMapOpenBlock: true});
 			firstButton = new ymaps.control.Button({
 				data: {
@@ -830,6 +832,8 @@ $lng = $this->load->lng();
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
 							center: [55.76, 37.64],
 							zoom: 2
+						},{
+							maxZoom: 18
 						}, {suppressMapOpenBlock: true});
 						array_stting = JSON.parse("[" + geozone_coordinates + "]");
 						var rand_color = '#' + (function co(lor) {
@@ -925,6 +929,8 @@ $lng = $this->load->lng();
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
+				},{
+					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
 				myMap_show_all_cars.controls.add(firstButton, {float: 'right'});

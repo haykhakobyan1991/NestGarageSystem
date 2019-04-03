@@ -182,7 +182,7 @@ $lng = $this->load->lng();
 							<input class="global_change courses" type="hidden"
 								   name="c_<?= $fleets['gps_tracker_imei'] ?>"
 								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
-							<td>
+							<td class="car_name">
 								<span class="car_model"><?= $fleets['brand_model'] ?></span>
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
@@ -710,8 +710,8 @@ $lng = $this->load->lng();
 				),
 					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
+							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + " <?=lang('km/h')?></span></p>" +
 							"<p class='mb-0'><?=lang('engine') ?>:<span class='ml-1 " + bg_color_on_loade + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
@@ -778,8 +778,8 @@ $lng = $this->load->lng();
 						),
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
+									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
@@ -872,8 +872,8 @@ $lng = $this->load->lng();
 								),
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
+											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
@@ -979,13 +979,14 @@ $lng = $this->load->lng();
 						var carCoordinate = '';
 						latitude = array[0];
 						longitude = array[1];
+
 						MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
 							'<div style="color: #000000; font-weight: bold;">$[properties.iconContent]</div>'
 						),
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
+									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
@@ -1040,8 +1041,8 @@ $lng = $this->load->lng();
 									),
 										myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 											balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-											balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
-												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
+											balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
+												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +

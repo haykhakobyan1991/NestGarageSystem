@@ -1417,25 +1417,25 @@ $lng = $this->load->lng();
 
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change');
-								console.log('coordinate changed');
+								console.log('coordinate changed '+e);
 							}
 							$(this).attr('data-coordinate', val.lat + ', ' + val.long);
 
 							if ($(this).attr('data-speed') != val.speed) {
 								$('input[name="s_' + e + '"]').val(val.speed).trigger('change');
-								console.log('speed changed');
+								console.log('speed changed '+e);
 							}
 							$(this).attr('data-speed', val.speed);
 
 							if ($(this).attr('data-engine') != val.engine) {
 								$('input[name="e_' + e + '"]').val(val.engine).trigger('change');
-								console.log('engine changed');
+								console.log('engine changed '+e);
 							}
 							$(this).attr('data-engine', val.engine);
 
 							if ($(this).attr('data-course') != val.course) {
 								$('input[name="c_' + e + '"]').val(val.course).trigger('change');
-								console.log('course changed');
+								console.log('course changed '+e);
 							}
 							$(this).attr('data-course', val.course);
 

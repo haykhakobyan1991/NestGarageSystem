@@ -644,7 +644,7 @@ $lng = $this->load->lng();
 			myMap_show_all_cars_onChange = new ymaps.Map("map", {
 				center: [40.28566, 44.54990333],
 				zoom: 10
-			},{
+			}, {
 				maxZoom: 18
 			}, {suppressMapOpenBlock: true});
 			firstButton = new ymaps.control.Button({
@@ -832,7 +832,7 @@ $lng = $this->load->lng();
 						var myMap_show_init_Geozone = new ymaps.Map("map", {
 							center: [55.76, 37.64],
 							zoom: 2
-						},{
+						}, {
 							maxZoom: 18
 						}, {suppressMapOpenBlock: true});
 						array_stting = JSON.parse("[" + geozone_coordinates + "]");
@@ -920,6 +920,7 @@ $lng = $this->load->lng();
 				checkZoomRange: true
 			});
 		});
+
 		/* On Change checkbox  */
 		$('tr td input , th input').on('change', function () {
 			$('#map').html('');
@@ -929,7 +930,7 @@ $lng = $this->load->lng();
 				var myMap_show_all_cars = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
-				},{
+				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 				firstButton = new ymaps.control.Button("<i style='font-size: 20px;' class='fas fa-draw-polygon'></i>");
@@ -1415,20 +1416,29 @@ $lng = $this->load->lng();
 
 
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
-								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change')
+								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change');
+								console.log('coordinate changed');
 							}
 							$(this).attr('data-coordinate', val.lat + ', ' + val.long);
+
 							if ($(this).attr('data-speed') != val.speed) {
-								$('input[name="s_' + e + '"]').val(val.speed).trigger('change')
+								$('input[name="s_' + e + '"]').val(val.speed).trigger('change');
+								console.log('speed changed');
 							}
 							$(this).attr('data-speed', val.speed);
+
 							if ($(this).attr('data-engine') != val.engine) {
-								$('input[name="e_' + e + '"]').val(val.engine).trigger('change')
-							}
-							if ($(this).attr('data-course') != val.course) {
-								$('input[name="c_' + e + '"]').val(val.course).trigger('change')
+								$('input[name="e_' + e + '"]').val(val.engine).trigger('change');
+								console.log('engine changed');
 							}
 							$(this).attr('data-engine', val.engine);
+
+							if ($(this).attr('data-course') != val.course) {
+								$('input[name="c_' + e + '"]').val(val.course).trigger('change');
+								console.log('course changed');
+							}
+							$(this).attr('data-course', val.course);
+
 						}
 					});
 				});

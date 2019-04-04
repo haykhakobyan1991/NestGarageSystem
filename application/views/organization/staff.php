@@ -270,7 +270,8 @@ endforeach;
 												</div>
 												<div class="col-sm-12 mt-1">
 													<div class="row" style="margin-right: -1px;margin-left: -1px;">
-															<textarea placeholder="<?= lang('other') ?>"
+															<textarea style="font-size: 12px;"
+																      placeholder="<?= lang('other') ?>"
 																	  class="form-control col-sm-12"
 																	  id="exampleFormControlTextarea1"
 																	  name="other"
@@ -647,7 +648,6 @@ endforeach;
 											<?= lang('passport') ?>
 										</a>
 
-
 									<? }
 									if ($row['document_2'] != '' && $row['ext_2'] != '') { ?>
 										<a style="display: inline-block;color: #fff;font-size: 12px;margin: 3px; padding: 5px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;"
@@ -731,7 +731,6 @@ endforeach;
     padding: 12px 24px !important;
     font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
 							data-dismiss="modal"><?= lang('cancel') ?></button>
-
 					<input type="hidden" name="staff_id">
 				</div>
 			</div>

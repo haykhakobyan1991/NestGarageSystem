@@ -222,11 +222,7 @@ class Structure extends MX_Controller
 
 
 		$result = $this->db->query($sql);
-
-
 		$structure_array = $result->result_array();
-
-
 		$structure_arr = array();
 		$cmp_id = '';
 		$department_id = '';

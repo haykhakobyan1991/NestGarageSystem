@@ -8,7 +8,6 @@ $folder = $this->session->folder;
 	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
 		<div class="container-fluid ">
 			<div class="row"><?
-
 				if (!empty($result)) {
 					$staff_id = '';
 					foreach ($result as $row) {
@@ -57,15 +56,17 @@ $folder = $this->session->folder;
 													 alt="">
 											</p>
 										</div>
-										<div class="text-center" style="background: #c3c3c3;min-width: 6%; position:relative;">
+										<div class="text-center"
+											 style="background: #c3c3c3;min-width: 6%; position:relative;">
 											<img class="open_menu" style="padding-top: 10px;width: 22px;"
-												 src="<?= base_url('assets/img/staff.svg') ?>" alt="" title=""/><?=($row['head_staff_id'] == $row['staff_id'] ? '&#x2191;' : '' )?>
+												 src="<?= base_url('assets/img/staff.svg') ?>" alt=""
+												 title=""/><?= ($row['head_staff_id'] == $row['staff_id'] ? '&#x2191;' : '') ?>
 											<i style="display: block;"
 											   class="open_menu text-white fas fa-ellipsis-h"></i>
-
 											<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
-												<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/staff/?id='.$row['staff_id'])?>">
-													<i class="pr-2 fas fa-edit"></i><?=lang('edit')?>
+												<a class="dropdown-item" target="_blank"
+												   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff/?id=' . $row['staff_id']) ?>">
+													<i class="pr-2 fas fa-edit"></i><?= lang('edit') ?>
 												</a>
 											</div>
 										</div>
@@ -76,17 +77,18 @@ $folder = $this->session->folder;
 						endif;
 						$staff_id = $row['staff_id'];
 						?>
-
 						<div class="col-sm-3 mb-1 mt-1" style="border: 1px solid silver !important; min-width: 32%;">
 						<div class="row bg-white" style="position:relative;">
 							<div class=" p-2 mt-1 w-auto" style="min-width: 47%">
 								<p class="text-black small driver_info"><?= lang('brand') ?>: <span
 										class="text-black ml-2"><?= $row['brand'] ?></span></p>
-								<p class="text-black small driver_info"><span style="float: left;"><?= lang('color') ?>:</span> <span
+								<p class="text-black small driver_info"><span
+										style="float: left;"><?= lang('color') ?>:</span> <span
 										class="ml-2 text-black"
 										style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 15px;height: 15px;background: <?= $row['color'] ?>;border: 1px solid #efefef;display: inline-block;"> </span>
 								</p>
-								<p class="small text-black driver_info" style="clear: both;"><?= lang('engine') ?>: <span
+								<p class="small text-black driver_info" style="clear: both;"><?= lang('engine') ?>:
+									<span
 										class="text-black ml-2"><?= $row['engine_power'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('model') ?>: <span
 										class="text-black ml-2"><?= $row['model'] ?></span></p>
@@ -95,7 +97,8 @@ $folder = $this->session->folder;
 								<p class="small text-black driver_info"><?= lang('vin') ?>: <span
 										class="text-black ml-2"><?= $row['vin_code'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('vehicle_type') ?>: <span
-										class="text-black ml-2"><?= $row['fleet_type'] . ($row['other'] != '' ? ' ('.$row['other'].')' : '')?></span></p>
+										class="text-black ml-2"><?= $row['fleet_type'] . ($row['other'] != '' ? ' (' . $row['other'] . ')' : '') ?></span>
+								</p>
 								<p class="small text-black driver_info"><?= lang('department') ?>: <span
 										class="text-black ml-2"><?= $row['department'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('registration_address') ?>։<span
@@ -113,10 +116,9 @@ $folder = $this->session->folder;
 										class="text-black ml-2"><?= $row['fuel'] ?></span></p>
 								<p class="small text-black driver_info"><?= lang('average_expense_100_km') ?> ։<span
 										class="text-black ml-2"><?= $row['fuel_avg_consumption'] ?></span></p>
-<!--								<p class="small text-black driver_info">--><?//= lang('in_day') ?><!-- ։<span-->
-<!--										class="text-black ml-2">--><?//= $row['value1_day'] ?><!-- կմ․</span></p>-->
 								<p class="small text-black driver_info"><?= lang('running') ?>։<span
-										class="text-black ml-2"><?= $row['mileage'].' '.($row['mileage'] != '' ? $row['value'] : '')?></span></p>
+										class="text-black ml-2"><?= $row['mileage'] . ' ' . ($row['mileage'] != '' ? $row['value'] : '') ?></span>
+								</p>
 
 								<p class="small text-black driver_info"><?= lang('GPS_Exist') ?>։<span
 										class="text-black ml-2"><?= ($row['gps_tracker_exists'] == 1 ? lang('yes') : lang('no')) ?></span>
@@ -136,26 +138,20 @@ $folder = $this->session->folder;
 								   class="open_menu text-white fas fa-ellipsis-h"></i>
 
 								<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
-									<a class="dropdown-item" target="_blank" href="<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/edit_vehicles/'.$row['id'])?>"><i class="pr-2 fas fa-edit"></i><?=lang('edit')?></a>
-
-									<?= ($row['gps_tracker_exists'] == '1' ? '<a class="dropdown-item" target="_blank" href="'.base_url("gps/".($this->uri->segment(1) != "" ? $this->uri->segment(1) : $this->load->default_lang())."/gps_tracking") .'"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>' : '') ?>
-
+									<a class="dropdown-item" target="_blank"
+									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/edit_vehicles/' . $row['id']) ?>"><i
+											class="pr-2 fas fa-edit"></i><?= lang('edit') ?></a>
+									<?= ($row['gps_tracker_exists'] == '1' ? '<a class="dropdown-item" target="_blank" href="' . base_url("gps/" . ($this->uri->segment(1) != "" ? $this->uri->segment(1) : $this->load->default_lang()) . "/gps_tracking") . '"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>' : '') ?>
 								</div>
 							</div>
 						</div>
 						</div><?
 					}
 				}
-
 				?>
 			</div>
-
 		</div>
 	</div>
-
-
-
-
 </div>
 
 <script>
@@ -178,8 +174,6 @@ $folder = $this->session->folder;
 	$(".dropdown-menu").click(function (e) {
 		e.stopPropagation();
 	});
-
-
 </script>
 
 

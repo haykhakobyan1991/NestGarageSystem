@@ -892,7 +892,8 @@ $lng = $this->load->lng();
 		});
 		/* On Click Function Show single Car On Map */
 		$('.show_car').click(function () {
-			coordinates = $(this).data('coordinate');
+			coordinates = $('input[name="' + $(this).data('imei') + '"]').val();
+			console.log(coordinates);
 			array = JSON.parse("[" + coordinates + "]");
 			myMap_show_all_cars_onChange.setCenter(array, 19, {
 				checkZoomRange: true
@@ -929,7 +930,6 @@ $lng = $this->load->lng();
 								array_stting
 							], {
 								hintContent: 'Перетащи меня!'
-								// balloonContent: 'Прямоугольник 2'
 							}, {
 								editorDrawingCursor: "crosshair",
 								fillColor: rand_color,

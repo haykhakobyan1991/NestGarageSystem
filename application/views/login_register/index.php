@@ -264,7 +264,7 @@
 								</div>
 								<div class="form-group">
 									<input placeholder="Captcha" name="captcha" class="form-control form-control-sm"
-										   type="text"/>
+										   type="text" autocomplete="off" />
 									<small id="captcha" class="form-text text-muted d-none">
 										<p class="text-danger"><?=lang('Field_must_be_filled_in')?></p>
 									</small>

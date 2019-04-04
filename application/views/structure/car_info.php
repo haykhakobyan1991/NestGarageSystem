@@ -1,10 +1,8 @@
 <script src="<?= base_url() ?>assets/js/excelexportjs.js"></script>
-
 <?
 $folder = $this->session->folder;
 ?>
 <div class="tab-content mt-3" id="nav-tabContent-car" style="display: none">
-
 	<div class="tab-pane fade show active" id="nav-car" role="tabpanel" aria-labelledby="nav-car-tab">
 		<div class="container-fluid ">
 			<div class="row"><?
@@ -23,7 +21,6 @@ $folder = $this->session->folder;
 											<p class="text-black small driver_info"><?= lang('last_name') ?>:
 												<span class="text-black ml-2"><?= $row['last_name'] ?></span>
 											</p>
-
 											<p class="text-black small driver_info"><?= lang('contact_number') ?> 1:
 												<span class="text-black ml-2"><?= $row['contact_1'] ?></span>
 											</p>
@@ -50,7 +47,6 @@ $folder = $this->session->folder;
 												<span class="text-black ml-2"><?= $row['nest_card_id'] ?></span>
 											</p>
 											<p class="small text-black driver_info m-2">
-
 												<img width="100px"
 													 src="<?= base_url('uploads/' . $folder . '/staff/original/' . $row['photo']) ?>"
 													 alt="">
@@ -130,18 +126,17 @@ $folder = $this->session->folder;
 										class="text-black ml-2"><?= $row['insurance_expiration_1'] ?></span></p>
 							</div>
 
-							<div class="text-center "
+							<div class="text-center"
 								 style="background: #c3c3c3; min-width: 6%; position:absolute; right: 0;height: 100%;">
 								<img class="open_menu" style="width: 23px;" src="<?= base_url('assets/img/car.svg') ?>"
 									 alt="" title=""/>
 								<i style="display: block;margin-top: -5px;"
 								   class="open_menu text-white fas fa-ellipsis-h"></i>
-
 								<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px;">
 									<a class="dropdown-item" target="_blank"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/edit_vehicles/' . $row['id']) ?>"><i
 											class="pr-2 fas fa-edit"></i><?= lang('edit') ?></a>
-									<?= ($row['gps_tracker_exists'] == '1' ? '<a class="dropdown-item" target="_blank" href="' . base_url("gps/" . ($this->uri->segment(1) != "" ? $this->uri->segment(1) : $this->load->default_lang()) . "/gps_tracking") . '"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>' : '') ?>
+									<?= ($row['gps_tracker_exists'] == '1' ? '<a class="dropdown-item" data-imei="'.$row['gps_tracker_imei'].'" target="_blank" href="' . base_url("gps/" . ($this->uri->segment(1) != "" ? $this->uri->segment(1) : $this->load->default_lang()) . "/gps_tracking/" .$row['gps_tracker_imei']) . '"><i class="pr-2 fas fa-map-marker-alt"></i>GPS</a>' : '') ?>
 								</div>
 							</div>
 						</div>

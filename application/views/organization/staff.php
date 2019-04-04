@@ -271,7 +271,7 @@ endforeach;
 												<div class="col-sm-12 mt-1">
 													<div class="row" style="margin-right: -1px;margin-left: -1px;">
 															<textarea style="font-size: 12px;"
-																      placeholder="<?= lang('other') ?>"
+																	  placeholder="<?= lang('other') ?>"
 																	  class="form-control col-sm-12"
 																	  id="exampleFormControlTextarea1"
 																	  name="other"
@@ -683,17 +683,24 @@ endforeach;
 									if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
 										?>
 										<span style="border: none;padding-top: 5px;cursor: pointer;"
-											  data-id="<?= $row['id'] ?>" id="edit_staff_modal"
-											  data-toggle="modal" class="float-left text-success"
-											  data-target="#edit_staff"><i class="fas fa-edit"></i></span>
+											  data-id="<?= $row['id'] ?>"
+											  id="edit_staff_modal"
+											  data-toggle="modal"
+											  class="float-left text-success"
+											  data-target="#edit_staff">
+												<i class="fas fa-edit"></i>
+										</span>
 									<? endif; ?>
 
 									<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
-										<span style="border: none; cursor:pointer;" data-toggle="modal"
+										<span style="border: none; cursor:pointer;"
+											  data-toggle="modal"
 											  id="delete_staff_modal"
 											  class="text-secondary btn"
-											  data-target=".bd-example-modal-sm" data-id="<?= $row['id'] ?>"><i
-												class="fas fa-trash"></i></span>
+											  data-target=".bd-example-modal-sm"
+											  data-id="<?= $row['id'] ?>">
+												<i class="fas fa-trash"></i>
+										</span>
 									<? endif; ?>
 								</td>
 							</tr>
@@ -702,37 +709,41 @@ endforeach;
 				</div>
 			</div>
 		</div>
-	</div>
-
+	</div>.
 </div>
-
 <!-- Staff End -->
-
-
 <!-- Delete Modal Start -->
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+<div class="modal fade bd-example-modal-sm"
+	 tabindex="-1"
+	 role="dialog"
+	 aria-labelledby="mySmallModalLabel"
 	 aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
-					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+				<h6 class="modal-title text-secondary text-center"
+					id="exampleModalLabel"
+					style="font-size: 15px;">
+					<?= lang('are_you_sure_you_want_to_delete') ?>
+				</h6>
 			</div>
 			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
-					<button style="min-width: 94px;font-size: 14px !important;
-    line-height: 14px !important;
-    padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" id="delete_staff"
-							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+				</div><div style="margin: 0 auto;">
+					<button
+						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
+						type="button"
+						id="delete_staff"
+						class="btn btn-outline-success cancel_btn">
+						<?= lang('yes') ?>
 					</button>
-					<button style="min-width: 94px;font-size: 14px !important;
-    line-height: 14px !important;
-    padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
-							data-dismiss="modal"><?= lang('cancel') ?></button>
+					<button
+						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
+						type="button"
+						class="btn btn-outline-danger yes_btn"
+						data-dismiss="modal">
+						<?= lang('cancel') ?>
+					</button>
 					<input type="hidden" name="staff_id">
-				</div>
 			</div>
 		</div>
 

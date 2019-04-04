@@ -58,6 +58,7 @@ $route['default_controller'] = 'Gps';
 
 //gps tracking
 $route['^(ru|hy)/gps_tracking$'] = "Gps/gps_tracking";
+$route['^(ru|hy)/gps_tracking/(:num)$'] = "Gps/gps_tracking/$1";
 $route['^(ru|hy)/speed'] = "Gps/speed";
 $route['^(ru|hy)/fuel'] = "Gps/fuel";
 $route['^(ru|hy)/geoferences'] = "Gps/geoferences";

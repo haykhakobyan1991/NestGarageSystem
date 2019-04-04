@@ -409,7 +409,7 @@ class Gps extends MX_Controller
 		$this->load->library('calendar', $prefs); // Load calender library
 
 
-		$sql = "
+		 $sql = "
 			SELECT 
 				id,
 				title,
@@ -428,10 +428,20 @@ class Gps extends MX_Controller
 		$result = $query->result_array();
 
 		$event = array();
+		$_fleet = '';
+		$_staff = '';
 		foreach ($result as $row) {
 			if (substr($row['date'], 0, 7) == $year . '-' . $month) {
-				$fleet = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleet', array('token' => $token, 'fleet_id' => $row['fleet_id'])),true);
-				$staff = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleStaff', array('token' => $token, 'staff_id' => $row['staff_id'])),true);
+
+				if($_fleet != $row['fleet_id'] && $row['fleet_id'] != '') {
+					$fleet = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleFleet', array('token' => $token, 'fleet_id' => $row['fleet_id'])),true);
+				}
+				$_fleet = $row['fleet_id'];
+
+				if($_staff != $row['staff_id'] && $row['staff_id'] != '') {
+					$staff = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_SingleStaff', array('token' => $token, 'staff_id' => $row['staff_id'])),true);
+				}
+				$_staff = $row['staff_id'];
 
 				$event[intval(substr($row['date'], 8))][] = '
 					<span class="badge badge-pill badge-primary event mt-1" style="position: relative; cursor: pointer; display: block; background-color: rgb(121,134,203)">' . $row['title'] . '
@@ -443,9 +453,9 @@ class Gps extends MX_Controller
 								</div>
 							</div>
 							<div class="card-body text-left">
-								'.($staff['name'] != '' ? '<div class="">' . lang('driver') . ': ' . $staff['name'] . '</div>' : '').'
-								'.($fleet['brand_model'] != '' ? '<div class="'.($staff['name'] != '' ? 'mt-2' : '').'">' . lang('fleet') . ': ' . $fleet['brand_model'] . '</div>' : '').'
-								<div class="'.($fleet['brand_model'] != '' ? 'mt-2' : '').'">' . $row['description'] . '</div>
+								'.(isset($staff['name']) && $staff['name'] != '' ? '<div class="">' . lang('driver') . ': ' . $staff['name'] . '</div>' : '').'
+								'.(isset($fleet['brand_model']) && $fleet['brand_model'] != '' ? '<div class="'.($staff['name'] != '' ? 'mt-2' : '').'">' . lang('fleet') . ': ' . $fleet['brand_model'] . '</div>' : '').'
+								<div class="'.(isset($fleet['brand_model']) && $fleet['brand_model'] != '' ? 'mt-2' : '').'">' . $row['description'] . '</div>
 								
 							</div>
 						</div>
@@ -488,6 +498,7 @@ class Gps extends MX_Controller
 		// $this->config->set_item('language', 'armenian');
 		$this->form_validation->set_error_delimiters('', '');
 		$this->form_validation->set_rules('title', 'title', 'required');
+		$this->form_validation->set_rules('day', 'day', 'required');
 
 
 		if ($this->form_validation->run() == false) {
@@ -495,9 +506,32 @@ class Gps extends MX_Controller
 			$n = 1;
 
 			$validation_errors = array(
-				'title' => form_error('title')
+				'title' => form_error('title'),
+				'day' => form_error('day')
+
 			);
 			$messages['error']['elements'][] = $validation_errors;
+		}
+
+
+
+		$title = $this->input->post('title');
+		$from = $this->input->post('day');
+		$to = $this->input->post('to');
+		$description = $this->input->post('description');
+		$staff = $this->input->post('staff');
+		$fleet = $this->input->post('fleet');
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
+
+		$date1 = new DateTime($from);
+		$date2 = new DateTime($to);
+
+		if($to != '') {
+			if($date1 > $date2) {
+				$n = 1;
+				$validation_errors = array('day' => 'required', 'to' => 'required');
+				$messages['error']['elements'][] = $validation_errors;
+			}
 		}
 
 
@@ -506,34 +540,69 @@ class Gps extends MX_Controller
 			return false;
 		}
 
-		$title = $this->input->post('title');
-		$date = $this->input->post('day');
-		$description = $this->input->post('description');
-		$staff = $this->input->post('staff');
-		$fleet = $this->input->post('fleet');
-		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
+
+		$end = new DateTime($to);
+		$end = $end->modify( '+1 day' );
+
+		$period = new DatePeriod(
+			new DateTime($from),
+			new DateInterval('P1D'),
+			$end
+		);
 
 
-		$sql = "
-			INSERT INTO event 
-				(
-					title,
-					\"date\",
-					description,
-					staff_id,
-					fleet_id,
-					company_id
-				) VALUES (
-					" . $this->load->db_value($title) . ",
-					'" . $date . "',
-					" . $this->load->db_value($description) . ",
-					" . $this->load->db_value($staff) . ",
-					" . $this->load->db_value($fleet) . ",
-					" . $this->load->db_value($company_id) . "
-				)
-		";
+		if($from != $to && $to != '') {
 
-		$query = $this->db->query($sql);
+			$sql = "
+				INSERT INTO event 
+						(
+							title,
+							\"date\",
+							description,
+							staff_id,
+							fleet_id,
+							company_id
+						) VALUES
+			";
+
+			foreach ($period as $key => $value) {
+				$sql .= "
+					 (
+						" . $this->load->db_value($title) . ",
+						'" . $value->format('Y-m-d') . "',
+						" . $this->load->db_value($description) . ",
+						" . $this->load->db_value($staff) . ",
+						" . $this->load->db_value($fleet) . ",
+						" . $this->load->db_value($company_id) . "
+					),";
+			}
+
+			$sql = substr($sql, 0, -1);
+
+			$query = $this->db->query($sql);
+		} else {
+			$sql = "
+					INSERT INTO event 
+						(
+							title,
+							\"date\",
+							description,
+							staff_id,
+							fleet_id,
+							company_id
+						) VALUES (
+							" . $this->load->db_value($title) . ",
+							'" . $from . "',
+							" . $this->load->db_value($description) . ",
+							" . $this->load->db_value($staff) . ",
+							" . $this->load->db_value($fleet) . ",
+							" . $this->load->db_value($company_id) . "
+						)
+				";
+
+			$query = $this->db->query($sql);
+		}
+
 
 
 		if ($query) {

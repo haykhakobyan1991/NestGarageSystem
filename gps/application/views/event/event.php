@@ -1,16 +1,16 @@
 <style>
-	table {
+	table.table {
 		height: 100vh;
 		max-height: 82%;
 		min-height: 72%;
 	}
 
-	th {
+	.table th {
 		text-align: center;
 		vertical-align: top !important;
 	}
 
-	td {
+	.table td {
 		max-width: 120px;
 		min-width: 120px;
 		text-align: center;
@@ -79,11 +79,20 @@
 		font-size: 16px;
 	}
 
+	button.btn.btn-outline-secondary.border-left-0 {
+		padding: 0 !important;
+	}
 
 
 </style>
 
-<?=$calendar?>
+<!--DatetimePicker-->
+<script src="<?= base_url('assets/js/datepicker/gijgo.min.js') ?>" type="text/javascript"></script>
+<link href="<?= base_url('assets/css/datepicker/gijgo.min.css') ?>" rel="stylesheet" type="text/css"/>
+
+
+<?= $calendar ?>
+
 
 <script>
 	$(document).ready(function () {
@@ -105,30 +114,46 @@
 			<div class="modal-body">
 				<form id="event_add">
 					<div class="form-group">
-						<label><?=lang('item_name')?></label>
-						<input placeholder="<?=lang('item_name')?>" name="title" type="text" class="form-control" value="">
+						<label><?= lang('date') ?></label>
+						<div class="container">
+							<div class="row">
+								<input
+									name="day"
+									class="datepickerFrom form-control date">
+								<input
+									name="to"
+									class="datepickerTo form-control date">
+							</div>
+						</div>
+
 					</div>
 					<div class="form-group">
-						<label><?=lang('description')?></label>
-						<textarea  name="description" class="form-control" rows="3"></textarea>
+						<label><?= lang('item_name') ?></label>
+						<input placeholder="<?= lang('item_name') ?>" name="title" type="text" class="form-control"
+							   value="">
 					</div>
 					<div class="form-group">
-						<label><?=lang('staff')?></label>
-						<select title="<?=lang('choose')?>" data-live-search="true" class="col selectpicker form-control form-control-sm" name="staff" id="">
+						<label><?= lang('description') ?></label>
+						<textarea name="description" class="form-control" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<label><?= lang('staff') ?></label>
+						<select title="<?= lang('choose') ?>" data-live-search="true"
+								class="col selectpicker form-control form-control-sm" name="staff" id="">
 							<? foreach ($result_staffs as $staff) : ?>
-								<option value="<?=$staff['id']?>"><?=$staff['name']?></option>
+								<option value="<?= $staff['id'] ?>"><?= $staff['name'] ?></option>
 							<? endforeach; ?>
 						</select>
 					</div>
 					<div class="form-group">
-						<label><?=lang('vehicle')?></label>
-						<select title="<?=lang('choose')?>" data-live-search="true" class="col selectpicker form-control form-control-sm" name="fleet" id="">
+						<label><?= lang('vehicle') ?></label>
+						<select title="<?= lang('choose') ?>" data-live-search="true"
+								class="col selectpicker form-control form-control-sm" name="fleet" id="">
 							<? foreach ($result_fleets as $fleet) : ?>
-								<option value="<?=$fleet['id']?>"><?=$fleet['brand_model']?></option>
+								<option value="<?= $fleet['id'] ?>"><?= $fleet['brand_model'] ?></option>
 							<? endforeach; ?>
 						</select>
 					</div>
-					<input type="hidden" name="day" value="">
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -449,6 +474,22 @@
 			}
 		});
 	});
+
+
+	$('.datepickerFrom').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		iconsLibrary: 'fontawesome'
+	});
+
+	$('.datepickerTo').datepicker({
+		uiLibrary: 'bootstrap4',
+		format: 'yyyy-mm-dd',
+		iconsLibrary: 'fontawesome'
+	});
+
+
+	$('input.date').parent('div').addClass('col-sm-6 p-0');
 
 
 </script>

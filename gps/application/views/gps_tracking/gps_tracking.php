@@ -883,6 +883,19 @@ $lng = $this->load->lng();
 						var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 						$('#map > ymaps').css('width', width_map);
 						$('#map > ymaps').css('overflow', 'scroll');
+
+
+
+						/* On Click Function Show single Car On Map */
+						$(document).on('click', '.show_car', function () {
+							coordinates = $('input[name="' + $(this).data('imei') + '"]').val();
+							array = JSON.parse("[" + coordinates + "]");
+
+							myMap_show_init_Geozone.setCenter(array, 19, {
+								checkZoomRange: true
+							});
+						});
+
 					}
 				} else {
 					$('#map').html('');
@@ -890,15 +903,7 @@ $lng = $this->load->lng();
 				}
 			});
 		});
-		/* On Click Function Show single Car On Map */
-		$('.show_car').click(function () {
-			coordinates = $('input[name="' + $(this).data('imei') + '"]').val();
-			console.log(coordinates);
-			array = JSON.parse("[" + coordinates + "]");
-			myMap_show_all_cars_onChange.setCenter(array, 19, {
-				checkZoomRange: true
-			});
-		});
+
 
 		/* On Change checkbox  */
 		$('tr td input , th input').on('change', function () {
@@ -1038,9 +1043,37 @@ $lng = $this->load->lng();
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
+
+				/* On Click Function Show single Car On Map */
+				$(document).on('click', '.show_car', function () {
+					coordinates = $('input[name="' + $(this).data('imei') + '"]').val();
+					array = JSON.parse("[" + coordinates + "]");
+
+					myMap_show_all_cars.setCenter(array, 19, {
+						checkZoomRange: true
+					});
+				});
+
+
 			}
+
+
+
+
 		});
 	});
+
+
+	/* On Click Function Show single Car On Map */
+	$(document).on('click', '.show_car', function () {
+		coordinates = $('input[name="' + $(this).data('imei') + '"]').val();
+		array = JSON.parse("[" + coordinates + "]");
+
+		myMap_show_all_cars_onChange.setCenter(array, 19, {
+			checkZoomRange: true
+		});
+	});
+
 	/*************************
 	 **************************
 	 *** [ Yandex Map End ] ***

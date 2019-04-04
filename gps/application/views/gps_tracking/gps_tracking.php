@@ -884,8 +884,6 @@ $lng = $this->load->lng();
 						$('#map > ymaps').css('width', width_map);
 						$('#map > ymaps').css('overflow', 'scroll');
 
-
-
 						/* On Click Function Show single Car On Map */
 						$(document).on('click', '.show_car', function () {
 							coordinates = $('input[name="' + $(this).data('imei') + '"]').val();

@@ -136,10 +136,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					previous: "<?=lang('prev')?>"
 				}
 			},
-			"columnDefs": [
-				{"orderable": false, "targets": [6]}
-			]
-		});
+
 	});
 
 </script>

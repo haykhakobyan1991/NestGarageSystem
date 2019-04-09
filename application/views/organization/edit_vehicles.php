@@ -53,15 +53,27 @@
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
 
 <form>
-	<div class="tab-pane fade show active" id="list-company" role="tabpanel"
+	<div class="tab-pane fade show active"
+		 id="list-company"
+		 role="tabpanel"
 		 style="padding-top: 10px;padding-bottom: 10px;"
-		 aria-labelledby="list-company-list">
+		 aria-labelledby="list-company-list"
+	>
 
 
 		<div class="for_message">
-			<div class="alert alert-success d-none " role="alert"></div>
-			<div class="alert alert-danger d-none " role="alert"></div>
-			<div class="alert alert-info d-none " role="alert"></div>
+			<div
+				class="alert alert-success d-none "
+				role="alert"
+			></div>
+			<div
+				class="alert alert-danger d-none "
+				role="alert"
+			></div>
+			<div
+				class="alert alert-info d-none "
+				role="alert"
+			></div>
 		</div>
 		<input type="hidden" name="fleet_id" value="<?= $fleet['id'] ?>">
 		<div class="container-fluid">
@@ -302,16 +314,7 @@
 					</select>
 
 				</div>
-				<!--<div class="row">-->
-				<!--<div id="cp2" class="input-group colorpicker-component col-sm-12">-->
-				<!--<label class="pl-3 col-form-label col-sm-3"-->
-				<!--style="font-size: 15px;padding: 6px;margin-left: -9px;">--><? //=lang('color')?><!--</label>-->
-				<!--<input name="color" type="text" value="--><? //= $fleet['color'] ?><!--"-->
-				<!--class="form-control selected_color_value"/>-->
-				<!--<span class="input-group-addon col-sm-5"><i-->
-				<!--style="padding: 18px;margin-left: 10px;border-radius: 50%;"></i></span>-->
-				<!--</div>-->
-				<!--</div>-->
+
 				<div class="row" style="margin-top: .75rem;">
 					<label class="pl-4 col-form-label col-sm-4" style="font-size: 15px;"><?= lang('vin') ?></label>
 					<input value="<?= $fleet['vin_code'] ?>" name="vin" type="text"
@@ -674,8 +677,11 @@
 					<th scope="col"><?= lang('more_info') ?></th>
 					<th scope="col"><?= lang('day_before') ?> *</th>
 					<th scope="col"><?= lang('start_alarm_day') ?> *</th>
-					<th scope="col"><span class="btn bnt-sm btn-outline-success"><i style="margin: 0 !important;"
-																					class="add_new_item fa fa-plus"></i>
+					<th scope="col"><span class="btn bnt-sm btn-outline-success">
+							<i
+								style="margin: 0 !important;"
+								class="add_new_item fa fa-plus"
+							></i>
 					</th>
 				</tr>
 				</thead>
@@ -709,38 +715,56 @@
 							</select>
 						</td>
 						<td>
-							<input name="avg_exploitation[<?= $count ?>]" class="form-control form-control-sm"
-								   type="number"
-								   placeholder="<?= lang('explotation') ?>"
-								   value="<?= $values['avg_exploitation'] ?>"/>
+							<input
+								name="avg_exploitation[<?= $count ?>]"
+							    class="form-control form-control-sm"
+							    type="number"
+							    placeholder="<?= lang('explotation') ?>"
+							    value="<?= $values['avg_exploitation'] ?>"
+						   />
 						</td>
 
 						<td>
-							<input name="per_days[<?= $count ?>]" class="form-control form-control-sm"
-								   type="number"
-								   placeholder="<?= lang('per_day') ?>"
-								   value="<?= $values['per_days'] ?>"/>
+							<input
+								name="per_days[<?= $count ?>]"
+								class="form-control form-control-sm"
+							    type="number"
+							    placeholder="<?= lang('per_day') ?>"
+							    value="<?= $values['per_days'] ?>"
+							/>
 						</td>
 						<td>
-							<input name="more_info[<?= $count ?>]" class="form-control form-control-sm"
-								   type="text"
-								   placeholder="<?= lang('more_info') ?>" value="<?= $values['more_info'] ?>"/>
+							<input
+								name="more_info[<?= $count ?>]" '
+								class="form-control form-control-sm"
+							    type="text"
+							    placeholder="<?= lang('more_info') ?>"
+								value="<?= $values['more_info'] ?>"
+							/>
 						</td>
 						<td>
-							<input name="remind_before[<?= $count ?>]" class="form-control form-control-sm"
+							<input name="remind_before[<?= $count ?>]"
+								   class="form-control form-control-sm"
 								   type="number"
 								   placeholder="<?= lang('day_before') ?>"
-								   value="<?= $values['reminde_me'] ?>"/>
+								   value="<?= $values['reminde_me'] ?>"
+							/>
 						</td>
 						<td>
-							<input name="start_alarm_date[<?= $count ?>]" class="form-control form-control-sm"
-								   type="date"
-								   value="<?= $values['start_alarm_date'] ?>"/>
+							<input
+								name="start_alarm_date[<?= $count ?>]"
+								class="form-control form-control-sm"
+							    type="date"
+							    value="<?= $values['start_alarm_date'] ?>"
+							/>
 						</td>
 						<td>
 							<? if ($count != 1) : ?>
 								<button type="button" class="btn btn-sm btn-light del_items_from_table">
-									<i style="margin: 0 !important;" class="fa fa-trash"></i>
+									<i
+										style="margin: 0 !important;"
+										class="fa fa-trash"
+									></i>
 								</button>
 							<? endif; ?>
 						</td>

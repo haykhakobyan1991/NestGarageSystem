@@ -37,8 +37,10 @@
 </style>
 
 <?
+
 $lng = $this->load->lng();
 $getImei = $this->uri->segment(3);
+
 ?>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>

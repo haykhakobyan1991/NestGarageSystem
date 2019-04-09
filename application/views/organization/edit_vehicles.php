@@ -4,7 +4,6 @@
 	label {
 		font-size: 11px !important;
 	}
-
 	.st_inp::before {
 		content: "";
 		margin-left: -3px;
@@ -16,47 +15,38 @@
 		display: inline-block;
 		opacity: 1 !important;
 	}
-
 	i {
 		margin-left: 15px;
 	}
-
 	.card-header {
 		padding: 0 !important;
 	}
-
 	button.btn.dropdown-toggle.bs-placeholder {
 		height: 39px;
 		background: rgb(255, 255, 255);
 		color: rgb(108, 117, 125);
 		border: 1px solid rgb(206, 212, 218);
 	}
-
 	.btn.dropdown-toggle {
 		height: 37px !important;
 	}
-
 	.a_ext > i {
 		font-size: 27px;
 		padding-top: 5px !important;
 		margin-right: 40px !important;
 	}
-
 	#model_div label {
 		flex: 0 0 33.333333%;
 		max-width: 33.333333%;
 	}
-
 	.a_ext1 > i {
 		font-size: 27px;
 		padding-top: 27px !important;
 	}
-
 	.dropdown-item:hover, .dropdown-item:focus, .dropdown-item:active {
 		background: #fff !important;
 		color: #212529 !important;
 	}
-
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
@@ -94,9 +84,7 @@
 										</button>
 
 										<?
-
 										$gnss_tracker = json_decode($gnss_tracker, true);
-
 										if ($gnss_tracker == '' || $gnss_tracker == 'empty') {
 											$gnss_exist = lang('no');
 											$gnss_model = '';
@@ -104,9 +92,7 @@
 											$imei = '';
 											$coefficientA = '';
 											$coefficientK = '';
-
 										} else {
-
 											$gnss_exist = lang('yes');
 											$gnss_model = $gnss_tracker['gnss_model'];
 											$fuel_sensor = ($gnss_tracker['fuel_sensor'] == 1 ? lang('yes') : lang('no'));
@@ -114,7 +100,6 @@
 											$coefficientA = ($gnss_tracker['fuel_sensor'] == 1 ? $gnss_tracker['coefficient_a'] : '');
 											$coefficientK = ($gnss_tracker['fuel_sensor'] == 1 ? $gnss_tracker['coefficient_k'] : '');
 										}
-
 										?>
 
 										<div class="dropdown-menu" style="font-size: 11px;">
@@ -396,10 +381,8 @@
 					download="<?= $fleet['regitered_file'] ?>"
 					href="<?= base_url('uploads/' . $folder . '/fleet/regitered_file/') . $fleet['regitered_file'] ?>">
 					<?
-
 					$ext = explode('.', $fleet['regitered_file']);
 					echo $this->select_ext($ext[1]);
-
 					?>
 					</a><?
 				endif; ?>
@@ -434,10 +417,8 @@
 				   download="<?= $fleet['owners_passport'] ?>"
 				   href="<?= base_url('uploads/' . $folder . '/fleet/owners_passport/') . $fleet['owners_passport'] ?>">
 					<?
-
 					$ext = explode('.', $fleet['owners_passport']);
 					echo $this->select_ext($ext[1]);
-
 					?>
 					</a><?
 				endif; ?>
@@ -453,7 +434,6 @@
 
 
 	<div class="row">
-
 
 		<!-- Acardion -->
 
@@ -553,9 +533,7 @@
 												download="<?= $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>"
 												href="<?= base_url('uploads/' . $folder . '/fleet/insurance/') . $fleet['insurance_file_1'] . '.' . $fleet['insurance_ext_1'] ?>">
 												<?
-
 												echo $this->select_ext($fleet['insurance_ext_1']);
-
 												?>
 											</a>
 										<? endif; ?>
@@ -831,7 +809,6 @@
 
 <script src="<?= base_url('assets/js/bootstrap/typeahead.js') ?>"></script>
 <script>
-
 	// create company
 	$(document).on('click', '#submit', function (e) {
 		var url = '<?=base_url($this->uri->segment(1) . '/Organization/edit_vehicles_ax') ?>';
@@ -839,7 +816,6 @@
 		var form_data = new FormData($('form')[0]);
 		$('input').removeClass('border border-danger');
 		$('select').parent('div').children('button').removeClass('border border-danger');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -850,7 +826,6 @@
 			processData: false,
 			beforeSend: function () {
 				scroll_top();
-
 				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 				$(this).addClass('bg-success2');
 				$('.alert-info').removeClass('d-none');
@@ -900,26 +875,19 @@
 			complete: function () {
 			}
 		});
-
 	});
-
 	$('.color_check_btn').on('click', function () {
 		var sel_color = $(this).data('value');
-
 		$('.selected_color_value').val(sel_color);
 		$('.selected-color').attr('style', 'background: ' + sel_color + ';');
-
 		$('.more_color').on('change', function () {
 			var sel_color = $(this).val();
-
 			$('.selected_color_value').val(sel_color);
 			$('.selected-color').attr('style', 'background: ' + sel_color + ';');
 		});
-
 	});
 	var n = <?=$count?>;
 	$('.add_new_item').click(function () {
-
 		n++;
 		$('.new_items_tbody').append(
 			'<tr>\n' +
@@ -976,35 +944,23 @@
 			'script>\n' +
 			'</tr>'
 		);
-
-
 		$('.selectpicker').parent('div').children('button').css({
 			'background': 'rgb(255, 255, 255)',
 			'color': 'rgb(108, 117, 125)',
 			'border': '1px solid rgb(206, 212, 218)'
 		});
-
-
 	});
-
-
 	$(document).on('click', '.del_items_from_table', function () {
 		$(this).parent('td').parent('tr').remove();
 	});
-
-
 	$('.dif_meter').on('change', function () {
 		$('.dif_meter_text').text($(this).children('option:selected').text());
-
 	});
-
 	// Input type File Staff
 	$(document).on('change', '.btn_input', function () {
-
 		var upload_file = $(this).val();
 		var upload_file = upload_file.split("\\");
 		var upload_file = upload_file[upload_file.length - 1];
-
 		var text_truncate = function (str, length, ending) {
 			if (length == null) {
 				length = 100;
@@ -1018,7 +974,6 @@
 				return str;
 			}
 		};
-
 		if (upload_file == '') {
 			$(this).parent('label').children('span').text('Brows file');
 		} else {
@@ -1029,17 +984,13 @@
 				$(this).parent('label').children('span').text(upload_file);
 			}
 		}
-
 	});
-
 	// search in staff
 	var url_owner = '<?=base_url('System_main/search_owner/')?>';
 	var user_id = '<?=$this->session->user_id?>';
-
 	$.get(url_owner, {user_id: user_id}, function (data) {
 		// use a data source with 'id' and 'name' keys
 		$("input[name=\"owner\"]").typeahead({
-
 			source: function (query, process) {
 				objects = [];
 				map = {};
@@ -1048,7 +999,6 @@
 					objects.push(object.name);
 				});
 				process(objects);
-
 				$('input[name="owner_id"]').val('');
 			},
 			updater: function (item) {
@@ -1057,15 +1007,12 @@
 			}
 		});
 	}, 'json');
-
 	$(document).ready(function () {
 		$('.sample-selector').colorpicker({/*options...*/});
 		$(function () {
 			$('#cp2').colorpicker();
 		});
 	});
-
-
 	$(window).on('load', function () {
 		$(document).on('change keyup', 'input,select,textarea', function () {
 			if (!$('.pos_abs_div').hasClass('animated')) {
@@ -1075,7 +1022,6 @@
 				$('.pos_abs_div').addClass('animated');
 			}
 		});
-
 		$('.dont_save').on('click', function () {
 			$('.pos_abs_div').removeClass('animated');
 			$('.pos_abs_div').animate({
@@ -1083,10 +1029,8 @@
 			});
 		});
 	});
-
 	$(document).on('click', '.btn.dropdown-toggle', function () {
 		var ul = $('select[name="color"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
-
 		var i = 1;
 		var li_class = 'color_';
 		ul.each(function (e) {
@@ -1116,7 +1060,6 @@
 			i++;
 		});
 	});
-
 	$(document).on('click', 'button.btn.dropdown-toggle', function () {
 		var ul = $('select[name="fleet_type"]').parent('div').children('div').children('div:nth-child(2)').children('ul').children('li');
 		var j = 1;
@@ -1124,7 +1067,6 @@
 			$(this).addClass('fleet_type_' + j);
 			j++;
 		});
-
 		$('.fleet_type_1 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car.png">');
 		$('.fleet_type_2 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/delivery-truck.png">');
 		$('.fleet_type_3 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/construction-tool-vehicle-with-crane-lifting-materials.png">');
@@ -1133,17 +1075,12 @@
 		$('.fleet_type_6 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/minivan.png">');
 		$('.fleet_type_7 a span:nth-child(2)').append('<img src="<?= base_url() ?>assets/img/fleet_type/car-with-trailer.png">');
 	});
-
 	$(document).on('change', function () {
 		$('#model_div label').css('flex', '0 0 33.333333% !important');
 		$('#model_div label').css('max-width', '33.333333% !important');
 	});
-
-
 	var text = $('input[name="fuel_avg_consumption"]').parent('div').children('label').text();
-
 	$(document).on('change', 'select[name="fuel"]', function () {
-
 		if ($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
 			$('#second').show();
 			new_text = $(this).children('option:selected').text().split('/');
@@ -1156,11 +1093,8 @@
 			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text + ' (' + $(this).children('option:selected').text() + ')');
 			$('input[name="fuel_avg_consumption"]').attr('placeholder', text + ' (' + $(this).children('option:selected').text() + ')');
 		}
-
 	});
-
 	$(window).on('load', function () {
-
 		$('select[name="fuel"]').children('option:selected').each(function () {
 			if ($(this).val() == '5' || $(this).val() == '6') {
 				new_text = $(this).text().split('/');
@@ -1175,9 +1109,7 @@
 				}
 			}
 		});
-
 	});
-
 	$(document).ready(function () {
 		if ($(window).width() > 1349) {
 			$('.col-width').removeClass('col-sm-6');
@@ -1187,9 +1119,7 @@
 			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '-20px');
 		}
 	})
-
 	$('.dropdown-item').click(function () {
 		return false;
 	})
-
 </script>

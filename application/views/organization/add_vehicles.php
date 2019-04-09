@@ -1,67 +1,4 @@
-<style>
-	label {
-		font-size: 11px !important;
-	}
-
-	.st_inp::before {
-		content: "";
-		margin-left: -3px;
-		margin-top: -3px;
-		height: 23px;
-		width: 23px;
-		border: 3px solid #8c8c8c;
-		border-radius: 50%;
-		display: inline-block;
-		opacity: 1 !important;
-	}
-
-	i {
-		margin-left: 15px;
-	}
-
-	::-webkit-input-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	::-moz-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	:-ms-input-placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	::placeholder {
-		color: peachpuff;
-		font-size: 13px;
-	}
-
-	#model_div label {
-		flex: 0 0 33.333333%;
-		max-width: 33.333333%;
-	}
-
-	button.btn.dropdown-toggle.bs-placeholder {
-		height: 39px;
-		background: rgb(255, 255, 255);
-		color: rgb(108, 117, 125);
-		border: 1px solid rgb(206, 212, 218);
-		margin-top: -2px;
-	}
-
-	.btn.dropdown-toggle {
-		height: 37px !important;
-		margin-top: -1px;
-	}
-
-	.mt_custom-1 {
-		margin-top: .05rem !important;
-	}
-</style>
-
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/add_vehicles.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
 
@@ -103,24 +40,43 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-4">
-					<div class="row getChild" data-url="<?= base_url($lang.'/System_main/get_child') ?>"
-						 data-result="model_div" data-response="model" data-res_type="select" data-lang="<?= $lang ?>"
-						 id="brand">
-
-						<label class="col-sm-4 col-form-label"><?= lang('brand') ?> * </label>
-						<select name="brand" class="col-sm-7 selectpicker form-control form-control-sm " data-size="5"
-								id="brand" data-live-search="true" title="<?= lang('select_car_brand') ?>">
+					<div class="row getChild"
+						 data-url="<?= base_url($lang . '/System_main/get_child') ?>"
+						 data-result="model_div"
+						 data-response="model"
+						 data-res_type="select"
+						 data-lang="<?= $lang ?>"
+						 id="brand"
+					>
+						<label
+							class="col-sm-4 col-form-label">
+							<?= lang('brand') ?> * </label>
+						<select
+							name="brand"
+							class="col-sm-7 selectpicker form-control form-control-sm "
+							data-size="5"
+							id="brand"
+							data-live-search="true"
+							title="<?= lang('select_car_brand') ?>">
 							<? foreach ($brand as $row) : ?>
-								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<option
+									value="<?= $row['id'] ?>">
+									<?= $row['title'] ?>
+								</option>
 							<? endforeach; ?>
 						</select>
 					</div>
 
 					<div class="row" id="model_div" style="margin-top: .75rem;">
 						<label class=" col-form-label col-sm-4"><?= lang('model') ?> *</label>
-						<select name="model" class="col selectpicker form-control form-control-sm col-sm-7"
-								data-size="5" id="model" data-live-search="true"
-								title="<?= lang('select_car_model') ?>"></select>
+						<select
+							name="model"
+							class="col selectpicker form-control form-control-sm col-sm-7"
+							data-size="5"
+							id="model"
+							data-live-search="true"
+							title="<?= lang('select_car_model') ?>"
+						></select>
 					</div>
 
 					<div class="row" style="margin-top: .75rem!important;">
@@ -131,7 +87,6 @@
 							<? foreach ($fleet_type as $row) : ?>
 								<option class="car_type" value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
-
 						</select>
 					</div>
 					<div class="row" style="margin-top: .75rem!important;">
@@ -339,34 +294,52 @@
 												<div class="col-md-2">
 													<div class="form-group">
 														<label><?= lang('company') ?></label>
-														<input type="text" name="company[1]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
+														<input
+															type="text"
+															name="company[1]"
+															class="form-control form-control-sm"
+															placeholder="<?= lang('company') ?>"
+														>
 													</div>
 												</div>
 												<div class="col-md-2">
 													<div class="form-group">
 														<label><?= lang('reference') ?></label>
-														<input type="text" name="reference[1]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
+														<input
+															type="text" name="reference[1]"
+															class="form-control form-control-sm"
+															placeholder="<?= lang('reference') ?>"
+														>
 													</div>
 												</div>
 
 												<div class="col-md-2">
 													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[1]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
+													<input
+														type="date"
+														name="expiration[1]"
+														max="3000-12-31"
+														min="1000-01-01"
+														class="form-control form-control-sm"
+													>
 												</div>
 
-												<div class="col-md-2">
+												<div
+													class="col-md-2"
+												>
 													<label><?= lang('insurance_data') ?></label>
 													<label
 														style="width: 180px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
 														<span><?= lang('browse') ?></span>
-														<input class="btn_input" name="file_1" type="file" hidden
-															   style="display: none;" value="">
+														<input
+															class="btn_input"
+															name="file_1"
+															type="file"
+															hidden
+															style="display: none;"
+															value=""
+														>
 													</label>
 												</div>
 											</div>
@@ -868,28 +841,27 @@
 
 	$(document).on('change', 'select[name="fuel"]', function () {
 
-		if($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
+		if ($(this).children('option:selected').val() == '5' || $(this).children('option:selected').val() == '6') {
 			$('#second').show();
 			new_text = $(this).children('option:selected').text().split('/');
-			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+new_text[0]+')');
-			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+new_text[0]+')');
-			$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text+ ' ('+new_text[1]+')');
-			$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text+ ' ('+new_text[1]+')');
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text + ' (' + new_text[0] + ')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text + ' (' + new_text[0] + ')');
+			$('input[name="fuel_avg_consumption_second"]').parent('div').children('label').html(text + ' (' + new_text[1] + ')');
+			$('input[name="fuel_avg_consumption_second"]').attr('placeholder', text + ' (' + new_text[1] + ')');
 		} else {
 			$('#second').hide();
-			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text+ ' ('+$(this).children('option:selected').text()+')');
-			$('input[name="fuel_avg_consumption"]').attr('placeholder', text+ ' ('+$(this).children('option:selected').text()+')');
+			$('input[name="fuel_avg_consumption"]').parent('div').children('label').html(text + ' (' + $(this).children('option:selected').text() + ')');
+			$('input[name="fuel_avg_consumption"]').attr('placeholder', text + ' (' + $(this).children('option:selected').text() + ')');
 		}
-
 
 
 	})
 	$(document).ready(function () {
-		if($(window).width() > 1349){
+		if ($(window).width() > 1349) {
 			$('.col-width').removeClass('col-sm-6');
 			$('.col-width').addClass('col-sm-7');
 			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '0');
-		}else{
+		} else {
 			$('label.btn.btn-sm.btn-outline-success.mb-0.col-width_m').css('margin-top', '-20px');
 		}
 	})

@@ -32,7 +32,7 @@
 	}
 
 	table td {
-		padding: 1px !important;
+		padding: 0 5px !important;
 	}
 </style>
 
@@ -61,7 +61,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('driver') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('company') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
 					</tr>
 					</thead>
@@ -90,7 +89,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<td><?= $row['driver'] ?></td>
 							<td><?= $row['department'] ?></td>
 							<td><?= $row['head'] ?></td>
-							<td><?= $row['company'] ?></td>
 							<td>
 								<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/edit_vehicles/' . $row['fleet_id']) ?>"><i
 										class="pr-2 fas fa-edit text-success"></i></a></td>
@@ -139,7 +137,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				}
 			},
 			"columnDefs": [
-				{"orderable": false, "targets": [7]}
+				{"orderable": false, "targets": [6]}
 			]
 		});
 	});

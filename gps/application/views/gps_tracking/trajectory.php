@@ -1,3 +1,5 @@
+<!-- Hello -->
+
 <?
 $token = $this->session->token;
 $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
@@ -152,12 +154,9 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 						style="height: 40px;border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;transition: all .3s ease-in-out;background: #fff;"
 						id="load1"
 						class="btn btn-sm btn-block d-none">
-						<img style="height: 24px;
-														   margin: 0 auto;
-														   padding-bottom: 8px;
-														   display: block;
-														   text-align: center;"
-							 src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+						<img style="height: 24px;margin: 0 auto;padding-bottom: 8px;display: block;text-align: center;"
+							 src="<?= base_url() ?>assets/images/bars2.svg"/>
+					</button>
 				</div>
 			</div>
 			<div class="card mt-3">
@@ -346,16 +345,34 @@ $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
 						</div>
 
 
-						<div class="form-group row mb-0">
-							<label for="inputUnit" class="col-sm-4 col-form-label">Show annotations:</label>
-							<div class="col-sm-8">
-								<input style="margin-top: 12px;" type="checkbox"/>
+						<div 
+							class="form-group row mb-0">
+							<label 
+								for="inputUnit" 
+								class="col-sm-4 col-form-label">
+									Show annotations:
+							</label>
+							<div 
+								class="col-sm-8">
+								<input 
+									style="margin-top: 12px;" 
+									type="checkbox"
+								/>
 							</div>
 						</div>
-						<div class="form-group row">
-							<label for="inputUnit" class="col-sm-4 col-form-label">Apply trip detector:</label>
-							<div class="col-sm-8">
-								<input style="margin-top: 12px;" type="checkbox"/>
+						<div 
+							class="form-group row">
+							<label 
+								for="inputUnit" 
+								class="col-sm-4 col-form-label">
+									Apply trip detector:
+							</label>
+							<div 
+								class="col-sm-8">
+								<input 
+									style="margin-top: 12px;" 
+									type="checkbox"
+								/>
 							</div>
 						</div>
 

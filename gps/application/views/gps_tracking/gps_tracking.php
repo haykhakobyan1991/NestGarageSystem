@@ -33,6 +33,7 @@
 	th:nth-child(2):before {
 		content: none !important;
 	}
+
 </style>
 
 <?
@@ -42,14 +43,15 @@ $getImei = $this->uri->segment(3);
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>
 <img class="loader_svg"
+<img class="loader_svg"
 	 style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
 	 src="<?= base_url('assets/images/puff.svg') ?>"/>
 
 <div id="splitter">
 
 	<div class="panel-left splitter-west" id="mydiv">
-		<div class="row">
-			<div class="col-sm-12 m-2">
+		<div class="row m-0">
+			<div class="col-sm-12 mt-2 mb-2">
 				<div class="form-group row ml-2">
 					<div class="car_icon col-sm-2" style="padding-top: 10px;">
 						<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
@@ -74,13 +76,20 @@ $getImei = $this->uri->segment(3);
 						</select>
 					</div>
 
-					<div class="tools_div col-sm-2 pl-0" style="padding-top: 4px;">
+					<div class="tools_div col-sm-2 pl-0"
+						 style="padding-top: 4px;"
+					>
 						<button class="btn btn-sm btn-outline-secondary plus_btn mr-1"
-								data-toggle="modal" data-target=".add_group"
-								style="width: 20px;padding: 2px !important;"><img
+								data-toggle="modal"
+								data-target=".add_group"
+								style="width: 20px;padding: 2px !important;"
+						>
+							<img
 								style="margin-right: 5px;margin-left: -15px;"
 								src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
-								class="ml-0 mr-0 "/></button>
+								class="ml-0 mr-0 "
+							/>
+						</button>
 						<button class="btn btn-sm btn-outline-secondary set_btn mr-1"
 								id="edit_group_modal"
 								data-toggle="modal"
@@ -104,7 +113,8 @@ $getImei = $this->uri->segment(3);
 					<thead>
 					<tr>
 						<th style="font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input checked="checked" class="sel_all_checkbox" style="margin-left: 5px;" type="checkbox"/>
+							<input checked="checked" class="sel_all_checkbox" style="margin-left: 5px;"
+								   type="checkbox"/>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
 						<th
@@ -116,12 +126,17 @@ $getImei = $this->uri->segment(3);
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-map-marker-alt"></i><?= lang('location') ?>
 						</th>
+						<th style="font-size: 12px !important; font-weight: :500; min-width: 25px !important;"
+							class="text-center0">
+							<img width="25" height="25"
+								 src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
+						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
 							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/parking.svg"/>
 						</th>
 						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
-							<i style="min-width: 150px;font-size: 12px !important;color: #000 !important;"
+							<i style="min-width: 70px;font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-user"></i>
 							<?= lang('driver') ?>
 						</th>
@@ -188,6 +203,8 @@ $getImei = $this->uri->segment(3);
 								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
 							<td class="address_span" data-imei="<?= $fleets['gps_tracker_imei'] ?>"></td>
+							<td class="fleet_speed" data-imei="<?= $fleets['gps_tracker_imei'] ?>">
+								0 <?= lang('km/h') ?></td>
 							<td class="text-center car_status">
 								<?
 								//start 1, stop (-1), parking (2)
@@ -300,7 +317,6 @@ $getImei = $this->uri->segment(3);
 </div>
 
 <!--Edit Group Modal end -->
-
 <!-- Create Group Modal  Start -->
 
 <div class="modal fade bd-example-modal-lg add_group" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -325,8 +341,7 @@ $getImei = $this->uri->segment(3);
 						<div class="col-sm-1"></div>
 						<label class="col-sm-3 col-form-label"><?= lang('more_info') ?></label>
 						<div class="col-sm-7">
-							<textarea name="description" type="text" class="form-control"
-									  placeholder="<?= lang('more_info') ?>"></textarea>
+							<textarea name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -437,11 +452,13 @@ $getImei = $this->uri->segment(3);
 <!-- Delete modal End -->
 
 <?
+
 foreach ($result2 as $name => $value) {
+
 	foreach ($value as $id => $val) {
 		?>
 
-		<span class="geofences_coordinate" style="display:none;" data-gCoordinate="<?= implode(',', $val) ?>"></span>
+		<span class="geofences_coordinate d-none" data-gCoordinate="<?= implode(',', $val) ?>"></span>
 
 		<?
 	}
@@ -507,7 +524,6 @@ foreach ($result2 as $name => $value) {
 
 	//filter in wrapper
 	table.buttons().container().appendTo('#example11_wrapper #example11_filter:eq(0)');
-
 
 
 	//add group modal change coloers
@@ -666,7 +682,7 @@ foreach ($result2 as $name => $value) {
 	});
 
 
-	 /***************************
+	/***************************
 	 ****************************
 	 *** [ Yandex Map Start ] ***
 	 ****************************
@@ -706,6 +722,8 @@ foreach ($result2 as $name => $value) {
 					$('.geofences_coordinate').each(function () {
 
 						geoObject_coordinates = $(this).attr('data-gCoordinate');
+						geoObject_name = $(this).text();
+						console.log(geoObject_name);
 
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
 
@@ -796,7 +814,6 @@ foreach ($result2 as $name => $value) {
 						}
 					});
 
-
 				//if clicked in Placemark
 				myPlacemarkWithContent.events.add('balloonopen', function (e) {
 					var car_number = $('.car_number').text();
@@ -804,7 +821,7 @@ foreach ($result2 as $name => $value) {
 					$('td small').each(function () {
 						if ($(this).text() == car_number) {
 							var get_address = $(this).parent('td').parent('tr').children('.address_span').text();
-							$('.place_span').text(get_address)
+							$('.place_span').text(get_address);
 						}
 					});
 				});
@@ -896,7 +913,7 @@ foreach ($result2 as $name => $value) {
 							});
 						});
 
-						 //myPlacemarkWithContent.geometry.setCoordinates([latitude, longitude]);
+						//myPlacemarkWithContent.geometry.setCoordinates([latitude, longitude]);
 						myMap_show_all_cars_onChange.geoObjects.add(myPlacemarkWithContent);
 						myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
 
@@ -918,7 +935,6 @@ foreach ($result2 as $name => $value) {
 			endif;
 			?>
 		}
-
 
 		//Show Geozone from selectoption
 		$(document).on('change', 'select[name="group"]', function () {
@@ -942,7 +958,7 @@ foreach ($result2 as $name => $value) {
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {
-							hintContent: ''
+							hintContent: ""
 						}, {
 							editorDrawingCursor: "crosshair",
 							fillColor: rand_color,
@@ -1054,7 +1070,7 @@ foreach ($result2 as $name => $value) {
 							myPolygon = new ymaps.Polygon([
 								array_stting
 							], {
-								hintContent: 'Перетащи меня!'
+								hintContent: ''
 							}, {
 								editorDrawingCursor: "crosshair",
 								fillColor: rand_color,
@@ -1119,7 +1135,6 @@ foreach ($result2 as $name => $value) {
 						myMap_show_all_cars.setBounds(myMap_show_all_cars.geoObjects.getBounds(), {checkZoomRange: true});
 					}
 				});
-
 
 
 				$('.global_change').on('change', function (event) {
@@ -1585,9 +1600,28 @@ foreach ($result2 as $name => $value) {
 			});
 		}, 5000);
 
+		//Show Fleet Speed in Table page On load
+		$('.global_change.speeds').each(function () {
+			let FLEET_SPEED = parseInt($(this).val());
+			$(this).parent('tr').children('.fleet_speed').text(FLEET_SPEED + '<?=lang('km/h')?>');
+		})
+
 	});
+
+	//Show Fleet Speed in Table when speed changed
+	$('.global_change.speeds').on('change', function () {
+		let FLEET_SPEED = parseInt($(this).val());
+		$(this).parent('tr').children('.fleet_speed').text(FLEET_SPEED + '<?=lang('km/h')?>');
+	})
+
 
 </script>
 
 
 <div id="newCord"></div>
+
+<script>
+	console.log(
+
+	);
+</script>

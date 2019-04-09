@@ -1,0 +1,65 @@
+label {
+	font-size: 11px !important;
+}
+
+.st_inp::before {
+	content: "";
+	margin-left: -3px;
+	margin-top: -3px;
+	height: 23px;
+	width: 23px;
+	border: 3px solid #8c8c8c;
+	border-radius: 50%;
+	display: inline-block;
+	opacity: 1 !important;
+}
+
+i {
+	margin-left: 15px;
+}
+
+::-webkit-input-placeholder {
+	color: peachpuff;
+	font-size: 13px;
+}
+
+::-moz-placeholder {
+	color: peachpuff;
+	font-size: 13px;
+}
+
+:-ms-input-placeholder {
+	color: peachpuff;
+	font-size: 13px;
+}
+
+::placeholder {
+	color: peachpuff;
+	font-size: 13px;
+}
+
+#model_div label {
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%;
+}
+
+button.btn.dropdown-toggle.bs-placeholder {
+	height: 39px;
+	background: rgb(255, 255, 255);
+	color: rgb(108, 117, 125);
+	border: 1px solid rgb(206, 212, 218);
+	margin-top: -2px;
+}
+
+.btn.dropdown-toggle {
+	height: 37px !important;
+	margin-top: -1px;
+}
+
+.mt_custom-1 {
+	margin-top: .05rem !important;
+}
+
+.col-form-label{
+	text-align: right;
+}

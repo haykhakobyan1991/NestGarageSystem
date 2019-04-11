@@ -710,7 +710,6 @@ endforeach;
 			</div>
 		</div>
 	</div>
-	.
 </div>
 <!-- Staff End -->
 <!-- Delete Modal Start -->

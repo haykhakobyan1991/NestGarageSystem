@@ -4,7 +4,7 @@ $folder = $this->session->folder;
 $i = '';
 ?>
 
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/company.css" />
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/company.css"/>
 
 <!--  Company  Start-->
 <div class="tab-pane fade show active" id="list-company" role="tabpanel"
@@ -780,7 +780,7 @@ $i = '';
 </div>
 
 
-<!--<script src="--><?//= base_url('assets/js/go.js') ?><!--"></script>-->
+<!--<script src="--><? //= base_url('assets/js/go.js') ?><!--"></script>-->
 <script>
 	// create company
 	$(document).on('click', '#create_company', function (e) {

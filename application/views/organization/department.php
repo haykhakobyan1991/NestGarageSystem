@@ -211,7 +211,7 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
-					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+					style="font-size: 12px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div class="mt-0 mb-0 ml-auto mr-auto">

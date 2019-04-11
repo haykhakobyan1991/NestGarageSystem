@@ -29,8 +29,6 @@
 
 <div class="tab-pane fade show active" id="list-department" role="tabpanel" style="padding-top:10px;"
 	 aria-labelledby="list-department-list">
-
-
 	<div class="pt-2">
 		<div class="container-fluid">
 			<p class="display-5 font-weight-bold mb-0"><?= lang('department') ?></p>
@@ -56,20 +54,18 @@
 			 style="background: #fff;padding-top: 10px;padding-bottom: 10px;overflow-x: auto;">
 
 
-			<table id="example" class="table table-striped table-borderless"
-				   style="width:100%">
-				<thead style="background: #fff;
-color: #545b62;">
+			<table id="example" class="table table-striped table-borderless w-100">
+				<thead class="bg-white" style="color: #545b62;">
 				<tr>
-					<th class="department_th" ><?= lang('department') ?></th>
-					<th class="department_th" ><?= lang('more_info') ?></th>
-					<th class="department_th" ><?= lang('first_name') ?></th>
-					<th class="department_th" ><?= lang('last_name') ?></th>
-					<th class="department_th" ><?= lang('phone_number') ?></th>
-					<th class="department_th" ><?= lang('email') ?></th>
-					<th class="department_th" ><?= lang('Created_Date') ?></th>
-					<th class="department_th" ><?= lang('by_whom') ?></th>
-					<th class="department_th" ></th>
+					<th class="department_th"><?= lang('department') ?></th>
+					<th class="department_th"><?= lang('more_info') ?></th>
+					<th class="department_th"><?= lang('first_name') ?></th>
+					<th class="department_th"><?= lang('last_name') ?></th>
+					<th class="department_th"><?= lang('phone_number') ?></th>
+					<th class="department_th"><?= lang('email') ?></th>
+					<th class="department_th"><?= lang('Created_Date') ?></th>
+					<th class="department_th"><?= lang('by_whom') ?></th>
+					<th class="department_th"></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -87,8 +83,8 @@ color: #545b62;">
 							if ($this->load->authorisation('Organization', 'edit_department', 1)) :
 								?>
 								<span
-									class="float-left text-success pt-0"
-									style="border: none;padding-left: 5px;padding-right: 10px;cursor: pointer;"
+									class="float-left text-success pt-0 border-0"
+									style="padding-left: 5px;padding-right: 10px;cursor: pointer;"
 									data-id="<?= $item['id'] ?>"
 									id="edit_department_modal"
 									data-toggle="modal"
@@ -98,7 +94,7 @@ color: #545b62;">
 							<? endif; ?>
 
 							<? if ($this->load->authorisation('Organization', 'delete_department', 1)) : ?>
-							<span style="border: none; cursor:pointer;" data-toggle="modal"
+							<span class="border-0" style="cursor:pointer;" data-toggle="modal"
 								  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
 								  id="delete_department_modal" class="text-secondary"
 							><i class="fas fa-trash"></i></span></td>
@@ -120,8 +116,8 @@ color: #545b62;">
 					<div class="modal-header bg-dark">
 						<h6 class="text-white modal-title dar"><?= lang('department') ?></h6>
 					</div>
-					<div class="modal-body" id="modal-body">
-						<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+					<div class="modal-body mt-0 mb-0 ml-auto mr-auto text-center" id="modal-body">
+						<img style="height: 50px;display: block;"
 							 src="<?= base_url() ?>assets/images/bars.svg"/>
 					</div>
 				</div>
@@ -187,8 +183,9 @@ color: #545b62;">
 										class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
 								</button>
 								<button id="load" style="height: 40px !important; width: 90px !important;"
-										class="btn btn-sm btn-outline-success cancel_btn d-none"><img
-										style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+										class="btn btn-sm btn-outline-success cancel_btn d-none text-center mb-0 mt-0 ml-auto mr-auto">
+									<img
+										style="height: 20px; display: block;"
 										src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 								<button type="button" class="cancel_btn close btn btn-sm"
 										data-dismiss="modal"
@@ -217,7 +214,7 @@ color: #545b62;">
 					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
 			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
+				<div class="mt-0 mb-0 ml-auto mr-auto">
 					<button style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;

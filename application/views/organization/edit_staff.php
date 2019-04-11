@@ -21,7 +21,7 @@ $folder = $this->session->folder;
 			<h5><?= lang('staff_information') ?></h5>
 		</div>
 		<div class="col-sm-12 col-md-6 col-6">
-			<h5 style="padding-top: 10px;margin-left: 116px;float: none;display: unset;"><?= lang('picture') ?></h5>
+			<h5 class="float-none" style="padding-top: 10px;margin-left: 116px;display: unset;"><?= lang('picture') ?></h5>
 			<div class="media">
 				<img class="align-self-start mr-3"
 					 id='img-upload2'

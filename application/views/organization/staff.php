@@ -723,12 +723,12 @@ endforeach;
 			<div class="modal-header">
 				<h6 class="modal-title text-secondary text-center"
 					id="exampleModalLabel"
-					style="font-size: 15px;">
+					style="font-size: 12px;">
 					<?= lang('are_you_sure_you_want_to_delete') ?>
 				</h6>
 			</div>
 			<div class="modal-footer text-center">
-				</div><div style="margin: 0 auto;">
+				<div class="mt-0 mb-0 ml-auto mr-auto">
 					<button
 						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
 						type="button"
@@ -744,6 +744,7 @@ endforeach;
 						<?= lang('cancel') ?>
 					</button>
 					<input type="hidden" name="staff_id">
+				</div>
 			</div>
 		</div>
 

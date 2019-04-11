@@ -42,7 +42,7 @@
 		<button id="edit_department_btn" type="button"
 				class="btn btn-outline-success cancel_btn"><?= lang('save') ?></button>
 		<span id="load" class="btn btn-outline-success cancel_btn d-none" style="min-width: 93px; max-height: 40px;">
-			<img style="height: 25px; padding-bottom: 10px; display: block; text-align: center;  margin: 0 auto;"
+			<img class="text-center mt-0 mb-0 ml-auto mr-auto" style="height: 25px; padding-bottom: 10px; display: block;"
 				 src="<?= base_url() ?>assets/images/bars2.svg"/>
 		</span>
 		<button type="button" class="cancel_btn close btn btn-sm" data-dismiss="modal" aria-label="Close">

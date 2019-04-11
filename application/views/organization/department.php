@@ -1,24 +1,8 @@
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<style>
-	table#example thead tr th:last-child:after {
-		content: '';
-	}
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/department.css"/>
 
-	table#example thead tr th:last-child:before {
-		content: '';
-	}
-
-	a.page_link {
-		color: #fff !important;
-		background: rgb(255, 122, 89) !important;
-	}
-
-	.btn.dropdown-toggle.bs-placeholder {
-		font-size: 13px !important;
-	}
-</style>
 
 <script>
 	$(document).ready(function () {
@@ -77,15 +61,15 @@
 				<thead style="background: #fff;
 color: #545b62;">
 				<tr>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('department') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('more_info') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('first_name') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('last_name') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('phone_number') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('email') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('Created_Date') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;"><?= lang('by_whom') ?></th>
-					<th style="font-size: 12px !important;font-weight:500;min-width: 50px !important;"></th>
+					<th class="department_th" ><?= lang('department') ?></th>
+					<th class="department_th" ><?= lang('more_info') ?></th>
+					<th class="department_th" ><?= lang('first_name') ?></th>
+					<th class="department_th" ><?= lang('last_name') ?></th>
+					<th class="department_th" ><?= lang('phone_number') ?></th>
+					<th class="department_th" ><?= lang('email') ?></th>
+					<th class="department_th" ><?= lang('Created_Date') ?></th>
+					<th class="department_th" ><?= lang('by_whom') ?></th>
+					<th class="department_th" ></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -103,17 +87,21 @@ color: #545b62;">
 							if ($this->load->authorisation('Organization', 'edit_department', 1)) :
 								?>
 								<span
-									style="border: none;padding-top: 0px;padding-left: 5px;padding-right: 10px;cursor: pointer;:pointer;"
-									data-id="<?= $item['id'] ?>" id="edit_department_modal"
-									data-toggle="modal" class="float-left text-success"
-									data-target="#edit_department"><i class="fas fa-edit"></i></span>
+									class="float-left text-success pt-0"
+									style="border: none;padding-left: 5px;padding-right: 10px;cursor: pointer;"
+									data-id="<?= $item['id'] ?>"
+									id="edit_department_modal"
+									data-toggle="modal"
+									data-target="#edit_department"
+								>
+									<i class="fas fa-edit"></i></span>
 							<? endif; ?>
 
 							<? if ($this->load->authorisation('Organization', 'delete_department', 1)) : ?>
 							<span style="border: none; cursor:pointer;" data-toggle="modal"
 								  data-target=".bd-example-modal-sm" data-id="<?= $item['id'] ?>"
 								  id="delete_department_modal" class="text-secondary"
-								><i class="fas fa-trash"></i></span></td>
+							><i class="fas fa-trash"></i></span></td>
 						<? endif; ?>
 					</tr>
 

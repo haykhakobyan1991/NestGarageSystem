@@ -59,8 +59,6 @@
 		 style="padding-top: 10px;padding-bottom: 10px;"
 		 aria-labelledby="list-company-list"
 	>
-
-
 		<div class="for_message">
 			<div
 				class="alert alert-success d-none "
@@ -127,7 +125,6 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
@@ -391,6 +388,7 @@
 				endif; ?>
 			</div>
 
+
 			<div class="col-sm-3 ">
 				<div class="row">
 					<label class="col-form-label col-sm-5 text-right"
@@ -596,11 +594,14 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<label><?= lang('company') ?></label>
-										<input type="text"
-											   value="<?= $fleet['insurance_company_2'] ?>"
-											   name="company[2]"
-											   class="form-control form-control-sm"
-											   placeholder="<?= lang('company') ?>">
+										<input
+											type="text"
+										    value="<?= $fleet['insurance_company_2'] ?>"
+										    name="company[2]"
+										    class="form-control form-control-sm"
+										    placeholder="<?= lang('company') ?>"
+										    title=""
+										>
 									</div>
 								</div>
 
@@ -608,23 +609,29 @@
 								<div class="col-md-2">
 									<div class="form-group">
 										<label><?= lang('reference') ?></label>
-										<input type="text"
-											   value="<?= $fleet['insurance_referance_2'] ?>"
-											   name="reference[2]"
-											   class="form-control form-control-sm"
-											   placeholder="<?= lang('reference') ?>">
+										<input
+											type="text"
+										    value="<?= $fleet['insurance_referance_2'] ?>"
+										    name="reference[2]"
+										    class="form-control form-control-sm"
+										    placeholder="<?= lang('reference') ?>"
+											title=""
+										>
 									</div>
 								</div>
 
 								<div
 									class="<?= ($fleet['insurance_ext_2'] == '' ? 'col-md-2' : 'col-md-2') ?>">
 									<label><?= lang('expiry_date') ?></label>
-									<input type="date"
-										   value="<?= $fleet['insurance_expiration_2'] ?>"
-										   name="expiration[2]"
-										   max="3000-12-31"
-										   min="1000-01-01"
-										   class="form-control form-control-sm">
+									<input
+										type="date"
+									   	value="<?= $fleet['insurance_expiration_2'] ?>"
+									   	name="expiration[2]"
+									   	max="3000-12-31"
+									   	min="1000-01-01"
+									   	class="form-control form-control-sm"
+										title=""
+									>
 								</div>
 
 

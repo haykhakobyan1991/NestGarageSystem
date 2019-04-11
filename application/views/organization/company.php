@@ -4,16 +4,7 @@ $folder = $this->session->folder;
 $i = '';
 ?>
 
-<style>
-	input::-webkit-input-placeholder {
-		font-size: 14px !important;
-	}
-
-	button.btn.dropdown-toggle, button.btn.dropdown-toggle.btn-sm {
-		color: #000000 !important;
-	}
-
-</style>
+<link rel="stylesheet" href="<?= base_url() ?>assets/css/company.css" />
 
 <!--  Company  Start-->
 <div class="tab-pane fade show active" id="list-company" role="tabpanel"
@@ -38,7 +29,6 @@ $i = '';
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-7">
-
 						<div class="row">
 							<div class="col-sm-5">
 								<div class="row">
@@ -790,7 +780,7 @@ $i = '';
 </div>
 
 
-<script src="<?= base_url('assets/js/go.js') ?>"></script>
+<!--<script src="--><?//= base_url('assets/js/go.js') ?><!--"></script>-->
 <script>
 	// create company
 	$(document).on('click', '#create_company', function (e) {

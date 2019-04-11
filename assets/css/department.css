@@ -1,0 +1,23 @@
+table#example thead tr th:last-child:after {
+	content: '';
+}
+
+table#example thead tr th:last-child:before {
+	content: '';
+}
+
+a.page_link {
+	color: #fff !important;
+	background: rgb(255, 122, 89) !important;
+}
+
+.btn.dropdown-toggle.bs-placeholder {
+	font-size: 13px !important;
+}
+
+.department_th {
+	font-size: 12px !important;font-weight:500;
+}
+.department_th:last-child{
+	min-width: 50px !important;
+}

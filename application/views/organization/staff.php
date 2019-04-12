@@ -122,8 +122,8 @@ endforeach;
 														<span class="input-group-btn"
 															  style="position:absolute; right: 18px;">
 															<span id="remove_picture"
-																  class="btn btn-sm btn-outline-secondary mr-3"><i
-																	class="fas fa-times"></i></span>
+																  class="btn btn-sm btn-outline-secondary mr-3 border-0"><i
+																	class="fas fa-trash"></i></span>
 															<span
 																class="btn btn-outline-success btn-file"
 																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
@@ -709,7 +709,7 @@ endforeach;
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>.
 </div>
 <!-- Staff End -->
 <!-- Delete Modal Start -->

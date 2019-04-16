@@ -142,12 +142,12 @@ class Gps extends MX_Controller
 		}
 
 
-
+ 		// if in fleets dont exist gps
 		$fl_arr = json_decode($fleets, true);
 		if($fl_arr == '' || empty($fl_arr)) {
 			$data['empty'] = true;
-			return false;
 		}
+		// end
 
 		//---- get last location ----
 		$add_sql = '';

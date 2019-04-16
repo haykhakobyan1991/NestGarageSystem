@@ -144,7 +144,7 @@ class Gps extends MX_Controller
  		// if in fleets dont exist gps
 		$fl_arr = json_decode($fleets, true);
 		if($fl_arr == '' || empty($fl_arr)) {
-			echo '<div class="alert alert-warning">Hajox Valodik</div>';
+			echo '5555';
 			return false;
 		}
 		// end

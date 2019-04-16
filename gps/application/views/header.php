@@ -98,7 +98,7 @@ $unread = $this->session->unread;
 $lng = $this->load->lng();
 
 
-if (!$unread || $unread == '') {
+if ($unread == '') {
 
 	//api call
 	$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
@@ -158,7 +158,8 @@ if (!$unread || $unread == '') {
 		}
 
 	}
-	$unread = $this->session->set_userdata('unread', $unread);
+
+	 $this->session->set_userdata('unread', $unread);
 }
 
 

@@ -95,7 +95,20 @@ $token = $this->session->token;
 
 $unread = $this->session->unread;
 
-if (!$unread) {
+$lng = $this->load->lng();
+
+
+if (!$unread || $unread == '') {
+
+	//api call
+	$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
+
+	$add_sql = 'AND (';
+	foreach (json_decode($fleets, true) as $row) {
+		$add_sql .= " gps.\"imei\" = '" . $row['gps_tracker_imei'] . "' OR";
+	}
+
+	$add_sql = substr($add_sql, 0, -2).' )';
 
 	$sql = "
 				SELECT 
@@ -114,6 +127,7 @@ if (!$unread) {
 				FROM 
 				   gps
 				WHERE sos = '1'
+				".$add_sql."
 				ORDER BY imei, date, time
 			";
 

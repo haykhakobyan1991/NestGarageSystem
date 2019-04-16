@@ -67,5 +67,9 @@
 </script>
 
 
+
+<a href="http://www.link.ru/promote/?partner=215369" target="_blank"><img src="http://link.link.ru/img/120x60-1.gif" border="0" width="120" height="60" alt="Контекстная Реклама на Link.ru"></a>
+
+
 </body>
 

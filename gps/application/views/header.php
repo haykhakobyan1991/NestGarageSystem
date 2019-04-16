@@ -148,8 +148,8 @@ if (!$unread) {
 }
 
 
-$row = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/get_user', array('token' => $token)), true); // todo url
-$row_company = json_decode($this->load->CallAPI('POST', 'http://localhost/NestGarageSystem/hy/Api/getCompanyName', array('token' => $token)), true); // todo url
+$row = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl().$this->load->lng().'/Api/get_user', array('token' => $token)), true);
+$row_company = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl().$this->load->lng().'/Api/getCompanyName', array('token' => $token)), true);
 
 ?>
 

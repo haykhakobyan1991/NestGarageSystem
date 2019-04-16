@@ -268,7 +268,7 @@ class MY_Loader extends MX_Loader
 					  `fleet`.`staff_ids`
 					) 
 			   WHERE `fleet`.`id` = '" . $fleet_id . "'
-			    GROUP BY `staff`.`id`		
+			    GROUP BY `staff`.`id`
 			";
 
 		$query_add_staff = $this->db->query($sql_add_staff);

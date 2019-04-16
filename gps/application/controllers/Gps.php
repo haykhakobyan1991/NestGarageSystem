@@ -99,7 +99,7 @@ class Gps extends MX_Controller
 
 
 		$data = array();
-
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
 
@@ -144,7 +144,8 @@ class Gps extends MX_Controller
  		// if in fleets dont exist gps
 		$fl_arr = json_decode($fleets, true);
 		if($fl_arr == '' || empty($fl_arr)) {
-			echo '5555';
+			$data['empty'] = true;
+			$this->layout->view('gps_tracking/gps_tracking', $data);
 			return false;
 		}
 		// end

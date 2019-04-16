@@ -99,7 +99,6 @@ class Gps extends MX_Controller
 
 
 		$data = array();
-		$data['empty'] = false;
 
 		$lng = $this->load->lng();
 
@@ -145,7 +144,8 @@ class Gps extends MX_Controller
  		// if in fleets dont exist gps
 		$fl_arr = json_decode($fleets, true);
 		if($fl_arr == '' || empty($fl_arr)) {
-			$data['empty'] = true;
+			echo '<div class="alert alert-warning">Hajox Valodik</div>';
+			return false;
 		}
 		// end
 

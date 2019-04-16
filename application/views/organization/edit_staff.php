@@ -21,7 +21,8 @@ $folder = $this->session->folder;
 			<h5><?= lang('staff_information') ?></h5>
 		</div>
 		<div class="col-sm-12 col-md-6 col-6">
-			<h5 style="padding-top: 10px;margin-left: 116px;float: none;display: unset;"><?= lang('picture') ?></h5>
+			<h5 class="float-none"
+				style="padding-top: 10px;margin-left: 116px;display: unset;"><?= lang('picture') ?></h5>
 			<div class="media">
 				<img class="align-self-start mr-3"
 					 id='img-upload2'
@@ -31,10 +32,10 @@ $folder = $this->session->folder;
 					<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
 					<div class="input-group ml-2 ml-md-2">
 						<span class="input-group-btn"
-									 style="position:absolute; right: 18px;">
+							  style="position:absolute; right: 18px;">
 							<span id="remove_picture2"
-								  class="btn btn-sm btn-outline-secondary mr-3"><i
-									class="fas fa-times"></i></span>
+								  class="btn btn-sm btn-outline-secondary border-0 mr-3"><i
+									class="fas fa-trash"></i></span>
 							<span
 								class="btn btn-outline-success btn-file"
 								style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">

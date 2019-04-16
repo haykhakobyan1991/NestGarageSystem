@@ -35,11 +35,10 @@
 		</div>
 		<div class="row" style="margin-top: 30px;">
 			<div class="col-sm-12 mt-2">
-				<table id="example11" class="table table-striped table-borderless w-100 dataTable no-footer"
-					   style="width:100%">
+				<table id="example11" class="table table-striped table-borderless w-100 dataTable no-footer">
 					<thead>
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;">
+						<th class="" style="font-size: 12px !important;font-weight: 500;">
 							<i class="far fa-envelope"></i>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 100px;">

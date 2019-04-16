@@ -7,33 +7,21 @@
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.core.css">
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
-
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
-
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
-
 <script type="text/javascript" src="<?= base_url('assets/js/zino/zino.position.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/zino/zino.draggable.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/zino/zino.splitter.min.js') ?>"></script>
 <script type="text/javascript" src="<?= base_url('assets/js/zino/front.min.js') ?>"></script>
-
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
 
 <style>
-	th:nth-child(2):after {
-		content: none !important;
-	}
-
-	th:nth-child(2):before {
-		content: none !important;
-	}
-
+	th:nth-child(2):after {content: none !important;}
+	th:nth-child(2):before {content: none !important;}
 </style>
 
 <?
@@ -92,21 +80,31 @@ $getImei = $this->uri->segment(3);
 								class="ml-0 mr-0 "
 							/>
 						</button>
-						<button class="btn btn-sm btn-outline-secondary set_btn mr-1"
-								id="edit_group_modal"
-								data-toggle="modal"
-								data-target="#edit_group"
-								data-toggle2="tooltip"
-								data-placement="top"
-								style="width: 20px;padding: 2px !important;"><img
+						<button
+							class="btn btn-sm btn-outline-secondary set_btn mr-1"
+							id="edit_group_modal"
+							data-toggle="modal"
+							data-target="#edit_group"
+							data-toggle2="tooltip"
+							data-placement="top"
+							style="width: 20px;padding: 2px !important;"
+						>
+							<img
 								style="margin-right: 5px;margin-left: -15px;"
 								src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
-								class="ml-0 mr-0 "/></button>
-						<button class="custom_fas_trash_btn btn btn-sm btn-outline-secondary delete_btn"
-								data-toggle="modal"
-								data-target=".del_group_modal"
-								style="width: 20px;padding: 2px !important;">
-							<i class="custom_fas_trash fas fa-trash"></i></button>
+								class="ml-0 mr-0 "
+							/>
+						</button>
+						<button
+							class="custom_fas_trash_btn btn btn-sm btn-outline-secondary delete_btn"
+							data-toggle="modal"
+							data-target=".del_group_modal"
+							style="width: 20px;padding: 2px !important;"
+						>
+							<i
+								class="custom_fas_trash fas fa-trash"
+							></i>
+						</button>
 					</div>
 				</div>
 
@@ -343,7 +341,8 @@ $getImei = $this->uri->segment(3);
 						<div class="col-sm-1"></div>
 						<label class="col-sm-3 col-form-label"><?= lang('more_info') ?></label>
 						<div class="col-sm-7">
-							<textarea name="description" type="text" class="form-control" placeholder="<?= lang('more_info') ?>"></textarea>
+							<textarea name="description" type="text" class="form-control"
+									  placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -1622,8 +1621,3 @@ foreach ($result2 as $name => $value) {
 
 <div id="newCord"></div>
 
-<script>
-	console.log(
-
-	);
-</script>

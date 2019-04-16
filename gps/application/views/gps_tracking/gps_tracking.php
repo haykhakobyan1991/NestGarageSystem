@@ -29,6 +29,12 @@
 $lng = $this->load->lng();
 $getImei = $this->uri->segment(3);
 
+
+if($empty) {
+	echo '<div class="alert alert-warning">Hajox Valodik</div>';
+	return false;
+}
+
 ?>
 
 <div class="loader" style="width: 100%;z-index: 999 !important;"></div>

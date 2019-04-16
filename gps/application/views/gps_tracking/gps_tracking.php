@@ -31,7 +31,7 @@ $getImei = $this->uri->segment(3);
 
 
 if($empty) {
-	echo '<div class="alert alert-warning">Hajox Valodik</div>';
+	echo '<div class="alert alert-warning align-center">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
 	return false;
 }
 

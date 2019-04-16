@@ -99,6 +99,7 @@ class Gps extends MX_Controller
 
 
 		$data = array();
+		$data['empty'] = false;
 
 		$lng = $this->load->lng();
 
@@ -144,10 +145,7 @@ class Gps extends MX_Controller
 
 		$fl_arr = json_decode($fleets, true);
 		if($fl_arr == '' || empty($fl_arr)) {
-			echo 'hajox Valodik';
-			return false;
-		} else {
-			var_dump($fl_arr);
+			$data['empty'] = true;
 			return false;
 		}
 

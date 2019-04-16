@@ -686,5 +686,34 @@
 	});
 </script>
 
+
+
+
+
+
+
+
+<!--todo delete -->
+	<a href="http://www.link.ru/promote/?partner=215369" target="_blank"><img src="http://link.link.ru/img/120x60-1.gif" border="0" width="120" height="60" alt="Контекстная Реклама на Link.ru"></a>
+
+	<!-- start Link.Ru -->
+	<script type="text/javascript">
+		var LinkRuRND = Math.round(Math.random() * 100000000); document.write('<div id="linkru' + LinkRuRND  + '"></div>'); document.write('<scr'+'ipt src="http://link.link.ru/show?squareid=123404&showtype=28&output_style=1&shift_count=1&cat_id=10140&tar_id=1&theme=0&sc=3&bg=FFFFFF&bc=FFFFFF&tc=D5EFFF&tt=333333&tu=333333&th=525252&c7=&css=0&bwidth=undefined&bheight=undefined&fontsize=&h=&div=' +LinkRuRND+ '&r='+LinkRuRND+'&ref='+escape(document.referrer)+'&url='+escape(window.location.href)+'" type="text/javascript"></scr'+'ipt>');
+	</script>
+	<!-- end Link.Ru -->
+	<!-- start Link.Ru -->
+	<script language="JavaScript">
+		var LinkRuRND = Math.round(Math.random() * 1000000000);
+		document.write('<iframe src="http://link.link.ru/show?squareid=123404&showtype=34&output_style=1&shift_count=27612&cat_id=10140&tar_id=1&theme=0&sc=3&bg=000066&bc=FFFFFF&tc=35662E&tt=F0F0FF&tu=CCCCFF&th=000066&c7=000099&css=0&bwidth=100&bheight=100&r='+LinkRuRND+'&ref='+escape(document.referrer)+'&url='+escape(window.location.href)+'" frameborder="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" width="100" height="100"></iframe>');
+	</script>
+	<noscript>
+		<iframe src="http://link.link.ru/show?squareid=123404&showtype=34&output_style=1&shift_count=27612&cat_id=10140&tar_id=1&theme=0&sc=3&bg=000066&bc=FFFFFF&tc=35662E&tt=F0F0FF&tu=CCCCFF&th=000066&c7=000099&css=0&bwidth=100&bheight=100" frameborder="0" vspace="0" hspace="0" marginwidth="0" marginheight="0" scrolling="no" width="100" height="100"></iframe>
+	</noscript>
+	<!-- end Link.Ru -->
+
+<!--end of todo-->
+
+
+
 </body>
 </html>

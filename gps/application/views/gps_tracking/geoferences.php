@@ -22,6 +22,13 @@
 
 <?
 $count = count($result);
+
+
+if($empty) {
+	echo '<div class="alert alert-info text-center font-weight-bold">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
+}
+
+
 ?>
 
 <style>

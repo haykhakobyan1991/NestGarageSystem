@@ -332,12 +332,20 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
 
 		//api call
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+		}
+		// end
 
 
 		$this->layout->view('gps_tracking/trajectory', $data);
@@ -349,11 +357,19 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
 		//api call
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+		}
+		// end
 
 		$this->layout->view('gps_tracking/fuel', $data);
 	}
@@ -364,11 +380,20 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
 		//api call
 		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
 		$data['result_fleets'] = json_decode($fleets, true);
+
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+		}
+		// end
 
 		$this->layout->view('gps_tracking/load', $data);
 	}
@@ -379,6 +404,7 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
 		//api call
@@ -392,6 +418,14 @@ class Gps extends MX_Controller
 		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
 
 		// end api call
+
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+		}
+		// end
 
 
 		$local_time = time();
@@ -796,6 +830,32 @@ class Gps extends MX_Controller
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
 
 		$data = array();
+		$data['empty'] = false;
+		$lng = $this->load->lng();
+
+
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
+		$data['result_fleets'] = json_decode($fleets, true);
+
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+			$this->layout->view('gps_tracking/sos', $data);
+			return false;
+		}
+		// end
+
+
+		$add_sql = 'AND';
+		foreach (json_decode($fleets, true) as $row) {
+			$add_sql .= " gps.\"imei\" = '" . $row['gps_tracker_imei'] . "' OR";
+		}
+
+		$add_sql = substr($add_sql, 0, -2);
+
 
 		$sql = "
 			SELECT 
@@ -814,10 +874,12 @@ class Gps extends MX_Controller
 			FROM 
 			   gps
 			WHERE sos = '1'
+			".$add_sql." 
 			ORDER BY imei, date, time
 		";
 
 		$query = $this->db->query($sql);
+
 
 		$data['result'] = $query->result_array();
 
@@ -828,10 +890,43 @@ class Gps extends MX_Controller
 	{
 		$token = $this->session->token;
 		//$this->load->authorisation('Gps', 'gps_tracking', $token); //todo authorisation
+
+
 		$data = array();
+		$data['empty'] = false;
 		$lng = $this->load->lng();
 
-		$result = $this->db->select('geoference."id",geoference."name", geoference_cordinates.lat,geoference_cordinates.long')->from('geoference')->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')->where('geoference.status', 1)->get()->result_array();
+		//api call
+		$fleets = $this->load->CallAPI('POST', $this->load->old_baseUrl() . $lng . '/Api/get_AllFleets', array('token' => $token));
+		$data['result_fleets'] = json_decode($fleets, true);
+
+
+		$company_id = $this->load->CallAPI('POST', $this->load->old_baseUrl() . 'Api/get_companyId', array('token' => $token));
+
+		// end api call
+
+
+		// if in fleets dont exist gps
+		$fl_arr = json_decode($fleets, true);
+		if($fl_arr == '' || empty($fl_arr)) {
+			$data['empty'] = true;
+			$this->layout->view('gps_tracking/geoferences', $data);
+			return false;
+		}
+		// end
+
+		$result = $this->db->select('
+			geoference."id",
+			geoference."name", 
+			geoference_cordinates.lat,
+			geoference_cordinates.long
+		')
+			->from('geoference')
+			->join('geoference_cordinates', 'geoference."id" = geoference_cordinates.geoference_id', 'left')
+			->where('geoference.status', 1)
+			->where('geoference.company_id', $company_id)
+			->get()
+			->result_array();
 
 		$new_result = array();
 

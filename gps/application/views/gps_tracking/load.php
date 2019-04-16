@@ -1,6 +1,13 @@
 <?
 $token = $this->session->token;
 $time = strtotime(mdate('%Y-%m-%d %H:%i', now()));
+
+
+if($empty) {
+	echo '<div class="alert alert-info text-center font-weight-bold">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
+}
+
+
 ?>
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>

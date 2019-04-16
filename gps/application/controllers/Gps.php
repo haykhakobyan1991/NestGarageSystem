@@ -141,10 +141,8 @@ class Gps extends MX_Controller
 		}
 
 
-        var_dump($fleets);
-		return false;
 
-		if(empty($fleets) or $fleets == '') {
+		if(json_decode($fleets, true) == '') {
 			echo 'hajox Valodik';
 			return false;
 		}

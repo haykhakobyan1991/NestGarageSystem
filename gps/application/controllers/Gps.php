@@ -140,6 +140,12 @@ class Gps extends MX_Controller
 			}
 		}
 
+
+		if(empty($fleets) or $fleets == '') {
+			echo 'hajox Valodik';
+			return false;
+		}
+
 		//---- get last location ----
 		$add_sql = '';
 		foreach (json_decode($fleets, true) as $row) {

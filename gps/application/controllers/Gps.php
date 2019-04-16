@@ -849,15 +849,15 @@ class Gps extends MX_Controller
 		// end
 
 
-		$add_sql = 'AND';
+		$add_sql = 'AND (';
 		foreach (json_decode($fleets, true) as $row) {
 			$add_sql .= " gps.\"imei\" = '" . $row['gps_tracker_imei'] . "' OR";
 		}
 
-		$add_sql = substr($add_sql, 0, -2);
+		$add_sql = substr($add_sql, 0, -2).' )';
 
 
-		$sql = "
+		 $sql = "
 			SELECT 
 				gps.\"id\",
 				gps.\"lat\",

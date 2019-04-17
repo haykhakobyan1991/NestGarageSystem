@@ -1,8 +1,15 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<script src="<?= base_url('assets/js/bootstrap/typeahead.bundle.js') ?>"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/examples.css"/>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<script
+	src="<?= base_url('assets/js/bootstrap/typeahead.bundle.js') ?>"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/examples.css"/>
 <?
 $user_id = $this->session->user_id;
 $folder = $this->session->folder;
@@ -31,35 +38,54 @@ endforeach;
 	}
 </style>
 <!-- Staff Start -->
-<div class="tab-pane fade show active" id="list-staff" role="tabpanel" aria-labelledby="list-staff-list">
-	<div class="tab-pane fade show active" id="list-staff" role="tabpanel" style="padding-top: 10px;"
-		 aria-labelledby="list-staff-list">
+<div
+	class="tab-pane fade show active"
+	id="list-staff"
+	role="tabpanel"
+	aria-labelledby="list-staff-list">
+	<div
+		class="tab-pane fade show active"
+		id="list-staff"
+		role="tabpanel"
+		style="padding-top: 10px;"
+		aria-labelledby="list-staff-list">
 
-		<div class=" pt-2">
+		<div
+			class=" pt-2">
 
-			<div class="container-fluid">
+			<div
+				class="container-fluid">
 				<p class="display-5 font-weight-bold mb-0"><?= lang('staff') ?></p>
 				<hr class="my-2">
 			</div>
 
 
-			<div class="container-fluid">
+			<div
+				class="container-fluid">
 
-				<div class="row">
-					<div class="col-sm-5 pt-2">
-						<div class="row">
-							<div class="col-sm-6">
+				<div
+					class="row">
+					<div
+						class="col-sm-5 pt-2">
+						<div
+							class="row">
+							<div
+								class="col-sm-6">
 								<p class="display-5 font-weight-bold float-left"
-								   style="font-size: 12px;"><?= lang('total_staff') ?></p> <span
+								   style="font-size: 12px;"><?= lang('total_staff') ?></p>
+								<span
 									class="ml-2 mt-1 badge badge-secondary badge-pill"><?= $total ?></span>
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-7 text-right"><?
+					<div
+						class="col-sm-7 text-right"><?
 						if ($this->load->authorisation('Organization', 'add_staff', 1)) :
 							?>
-							<span class="text-capitalize btn btn-outline-success btn-sm float-right" data-toggle="modal"
-								  data-target=".add_staff_modal"><?= lang('add_staff') ?>
+							<span
+								class="text-capitalize btn btn-outline-success btn-sm float-right"
+								data-toggle="modal"
+								data-target=".add_staff_modal"><?= lang('add_staff') ?>
 							</span><?
 						endif;
 						?>
@@ -68,124 +94,199 @@ endforeach;
 
 			</div>
 
-			<div class="row ml-0 mr-0 mt-1">
+			<div
+				class="row ml-0 mr-0 mt-1">
 
 				<!-- EDIT staff modal-->
-				<div class="modal fade bd-example-modal-lg " id="edit_staff" tabindex="-1" role="dialog"
-					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header bg-dark">
+				<div
+					class="modal fade bd-example-modal-lg "
+					id="edit_staff"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="myLargeModalLabel"
+					aria-hidden="true">
+					<div
+						class="modal-dialog modal-lg">
+						<div
+							class="modal-content">
+							<div
+								class="modal-header bg-dark">
 								<h6 class="text-white modal-title dar"><?= lang('staff1') ?></h6>
 							</div>
-							<div class="modal-body" id="modal-body">
-								<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-									 src="<?= base_url('assets/images/bars.svg') ?>"/>
+							<div
+								class="modal-body"
+								id="modal-body">
+								<img
+									style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+									src="<?= base_url('assets/images/bars.svg') ?>"
+									alt=""
+									title=""
+								/>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- Edit staff modal end -->
 				<!-- Add staff Modal Start  -->
-				<div class="modal fade add_staff_modal" tabindex="-1" role="dialog"
-					 aria-labelledby="myLargeModalLabel" aria-hidden="true">
+				<div
+					class="modal fade add_staff_modal"
+					tabindex="-1"
+					role="dialog"
+					aria-labelledby="myLargeModalLabel"
+					aria-hidden="true">
 
-					<div class="modal-dialog modal-lg">
-						<div class="modal-content">
-							<div class="modal-header bg-dark">
+					<div
+						class="modal-dialog modal-lg">
+						<div
+							class="modal-content">
+							<div
+								class="modal-header bg-dark">
 								<h6 class="text-white modal-title dar"><?= lang('new_staff') ?></h6>
 							</div>
-							<form id="staff" enctype="multipart/form-data">
-								<div class="modal-body">
+							<form
+								id="staff"
+								enctype="multipart/form-data">
+								<div
+									class="modal-body">
 									<!-- Error Message -->
-									<div class="for_message">
-										<div class="alert alert-success d-none" role="alert"></div>
-										<div class="alert alert-danger  d-none" role="alert"></div>
-										<div class="alert alert-info  d-none" role="alert"></div>
+									<div
+										class="for_message">
+										<div
+											class="alert alert-success d-none"
+											role="alert"></div>
+										<div
+											class="alert alert-danger  d-none"
+											role="alert"></div>
+										<div
+											class="alert alert-info  d-none"
+											role="alert"></div>
 									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-6 col-6">
+									<div
+										class="row">
+										<div
+											class="col-sm-12 col-md-6 col-6">
 											<h5><?= lang('staff_information') ?></h5>
 											<p><?= lang('fill_followings_fields') ?></p>
 										</div>
-										<div class="col-sm-12 col-md-6 col-6">
+										<div
+											class="col-sm-12 col-md-6 col-6">
 											<h5 style="padding-top: 10px;margin-left: 116px;float: none;display: unset;"><?= lang('picture') ?></h5>
-											<div class="media">
-												<img class="align-self-start mr-3"
-													 id='img-upload2'
-													 style="width: 100px;margin-top: -30px;" alt=""
-													 src="<?= base_url('assets/images/no_choose_image.svg') ?>">
-												<div class="media-body col-sm-12"
-													 style="position: relative;padding: 0;">
+											<div
+												class="media">
+												<img
+													class="align-self-start mr-3"
+													id='img-upload2'
+													style="width: 100px;margin-top: -30px;"
+													alt=""
+													title=""
+													src="<?= base_url('assets/images/no_choose_image.svg') ?>">
+												<div
+													class="media-body col-sm-12"
+													style="position: relative;padding: 0;">
 													<p style="margin-top: 3px;"><?= lang('upload_staff_picture'); ?></p>
-													<div class="input-group ml-2 ml-md-2">
-														<span class="input-group-btn"
-															  style="position:absolute; right: 18px;">
-															<span id="remove_picture"
-																  class="btn btn-sm btn-outline-secondary mr-3 border-0"><i
+													<div
+														class="input-group ml-2 ml-md-2">
+														<span
+															class="input-group-btn"
+															style="position:absolute; right: 18px;">
+															<span
+																id="remove_picture"
+																class="btn btn-sm btn-outline-secondary mr-3 border-0"><i
 																	class="fas fa-trash"></i></span>
 															<span
 																class="btn btn-outline-success btn-file"
 																style="margin-top: -10px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;margin-left: -8px;">
-																<?= lang('browse') ?> <input type="file" id="imgInp2"
-																							 name="photo"
-																							 accept='image/png'
-																							 onchange="readURL2(this);">
+																<?= lang('browse') ?> <input
+																	title=""
+																	type="file"
+																	id="imgInp2"
+																	name="photo"
+																	accept='image/png'
+																	onchange="readURL2(this);">
 															</span>
 														</span>
-														<input type="text" class="form-control form-control-sm"
-															   readonly
-															   style="display: none;">
+														<input
+															title=""
+															type="text"
+															class="form-control form-control-sm"
+															readonly
+															style="display: none;">
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 									<hr class="my-2">
-									<div class="row mt-1">
-										<div class="col-sm-12 col-md-12 col-12  pl-md-4 pl-4 pr-md-4 pr-4">
-											<div class="row">
-												<div class="col-sm-6">
-													<div class="row">
+									<div
+										class="row mt-1">
+										<div
+											class="col-sm-12 col-md-12 col-12  pl-md-4 pl-4 pr-md-4 pr-4">
+											<div
+												class="row">
+												<div
+													class="col-sm-6">
+													<div
+														class="row">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('first_name') ?>*</label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="firstname"
-																   placeholder="<?= lang('first_name') ?>">
+															style="font-size: 15px;"><?= lang('first_name') ?>
+															*</label>
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="form-control form-control-sm"
+																name="firstname"
+																placeholder="<?= lang('first_name') ?>">
 														</div>
 													</div>
-													<div class="row mt-1">
+													<div
+														class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('last_name') ?>
 															*</label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="lastname"
-																   placeholder="<?= lang('last_name') ?>">
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="form-control form-control-sm"
+																name="lastname"
+																placeholder="<?= lang('last_name') ?>">
 														</div>
 													</div>
-													<div class="row mt-1">
+													<div
+														class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('email') ?>*</label>
-														<div class="col-sm-8">
-															<input type="email" class="form-control form-control-sm"
-																   name="email"
-																   placeholder="<?= lang('email') ?>">
+															style="font-size: 15px;"><?= lang('email') ?>
+															*</label>
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="email"
+																class="form-control form-control-sm"
+																name="email"
+																placeholder="<?= lang('email') ?>">
 														</div>
 													</div>
-													<div class="row mt-1">
+													<div
+														class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"
-															style="font-size: 15px;"><?= lang('department') ?>*</label>
-														<div class="col-sm-8">
-															<select name="department"
-																	class="col selectpicker form-control form-control-sm"
-																	data-size="5" id="department"
-																	data-live-search="true"
-																	title="<?= lang('select_department') ?>">
+															style="font-size: 15px;"><?= lang('department') ?>
+															*</label>
+														<div
+															class="col-sm-8">
+															<select
+																name="department"
+																class="col selectpicker form-control form-control-sm"
+																data-size="5"
+																id="department"
+																data-live-search="true"
+																title="<?= lang('select_department') ?>">
 																<? foreach ($department as $row) : ?>
 																	<option
 																		value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -193,37 +294,59 @@ endforeach;
 															</select>
 														</div>
 													</div>
-													<div class="row" style="margin-top: .75rem!important;">
+													<div
+														class="row"
+														style="margin-top: .75rem!important;">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('position') ?></label>
-														<div id="default-suggestions" class="col-sm-8">
-															<input type="text"
-																   class="typeahead form-control form-control-sm"
-																   name="position"
-																   placeholder="<?= lang('position') ?>">
-															<input type="hidden" name="head">
+														<div
+															id="default-suggestions"
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="typeahead form-control form-control-sm"
+																name="position"
+																placeholder="<?= lang('position') ?>">
+															<input
+																title=""
+																type="hidden"
+																name="head">
 														</div>
 													</div>
-													<div class="row mt-1">
+													<div
+														class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('nest_card_id') ?></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="nest_card_id"
-																   placeholder="<?= lang('nest_card_id') ?>">
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="form-control form-control-sm"
+																name="nest_card_id"
+																placeholder="<?= lang('nest_card_id') ?>">
 														</div>
 													</div>
 												</div>
-												<div class="col-sm-6">
-													<div class="row">
+												<div
+													class="col-sm-6">
+													<div
+														class="row">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('country') ?></label>
-														<div class="col-sm-8">
-															<select name="country"
-																	class="col selectpicker form-control form-control-sm"
-																	data-size="5" id="country" data-live-search="true"
-																	title="<?= lang('select_country') ?>">
-																<option value=""><?= lang('select_country') ?>...
+														<div
+															class="col-sm-8">
+															<select
+																name="country"
+																class="col selectpicker form-control form-control-sm"
+																data-size="5"
+																id="country"
+																data-live-search="true"
+																title="<?= lang('select_country') ?>">
+																<option
+																	value=""><?= lang('select_country') ?>
+																	...
 																</option>
 																<? foreach ($country as $row) : ?>
 																	<option
@@ -232,116 +355,187 @@ endforeach;
 															</select>
 														</div>
 													</div>
-													<div class="row" style="margin-top: .75rem!important;">
-														<label class="col-sm-4 col-form-label"
-															   style="font-size: 15px;"><?= lang('address') ?></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="address" placeholder="<?= lang('address') ?>">
+													<div
+														class="row"
+														style="margin-top: .75rem!important;">
+														<label
+															class="col-sm-4 col-form-label"
+															style="font-size: 15px;"><?= lang('address') ?></label>
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="form-control form-control-sm"
+																name="address"
+																placeholder="<?= lang('address') ?>">
 														</div>
 													</div>
-													<div class="row mt-1">
+													<div
+														class="row mt-1">
 														<label
 															class="col-sm-4 col-form-label"><?= lang('post_code') ?></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="post_code"
-																   placeholder="<?= lang('post_code') ?>">
+														<div
+															class="col-sm-8">
+															<input
+																title=""
+																type="text"
+																class="form-control form-control-sm"
+																name="post_code"
+																placeholder="<?= lang('post_code') ?>">
 														</div>
 													</div>
-													<div class="row mt-1">
-														<label class="col-sm-4 col-form-label"
-															   style="font-size: 15px;"><?= lang('contact_number') ?></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="contact_1"
-																   placeholder="<?= lang('contact_number') ?> 1">
+													<div
+														class="row mt-1">
+														<label
+															class="col-sm-4 col-form-label"
+															style="font-size: 15px;"><?= lang('contact_number') ?></label>
+														<div
+															class="col-sm-8">
+															<input
+																type="text"
+																class="form-control form-control-sm"
+																name="contact_1"
+																placeholder="<?= lang('contact_number') ?> 1"
+																title=""
+															>
 														</div>
 													</div>
-													<div class="row mt-1">
-														<label class="col-sm-4 col-form-label"></label>
-														<div class="col-sm-8">
-															<input type="text" class="form-control form-control-sm"
-																   name="contact_2"
-																   placeholder="<?= lang('contact_number') ?> 2">
+													<div
+														class="row mt-1">
+														<label
+															class="col-sm-4 col-form-label"></label>
+														<div
+															class="col-sm-8">
+															<input
+																type="text"
+																class="form-control form-control-sm"
+																name="contact_2"
+																placeholder="<?= lang('contact_number') ?> 2"
+																title=""
+															>
 														</div>
 													</div>
 
 												</div>
-												<div class="col-sm-12 mt-1">
-													<div class="row" style="margin-right: -1px;margin-left: -1px;">
-															<textarea style="font-size: 12px;"
-																	  placeholder="<?= lang('other') ?>"
-																	  class="form-control col-sm-12"
-																	  id="exampleFormControlTextarea1"
-																	  name="other"
-																	  rows="2"></textarea>
-
+												<div
+													class="col-sm-12 mt-1">
+													<div
+														class="row"
+														style="margin-right: -1px;margin-left: -1px;">
+														<textarea
+															style="font-size: 12px;"
+															placeholder="<?= lang('other') ?>"
+															class="form-control col-sm-12"
+															id="exampleFormControlTextarea1"
+															name="other"
+															rows="2">
+														</textarea>
 													</div>
 												</div>
 
-												<div class="accordion col-sm-12 mt-1" id="accordionExample1">
-													<div class="card">
-														<div class="card-header p-0" id="headingOne">
+												<div
+													class="accordion col-sm-12 mt-1"
+													id="accordionExample1">
+													<div
+														class="card">
+														<div
+															class="card-header p-0"
+															id="headingOne">
 															<h5 class="mb-0">
-																<button class="btn btn-sm btn-link text-success"
-																		type="button"
-																		data-toggle="collapse"
-																		data-target="#collapseOne"
-																		aria-expanded="true"
-																		aria-controls="collapseOne">
+																<button
+																	class="btn btn-sm btn-link text-success"
+																	type="button"
+																	data-toggle="collapse"
+																	data-target="#collapseOne"
+																	aria-expanded="true"
+																	aria-controls="collapseOne">
 																	<?= lang('passport') ?>
 																</button>
 															</h5>
 														</div>
 
-														<div id="collapseOne" class="collapse show"
-															 aria-labelledby="headingOne"
-															 data-parent="#accordionExample1">
-															<div class="card-body">
-																<div class="add_new_items">
-																	<div class="row">
-																		<input type="hidden" name="document_1"
-																			   value="<?= lang('passport') ?>"/>
-																		<div class="col-md-3">
-																			<div class="form-group">
+														<div
+															id="collapseOne"
+															class="collapse show"
+															aria-labelledby="headingOne"
+															data-parent="#accordionExample1">
+															<div
+																class="card-body">
+																<div
+																	class="add_new_items">
+																	<div
+																		class="row">
+																		<input
+																			type="hidden"
+																			name="document_1"
+																			value="<?= lang('passport') ?>"
+																			title=""
+																		/>
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('passport') ?></label>
-																				<label style="width: 100%;min-width: 111px;
+																				<label
+																					style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					   class="btn btn-sm btn-outline-secondary">
+																					class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_1" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input
+																						class="btn_input"
+																						name="file_1"
+																						type="file"
+																						hidden
+																						style="display: none;"
+																						value=""
+																						title=""
+																					>
 																				</label>
 																			</div>
 																		</div>
-
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text" name="reference_1"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('reference') ?>">
+																				<input
+																					type="text"
+																					name="reference_1"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('reference') ?>"
+																					title=""
+																				>
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+																		<div
+																			class="col-md-3">
 																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_1"
-																				   max="3000-12-31" min="1000-01-01"
-																				   class="form-control form-control-sm">
+																			<input
+																				type="date"
+																				name="expiration_1"
+																				max="3000-12-31"
+																				min="1000-01-01"
+																				class="form-control form-control-sm"
+																				title=""
+																			>
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('note') ?></label>
-																				<input type="text" name="note_1"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('note') ?>">
+																				<input
+																					type="text"
+																					name="note_1"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('note') ?>"
+																					title=""
+																				>
 																			</div>
 																		</div>
 																	</div>
@@ -349,8 +543,11 @@ endforeach;
 															</div>
 														</div>
 													</div>
-													<div class="card">
-														<div class="card-header p-0" id="headingTwo">
+													<div
+														class="card">
+														<div
+															class="card-header p-0"
+															id="headingTwo">
 															<h5 class="mb-0">
 																<button
 																	class="btn btn-sm btn-link collapsed text-success"
@@ -363,55 +560,82 @@ endforeach;
 																</button>
 															</h5>
 														</div>
-														<div id="collapseTwo" class="collapse"
-															 aria-labelledby="headingTwo"
-															 data-parent="#accordionExample1">
-															<div class="card-body">
-																<div class="add_new_items">
-																	<div class="row">
-																		<input type="hidden" name="document_2"
-																			   value="<?= lang('social_card') ?>"/>
-																		<div class="col-md-3">
-																			<div class="form-group">
+														<div
+															id="collapseTwo"
+															class="collapse"
+															aria-labelledby="headingTwo"
+															data-parent="#accordionExample1">
+															<div
+																class="card-body">
+																<div
+																	class="add_new_items">
+																	<div
+																		class="row">
+																		<input
+																			title=""
+																			type="hidden"
+																			name="document_2"
+																			value="<?= lang('social_card') ?>"/>
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('social_card') ?></label>
-																				<label style="width: 100%;min-width: 111px;
+																				<label
+																					style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					   class="btn btn-sm btn-outline-secondary">
+																					class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_2" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input
+																						title=""
+																						class="btn_input"
+																						name="file_2"
+																						type="file"
+																						hidden
+																						style="display: none;"
+																						value="">
 																				</label>
 																			</div>
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text"
-																					   name="reference_2"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('reference') ?>">
+																				<input
+																					title=""
+																					type="text"
+																					name="reference_2"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+																		<div
+																			class="col-md-3">
 																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_2"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-																				   class="form-control form-control-sm">
+																			<input
+																				title=""
+																				type="date"
+																				name="expiration_2"
+																				max="3000-12-31"
+																				min="1000-01-01"
+																				class="form-control form-control-sm">
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('note') ?></label>
-																				<input type="text"
-																					   name="note_2"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('note') ?>">
+																				<input
+																					title=""
+																					type="text"
+																					name="note_2"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -419,8 +643,11 @@ endforeach;
 															</div>
 														</div>
 													</div>
-													<div class="card">
-														<div class="card-header p-0" id="headingThree">
+													<div
+														class="card">
+														<div
+															class="card-header p-0"
+															id="headingThree">
 															<h5 class="mb-0">
 																<button
 																	class="btn btn-sm btn-link collapsed text-success"
@@ -433,57 +660,90 @@ endforeach;
 																</button>
 															</h5>
 														</div>
-														<div id="collapseThree" class="collapse"
-															 aria-labelledby="headingThree"
-															 data-parent="#accordionExample1">
-															<div class="card-body">
-																<div class="add_new_items">
-																	<div class="row">
-																		<input type="hidden" name="document_3"
-																			   value="<?= lang('driving_license') ?>"/>
+														<div
+															id="collapseThree"
+															class="collapse"
+															aria-labelledby="headingThree"
+															data-parent="#accordionExample1">
+															<div
+																class="card-body">
+																<div
+																	class="add_new_items">
+																	<div
+																		class="row">
+																		<input
+																			title=""
+																			type="hidden"
+																			name="document_3"
+																			value="<?= lang('driving_license') ?>"/>
 
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('driving_license') ?></label>
-																				<label style="width: 100%;min-width: 111px;
+																				<label
+																					style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					   class="btn btn-sm btn-outline-secondary">
+																					class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_3" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input
+																						title=""
+																						class="btn_input"
+																						name="file_3"
+																						type="file"
+																						hidden
+																						style="display: none;"
+																						value="">
 																				</label>
 																			</div>
 																		</div>
 
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text"
-																					   name="reference_3"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('reference') ?>">
+																				<input
+																					title=""
+																					type="text"
+																					name="reference_3"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('reference') ?>">
 																			</div>
 																		</div>
-																		<div class="col-md-3">
-																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_3"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-																				   class="form-control form-control-sm">
+																		<div
+																			class="col-md-3">
+																			<label>
+																				<?= lang('expired_date') ?>
+																			</label>
+																			<input
+																				title=""
+																				type="date"
+																				name="expiration_3"
+																				max="3000-12-31"
+																				min="1000-01-01"
+																				class="form-control form-control-sm"
+																			>
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
-																				<label><?= lang('note') ?></label>
-																				<input type="text"
-																					   name="note_3"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('note') ?>">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
+																				<label>
+																					<?= lang('note') ?>
+																				</label>
+																				<input
+																					title=""
+																					type="text"
+																					name="note_3"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('note') ?>"
+																				>
 																			</div>
 																		</div>
 																	</div>
@@ -492,8 +752,11 @@ endforeach;
 														</div>
 													</div>
 
-													<div class="card">
-														<div class="card-header p-0" id="headingFour">
+													<div
+														class="card">
+														<div
+															class="card-header p-0"
+															id="headingFour">
 															<h5 class="mb-0">
 																<button
 																	class="btn btn-sm btn-link collapsed text-success"
@@ -506,56 +769,83 @@ endforeach;
 																</button>
 															</h5>
 														</div>
-														<div id="collapseFour" class="collapse"
-															 aria-labelledby="headingFour"
-															 data-parent="#accordionExample1">
-															<div class="card-body">
-																<div class="add_new_items">
-																	<div class="row">
-																		<input type="hidden" name="document_4"
-																			   value="<?= lang('technical_passport') ?>"/>
-																		<div class="col-md-3">
-																			<div class="form-group">
+														<div
+															id="collapseFour"
+															class="collapse"
+															aria-labelledby="headingFour"
+															data-parent="#accordionExample1">
+															<div
+																class="card-body">
+																<div
+																	class="add_new_items">
+																	<div
+																		class="row">
+																		<input
+																			title=""
+																			type="hidden"
+																			name="document_4"
+																			value="<?= lang('technical_passport') ?>"/>
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('technical_passport') ?></label>
-																				<label style="width: 100%;min-width: 111px;
+																				<label
+																					style="width: 100%;min-width: 111px;
     font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
     font-weight: 400 !important;
     border-color: #ced4da !important;"
-																					   class="btn btn-sm btn-outline-secondary">
+																					class="btn btn-sm btn-outline-secondary">
 																					<span><?= lang('browse') ?></span>
-																					<input class="btn_input"
-																						   name="file_4" type="file"
-																						   hidden style="display: none;"
-																						   value="">
+																					<input
+																						title=""
+																						class="btn_input"
+																						name="file_4"
+																						type="file"
+																						hidden
+																						style="display: none;"
+																						value="">
 																				</label>
 																			</div>
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('reference') ?></label>
-																				<input type="text"
-																					   name="reference_4"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('reference') ?>">
+																				<input
+																					title=""
+																					type="text"
+																					name="reference_4"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('reference') ?>"
+																				>
 																			</div>
 																		</div>
-																		<div class="col-md-3">
+																		<div
+																			class="col-md-3">
 																			<label><?= lang('expired_date') ?></label>
-																			<input type="date" name="expiration_4"
-																				   max="3000-12-31"
-																				   min="1000-01-01"
-
-																				   class="form-control form-control-sm">
+																			<input
+																				type="date"
+																				name="expiration_4"
+																				max="3000-12-31"
+																				min="1000-01-01"
+																				title=""
+																				class="form-control form-control-sm">
 																		</div>
-																		<div class="col-md-3">
-																			<div class="form-group">
+																		<div
+																			class="col-md-3">
+																			<div
+																				class="form-group">
 																				<label><?= lang('note') ?></label>
-																				<input type="text"
-																					   name="note_4"
-																					   class="form-control form-control-sm"
-																					   placeholder="<?= lang('note') ?>">
+																				<input
+																					title=""
+																					type="text"
+																					name="note_4"
+																					class="form-control form-control-sm"
+																					placeholder="<?= lang('note') ?>">
 																			</div>
 																		</div>
 																	</div>
@@ -566,23 +856,34 @@ endforeach;
 												</div>
 											</div>
 										</div>
-										<div class="modal-footer pb-0 col-sm-12 mt-1" style="padding-right: 24px;">
-											<button id="add_staff" type="button"
-													class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
+										<div
+											class="modal-footer pb-0 col-sm-12 mt-1"
+											style="padding-right: 24px;">
+											<button
+												id="add_staff"
+												type="button"
+												class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 											</button>
 											<button
 												style="max-height: 40px; height: 40px !important; width: 93px !important;"
 												id="load"
 												class="cancel_btn close btn btn-sm d-none">
-												<img style="height: 24px;
+												<img
+													style="height: 24px;
 														   margin: 0 auto;
 														   padding-bottom: 5px;
 														   display: block;
 														   text-align: center;"
-													 src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-											<button type="button" class="cancel_btn close btn btn-sm"
-													data-dismiss="modal"
-													aria-label="Close">
+													src="<?= base_url() ?>assets/images/bars2.svg"
+													alt=""
+													title=""
+												/>
+											</button>
+											<button
+												type="button"
+												class="cancel_btn close btn btn-sm"
+												data-dismiss="modal"
+												aria-label="Close">
 												<?= lang('cancel') ?>
 											</button>
 										</div>
@@ -597,12 +898,17 @@ endforeach;
 				</div>
 				<hr class="my-2">
 
-				<div class="row  m-0 col-sm-12 col-md-12"
-					 style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
+				<div
+					class="row  m-0 col-sm-12 col-md-12"
+					style="background: #fff;padding-top: 10px; padding-bottom: 10px; overflow-x: auto;">
 
 
-					<table id="example2" class="table table-striped table-borderless" style="width:100%">
-						<thead style="background: #fff;color: #545b62;">
+					<table
+						id="example2"
+						class="table table-striped table-borderless"
+						style="width:100%">
+						<thead
+							style="background: #fff;color: #545b62;">
 						<tr>
 							<th style="font-size: 12px !important;font-weight:500;"><?= lang('name_lastname') ?></th>
 							<th style="font-size: 12px !important;font-weight:500;"><?= lang('position') ?></th>
@@ -618,15 +924,19 @@ endforeach;
 						<? foreach ($staff as $row) : ?>
 							<tr>
 								<td>
-									<div class="media">
+									<div
+										class="media">
 										<img
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 											class="mr-3"
 											src="<?= ($row['photo'] != '' ? base_url('uploads/' . $folder . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
-											alt="Generic placeholder image">
-										<div class="media-body">
+											alt="Generic placeholder image"
+											title="">
+										<div
+											class="media-body">
 											<?= $row['first_name'] . ' ' . $row['last_name'] ?>
-											<small class="phone_number form-text text-muted">
+											<small
+												class="phone_number form-text text-muted">
 												<?= $row['contact_1'] ?>
 											</small>
 										</div>
@@ -682,23 +992,25 @@ endforeach;
 								<td colspan="2"><?
 									if ($this->load->authorisation('Organization', 'edit_staff', 1)) :
 										?>
-										<span style="border: none;padding-top: 5px;cursor: pointer;"
-											  data-id="<?= $row['id'] ?>"
-											  id="edit_staff_modal"
-											  data-toggle="modal"
-											  class="float-left text-success"
-											  data-target="#edit_staff">
+										<span
+											style="border: none;padding-top: 5px;cursor: pointer;"
+											data-id="<?= $row['id'] ?>"
+											id="edit_staff_modal"
+											data-toggle="modal"
+											class="float-left text-success"
+											data-target="#edit_staff">
 												<i class="fas fa-edit"></i>
 										</span>
 									<? endif; ?>
 
 									<? if ($this->load->authorisation('Organization', 'delete_staff', 1)) : ?>
-										<span style="border: none; cursor:pointer;"
-											  data-toggle="modal"
-											  id="delete_staff_modal"
-											  class="text-secondary btn"
-											  data-target=".bd-example-modal-sm"
-											  data-id="<?= $row['id'] ?>">
+										<span
+											style="border: none; cursor:pointer;"
+											data-toggle="modal"
+											id="delete_staff_modal"
+											class="text-secondary btn"
+											data-target=".bd-example-modal-sm"
+											data-id="<?= $row['id'] ?>">
 												<i class="fas fa-trash"></i>
 										</span>
 									<? endif; ?>
@@ -709,26 +1021,33 @@ endforeach;
 				</div>
 			</div>
 		</div>
-	</div>.
+	</div>
+	.
 </div>
 <!-- Staff End -->
 <!-- Delete Modal Start -->
-<div class="modal fade bd-example-modal-sm"
-	 tabindex="-1"
-	 role="dialog"
-	 aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
+<div
+	class="modal fade bd-example-modal-sm"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog modal-sm">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
 				<h6 class="modal-title text-secondary text-center"
 					id="exampleModalLabel"
 					style="font-size: 12px;">
 					<?= lang('are_you_sure_you_want_to_delete') ?>
 				</h6>
 			</div>
-			<div class="modal-footer text-center">
-				<div class="mt-0 mb-0 ml-auto mr-auto">
+			<div
+				class="modal-footer text-center">
+				<div
+					class="mt-0 mb-0 ml-auto mr-auto">
 					<button
 						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
 						type="button"
@@ -743,7 +1062,10 @@ endforeach;
 						data-dismiss="modal">
 						<?= lang('cancel') ?>
 					</button>
-					<input type="hidden" name="staff_id">
+					<input
+						title=""
+						type="hidden"
+						name="staff_id">
 				</div>
 			</div>
 		</div>
@@ -814,7 +1136,7 @@ endforeach;
 				close_message();
 				loading('start', 'add_staff');
 				$('.alert-info').removeClass('d-none');
-				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+				$('.alert-info').html('<img alt="" title="" style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -823,11 +1145,8 @@ endforeach;
 					$('.alert-success').removeClass('d-none');
 					$('.alert-success').text(data.message);
 					loading('stop', 'add_staff');
-
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
-
 					$(location).attr('href', url);
-
 					$(location).attr('href', url + '#staff');
 
 				} else {
@@ -875,10 +1194,7 @@ endforeach;
 		});
 	});
 
-
 	$(document).on('click', '#edit_staff_btn', function (e) {
-
-
 		var url = '<?=base_url($this->uri->segment(1) . '/Organization/edit_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff_edit')[0]);
@@ -900,7 +1216,7 @@ endforeach;
 				close_message();
 				loading('start', 'edit_staff_btn');
 				$('.alert-info').removeClass('d-none');
-				$('.alert-info').html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
+				$('.alert-info').html('<img alt="" title="" style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/load.svg" />');
 			},
 			success: function (data) {
 				if (data.success == '1') {
@@ -909,8 +1225,6 @@ endforeach;
 					$('.alert-success').removeClass('d-none');
 					$('.alert-success').html(data.message);
 					loading('stop', 'edit_staff_btn');
-
-
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
 
 					$(location).attr('href', url);
@@ -955,7 +1269,6 @@ endforeach;
 				console.log('ERRORS: ' + textStatus);
 			},
 			complete: function () {
-
 			}
 		});
 	});
@@ -975,15 +1288,14 @@ endforeach;
 
 
 	$(window).on('load', function () {
-		<?if($this->input->get('id') != '') {?>
+		<? if($this->input->get('id') != '') { ?>
 		$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
-		<?}?>
+		<? } ?>
 
 		$('#department').selectpicker({
 			noneResultsText: '<?=lang('add')?> {0}'
 		});
 	});
-
 
 	/* Staff image Uploade Start*/
 	function readURL2(input) {

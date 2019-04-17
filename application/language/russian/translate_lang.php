@@ -214,6 +214,7 @@ $lang['create_departments'] = 'Создать Отделение';
 
 //user
 $lang['email_or_login'] = 'Эл. адрес или Имя пользователя';
+$lang['or'] = 'или';
 $lang['login'] = 'Логин';
 $lang['password'] = 'Пароль';
 $lang['confirm_password'] = 'Подтвердите Пароль';

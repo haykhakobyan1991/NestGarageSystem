@@ -1,24 +1,52 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script
+	src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
-<script src="https://code.highcharts.com/modules/oldie.js"></script>
+<script
+	src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
-<!--<script type="text/javascript" src="--><?//= base_url('assets/js/ymap.js') ?><!--"></script>-->
-<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+<link
+	rel="stylesheet"
+	href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
+<link
+	rel="stylesheet"
+	href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
+<script
+	src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+	type="text/javascript"></script>
+<!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
+<script
+	src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
+<script
+	src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
+<script
+	src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
+<script
+	src="https://static.zinoui.com/js/front.min.js"></script>
 
 <?
 
@@ -36,7 +64,10 @@ $count = count($result);
 ?>
 
 <style>
-	body{overflow: hidden;}
+	body {
+		overflow: hidden;
+	}
+
 	ul.pagination {
 		margin-top: 5px !important;
 	}
@@ -54,103 +85,133 @@ $count = count($result);
 		min-width: 100%;
 		margin: 0;
 	}
+
 	#splitter {
 		height: calc(100% - 150px);
 		width: 100%;
 	}
+
 	.splitter-west {
 	}
+
 	.splitter-east {
 		width: 100%;
 	}
-	.zui-splitter-separator{
+
+	.zui-splitter-separator {
 		z-index: 1 !important;
 	}
-	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal{
+
+	.panel-right.splitter-east.zui-splitter-pane.zui-splitter-pane-horizontal {
 		width: 100% !important;
 	}
 </style>
 
-<div class="loader" style="width: 100%;z-index: 999 !important;"></div>
-<img class="loader_svg" style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;" src="<?= base_url('assets/images/puff.svg') ?>"/>
+<div
+	class="loader"
+	style="width: 100%;z-index: 999 !important;"></div>
+<img
+	class="loader_svg"
+	style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
+	src="<?= base_url('assets/images/puff.svg') ?>"/>
 
-<div class="container-fluid">
-	<div id="splitter">
-		<div class="panel-left splitter-west" id="mydiv">
-			<div class="row">
+<div
+	class="container-fluid">
+	<div
+		id="splitter">
+		<div
+			class="panel-left splitter-west"
+			id="mydiv">
+			<div
+				class="row">
 
-				<div class="number_of col-sm-2" style="padding-top: 16px;">
-					<i style="font-size: 17px;" class="fas fa-draw-polygon"></i>
-					<span class="count_cars_in_table"><?=$count?></span>
+				<div
+					class="number_of col-sm-2"
+					style="padding-top: 16px;">
+					<i style="font-size: 17px;"
+					   class="fas fa-draw-polygon"></i>
+					<span
+						class="count_cars_in_table"><?= $count ?></span>
 				</div>
 
 
-				<span  class="create_span ml-3 mr-1 mt-3"
-					  style="z-index: 990;cursor: pointer;"
-					  data-toggle="modal"
-					  data-target=".bd-example-modal-xl">
-					<span class="create_span" ><?=lang('create')?></span><i class="fas fa-plus pl-2"></i>
+				<span
+					class="create_span ml-3 mr-1 mt-3"
+					style="z-index: 990;cursor: pointer;"
+					data-toggle="modal"
+					data-target=".bd-example-modal-xl">
+					<span
+						class="create_span"><?= lang('create') ?></span><i
+						class="fas fa-plus pl-2"></i>
 				</span>
-				<!--				<select name="company_type"-->
-				<!--						id="table-filter"-->
-				<!--						class="selectpicker form-control form-control-sm col-sm-3"-->
-				<!--						data-size="5"-->
-				<!--						id="company_type"-->
-				<!--						data-live-search="true"-->
-				<!--						title="--><? //= lang('all') ?><!--">-->
-				<!--					<option value="">--><? //= lang('all') ?><!--</option>-->
-				<!--					<option value="b geofences 1">b geofences 1</option>-->
-				<!--					<option value="a geofences 1">a geofences 1</option>-->
-				<!--					<option value="d geofences 1">d geofences 1</option>-->
-				<!--					<option value="e geofences 1">d geofences 1</option>-->
-				<!--				</select>-->
-
-
-				<table id="example"
-					   class="table table-striped table-borderless"
-					   style="width:100%">
-					<thead style="background: #fff;color: #545b62;">
+				<table
+					id="example"
+					class="table table-striped table-borderless"
+					style="width:100%">
+					<thead
+						style="background: #fff;color: #545b62;">
 					<tr>
-						<th style="font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input class="sel_all_checkbox" type="checkbox" checked/>Select all
+						<th style="font-weight: 500;color: transparent;font-size: 1px !important;">
+							<label>
+								<input
+									class="sel_all_checkbox"
+									type="checkbox"
+									checked/>Select
+								all
+							</label>
+
 						</th>
-						<th style="width: 40%;font-size: 12px !important;font-weight: 500;color: transparent;font-size: 1px !important;">
+						<th style="width: 40%;font-weight: 500;color: transparent;font-size: 1px !important;">
 							<i style="font-size: 12px !important;color: #000 !important;"
 							   class="fas fa-sort-alpha-up"></i>
 						</th>
 						<th class="no-sort">
-							<img src="<?= base_url() ?>assets/images/gps_tracking/geofences/car-front.svg"
-								 alt=""
-								 title=""/></th>
-						<th class="no-sort"><i class="fas fa-edit"></i></th>
-						<th class="no-sort"><img
-								src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg" alt=""
-								title=""/></th>
+							<img
+								src="<?= base_url() ?>assets/images/gps_tracking/geofences/car-front.svg"
+								alt=""
+								title=""/>
+						</th>
+						<th class="no-sort">
+							<i class="fas fa-edit"></i>
+						</th>
+						<th class="no-sort">
+							<img
+								src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"
+								alt=""
+								title=""/>
+						</th>
 					</tr>
 					</thead>
 					<tbody>
 
-					<?foreach ($result as $name => $value) {
+					<? foreach ($result as $name => $value) {
 						foreach ($value as $id => $val) {
 							?>
 
 
 							<tr>
 								<td class="coords">
-									<input name="coordinate"
-										   type="checkbox"
-										   checked
-										   data-coordinate="<?= implode(',', $val) ?>"/>
+									<label>
+										<input
+											name="coordinate"
+											type="checkbox"
+											checked
+											data-coordinate="<?= implode(',', $val) ?>"/>
+									</label>
 								</td>
 								<td class="name"><?= $name ?></td>
-								<td class="text-left"><?=(isset($count_of_fleets[$id]) ? $count_of_fleets[$id] : '0')?></td>
+								<td class="text-left"><?= (isset($count_of_fleets[$id]) ? $count_of_fleets[$id] : '0') ?></td>
 								<td
 									data-toggle="modal"
 									data-target=".bd-example-modal-xl_Edite"
 									style="cursor: pointer;"
 									class="text-left settings_geoObject">
-									<i style="opacity: .5;" class="fas fa-edit"></i>
-									<input type="hidden" name="id_edit" value="<?=$id?>">
+									<i style="opacity: .5;"
+									   class="fas fa-edit"></i>
+									<input
+										type="hidden"
+										name="id_edit"
+										value="<?= $id ?>">
 								</td>
 								<td style="cursor: pointer;"
 									data-toggle="modal"
@@ -158,156 +219,242 @@ $count = count($result);
 									data-target=".bd-example-modal-sm"
 									data-id="<?= $id ?>"
 								>
-									<img style="opacity: .5;" alt="" title=""
-										 src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg" />
+									<img
+										style="opacity: .5;"
+										alt=""
+										title=""
+										src="<?= base_url() ?>assets/images/gps_tracking/geofences/rubbish-bin.svg"/>
 
 								</td>
 							</tr>
 
 							<?
 						}
-					}?>
-
+					} ?>
 
 					</tbody>
 				</table>
-
-
 			</div>
 		</div>
 
-		<div class="panel-right splitter-west splitter-east">
-			<div id="map" style="width: 100%; height:100%;"></div>
+		<div
+			class="panel-right splitter-west splitter-east">
+			<div
+				id="map"
+				style="width: 100%; height:100%;"></div>
 		</div>
 	</div>
 </div>
 
-
 <!-- Add New Geofences Modal Start -->
 
-<div class="modal fade bd-example-modal-xl pr-0" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog  modal-full">
-		<div class="modal-content">
-			<form id="add_geo">
-				<div class="modal-header" style="padding-bottom: 0px;padding-top: 10px;">
-					<h5 class="modal-title" id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
+<div
+	class="modal fade bd-example-modal-xl pr-0"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myExtraLargeModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog  modal-full">
+		<div
+			class="modal-content">
+			<form
+				id="add_geo">
+				<div
+					class="modal-header"
+					style="padding-bottom: 0;padding-top: 10px;">
+					<h5 class="modal-title"
+						id="exampleModalLabel"><?= lang('Create_New_Geofences') ?></h5>
 
-					<div class="form-group row mb-2">
-						<label class="col-sm-6 col-form-label"><?=lang('GeoferenceName')?></label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" name="geo_name"  placeholder="<?=lang('GeoferenceName')?>">
+					<div
+						class="form-group row mb-2">
+						<label
+							class="col-sm-6 col-form-label"><?= lang('GeoferenceName') ?></label>
+						<div
+							class="col-sm-6">
+							<label>
+								<input
+									type="text"
+									class="form-control"
+									name="geo_name"
+									placeholder="<?= lang('GeoferenceName') ?>">
+							</label>
+
 						</div>
 					</div>
-					<div class="float-right">
-						<button style="float: none;margin-right: 1px;" class="cancel_btn close btn btn-sm refresh_map"><i class="fas fa-redo"></i></button>
-						<button id="add_geoference_btn" type="button"
-								class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+					<div
+						class="float-right">
+						<button
+							style="margin-right: 1px;"
+							class="cancel_btn float-none close btn btn-sm refresh_map">
+							<i class="fas fa-redo"></i>
 						</button>
-						<button id="load" style="height: 40px !important; width: 90px !important;"
-								class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+						<button
+							id="add_geoference_btn"
+							type="button"
+							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+						</button>
+						<button
+							id="load"
+							style="height: 40px !important; width: 90px !important;"
+							class="btn btn-sm btn-outline-success cancel_btn d-none">
+							<img
 								style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-								src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-						<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1 delete_geofences_onMap"
-								data-dismiss="modal"
-								aria-label="Close">
+								src="<?= base_url() ?>assets/images/bars2.svg" alt=""/>
+						</button>
+						<button
+							type="button"
+							class="cancel_btn close btn btn-sm m-0 ml-1 delete_geofences_onMap"
+							data-dismiss="modal"
+							aria-label="Close">
 							<?= lang('cancel') ?>
 						</button>
 					</div>
 
-					<input type="hidden" id="geometry" name="geometry"  value=""/>
+					<input
+						type="hidden"
+						id="geometry"
+						name="geometry"
+						value=""/>
 
 				</div>
 			</form>
-			<div class="modal-content">
-				<div id="map_new" style="width: 100%;height: calc(100% - 58px);"></div>
+			<div
+				class="modal-content">
+				<div
+					id="map_new"
+					style="width: 100%;height: calc(100% - 58px);"></div>
 			</div>
 		</div>
 	</div>
 </div>
 
 <!-- Add New Geofences Modal End -->
-
-
 <!-- Edite Geofences Modal Start -->
 
-<div id="shown" class="modal fade bd-example-modal-xl_Edite pr-0 hide" tabindex="-1" role="dialog"
-	 aria-labelledby="myExtraLargeModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog  modal-full">
-		<div class="modal-content">
-			<form  id="edit_geo">
-				<div class="modal-header" style="padding-bottom: 6px;padding-top: 6px;">
-					<h5 class="modal-title" id="exampleModalLabel"><?= lang('edit_geoference') ?></h5>
-					<input type="hidden" name="edit_id" value="" />
-					<div class="form-group row mb-0">
-						<label class="col-sm-6 col-form-label"><?=lang('GeoferenceName')?></label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" name="geo_name"  placeholder="<?=lang('GeoferenceName')?>">
+<div
+	id="shown"
+	class="modal fade bd-example-modal-xl_Edite pr-0 hide"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myExtraLargeModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog  modal-full">
+		<div
+			class="modal-content">
+			<form
+				id="edit_geo">
+				<div
+					class="modal-header"
+					style="padding-bottom: 6px;padding-top: 6px;">
+					<h5 class="modal-title"
+						id="exampleModalLabel"><?= lang('edit_geoference') ?></h5>
+					<input
+						type="hidden"
+						name="edit_id"
+						value=""/>
+					<div
+						class="form-group row mb-0">
+						<label
+							class="col-sm-6 col-form-label"><?= lang('GeoferenceName') ?></label>
+						<div
+							class="col-sm-6">
+							<label>
+								<input
+									type="text"
+									class="form-control"
+									name="geo_name"
+									placeholder="<?= lang('GeoferenceName') ?>">
+							</label>
 						</div>
 					</div>
-					<div class="float-right">
-						<button id="edit_geoference_btn" type="button"
-								class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
+					<div
+						class="float-right">
+						<button
+							id="edit_geoference_btn"
+							type="button"
+							class="btn btn-outline-success cancel_btn "><?= lang('save') ?>
 						</button>
-						<button id="load" style="height: 40px !important; width: 90px !important;"
-								class="btn btn-sm btn-outline-success cancel_btn d-none"><img
+						<button
+							id="load"
+							style="height: 40px !important; width: 90px !important;"
+							class="btn btn-sm btn-outline-success cancel_btn d-none">
+							<img
 								style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-								src="<?= base_url() ?>assets/images/bars2.svg"/></button>
-						<button type="button" class="cancel_btn close btn btn-sm m-0 ml-1"
-								data-dismiss="modal"
-								aria-label="Close">
+								src="<?= base_url() ?>assets/images/bars2.svg"
+								alt=""
+							/>
+						</button>
+						<button
+							type="button"
+							class="cancel_btn close btn btn-sm m-0 ml-1"
+							data-dismiss="modal"
+							aria-label="Close">
 							<?= lang('cancel') ?>
 						</button>
 					</div>
 
-					<input type="hidden" id="edit_geometry" name="edit_geometry"  value=""/>
-
+					<input
+						type="hidden"
+						id="edit_geometry"
+						name="edit_geometry"
+						value=""/>
 				</div>
 			</form>
-			<div class="modal-content">
-				<div id="map_settings" style="width: 100%;height: calc(100% - 58px);"></div>
+			<div
+				class="modal-content">
+				<div
+					id="map_settings"
+					style="width: 100%;height: calc(100% - 58px);"></div>
 			</div>
 		</div>
 	</div>
 </div>
 
 <!-- Edite Geofences Modal End -->
-
-
 <!-- Delete Modal Start -->
-<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+<div
+	class="modal fade bd-example-modal-sm"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog modal-sm">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
+				<h6 class="modal-title text-secondary text-center"
+					id="exampleModalLabel"
 					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
-			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
-					<button style="min-width: 94px;font-size: 14px !important;
+			<div
+				class="modal-footer text-center">
+				<div
+					style="margin: 0 auto;">
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" id="delete_geo"
-							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+    font-weight: 500 !important;"
+						type="button"
+						id="delete_geo"
+						class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
 					</button>
-					<button style="min-width: 94px;font-size: 14px !important;
-    line-height: 14px !important;
-    padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn"
-							data-dismiss="modal"><?= lang('cancel') ?></button>
-
+					<button
+						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn" data-dismiss="modal"><?= lang('cancel') ?></button>
 					<input type="hidden" name="geo_id">
 				</div>
 			</div>
 		</div>
-
 	</div>
 </div>
 <!-- Delete Modal End -->
 
-<script type="text/javascript">
+<script
+	type="text/javascript">
 
 	$(document).ready(function () {
 
@@ -317,16 +464,14 @@ $count = count($result);
 			var myMap_show_all_geofances = new ymaps.Map("map", {
 				center: [55.76, 37.64],
 				zoom: 2
-			},{
+			}, {
 				maxZoom: 18
 			}, {suppressMapOpenBlock: true});
 
 			$('input[name="coordinate"]').each(function () {
-
 				if ($(this).is(':checked')) {
-					geoObject_coordinates = $(this).data('coordinate')
+					geoObject_coordinates = $(this).data('coordinate');
 					array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
 					var rand_color = '#' + (function co(lor) {
 						return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 					})('') + '75';
@@ -348,7 +493,6 @@ $count = count($result);
 			});
 
 			var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
-
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
@@ -363,18 +507,14 @@ $count = count($result);
 				var myMap_show_all_geofances = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
-				},{
-				maxZoom: 18
-			}, { suppressMapOpenBlock: true });
+				}, {
+					maxZoom: 18
+				}, {suppressMapOpenBlock: true});
 
 				$('input[name="coordinate"]').each(function () {
-
 					if ($(this).is(':checked')) {
 						geoObject_coordinates = $(this).data('coordinate')
 						array_stting = JSON.parse("[" + geoObject_coordinates + "]");
-
-
-
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
@@ -387,7 +527,7 @@ $count = count($result);
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-						
+
 						myMap_show_all_geofances.geoObjects.add(myPolygon);
 						myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
@@ -395,7 +535,6 @@ $count = count($result);
 				});
 
 				var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
-
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
@@ -420,7 +559,7 @@ $count = count($result);
 					var myMap_geofencesSetting = new ymaps.Map("map_settings", {
 						center: [54.45454, 53.4665],
 						zoom: 2
-					},{
+					}, {
 						maxZoom: 18
 					}, {suppressMapOpenBlock: true});
 
@@ -432,13 +571,11 @@ $count = count($result);
 					//console.log(array_seting);
 
 					myMap_geofencesSetting.geoObjects.add(myPolygon);
-
 					myMap_geofencesSetting.controls.add(new ymaps.control.ZoomControl());
 					myMap_geofencesSetting.setBounds(myMap_geofencesSetting.geoObjects.getBounds(), {checkZoomRange: true});
 
 					myPolygon.geometry.events.add('change', function () {
 						$('input[name="edit_geometry"]').val(myPolygon.geometry.getCoordinates().toString());
-
 					});
 
 					myPolygon.editor.startDrawing();
@@ -450,16 +587,12 @@ $count = count($result);
 			var edit_id = $(this).children('input').val();
 			$('input[name="edit_id"]').val(edit_id);
 
-			var  td_name = $(this).parent('tr').children('.name').text();
+			var td_name = $(this).parent('tr').children('.name').text();
 			$('input[name="geo_name"]').val(td_name);
-
-
 
 
 		});
 	});
-
-
 
 
 	//Yandex Map Modal Start
@@ -473,7 +606,7 @@ $count = count($result);
 			var myMap_new = new ymaps.Map("map_new", {
 				center: [40.1533693, 44.4185276],
 				zoom: 12
-			},{
+			}, {
 				maxZoom: 18
 			});
 
@@ -493,17 +626,13 @@ $count = count($result);
 
 			myPolygon.geometry.events.add('change', function () {
 				console.log(myPolygon.geometry.getCoordinates().toString());
-
 				$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
-
-
 			});
 			myPolygon.editor.startDrawing();
 
 
 			firstButton = new ymaps.control.Button("<i class='fas fa-draw-polygon'></i> Polygon");
 			myMap_new.controls.add(firstButton, {float: 'left'});
-
 			firstButton.events.add('click', function () {
 
 				var myPolygon = new ymaps.Polygon([], {}, {
@@ -521,18 +650,12 @@ $count = count($result);
 
 				myPolygon.geometry.events.add('change', function () {
 					// console.log(myPolygon.geometry.getCoordinates().toString());
-
 					$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
-
-
-
 				});
 				myPolygon.editor.startDrawing();
 
 
-
 			});
-
 
 
 		}
@@ -572,7 +695,8 @@ $count = count($result);
 				}
 			},
 			"columnDefs": [{
-				"orderable": false, "targets": 0
+				"orderable": false,
+				"targets": 0
 			}],
 			"bPaginate": false,
 			"scrollY": ""
@@ -678,7 +802,6 @@ $count = count($result);
 	});
 
 
-
 	$(document).on('click', '#edit_geoference_btn', function (e) {
 
 		var form_data = new FormData($('form#edit_geo')[0]);
@@ -754,8 +877,6 @@ $count = count($result);
 </script>
 
 
-
-
 <script>
 	$(document).on('click', '#delete_geo_modal', function () {
 		geo_id = $(this).data('id');
@@ -764,7 +885,7 @@ $count = count($result);
 
 	$(document).on('click', '#delete_geo', function () {
 		var id = $('input[name="geo_id"]').val();
-		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()).'/Gps/delete_geoference/')?>';
+		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/delete_geoference/')?>';
 
 		$.post(url, {geo_id: id}, function (result) {
 			location.reload();
@@ -779,7 +900,8 @@ $count = count($result);
 					size: 548
 				},
 				{
-					size: "100%", region: "east"
+					size: "100%",
+					region: "east"
 				}
 			],
 			resize: function (event, ui) {
@@ -797,19 +919,19 @@ $count = count($result);
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
 
-				if($('.panel-left').width() <= 565){
-					$('input[type=search]').css('display','none');
+				if ($('.panel-left').width() <= 565) {
+					$('input[type=search]').css('display', 'none');
 
-					$('.create_span').css('display','none')
-					$('div#example_wrapper').css('margin-top','0');
+					$('.create_span').css('display', 'none')
+					$('div#example_wrapper').css('margin-top', '0');
 					$('.number_of').removeClass('col-sm-2');
 					$('.number_of').addClass('col-sm-12');
 
 				} else {
-					$('input[type=search]').css('display','inline-block');
+					$('input[type=search]').css('display', 'inline-block');
 
-					$('.create_span').css('display','inline-block')
-					$('div#example_wrapper').css('margin-top','-26px');
+					$('.create_span').css('display', 'inline-block')
+					$('div#example_wrapper').css('margin-top', '-26px');
 					$('.number_of').removeClass('col-sm-12');
 					$('.number_of').addClass('col-sm-2');
 				}
@@ -842,6 +964,7 @@ $count = count($result);
 				$('#splitter').css('height', 'calc(100% - 150px)');
 			}
 		}
+
 		myFunction();
 	})
 

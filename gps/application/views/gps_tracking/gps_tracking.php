@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.core.css">
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+		type="text/javascript"></script>
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
@@ -20,8 +21,13 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
 
 <style>
-	th:nth-child(2):after {content: none !important;}
-	th:nth-child(2):before {content: none !important;}
+	th:nth-child(2):after {
+		content: none !important;
+	}
+
+	th:nth-child(2):before {
+		content: none !important;
+	}
 </style>
 
 <?
@@ -1532,7 +1538,6 @@ foreach ($result2 as $name => $value) {
 		echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
 	}
 	?>
-
 </select>
 
 
@@ -1600,7 +1605,6 @@ foreach ($result2 as $name => $value) {
 								console.log('course changed ' + e);
 							}
 							$(this).attr('data-course', val.course);
-
 						}
 					});
 				});

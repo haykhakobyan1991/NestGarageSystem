@@ -90,7 +90,6 @@
 
 		<div class="col-sm-3"></div>
 		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
-
 			<p class="lead text-success left"><?= lang('have_an_account') ?>? <span style="cursor:pointer;"
 																					class="text-warning"
 																					data-toggle="modal"
@@ -221,7 +220,8 @@
 							<button id="sign_up" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
     transition: all .3s ease-in-out;background: #fff;" type="submit"
 									class="btn btn-success btn-block signUp"><?= lang('join') ?></button>
-							<button id="load" class="btn btn-block  btn-success d-none"><img
+							<button id="load" class="btn btn-block  btn-success cancel_btn d-none" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;"><img
 									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
 									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 						</div>
@@ -232,8 +232,7 @@
 	</div>
 </div>
 <!-- Sign In Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-	 aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -254,12 +253,12 @@
 							<form id="login">
 								<div class="form-group">
 									<input type="email" class="form-control form-control-sm email"
-										   placeholder="Email Address" name="email" value="">
+										   placeholder="<?=lang('username')?> <?=lang('or')?> <?=lang('email')?>" name="email" value="">
 									<small id="email" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-sm password"
-										   placeholder="Password" name="password" value="">
+										   placeholder="<?=lang('password')?>" name="password" value="">
 									<small id="password" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
 								</div>
 								<div class="form-group">

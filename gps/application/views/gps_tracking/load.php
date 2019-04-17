@@ -73,7 +73,6 @@ if($empty) {
 											(<?= $fleets["fleet_plate_number"] ?>)
 										</small>
 									</label>
-
 								</div>
 							</td>
 						</tr>
@@ -120,10 +119,10 @@ if($empty) {
 						id="load1"
 						class="btn btn-sm btn-block d-none">
 						<img style="height: 24px;
-														   margin: 0 auto;
-														   padding-bottom: 8px;
-														   display: block;
-														   text-align: center;"
+						  			margin: 0 auto;
+						  			padding-bottom: 8px;
+						  			display: block;
+						  			text-align: center;"
 							 src="<?= base_url() ?>assets/images/bars2.svg"/></button>
 				</div>
 			</div>
@@ -133,7 +132,8 @@ if($empty) {
 					 style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
-		<div id="map_loader" style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
+		<div id="map_loader"
+			 style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
 		<div class="col-sm-10 custom_style2" style="position: relative">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important"></div>
@@ -225,31 +225,21 @@ if($empty) {
 						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="btn-group btn-group-toggle ml-3" data-toggle="buttons">
-
-								<label class="btn btn-group-sm btn-outline-light"
-									   style="padding: .2rem .3rem !important;">
+								<label class="btn btn-group-sm btn-outline-light" style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option1" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg"
-										 alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/icon.svg" alt=""/>
 								</label>
-
-								<label class="btn btn-group-sm btn-outline-light"
-									   style="padding: .2rem .3rem !important;">
+								<label class="btn btn-group-sm btn-outline-light" style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option2" autocomplete="off">
-									<img
-										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg"
-										alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/two-sportive-black-flags.svg" alt=""/>
 								</label>
 
-								<label class="btn btn-group-sm btn-outline-light"
-									   style="padding: .2rem .3rem !important;">
+								<label class="btn btn-group-sm btn-outline-light" style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option3" autocomplete="off">
-									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg"
-										 alt=""/>
+									<img src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/diesel.svg" alt=""/>
 								</label>
 
-								<label class="btn btn-group-sm btn-outline-light"
-									   style="padding: .2rem .3rem !important;">
+								<label class="btn btn-group-sm btn-outline-light" style="padding: .2rem .3rem !important;">
 									<input type="radio" name="options" id="option4" autocomplete="off">
 									<img
 										src="<?= base_url() ?>assets/images/gps_tracking/speed_settings/speedometer.svg"
@@ -391,7 +381,7 @@ if($empty) {
 				myMap = new ymaps.Map("map", {
 					center: [40.1776192, 44.4898932],
 					zoom: 13
-				},{
+				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 			}
@@ -483,7 +473,6 @@ if($empty) {
 			$('input[name="fleets"]').val(fleet_imeis)
 
 		});
-
 
 
 		$('.speed_checkbox').on('change', function () {
@@ -579,7 +568,7 @@ if($empty) {
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
 								zoom: 13
-							},{
+							}, {
 								maxZoom: 18
 							}, {suppressMapOpenBlock: true});
 
@@ -751,16 +740,16 @@ if($empty) {
 									if (_imei != e) {
 
 
-											$('.engineOnOf').removeClass('d-none');
-											info += '<tr>\n' +
-												'<td>' + value.fleet + '</td>\n' +
-												'<td>' + value.fleet_plate_number + '</td>\n' +
-												'<td>' + value.staff + '</td>\n' +
-												'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
-												'<td>' + (data.message.load[e]['on'] === undefined ? '00:00:00' : data.message.load[e]['on']) + '</td>\n' +
-												'<td>' + (data.message.load[e]['off'] === undefined ? '00:00:00' : data.message.load[e]['off']) + '</td>\n' +
+										$('.engineOnOf').removeClass('d-none');
+										info += '<tr>\n' +
+											'<td>' + value.fleet + '</td>\n' +
+											'<td>' + value.fleet_plate_number + '</td>\n' +
+											'<td>' + value.staff + '</td>\n' +
+											'<td><span class="distance" data-value="' + e + '" ></span><?= lang("km") ?></td>\n' +
+											'<td>' + (data.message.load[e]['on'] === undefined ? '00:00:00' : data.message.load[e]['on']) + '</td>\n' +
+											'<td>' + (data.message.load[e]['off'] === undefined ? '00:00:00' : data.message.load[e]['off']) + '</td>\n' +
 
-												'</tr>\n';
+											'</tr>\n';
 
 
 									}
@@ -805,54 +794,54 @@ if($empty) {
 
 							setTimeout(function () {
 
-									function initDataTable() {
-										var table = $('#example12').DataTable({
-											"searching": true,
-											"ordering": false,
-											"bPaginate": false,
-											"paging": false,
-											language: {
-												search: "<?=lang('search')?>",
-												emptyTable: "<?=lang('no_data')?>",
-												info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
-												infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-												infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-												lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-												zeroRecords: "<?=lang('no_matching_records')?>",
-												paginate: {
-													first: "<?=lang('first')?>",
-													last: "<?=lang('last')?>",
-													next: "<?=lang('next')?>",
-													previous: "<?=lang('prev')?>"
+								function initDataTable() {
+									var table = $('#example12').DataTable({
+										"searching": true,
+										"ordering": false,
+										"bPaginate": false,
+										"paging": false,
+										language: {
+											search: "<?=lang('search')?>",
+											emptyTable: "<?=lang('no_data')?>",
+											info: "<?=lang('total')?> <span id='total'>_TOTAL_</span> <?=lang('data')?>",
+											infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+											infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+											lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+											zeroRecords: "<?=lang('no_matching_records')?>",
+											paginate: {
+												first: "<?=lang('first')?>",
+												last: "<?=lang('last')?>",
+												next: "<?=lang('next')?>",
+												previous: "<?=lang('prev')?>"
+											}
+										},
+										dom: 'Bfrtip',
+										buttons: [
+											{
+												extend: 'excelHtml5',
+												title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
+												messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
+												autoWidth: true,
+												filename: 'load',
+												footer: true,
+												exportOptions: {
+													columns: ':visible'
 												}
 											},
-											dom: 'Bfrtip',
-											buttons: [
-												{
-													extend: 'excelHtml5',
-													title: '<?=lang('Report_period') . '  ' . lang('from')?> ' + $('input[name="from"]').val() + '  <?=lang('to')?> ' + $('input[name="to"]').val(),
-													messageTop: "<?=lang('company')?>: " + $('input[name="company"]').val() + ",  <?=lang('user')?>: " + $('.username_login > a').text(),
-													autoWidth: true,
-													filename: 'load',
-													footer: true,
-													exportOptions: {
-														columns: ':visible'
-													}
-												},
-												'colvis'
-											]
-										});
+											'colvis'
+										]
+									});
 
-										$('.buttons-excel span').html('<?=lang('export')?>');
-										$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-										$('.buttons-colvis span').text('');
-										$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
-										table.buttons().container()
-											.appendTo('#example12_wrapper #example12_filter:eq(0)');
-										$('.dt-buttons').css('float', 'left');
-									}
+									$('.buttons-excel span').html('<?=lang('export')?>');
+									$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+									$('.buttons-colvis span').text('');
+									$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+									table.buttons().container()
+										.appendTo('#example12_wrapper #example12_filter:eq(0)');
+									$('.dt-buttons').css('float', 'left');
+								}
 
-									initDataTable();
+								initDataTable();
 
 								$('#map_loader').fadeOut('slow');
 
@@ -869,7 +858,7 @@ if($empty) {
 						myMap = new ymaps.Map("map", {
 							center: [40.1776192, 44.4898932],
 							zoom: 13
-						},{
+						}, {
 							maxZoom: 18
 						}, {suppressMapOpenBlock: true});
 

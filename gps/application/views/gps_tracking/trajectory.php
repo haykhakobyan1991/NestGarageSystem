@@ -171,7 +171,8 @@ if($empty) {
 					 style="max-height: 300px;overflow-y: scroll;"></div>
 			</div>
 		</div>
-		<div id="map_loader" style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
+		<div id="map_loader"
+			 style="display:none; position:absolute;z-index: 999;background: #fff;top: 0;left: 0;width: 100%;height: 100vh;background-image: url(<?= base_url('assets/images/EarthLoader.svg') ?>);background-position: center;background-repeat: no-repeat;"></div>
 		<div class="col-sm-10 custom_style2" style="position: relative">
 			<div id="ajax_time" class="alert alert-info font-weight-bold text-center d-none" role="alert"></div>
 			<div id="map" class="mb-1" style="width: 100%; height: calc(100% - 150px) !important"></div>
@@ -351,32 +352,32 @@ if($empty) {
 						</div>
 
 
-						<div 
+						<div
 							class="form-group row mb-0">
-							<label 
-								for="inputUnit" 
+							<label
+								for="inputUnit"
 								class="col-sm-4 col-form-label">
-									Show annotations:
+								Show annotations:
 							</label>
-							<div 
+							<div
 								class="col-sm-8">
-								<input 
-									style="margin-top: 12px;" 
+								<input
+									style="margin-top: 12px;"
 									type="checkbox"
 								/>
 							</div>
 						</div>
-						<div 
+						<div
 							class="form-group row">
-							<label 
-								for="inputUnit" 
+							<label
+								for="inputUnit"
 								class="col-sm-4 col-form-label">
-									Apply trip detector:
+								Apply trip detector:
 							</label>
-							<div 
+							<div
 								class="col-sm-8">
-								<input 
-									style="margin-top: 12px;" 
+								<input
+									style="margin-top: 12px;"
 									type="checkbox"
 								/>
 							</div>
@@ -447,7 +448,7 @@ if($empty) {
 				myMap = new ymaps.Map("map", {
 					center: [40.1776192, 44.4898932],
 					zoom: 13
-				},{
+				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 			}
@@ -541,8 +542,6 @@ if($empty) {
 		});
 
 
-
-
 		$('.speed_checkbox').on('change', function () {
 			let speed_checkbox = $('.set_maxSpeed');
 			($(this).is(':checked')) ? speed_checkbox.removeClass('d-none') : speed_checkbox.addClass('d-none');
@@ -552,7 +551,6 @@ if($empty) {
 
 			var height = $(window).height();
 			$('#map_loader').css({'display': 'block', 'height': height});
-
 
 
 			// ajax time
@@ -637,7 +635,7 @@ if($empty) {
 							myMap = new ymaps.Map("map", {
 								center: [40.1776192, 44.4898932],
 								zoom: 13
-							},{
+							}, {
 								maxZoom: 18
 							}, {suppressMapOpenBlock: true});
 
@@ -1010,7 +1008,7 @@ if($empty) {
 						myMap = new ymaps.Map("map", {
 							center: [40.1776192, 44.4898932],
 							zoom: 13
-						},{
+						}, {
 							maxZoom: 18
 						}, {suppressMapOpenBlock: true});
 

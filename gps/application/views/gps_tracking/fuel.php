@@ -49,7 +49,8 @@ if($empty) {
 	button.btn.btn-outline-secondary.border-left-0 {
 		padding: 0 !important;
 	}
-	.highcharts-credits{
+
+	.highcharts-credits {
 		display: none !important;
 	}
 </style>
@@ -440,7 +441,7 @@ if($empty) {
 							zoomType: 'x'
 						},
 						title: {
-							text: '<?=lang('fuel')?> ('+data.message.fuel+')'
+							text: '<?=lang('fuel')?> (' + data.message.fuel + ')'
 						},
 						xAxis: {
 							categories: data.message.date_array,
@@ -581,7 +582,6 @@ if($empty) {
 				}
 
 
-
 			},
 			error: function (jqXHR, textStatus) {
 				// Handle errors here
@@ -597,8 +597,6 @@ if($empty) {
 
 
 	});
-
-
 
 
 	$('.datepickerFrom').datetimepicker({

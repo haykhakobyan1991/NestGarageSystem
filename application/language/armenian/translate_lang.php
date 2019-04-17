@@ -201,7 +201,7 @@ $lang['month_12'] = 'Դեկտեմբեր';
 //company
 $lang['Basic_information'] = 'Ընկերության Հիմնական Տվյալներ';
 $lang['upload_logo'] = 'Վերբեռնեք Ձեր Ընկերության Լոգոն';
-$lang['company_type'] = 'Ընկերության Տեսակը';
+$lang['company_type'] = 'Ընկերության Տեսակ';
 $lang['company'] = 'Ընկերություն';
 $lang['logo'] = 'Լոգո';
 $lang['company_name'] = 'Անվանում';
@@ -216,6 +216,7 @@ $lang['create_departments'] = 'Ստեղծել Ստորաբաժանում';
 
 //user
 $lang['email_or_login'] = 'Էլ․ Հասցե Կամ Մուտքանուն';
+$lang['or'] = 'կամ';
 $lang['login'] = 'Մուտքանուն';
 $lang['password'] = 'Գաղտնաբառ';//todo
 $lang['confirm_password'] = 'Հաստատել գաղտնաբառը';

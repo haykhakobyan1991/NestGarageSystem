@@ -165,7 +165,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				<img
 					style="margin-right: 5px;margin-left: -15px;"
 					src="<?= base_url() ?>assets/images/gps_tracking/delete.svg"
-					class="ml-0 mr-0 "/>
+					class="ml-0 mr-0 "
+					alt=""/>
 			</button>
 		</div>
 
@@ -405,7 +406,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						events: {
 							legendItemClick: function (e) {
 
-								$('#ex').html('<img style="z-index: 999; position: fixed;  margin-top: 100px; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg">');
+								$('#ex').html('<img style="z-index: 999; position: fixed;  margin-top: 100px; width: 10em" src="http://localhost/NestGarageSystem/assets/images/puff.svg" alt="">');
 
 								var hidden = [];
 
@@ -1023,7 +1024,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					class="body-m">
 					<img
 						style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-						src="<?= base_url() ?>assets/images/bars.svg"/>
+						src="<?= base_url() ?>assets/images/bars.svg"
+						alt=""/>
 				</div>
 			</div>
 		</div>
@@ -1155,7 +1157,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						class="btn btn-sm btn-success d-none cancel_btn">
 						<img
 							style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-							src="<?= base_url() ?>assets/images/bars2.svg"/>
+							src="<?= base_url() ?>assets/images/bars2.svg"
+							alt=""/>
 					</button>
 					<button
 						type="button"

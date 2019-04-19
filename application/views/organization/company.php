@@ -72,8 +72,10 @@ $i = '';
 								<div
 									class="row"
 									style="margin-top: -2px;">
-									<label class="col-form-label col-sm-5">
-										<?= lang('company_type') ?>*
+									<label
+										class="col-form-label col-sm-5">
+										<?= lang('company_type') ?>
+										*
 									</label>
 									<select
 										name="company_type"
@@ -356,7 +358,8 @@ $i = '';
 
 				<div
 					class="row">
-					<div class="col-md-12 col-md-6 ddddd">
+					<div
+						class="col-md-12 col-md-6 ddddd">
 
 						<p class="font-weight-bold display-5 mt-3"><?= lang('general_information') ?></p>
 						<hr class="my-2">

@@ -1,24 +1,55 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.core.css">
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/zino/zino.core.css">
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
+<script
+	src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+	type="text/javascript"></script>
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/ymap.js') ?><!--"></script>-->
 <!--<script type="text/javascript" src="--><? //= base_url('assets/js/jquery-resizable.js') ?><!--"></script>-->
 <!--<script src="--><? //= base_url('assets/js/dataTables/buttons.colVis.min.js') ?><!--"></script>-->
-<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.position.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.draggable.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/zino/zino.splitter.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/zino/front.min.js') ?>"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.position.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.draggable.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.splitter.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/front.min.js') ?>"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking_onPage.css"/>
 
 <style>
 	th:nth-child(2):after {
@@ -36,60 +67,86 @@ $lng = $this->load->lng();
 $getImei = $this->uri->segment(3);
 
 
-if($empty) {
+if ($empty) {
 	echo '<div class="alert alert-info text-center font-weight-bold">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
 	return false;
 }
 
 ?>
 
-<div class="loader" style="width: 100%;z-index: 999 !important;"></div>
-<img class="loader_svg"
-<img class="loader_svg"
-	 style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
-	 src="<?= base_url('assets/images/puff.svg') ?>"/>
+<div
+	class="loader"
+	style="width: 100%;z-index: 999 !important;"></div>
+<img
+	class="loader_svg"
+	alt="loader"
+<img
+	class="loader_svg"
+	style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
+	src="<?= base_url('assets/images/puff.svg') ?>"/>
 
-<div id="splitter">
+<div
+	id="splitter">
 
-	<div class="panel-left splitter-west" id="mydiv">
-		<div class="row m-0">
-			<div class="col-sm-12 mt-2 mb-2">
-				<div class="form-group row ml-2">
-					<div class="car_icon col-sm-2" style="padding-top: 10px;">
-						<img src="<?= base_url() ?>assets/images/icon-car-png-22.png"
-							 style="width: 25px;display: inline-block;margin-left: 20px;"/>
-						<span class="count_cars_in_table"><?= count($result_fleets) ?></span>
+	<div
+		class="panel-left splitter-west"
+		id="mydiv">
+		<div
+			class="row m-0">
+			<div
+				class="col-sm-12 mt-2 mb-2">
+				<div
+					class="form-group row ml-2">
+					<div
+						class="car_icon col-sm-2"
+						style="padding-top: 10px;">
+						<img
+							src="<?= base_url() ?>assets/images/icon-car-png-22.png"
+							style="width: 25px;display: inline-block;margin-left: 20px;"
+							alt=""/>
+						<span
+							class="count_cars_in_table"><?= count($result_fleets) ?></span>
 					</div>
-					<label class="label_group" style="margin-top: 10px;"><?= lang('group') ?></label>
-					<div class="label_group col-sm-3 ml-0">
-						<select style="margin-top: 1px;max-width: 220px; z-index: 999;"
-								name="group"
-								class="form-control form-control-sml sell_group_select">
-							<option selected value="all_val"><?= lang('all1') ?></option>
+					<label
+						class="label_group"
+						style="margin-top: 10px;"><?= lang('group') ?></label>
+					<div
+						class="label_group col-sm-3 ml-0">
+						<select
+							style="margin-top: 1px;max-width: 220px; z-index: 999;"
+							name="group"
+							class="form-control form-control-sml sell_group_select">
+							<option
+								selected
+								value="all_val"><?= lang('all1') ?></option>
 							<?
 							if (count($result) > 0) {
 								foreach ($result as $row) { ?>
-									<option data-id="<?= $row['group_id'] ?>"
-											data-default="<?= $row['default'] ?>"
-											data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : 'gago') ?>"
-											value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' *' : '') ?></option>
+									<option
+										data-id="<?= $row['group_id'] ?>"
+										data-default="<?= $row['default'] ?>"
+										data-cordinate="<?= (isset($new_result[$row['geoference_id']]) ? implode(',', $new_result[$row['geoference_id']]) : 'gago') ?>"
+										value="<?= $row['fleet_id'] ?>"><?= $row['title'] . ($row['default'] == 1 ? ' *' : '') ?></option>
 								<? }
 							} ?>
 						</select>
 					</div>
 
-					<div class="tools_div col-sm-2 pl-0"
-						 style="padding-top: 4px;"
+					<div
+						class="tools_div col-sm-2 pl-0"
+						style="padding-top: 4px;"
 					>
-						<button class="btn btn-sm btn-outline-secondary plus_btn mr-1"
-								data-toggle="modal"
-								data-target=".add_group"
-								style="width: 20px;padding: 2px !important;"
+						<button
+							class="btn btn-sm btn-outline-secondary plus_btn mr-1"
+							data-toggle="modal"
+							data-target=".add_group"
+							style="width: 20px;padding: 2px !important;"
 						>
 							<img
 								style="margin-right: 5px;margin-left: -15px;"
 								src="<?= base_url() ?>assets/images/gps_tracking/plus-black-symbol.svg"
 								class="ml-0 mr-0 "
+								alt=""
 							/>
 						</button>
 						<button
@@ -104,15 +161,15 @@ if($empty) {
 							<img
 								style="margin-right: 5px;margin-left: -15px;"
 								src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
-								class="ml-0 mr-0 "
+								class="ml-0 mr-0"
+								alt=""
 							/>
 						</button>
 						<button
 							class="custom_fas_trash_btn btn btn-sm btn-outline-secondary delete_btn"
 							data-toggle="modal"
 							data-target=".del_group_modal"
-							style="width: 20px;padding: 2px !important;"
-						>
+							style="width: 20px;padding: 2px !important;">
 							<i
 								class="custom_fas_trash fas fa-trash"
 							></i>
@@ -121,12 +178,18 @@ if($empty) {
 				</div>
 
 
-				<table id="example11" class="table table-bordered" style="width:100%">
+				<table
+					id="example11"
+					class="table table-bordered"
+					style="width:100%">
 					<thead>
 					<tr>
 						<th style="font-weight: 500;color: transparent;font-size: 1px !important;">
-							<input checked="checked" class="sel_all_checkbox" style="margin-left: 5px;"
-								   type="checkbox"/>
+							<input
+								checked="checked"
+								class="sel_all_checkbox"
+								style="margin-left: 5px;"
+								type="checkbox"/>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;"></th>
 						<th
@@ -140,12 +203,19 @@ if($empty) {
 						</th>
 						<th style="font-size: 12px !important; font-weight: :500; min-width: 25px !important;"
 							class="text-center0">
-							<img width="25" height="25"
-								 src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"/>
+							<img
+								width="25"
+								height="25"
+								src="<?= base_url() ?>assets/images/gps_tracking/speedometer.svg"
+								alt=""/>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 25px !important;"
 							class="text-center">
-							<img width="50" height="30" src="<?= base_url() ?>assets/images/gps_tracking/parking.svg"/>
+							<img
+								width="50"
+								height="30"
+								src="<?= base_url() ?>assets/images/gps_tracking/parking.svg"
+								alt=""/>
 						</th>
 						<th style="font-weight: 500;color: transparent !important;font-size: 1px !important;">
 							<i style="min-width: 70px;font-size: 12px !important;color: #000 !important;"
@@ -189,7 +259,11 @@ if($empty) {
 						?>
 
 						<tr>
-							<td><input checked="checked" type="checkbox"/></td>
+							<td>
+								<input
+									checked="checked"
+									type="checkbox"/>
+							</td>
 							<td class="show_car"
 								data-coordinate='<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>'
 								data-id="<?= $fleets['id'] ?>"
@@ -197,25 +271,39 @@ if($empty) {
 								data-speed="<?= round($arr[$fleets['gps_tracker_imei']]['speed'], 2) ?>"
 								data-engine="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>"
 								data-course="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
-								<i class="fas fa-play-circle" style="cursor: pointer;"></i>
+								<i class="fas fa-play-circle"
+								   style="cursor: pointer;"></i>
 							</td>
-							<input class="global_change coords" type="hidden" name="<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
-							<input class="global_change speeds" type="hidden"
-								   name="s_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
-							<input class="global_change engines" type="hidden"
-								   name="e_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
-							<input class="global_change courses" type="hidden"
-								   name="c_<?= $fleets['gps_tracker_imei'] ?>"
-								   value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
+							<input
+								class="global_change coords"
+								type="hidden"
+								name="<?= $fleets['gps_tracker_imei'] ?>"
+								value="<?= $arr[$fleets['gps_tracker_imei']]['lat'] ?>, <?= $arr[$fleets['gps_tracker_imei']]['long'] ?>">
+							<input
+								class="global_change speeds"
+								type="hidden"
+								name="s_<?= $fleets['gps_tracker_imei'] ?>"
+								value="<?= $arr[$fleets['gps_tracker_imei']]['speed'] ?>">
+							<input
+								class="global_change engines"
+								type="hidden"
+								name="e_<?= $fleets['gps_tracker_imei'] ?>"
+								value="<?= $arr[$fleets['gps_tracker_imei']]['engine'] ?>">
+							<input
+								class="global_change courses"
+								type="hidden"
+								name="c_<?= $fleets['gps_tracker_imei'] ?>"
+								value="<?= $arr[$fleets['gps_tracker_imei']]['course'] ?>">
 							<td class="car_name">
-								<span class="car_model"><?= $fleets['brand_model'] ?></span>
-								<small class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
+								<span
+									class="car_model"><?= $fleets['brand_model'] ?></span>
+								<small
+									class="form-text text-muted"><?= $fleets['fleet_plate_number'] ?></small>
 							</td>
-							<td class="address_span" data-imei="<?= $fleets['gps_tracker_imei'] ?>"></td>
-							<td class="fleet_speed" data-imei="<?= $fleets['gps_tracker_imei'] ?>">
+							<td class="address_span"
+								data-imei="<?= $fleets['gps_tracker_imei'] ?>"></td>
+							<td class="fleet_speed"
+								data-imei="<?= $fleets['gps_tracker_imei'] ?>">
 								0 <?= lang('km/h') ?></td>
 							<td class="text-center car_status">
 								<?
@@ -237,24 +325,31 @@ if($empty) {
 							</td>
 							<td class="staff_span">
 								<span><?= $fleets['staff'] ?></span>
-								<small class="form-text text-muted"><?= $fleets['contact_1'] ?></small>
+								<small
+									class="form-text text-muted"><?= $fleets['contact_1'] ?></small>
 							</td>
 							<td>
-								<span class="span_department"><?= $fleets['department'] ?></span>
+								<span
+									class="span_department"><?= $fleets['department'] ?></span>
 								<small
 									style="font-size: 1px;display: none !important;"><?= $fleets['fleet_group'] ?></small>
 							</td>
 							<td>
-								<div class="border-danger fuel_wrapper">
-									<div class="fuel_first"></div>
+								<div
+									class="border-danger fuel_wrapper">
+									<div
+										class="fuel_first"></div>
 								</div>
-								<div class="border-danger fuel_wrapper ">
-									<div class="fuel_seccond bg-danger"></div>
+								<div
+									class="border-danger fuel_wrapper ">
+									<div
+										class="fuel_seccond bg-danger"></div>
 								</div>
 							</td>
 							<td>
-								<div class="bg-warning"
-									 style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
+								<div
+									class="bg-warning"
+									style="display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;"></div>
 							</td>
 							<td class="last_time_update">
 								<?= $arr[$fleets['gps_tracker_imei']]['date'] ?>
@@ -274,36 +369,56 @@ if($empty) {
 	</div>
 
 
-	<div class=" panel-right splitter-east">
-		<div id="map" style="width: 100%;height: 100%;"></div>
+	<div
+		class=" panel-right splitter-east">
+		<div
+			id="map"
+			style="width: 100%;height: 100%;"></div>
 	</div>
 </div>
 
 <!-- Delete Modal start -->
-<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
-	 aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+<div
+	class="modal fade bd-example-modal-sm del_group_modal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog modal-sm">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
+				<h6 class="modal-title text-secondary text-center"
+					id="exampleModalLabel"
 					style="font-size: 12px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
-			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
-					<button style="min-width: 94px;font-size: 14px !important;
+			<div
+				class="modal-footer text-center">
+				<div
+					style="margin: 0 auto;">
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" id="delete_group"
-							class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
+    font-weight: 500 !important;"
+						type="button"
+						id="delete_group"
+						class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
 					</button>
-					<button style="min-width: 94px;font-size: 14px !important;
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger   yes_btn"
-							data-dismiss="modal"><?= lang('cancel') ?></button>
+    font-weight: 500 !important;"
+						type="button"
+						class="btn btn-outline-danger   yes_btn"
+						data-dismiss="modal"><?= lang('cancel') ?></button>
 
-					<input type="hidden" name="group_id">
+					<input
+						type="hidden"
+						name="group_id">
 				</div>
 			</div>
 		</div>
@@ -313,16 +428,29 @@ if($empty) {
 
 <!-- Edit Group Modal  Start -->
 
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	 aria-hidden="true" id="edit_group">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header bg-secondary " style="border-radius: unset;">
+<div
+	class="modal fade bd-example-modal-lg"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myLargeModalLabel"
+	aria-hidden="true"
+	id="edit_group">
+	<div
+		class="modal-dialog modal-lg"
+		role="document">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header bg-secondary "
+				style="border-radius: unset;">
 				<h6 class="text-white modal-title dar"><?= lang('EditGroup') ?></h6>
 			</div>
-			<div class="body-m">
-				<img style="height: 50px;margin: 0 auto;display: block;text-align: center;"
-					 src="<?= base_url() ?>assets/images/bars.svg"/>
+			<div
+				class="body-m">
+				<img
+					style="height: 50px;margin: 0 auto;display: block;text-align: center;"
+					src="<?= base_url() ?>assets/images/bars.svg"
+					alt=""/>
 			</div>
 		</div>
 	</div>
@@ -331,38 +459,71 @@ if($empty) {
 <!--Edit Group Modal end -->
 <!-- Create Group Modal  Start -->
 
-<div class="modal fade bd-example-modal-lg add_group" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-	 aria-hidden="true">
+<div
+	class="modal fade bd-example-modal-lg add_group"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myLargeModalLabel"
+	aria-hidden="true">
 
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-			<div class="modal-header bg-secondary " style="border-radius: unset;">
+	<div
+		class="modal-dialog modal-lg"
+		role="document">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header bg-secondary "
+				style="border-radius: unset;">
 				<h5 class="modal-title text-white"><?= lang('create_group') ?></h5>
 			</div>
-			<div class="modal-body">
-				<form id="group_add">
-					<div class="form-group row">
-						<div class="col-sm-1"></div>
-						<label class="col-sm-3 col-form-label"><?= lang('company_name') ?></label>
-						<div class="col-sm-7">
-							<input name="title" type="text" class="form-control"
-								   placeholder="<?= lang('company_name') ?>">
+			<div
+				class="modal-body">
+				<form
+					id="group_add">
+					<div
+						class="form-group row">
+						<div
+							class="col-sm-1"></div>
+						<label
+							class="col-sm-3 col-form-label"><?= lang('company_name') ?></label>
+						<div
+							class="col-sm-7">
+							<input
+								name="title"
+								type="text"
+								class="form-control"
+								placeholder="<?= lang('company_name') ?>">
 						</div>
 					</div>
-					<div class="form-group row">
-						<div class="col-sm-1"></div>
-						<label class="col-sm-3 col-form-label"><?= lang('more_info') ?></label>
-						<div class="col-sm-7">
-							<textarea name="description" type="text" class="form-control"
-									  placeholder="<?= lang('more_info') ?>"></textarea>
+					<div
+						class="form-group row">
+						<div
+							class="col-sm-1"></div>
+						<label
+							class="col-sm-3 col-form-label"><?= lang('more_info') ?></label>
+						<div
+							class="col-sm-7">
+							<textarea
+								name="description"
+								type="text"
+								class="form-control"
+								placeholder="<?= lang('more_info') ?>"></textarea>
 						</div>
 					</div>
-					<div class="form-group row">
-						<div class="col-sm-1"></div>
-						<label class="col-sm-3 col-form-label"><?= lang('geofences') ?></label>
-						<div class="col-sm-7 label_group">
-							<select class="sell_group_select form-control form-control-sm col-sm-12 " name="geoference">
-								<option selected value=""><?= lang('geofences') ?></option>
+					<div
+						class="form-group row">
+						<div
+							class="col-sm-1"></div>
+						<label
+							class="col-sm-3 col-form-label"><?= lang('geofences') ?></label>
+						<div
+							class="col-sm-7 label_group">
+							<select
+								class="sell_group_select form-control form-control-sm col-sm-12 "
+								name="geoference">
+								<option
+									selected
+									value=""><?= lang('geofences') ?></option>
 								<?
 								foreach ($geoference as $val) {
 									echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
@@ -372,56 +533,86 @@ if($empty) {
 						</div>
 					</div>
 
-					<input type="hidden" name="groups">
-					<input type="hidden" name="token" value="<?= $this->session->token ?>">
+					<input
+						type="hidden"
+						name="groups">
+					<input
+						type="hidden"
+						name="token"
+						value="<?= $this->session->token ?>">
 
 				</form>
 				<hr class="my-2">
-				<div class="row mt-1 pl-5 pr-5">
-					<input id="sb_s" type="text" class="form-control" placeholder="<?= lang('search') ?>"
-						   aria-label="Search" aria-describedby="basic-addon2" style="width: 50%;margin: 3px;">
-					<div class="col-sm-6 scroll_style"
-						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+				<div
+					class="row mt-1 pl-5 pr-5">
+					<input
+						id="sb_s"
+						type="text"
+						class="form-control"
+						placeholder="<?= lang('search') ?>"
+						aria-label="Search"
+						aria-describedby="basic-addon2"
+						style="width: 50%;margin: 3px;">
+					<div
+						class="col-sm-6 scroll_style"
+						style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 
-						<ul style="list-style: decimal;" class="list-group lg_1 mt-1">
+						<ul style="list-style: decimal;"
+							class="list-group lg_1 mt-1">
 							<? foreach ($result_fleets as $row_fleet) : ?>
-								<li data-id="<?= $row_fleet['id'] ?>" style="cursor: pointer"
+								<li data-id="<?= $row_fleet['id'] ?>"
+									style="cursor: pointer"
 									class="p-1 sel_items mt-1 list-group-item"><?= $row_fleet['brand_model'] . '  (' . $row_fleet['fleet_plate_number'] . ')' ?></li>
 							<? endforeach; ?>
 						</ul>
 					</div>
-					<div class="col-sm-1 text-center">
+					<div
+						class="col-sm-1 text-center">
 
-						<button class="save_cancel_btn btn btn-success mb-1 p-0 add_lg_2"
-								style="margin-top: 100px;min-height: 30px !important;min-width: 35px !important;">
-							<i style="font-size: 16px;" class="fas fa-long-arrow-alt-right"> </i>
+						<button
+							class="save_cancel_btn btn btn-success mb-1 p-0 add_lg_2"
+							style="margin-top: 100px;min-height: 30px !important;min-width: 35px !important;">
+							<i style="font-size: 16px;"
+							   class="fas fa-long-arrow-alt-right"> </i>
 						</button>
 
-						<button class="save_cancel_btn btn btn-success p-0 remove_lg_2"
-								style="min-height: 30px !important;min-width: 35px !important;">
-							<i style="font-size: 16px;" class="fas fa-long-arrow-alt-left"> </i>
+						<button
+							class="save_cancel_btn btn btn-success p-0 remove_lg_2"
+							style="min-height: 30px !important;min-width: 35px !important;">
+							<i style="font-size: 16px;"
+							   class="fas fa-long-arrow-alt-left"> </i>
 						</button>
 
 					</div>
-					<div class="col-sm-5 scroll_style"
-						 style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
+					<div
+						class="col-sm-5 scroll_style"
+						style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
 						<ul class="list-group lg_2 mt-1"></ul>
 
 					</div>
 
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button id="add_group" type="button"
-						class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
+			<div
+				class="modal-footer">
+				<button
+					id="add_group"
+					type="button"
+					class="btn btn-outline-success cancel_btn"><?= lang('save') ?>
 				</button>
-				<button id="load" class="btn btn-sm btn-outline-success cancel_btn d-none">
-					<img style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-						 src="<?= base_url() ?>assets/images/bars2.svg"/>
+				<button
+					id="load"
+					class="btn btn-sm btn-outline-success cancel_btn d-none">
+					<img
+						style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+						src="<?= base_url() ?>assets/images/bars2.svg"
+						alt=""/>
 				</button>
-				<button type="button" class="cancel_btn close btn btn-sm"
-						data-dismiss="modal"
-						aria-label="Close">
+				<button
+					type="button"
+					class="cancel_btn close btn btn-sm"
+					data-dismiss="modal"
+					aria-label="Close">
 					<?= lang('cancel') ?>
 				</button>
 			</div>
@@ -433,30 +624,47 @@ if($empty) {
 
 
 <!-- Delete Modal start -->
-<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
-	 aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
+<div
+	class="modal fade bd-example-modal-sm del_group_modal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog modal-sm">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
+				<h6 class="modal-title text-secondary text-center"
+					id="exampleModalLabel"
 					style="font-size: 15px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
 			</div>
-			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
-					<button style="min-width: 94px;font-size: 14px !important;
+			<div
+				class="modal-footer text-center">
+				<div
+					style="margin: 0 auto;">
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" id="delete_staff"
-							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
+    font-weight: 500 !important;"
+						type="button"
+						id="delete_staff"
+						class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
 					</button>
-					<button style="min-width: 94px;font-size: 14px !important;
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
-							data-dismiss="modal"><?= lang('cancel') ?></button>
+    font-weight: 500 !important;"
+						type="button"
+						class="btn btn-outline-danger  cancel_btn"
+						data-dismiss="modal"><?= lang('cancel') ?></button>
 
-					<input type="hidden" name="staff_id">
+					<input
+						type="hidden"
+						name="staff_id">
 				</div>
 			</div>
 		</div>
@@ -471,7 +679,9 @@ foreach ($result2 as $name => $value) {
 	foreach ($value as $id => $val) {
 		?>
 
-		<span class="geofences_coordinate d-none" data-gCoordinate="<?= implode(',', $val) ?>"></span>
+		<span
+			class="geofences_coordinate d-none"
+			data-gCoordinate="<?= implode(',', $val) ?>"></span>
 
 		<?
 	}
@@ -1431,7 +1641,10 @@ foreach ($result2 as $name => $value) {
 	$(document).on('click', '#delete_group', function () {
 		var id = $('input[name="group_id"]').val();
 		var url = '<?=$this->load->old_baseUrl() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/delete_group/')?>';
-		$.post(url, {group_id, id}, function (result) {
+		$.post(url, {
+			group_id,
+			id
+		}, function (result) {
 			location.reload();
 		});
 	});
@@ -1531,8 +1744,13 @@ foreach ($result2 as $name => $value) {
 	})
 </script>
 
-<select class="sell_group_select form-control form-control-sm col-sm-12 d-none" name="geoference" id="geoference">
-	<option selected value=""><?= lang('geofences') ?></option>
+<select
+	class="sell_group_select form-control form-control-sm col-sm-12 d-none"
+	name="geoference"
+	id="geoference">
+	<option
+		selected
+		value=""><?= lang('geofences') ?></option>
 	<?
 	foreach ($geoference as $val) {
 		echo '<option value="' . $val['id'] . '">' . $val['name'] . '</option>';
@@ -1554,7 +1772,10 @@ foreach ($result2 as $name => $value) {
 
 		setInterval(function () {
 			var url = '<?=base_url() . (($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Gps/changDataCoordinate/')?>';
-			$.post(url, {fleets: fleet_ids, parking_time: parking_time}, function (result) {
+			$.post(url, {
+				fleets: fleet_ids,
+				parking_time: parking_time
+			}, function (result) {
 
 				$.each(JSON.parse(result), function (e, val) {
 					$('.show_car').each(function () {
@@ -1629,5 +1850,6 @@ foreach ($result2 as $name => $value) {
 </script>
 
 
-<div id="newCord"></div>
+<div
+	id="newCord"></div>
 

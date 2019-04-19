@@ -1,45 +1,97 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
-<link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
-		type="text/javascript"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
-<script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
-<script src="https://static.zinoui.com/js/front.min.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/sos.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/zino/zino.core.css">
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/zino/zino.splitter.css">
+<script
+	src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+	type="text/javascript"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.position.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.draggable.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/zino.splitter.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/zino/front.min.js') ?>"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/gps_tracking/sos.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 
-<div class="loader" style="width: 100%;z-index: 999 !important;"></div>
-<img class="loader_svg"
-	 style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
-	 src="<?= base_url('assets/images/puff.svg') ?>"/>
+<div
+	class="loader"
+	style="width: 100%;z-index: 999 !important;"></div>
+<img
+	class="loader_svg"
+	style="width: 10em !important;margin-left: -100px !important;position: fixed !important;left: 50% !important;top: 50% !important;z-index: 999 !important;margin-top: -100px !important;"
+	src="<?= base_url('assets/images/puff.svg') ?>"
+	alt=""/>
 
-<div id="splitter">
+<div
+	id="splitter">
 
-	<div class="panel-left splitter-west" id="mydiv">
-		<div class="row">
-			<div class="form-group row ml-2">
-				<div class="car_icon col-sm-12 ml-2">
-					<span class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
+	<div
+		class="panel-left splitter-west"
+		id="mydiv">
+		<div
+			class="row">
+			<div
+				class="form-group row ml-2">
+				<div
+					class="car_icon col-sm-12 ml-2">
+					<span
+						class="count_cars_in_table"><?= lang('sos_alarms') ?></span>
 				</div>
 			</div>
 		</div>
-		<div class="row" style="margin-top: 30px;">
-			<div class="col-sm-12 mt-2">
-				<table id="example11" class="table table-striped table-borderless w-100 dataTable no-footer">
+		<div
+			class="row"
+			style="margin-top: 30px;">
+			<div
+				class="col-sm-12 mt-2">
+				<table
+					id="example11"
+					class="table table-striped table-borderless w-100 dataTable no-footer">
 					<thead>
 					<tr>
-						<th class="" style="font-size: 12px !important;font-weight: 500;">
+						<th class=""
+							style="font-size: 12px !important;font-weight: 500;">
 							<i class="far fa-envelope"></i>
 						</th>
 						<th style="font-size: 12px !important;font-weight: 500;min-width: 100px;">
@@ -115,7 +167,8 @@
 
 
 								<tr>
-									<td data-id="<?= $id ?>" class="show_car"
+									<td data-id="<?= $id ?>"
+										class="show_car"
 										data-coordinate="<?= $row['lat'] . ', ' . $row['long'] ?>"
 										style="cursor: pointer;">
 										<?
@@ -130,8 +183,11 @@
 									<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
 									<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
 									<td><?= $fleet[$row['imei']]['staff'] ?></td>
-									<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
-										data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i>
+									<td class="delete_sos"
+										style="cursor: pointer;"
+										data-toggle="modal"
+										data-target=".bd-example-modal-sm">
+										<i class="fas fa-trash text-secondary"></i>
 									</td>
 								</tr>
 
@@ -149,38 +205,59 @@
 			</div>
 		</div>
 	</div>
-	<div class=" panel-right splitter-east" style="position: relative">
-		<div id="map" style="width: 100%;height: 100%;"></div>
+	<div
+		class=" panel-right splitter-east"
+		style="position: relative">
+		<div
+			id="map"
+			style="width: 100%;height: 100%;"></div>
 	</div>
 </div>
 
 
 <!-- Delete Modal start -->
-<div class="modal fade bd-example-modal-sm del_group_modal" tabindex="-1" role="dialog"
-	 aria-labelledby="mySmallModalLabel"
-	 aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 13px;">
+<div
+	class="modal fade bd-example-modal-sm del_group_modal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog modal-sm">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
+				<h6 class="modal-title text-secondary text-center"
+					id="exampleModalLabel"
+					style="font-size: 13px;">
 					<?= lang('are_you_sure_you_want_to_delete') ?>
 				</h6>
 			</div>
-			<div class="modal-footer text-center">
-				<div style="margin: 0 auto;">
-					<button style="min-width: 94px;font-size: 14px !important;
+			<div
+				class="modal-footer text-center">
+				<div
+					style="margin: 0 auto;">
+					<button
+						style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" id="delete_staff"
-							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
+    font-weight: 500 !important;"
+						type="button"
+						id="delete_staff"
+						class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
 					</button>
 					<button
 						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
-						type="button" class="btn btn-outline-danger  cancel_btn" data-dismiss="modal">
+						type="button"
+						class="btn btn-outline-danger  cancel_btn"
+						data-dismiss="modal">
 						<?= lang('cancel') ?>
 					</button>
 
-					<input type="hidden" name="sos_id">
+					<input
+						type="hidden"
+						name="sos_id">
 				</div>
 			</div>
 		</div>
@@ -244,7 +321,8 @@
 		initDataTable();
 	});
 </script>
-<script type="text/javascript">
+<script
+	type="text/javascript">
 
 	/***************************
 	 ****************************
@@ -508,7 +586,7 @@
 		var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 		$('#map > ymaps').css('width', width_map);
 		$('#map > ymaps').css('overflow', 'scroll');
-	})
+	});
 	$(document).ready(function () {
 		function myFunction() {
 			if (navigator.userAgent.indexOf("Firefox") != -1) {
@@ -523,20 +601,14 @@
 		}
 
 		myFunction();
-	})
-
+	});
 
 	$(document).ready(function () {
 		var count_unread = 0;
 		$('.far.fa-envelope.text-success').each(function () {
 			count_unread++;
-			$('.count_unread').text(count_unread)
+			$('.count_unread').text(count_unread);
 		});
-
 	});
 
 </script>
-
-
-
-

@@ -1,12 +1,3 @@
-<?
-
-if($empty) {
-	echo '<div class="alert alert-info text-center font-weight-bold">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
-	return false;
-}
-
-?>
-
 <script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
@@ -17,7 +8,8 @@ if($empty) {
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/gps_tracking/gps_tracking.css"/>
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.core.css">
 <link rel="stylesheet" href="https://static.zinoui.com/1.5/themes/silver/zino.splitter.css">
-<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU" type="text/javascript"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=57fb1bc4-e5b4-4fa9-96b8-73ee74c98245&lang=ru_RU"
+		type="text/javascript"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.position.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.draggable.min.js"></script>
 <script src="https://static.zinoui.com/1.5/compiled/zino.splitter.min.js"></script>
@@ -98,7 +90,6 @@ if($empty) {
 						}
 						$_imei = $row['imei'];
 
-
 						// datetime 2 minute interval
 						$datetime1 = new DateTime($row['datetime']);
 
@@ -139,11 +130,9 @@ if($empty) {
 									<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
 									<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
 									<td><?= $fleet[$row['imei']]['staff'] ?></td>
-
-
 									<td class="delete_sos" style="cursor: pointer;" data-toggle="modal"
-										data-target=".bd-example-modal-sm"><i
-											class="fas fa-trash text-secondary"></i></td>
+										data-target=".bd-example-modal-sm"><i class="fas fa-trash text-secondary"></i>
+									</td>
 								</tr>
 
 								<?
@@ -160,8 +149,6 @@ if($empty) {
 			</div>
 		</div>
 	</div>
-
-
 	<div class=" panel-right splitter-east" style="position: relative">
 		<div id="map" style="width: 100%;height: 100%;"></div>
 	</div>
@@ -175,8 +162,9 @@ if($empty) {
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel"
-					style="font-size: 13px;"><?= lang('are_you_sure_you_want_to_delete') ?></h6>
+				<h6 class="modal-title text-secondary text-center" id="exampleModalLabel" style="font-size: 13px;">
+					<?= lang('are_you_sure_you_want_to_delete') ?>
+				</h6>
 			</div>
 			<div class="modal-footer text-center">
 				<div style="margin: 0 auto;">
@@ -186,11 +174,11 @@ if($empty) {
     font-weight: 500 !important;" type="button" id="delete_staff"
 							class="btn btn-outline-success yes_btn"><?= lang('yes') ?>
 					</button>
-					<button style="min-width: 94px;font-size: 14px !important;
-    line-height: 14px !important;
-    padding: 12px 24px !important;
-    font-weight: 500 !important;" type="button" class="btn btn-outline-danger  cancel_btn"
-							data-dismiss="modal"><?= lang('cancel') ?></button>
+					<button
+						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
+						type="button" class="btn btn-outline-danger  cancel_btn" data-dismiss="modal">
+						<?= lang('cancel') ?>
+					</button>
 
 					<input type="hidden" name="sos_id">
 				</div>
@@ -202,16 +190,11 @@ if($empty) {
 
 </div>
 <script>
-
-
 	function initDataTable() {
-
 		var from_date = $('tbody').children('tr:first-child').children('td:nth-child(2)').text();
-		var to_date   = $('tbody').children('tr:last-child').children('td:nth-child(2)').text();
-
+		var to_date = $('tbody').children('tr:last-child').children('td:nth-child(2)').text();
 		console.log(from_date);
 		console.log(to_date);
-
 		var table = $('#example11').DataTable({
 			"searching": true,
 			"ordering": true,
@@ -277,7 +260,7 @@ if($empty) {
 				myMap_show_all_cars_onChange = new ymaps.Map("map", {
 					center: [55.76, 37.64],
 					zoom: 2
-				},{
+				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 
@@ -316,9 +299,7 @@ if($empty) {
 							'Couldn\'t detect address.';
 						carCoordinate.properties.set('balloonContentFooter', "<p class='mb-0' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1' style='color: #000 !important;'>" + newContent + "</span></p>");
 					});
-
 				});
-
 
 				myMap_show_all_cars_onChange.geoObjects.add(carCoordinate);
 				myMap_show_all_cars_onChange.controls.add(new ymaps.control.ZoomControl());
@@ -334,43 +315,32 @@ if($empty) {
 		$('.delete_sos').on('click', function () {
 			var id = $(this).parent('tr').children('td.show_car').data('id');
 			$('input[name="sos_id"]').val(id);
-
 		});
 
-
 		$('.yes_btn').click(function () {
-
 			data_id = $('input[name="sos_id"]').val();
-
 			$('.del_group_modal').modal('toggle');
-
 			$('.show_car').each(function () {
 				if ($(this).data('id') == data_id) {
 					$(this).parent('tr').remove();
 				}
 			});
-
 			unread = 0;
 			$('.far.fa-envelope.text-success').each(function () {
 				unread++;
 			});
 			$('.count_unread').text(unread);
-
-
 			$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
 				sos_visibility: 2,
 				gps_id: $('input[name="sos_id"]').val(),
 				count_unread: unread
 			});
-
 			$("#map").html('');
 			ymaps.ready(init_all);
-
 		});
 
 
 		$('.show_car').click(function () {
-
 			if ($(this).children('i').hasClass('fa-envelope')) {
 				$(this).children('i').removeClass('fa-envelope');
 				$(this).children('i').removeClass('text-success');
@@ -381,7 +351,6 @@ if($empty) {
 				$(this).children('i').addClass('text-success');
 				$(this).children('i').removeClass('fa-envelope-open');
 				$(this).children('i').removeClass('text-warning');
-
 			}
 
 			unread = 0;
@@ -405,7 +374,6 @@ if($empty) {
 				});
 			}
 
-
 			car_name = $(this).parent('tr').children('td:nth-child(1)').text();
 			car_nummber = $(this).parent('tr').children('td:nth-child(2)').text();
 			massage_time = $(this).parent('tr').children('td:nth-child(4)').text();
@@ -422,7 +390,7 @@ if($empty) {
 				var myMap_show_singleCar = new ymaps.Map("map", {
 					center: [45.8989, 54.56566565],
 					zoom: 2
-				},{
+				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
 				var carCoordinate = '';

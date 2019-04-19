@@ -52,7 +52,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
 		<div id="sample" style="position:relative;">
 			<div>
-				<table id="example11" class="table table-striped" style="font-size: 12px; !important">
+				<table id="example11" class="table table-striped table-borderless" style="font-size: 12px; !important">
 					<thead>
 					<tr>
 						<th><?= lang('type') ?></th>

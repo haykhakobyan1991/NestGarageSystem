@@ -50,15 +50,13 @@
 
 <?
 
-if($empty) {
+if ($empty) {
 	echo '<div class="alert alert-info text-center font-weight-bold">Դուք չունեք փոխադրամիջոց որին կցված է GPS սարք</div>';//todo
 	return false;
 }
 
 
 $count = count($result);
-
-
 
 
 ?>
@@ -300,7 +298,8 @@ $count = count($result);
 							class="btn btn-sm btn-outline-success cancel_btn d-none">
 							<img
 								style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-								src="<?= base_url() ?>assets/images/bars2.svg" alt=""/>
+								src="<?= base_url() ?>assets/images/bars2.svg"
+								alt=""/>
 						</button>
 						<button
 							type="button"
@@ -444,8 +443,13 @@ $count = count($result);
 						class="btn btn-outline-success cancel_btn"><?= lang('yes') ?>
 					</button>
 					<button
-						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;" type="button" class="btn btn-outline-danger yes_btn" data-dismiss="modal"><?= lang('cancel') ?></button>
-					<input type="hidden" name="geo_id">
+						style="min-width: 94px;font-size: 14px !important;line-height: 14px !important;padding: 12px 24px !important;font-weight: 500 !important;"
+						type="button"
+						class="btn btn-outline-danger yes_btn"
+						data-dismiss="modal"><?= lang('cancel') ?></button>
+					<input
+						type="hidden"
+						name="geo_id">
 				</div>
 			</div>
 		</div>
@@ -455,9 +459,7 @@ $count = count($result);
 
 <script
 	type="text/javascript">
-
 	$(document).ready(function () {
-
 		ymaps.ready(init_all);
 
 		function init_all() {
@@ -467,7 +469,6 @@ $count = count($result);
 			}, {
 				maxZoom: 18
 			}, {suppressMapOpenBlock: true});
-
 			$('input[name="coordinate"]').each(function () {
 				if ($(this).is(':checked')) {
 					geoObject_coordinates = $(this).data('coordinate');
@@ -475,7 +476,6 @@ $count = count($result);
 					var rand_color = '#' + (function co(lor) {
 						return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 					})('') + '75';
-
 					var myPolygon = new ymaps.Polygon([
 						array_stting
 					], {}, {
@@ -484,19 +484,15 @@ $count = count($result);
 						strokeColor: rand_color,
 						strokeWidth: 2
 					});
-
 					myMap_show_all_geofances.geoObjects.add(myPolygon);
 					myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
 					myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
-
 				}
 			});
-
 			var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
 			$('#map > ymaps').css('width', width_map);
 			$('#map > ymaps').css('overflow', 'scroll');
 		}
-
 
 		//Yandex map checkbox onchange
 		$('input[name="coordinate"], .sel_all_checkbox').on('change', function () {
@@ -510,7 +506,6 @@ $count = count($result);
 				}, {
 					maxZoom: 18
 				}, {suppressMapOpenBlock: true});
-
 				$('input[name="coordinate"]').each(function () {
 					if ($(this).is(':checked')) {
 						geoObject_coordinates = $(this).data('coordinate')
@@ -518,7 +513,6 @@ $count = count($result);
 						var rand_color = '#' + (function co(lor) {
 							return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
 						})('') + '75';
-
 						var myPolygon = new ymaps.Polygon([
 							array_stting
 						], {}, {
@@ -527,7 +521,6 @@ $count = count($result);
 							strokeColor: rand_color,
 							strokeWidth: 2
 						});
-
 						myMap_show_all_geofances.geoObjects.add(myPolygon);
 						myMap_show_all_geofances.controls.add(new ymaps.control.ZoomControl());
 						myMap_show_all_geofances.setBounds(myMap_show_all_geofances.geoObjects.getBounds());
@@ -539,47 +532,33 @@ $count = count($result);
 				$('#map > ymaps').css('overflow', 'scroll');
 			}
 		});
-
-
 		//Yandex Map Modal Edit geoObject Start
 		$(document).on('click', '.settings_geoObject', function () {
 			var th = $(this);
 			$('#shown').on('shown.bs.modal', function () {
 				$('#map_settings').html('');
-
 				geoObject_coordinates = th.parent('tr').children('td:first-child').children('input').attr('data-coordinate');
 				array_seting = JSON.parse("[" + geoObject_coordinates + "]");
-
 				$('input[name="edit_geometry"]').val(array_seting);
-
 				ymaps.ready(init_singleCar(array_seting));
 
 				function init_singleCar(array_seting) {
-
 					var myMap_geofencesSetting = new ymaps.Map("map_settings", {
 						center: [54.45454, 53.4665],
 						zoom: 2
 					}, {
 						maxZoom: 18
 					}, {suppressMapOpenBlock: true});
-
-
 					var myPolygon = new ymaps.Polygon([
 						array_seting
 					]);
-
-					//console.log(array_seting);
-
 					myMap_geofencesSetting.geoObjects.add(myPolygon);
 					myMap_geofencesSetting.controls.add(new ymaps.control.ZoomControl());
 					myMap_geofencesSetting.setBounds(myMap_geofencesSetting.geoObjects.getBounds(), {checkZoomRange: true});
-
 					myPolygon.geometry.events.add('change', function () {
 						$('input[name="edit_geometry"]').val(myPolygon.geometry.getCoordinates().toString());
 					});
-
 					myPolygon.editor.startDrawing();
-
 				}
 			});
 
@@ -625,7 +604,6 @@ $count = count($result);
 			});
 
 			myPolygon.geometry.events.add('change', function () {
-				console.log(myPolygon.geometry.getCoordinates().toString());
 				$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
 			});
 			myPolygon.editor.startDrawing();
@@ -649,7 +627,6 @@ $count = count($result);
 				});
 
 				myPolygon.geometry.events.add('change', function () {
-					// console.log(myPolygon.geometry.getCoordinates().toString());
 					$('input[name="geometry"]').val(myPolygon.geometry.getCoordinates().toString());
 				});
 				myPolygon.editor.startDrawing();
@@ -669,9 +646,10 @@ $count = count($result);
 	});
 
 
-	$('.refresh_map').click(function () {
+	$('.refresh_map').click(function (e) {
 		$('#map_new').html('');
 		createNewGeofences();
+		e.preventDefault();
 	})
 
 	//Yandex Map Modal End
@@ -798,19 +776,15 @@ $count = count($result);
 			complete: function () {
 			}
 		});
-
 	});
 
 
 	$(document).on('click', '#edit_geoference_btn', function (e) {
-
 		var form_data = new FormData($('form#edit_geo')[0]);
 		var url = '<?=base_url($this->uri->segment(1) . '/Gps/edit_geoference_ax') ?>';
 		e.preventDefault();
-
 		$('input').removeClass('border border-danger');
 		$('select').parent('div').children('button').removeClass('border border-danger');
-
 		$.ajax({
 			url: url,
 			type: 'POST',
@@ -821,7 +795,6 @@ $count = count($result);
 			processData: false,
 			beforeSend: function () {
 				scroll_top();
-
 				$(this).html('<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg" />');
 				$(this).addClass('bg-success2');
 				$('.alert-info').removeClass('d-none');
@@ -871,11 +844,8 @@ $count = count($result);
 			complete: function () {
 			}
 		});
-
 	});
-
 </script>
-
 
 <script>
 	$(document).on('click', '#delete_geo_modal', function () {
@@ -891,7 +861,6 @@ $count = count($result);
 			location.reload();
 		});
 	});
-
 
 	$(function () {
 		$("#splitter").zinoSplitter({
@@ -910,63 +879,50 @@ $count = count($result);
 		});
 
 		function log(str) {
-
 			if (str == 'resize') {
-
-				console.log($('.panel-right').width() - $('.panel-left').width() + 30)
 				var width_map = $('.panel-right').width() - $('.panel-left').width() + 30;
-
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
-
 				if ($('.panel-left').width() <= 565) {
 					$('input[type=search]').css('display', 'none');
-
-					$('.create_span').css('display', 'none')
+					$('.create_span').css('display', 'none');
 					$('div#example_wrapper').css('margin-top', '0');
 					$('.number_of').removeClass('col-sm-2');
 					$('.number_of').addClass('col-sm-12');
-
 				} else {
 					$('input[type=search]').css('display', 'inline-block');
-
-					$('.create_span').css('display', 'inline-block')
+					$('.create_span').css('display', 'inline-block');
 					$('div#example_wrapper').css('margin-top', '-26px');
 					$('.number_of').removeClass('col-sm-12');
 					$('.number_of').addClass('col-sm-2');
 				}
-
-
 			}
 		}
-
 	});
-
 	$(document).ready(function () {
 		function myFunction() {
 			if (navigator.userAgent.indexOf("Firefox") != -1) {
 				var window_height = window.innerHeight - 315;
 				var window_height2 = window.innerHeight - 150;
 				$('.dataTables_scrollBody').css('height', window_height);
-				console.log(window_height);
-				console.log(window_height2);
-				console.log('Firefox');
 				$('#splitter').css('height', window_height2);
-
-				console.log('firefox');
-				console.log(window_height);
-				console.log(window_height2);
-
 			} else {
-
-				console.log('chrome');
 				$('.dataTables_scrollBody').css('height', 'calc(100% - 315px)');
 				$('#splitter').css('height', 'calc(100% - 150px)');
 			}
 		}
 
 		myFunction();
-	})
+
+		$('.create_span').click(function() {
+
+				if (navigator.userAgent.indexOf("Firefox") != -1) {
+					var window_height = window.innerHeight;
+					$('.modal-content').css('height', window_height);
+				}
+
+		})
+	});
 
 	$(document).ready(function () {
 		$('.count_unread').text('18')

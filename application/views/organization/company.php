@@ -72,9 +72,9 @@ $i = '';
 								<div
 									class="row"
 									style="margin-top: -2px;">
-									<label
-										class="col-form-label col-sm-5"><?= lang('company_type') ?>
-										*</label>
+									<label class="col-form-label col-sm-5">
+										<?= lang('company_type') ?>*
+									</label>
 									<select
 										name="company_type"
 										class="selectpicker form-control form-control-sm  col-sm-7"
@@ -129,16 +129,10 @@ $i = '';
 								</div>
 							</div>
 						</div>
-
-
 					</div>
-
-
 					<div
 						class="col-sm-5"
 						style="position: relative !important;">
-
-
 						<h5 style="margin-left: 64px;float: none;display: unset;"><?= lang('logo') ?></h5>
 						<div
 							class="media">
@@ -178,7 +172,6 @@ $i = '';
 										type="hidden"
 										name="u_logo"
 										value="<?= ($company['logo'] != '' ? base_url('uploads/' . $folder . '/company/' . $company['logo']) : base_url('assets/images/no_choose_image.svg')) ?>">
-
 								</div>
 							</div>
 						</div>
@@ -218,7 +211,6 @@ $i = '';
 									placeholder="<?= lang('Activity_Region') ?>">
 							</div>
 						</div>
-
 						<div
 							class="form-row mt-md-1 mt-1">
 							<div
@@ -240,7 +232,6 @@ $i = '';
 									placeholder="<?= lang('zip_code') ?>">
 							</div>
 						</div>
-
 						<div
 							class="form-group mt-md-1 mt-1 mb-0">
 							<div
@@ -254,7 +245,6 @@ $i = '';
 									placeholder="<?= lang('Activity_address') ?>">
 							</div>
 						</div>
-
 						<div
 							class="row mt-1">
 							<label
@@ -269,7 +259,6 @@ $i = '';
 									placeholder="<?= lang('email') ?>">
 							</div>
 						</div>
-
 						<div
 							class="row mt-1">
 							<label
@@ -285,8 +274,6 @@ $i = '';
 							</div>
 						</div>
 					</div>
-
-
 					<div
 						class="col-sm-6">
 						<label
@@ -369,8 +356,7 @@ $i = '';
 
 				<div
 					class="row">
-					<div
-						class="col-md-12 col-md-6 ddddd">
+					<div class="col-md-12 col-md-6 ddddd">
 
 						<p class="font-weight-bold display-5 mt-3"><?= lang('general_information') ?></p>
 						<hr class="my-2">
@@ -416,22 +402,6 @@ $i = '';
 									</div>
 								</div>
 							</div>
-
-
-							<!--							<div class="col-sm-4">-->
-							<!--								<div class="row">-->
-							<!--									<label class="col-sm-3 col-form-label"-->
-							<!--										   style="font-size: 15px;">-->
-							<? //= lang('owner_position') ?><!--</label>-->
-							<!--									<div class="col-sm-8">-->
-							<!--										<input value="-->
-							<? //= $company['owner_position'] ?><!--"-->
-							<!--											   name="owner_position" type="text" class="form-control form-control-sm"-->
-							<!--											   placeholder="-->
-							<? //= lang('owner_position') ?><!--">-->
-							<!--									</div>-->
-							<!--								</div>-->
-							<!--							</div>-->
 						</div>
 
 						<div

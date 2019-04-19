@@ -772,7 +772,7 @@ class Fleet_history extends MX_Controller {
 			$Arr[] = array(
 				'date' => date($val['add_date']),
 				'price' => intval($val['price']),
-				'fleet_name' => $val['brand_model'].'<span class="f" style="font-size: 0.2px" >f'.$val['fleet_id'].'</span>'
+				'fleet_name' => $val['brand_model'].'<span class="f" style="font-size: 0" >f'.$val['fleet_id'].'</span>'
 			);
 
 		}
@@ -780,9 +780,6 @@ class Fleet_history extends MX_Controller {
 		return $Arr;
 
 	}
-
-
-
 
 	public function get_unique_associate_array($array) {
 

@@ -1,0 +1,44 @@
+.row.bg-secondary {
+min-height: 194px;
+}
+
+.modal {
+top: 20% !important;
+}
+
+.settings_btn, .print-btn:hover, .settings_btn, .print-btn:focus, .plus_btn:hover, .plus_btn:focus, .set_btn:hover, .set_btn:focus, .delete_btn:focus, .delete_btn:hover {
+border: none !important;
+outline: none !important;
+cursor: pointer;
+background: #fff !important;
+}
+
+.settings_btn, .print-btn, .plus_btn, .set_btn, .delete_btn {
+border: none !important;
+outline: none !important;
+cursor: pointer;
+}
+
+
+.dataTables_scrollBody::-webkit-scrollbar,
+.col-sm-6.scroll_style::-webkit-scrollbar,
+.col-sm-5.scroll_style::-webkit-scrollbar {
+width: .25em;
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-track,
+.col-sm-6.scroll_style::-webkit-scrollbar-track,
+.col-sm-5.scroll_style::-webkit-scrollbar-track {
+-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.dataTables_scrollBody::-webkit-scrollbar-thumb,
+.col-sm-6.scroll_style::-webkit-scrollbar-thumb,
+.col-sm-5.scroll_style::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+outline: 1px solid slategrey;
+}
+
+.chart_col {
+display: none;
+}

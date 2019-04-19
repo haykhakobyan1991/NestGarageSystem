@@ -930,8 +930,7 @@ endforeach;
 											style="-webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%; width: 36px; height: 36px;"
 											class="mr-3"
 											src="<?= ($row['photo'] != '' ? base_url('uploads/' . $folder . '/staff/thumbs/' . $row['photo']) : base_url('assets/img/b.jpg')) ?>"
-											alt="Generic placeholder image"
-											title="">
+											alt="Generic placeholder image" title="">
 										<div
 											class="media-body">
 											<?= $row['first_name'] . ' ' . $row['last_name'] ?>
@@ -1198,7 +1197,6 @@ endforeach;
 		var url = '<?=base_url($this->uri->segment(1) . '/Organization/edit_staff_ax') ?>';
 		e.preventDefault();
 		var form_data = new FormData($('form#staff_edit')[0]);
-
 		$('input').removeClass('border border-danger');
 		$('input').parent('td').removeClass('border border-danger');
 		$('select').removeClass('border border-danger');
@@ -1220,19 +1218,14 @@ endforeach;
 			},
 			success: function (data) {
 				if (data.success == '1') {
-
 					close_message();
 					$('.alert-success').removeClass('d-none');
 					$('.alert-success').html(data.message);
 					loading('stop', 'edit_staff_btn');
 					var url = "<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff')?>";
-
 					$(location).attr('href', url);
-
-
 				} else {
 					$('.alert-info').addClass('d-none');
-
 					if ($.isArray(data.error.elements)) {
 						scroll_top();
 						loading('stop', 'edit_staff_btn');
@@ -1245,12 +1238,10 @@ endforeach;
 									$('select[name="' + index + '"]').parent('div').children('button').addClass('border border-danger');
 									close_message();
 									$('.alert-danger').removeClass('d-none');
-
 									if (value != tmp) {
 										errors += value;
 									}
 									tmp = value;
-
 								} else {
 									$('input[name="' + index + '"]').removeClass('border border-danger');
 									$('select[name="' + index + '"]').parent('div').children('button').removeClass('border border-danger');
@@ -1258,9 +1249,7 @@ endforeach;
 							});
 						});
 					}
-
 					$('.alert-danger').html(errors);
-
 				}
 			},
 			error: function (jqXHR, textStatus) {
@@ -1272,8 +1261,6 @@ endforeach;
 			}
 		});
 	});
-
-
 	$(document).on('click', '#edit_staff_modal', function (e) {
 		e.preventDefault();
 		var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/edit_staff_modal_ax/')?>' + $(this).data('id');
@@ -1285,39 +1272,33 @@ endforeach;
 		});
 
 	});
-
-
 	$(window).on('load', function () {
-		<? if($this->input->get('id') != '') { ?>
+		<?if($this->input->get('id') != '') {?>
 		$('#edit_staff_modal[data-id="<?=$this->input->get('id')?>"]').trigger('click');
-		<? } ?>
+		<?}?>
 
 		$('#department').selectpicker({
 			noneResultsText: '<?=lang('add')?> {0}'
 		});
 	});
 
+
 	/* Staff image Uploade Start*/
 	function readURL2(input) {
-
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
-
 			reader.onload = function (e) {
 				$('#img-upload2').attr('src', e.target.result);
 			};
-
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
 
 	// Input type File Staff
 	$(document).on('change', '.btn_input', function () {
-
 		var upload_file = $(this).val();
 		var upload_file = upload_file.split("\\");
 		var upload_file = upload_file[upload_file.length - 1];
-
 		var text_truncate = function (str, length, ending) {
 			if (length == null) {
 				length = 100;
@@ -1331,7 +1312,6 @@ endforeach;
 				return str;
 			}
 		};
-
 		if (upload_file == '') {
 			$(this).parent('label').children('span').text('Brows file');
 		} else {
@@ -1342,9 +1322,7 @@ endforeach;
 				$(this).parent('label').children('span').text(upload_file);
 			}
 		}
-
 	});
-
 
 	function nflTeamsWithDefaults(q, sync) {
 		if (q === '') {
@@ -1371,16 +1349,13 @@ endforeach;
 		$('input[name="head"]').val('1');
 	});
 
-
 	$(document).on('click', 'li.no-results', function () {
 		var new_option = $(this).text().split('"')[1];
 
 		if (new_option != '') {
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Organization/add_department_select_ax') ?>';
 			$.post(url, {title: new_option}, function (e) {
-				$("#department")
-					.append('<option value="' + e + '" selected>' + new_option + '</option>')
-					.selectpicker('refresh');
+				$("#department").append('<option value="' + e + '" selected>' + new_option + '</option>').selectpicker('refresh');
 			});
 		}
 	});
@@ -1388,5 +1363,7 @@ endforeach;
 	$('#remove_picture').click(function () {
 		$('#img-upload2').attr('src', '<?= base_url('assets/images/no_choose_image.svg') ?>');
 		$('#imgInp2').val('');
-	})
+	});
 </script>
+
+

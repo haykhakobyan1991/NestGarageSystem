@@ -1012,7 +1012,7 @@ foreach ($result2 as $name => $value) {
 				),
 					myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 						balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-						hintContent: '<?=lang("object")?> '+$(this).parent('tr').children('td.car_name').children('.car_model').text()+'<br><?=lang("driver")?> '+$(this).parent('tr').children('.staff_span').children('span').text(),
+						hintContent: '<?=lang("object")?> ' + $(this).parent('tr').children('td.car_name').children('.car_model').text() + '<br><?=lang("driver")?> ' + $(this).parent('tr').children('.staff_span').children('span').text(),
 						balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
 							"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 							"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
@@ -1099,7 +1099,7 @@ foreach ($result2 as $name => $value) {
 						),
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-								hintContent: '<?=lang("object")?> '+$(this).parent('tr').children('td.car_name').children('.car_model').text()+'<br><?=lang("driver")?> '+$(this).parent('tr').children('.staff_span').children('span').text(),
+								hintContent: '<?=lang("object")?> ' + $(this).parent('tr').children('td.car_name').children('.car_model').text() + '<br><?=lang("driver")?> ' + $(this).parent('tr').children('.staff_span').children('span').text(),
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
@@ -1212,7 +1212,7 @@ foreach ($result2 as $name => $value) {
 								),
 									myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 										balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-										hintContent: '<?=lang("object")?> '+$(this).parent('tr').children('td.car_name').children('.car_model').text()+'<br><?=lang("driver")?> '+$(this).parent('tr').children('.staff_span').children('span').text(),
+										hintContent: '<?=lang("object")?> ' + $(this).parent('tr').children('td.car_name').children('.car_model').text() + '<br><?=lang("driver")?> ' + $(this).parent('tr').children('.staff_span').children('span').text(),
 										balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
 											"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 											"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
@@ -1330,7 +1330,7 @@ foreach ($result2 as $name => $value) {
 						),
 							myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 								balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-								hintContent: '<?=lang("object")?> '+$(this).parent('tr').children('td.car_name').children('.car_model').text()+'<br><?=lang("driver")?> '+$(this).parent('tr').children('.staff_span').children('span').text(),
+								hintContent: '<?=lang("object")?> ' + $(this).parent('tr').children('td.car_name').children('.car_model').text() + '<br><?=lang("driver")?> ' + $(this).parent('tr').children('.staff_span').children('span').text(),
 								balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank'>" + $(this).parent('tr').children('td.car_name').children('.car_model').text() + "</a></span></p>" +
 									"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1'>" + $(this).parent('tr').children('td.car_name').children('small').text() + "</span></p>" +
 									"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +
@@ -1391,7 +1391,7 @@ foreach ($result2 as $name => $value) {
 									),
 										myPlacemarkWithContent = new ymaps.Placemark([latitude, longitude], {
 											balloonContentHeader: "<p><?=lang('basic_information')?></p>",
-											hintContent: '<?=lang("object")?> '+$(this).parent('tr').children('td.car_name').children('.car_model').text()+'<br><?=lang("driver")?> '+$(this).parent('tr').children('.staff_span').children('span').text(),
+											hintContent: '<?=lang("object")?> ' + $(this).parent('tr').children('td.car_name').children('.car_model').text() + '<br><?=lang("driver")?> ' + $(this).parent('tr').children('.staff_span').children('span').text(),
 											balloonContentBody: "<p class='mb-0'><?=lang('object')?>:<span class='ml-1'><a href='<?=$this->load->old_baseUrl() . $lng . '/edit_vehicles/'?>" + $(this).data('id') + "' target='_blank' >" + $(this).parent('tr').children('td:nth-child(2)').children('.car_model').text() + "</a></span></p>" +
 												"<p class='mb-0'><?=lang('license_plate')?>:<span class='ml-1 car_number'>" + $(this).parent('tr').children('td:nth-child(2)').children('small').text() + "</span></p>" +
 												"<p class='mb-0'><?=lang('message_time')?>:<span class='ml-1'>" + $(this).parent('tr').children('.last_time_update').text() + "</span></p>" +

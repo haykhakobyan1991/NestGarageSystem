@@ -39,6 +39,10 @@
 	.dataTables_filter>label {
 		margin-right: 70%;
 	}
+
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 <script src="<?= base_url('assets/js/go.js') ?>"></script>
 <script src="https://gojs.net/latest/extensions/Robot.js"></script>

@@ -7,6 +7,10 @@ $folder = $this->session->folder;
 		font-size: 27px;
 		padding-top: 5px !important;
 	}
+
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 <form id="staff_edit" enctype="multipart/form-data">
 	<input type="hidden" name="staff_id" value="<?= $id ?>">

@@ -72,6 +72,10 @@
 		background-color: #fff !important;
 	}
 
+	input::placeholder{
+		font-size: 12px !important;
+	}
+
 </style>
 
 

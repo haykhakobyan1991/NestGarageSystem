@@ -1,3 +1,8 @@
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 <form id="vehicle_filter">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
 	<div class="container-fluid">

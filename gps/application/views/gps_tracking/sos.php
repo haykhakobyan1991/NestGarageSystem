@@ -161,11 +161,7 @@
 								$unread++;
 							}
 
-							if ($row['sos_visibility'] != '2') {
-
-								?>
-
-
+							if ($row['sos_visibility'] != '2') {?>
 								<tr>
 									<td data-id="<?= $id ?>"
 										class="show_car"
@@ -259,7 +255,6 @@
 						type="hidden"
 						name="sos_id">
 				</div>
-			</div>
 		</div>
 	</div>
 </div>
@@ -417,7 +412,6 @@
 			ymaps.ready(init_all);
 		});
 
-
 		$('.show_car').click(function () {
 			if ($(this).children('i').hasClass('fa-envelope')) {
 				$(this).children('i').removeClass('fa-envelope');
@@ -436,7 +430,6 @@
 				unread++;
 			});
 			$('.count_unread').text(unread);
-
 
 			if ($(this).children('i').hasClass('fa-envelope')) {
 				$.post('<?=base_url($this->uri->segment(1) . '/Gps/sos_visibility') ?>', {
@@ -459,7 +452,6 @@
 			current_address = $(this).parent('tr').children('.address_span').text();
 
 			$('#map').html('');
-
 			coordinate = $(this).data('coordinate');
 			array = JSON.parse("[" + coordinate + "]");
 			ymaps.ready(init_singleCar(array));
@@ -488,7 +480,6 @@
 				myMap_show_singleCar.controls.add(firstButton, {float: 'left'});
 
 				//Click Function Show All Geofences
-
 				latitude = array[0];
 				longitude = array[1];
 
@@ -521,7 +512,6 @@
 				});
 
 				myMap_show_singleCar.geoObjects.add(carCoordinate);
-
 				myMap_show_singleCar.controls.add(new ymaps.control.ZoomControl());
 				myMap_show_singleCar.setBounds(myMap_show_singleCar.geoObjects.getBounds(), {checkZoomRange: true});
 

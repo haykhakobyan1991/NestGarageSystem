@@ -1,3 +1,8 @@
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 <div class="modal-body">
 	<form id="group_edit">
 		<div class="form-group row">

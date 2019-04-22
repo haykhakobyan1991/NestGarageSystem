@@ -5,6 +5,10 @@
 		font-size: 20px;
 		padding: 8px !important;
 	}
+
+	 input::placeholder{
+		 font-size: 12px !important;
+	 }
 </style>
 <form id="vehicle_insurance">
 	<div class="row col-sm-12 col-md-12 bpp_o pb-5">

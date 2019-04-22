@@ -36,6 +36,10 @@ endforeach;
 	li.no-results {
 		cursor: pointer;
 	}
+
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 <!-- Staff Start -->
 <div

@@ -34,6 +34,10 @@
 	table td {
 		padding: 0 5px !important;
 	}
+
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 
 

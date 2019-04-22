@@ -13,6 +13,9 @@
 	div#example4_wrapper {
 		width: 100%;
 	}
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 <script>
 	$(document).ready(function () {

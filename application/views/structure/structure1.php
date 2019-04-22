@@ -43,7 +43,10 @@
 	src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 <style>tr {
 		background: rgba(0, 0, 0, .05) !important
-	}</style>
+	}
+input::placeholder{
+	font-size: 12px !important;
+}</style>
 
 <?
 if ($this->uri->segment('3') == 'fleet_history') {

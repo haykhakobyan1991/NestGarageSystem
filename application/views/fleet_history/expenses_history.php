@@ -48,6 +48,12 @@
 	rel="stylesheet"
 	href="<?= base_url() ?>assets/css/expenses_history.css"/>
 
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
+
 <?
 $time = strtotime(mdate('%Y-%m-%d', now()));
 ?>
@@ -1170,7 +1176,5 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				</div>
 			</div>
 		</div>
-
 	</div>
-
 	<!-- Create Group Modal End -->

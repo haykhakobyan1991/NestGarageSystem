@@ -7,6 +7,11 @@ $i = '';
 <link
 	rel="stylesheet"
 	href="<?= base_url() ?>assets/css/company.css"/>
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 
 <!--  Company  Start-->
 <div

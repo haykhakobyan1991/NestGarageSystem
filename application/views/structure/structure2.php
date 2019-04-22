@@ -49,6 +49,9 @@
 		color: #000 !important;
 		background: #eaedf0 !important;
 	}
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 <?
 if ($this->uri->segment('3') == 'fleet_history') {

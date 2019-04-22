@@ -1,4 +1,9 @@
 <script src="<?= base_url() ?>assets/js/excelexportjs.js"></script>
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 <?
 $folder = $this->session->folder;
 ?>

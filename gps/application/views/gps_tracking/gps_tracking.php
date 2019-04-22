@@ -1415,7 +1415,6 @@ foreach ($result2 as $name => $value) {
 
 									myPlacemarkWithContent.events.add('balloonopen', function (e) {
 										var car_number = $('.car_number').text();
-										//console.log(car_number);
 										$('td small').each(function () {
 											if ($(this).text() == car_number) {
 												var get_address = $(this).parent('td').parent('tr').children('.address_span').text();
@@ -1802,7 +1801,6 @@ foreach ($result2 as $name => $value) {
 								}
 							}
 
-
 							if ($('input[name="' + e + '"]').val() != val.lat + ', ' + val.long) {
 								$('input[name="' + e + '"]').val(val.lat + ', ' + val.long).trigger('change');
 								console.log('coordinate changed ' + e);
@@ -1836,7 +1834,7 @@ foreach ($result2 as $name => $value) {
 		$('.global_change.speeds').each(function () {
 			let FLEET_SPEED = parseInt($(this).val());
 			$(this).parent('tr').children('.fleet_speed').text(FLEET_SPEED + '<?=lang('km/h')?>');
-		})
+		});
 
 	});
 
@@ -1844,7 +1842,7 @@ foreach ($result2 as $name => $value) {
 	$('.global_change.speeds').on('change', function () {
 		let FLEET_SPEED = parseInt($(this).val());
 		$(this).parent('tr').children('.fleet_speed').text(FLEET_SPEED + '<?=lang('km/h')?>');
-	})
+	});
 
 
 </script>

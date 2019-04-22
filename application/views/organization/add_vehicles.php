@@ -1,6 +1,11 @@
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/add_vehicles.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
 <script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 
 <div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;padding-bottom: 10px;"
 	 aria-labelledby="list-company-list">

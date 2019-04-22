@@ -1,3 +1,9 @@
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
+
 <form id="user_edit_1">
 
 

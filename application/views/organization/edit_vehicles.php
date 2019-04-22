@@ -47,6 +47,9 @@
 		background: #fff !important;
 		color: #212529 !important;
 	}
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>

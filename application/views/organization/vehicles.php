@@ -9,6 +9,10 @@
 	table#example3 thead tr th:last-child:before {
 		content: '';
 	}
+
+	input::placeholder{
+		font-size: 12px !important;
+	}
 </style>
 
 <script>

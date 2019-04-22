@@ -1,3 +1,9 @@
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
+
 <form id="department_edit">
 	<div class="for_message">
 		<div class="alert alert-success d-none " role="alert"></div>

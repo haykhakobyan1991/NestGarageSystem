@@ -2,7 +2,11 @@
 <script src="<?= base_url() ?>assets/js/table.js"></script>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
 <link rel="stylesheet" href="<?= base_url() ?>assets/css/department.css"/>
-
+<style>
+	input::placeholder{
+		font-size: 12px !important;
+	}
+</style>
 
 <script>
 	$(document).ready(function () {

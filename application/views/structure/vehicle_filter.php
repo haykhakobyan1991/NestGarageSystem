@@ -1,188 +1,260 @@
 <style>
-	input::placeholder{
+	input::placeholder {
 		font-size: 12px !important;
 	}
 </style>
-<form id="vehicle_filter">
-	<div class="row col-sm-12 col-md-12 bpp_o pb-5">
-	<div class="container-fluid">
-		<table id="ex_11" class="table table-striped table-borderless w-100">
-			<thead class="thead_tables">
-			<tr>
-				<th class="table_th"><?=lang('vehicle')?></th>
-				<th class="table_th"><?=lang('when')?></th>
-				<th class="table_th"><?=lang('whence')?></th>
-				<th class="table_th"><?=lang('producer')?></th>
-				<th class="table_th"><?=lang('model')?></th>
-				<th class="table_th"><?=lang('type')?></th>
-				<th class="table_th"><?=lang('quantity')?> </th>
-				<th class="table_th"><?=lang('unit_cost')?></th>
-				<th class="table_th"><?=lang('price')?></th>
-				<th class="table_th"><?=lang('other_info')?></th>
-				<th class="">
-					<? if (count($fleet['id']) > 1) { ?>
-					<span data-toggle="modal"
-						  data-target="#vehicle_filter_m"
-						  class=" btn btn-outline-secondary btn-sm " data-id="ex_11"
-						  style="padding: .25rem .5rem !important;">
+<form
+	id="vehicle_filter">
+	<div
+		class="row col-sm-12 col-md-12 bpp_o pb-5">
+		<div
+			class="container-fluid">
+			<table
+				id="ex_11"
+				class="table table-striped table-borderless w-100">
+				<thead
+					class="thead_tables">
+				<tr>
+					<th class="table_th"><?= lang('vehicle') ?></th>
+					<th class="table_th"><?= lang('when') ?></th>
+					<th class="table_th"><?= lang('whence') ?></th>
+					<th class="table_th"><?= lang('producer') ?></th>
+					<th class="table_th"><?= lang('model') ?></th>
+					<th class="table_th"><?= lang('type') ?></th>
+					<th class="table_th"><?= lang('quantity') ?> </th>
+					<th class="table_th"><?= lang('unit_cost') ?></th>
+					<th class="table_th"><?= lang('price') ?></th>
+					<th class="table_th"><?= lang('other_info') ?></th>
+					<th class="">
+						<? if (count($fleet['id']) > 1) { ?>
+						<span
+							data-toggle="modal"
+							data-target="#vehicle_filter_m"
+							class=" btn btn-outline-secondary btn-sm "
+							data-id="ex_11"
+							style="padding: .25rem .5rem !important;">
 				<? } else { ?>
-						<span class="ex_11_add_new_tr btn btn-outline-secondary btn-sm " data-id="ex_11"
-							  style="padding: .25rem .5rem !important;">
+						<span
+							class="ex_11_add_new_tr btn btn-outline-secondary btn-sm "
+							data-id="ex_11"
+							style="padding: .25rem .5rem !important;">
 				<? } ?>
 							<i class="fa fa-plus"> </i>
 					</span>
-				</th>
-			</tr>
-			</thead>
-			<tbody >
-			<?
-			if ($fleet_data) {
-				foreach ($fleet_data as $row) {
-					?>
+					</th>
+				</tr>
+				</thead>
+				<tbody>
+				<?
+				if ($fleet_data) {
+					foreach ($fleet_data as $row) {
+						?>
 
-					<tr style="height: 40px;">
+						<tr style="height: 40px;">
 
-						<td class="border">
-							<?= $row['brand_model'] ?>
-						</td>
+							<td class="border">
+								<?= $row['brand_model'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['add_date'] ?>
-						</td>
+							<td class="border">
+								<?= $row['add_date'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['whence'] ?>
-						</td>
+							<td class="border">
+								<?= $row['whence'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['producer'] ?>
-						</td>
+							<td class="border">
+								<?= $row['producer'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['model'] ?>
-						</td>
+							<td class="border">
+								<?= $row['model'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['type'] ?>
-						</td>
+							<td class="border">
+								<?= $row['type'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['count'] ?>
-						</td>
+							<td class="border">
+								<?= $row['count'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['one_price'] ?>
-						</td>
+							<td class="border">
+								<?= $row['one_price'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['price'] ?>
-						</td>
+							<td class="border">
+								<?= $row['price'] ?>
+							</td>
 
-						<td class="border">
-							<?= $row['other_info'] ?>
-						</td>
+							<td class="border">
+								<?= $row['other_info'] ?>
+							</td>
 
-						<td class="border"></td>
-					</tr>
+							<td class="border"></td>
+						</tr>
 
-					<?
+						<?
+					}
 				}
-			}
-			echo '</tbody>';
-			if (count($fleet['id']) == 1) { ?>
+				echo '</tbody>';
+				if (count($fleet['id']) == 1) { ?>
 
-			<tfoot class="ex_11">
-			<tr>
-				<td class="border">
-					<input title="" readonly type="text" name="vehicle[1]" value="<?= $fleet['name'][0] ?>"
-						   class="form-control text-center"/>
-					<input type="hidden" name="fleet_id" value="<?= $fleet['id'][0] ?>">
-				</td>
-				<td class="border">
-					<input title="" type="date" name="date[1]" value="<?= mdate('%Y-%m-%d', now()) ?>"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="text" name="whence[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="text" name="producer[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="text" name="model[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="text" name="type[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="number" min="0" name="count[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="number" min="0" name="one_price[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border">
-					<input title="" type="number" min="0" name="price[1]"
-						   class="form-control text-center"/>
-				</td>
+				<tfoot
+					class="ex_11">
+				<tr>
+					<td class="border">
+						<input
+							title=""
+							readonly
+							type="text"
+							name="vehicle[1]"
+							value="<?= $fleet['name'][0] ?>"
+							class="form-control text-center"/>
+						<input
+							type="hidden"
+							name="fleet_id"
+							value="<?= $fleet['id'][0] ?>">
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="date"
+							name="date[1]"
+							value="<?= mdate('%Y-%m-%d', now()) ?>"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="text"
+							name="whence[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="text"
+							name="producer[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="text"
+							name="model[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="text"
+							name="type[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="number"
+							min="0"
+							name="count[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="number"
+							min="0"
+							name="one_price[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border">
+						<input
+							title=""
+							type="number"
+							min="0"
+							name="price[1]"
+							class="form-control text-center"/>
+					</td>
 
-				<td class="border">
-					<input title="" type="text" name="other_info[1]"
-						   class="form-control text-center"/>
-				</td>
-				<td class="border"></td>
-			</tr>
-			</tfoot>
-			<? } ?>
+					<td class="border">
+						<input
+							title=""
+							type="text"
+							name="other_info[1]"
+							class="form-control text-center"/>
+					</td>
+					<td class="border"></td>
+				</tr>
+				</tfoot>
+				<? } ?>
 
-		</table>
+			</table>
+		</div>
 	</div>
-</div>
 
 </form>
 
-<div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<span id="filter" class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
-	<span id="load" class="btn save_cancel_btn btn-success d-none">
-		<?=$this->load->loading_svg()?>
+<div
+	class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
+	<span
+		id="filter"
+		class="save_cancel_btn btn btn-success"><?= lang('save') ?></span>
+	<span
+		id="load"
+		class="btn save_cancel_btn btn-success d-none">
+		<?= $this->load->loading_svg() ?>
 	</span>
 
-	<button class="dont_save btn btn-primary"><?= lang('cancel') ?></button>
-	<span style="color: #8c8c8c;" class="pl-3"><?= lang('changed_property') ?></span>
+	<button
+		class="dont_save btn btn-primary"><?= lang('cancel') ?></button>
+	<span
+		style="color: #8c8c8c;"
+		class="pl-3"><?= lang('changed_property') ?></span>
 </div>
 
 
 <!--   Modal Start -->
-<form id="vehicle_filter_modal">
-	<div class="modal fade " tabindex="-1" role="dialog" id="vehicle_filter_m"
-		 aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog" style="max-width: 80%;">
-			<div class="modal-content">
-				<div class="modal-header bg-dark">
-					<h6 class="text-white modal-title dar"><?=lang('filter')?></h6>
+<form
+	id="vehicle_filter_modal">
+	<div
+		class="modal fade "
+		tabindex="-1"
+		role="dialog"
+		id="vehicle_filter_m"
+		aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div
+			class="modal-dialog"
+			style="max-width: 80%;">
+			<div
+				class="modal-content">
+				<div
+					class="modal-header bg-dark">
+					<h6 class="text-white modal-title dar"><?= lang('filter') ?></h6>
 
 				</div>
-				<div class="modal-body">
+				<div
+					class="modal-body">
 
 
-					<table id="ex_11" class="table table-striped table-borderless w-100">
-						<thead class="thead_tables">
+					<table
+						id="ex_11"
+						class="table table-striped table-borderless w-100">
+						<thead
+							class="thead_tables">
 						<tr>
-							<th class="table_th"><?=lang('vehicle')?></th>
-							<th class="table_th"><?=lang('when')?></th>
-							<th class="table_th"><?=lang('whence')?></th>
-							<th class="table_th"><?=lang('producer')?></th>
-							<th class="table_th"><?=lang('model')?></th>
-							<th class="table_th"><?=lang('type')?></th>
-							<th class="table_th"><?=lang('quantity')?> </th>
-							<th class="table_th"><?=lang('unit_cost')?></th>
-							<th class="table_th"><?=lang('price')?></th>
-							<th class="table_th"><?=lang('other_info')?></th>
+							<th class="table_th"><?= lang('vehicle') ?></th>
+							<th class="table_th"><?= lang('when') ?></th>
+							<th class="table_th"><?= lang('whence') ?></th>
+							<th class="table_th"><?= lang('producer') ?></th>
+							<th class="table_th"><?= lang('model') ?></th>
+							<th class="table_th"><?= lang('type') ?></th>
+							<th class="table_th"><?= lang('quantity') ?> </th>
+							<th class="table_th"><?= lang('unit_cost') ?></th>
+							<th class="table_th"><?= lang('price') ?></th>
+							<th class="table_th"><?= lang('other_info') ?></th>
 						</tr>
 						</thead>
 						<tbody>
@@ -190,47 +262,79 @@
 							<tr class="">
 								<td class="border">
 									<?= $name ?>
-									<input type="hidden" name="fl_id[<?= $key + 1 ?>]"
-										   value="<?= $fleet['id'][$key] ?>">
+									<input
+										type="hidden"
+										name="fl_id[<?= $key + 1 ?>]"
+										value="<?= $fleet['id'][$key] ?>">
 								</td>
 								<td class="border">
-									<input title="" type="date" name="date[<?= $key + 1 ?>]"
-										   value="<?= mdate('%Y-%m-%d', now()) ?>"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="date"
+										name="date[<?= $key + 1 ?>]"
+										value="<?= mdate('%Y-%m-%d', now()) ?>"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="text" name="whence[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="text"
+										name="whence[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="text" name="producer[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="text"
+										name="producer[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="text" name="model[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="text"
+										name="model[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 
 								<td class="border">
-									<input title="" type="text" name="type[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="text"
+										name="type[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 
 								<td class="border">
-									<input title="" type="number" min="0" name="count[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="number"
+										min="0"
+										name="count[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="number" min="0" name="one_price[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="number"
+										min="0"
+										name="one_price[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="number" min="0" name="price[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="number"
+										min="0"
+										name="price[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 								<td class="border">
-									<input title="" type="text" name="other_info[<?= $key + 1 ?>]"
-										   class="form-control text-center"/>
+									<input
+										title=""
+										type="text"
+										name="other_info[<?= $key + 1 ?>]"
+										class="form-control text-center"/>
 								</td>
 							</tr>
 
@@ -260,14 +364,21 @@
 					</table>
 
 
-					<div class="modal-footer pb-0">
-						<button id="vehicle_filter_add" type="button"
-								class="save_cancel_btn btn btn-success"><?= lang('save') ?>
+					<div
+						class="modal-footer pb-0">
+						<button
+							id="vehicle_filter_add"
+							type="button"
+							class="save_cancel_btn btn btn-success"><?= lang('save') ?>
 						</button>
-						<button id="load" class=" btn btn-success d-none"><?=$this->load->loading_svg()?></button>
-						<button type="button" class="cancel_btn close btn btn-sm"
-								data-dismiss="modal"
-								aria-label="Close">
+						<button
+							id="load"
+							class=" btn btn-success d-none"><?= $this->load->loading_svg() ?></button>
+						<button
+							type="button"
+							class="cancel_btn close btn btn-sm"
+							data-dismiss="modal"
+							aria-label="Close">
 							<?= lang('cancel') ?>
 						</button>
 					</div>
@@ -281,96 +392,96 @@
 <script>
 
 
+	$(document).on('keyup', 'input[name="count[1]"]', function () {
+		var count = $(this).val();
+		var one_price = $('input[name="one_price[1]"]').val();
 
-		$(document).on('keyup', 'input[name="count[1]"]', function () {
-			var count = $(this).val();
-			var one_price = $('input[name="one_price[1]"]').val();
+		sum = parseFloat(count) * parseFloat(one_price);
 
-			sum =  parseFloat(count) * parseFloat(one_price);
+		$('input[name="price[1]"]').val(sum);
 
-			$('input[name="price[1]"]').val(sum);
+	});
 
-		});
+	$(document).on('keyup', 'input[name="one_price[1]"]', function () {
+		var count = $('input[name="count[1]"]').val();
+		var one_price = $(this).val();
+		sum = parseFloat(count) * parseFloat(one_price);
 
-		$(document).on('keyup', 'input[name="one_price[1]"]', function () {
-			var count = $('input[name="count[1]"]').val();
-			var one_price = $(this).val();
-			sum =  parseFloat(count) * parseFloat(one_price);
+		$('input[name="price[1]"]').val(sum);
 
-			$('input[name="price[1]"]').val(sum);
-
-		});
-
+	});
 
 
-		var table = $('#ex_11').DataTable({
-			language: {
-				search: "<?=lang('search')?>",
-				emptyTable: "<?=lang('no_data')?>",
-				info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
-				infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
-				infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
-				lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
-				zeroRecords: "<?=lang('no_matching_records')?>",
-				paginate: {
-					first: "<?=lang('first')?>",
-					last: "<?=lang('last')?>",
-					next: "<?=lang('next')?>",
-					previous: "<?=lang('prev')?>"
+	var table = $('#ex_11').DataTable({
+		language: {
+			search: "<?=lang('search')?>",
+			emptyTable: "<?=lang('no_data')?>",
+			info: "<?=lang('total')?> _TOTAL_ <?=lang('data')?>",
+			infoEmpty: "<?=lang('total')?> 0 <?=lang('data')?>",
+			infoFiltered: "(<?=lang('is_filtered')?> _MAX_ <?=lang('total_record')?>)",
+			lengthMenu: "<?=lang('showing2')?> _MENU_ <?=lang('record2')?>",
+			zeroRecords: "<?=lang('no_matching_records')?>",
+			paginate: {
+				first: "<?=lang('first')?>",
+				last: "<?=lang('last')?>",
+				next: "<?=lang('next')?>",
+				previous: "<?=lang('prev')?>"
+			}
+		},
+		"paging": false,
+		"info": false,
+		"columnDefs": [
+			{
+				"orderable": false,
+				"targets": 10
+			}
+		],
+		dom: 'Bfrtip',
+		buttons: [
+			{
+				extend: 'excelHtml5',
+				title: '',
+				filename: 'excel_file',
+				footer: true,
+				exportOptions: {
+					columns: ':visible'
 				}
 			},
-			"paging": false,
-			"info": false,
-			"columnDefs": [
-				{"orderable": false, "targets": 10}
-			],
-			dom: 'Bfrtip',
-			buttons: [
-				{
-					extend: 'excelHtml5',
-					title: '',
-					filename: 'excel_file',
-					footer: true,
-					exportOptions: {
-						columns: ':visible'
-					}
-				},
-				'colvis'
-			]
-		});
+			'colvis'
+		]
+	});
 
-		table.order([0, 'asc']).draw();
+	table.order([0, 'asc']).draw();
 
-		$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
-		$('.buttons-colvis span').text('');
-		$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
+	$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+	$('.buttons-colvis span').text('');
+	$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
 
-		table.buttons().container()
-			.appendTo( '#ex_11_wrapper #ex_11_filter:eq(0)' );
+	table.buttons().container()
+		.appendTo('#ex_11_wrapper #ex_11_filter:eq(0)');
 
-		$('.dt-buttons').css('float', 'left');
+	$('.dt-buttons').css('float', 'left');
 
 
-		//vehicle filter
-		var j = 1;
-		$(document).on('click', '.ex_11_add_new_tr', function (e) {
-			j++;
+	//vehicle filter
+	var j = 1;
+	$(document).on('click', '.ex_11_add_new_tr', function (e) {
+		j++;
 
 
+		var fleet = $('input[name="vehicle[1]"]').val();
 
-			var fleet = $('input[name="vehicle[1]"]').val();
+		var me = $(this);
+		e.preventDefault();
 
-			var me = $(this);
-			e.preventDefault();
+		if (me.data('requestRunning')) {
+			return;
+		}
 
-			if (me.data('requestRunning')) {
-				return;
-			}
+		me.data('requestRunning', true);
 
-			me.data('requestRunning', true);
-
-			$.when(
-				$('.ex_11').append('<tr role="row">\n' +
+		$.when(
+			$('.ex_11').append('<tr role="row">\n' +
 				'<td><input readonly title="" type="text" name="vehicle[' + j + ']" value="' + fleet + '" class="form-control text-center"/></td>\n' +
 				'<td><input  title="" type="date" name="date[' + j + ']" value="<?= mdate('%Y-%m-%d', now()) ?>" class="form-control text-center"/></td>\n' +
 				'<td class="border">\n' +
@@ -409,7 +520,7 @@
 				'<span class="btn btn-outline-secondary btn-sm del_row_ft" style="padding: .25rem .5rem !important;">' +
 				'<i class=" fa fa-trash" data-toggle="tooltip" data-placement="top" title="delete this row"> </i>' +
 				'</span>' +
-				'</td>\n'+
+				'</td>\n' +
 				'</tr>' +
 				'\n' +
 				'<script>' +
@@ -440,42 +551,41 @@
 				'\t\t\t\t});' +
 				'</' +
 				'script>')).then(function () {
-					me.data('requestRunning', false);
-				});
-
-
-
+			me.data('requestRunning', false);
 		});
 
 
-		$('select').selectpicker('refresh');
+	});
 
 
-		$('.selectpicker').parent('div').children('button').css({
-			'background': '#fff',
-			'color': '#000',
-			'border': '1px solid #ced4da'
-		});
-		$('.selectpicker').parent('div').children('button').removeClass('btn-light');
+	$('select').selectpicker('refresh');
 
-		<? if (count($fleet['id']) == 1) { ?>
 
-		$(document).on('change keyup', 'input,select,textarea', function () {
-			if (!$('.pos_abs_div').hasClass('animated')) {
-				$('.pos_abs_div').animate({
-					bottom: "+=60",
-				});
-				$('.pos_abs_div').addClass('animated');
-			}
-		});
+	$('.selectpicker').parent('div').children('button').css({
+		'background': '#fff',
+		'color': '#000',
+		'border': '1px solid #ced4da'
+	});
+	$('.selectpicker').parent('div').children('button').removeClass('btn-light');
 
-		$('.dont_save').on('click', function () {
-			$('.pos_abs_div').removeClass('animated');
+	<? if (count($fleet['id']) == 1) { ?>
+
+	$(document).on('change keyup', 'input,select,textarea', function () {
+		if (!$('.pos_abs_div').hasClass('animated')) {
 			$('.pos_abs_div').animate({
-				bottom: "-=60"
-			}, function () {
+				bottom: "+=60",
+			});
+			$('.pos_abs_div').addClass('animated');
+		}
+	});
 
-			})
+	$('.dont_save').on('click', function () {
+		$('.pos_abs_div').removeClass('animated');
+		$('.pos_abs_div').animate({
+			bottom: "-=60"
+		}, function () {
+
+		})
 	});
 
 	<?}?>

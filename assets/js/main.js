@@ -76,8 +76,6 @@ $(document).ready(function () {
 	 * END
 	 */
 
-
-
 	// Generate a password string
 	function randString(id) {
 		var dataSet = $(id).attr('data-character-set').split(',');

@@ -3999,6 +3999,9 @@ class Organization extends MX_Controller {
 
 		$id = $this->input->post('user_id');
 
+		$sql = "SET foreign_key_checks = 0";
+		$this->db->query($sql);//todo
+
 
 		$this->db->delete('user', array('id' => $id));
 

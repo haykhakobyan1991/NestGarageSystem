@@ -2041,7 +2041,7 @@ class Organization extends MX_Controller {
 		$data['country'] = $query_country->result_array();
 
 
-		$sql = "
+		 $sql = "
 			SELECT 
 			  `fleet`.`id`,
 			  GROUP_CONCAT(

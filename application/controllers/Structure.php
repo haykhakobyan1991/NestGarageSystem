@@ -267,6 +267,56 @@ class Structure extends MX_Controller
 
 		endforeach;
 
+		//start new created fleets in query
+		$sql_new = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_hy`,
+				`model`.`title_hy`
+			  ) AS `model`,
+			  `fleet`.`id` AS `fleet_id`,
+			  `fleet_type`.`title_hy` AS `fleet_type`,
+			  `fleet_type`.`id` AS `fleet_type_id`,
+			  `fleet`.`fleet_plate_number` 
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id`    
+			  LEFT JOIN `fleet` 
+				ON fleet.`registrar_user_id` = user.id
+				AND `fleet`.`status` = '1' 
+			  LEFT JOIN `fleet_type` 
+				ON `fleet`.`fleet_type_id` = `fleet_type`.`id` 
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 
+			WHERE company.id = '12' 
+			AND fleet.`staff_ids` IS NULL
+			AND fleet.id IS NOT NULL
+			ORDER BY 
+			  `fleet`.`id` 
+		";
+
+		$result_new = $this->db->query($sql_new);
+		$structure_array_new = $result_new->result_array();
+
+
+		foreach ($structure_array_new AS $key => $value) :
+
+				$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'text' => $value['model'], 'title' => $value['fleet_plate_number'], 'img' => ($value['fleet_type_id'] == 1 ? base_url('assets/img/fleet_type/gojs_fleet_type/car.png') :
+					($value['fleet_type_id'] == 2 ? base_url('assets/img/fleet_type/gojs_fleet_type/delivery-truck.png') :
+						($value['fleet_type_id'] == 3 ? base_url('assets/img/fleet_type/gojs_fleet_type/construction-tool-vehicle-with-crane-lifting-materials.png') :
+							($value['fleet_type_id'] == 4 ? base_url('assets/img/fleet_type/gojs_fleet_type/construction-truck.png') :
+								($value['fleet_type_id'] == 5 ? base_url('assets/img/fleet_type/gojs_fleet_type/bus-side-view.png') :
+									($value['fleet_type_id'] == 6 ? base_url('assets/img/fleet_type/gojs_fleet_type/minivan.png') :
+										($value['fleet_type_id'] == 7 ? base_url('assets/img/fleet_type/gojs_fleet_type/car-with-trailer.png') : ''
+										))))))), 'to' => true);
+
+		endforeach;
+		//end of new created fleets in query
+
 		$from_to_arr = array_values(array_unique($from_to_arr, SORT_REGULAR));
 		$structure_arr = array_values(array_unique($structure_arr, SORT_REGULAR));
 
@@ -514,6 +564,49 @@ class Structure extends MX_Controller
 			endif;
 
 		endforeach;
+
+
+		//start new created fleets in query
+		$sql_new = "
+			SELECT 
+			  CONCAT_WS(
+				' ',
+				`brand`.`title_hy`,
+				`model`.`title_hy`
+			  ) AS `model`,
+			  `fleet`.`id` AS `fleet_id`,
+			  `fleet_type`.`title_hy` AS `fleet_type`,
+			  `fleet_type`.`id` AS `fleet_type_id`,
+			  `fleet`.`fleet_plate_number` 
+			FROM
+			  `user` 
+			  LEFT JOIN company 
+				ON user.`company_id` = company.`id`    
+			  LEFT JOIN `fleet` 
+				ON fleet.`registrar_user_id` = user.id
+				AND `fleet`.`status` = '1' 
+			  LEFT JOIN `fleet_type` 
+				ON `fleet`.`fleet_type_id` = `fleet_type`.`id` 
+			  LEFT JOIN `model` 
+				ON `fleet`.`model_id` = `model`.`id` 
+			  LEFT JOIN `brand` 
+				ON `model`.`brand_id` = `brand`.`id` 
+			WHERE company.id = '12' 
+			AND fleet.`staff_ids` IS NULL
+			AND fleet.id IS NOT NULL
+			ORDER BY 
+			  `fleet`.`id` 
+		";
+
+		$result_new = $this->db->query($sql_new);
+		$structure_array_new = $result_new->result_array();
+
+
+		foreach ($structure_array_new AS $key => $value) :
+			$structure_arr[] = array('key' => 'f' . $value['fleet_id'], 'name' => $value['model'] . ' (' . $value['fleet_plate_number'] . ')',  'title' => '');
+		endforeach;
+
+		//end of new created fleets in query
 
 		$structure_unique = array_values(array_unique($structure_arr, SORT_REGULAR));
 

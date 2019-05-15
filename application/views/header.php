@@ -1,29 +1,64 @@
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content=""/>
-	<meta name="keywords" content="fleet car garage fleetManagement"/>
+	<meta
+		http-equiv="Content-Type"
+		content="text/html; charset=utf-8"/>
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta
+		name="description"
+		content=""/>
+	<meta
+		name="keywords"
+		content="fleet car garage fleetManagement"/>
 	<title><?= $title ?></title>
 	<!--// Stylesheets //-->
-	<link rel="shortcut icon" href="<?= base_url() ?>assets/img/" type="image/png">
-	<link href="<?= base_url() ?>assets/css/reset.css" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/fontawesome.min.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/all.css">
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
-	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
+	<link
+		rel="shortcut icon"
+		href="<?= base_url() ?>assets/img/"
+		type="image/png">
+	<link
+		href="<?= base_url() ?>assets/css/reset.css"
+		rel="stylesheet"
+		type="text/css"/>
+	<link
+		rel="stylesheet"
+		href="<?= base_url() ?>assets/css/fontawesome.min.css">
+	<link
+		rel="stylesheet"
+		href="<?= base_url() ?>assets/css/all.css">
+	<link
+		rel="stylesheet"
+		href="<?= base_url() ?>assets/css/bootstrap/bootstrap.min.css"/>
+	<link
+		rel="stylesheet"
+		href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
 	<? if ($this->router->fetch_class() == 'Structure') : ?>
-		<link rel="stylesheet" href="<?= base_url() ?>assets/css/structure1.css"/>
+		<link
+			rel="stylesheet"
+			href="<?= base_url() ?>assets/css/structure1.css"/>
 	<? endif; ?>
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-	<link rel="stylesheet" href="<?= base_url() ?>assets/css/style.css"/>
-	<script src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/base.js"></script>
-	<script src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
-	<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
-	<script src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
-	<script src="<?= base_url() ?>assets/js/generate_password.js"></script>
+	<link
+		rel="stylesheet"
+		href="<?= base_url() ?>assets/css/table.css"/>
+	<link
+		rel="stylesheet"
+		href="<?= base_url() ?>assets/css/style.css"/>
+	<script
+		src="<?= base_url() ?>assets/js/jquery-3.3.1.min.js"></script>
+	<script
+		src="<?= base_url() ?>assets/js/base.js"></script>
+	<script
+		src="<?= base_url() ?>assets/js/bootstrap/popper.min.js"></script>
+	<script
+		src="<?= base_url() ?>assets/js/bootstrap/bootstrap.min.js"></script>
+	<script
+		src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
+	<script
+		src="<?= base_url() ?>assets/js/fontawesome.min.js"></script>
+	<script
+		src="<?= base_url() ?>assets/js/generate_password.js"></script>
 
 
 	<!-- Some CSS Start-->
@@ -113,10 +148,13 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 ?>
 
 <!-- Navbar Start -->
-<nav class="navbar navbar-light bg-light fixed-top"
-	 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
-	<a class="navbar-brand" href="#">NestGarageSystem<sub>beta</sub></a>
-	<div class="ml-4">
+<nav
+	class="navbar navbar-light bg-light fixed-top"
+	style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px;">
+	<a class="navbar-brand"
+	   href="#">NestGarageSystem<sub>beta</sub></a>
+	<div
+		class="ml-4">
 
 		<a class="nav_a mr-2 <?= ($controller == 'Organization' ? 'active' : '') ?>  btn btn-sm btn-outline-success2"
 		   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"><?= lang('organization') ?></a>
@@ -131,45 +169,71 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 	</div>
 
 
-	<div class="ml-auto mr-5">
-		<strong><?= lang('welcome') ?></strong> / <span class="username_login"><a href="#"
-																				  style="color: #333;"><?= $row['name'] ?></a></span>
+	<div
+		class="ml-auto mr-5">
+		<strong><?= lang('welcome') ?></strong>
+		/
+		<span
+			class="username_login"><a
+				href="#"
+				style="color: #333;"><?= $row['name'] ?></a></span>
 	</div>
 
-	<div class="langs mr-5">
-		<ul class="mr-auto" data-url="<?= base_url('change_lang') ?>">
+	<div
+		class="langs mr-5">
+		<ul class="mr-auto"
+			data-url="<?= base_url('change_lang') ?>">
 			<li class="float-left  <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
-				data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
-			<li class="float-left   <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>" data-lang="ru"><a
-					class="nav-link" href="javascript:void(0)">Рус</a></li>
+				data-lang="hy">
+				<a class="nav-link"
+				   href="javascript:void(0)">Հայ</a>
+			</li>
+			<li class="float-left   <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>"
+				data-lang="ru">
+				<a
+					class="nav-link"
+					href="javascript:void(0)">Рус</a>
+			</li>
 		</ul>
 	</div>
 
-	<a href="<?= base_url('User/logout') ?>">
-		<button class="btn btn-outline-dark">
-			<i class="fas fa-sign-out-alt"></i>
-		</button>
-	</a>
+	<button data-toggle="modal" data-target="#dd"
+		class="btn btn-outline-dark">
+		<i class="fas fa-sign-out-alt"></i>
+	</button>
+
+
 </nav>
 <!-- Navbar End -->
 
-<div class="res_cont_fl container-fluid" style="margin-top: 5rem;"><?
+<div
+	class="res_cont_fl container-fluid"
+	style="margin-top: 5rem;"><?
 	if ($controller == 'Organization') { ?>
-	<div class="tab-content">
+	<div
+		class="tab-content">
 
-		<div class="tab-pane container-fluid mt-3 mt-md-3 active" id="organization">
+		<div
+			class="tab-pane container-fluid mt-3 mt-md-3 active"
+			id="organization">
 
-			<div class="row">
+			<div
+				class="row">
 				<!-- Vertical Tabs Start-->
-				<div class="col-sm-12 col-md-2">
-					<div class="list-group" id="list-tab" role="tablist"
-						 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);position: fixed;width: 14%;"><?
+				<div
+					class="col-sm-12 col-md-2">
+					<div
+						class="list-group"
+						id="list-tab"
+						role="tablist"
+						style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);position: fixed;width: 14%;"><?
 						if ($this->load->authorisation('Organization', 'company', 1)) :
 							?>
 							<a
 							class="list-group-item list-group-item-action <?= ($page == 'company' ? 'active' : '') ?>"
 							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/company') ?>"
-							role="tab" aria-controls="company"><?= lang('company') ?>
+							role="tab"
+							aria-controls="company"><?= lang('company') ?>
 							</a><?
 						endif;
 						if ($this->load->authorisation('Organization', 'department', 1)) :
@@ -177,14 +241,17 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							<a
 							class="list-group-item list-group-item-action <?= ($page == 'department' ? 'active' : '') ?>"
 							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/department') ?>"
-							role="tab" aria-controls="department"><?= lang('department') ?>
+							role="tab"
+							aria-controls="department"><?= lang('department') ?>
 							</a><?
 						endif;
 						if ($this->load->authorisation('Organization', 'staff', 1)) :
 							?>
-							<a class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
-							   role="tab" aria-controls="staff"><?= lang('staff') ?>
+							<a
+							class="list-group-item list-group-item-action <?= ($page == 'staff' ? 'active' : '') ?>"
+							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/staff') ?>"
+							role="tab"
+							aria-controls="staff"><?= lang('staff') ?>
 							</a><?
 						endif;
 						if ($this->load->authorisation('Organization', 'vehicles', 1)) :
@@ -192,34 +259,53 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 							<a
 							class="list-group-item list-group-item-action <?= (($page == 'vehicles' || $page == 'add_vehicles' || $page == 'edit_vehicles') ? 'active' : '') ?>"
 							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/vehicles') ?>"
-							role="tab" aria-controls="settings"><?= lang('vehicle') ?>
-							<span class="float-right"></span>
+							role="tab"
+							aria-controls="settings"><?= lang('vehicle') ?>
+							<span
+								class="float-right"></span>
 							</a><?
 						endif;
 						if ($this->load->authorisation('Organization', 'user', 1)) :
 							?>
-							<a class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
-							   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
-							   role="tab" aria-controls="user"><?= lang('user') ?>
-							<span class="float-right"></span>
+							<a
+							class="list-group-item list-group-item-action <?= ($page == 'user' ? 'active' : '') ?>"
+							href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/user') ?>"
+							role="tab"
+							aria-controls="user"><?= lang('user') ?>
+							<span
+								class="float-right"></span>
 							</a><?
 						endif;
 						?>
 					</div>
 				</div>
 				<!-- Vertical Tabs End-->
-				<div class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
-					 style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;width:10%;">
-					<div class="tab-content" id="nav-tabContent" style="position:relative;background: ">
+				<div
+					class="<?= ($controller == 'Organization' ? 'col' : 'container') ?>"
+					style="box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);margin-bottom: 20px; padding-left: 0; padding-right: 0;width:10%;">
+					<div
+						class="tab-content"
+						id="nav-tabContent"
+						style="position:relative;background: ">
 
-						<div class="loader"></div>
-						<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/><?
+						<div
+							class="loader"></div>
+						<img
+							class="loader_svg"
+							src="<?= base_url('assets/images/puff.svg') ?>"/><?
 
 						} elseif ($controller == 'Structure' || $controller == 'Fleet_history') { ?>
-							<div class="loader"></div>
-							<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
-							<div class="content m-1">
-								<div class="nav nav-tabs" id="nav-tab" role="tablist">
+							<div
+								class="loader"></div>
+							<img
+								class="loader_svg"
+								src="<?= base_url('assets/images/puff.svg') ?>"/>
+							<div
+								class="content m-1">
+								<div
+									class="nav nav-tabs"
+									id="nav-tab"
+									role="tablist">
 									<a class="info-type nav-item nav-link nav_a mr-2 btn btn-sm btn-outline-success2 showed <?= $controller == 'Structure' && $this->uri->segment(3) == '' ? 'active show' : '' ?> "
 									   data-id="1"
 									   href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/' . ($controller == 'Structure' ? $page : 'structure1')) ?>"
@@ -250,32 +336,36 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									</a><?
 									if ($controller == 'Structure') {
 										?>
-										<div class="btn-group ml-auto">
+										<div
+											class="btn-group ml-auto">
 
 										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure1/' . $this->uri->segment(3)) ?>">
-											<button type="button"
-													style="width: 40px;height: 40px;padding: 0 !important;"
-													class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
+											<button
+												type="button"
+												style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary btn-sm <?= ($page == 'structure1' ? 'active' : '') ?>">
 												<i class="fas fa-sitemap"></i>
 											</button>
 										</a>
 										<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure2/' . $this->uri->segment(3)) ?>">
-											<button type="button"
-													style="width: 40px;height: 40px;padding: 0 !important;"
-													class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
+											<button
+												type="button"
+												style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary btn-group-sm <?= ($page == 'structure2' ? 'active' : '') ?>">
 												<i class="fas fa-stream"></i>
 											</button>
 										</a>
-																				<a href="
+										<a href="
 										<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/structure4/' . $this->uri->segment(3)) ?>">
-																					<button type="button"
-																							style="width: 40px;height: 40px;padding: 0 !important;"
-																							class="m-1 btn btn-outline-secondary
+											<button
+												type="button"
+												style="width: 40px;height: 40px;padding: 0 !important;"
+												class="m-1 btn btn-outline-secondary
 										<?= ($page == 'structure4' ? 'active' : '') ?>"
-																							style="">
-																						<i class="fas fa-table"></i>
-																					</button>
-																				</a>
+												style="">
+												<i class="fas fa-table"></i>
+											</button>
+										</a>
 
 										</div><?
 									}
@@ -284,56 +374,77 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 								</div>
 							</div>
 
-							<div class=""><?
+							<div
+								class=""><?
 							if ($page == 'structure1' || $page == 'structure2') {
 								?>
-								<div class="row btn-group mt-2 mt-md-2"
-									 style="right: 155px;z-index: 999;position: absolute;top: 77px;">
-									<input class="form-control col-7" type="search" id="mySearch"
-										   onkeypress="if (event.keyCode === 13) searchDiagram()">
-									<a class="nav_a btn btn-sm btn-outline-success2 active ml-1" style="padding: 9px 20px !important;"
-									   onclick="searchDiagram()"><i class="fas fa-search"></i></a>
+								<div
+									class="row btn-group mt-2 mt-md-2"
+									style="right: 155px;z-index: 999;position: absolute;top: 77px;">
+									<input
+										class="form-control col-7"
+										type="search"
+										id="mySearch"
+										onkeypress="if (event.keyCode === 13) searchDiagram()">
+									<a class="nav_a btn btn-sm btn-outline-success2 active ml-1"
+									   style="padding: 9px 20px !important;"
+									   onclick="searchDiagram()"><i
+											class="fas fa-search"></i></a>
 								</div>
 							<? } ?>
 							</div><?
 						} elseif ($controller == 'Gps') { ?>
 
-							<div class="container-fluid pl-0 pr-0" style="margin-top: -11px;margin-bottom: 5px;">
-								<nav class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
-									<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-										<div class="navbar-nav mr-auto">
+							<div
+								class="container-fluid pl-0 pr-0"
+								style="margin-top: -11px;margin-bottom: 5px;">
+								<nav
+									class="navbar navbar-expand-lg navbar-light bg-light pl-0 pr-0">
+									<div
+										class="collapse navbar-collapse"
+										id="navbarNavAltMarkup">
+										<div
+											class="navbar-nav mr-auto">
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
-												data-toggle="tooltip" data-placement="top"
+												data-toggle="tooltip"
+												data-placement="top"
 												title="<?= lang('trajectory') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/satellite.svg"/>
 											</button>
-<!--											<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?><!--">-->
-<!--												<button-->
-<!--													style="color:#00000080 !important;max-height: 40px;"-->
-<!--													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"-->
-<!--													data-toggle="tooltip" data-placement="top"-->
-<!--													title="--><?//= lang('geofences') ?><!--">-->
-<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
-<!--												</button>-->
-<!--											</a>-->
-<!--											<a href="--><?//= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?><!--">-->
-<!--												<button style="color:#00000080 !important;max-height: 40px;"-->
-<!--														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"-->
-<!--														href="#"-->
-<!--														data-toggle="tooltip" data-placement="top"-->
-<!--														title="--><?//= lang('speed') ?><!--">-->
-<!--													<img-->
-<!--														src="--><?//= base_url() ?><!--assets/images/gps_tracking/speedometer.svg"/>-->
-<!--												</button>-->
-<!--											</a>-->
+											<!--											<a href="-->
+											<? //= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?><!--">-->
+											<!--												<button-->
+											<!--													style="color:#00000080 !important;max-height: 40px;"-->
+											<!--													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1"-->
+											<!--													data-toggle="tooltip" data-placement="top"-->
+											<!--													title="-->
+											<? //= lang('geofences') ?><!--">-->
+											<!--													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>-->
+											<!--												</button>-->
+											<!--											</a>-->
+											<!--											<a href="-->
+											<? //= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/speed') ?><!--">-->
+											<!--												<button style="color:#00000080 !important;max-height: 40px;"-->
+											<!--														class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"-->
+											<!--														href="#"-->
+											<!--														data-toggle="tooltip" data-placement="top"-->
+											<!--														title="-->
+											<? //= lang('speed') ?><!--">-->
+											<!--													<img-->
+											<!--														src="-->
+											<? //= base_url() ?><!--assets/images/gps_tracking/speedometer.svg"/>-->
+											<!--												</button>-->
+											<!--											</a>-->
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/fuel') ?>">
 												<button
 													style="color:#00000080 !important;max-height: 40px;"
 													class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1"
 													href="#"
-													data-toggle="tooltip" data-placement="top"
+													data-toggle="tooltip"
+													data-placement="top"
 													title="<?= lang('fuel') ?>">
 													<img
 														src="<?= base_url() ?>assets/images/gps_tracking/gas-station.svg"/>
@@ -343,52 +454,71 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 												style="color:#00000080 !important;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
 												href="#"
-												data-toggle="tooltip" data-placement="top"
+												data-toggle="tooltip"
+												data-placement="top"
 												title="<?= lang('engine') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/engine.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm  nav-item nav-link mr-1 "
 												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('cargo') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
+												data-toggle="tooltip"
+												data-placement="top"
+												title="<?= lang('cargo') ?>">
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/box.svg"/>
 											</button>
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/sos') ?>">
-											<button
-												style="color:#00000080 !important;max-height: 40px;"
-												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'sos' ? 'active' : '') ?>"
-												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('sos') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
-											</button>
+												<button
+													style="color:#00000080 !important;max-height: 40px;"
+													class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 <?= ($page == 'sos' ? 'active' : '') ?>"
+													href="#"
+													data-toggle="tooltip"
+													data-placement="top"
+													title="<?= lang('sos') ?>">
+													<img
+														src="<?= base_url() ?>assets/images/gps_tracking/support.svg"/>
+												</button>
 											</a>
-<!--											<button-->
-<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
-<!--												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"-->
-<!--												href="#"-->
-<!--												data-toggle="tooltip" data-placement="top"-->
-<!--												title="--><?//= lang('notification') ?><!--">-->
-<!--												<img-->
-<!--													src="--><?//= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
-<!--											</button>-->
+											<!--											<button-->
+											<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;"-->
+											<!--												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 ml-1"-->
+											<!--												href="#"-->
+											<!--												data-toggle="tooltip" data-placement="top"-->
+											<!--												title="-->
+											<? //= lang('notification') ?><!--">-->
+											<!--												<img-->
+											<!--													src="-->
+											<? //= base_url() ?><!--assets/images/gps_tracking/notification.svg"/>-->
+											<!--											</button>-->
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
 												href="#"
-												data-toggle="tooltip" data-placement="top" title="<?= lang('event') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
+												data-toggle="tooltip"
+												data-placement="top"
+												title="<?= lang('event') ?>">
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/event.svg"/>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;"
 												class="btn btn-outline-secondary btn-sm nav-item nav-link mr-1 "
 												href="#"
-												data-toggle="tooltip" data-placement="top"
+												data-toggle="tooltip"
+												data-placement="top"
 												title="<?= lang('statistics') ?>">
-												<img src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
+												<img
+													src="<?= base_url() ?>assets/images/gps_tracking/statistics.svg"/>
 											</button>
-											<label class="text-center" style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
-											<select style="margin-top: 1px" class="form-control form-control-sml">
+											<label
+												class="text-center"
+												style="padding: 10px 6px 0px 10px;"><?= lang('update') ?></label>
+											<select
+												style="margin-top: 1px"
+												class="form-control form-control-sml">
 												<option>1</option>
 												<option>2</option>
 												<option>3</option>
@@ -402,40 +532,48 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 										</div>
 
-										<div class="navbar-nav ml-auto">
+										<div
+											class="navbar-nav ml-auto">
 											<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/geofences') ?>">
 												<button
 													style="color:#00000080 !important;max-height: 40px;"
 													class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
-													data-toggle="tooltip" data-placement="top"
+													data-toggle="tooltip"
+													data-placement="top"
 													title="<?= lang('geofences') ?>">
-													<i style="font-size: 20px;" class="fas fa-draw-polygon"></i>
+													<i style="font-size: 20px;"
+													   class="fas fa-draw-polygon"></i>
 												</button>
 											</a>
-<!--											<button-->
-<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
-<!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->
-<!--												href="#"><img-->
-<!--													style="margin-right: 5px;margin-left: -15px;"-->
-<!--													src="--><?//= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
-<!--													class="ml-0 mr-0 "/>-->
-<!--											</button>-->
+											<!--											<button-->
+											<!--												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"-->
+											<!--												class="btn btn-outline-secondary  nav-item nav-link mr-1 set_square_btn"-->
+											<!--												href="#"><img-->
+											<!--													style="margin-right: 5px;margin-left: -15px;"-->
+											<!--													src="-->
+											<? //= base_url() ?><!--assets/images/gps_tracking/set-square.svg"-->
+											<!--													class="ml-0 mr-0 "/>-->
+											<!--											</button>-->
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
 												class="btn btn-outline-secondary  nav-item nav-link mr-1 settings_btn"
 												data-toggle="modal"
-												data-target=".settings_modal" href="#">
-												<img style="margin-right: 5px;margin-left: -15px;"
-													 src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
-													 class="ml-0 mr-0 "/>
+												data-target=".settings_modal"
+												href="#">
+												<img
+													style="margin-right: 5px;margin-left: -15px;"
+													src="<?= base_url() ?>assets/images/gps_tracking/settings-work-tool.svg"
+													class="ml-0 mr-0 "/>
 											</button>
 											<button
 												style="color:#00000080 !important;display: inline-block;max-height: 40px;padding: 7px 24px !important;"
 												class="btn btn-outline-secondary  nav-item nav-link mr-1 print-btn"
-												href="#"><img
+												href="#">
+												<img
 													style="margin-right: 5px;margin-left: -15px;"
 													src="<?= base_url() ?>assets/images/gps_tracking/print.svg"
-													class="ml-0 mr-0 "/></button>
+													class="ml-0 mr-0 "/>
+											</button>
 										</div>
 									</div>
 								</nav>
@@ -443,7 +581,10 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 						<? } ?>
 
-						<input type="hidden" name="company" value="<?= $row_company['name'] ?>">
+						<input
+							type="hidden"
+							name="company"
+							value="<?= $row_company['name'] ?>">
 
 
 						<script>
@@ -454,9 +595,9 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 
 						<script>
 							$(document).on('click', '#gps_tracking', function () {
-								$.post( '<?=base_url($this->uri->segment(1) . '/System_main/get_token') ?>', function( data ) {
-										url = '<?= base_url('gps/' . ($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/?token=') ?>'+data;
-										$( location ).attr("href", url);
+								$.post('<?=base_url($this->uri->segment(1) . '/System_main/get_token') ?>', function (data) {
+									url = '<?= base_url('gps/' . ($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/?token=') ?>' + data;
+									$(location).attr("href", url);
 								});
 							});
 						</script>

@@ -200,11 +200,10 @@ $row_company = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl
 		</ul>
 	</div>
 
-	<a href="<?= $this->load->old_baseUrl() . 'User/logout' ?>">
-		<button class="btn btn-outline-dark">
-			<i class="fas fa-sign-out-alt"></i>
-		</button>
-	</a>
+	<button data-toggle="modal" data-target="#dd"
+			class="btn btn-outline-dark">
+		<i class="fas fa-sign-out-alt"></i>
+	</button>
 </nav>
 <!-- Navbar End -->
 

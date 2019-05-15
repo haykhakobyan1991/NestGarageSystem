@@ -1,13 +1,31 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <!-- Structure Start -->
 <style>
 	td, th {
@@ -35,7 +53,7 @@
 		padding: 0 5px !important;
 	}
 
-	input::placeholder{
+	input::placeholder {
 		font-size: 12px !important;
 	}
 </style>
@@ -51,12 +69,21 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 ?>
 
 
-<script src="<?= base_url('assets/js/go.js') ?>"></script>
-<div class="content m-1" style="margin-top: -54px !important;">
-	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
-		<div id="sample" style="position:relative;">
+<script
+	src="<?= base_url('assets/js/go.js') ?>"></script>
+<div
+	class="content m-1"
+	style="margin-top: -54px !important;">
+	<div
+		class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0 bg-white">
+		<div
+			id="sample"
+			style="position:relative;">
 			<div>
-				<table id="example11" class="table table-striped table-borderless" style="font-size: 12px; !important">
+				<table
+					id="example11"
+					class="table table-striped table-borderless"
+					style="font-size: 12px; !important">
 					<thead>
 					<tr>
 						<th><?= lang('type') ?></th>
@@ -65,14 +92,17 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('driver') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('department') ?></th>
 						<th style="font-size: 12px !important;font-weight: 500;"><?= lang('head') ?></th>
-						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;"><i class="pr-2 fas fa-edit"></i></th>
+						<th style="font-size: 12px !important;font-weight: 500;max-width: 50px!important;">
+							<i class="pr-2 fas fa-edit"></i>
+						</th>
 					</tr>
 					</thead>
-					<tbody style="overflow-y: scroll;">
+					<tbody
+						style="overflow-y: scroll;">
 					<? foreach ($structure as $row) { ?>
 						<tr>
 							<td>
-								<li class="list-group-item d-flex justify-content-between align-items-center p-0"
+								<li class="list-group-item d-flex justify-content-between align-items-center p-0 fleet_type_img"
 									style="background: transparent;border: none;">
 									<?=
 									$row['fleet_type'] .
@@ -93,9 +123,20 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 							<td><?= $row['driver'] ?></td>
 							<td><?= $row['department'] ?></td>
 							<td><?= $row['head'] ?></td>
-							<td>
+							<td style="<?php if ($row['fleet_type'] == '') {
+								echo 'cursor: not-allowed;';
+							} ?>"
+								class="edit_td"> <? if ($row['fleet_type'] == ''){ ?>
+								<a class="disabled"><i
+										class="pr-2 fas fa-edit text-success"></i></a>
+							</td>
+
+							<? } else { ?>
+
 								<a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/edit_vehicles/' . $row['fleet_id']) ?>"><i
 										class="pr-2 fas fa-edit text-success"></i></a></td>
+
+							<? } ?>
 						</tr>
 					<? } ?>
 					</tbody>
@@ -141,11 +182,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				}
 			},
 			"columnDefs": [
-				{"orderable": false, "targets": [6]}
+				{
+					"orderable": false,
+					"targets": [6]
+				}
 			]
 		});
+
+
 	});
 
 </script>
-
-

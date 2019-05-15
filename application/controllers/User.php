@@ -2,14 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
+class User extends CI_Controller
+{
 
-class User extends CI_Controller {
 
-
-    /**
-     * User constructor.
-     */
-	public function __construct() {
+	/**
+	 * User constructor.
+	 */
+	public function __construct()
+	{
 
 		parent::__construct();
 
@@ -29,80 +30,86 @@ class User extends CI_Controller {
 
 		$this->load->library('user_agent');
 
-		if($this->agent->is_mobile()) {
+		if ($this->agent->is_mobile()) {
 			$this->access_denied();//todo
 		}
 
 	}
 
 
-    /**
-     * @param $element
-     */
-    public function pre($element) {
+	/**
+	 * @param $element
+	 */
+	public function pre($element)
+	{
 
 		echo '<pre>';
-			print_r($element);
+		print_r($element);
 		echo '</pre>';
 	}
 
 
-    /**
-     * @return bool
-     */
-    public function access_denied() {
+	/**
+	 * @return bool
+	 */
+	public function access_denied()
+	{
 		$message = 'Access Denied';
 		show_error($message, '403', $heading = '403 Access is prohibited');
 		return false;
 	}
 
 
-    /**
-     * @param $data
-     * @return string
-     */
-    public function hash($data) {
+	/**
+	 * @param $data
+	 * @return string
+	 */
+	public function hash($data)
+	{
 		return hash('sha256', $data);
 	}
 
 
-    /**
-     * @param int $start
-     * @param int $length
-     * @return bool|string
-     * Ex: 45f7fd76
-     */
-    private function uname($start = 3, $length = 2) {
+	/**
+	 * @param int $start
+	 * @param int $length
+	 * @return bool|string
+	 * Ex: 45f7fd76
+	 */
+	private function uname($start = 3, $length = 2)
+	{
 
-        return substr(md5(time() . rand()), $start, $length);
+		return substr(md5(time() . rand()), $start, $length);
 
-    }
-
-
-    /**
-     * @param $email
-     * @return mixed|string
-     */
-    private function generate_username($email) {
-
-        $email_arr = explode('@', $email);
-        $username = $email_arr[0].'_'.$this->uname(3,3);
-        $username = str_replace(".","",$username);
-
-        return $username;
-    }
+	}
 
 
-	private function smtp_mailing() {
+	/**
+	 * @param $email
+	 * @return mixed|string
+	 */
+	private function generate_username($email)
+	{
 
-		$config['protocol']    = 'smtp';
-		$config['smtp_host']    = 'ssl://smtp.gmail.com';
-		$config['smtp_port']    = '465';
+		$email_arr = explode('@', $email);
+		$username = $email_arr[0] . '_' . $this->uname(3, 3);
+		$username = str_replace(".", "", $username);
+
+		return $username;
+	}
+
+
+	private function smtp_mailing()
+	{
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'ssl://smtp.gmail.com';
+		$config['smtp_port'] = '465';
 		$config['smtp_timeout'] = '7';
-		$config['smtp_user']    = 'dilemmatik@gmail.com';
-		$config['smtp_pass']    = 'dilemma!1';
-		$config['charset']    = 'utf-8';
-		$config['newline']    = "\r\n";
+		$config['smtp_user'] = 'dilemmatik@gmail.com';
+		$config['smtp_pass'] = 'dilemma!1';
+		$config['charset'] = 'utf-8';
+		$config['newline'] = "\r\n";
 		$config['mailtype'] = 'html'; // or text
 		$config['validation'] = TRUE; // bool whether to validate email or not
 		$this->load->library('email');
@@ -118,36 +125,37 @@ class User extends CI_Controller {
 	 * @param $folder
 	 * @return bool
 	 */
-	private function folder($folder) {
+	private function folder($folder)
+	{
 
-		if (!file_exists(set_realpath('uploads/'.$folder.'/'))) {
+		if (!file_exists(set_realpath('uploads/' . $folder . '/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/index.html'));
 		}
 
-		if (!file_exists(set_realpath('uploads/'.$folder.'/company/'))) {
+		if (!file_exists(set_realpath('uploads/' . $folder . '/company/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/company/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/company/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/company/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/company/index.html'));
 		}
 
-		if (!file_exists(set_realpath('uploads/'.$folder.'/fleet/'))) {
+		if (!file_exists(set_realpath('uploads/' . $folder . '/fleet/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/fleet/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/fleet/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/fleet/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/fleet/index.html'));
 		}
 
-		if (!file_exists(set_realpath('uploads/'.$folder.'/staff/'))) {
+		if (!file_exists(set_realpath('uploads/' . $folder . '/staff/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/staff/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/staff/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/staff/index.html'));
 		}
 
-		if (!file_exists(set_realpath('uploads/'.$folder.'/user/'))) {
+		if (!file_exists(set_realpath('uploads/' . $folder . '/user/'))) {
 			mkdir(set_realpath('uploads/' . $folder . '/user/'), 0755, true);
 			//chmod(set_realpath('uploads/' . $folder . '/staff/'), 0755);
-			copy(set_realpath('uploads/index.html'), set_realpath('uploads/'.$folder.'/user/index.html'));
+			copy(set_realpath('uploads/index.html'), set_realpath('uploads/' . $folder . '/user/index.html'));
 		}
 
 
@@ -156,15 +164,14 @@ class User extends CI_Controller {
 	}
 
 
+	public function index()
+	{
 
-
-	public function index() {
-
-        $this->load->library('session');
+		$this->load->library('session');
 		$this->load->helper(array('form', 'url', 'captcha'));
-        $data[] = array();
+		$data[] = array();
 
-        $lng = $this->load->lng();
+		$lng = $this->load->lng();
 
 		//captcha
 		$captcha = $this->_generateCaptcha();
@@ -172,148 +179,144 @@ class User extends CI_Controller {
 		$this->session->set_userdata('captchaWord', $captcha['word']);
 
 
-
-        $sql_country = "
+		$sql_country = "
 		    SELECT 
               `id`,
-              `title_".$lng."` AS `title`,
+              `title_" . $lng . "` AS `title`,
               `status` 
             FROM
               `country` 
             WHERE `status` = '1' 
-            ORDER BY `title_".$lng."` 
+            ORDER BY `title_" . $lng . "` 
 		";
 
-        $query_country = $this->db->query($sql_country);
+		$query_country = $this->db->query($sql_country);
 		$data['country'] = $query_country->result_array();
 
-        $this->load->view('login_register/index', $data);
+		$this->load->view('login_register/index', $data);
 
-        return true;
-		
+		return true;
+
 	}
 
 
-    /**
-     * @return bool
-     */
-    public function logout() {
+	/**
+	 * @return bool
+	 */
+	public function logout()
+	{
 
 		$this->load->library('session');
 		$this->session->sess_destroy();
 		redirect('/', 'location');
-	
+
 		return true;
 	}
 
 
 	/**
-     * @return bool
-     */
-    public function signUp_ax() {
+	 * @return bool
+	 */
+	public function signUp_ax()
+	{
 
-        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+		$messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
 
-        if ($this->input->server('REQUEST_METHOD') != 'POST') {
-            // Return error
-            $this->access_denied();
-            return false;
-        }
-
-
-        $n = 0;
-        $messages['error'] = array();
-        $firstname = $this->input->post('firstname');
-        $lastname = $this->input->post('lastname');
-        $email = $this->input->post('up_email');
-        $country_code = $this->input->post('country_code');
-        $phone_number = $this->input->post('phone_number');
-        $username = $this->generate_username($email);
-        $pass = $this->input->post('up_password');
-        $password = $this->input->post('up_password');
-        $confirm_password = $this->input->post('confirm_password');
-        $country = $this->input->post('up_country');
-		$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
+		if ($this->input->server('REQUEST_METHOD') != 'POST') {
+			// Return error
+			$this->access_denied();
+			return false;
+		}
 
 
-
-        $fb_id = $this->input->post('fb_id');
-        $google_id = $this->input->post('google_id');
-
-
-        $this->load->library('form_validation');
-        // $this->config->set_item('language', 'armenian');
-        $this->form_validation->set_error_delimiters('<div>', '</div>');
-        $this->form_validation->set_rules('firstname', 'First name', 'required_all');
-        $this->form_validation->set_rules('lastname', 'Last name', 'required_all');
-        $this->form_validation->set_rules('up_email', 'lang:email', 'required_all|valid_email');
-        $this->form_validation->set_rules('country_code', 'Country code', 'required_all|numeric');
-        $this->form_validation->set_rules('phone_number', 'Phone number', 'required_all|numeric');
-        $this->form_validation->set_rules('up_password','Password','required_all|min_length[6]');
-        $this->form_validation->set_rules('confirm_password','Confirm password','required_all');
-        $this->form_validation->set_rules('up_country','Country','required_all');
+		$n = 0;
+		$messages['error'] = array();
+		$firstname = $this->input->post('firstname');
+		$lastname = $this->input->post('lastname');
+		$email = $this->input->post('up_email');
+		$country_code = $this->input->post('country_code');
+		$phone_number = $this->input->post('phone_number');
+		$username = $this->generate_username($email);
+		$pass = $this->input->post('up_password');
+		$password = $this->input->post('up_password');
+		$confirm_password = $this->input->post('confirm_password');
+		$country = $this->input->post('up_country');
+		$folder = $this->uname(3, 8); //unique chars length 8  (example: a5f7fd76)
 
 
+		$fb_id = $this->input->post('fb_id');
+		$google_id = $this->input->post('google_id');
 
-        if($this->form_validation->run() == false){
-            //validation errors
-            $n = 1;
-            $validation_errors = array(
-                'firstname' => form_error('firstname'),
-                'lastname' => form_error('lastname'),
-                'up_password' => form_error('up_password'),
-                'confirm_password' => form_error('confirm_password'),
-                'country_code' => form_error('country_code'),
-                'phone_number' => form_error('phone_number'),
-                'up_country' => form_error('up_country'),
-                'up_email' => form_error('up_email')
-            );
+
+		$this->load->library('form_validation');
+		// $this->config->set_item('language', 'armenian');
+		$this->form_validation->set_error_delimiters('<div>', '</div>');
+		$this->form_validation->set_rules('firstname', 'First name', 'required_all');
+		$this->form_validation->set_rules('lastname', 'Last name', 'required_all');
+		$this->form_validation->set_rules('up_email', 'lang:email', 'required_all|valid_email');
+		$this->form_validation->set_rules('country_code', 'Country code', 'required_all|numeric');
+		$this->form_validation->set_rules('phone_number', 'Phone number', 'required_all|numeric');
+		$this->form_validation->set_rules('up_password', 'Password', 'required_all|min_length[6]');
+		$this->form_validation->set_rules('confirm_password', 'Confirm password', 'required_all');
+		$this->form_validation->set_rules('up_country', 'Country', 'required_all');
+
+
+		if ($this->form_validation->run() == false) {
+			//validation errors
+			$n = 1;
+			$validation_errors = array(
+				'firstname' => form_error('firstname'),
+				'lastname' => form_error('lastname'),
+				'up_password' => form_error('up_password'),
+				'confirm_password' => form_error('confirm_password'),
+				'country_code' => form_error('country_code'),
+				'phone_number' => form_error('phone_number'),
+				'up_country' => form_error('up_country'),
+				'up_email' => form_error('up_email')
+			);
 			asort($validation_errors); //todo
-            $messages['error']['elements'][] = $validation_errors;
-        }
+			$messages['error']['elements'][] = $validation_errors;
+		}
 
 
+		if ($password == $confirm_password) {
+			$password = $this->hash($password);
+		} else {
+			$n = 1;
+			$validation_errors = array('confirm_password' => lang('passwords_not_mach'));
+			$messages['error']['elements'][] = $validation_errors;
+		}
 
-        if($password == $confirm_password) {
-            $password = $this->hash($password);
-        } else {
-            $n = 1;
-            $validation_errors = array('confirm_password' => lang('passwords_not_mach'));
-            $messages['error']['elements'][] = $validation_errors;
-        }
+		$sql_email_unique = "SELECT `id` FROM `user` WHERE `email` = " . $this->load->db_value($email) . " #todo if suspended";
 
-         $sql_email_unique = "
-            SELECT `id` FROM `user` WHERE `email` = ".$this->load->db_value($email)." #todo if suspended
-        ";
+		$query_email_unique = $this->db->query($sql_email_unique);
+		$num_rows = $query_email_unique->num_rows();
 
-        $query_email_unique = $this->db->query($sql_email_unique);
-        $num_rows = $query_email_unique->num_rows();
-
-        if($num_rows == 1) {
-            $n = 1;
-            $validation_errors = array('up_email' => lang('email_not_unique')); //todo ml
-            $messages['error']['elements'][] = $validation_errors;
-        }
+		if ($num_rows == 1) {
+			$n = 1;
+			$validation_errors = array('up_email' => lang('email_not_unique')); //todo ml
+			$messages['error']['elements'][] = $validation_errors;
+		}
 
 
-        if($n == 1) {
-            echo json_encode($messages);
-            return false;
-        }
+		if ($n == 1) {
+			echo json_encode($messages);
+			return false;
+		}
 
 
-        // mailing
+		// mailing
 
 		$this->smtp_mailing();
 
 		$this->email->to($email);
 		$this->email->subject('(Fleet management system) Your account is created');
 		$this->email->message(
-			'Username: '.$username.'<br />'.
-			'Password: '.$pass
+			'Username: ' . $username . '<br />' .
+			'Password: ' . $pass
 		);
 
-		if(!$this->email->send()) {
+		if (!$this->email->send()) {
 			$messages['success'] = 0;
 			$messages['error'] = $this->email->print_debugger();
 			echo json_encode($messages);
@@ -321,8 +324,7 @@ class User extends CI_Controller {
 		}
 
 
-
-        $sql = "
+		$sql = "
             INSERT INTO `user` (
               `first_name`,
               `last_name`,
@@ -341,24 +343,24 @@ class User extends CI_Controller {
             ) 
             VALUES
               (
-                ".$this->load->db_value($firstname).",
-                ".$this->load->db_value($lastname).",
-                ".$this->load->db_value($email).",
-                ".$this->load->db_value($country_code).",
-                ".$this->load->db_value($phone_number).",
-                ".$this->load->db_value($country).",
-                ".$this->load->db_value($username).",
-                ".$this->load->db_value($password).",
+                " . $this->load->db_value($firstname) . ",
+                " . $this->load->db_value($lastname) . ",
+                " . $this->load->db_value($email) . ",
+                " . $this->load->db_value($country_code) . ",
+                " . $this->load->db_value($phone_number) . ",
+                " . $this->load->db_value($country) . ",
+                " . $this->load->db_value($username) . ",
+                " . $this->load->db_value($password) . ",
                 NOW(),
                 '1',
-                ".$this->load->db_value($fb_id).",
-                ".$this->load->db_value($google_id).",
-                ".$this->load->db_value($folder).",
+                " . $this->load->db_value($fb_id) . ",
+                " . $this->load->db_value($google_id) . ",
+                " . $this->load->db_value($folder) . ",
                 '1'
               )
         ";
 
-        $query = $this->db->query($sql);
+		$query = $this->db->query($sql);
 
 		if ($query) {
 			$messages['success'] = 1;
@@ -368,9 +370,9 @@ class User extends CI_Controller {
 			$messages['error'] = 'Error';
 		}
 
-        // Return success or error message
-        echo json_encode($messages);
-        return true;
+		// Return success or error message
+		echo json_encode($messages);
+		return true;
 	}
 
 	/**
@@ -411,12 +413,10 @@ class User extends CI_Controller {
 
 		if (strtolower($code) != strtolower($word)) {
 			$n = 1;
-			$validation_errors = array('captcha' =>  lang('captcha_incorrect'));
+			$validation_errors = array('captcha' => lang('captcha_incorrect'));
 			$messages['error']['elements'][] = $validation_errors;
 
 		}
-
-
 
 
 		if ($this->form_validation->run() == false) {
@@ -435,9 +435,6 @@ class User extends CI_Controller {
 			echo json_encode($messages);
 			return false;
 		}
-
-
-
 
 
 		$sql = "SELECT 
@@ -500,13 +497,11 @@ class User extends CI_Controller {
 
 		if ($num == 1) {
 
-
 			if ($account['status'] == -2) {
 				$validation_errors = array('password' => lang('your_account_suspended'));
 				$messages['error']['elements'][] = $validation_errors;
 				echo json_encode($messages);
 				return false;
-
 			}
 
 			if ($account['status'] == -1) {
@@ -515,8 +510,6 @@ class User extends CI_Controller {
 				echo json_encode($messages);
 				return false;
 			}
-
-
 
 			$this->folder($account['folder']); //create folders
 
@@ -527,16 +520,13 @@ class User extends CI_Controller {
 				'password' => $account['password']
 			);
 
-
 			$session = array_merge($sess, $per);
-
 			$this->session->set_userdata($session);
-
 
 		}
 
 		// set last activity
-		$this->db->query($sql_last_activity = "UPDATE `user` SET `last_activity` = NOW() WHERE `id` = '".$account['id']."'");
+		$this->db->query($sql_last_activity = "UPDATE `user` SET `last_activity` = NOW() WHERE `id` = '" . $account['id'] . "'");
 
 
 		if ($tmp) {
@@ -555,8 +545,8 @@ class User extends CI_Controller {
 	}
 
 
-
-	public function login_google_ax() {
+	public function login_google_ax()
+	{
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
 			// Return error
@@ -576,12 +566,8 @@ class User extends CI_Controller {
 		$user_id = '';
 
 
-
-
-
-
 		$sql_email = "
-            SELECT `id` FROM `user` WHERE `email` = '".$email."'
+            SELECT `id` FROM `user` WHERE `email` = '" . $email . "'
         ";
 
 		$query = $this->db->query($sql_email);
@@ -589,7 +575,7 @@ class User extends CI_Controller {
 
 		$num_rows = $query->num_rows();
 
-		if($num_rows > '0') {
+		if ($num_rows > '0') {
 
 			$row = $query->row_array();
 			$user_id = $row['id'];
@@ -597,15 +583,15 @@ class User extends CI_Controller {
 			$sql = "
                 UPDATE `user`
 					SET 
-					 `photo` = ".$this->load->db_value($google_photo).",
-					 `google_id` = ".$this->load->db_value($google_id)."
-				WHERE  `email` = ".$this->load->db_value($email)."
+					 `photo` = " . $this->load->db_value($google_photo) . ",
+					 `google_id` = " . $this->load->db_value($google_id) . "
+				WHERE  `email` = " . $this->load->db_value($email) . "
 		    ";
 
 
 			$result = $this->db->query($sql);
 
-			if(!$result) {
+			if (!$result) {
 				$messages['success'] = 0;
 				$messages['error'] = 'Error';
 				echo json_encode($messages);
@@ -614,25 +600,25 @@ class User extends CI_Controller {
 
 		} else {
 
-			$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
+			$folder = $this->uname(3, 8); //unique chars length 8  (example: a5f7fd76)
 
 			$sql = "INSERT INTO `user`
 					SET 
 					 `role_id` = '1',
-					 `first_name` = ".$this->load->db_value($first_name).",
-					 `last_name` = ".$this->load->db_value($last_name).",
-					 `email` = ".$this->load->db_value($email).",
-					 `photo` = ".$this->load->db_value($google_photo).",
-					 `google_id` = ".$this->load->db_value($google_id).",
-					 `folder` = ".$this->load->db_value($folder).",
-					 `username` = ".$this->load->db_value($username).",
+					 `first_name` = " . $this->load->db_value($first_name) . ",
+					 `last_name` = " . $this->load->db_value($last_name) . ",
+					 `email` = " . $this->load->db_value($email) . ",
+					 `photo` = " . $this->load->db_value($google_photo) . ",
+					 `google_id` = " . $this->load->db_value($google_id) . ",
+					 `folder` = " . $this->load->db_value($folder) . ",
+					 `username` = " . $this->load->db_value($username) . ",
 					 `status` = '1'";
 
 			$result = $this->db->query($sql);
 
 			$user_id = $this->db->insert_id();
 
-			if(!$result) {
+			if (!$result) {
 				$messages['success'] = 0;
 				$messages['error'] = 'Error';
 				echo json_encode($messages);
@@ -641,10 +627,9 @@ class User extends CI_Controller {
 		}
 
 
-
 		$session = array(
-			'google_id'  => $google_id,
-			'google_photo'  => $google_photo,
+			'google_id' => $google_id,
+			'google_photo' => $google_photo,
 			'username' => $username,
 			'user_id' => $user_id
 		);
@@ -657,7 +642,8 @@ class User extends CI_Controller {
 		return true;
 	}
 
-	public function login_fb_ax() {
+	public function login_fb_ax()
+	{
 
 		if ($this->input->server('REQUEST_METHOD') != 'POST') {
 			// Return error
@@ -677,12 +663,8 @@ class User extends CI_Controller {
 		$user_id = '';
 
 
-
-
-
-
 		$sql_email = "
-            SELECT `id` FROM `user` WHERE `email` = '".$email."'
+            SELECT `id` FROM `user` WHERE `email` = '" . $email . "'
         ";
 
 		$query = $this->db->query($sql_email);
@@ -690,7 +672,7 @@ class User extends CI_Controller {
 
 		$num_rows = $query->num_rows();
 
-		if($num_rows > '0') {
+		if ($num_rows > '0') {
 
 			$row = $query->row_array();
 			$user_id = $row['id'];
@@ -698,15 +680,15 @@ class User extends CI_Controller {
 			$sql = "
                 UPDATE `user`
 					SET 
-					 `photo` = ".$this->load->db_value($fb_photo).",
-					 `fb_id` = ".$this->load->db_value($fb_id)."
-				WHERE  `email` = ".$this->load->db_value($email)."
+					 `photo` = " . $this->load->db_value($fb_photo) . ",
+					 `fb_id` = " . $this->load->db_value($fb_id) . "
+				WHERE  `email` = " . $this->load->db_value($email) . "
 		    ";
 
 
 			$result = $this->db->query($sql);
 
-			if(!$result) {
+			if (!$result) {
 				$messages['success'] = 0;
 				$messages['error'] = 'Error';
 				echo json_encode($messages);
@@ -715,25 +697,25 @@ class User extends CI_Controller {
 
 		} else {
 
-			$folder = $this->uname(3,8); //unique chars length 8  (example: a5f7fd76)
+			$folder = $this->uname(3, 8); //unique chars length 8  (example: a5f7fd76)
 
 			$sql = "INSERT INTO `user`
 					SET 
 					 `role_id` = '1',
-					 `first_name` = ".$this->load->db_value($first_name).",
-					 `last_name` = ".$this->load->db_value($last_name).",
-					 `email` = ".$this->load->db_value($email).",
-					 `photo` = ".$this->load->db_value($fb_photo).",
-					 `fb_id` = ".$this->load->db_value($fb_id).",
-					 `folder` = ".$this->load->db_value($folder).",
-					 `username` = ".$this->load->db_value($username).",
+					 `first_name` = " . $this->load->db_value($first_name) . ",
+					 `last_name` = " . $this->load->db_value($last_name) . ",
+					 `email` = " . $this->load->db_value($email) . ",
+					 `photo` = " . $this->load->db_value($fb_photo) . ",
+					 `fb_id` = " . $this->load->db_value($fb_id) . ",
+					 `folder` = " . $this->load->db_value($folder) . ",
+					 `username` = " . $this->load->db_value($username) . ",
 					 `status` = '1'";
 
 			$result = $this->db->query($sql);
 
 			$user_id = $this->db->insert_id();
 
-			if(!$result) {
+			if (!$result) {
 				$messages['success'] = 0;
 				$messages['error'] = 'Error';
 				echo json_encode($messages);
@@ -743,8 +725,8 @@ class User extends CI_Controller {
 
 
 		$session = array(
-			'fb_id'  => $fb_id,
-			'fb_photo'  => $fb_photo,
+			'fb_id' => $fb_id,
+			'fb_photo' => $fb_photo,
 			'username' => $username,
 			'user_id' => $user_id
 		);
@@ -756,8 +738,8 @@ class User extends CI_Controller {
 	}
 
 
-
-	public function _generateCaptcha() {
+	public function _generateCaptcha()
+	{
 		$values = array(
 			'img_path' => set_realpath('assets/img/captcha/'),
 			'img_url' => base_url('assets/img/captcha/'),
@@ -765,13 +747,13 @@ class User extends CI_Controller {
 			'img_width' => '150',
 			'img_height' => 50,
 			'expiration' => 7200,
-			'font_size'	=> 16,
+			'font_size' => 16,
 			'captcha_case_sensitive' => true,
-			'colors'	=> array(
-				'background'	=> array(255,255,255),
-				'border'	=> array(206,212,218),
-				'text'		=> array(40,167,69),
-				'grid'		=> array(255,193,7)
+			'colors' => array(
+				'background' => array(255, 255, 255),
+				'border' => array(206, 212, 218),
+				'text' => array(40, 167, 69),
+				'grid' => array(255, 193, 7)
 			)
 		);
 		/* Generate the captcha */
@@ -779,7 +761,8 @@ class User extends CI_Controller {
 	}
 
 
-	public function refresh() {
+	public function refresh()
+	{
 
 		$this->load->helper('captcha');
 		// Captcha configuration

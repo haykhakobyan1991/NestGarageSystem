@@ -52,6 +52,12 @@
 	input::placeholder{
 		font-size: 12px !important;
 	}
+	.delete_btn {
+		display: none;
+	}
+	#edit_group_modal {
+		display: none;
+	}
 </style>
 
 <?
@@ -183,7 +189,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 	<script>
 
+		$(document).on('change', function () {
+			$('.delete_btn').css('display', 'inline-block');
+			$('#edit_group_modal').css('display', 'inline-block');
+		});
+
 		$(document).ready(function () {
+
+
 
 
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
@@ -366,8 +379,11 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 					$('#group').removeClass('d-none');
 				});
 
-			})
-
+			});
+			$('.buttons-excel span').html('<?=lang('export')?>');
+			$('.buttons-html5').append('<i style="padding-left: 10px;" class="fas fa-print"></i>');
+			$('.buttons-colvis span').text('');
+			$('.buttons-colvis span').text('<?=lang('column_visibility')?>');
 
 		});
 

@@ -530,5 +530,3 @@
 
 	$('.buttons-excel span').html('<?=lang('export')?>')
 </script>
-
-

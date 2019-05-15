@@ -463,6 +463,7 @@ $lang['parking_time'] = 'Կայանում ր.';
 
 $lang['minute'] = 'րոպե';
 $lang['second'] = 'վրկ․';
+$lang['today'] = 'Այսօր';
 
 
 

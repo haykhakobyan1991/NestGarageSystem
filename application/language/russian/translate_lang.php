@@ -425,6 +425,7 @@ $lang['file'] = 'Документ';
 $lang['Report_period'] = 'Период отчета';
 $lang['GPS_tracking'] = 'GPS-трекинг';
 $lang['geofences'] = 'Геозоны';
+$lang['Are_you_sure_to_logout'] = 'Вы уверены, что хотите выйти из системы?';
 
 
 

@@ -1,28 +1,62 @@
-<html xmlns:*="http://www.w3.org/1999/xhtml">
+<html
+	xmlns:*="http://www.w3.org/1999/xhtml">
 <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta
+		http-equiv="Content-Type"
+		content="text/html; charset=utf-8"/>
+	<meta
+		name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<meta name="google-site-verification" content="F6R3icS6TcxQtKPU5VVWy-L3">
-	<meta name="google-signin-client_id"
-		  content="441989444698-u6fl3a44q4njbsogqdvc53kt5bgv1n48.apps.googleusercontent.com">
+	<meta
+		name="google-site-verification"
+		content="F6R3icS6TcxQtKPU5VVWy-L3">
+	<meta
+		name="google-signin-client_id"
+		content="441989444698-u6fl3a44q4njbsogqdvc53kt5bgv1n48.apps.googleusercontent.com">
 
-	<meta name="description" content=""/>
-	<meta name="keywords" content=""/>
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<meta
+		name="description"
+		content=""/>
+	<meta
+		name="keywords"
+		content=""/>
+	<link
+		href="https://fonts.googleapis.com/css?family=Roboto"
+		rel="stylesheet"
+		type="text/css">
 	<title></title>
 	<!--// Stylesheets //-->
-	<link rel="shortcut icon" href="<?= base_url('assets/img/') ?>" type="image/png">
-	<link href="<?= base_url('assets/css/reset.css') ?>" rel="stylesheet" type="text/css"/>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
-		  integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap.min.css') ?>"/>
-	<link rel="stylesheet" href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
-	<link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css"/>
-	<script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
-	<script src="<?= base_url('assets/js/main.js') ?>"></script>
-	<script src="<?= base_url('assets/js/base.js') ?>"></script>
+	<link
+		rel="shortcut icon"
+		href="<?= base_url('assets/img/') ?>"
+		type="image/png">
+	<link
+		href="<?= base_url('assets/css/reset.css') ?>"
+		rel="stylesheet"
+		type="text/css"/>
+	<link
+		rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		crossorigin="anonymous">
+	<link
+		rel="stylesheet"
+		href="<?= base_url('assets/css/bootstrap/bootstrap.min.css') ?>"/>
+	<link
+		rel="stylesheet"
+		href="<?= base_url('assets/css/bootstrap/bootstrap-select.css') ?>"/>
+	<link
+		href="<?= base_url('assets/css/style.css') ?>"
+		rel="stylesheet"
+		type="text/css"/>
+	<script
+		src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
+	<script
+		src="<?= base_url('assets/js/main.js') ?>"></script>
+	<script
+		src="<?= base_url('assets/js/base.js') ?>"></script>
 
 </head>
 <body>
@@ -68,11 +102,12 @@
 		background: rgb(255, 122, 89) !important;
 		color: #fff !important;
 	}
-	#load2:hover{
+
+	#load2:hover {
 		background-color: #fff !important;
 	}
 
-	input::placeholder{
+	input::placeholder {
 		font-size: 12px !important;
 	}
 
@@ -86,148 +121,403 @@
 </script>
 
 
-<div class="container">
-	<div class="loader"></div>
+<div
+	class="container">
+	<div
+		class="loader"></div>
 
-	<img class="loader_svg" src="<?= base_url('assets/images/puff.svg') ?>"/>
-	<div class="row">
+	<img
+		class="loader_svg"
+		src="<?= base_url('assets/images/puff.svg') ?>"/>
+	<div
+		class="row">
 
-		<div class="col-sm-3"></div>
-		<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
-			<p class="lead text-success left"><?= lang('have_an_account') ?>? <span style="cursor:pointer;"
-																					class="text-warning"
-																					data-toggle="modal"
-																					data-target="#exampleModal"
-																					data-whatever="@mdo"><?= lang('sign_in') ?></span>
+		<div
+			class="col-sm-3"></div>
+		<div
+			class="col-sm-12 col-md-6 mt-md-3 mt-3">
+			<p class="lead text-success left"><?= lang('have_an_account') ?>
+				?
+				<span
+					style="cursor:pointer;"
+					class="text-warning"
+					data-toggle="modal"
+					data-target="#exampleModal"
+					data-whatever="@mdo"><?= lang('sign_in') ?></span>
 
-			<div class="langs mr-5" style="margin-top: -52px;text-align: right;">
-				<ul class="" data-url="<?= base_url('change_lang') ?>">
+			<div
+				class="langs mr-5"
+				style="margin-top: -52px;text-align: right;">
+				<ul class=""
+					data-url="<?= base_url('change_lang') ?>">
 					<li style="display: inline-block;margin-right: -25px;"
 						class=" <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
-						data-lang="hy"><a style="font-weight: 600;" class="nav-link" href="javascript:void(0)">Հայ</a>
+						data-lang="hy">
+						<a style="font-weight: 600;"
+						   class="nav-link"
+						   href="javascript:void(0)">Հայ</a>
 					</li>
 					<li style="display: inline-block;margin-right: -60px;"
-						class="  <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>" data-lang="ru"><a
-							class="nav-link" style="font-weight: 600;" href="javascript:void(0)">Рус</a></li>
+						class="  <?= ($this->uri->segment(1) == 'ru' ? 'active' : '') ?>"
+						data-lang="ru">
+						<a
+							class="nav-link"
+							style="font-weight: 600;"
+							href="javascript:void(0)">Рус</a>
+					</li>
 				</ul>
 			</div>
 
 			</p>
 
-			<div class="jumbotron pt-3 pb-3 my_jumbotron">
-				<p class="lead">Join 2,776,007 Founders & Startups Always free - connect now</p>
+			<div
+				class="jumbotron pt-3 pb-3 my_jumbotron">
+				<p class="lead">
+					Join
+					2,776,007
+					Founders
+					&
+					Startups
+					Always
+					free
+					-
+					connect
+					now</p>
 				<hr class="my-4">
-				<div class="text-center">
-					<div id="fb" class="mb-2 mb-md-2"
-						 style="background: #3d5a98; cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(61, 90, 152, 0.67), 0 3px 6px rgba(27, 53, 104, 0.88);">
-						<img style="float: left; margin: 4px;" src="<?= base_url('assets/img/fb.png') ?>">
+				<div
+					class="text-center">
+					<div
+						id="fb"
+						class="mb-2 mb-md-2"
+						style="background: #3d5a98; cursor: pointer; width: 240px; height: 40px; margin: 0 auto; box-shadow: 0 3px 6px rgba(61, 90, 152, 0.67), 0 3px 6px rgba(27, 53, 104, 0.88);">
+						<img
+							style="float: left; margin: 4px;"
+							src="<?= base_url('assets/img/fb.png') ?>">
 						<span
 							style="color: #fff; font-size: 12px;  line-height: 38px;"><?= lang('continue_width_facebook') ?></span>
 					</div>
-					<div id="my-signin2"
-						 onclick="ClickLogin()"
-						 class="mt-2 mt-md-2 g-signin2"
-						 data-width="240"
-						 style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
+					<div
+						id="my-signin2"
+						onclick="ClickLogin()"
+						class="mt-2 mt-md-2 g-signin2"
+						data-width="240"
+						style="display: inline-block;  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);"
 					></div>
 				</div>
-				<p style="cursor:pointer;" class="text-center  small text-success mt-md-2 mt-3 ml-2" data-toggle="modal"
+				<p style="cursor:pointer;"
+				   class="text-center  small text-success mt-md-2 mt-3 ml-2"
+				   data-toggle="modal"
 				   data-target=".bd-example-modal-lg"><?= lang('or_us_email') ?></p>
 			</div>
 
 
-			<div class="jumbotron pt-3 pb-3 my_jumbotron">
-				<p class="lead">By Joining F6S and providing your personal information, you
-					confirm your agree to us using it to provide our services and to
-					keep in touch regarding information we think may interest you.
-					You also confirm agreement to the Terms Service and Privacy Policy. You can change mind about
-					receiving information from us as se out polices.</p>
+			<div
+				class="jumbotron pt-3 pb-3 my_jumbotron">
+				<p class="lead">
+					By
+					Joining
+					F6S
+					and
+					providing
+					your
+					personal
+					information,
+					you
+					confirm
+					your
+					agree
+					to
+					us
+					using
+					it
+					to
+					provide
+					our
+					services
+					and
+					to
+					keep
+					in
+					touch
+					regarding
+					information
+					we
+					think
+					may
+					interest
+					you.
+					You
+					also
+					confirm
+					agreement
+					to
+					the
+					Terms
+					Service
+					and
+					Privacy
+					Policy.
+					You
+					can
+					change
+					mind
+					about
+					receiving
+					information
+					from
+					us
+					as
+					se
+					out
+					polices.</p>
 				<hr class="my-4">
 			</div>
 		</div>
 	</div>
 
 	<!--Sign up modal-->
-	<div id="reg_modal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		 aria-labelledby="myLargeModalLabel"
-		 aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
+	<div
+		id="reg_modal"
+		class="modal fade bd-example-modal-lg"
+		tabindex="-1"
+		role="dialog"
+		aria-labelledby="myLargeModalLabel"
+		aria-hidden="true">
+		<div
+			class="modal-dialog modal-lg">
+			<div
+				class="modal-content">
 
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel"><?= lang('register') ?></h5>
+				<div
+					class="modal-header">
+					<h5 class="modal-title"
+						id="exampleModalLabel"><?= lang('register') ?></h5>
 				</div>
 
 
-				<div class="row content_area">
-					<div class="col-sm-12 col-md-6 mt-md-3 mt-3">
-						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff;">
-							<h1 class="text-left text-success" style="font-size: 1.5em;">Wellcome to F6S</h1>
-							<p class="lead">F6S is where help eachother grow with deals, programs, founding and
+				<div
+					class="row content_area">
+					<div
+						class="col-sm-12 col-md-6 mt-md-3 mt-3">
+						<div
+							class="jumbotron pt-3 pb-3 my_jumbotron"
+							style="background: #fff;">
+							<h1 class="text-left text-success"
+								style="font-size: 1.5em;">
+								Wellcome
+								to
+								F6S</h1>
+							<p class="lead">
+								F6S
+								is
+								where
+								help
+								eachother
+								grow
+								with
+								deals,
+								programs,
+								founding
+								and
 								jobs.</p>
 							<hr class="my-4">
-							<p>For new users, your public profile/basic information will be used to create a profile. we
-								will never post without your permission.</p>
+							<p>
+								For
+								new
+								users,
+								your
+								public
+								profile/basic
+								information
+								will
+								be
+								used
+								to
+								create
+								a
+								profile.
+								we
+								will
+								never
+								post
+								without
+								your
+								permission.</p>
 							<hr class="my-4">
-							<p style="font-size: 1em;" class="lead">By Joining F6S and providing your personal
-								information, you confirm your agree to us using it to provide our services and to keep
-								in touch regarding information we think may interest you. You also confirm agreement to
-								the Terms Service and Privacy Policy. You can change mind about receiving information
-								from us as se out polices.</p>
+							<p style="font-size: 1em;"
+							   class="lead">
+								By
+								Joining
+								F6S
+								and
+								providing
+								your
+								personal
+								information,
+								you
+								confirm
+								your
+								agree
+								to
+								us
+								using
+								it
+								to
+								provide
+								our
+								services
+								and
+								to
+								keep
+								in
+								touch
+								regarding
+								information
+								we
+								think
+								may
+								interest
+								you.
+								You
+								also
+								confirm
+								agreement
+								to
+								the
+								Terms
+								Service
+								and
+								Privacy
+								Policy.
+								You
+								can
+								change
+								mind
+								about
+								receiving
+								information
+								from
+								us
+								as
+								se
+								out
+								polices.</p>
 						</div>
 					</div>
-					<div class="col-md-6 mt-md-3 mt-3">
-						<div class="alert-danger mb-2 p-2 mr-2 d-none">fsdfd fsd s fsd fsddfd</div>
-						<div class="jumbotron pt-3 pb-3 my_jumbotron" style="background: #fff">
-							<form id="register">
-								<div class="form-group">
-									<input type="text" class="form-control form-control-sm firstname"
-										   placeholder="<?= lang('first_name') ?>" name="firstname" value="">
+					<div
+						class="col-md-6 mt-md-3 mt-3">
+						<div
+							class="alert-danger mb-2 p-2 mr-2 d-none">
+							fsdfd
+							fsd
+							s
+							fsd
+							fsddfd
+						</div>
+						<div
+							class="jumbotron pt-3 pb-3 my_jumbotron"
+							style="background: #fff">
+							<form
+								id="register">
+								<div
+									class="form-group">
+									<input
+										type="text"
+										class="form-control form-control-sm firstname"
+										placeholder="<?= lang('first_name') ?>"
+										name="firstname"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="text" class="form-control form-control-sm lastname"
-										   placeholder="<?= lang('last_name') ?>" name="lastname" value="">
+								<div
+									class="form-group">
+									<input
+										type="text"
+										class="form-control form-control-sm lastname"
+										placeholder="<?= lang('last_name') ?>"
+										name="lastname"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="email" class="form-control form-control-sm email"
-										   placeholder="<?= lang('email') ?>" name="up_email" value="">
+								<div
+									class="form-group">
+									<input
+										type="email"
+										class="form-control form-control-sm email"
+										placeholder="<?= lang('email') ?>"
+										name="up_email"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="text" class="form-control form-control-sm country_code"
-										   placeholder="<?= lang('country_code') ?>" name="country_code" value="">
+								<div
+									class="form-group">
+									<input
+										type="text"
+										class="form-control form-control-sm country_code"
+										placeholder="<?= lang('country_code') ?>"
+										name="country_code"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="text" class="form-control form-control-sm phone_number"
-										   placeholder="<?= lang('phone_number') ?>" name="phone_number" value="">
+								<div
+									class="form-group">
+									<input
+										type="text"
+										class="form-control form-control-sm phone_number"
+										placeholder="<?= lang('phone_number') ?>"
+										name="phone_number"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password"
-										   placeholder="<?= lang('password') ?>" name="up_password" value="">
+								<div
+									class="form-group">
+									<input
+										type="password"
+										class="form-control form-control-sm password"
+										placeholder="<?= lang('password') ?>"
+										name="up_password"
+										value="">
 								</div>
-								<div class="form-group">
-									<input type="password" class="form-control form-control-sm confirm_password"
-										   placeholder="<?= lang('confirm_password') ?>" name="confirm_password"
-										   value="">
+								<div
+									class="form-group">
+									<input
+										type="password"
+										class="form-control form-control-sm confirm_password"
+										placeholder="<?= lang('confirm_password') ?>"
+										name="confirm_password"
+										value="">
 								</div>
-								<div class="form-group">
-									<select name="up_country" class="selectpicker form-control form-control-sm"
-											id="country" data-container="body" data-live-search="true"
-											title="<?= lang('select_country') ?>">
-										<option value=""><?= lang('select_country') ?> ...</option>
+								<div
+									class="form-group">
+									<select
+										name="up_country"
+										class="selectpicker form-control form-control-sm"
+										id="country"
+										data-container="body"
+										data-live-search="true"
+										title="<?= lang('select_country') ?>">
+										<option
+											value=""><?= lang('select_country') ?>
+											...
+										</option>
 										<? foreach ($country as $row) : ?>
-											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+											<option
+												value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
 								</div>
 							</form>
 
-							<button id="sign_up" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" type="submit"
-									class="btn btn-success btn-block signUp"><?= lang('join') ?></button>
-							<button id="load" class="btn btn-block  btn-success cancel_btn d-none" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;"><img
+							<button
+								id="sign_up"
+								style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;"
+								type="submit"
+								class="btn btn-success btn-block signUp"><?= lang('join') ?></button>
+							<button
+								id="load"
+								class="btn btn-block  btn-success cancel_btn d-none"
+								style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;">
+								<img
 									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
-									src="<?= base_url() ?>assets/images/bars2.svg"/></button>
+									src="<?= base_url() ?>assets/images/bars2.svg"/>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -236,77 +526,223 @@
 	</div>
 </div>
 <!-- Sign In Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"><?= lang('sign_in') ?></h5>
+<div
+	class="modal fade"
+	id="exampleModal"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="exampleModalLabel"
+	aria-hidden="true">
+	<div
+		class="modal-dialog"
+		role="document">
+		<div
+			class="modal-content">
+			<div
+				class="modal-header">
+				<h5 class="modal-title"
+					id="exampleModalLabel"><?= lang('sign_in') ?></h5>
 			</div>
-			<div class="modal-body">
-				<div class="jumbotron pt-3 pb-3 my_jumbotron">
-					<div class="jumbotron pt-3 pb-3 my_jumbotron" style="margin-bottom: 0;">
-						<h1 class="text-left text-success" style="font-size: 1.25em;">Wellcome to F6S</h1>
-						<p class="lead">F6S is where help eachother grow with deals, programs, founding and
+			<div
+				class="modal-body">
+				<div
+					class="jumbotron pt-3 pb-3 my_jumbotron">
+					<div
+						class="jumbotron pt-3 pb-3 my_jumbotron"
+						style="margin-bottom: 0;">
+						<h1 class="text-left text-success"
+							style="font-size: 1.25em;">
+							Wellcome
+							to
+							F6S</h1>
+						<p class="lead">
+							F6S
+							is
+							where
+							help
+							eachother
+							grow
+							with
+							deals,
+							programs,
+							founding
+							and
 							jobs. </p>
 						<hr class="my-4">
-						<p style="font-size: 0.9em; ">For new users, your public profile/basic information will be used
-							to create a profile. we will never post without your permission.</p>
+						<p style="font-size: 0.9em; ">
+							For
+							new
+							users,
+							your
+							public
+							profile/basic
+							information
+							will
+							be
+							used
+							to
+							create
+							a
+							profile.
+							we
+							will
+							never
+							post
+							without
+							your
+							permission.</p>
 					</div>
-					<div class="collapse active show" id="collapseExample">
-						<div class="card card-body">
-							<form id="login">
-								<div class="form-group">
-									<input type="email" class="form-control form-control-sm email"
-										   placeholder="<?=lang('username')?> <?=lang('or')?> <?=lang('email')?>" name="email" value="">
-									<small id="email" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
-								</div>
-								<div class="form-group">
-									<input type="password" class="form-control form-control-sm password"
-										   placeholder="<?=lang('password')?>" name="password" value="">
-									<small id="password" class="form-text text-muted d-none"><p class="text-danger"><?=lang('Field_must_be_filled_in')?></p></small>
-								</div>
-								<div class="form-group">
-									<input placeholder="Captcha" name="captcha" class="form-control form-control-sm"
-										   type="text" autocomplete="off" />
-									<small id="captcha" class="form-text text-muted d-none">
-										<p class="text-danger"><?=lang('Field_must_be_filled_in')?></p>
+					<div
+						class="collapse active show"
+						id="collapseExample">
+						<div
+							class="card card-body">
+							<form
+								id="login">
+								<div
+									class="form-group">
+									<input
+										type="email"
+										class="form-control form-control-sm email"
+										placeholder="<?= lang('username') ?> <?= lang('or') ?> <?= lang('email') ?>"
+										name="email"
+										value="">
+									<small
+										id="email"
+										class="form-text text-muted d-none">
+										<p class="text-danger"><?= lang('Field_must_be_filled_in') ?></p>
 									</small>
-									<div id="captchaDiv" class="w-50 text-center mt-3 bg-secondary">
-										<span id="captImg"><?= $captcha['image'] ?></span>
-										<a href="javascript:void(0);" title="Can't read the image? click to refresh."
+								</div>
+								<div
+									class="form-group">
+									<input
+										type="password"
+										class="form-control form-control-sm password"
+										placeholder="<?= lang('password') ?>"
+										name="password"
+										value="">
+									<small
+										id="password"
+										class="form-text text-muted d-none">
+										<p class="text-danger"><?= lang('Field_must_be_filled_in') ?></p>
+									</small>
+								</div>
+								<div
+									class="form-group">
+									<input
+										placeholder="Captcha"
+										name="captcha"
+										class="form-control form-control-sm"
+										type="text"
+										autocomplete="off"/>
+									<small
+										id="captcha"
+										class="form-text text-muted d-none">
+										<p class="text-danger"><?= lang('Field_must_be_filled_in') ?></p>
+									</small>
+									<div
+										id="captchaDiv"
+										class="w-50 text-center mt-3 bg-secondary">
+										<span
+											id="captImg"><?= $captcha['image'] ?></span>
+										<a href="javascript:void(0);"
+										   title="Can't read the image? click to refresh."
 										   class="text-white refreshCaptcha">
 											<i class="fas fa-redo-alt"></i>
 										</a>
 									</div>
 								</div>
 							</form>
-							<button style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
-    transition: all .3s ease-in-out;background: #fff;" id="signIn" type="submit"
-									class="btn btn-sm btn-block signIn"><?= lang('sign_in') ?></button>
-							<button id="load2" class="btn btn-block  btn-success cancel_btn d-none" style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+							<button
+								style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
+    transition: all .3s ease-in-out;background: #fff;"
+								id="signIn"
+								type="submit"
+								class="btn btn-sm btn-block signIn"><?= lang('sign_in') ?></button>
+							<button
+								id="load2"
+								class="btn btn-block  btn-success cancel_btn d-none"
+								style="border: 1px solid rgb(255, 122, 89) !important;color: rgb(255, 122, 89);opacity: 1 !important;
     transition: all .3s ease-in-out;background: #fff;">
 
-								<img style="height: 20px;margin: 0 auto;display: block;text-align: center;" src="<?= base_url() ?>assets/images/bars2.svg"/>
+								<img
+									style="height: 20px;margin: 0 auto;display: block;text-align: center;"
+									src="<?= base_url() ?>assets/images/bars2.svg"/>
 							</button>
 						</div>
 					</div>
-					<p style="font-size: 0.9em;" class="lead mt-2 mt-md-2">
-						By Joining F6S and providing your personal
-						information, you
-						confirm your agree to us using it to provide our services and to
-						keep in touch regarding information we think may interest you.
-						You also confirm agreement to the Terms Service and Privacy Policy. You can change mind about
-						receiving information from us as se out polices.
+					<p style="font-size: 0.9em;"
+					   class="lead mt-2 mt-md-2">
+						By
+						Joining
+						F6S
+						and
+						providing
+						your
+						personal
+						information,
+						you
+						confirm
+						your
+						agree
+						to
+						us
+						using
+						it
+						to
+						provide
+						our
+						services
+						and
+						to
+						keep
+						in
+						touch
+						regarding
+						information
+						we
+						think
+						may
+						interest
+						you.
+						You
+						also
+						confirm
+						agreement
+						to
+						the
+						Terms
+						Service
+						and
+						Privacy
+						Policy.
+						You
+						can
+						change
+						mind
+						about
+						receiving
+						information
+						from
+						us
+						as
+						se
+						out
+						polices.
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<script src="<?= base_url('assets/js/bootstrap/popper.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/bootstrap/bootstrap.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
+<script
+	src="<?= base_url('assets/js/bootstrap/popper.min.js') ?>"></script>
+<script
+	src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
+<script
+	src="<?= base_url('assets/js/bootstrap/bootstrap.min.js') ?>"></script>
+<script
+	src="<?= base_url('assets/js/bootstrap/bootstrap-select.js') ?>"></script>
 
 
 <!-- Sign In With FACEBOOK  -->
@@ -346,7 +782,8 @@
 
 	// Load the SDK asynchronously
 	(function (d, s, id) {
-		var js, fjs = d.getElementsByTagName(s)[0];
+		var js,
+			fjs = d.getElementsByTagName(s)[0];
 		if (d.getElementById(id)) {
 			return;
 		}
@@ -413,7 +850,10 @@
 	document.getElementById('fb').addEventListener('click', function () {
 		//do the login
 		console.log('f0');
-		FB.login(checkLoginState, {scope: 'email,public_profile', return_scopes: true});
+		FB.login(checkLoginState, {
+			scope: 'email,public_profile',
+			return_scopes: true
+		});
 	}, false);
 </script>
 
@@ -422,6 +862,7 @@
 <script>
 
 	var clicked = false;
+
 	function ClickLogin() {
 		clicked = true;
 	}
@@ -443,6 +884,7 @@
 		}
 		console.log(0);
 	}
+
 	function onFailure(error) {
 		console.log(error);
 	}
@@ -499,7 +941,10 @@
 
 </script>
 
-<script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+<script
+	src="https://apis.google.com/js/client:platform.js?onload=renderButton"
+	async
+	defer></script>
 
 <script>
 	// sign up
@@ -563,7 +1008,8 @@
 				$('p#success').addClass('d-none');
 				console.log('ERRORS: ' + textStatus);
 			},
-			complete: function () {}
+			complete: function () {
+			}
 		});
 	});
 </script>
@@ -668,7 +1114,10 @@
 		$.ajax({
 			type: 'POST',
 			url: url,
-			data: {lang: lang, current_url: current_url},
+			data: {
+				lang: lang,
+				current_url: current_url
+			},
 			success: function (url) {
 				if (url != '') {
 					$(location).attr('href', url);
@@ -688,8 +1137,6 @@
 		});
 	});
 </script>
-
-
 
 
 </body>

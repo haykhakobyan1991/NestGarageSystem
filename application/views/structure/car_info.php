@@ -18,7 +18,7 @@ $folder = $this->session->folder;
 							?>
 							<div class="col-sm-12 p-0">
 								<div class="col-sm-3" style="border: 1px solid #dee2e6 !important; min-width: 32%;">
-									<div class="row bg-white">
+									<div class="row" style="background: #cccccc!important;">
 										<div class="p-2  w-auto " style="min-width: 47%;">
 											<p class="text-black small driver_info"><?= lang('first_name') ?>:
 												<span class="text-black ml-2"><?= $row['first_name'] ?></span>
@@ -74,7 +74,7 @@ $folder = $this->session->folder;
 									</div>
 								</div>
 							</div>
-							<div class="ml-5"></div><?
+							<hr class="my-2"><?
 						endif;
 						$staff_id = $row['staff_id'];
 						?>

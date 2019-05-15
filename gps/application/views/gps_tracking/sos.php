@@ -177,7 +177,7 @@
 									</td>
 									<td><?= $echoDateTime ?></td>
 									<td><?= $fleet[$row['imei']]['brand_model'] ?></td>
-									<td><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
+									<td style="text-transform: uppercase;"><?= $fleet[$row['imei']]['fleet_plate_number'] ?></td>
 									<td><?= $fleet[$row['imei']]['staff'] ?></td>
 									<td class="delete_sos"
 										style="cursor: pointer;"
@@ -536,7 +536,7 @@
 		$("#splitter").zinoSplitter({
 			panes: [
 				{
-					size: 570
+					size: 615
 				},
 				{
 					size: "100%",
@@ -553,12 +553,14 @@
 				var width_map = $('.panel-right').width() - $('.panel-left').width() - 4;
 				$('#map > ymaps').css('width', width_map);
 				$('#map > ymaps').css('overflow', 'scroll');
-				if ($('.panel-left').width() <= 400) {
+				if ($('.panel-left').width() <= 614) {
 					$('input[type=search]').css('display', 'none');
+					$('input[type=search]').parent('label').css('display', 'none');
 					$('.car_icon').removeClass('col-sm-2');
 					$('.car_icon').addClass('col-sm-3');
 				} else {
 					$('input[type=search]').css('display', 'inline-block');
+					$('input[type=search]').parent('label').css('display', 'inline-block')
 					$('.car_icon').addClass('col-sm-2');
 					$('.car_icon').removeClass('col-sm-3');
 				}
@@ -599,6 +601,9 @@
 			count_unread++;
 			$('.count_unread').text(count_unread);
 		});
+
+
+
 	});
 
 </script>

@@ -59,6 +59,14 @@
 	th:nth-child(2):before {
 		content: none !important;
 	}
+
+	.car_name .text-muted {
+		text-transform: uppercase;
+	}
+
+	.car_number {
+		text-transform: uppercase;
+	}
 </style>
 
 <?
@@ -104,8 +112,8 @@ if ($empty) {
 							src="<?= base_url() ?>assets/images/icon-car-png-22.png"
 							style="width: 25px;display: inline-block;margin-left: 20px;"
 							alt=""/>
-						<span
-							class="count_cars_in_table"><?= count($result_fleets) ?></span>
+<!--						<span-->
+<!--							class="count_cars_in_table">--><?//= count($result_fleets) ?><!--</span>-->
 					</div>
 					<label
 						class="label_group"
@@ -1019,7 +1027,7 @@ foreach ($result2 as $name => $value) {
 							"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + " <?=lang('km/h')?></span></p>" +
 							"<p class='mb-0'><?=lang('engine') ?>:<span class='ml-1 " + bg_color_on_loade + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 							"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
+							"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25 լ․</span></p>",
 						balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
 					}, {
 						iconLayout: ymaps.templateLayoutFactory.createClass([
@@ -1106,7 +1114,7 @@ foreach ($result2 as $name => $value) {
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
+									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25 լ․</span></p>",
 								balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
 							}, {
 								iconLayout: ymaps.templateLayoutFactory.createClass([
@@ -1219,7 +1227,7 @@ foreach ($result2 as $name => $value) {
 											"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 											"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 											"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+											"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25 լ․</span></p>" +
 											"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 										balloonContentFooter: ""
 									}, {
@@ -1337,7 +1345,7 @@ foreach ($result2 as $name => $value) {
 									"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 									"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 " + bg_color + "' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 									"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25l</span></p>" +
+									"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25 լ․</span></p>" +
 									"<p class='mb-0'><?=lang('place')?>:<span class='ml-1'>" + $(this).parent('tr').children('.address_span').text() + "</span></p>",
 								balloonContentFooter: ""
 							}, {
@@ -1398,7 +1406,7 @@ foreach ($result2 as $name => $value) {
 												"<p class='mb-0'><?=lang('speed')?><span class='ml-1'>" + speed + "<?=lang('km/h')?></span></p>" +
 												"<p class='mb-0'><?=lang('engine')?>:<span class='ml-1 bg-success' style='display: inline-block;width: 8px;height:8px; -webkit-border-radius: 50%;-moz-border-radius: 50%;border-radius: 50%;'></span></p>" +
 												"<p class='mb-0'><?=lang('driver')?>: <span class='ml-1'>" + $(this).parent('tr').children('.staff_span').children('span').text() + "</span></p>" +
-												"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25ll</span></p>",
+												"<p class='mb-0'><?=lang('fuel')?>:<span class='ml-1'>25 լ․</span></p>",
 											balloonContentFooter: "<p class='mb-0 pb-3' style='color: #000 !important;    margin-top: -7px !important;'><?=lang('place')?>:<span id='address' class='ml-1 place_span' style='color: #000 !important;'></span></p>"
 										}, {
 											iconLayout: ymaps.templateLayoutFactory.createClass([

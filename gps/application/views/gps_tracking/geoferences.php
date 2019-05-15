@@ -128,8 +128,8 @@ $count = count($result);
 					style="padding-top: 16px;">
 					<i style="font-size: 17px;"
 					   class="fas fa-draw-polygon"></i>
-					<span
-						class="count_cars_in_table"><?= $count ?></span>
+<!--					<span-->
+<!--						class="count_cars_in_table">--><?//= $count ?><!--</span>-->
 				</div>
 
 

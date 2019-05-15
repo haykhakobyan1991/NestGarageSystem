@@ -1014,7 +1014,7 @@ class Structure extends MX_Controller
 								UPDATE 
 								  `department` 
 								SET
-								  `status` = '1' 
+								  `status` = '1'
 								WHERE `company_id` = '" . $from_to['from'] . "' 
 								  AND `id` = '" . $from_to['to'] . "' 
 							";
@@ -1266,7 +1266,7 @@ class Structure extends MX_Controller
 	{
 
 		// $this->load->authorisation();
-		//todo if not post redirect to 404
+		//todo if not post 404
 
 		$user_id = $this->session->user_id;
 		$lng = $this->load->lng();

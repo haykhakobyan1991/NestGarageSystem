@@ -457,4 +457,5 @@ $lang['parking_time'] = 'Парковка м.';
 
 $lang['minute'] = 'минут';
 $lang['second'] = 'сек.';
+$lang['today'] = 'Сегодня';
 

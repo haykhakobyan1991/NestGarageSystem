@@ -32,7 +32,7 @@
 		border: 1px solid;
 		position: absolute;
 		z-index: 999;
-		right: 60px;
+		right: 38px;
 		top: 20px;
 		padding: 10px 15px 10px 30px;
 		border-radius: 5px;

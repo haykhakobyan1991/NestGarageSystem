@@ -1342,7 +1342,7 @@ $i = '';
 <a id="dwnldLnk"
    download="reference.pdf"
    target="_blank"
-   style="display:none;"/>
+   style="display:none;"></a>
 <!--end /-->
 
 <script>

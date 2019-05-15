@@ -430,6 +430,7 @@ $lang['file'] = 'Փաստաթուղթ';
 $lang['Report_period'] = 'Հաշվետու ժամանակաշրջան';
 $lang['GPS_tracking'] = 'GPS- ի հետեւում';
 $lang['geofences'] = 'Գեոզոնաներ';
+$lang['Are_you_sure_to_logout'] = 'Համոզված եք որ ցանկանում եք դուրս գալ համակարգից';
 
 
 

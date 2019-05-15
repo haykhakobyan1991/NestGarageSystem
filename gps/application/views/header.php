@@ -571,5 +571,10 @@ $row_company = json_decode($this->load->CallAPI('POST', $this->load->old_baseUrl
 			});
 		})
 
+		$(window).on('load', function () {
+			if($('table tr td').hasClass('dataTable_empty')) {
+				$('.pagination').css('display', 'none');
+			}
+		})
 
 	</script>

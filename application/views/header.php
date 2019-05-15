@@ -197,7 +197,9 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 		</ul>
 	</div>
 
-	<button data-toggle="modal" data-target="#dd"
+	<button
+		data-toggle="modal"
+		data-target="#dd"
 		class="btn btn-outline-dark">
 		<i class="fas fa-sign-out-alt"></i>
 	</button>
@@ -519,14 +521,30 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 											<select
 												style="margin-top: 1px"
 												class="form-control form-control-sml">
-												<option>1</option>
-												<option>2</option>
-												<option>3</option>
-												<option>5</option>
-												<option>10</option>
-												<option>15</option>
-												<option>20</option>
-												<option>25</option>
+												<option>
+													1
+												</option>
+												<option>
+													2
+												</option>
+												<option>
+													3
+												</option>
+												<option>
+													5
+												</option>
+												<option>
+													10
+												</option>
+												<option>
+													15
+												</option>
+												<option>
+													20
+												</option>
+												<option>
+													25
+												</option>
 											</select>
 
 
@@ -600,4 +618,12 @@ $row = $this->db->select('CONCAT_WS(" ", user.first_name, user.last_name) AS nam
 									$(location).attr("href", url);
 								});
 							});
+						</script>
+
+						<script>
+							$(window).on('load', function () {
+								if ($('table tr td').hasClass('dataTables_empty')) {
+									$('.pagination').css('display', 'none');
+								}
+							})
 						</script>

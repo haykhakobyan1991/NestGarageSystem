@@ -254,11 +254,6 @@
 			<hr class="my-2">
 		</div>
 
-		<div class="container-fluid">
-			<textarea name="other" rows="2" class="form-control form-control-sm col-sm-12"
-					  placeholder="<?= lang('other') ?>"></textarea>
-		</div>
-
 		<div class="row">
 			<div class="col-md-12 col-md-6 ">
 				<!-- Info Star -->
@@ -429,15 +424,15 @@
 						<table class="vehicle table table-striped table-hover">
 							<thead>
 							<tr>
-								<th scope="col"><?= lang('item_name') ?> *</th>
-								<th scope="col"><?= lang('value') ?> *
+								<th scope="col"><?= lang('item_name') ?></th>
+								<th scope="col"><?= lang('value') ?>
 									<small>(<?= lang('KM\Days\Months') ?>)</small>
 								</th>
-								<th scope="col"><?= lang('explotation') ?> *</th>
-								<th scope="col"><?= lang('per_day') ?> *</th>
+								<th scope="col"><?= lang('explotation') ?></th>
+								<th scope="col"><?= lang('per_day') ?></th>
 								<th scope="col"><?= lang('more_info') ?></th>
-								<th scope="col"><?= lang('day_before') ?> *</th>
-								<th scope="col"><?= lang('start_alarm_day') ?> *</th>
+								<th scope="col"><?= lang('day_before') ?></th>
+								<th scope="col"><?= lang('start_alarm_day') ?></th>
 								<th scope="col"></th>
 							</tr>
 							</thead>

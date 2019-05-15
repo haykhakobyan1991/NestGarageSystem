@@ -427,14 +427,11 @@ endforeach;
 													<div
 														class="row"
 														style="margin-right: -1px;margin-left: -1px;">
-														<textarea
-															style="font-size: 12px;"
-															placeholder="<?= lang('other') ?>"
+														<textarea style="font-size: 12px;" placeholder="<?= lang('other') ?>"
 															class="form-control col-sm-12"
 															id="exampleFormControlTextarea1"
 															name="other"
-															rows="2">
-														</textarea>
+															rows="2"></textarea>
 													</div>
 												</div>
 

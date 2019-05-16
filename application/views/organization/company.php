@@ -268,16 +268,22 @@ $i = '';
 						</div>
 						<div
 							class="row mt-1">
-							<label
-								class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
+							<label class="col-sm-4 col-form-label"><?= lang('phone_number') ?></label>
 							<div
 								class="col-sm-8">
-								<input
-									value="<?= $company['phone_number'] ?>"
-									name="phone_number"
-									type="text"
-									class="form-control form-control-sm"
-									placeholder="<?= lang('phone_number') ?>">
+								<label class="validation_numeric col-sm-12 p-0">
+									<input
+										value="<?= $company['phone_number'] ?>"
+										name="phone_number"
+										type="text"
+										class="form-control form-control-sm"
+										placeholder="<?= lang('phone_number') ?>">
+
+									<div class="invalid-feedback">
+										<?=lang('must_enter_only_numbers')?>
+									</div>
+								</label>
+
 							</div>
 						</div>
 					</div>
@@ -401,12 +407,18 @@ $i = '';
 										style="font-size: 15px;"><?= lang('phone_number') ?></label>
 									<div
 										class="col-sm-8">
+										<label class="validation_numeric col-sm-12 p-0">
 										<input
 											value="<?= $company['owner_contact_number'] ?>"
 											name="owner_contact_number"
 											type="text"
 											class="form-control form-control-sm"
 											placeholder="<?= lang('contact_number') ?>">
+											<div class="invalid-feedback">
+												<?=lang('must_enter_only_numbers')?>
+											</div>
+										</label>
+										<!-- xxx -->
 									</div>
 								</div>
 							</div>
@@ -512,12 +524,14 @@ $i = '';
 													class="col-sm-5 col-form-label text-right"><?= lang('account_type') ?></label>
 												<div
 													class="col-sm-7">
+
 													<input
 														value="<?= $company['account_name_1'] ?>"
 														name="account_name_1"
 														type="text"
 														class="account_number form-control form-control-sm"
 														placeholder="<?= lang('account_type') ?>">
+
 												</div>
 											</div>
 
@@ -527,12 +541,18 @@ $i = '';
 													class="col-sm-5 col-form-label text-right"><?= lang('account_number') ?></label>
 												<div
 													class="col-sm-7">
-													<input
-														value="<?= $company['account_number_1'] ?>"
-														name="account_number_1"
-														type="text"
-														class="account_number form-control form-control-sm"
-														placeholder="<?= lang('account_number') ?>">
+													<label class="validation_numeric col-sm-12 p-0">
+														<input
+															value="<?= $company['account_number_1'] ?>"
+															name="account_number_1"
+															type="text"
+															class="account_number form-control form-control-sm"
+															placeholder="<?= lang('account_number') ?>">
+														<div class="invalid-feedback">
+															<?=lang('must_enter_only_numbers')?>
+														</div>
+													</label>
+
 												</div>
 											</div>
 
@@ -620,6 +640,7 @@ $i = '';
 													class="col-sm-5 col-form-label"><?= lang('account_type') ?></label>
 												<div
 													class="col-sm-7">
+
 													<input
 														value="<?= $company['account_name_2'] ?>"
 														name="account_name_2"
@@ -639,12 +660,18 @@ $i = '';
 												</label>
 												<div
 													class="col-sm-7">
-													<input
-														value="<?= $company['account_number_2'] ?>"
-														name="account_number_2"
-														type="text"
-														class="account_number form-control form-control-sm"
-														placeholder="<?= lang('account_number') ?>">
+													<label class="validation_numeric col-sm-12 p-0">
+														<input
+															value="<?= $company['account_number_2'] ?>"
+															name="account_number_2"
+															type="text"
+															class="account_number form-control form-control-sm"
+															placeholder="<?= lang('account_number') ?>">
+														<div class="invalid-feedback">
+															<?=lang('must_enter_only_numbers')?>
+														</div>
+													</label>
+
 												</div>
 											</div>
 											<div
@@ -749,12 +776,17 @@ $i = '';
 						class="col-sm-5 col-form-label"><?= lang('account_number') ?></label>
 					<div
 						class="col-sm-7">
+						<label class="validation_numeric col-sm-12 p-0">
 						<input
 							value="<?= $company['account_number_3'] ?>"
 							type="text"
 							name="account_number_3"
 							class="account_number form-control form-control-sm"
 							placeholder="<?= lang('account_number') ?>">
+							<div class="invalid-feedback">
+								<?=lang('must_enter_only_numbers')?>
+							</div>
+						</label>
 					</div>
 				</div>
 
@@ -861,12 +893,17 @@ $i = '';
 						class="col-sm-5 col-form-label"><?= lang('account_number') ?></label>
 					<div
 						class="col-sm-7">
+						<label class="validation_numeric col-sm-12 p-0">
 						<input
 							value="<?= $company['account_number_4'] ?>"
 							type="text"
 							name="account_number_4"
 							class="account_number form-control form-control-sm"
 							placeholder="<?= lang('account_number') ?>">
+							<div class="invalid-feedback">
+								<?=lang('must_enter_only_numbers')?>
+							</div>
+						</label>
 					</div>
 				</div>
 

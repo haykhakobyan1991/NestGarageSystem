@@ -242,14 +242,21 @@ endforeach;
 											<label
 												class="col-sm-3 col-form-label"><?= lang('contact_number') ?>
 												*</label>
+
+
 											<div
 												class="col-sm-7"
 												style="margin-left: -61px;">
+												<label class="validation_numeric col-sm-12 p-0">
 												<input
 													type="text"
 													class="form-control form-control-sm"
 													name="contact_number"
 													placeholder="<?= lang('contact_number') ?>">
+												<div class="invalid-feedback">
+													<?=lang('must_enter_only_numbers')?>
+												</div>
+											</label>
 											</div>
 										</div>
 										<div

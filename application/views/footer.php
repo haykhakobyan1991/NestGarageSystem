@@ -79,11 +79,7 @@
 			}
 
 		});
-
-
-
 	});
-
 
 	$(document).on('click', '.remove_document', function () {
 		$(this).parent('div').parent('div').remove();
@@ -112,6 +108,23 @@
 	$(document).on('click', '.remove_new_row', function () {
 		$(this).parent('div').parent('div').remove();
 	});
+
+
+	$('input[name="phone_number"], input[name="owner_contact_number"], input[name="account_number_1"], input[name="account_number_2"], input[name="account_number_3"], input[name="account_number_4"], input[name="contact_number"], input[name="contact_1"], input[name="contact_2"]').keyup(function () {
+		var val_numeric = $(this).val();
+		if ($.isNumeric(val_numeric)) {
+			$(this).parent('label').children('.invalid-feedback').css('display', 'none')
+		} else {
+			$(this).parent('label').children('.invalid-feedback').css('display', 'block')
+
+			$('.cancel_btn, .save_cancel_btn, #create_company ').addClass('disabled');
+		}
+
+		if (val_numeric == '') {
+			$(this).parent('label').children('.invalid-feedback').css('display', 'none')
+		}
+
+	})
 
 
 

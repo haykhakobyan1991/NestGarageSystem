@@ -396,13 +396,19 @@ endforeach;
 															style="font-size: 15px;"><?= lang('contact_number') ?></label>
 														<div
 															class="col-sm-8">
-															<input
-																type="text"
-																class="form-control form-control-sm"
-																name="contact_1"
-																placeholder="<?= lang('contact_number') ?> 1"
-																title=""
-															>
+															<label class="validation_numeric col-sm-12 p-0">
+																<input
+																	type="text"
+																	class="form-control form-control-sm"
+																	name="contact_1"
+																	placeholder="<?= lang('contact_number') ?> 1"
+																	title=""
+																>
+																<div class="invalid-feedback">
+																	<?=lang('must_enter_only_numbers')?>
+																</div>
+															</label>
+
 														</div>
 													</div>
 													<div
@@ -411,6 +417,7 @@ endforeach;
 															class="col-sm-4 col-form-label"></label>
 														<div
 															class="col-sm-8">
+															<label class="validation_numeric col-sm-12 p-0">
 															<input
 																type="text"
 																class="form-control form-control-sm"
@@ -418,6 +425,10 @@ endforeach;
 																placeholder="<?= lang('contact_number') ?> 2"
 																title=""
 															>
+																<div class="invalid-feedback">
+																	<?=lang('must_enter_only_numbers')?>
+																</div>
+															</label>
 														</div>
 													</div>
 

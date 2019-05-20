@@ -108,8 +108,6 @@ $lang['Driving_license'] = 'Վարորդական Իրավունք';
 $lang['Technical_passport'] = 'Տեխ անձնագիր';
 
 
-
-
 //Add
 $lang['from_driver_to_vehicle'] = '<b>Վարորդ</b> %s - <b>ից դեպի Փոխադրամիջոց</b> %s';
 $lang['from_department_to_driver'] = '<b>Ստորաբաժանում</b> %s - <b>ից դեպի Վարորդ</b> %s';
@@ -266,7 +264,6 @@ $lang['select_fleets_from_list'] = 'Ընտրեք Տրանսպորտային Մի
 $lang['move_here_to_see_the_costs'] = 'Տեղափոխեք այստեղ տեղեկատվությունը տեսնելու համար';
 
 
-
 //address
 $lang['country'] = 'Երկիր';
 $lang['address'] = 'Հասցե';
@@ -320,7 +317,6 @@ $lang['record'] = 'Գրառումից';
 $lang['record2'] = 'Գրառում';
 
 
-
 //date
 $lang['date'] = 'Ամսաթիվ';
 $lang['from'] = 'Սկսած';
@@ -363,7 +359,6 @@ $lang['analog_input'] = 'Մուտքի Անալոգ';
 $lang['fleets'] = 'Տ/Մ';
 $lang['max_speed'] = 'Առավելագույն արագություն';
 $lang['get_information'] = 'Ստացված ինֆորմացիան';
-
 
 
 //other info

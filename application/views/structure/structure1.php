@@ -41,13 +41,19 @@
 	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
 <script
 	src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
-<style>tr {
+<style>
+	tr {
 		background: rgba(0, 0, 0, .05) !important
 	}
 
 	input::placeholder {
 		font-size: 12px !important;
-	}</style>
+	}
+
+	#add-info{
+		display: none;
+	}
+</style>
 
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
@@ -927,6 +933,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		var new_arr = [];
 
 		myDiagram.addDiagramListener('ObjectSingleClicked', function (e) {
+
+			$('#add-info').css('display', 'block');
+
 			var linkDataArray = <?=$from_to?>;
 			$.each(linkDataArray, function (key, value) {
 				if (value.from == myDiagram.selection.Ca.key.Wd.key) {
@@ -1659,7 +1668,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 
 	$('.reset_struckture').click(function () {
-		myDiagrem.div = null;
+		myDiagram.div = null;
 		init();
 	});
 

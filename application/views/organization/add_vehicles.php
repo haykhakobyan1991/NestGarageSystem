@@ -1,61 +1,100 @@
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/add_vehicles.css"/>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
-<script src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/add_vehicles.css"/>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/bootstrap-colorpicker.min.css"/>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap-colorpicker.min.js"></script>
 <style>
-	input::placeholder{
+	input::placeholder {
 		font-size: 12px !important;
 	}
 </style>
 
-<div class="tab-pane fade show active" id="list-company" role="tabpanel" style="padding-top: 10px;padding-bottom: 10px;"
-	 aria-labelledby="list-company-list">
-	<div class="for_message">
-		<div class="alert alert-success d-none" role="alert"></div>
-		<div class="alert alert-info d-none" role="alert"></div>
-		<div class="alert alert-danger d-none" role="alert"></div>
+<div
+	class="tab-pane fade show active"
+	id="list-company"
+	role="tabpanel"
+	style="padding-top: 10px;padding-bottom: 10px;"
+	aria-labelledby="list-company-list">
+	<div
+		class="for_message">
+		<div
+			class="alert alert-success d-none"
+			role="alert"></div>
+		<div
+			class="alert alert-info d-none"
+			role="alert"></div>
+		<div
+			class="alert alert-danger d-none"
+			role="alert"></div>
 	</div>
 	<form>
 		<!-- Error Message -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-8">
+		<div
+			class="container-fluid">
+			<div
+				class="row">
+				<div
+					class="col-sm-8">
 					<h5><?= lang('vehicles_information') ?></h5>
 					<p><?= lang('fill_followings_fields') ?></p>
 				</div>
-				<div class="col-sm-4">
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="row">
-								<label class="pl-3 col-form-label col-sm-5 text-right" style="padding-left: 45px !important;
+				<div
+					class="col-sm-4">
+					<div
+						class="row">
+						<div
+							class="col-sm-12">
+							<div
+								class="row">
+								<label
+									class="pl-3 col-form-label col-sm-5 text-right"
+									style="padding-left: 45px !important;
 	font-size: 15px !important;"><?= lang('GPS_Exist') ?></label>
-								<input style="margin-top: 13px;width: 18px;height: 18px;" type="checkbox"
-									   name="gps_exist" value="1" id="fleet_type"/>
-								<div class="col-sm-6">
-									<input value="" name="gps_tracker_imei" type="text"
-										   class="form-control form-control-sm"
-										   placeholder="<?= lang('GPS_Tracker_IMEI') ?>">
+								<input
+									style="margin-top: 13px;width: 18px;height: 18px;"
+									type="checkbox"
+									name="gps_exist"
+									value="1"
+									id="fleet_type"/>
+								<div
+									class="col-sm-6">
+									<input
+										value=""
+										name="gps_tracker_imei"
+										type="text"
+										class="form-control form-control-sm"
+										placeholder="<?= lang('GPS_Tracker_IMEI') ?>">
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<hr class="my-2" style="margin-top: -10px !important;">
+			<hr class="my-2"
+				style="margin-top: -10px !important;">
 		</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-4">
-					<div class="row getChild"
-						 data-url="<?= base_url($lang . '/System_main/get_child') ?>"
-						 data-result="model_div"
-						 data-response="model"
-						 data-res_type="select"
-						 data-lang="<?= $lang ?>"
-						 id="brand"
+		<div
+			class="container-fluid">
+			<div
+				class="row">
+				<div
+					class="col-sm-4">
+					<div
+						class="row getChild"
+						data-url="<?= base_url($lang . '/System_main/get_child') ?>"
+						data-result="model_div"
+						data-response="model"
+						data-res_type="select"
+						data-lang="<?= $lang ?>"
+						id="brand"
 					>
 						<label
 							class="col-sm-4 col-form-label">
-							<?= lang('brand') ?> * </label>
+							<?= lang('brand') ?>
+							* </label>
 						<select
 							name="brand"
 							class="col-sm-7 selectpicker form-control form-control-sm "
@@ -72,8 +111,13 @@
 						</select>
 					</div>
 
-					<div class="row" id="model_div" style="margin-top: .75rem;">
-						<label class=" col-form-label col-sm-4"><?= lang('model') ?> *</label>
+					<div
+						class="row"
+						id="model_div"
+						style="margin-top: .75rem;">
+						<label
+							class=" col-form-label col-sm-4"><?= lang('model') ?>
+							*</label>
 						<select
 							name="model"
 							class="col selectpicker form-control form-control-sm col-sm-7"
@@ -84,70 +128,133 @@
 						></select>
 					</div>
 
-					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-sm-4 col-form-label"><?= lang('type') ?> *</label>
-						<select name="fleet_type" class="col-sm-7 currency form-control form-control-sm selectpicker"
-								data-size="5" id="fleet_type" data-live-search="true"
-								title="<?= lang('select_car_type') ?>">
+					<div
+						class="row"
+						style="margin-top: .75rem!important;">
+						<label
+							class="col-sm-4 col-form-label"><?= lang('type') ?>
+							*</label>
+						<select
+							name="fleet_type"
+							class="col-sm-7 currency form-control form-control-sm selectpicker"
+							data-size="5"
+							id="fleet_type"
+							data-live-search="true"
+							title="<?= lang('select_car_type') ?>">
 							<? foreach ($fleet_type as $row) : ?>
-								<option class="car_type" value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<option
+									class="car_type"
+									value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
 						</select>
 					</div>
-					<div class="row" style="margin-top: .75rem!important;">
-						<label class="col-form-label col-sm-4"><?= lang('year') ?> *</label>
+					<div
+						class="row"
+						style="margin-top: .75rem!important;">
+						<label
+							class="col-form-label col-sm-4"><?= lang('year') ?>
+							*</label>
 
-						<select name="production_date"
-								class="currency form-control form-control-sm selectpicker col-sm-7" data-size="5"
-								data-live-search="true" title="<?= lang('choose') ?>...">
+						<select
+							name="production_date"
+							class="currency form-control form-control-sm selectpicker col-sm-7"
+							data-size="5"
+							data-live-search="true"
+							title="<?= lang('choose') ?>...">
 							<?php for ($i = date('Y'); $i >= 1980; $i--) : ?>
-								<option value="<?= $i ?>"><?= $i ?></option>
+								<option
+									value="<?= $i ?>"><?= $i ?></option>
 							<?php endfor; ?>
 						</select>
 					</div>
-					<div class="row" style="margin-top: .6rem!important;">
-						<label class="pl-3 col-form-label col-sm-4"
-							   style="font-size: 15px;"><?= lang('engine_power') ?></label>
-						<input value="" min="0" step="0.1" name="engine_power" type="number"
-							   class="form-control form-control-sm col-sm-7" placeholder="<?= lang('engine_power') ?>">
+					<div
+						class="row"
+						style="margin-top: .6rem!important;">
+						<label
+							class="pl-3 col-form-label col-sm-4"
+							style="font-size: 15px;"><?= lang('engine_power') ?></label>
+						<input
+							value=""
+							min="0"
+							step="0.1"
+							name="engine_power"
+							type="number"
+							class="form-control form-control-sm col-sm-7"
+							placeholder="<?= lang('engine_power') ?>">
 					</div>
 				</div>
 
-				<div class="col-sm-4">
-					<div class="row">
-						<label class="pl-3 col-form-label col-sm-5" style="font-size: 15px;"><?= lang('fuel') ?></label>
-						<select name="fuel" class="form-control form-control-sm selectpicker col-sm-7" data-size="5"
-								id="fleet_type" data-live-search="true" title="<?= lang('fuel_type') ?>">
+				<div
+					class="col-sm-4">
+					<div
+						class="row">
+						<label
+							class="pl-3 col-form-label col-sm-5"
+							style="font-size: 15px;"><?= lang('fuel') ?></label>
+						<select
+							name="fuel"
+							class="form-control form-control-sm selectpicker col-sm-7"
+							data-size="5"
+							id="fleet_type"
+							data-live-search="true"
+							title="<?= lang('fuel_type') ?>">
 							<? foreach ($fuel as $row) : ?>
-								<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+								<option
+									value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 							<? endforeach; ?>
 						</select>
 					</div>
-					<div class="row" style="margin-top: .6rem!important;">
-						<label class="col-sm-5 pl-3 col-form-label"
-							   style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
-						<input value="" min="0" name="fuel_avg_consumption" type="number"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('average_expense_100_km') ?>">
+					<div
+						class="row"
+						style="margin-top: .6rem!important;">
+						<label
+							class="col-sm-5 pl-3 col-form-label"
+							style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
+						<input
+							value=""
+							min="0"
+							name="fuel_avg_consumption"
+							type="number"
+							class="form-control form-control-sm col-sm-7"
+							placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
-					<div class="row" id="second" style="margin-top: .6rem!important; display: none">
-						<label class="col-sm-5 pl-3 col-form-label"
-							   style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
-						<input value="" min="0" name="fuel_avg_consumption_second" type="number"
-							   class="form-control form-control-sm col-sm-7"
-							   placeholder="<?= lang('average_expense_100_km') ?>">
+					<div
+						class="row"
+						id="second"
+						style="margin-top: .6rem!important; display: none">
+						<label
+							class="col-sm-5 pl-3 col-form-label"
+							style="font-size: 15px;"><?= lang('average_expense_100_km') ?></label>
+						<input
+							value=""
+							min="0"
+							name="fuel_avg_consumption_second"
+							type="number"
+							class="form-control form-control-sm col-sm-7"
+							placeholder="<?= lang('average_expense_100_km') ?>">
 					</div>
 
-					<div class="row" style="margin-top: .4rem !important;">
-						<label class="pl-3 col-form-label col-sm-5"
-							   style="font-size: 15px;"><?= lang('running') ?></label>
-						<input value="" min="0" name="mileage" type="number"
-							   class="form-control form-control-sm col-sm-5" placeholder="<?= lang('running') ?>">
-						<select name="mileage_value"
-								class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2" data-size="5"><?
+					<div
+						class="row"
+						style="margin-top: .4rem !important;">
+						<label
+							class="pl-3 col-form-label col-sm-5"
+							style="font-size: 15px;"><?= lang('running') ?></label>
+						<input
+							value=""
+							min="0"
+							name="mileage"
+							type="number"
+							class="form-control form-control-sm col-sm-5"
+							placeholder="<?= lang('running') ?>">
+						<select
+							name="mileage_value"
+							class="form-control form-control-sm selectpicker mt_custom-1 col-sm-2"
+							data-size="5"><?
 							foreach ($value as $row) :
 								if ($row['type'] == 1) :?>
-									<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+									<option
+										value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 								<?
 								endif;
 							endforeach; ?>
@@ -160,19 +267,28 @@
 					<!--							   style="font-size: 15px;">-->
 					<? //= lang('odometer') ?><!--</label>-->
 					<!--						<input value="" name="odometer" type="text" class="form-control form-control-sm col-sm-7"-->
-					<!--							   placeholder="--><? //= lang('odometer') ?><!--">-->
+					<!--							   placeholder="-->
+					<? //= lang('odometer') ?><!--">-->
 					<!--					</div>-->
 					<!--					todo-->
 
 				</div>
 
-				<div class="col-sm-4">
-					<div class="row">
-						<label class="pl-4 col-form-label col-sm-3"
-							   style="font-size: 15px;"><?= lang('color') ?> *</label>
-						<select name="color" class="selectpicker form-control form-control-sm col-sm-7" id="staff"
-								data-size="5"
-								data-live-search="true" title="<?= lang('color') ?>">
+				<div
+					class="col-sm-4">
+					<div
+						class="row">
+						<label
+							class="pl-4 col-form-label col-sm-3"
+							style="font-size: 15px;"><?= lang('color') ?>
+							*</label>
+						<select
+							name="color"
+							class="selectpicker form-control form-control-sm col-sm-7"
+							id="staff"
+							data-size="5"
+							data-live-search="true"
+							title="<?= lang('color') ?>">
 							<? foreach ($fleet_color as $row) : ?>
 								<option
 									value="<?= $row['color_code'] ?>"><?= $row['title'] ?></option>
@@ -180,19 +296,37 @@
 						</select>
 
 					</div>
-					<div class="row" style="margin-top: .6rem !important;">
-						<label class="pl-4 col-form-label col-sm-3" style="font-size: 15px;"><?= lang('vin') ?></label>
-						<input value="" name="vin" type="text" class="form-control form-control-sm col-sm-7"
-							   placeholder="VIN">
+					<div
+						class="row"
+						style="margin-top: .6rem !important;">
+						<label
+							class="pl-4 col-form-label col-sm-3"
+							style="font-size: 15px;"><?= lang('vin') ?></label>
+						<input
+							value=""
+							name="vin"
+							type="text"
+							class="form-control form-control-sm col-sm-7"
+							placeholder="VIN">
 					</div>
 
-					<div class="row mt-2">
-						<label class="pl-4 col-form-label col-sm-3"><?= lang('attached') ?> *</label>
-						<div class="col-sm-7 p-0">
-							<select name="staff[]" class="col  selectpicker form-control form-control-sm" id="staff"
-									multiple data-live-search="true" title="<?= lang('select_a_staff') ?>">
+					<div
+						class="row mt-2">
+						<label
+							class="pl-4 col-form-label col-sm-3"><?= lang('attached') ?>
+							*</label>
+						<div
+							class="col-sm-7 p-0">
+							<select
+								name="staff[]"
+								class="col  selectpicker form-control form-control-sm"
+								id="staff"
+								multiple
+								data-live-search="true"
+								title="<?= lang('select_a_staff') ?>">
 								<? foreach ($staff_for_select as $row) : ?>
-									<option value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
+									<option
+										value="<?= $row['id'] ?>"><?= $row['name'] ?></option>
 								<? endforeach; ?>
 							</select>
 						</div>
@@ -205,48 +339,81 @@
 			<hr class="my-2">
 		</div>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-2 mt-2">
-					<div class="row">
-						<label class="col-sm-3 col-form-label pl-3 text-center"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?>*</label>
-						<input value="" name="fleet_plate_number" type="text"
-							   class="form-control form-control-sm col-sm-9" placeholder="<?= lang('car_number') ?>">
+		<div
+			class="container-fluid">
+			<div
+				class="row">
+				<div
+					class="col-sm-2 mt-2">
+					<div
+						class="row">
+						<label
+							class="col-sm-3 col-form-label pl-3 text-center"
+							style="font-size: 15px;padding-top: 10px;"><?= lang('car_number_abbr') ?>
+							*</label>
+						<input
+							value=""
+							name="fleet_plate_number"
+							type="text"
+							class="form-control form-control-sm col-sm-9"
+							placeholder="<?= lang('car_number') ?>">
 					</div>
 				</div>
 
-				<div class="col-sm-3">
-					<label class="col-sm-6 col-form-label text-right"
-						   style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
+				<div
+					class="col-sm-3">
+					<label
+						class="col-sm-6 col-form-label text-right"
+						style="font-size: 15px;padding-top: 10px;"><?= lang('appendix_copy') ?></label>
 					<label
 						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;margin-top: 7px;"
 						class="btn btn-sm btn-outline-success mb-0">
 						<span><?= lang('browse') ?></span>
-						<input type="file" name="regitered_file" class="d-none form-control-file btn_input" hidden
-							   style="display: none;" id="exampleFormControlFile1">
+						<input
+							type="file"
+							name="regitered_file"
+							class="d-none form-control-file btn_input"
+							hidden
+							style="display: none;"
+							id="exampleFormControlFile1">
 					</label>
 				</div>
 
-				<div class="col-sm-3 mt-2">
-					<div class="row">
-						<label class="col-form-label col-sm-5 text-right"
-							   style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
-						<input value="" name="owner" type="text"
-							   class="col-sm-7 form-control form-control-sm"
-							   placeholder="<?= lang('owner') ?>">
-						<input value="" name="owner_id" type="hidden">
+				<div
+					class="col-sm-3 mt-2">
+					<div
+						class="row">
+						<label
+							class="col-form-label col-sm-5 text-right"
+							style="font-size: 15px;padding-top: 10px;"><?= lang('owner') ?></label>
+						<input
+							value=""
+							name="owner"
+							type="text"
+							class="col-sm-7 form-control form-control-sm"
+							placeholder="<?= lang('owner') ?>">
+						<input
+							value=""
+							name="owner_id"
+							type="hidden">
 					</div>
 				</div>
-				<div class="col-sm-3">
-					<label class="col-sm-6 col-form-label text-right col-width"
-						   style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
+				<div
+					class="col-sm-3">
+					<label
+						class="col-sm-6 col-form-label text-right col-width"
+						style="font-size: 15px;padding-top: 10px;"><?= lang('owner_passport') ?></label>
 					<label
 						style="font-size: 14px !important;line-height: 14px !important;padding: 10px 24px !important;font-weight: 500 !important;min-width: 111px; max-width: 111px;"
 						class="btn btn-sm btn-outline-success mb-0 col-width_m">
 						<span><?= lang('browse') ?></span>
-						<input type="file" name="owners_passport" class="d-none form-control-file btn_input" hidden
-							   style="display: none;" id="exampleFormControlFile1">
+						<input
+							type="file"
+							name="owners_passport"
+							class="d-none form-control-file btn_input"
+							hidden
+							style="display: none;"
+							id="exampleFormControlFile1">
 					</label>
 				</div>
 
@@ -254,36 +421,61 @@
 			<hr class="my-2">
 		</div>
 
-		<div class="row">
-			<div class="col-md-12 col-md-6 ">
+		<div
+			class="row">
+			<div
+				class="col-md-12 col-md-6 ">
 				<!-- Info Star -->
 				<div>
 					<!-- Acardion -->
-					<div class="row mt-1">
-						<div class="accordion  col-sm-12" id="accordionExample_info" style="padding: 30px;">
-							<div class="card">
-								<div class="card-header p-0" id="heading_info1">
+					<div
+						class="row mt-1">
+						<div
+							class="accordion  col-sm-12"
+							id="accordionExample_info"
+							style="padding: 30px;">
+							<div
+								class="card">
+								<div
+									class="card-header p-0"
+									id="heading_info1">
 									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link text-success" type="button"
-												data-toggle="collapse" data-target="#collapse_info1"
-												aria-expanded="false" aria-controls="collapse_info1">
-											<?= lang('insurance1') ?>։
+										<button
+											class="btn btn-sm btn-link text-success"
+											type="button"
+											data-toggle="collapse"
+											data-target="#collapse_info1"
+											aria-expanded="false"
+											aria-controls="collapse_info1">
+											<?= lang('insurance1') ?>
+											։
 										</button>
 									</h5>
 								</div>
-								<div id="collapse_info1" class="collapse show" aria-labelledby="heading_info1"
-									 data-parent="#accordionExample_info">
-									<div class="card-body">
-										<div class="add_new_items">
-											<div class="row">
-												<div class="col-sm-3">
-													<label for="type[1]" class="col-form-label"
-														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('insurance_type') ?></label>
+								<div
+									id="collapse_info1"
+									class="collapse show"
+									aria-labelledby="heading_info1"
+									data-parent="#accordionExample_info">
+									<div
+										class="card-body">
+										<div
+											class="add_new_items">
+											<div
+												class="row">
+												<div
+													class="col-sm-3">
+													<label
+														for="type[1]"
+														class="col-form-label"
+														style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('insurance_type') ?></label>
 													<div>
-														<select name="type[1]"
-																class="selectpicker form-control form-control-sm dif_meter"
-																data-live-search="true" data-size="5"
-																title="<?= lang('insurance_type') ?>">
+														<select
+															name="type[1]"
+															class="selectpicker form-control form-control-sm dif_meter"
+															data-live-search="true"
+															data-size="5"
+															title="<?= lang('insurance_type') ?>">
 															<? foreach ($insurance_type as $row) : ?>
 																<option
 																	value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -291,8 +483,10 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-md-2">
-													<div class="form-group">
+												<div
+													class="col-md-2">
+													<div
+														class="form-group">
 														<label><?= lang('company') ?></label>
 														<input
 															type="text"
@@ -302,18 +496,22 @@
 														>
 													</div>
 												</div>
-												<div class="col-md-2">
-													<div class="form-group">
+												<div
+													class="col-md-2">
+													<div
+														class="form-group">
 														<label><?= lang('reference') ?></label>
 														<input
-															type="text" name="reference[1]"
+															type="text"
+															name="reference[1]"
 															class="form-control form-control-sm"
 															placeholder="<?= lang('reference') ?>"
 														>
 													</div>
 												</div>
 
-												<div class="col-md-2">
+												<div
+													class="col-md-2">
 													<label><?= lang('expiry_date') ?></label>
 													<input
 														type="date"
@@ -348,30 +546,48 @@
 								</div>
 							</div>
 
-							<div class="card">
-								<div class="card-header p-0" id="heading_info2">
+							<div
+								class="card">
+								<div
+									class="card-header p-0"
+									id="heading_info2">
 									<h5 class="mb-0">
-										<button class="btn btn-sm btn-link text-success" type="button"
-												data-toggle="collapse" data-target="#collapse_info2"
-												aria-expanded="false" aria-controls="collapse_info2">
-											<?= lang('insurance1') ?>։
+										<button
+											class="btn btn-sm btn-link text-success"
+											type="button"
+											data-toggle="collapse"
+											data-target="#collapse_info2"
+											aria-expanded="false"
+											aria-controls="collapse_info2">
+											<?= lang('insurance1') ?>
+											։
 										</button>
 									</h5>
 								</div>
-								<div id="collapse_info2" class="collapse" aria-labelledby="heading_info2"
-									 data-parent="#accordionExample_info">
-									<div class="card-body">
-										<div class="add_new_items">
-											<div class="row">
-												<div class="col-sm-3">
-													<label for="type[2]" class="col-form-label"
-														   style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
+								<div
+									id="collapse_info2"
+									class="collapse"
+									aria-labelledby="heading_info2"
+									data-parent="#accordionExample_info">
+									<div
+										class="card-body">
+										<div
+											class="add_new_items">
+											<div
+												class="row">
+												<div
+													class="col-sm-3">
+													<label
+														for="type[2]"
+														class="col-form-label"
+														style="font-size: 12px;margin-top: -10px;margin-bottom: 6px;"><?= lang('type') ?></label>
 													<div>
-														<select name="type[2]"
-																class="selectpicker form-control form-control-sm dif_meter"
-																data-live-search="true"
-																data-size="5"
-																title="<?= lang('insurance_type') ?>">
+														<select
+															name="type[2]"
+															class="selectpicker form-control form-control-sm dif_meter"
+															data-live-search="true"
+															data-size="5"
+															title="<?= lang('insurance_type') ?>">
 															<? foreach ($insurance_type as $row) : ?>
 																<option
 																	value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
@@ -379,35 +595,54 @@
 														</select>
 													</div>
 												</div>
-												<div class="col-md-2">
-													<div class="form-group">
+												<div
+													class="col-md-2">
+													<div
+														class="form-group">
 														<label><?= lang('company') ?></label>
-														<input type="text" name="company[2]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('company') ?>">
+														<input
+															type="text"
+															name="company[2]"
+															class="form-control form-control-sm"
+															placeholder="<?= lang('company') ?>">
 													</div>
 												</div>
-												<div class="col-md-2">
-													<div class="form-group">
+												<div
+													class="col-md-2">
+													<div
+														class="form-group">
 														<label>Reference</label>
-														<input type="text" name="reference[2]"
-															   class="form-control form-control-sm"
-															   placeholder="<?= lang('reference') ?>">
+														<input
+															type="text"
+															name="reference[2]"
+															class="form-control form-control-sm"
+															placeholder="<?= lang('reference') ?>">
 													</div>
 												</div>
-												<div class="col-md-2">
+												<div
+													class="col-md-2">
 													<label><?= lang('expiry_date') ?></label>
-													<input type="date" name="expiration[2]" max="3000-12-31"
-														   min="1000-01-01" class="form-control form-control-sm">
+													<input
+														type="date"
+														name="expiration[2]"
+														max="3000-12-31"
+														min="1000-01-01"
+														class="form-control form-control-sm">
 												</div>
-												<div class="col-md-2">
+												<div
+													class="col-md-2">
 													<label><?= lang('insurance_data') ?></label>
 													<label
 														style="width: 170px;font-size: 14px !important;line-height: 14px !important;padding: 10px 15px !important;font-weight: 500 !important;"
 														class="btn btn-sm btn-outline-secondary">
 														<span><?= lang('browse') ?></span>
-														<input class="btn_input" name="file_2" type="file" hidden
-															   style="display: none;" value="">
+														<input
+															class="btn_input"
+															name="file_2"
+															type="file"
+															hidden
+															style="display: none;"
+															value="">
 													</label>
 												</div>
 											</div>
@@ -418,15 +653,20 @@
 						</div>
 					</div>
 
-					<div class="container-fluid">
+					<div
+						class="container-fluid">
 						<hr class="my-2">
 						<h5 class="mt-2 mb-1"><?= lang('other_info') ?></h5>
-						<table class="vehicle table table-striped table-hover">
+						<table
+							class="vehicle table table-striped table-hover">
 							<thead>
 							<tr>
 								<th scope="col"><?= lang('item_name') ?></th>
 								<th scope="col"><?= lang('value') ?>
-									<small>(<?= lang('KM\Days\Months') ?>)</small>
+									<small>
+										(<?= lang('KM\Days\Months') ?>
+										)
+									</small>
 								</th>
 								<th scope="col"><?= lang('explotation') ?></th>
 								<th scope="col"><?= lang('per_day') ?></th>
@@ -436,47 +676,79 @@
 								<th scope="col"></th>
 							</tr>
 							</thead>
-							<tbody class="new_items_tbody">
+							<tbody
+								class="new_items_tbody">
 							<tr>
 								<td>
-									<input name="item[1]" class="form-control form-control-sm" type="text"
-										   placeholder="<?= lang('item_name') ?>"
-										   value="">
+									<input
+										name="item[1]"
+										class="form-control form-control-sm"
+										type="text"
+										placeholder="<?= lang('item_name') ?>"
+										value="">
 								</td>
 								<td>
-									<select style="height: 37px;" name="value[1]"
-											class="form-control form-control-sm dif_meter"
-											data-live-search="true" data-size="5">
+									<select
+										style="height: 37px;"
+										name="value[1]"
+										class="form-control form-control-sm dif_meter"
+										data-live-search="true"
+										data-size="5">
 										<option><?= lang('select_value') ?></option>
 										<? foreach ($value as $row) : ?>
-											<option value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
+											<option
+												value="<?= $row['id'] ?>"><?= $row['title'] ?></option>
 										<? endforeach; ?>
 									</select>
 								</td>
 								<td>
-									<input name="avg_exploitation[1]" class="form-control form-control-sm" type="number"
-										   placeholder="<?= lang('explotation') ?>" value="">
+									<input
+										name="avg_exploitation[1]"
+										class="form-control form-control-sm"
+										type="number"
+										placeholder="<?= lang('explotation') ?>"
+										value="">
 								</td>
 
 								<td>
-									<input name="per_days[1]" class="form-control form-control-sm" type="number"
-										   placeholder="<?= lang('per_day') ?>" value="">
+									<input
+										name="per_days[1]"
+										class="form-control form-control-sm"
+										type="number"
+										placeholder="<?= lang('per_day') ?>"
+										value="">
 								</td>
 								<td>
-									<input name="more_info[1]" class="form-control form-control-sm" type="text"
-										   placeholder="<?= lang('more_info') ?>" value=""/>
+									<input
+										name="more_info[1]"
+										class="form-control form-control-sm"
+										type="text"
+										placeholder="<?= lang('more_info') ?>"
+										value=""/>
 								</td>
 								<td>
-									<input name="remind_before[1]" class="form-control form-control-sm" type="number"
-										   placeholder="<?= lang('day_before') ?>"/>
+									<input
+										name="remind_before[1]"
+										class="form-control form-control-sm"
+										type="number"
+										placeholder="<?= lang('day_before') ?>"/>
 								</td>
 								<td>
-									<input name="start_alarm_date[1]" class="form-control form-control-sm" type="date"
-										   value=""/>
+									<input
+										name="start_alarm_date[1]"
+										class="form-control form-control-sm"
+										type="date"
+										value=""/>
 								</td>
 								<td>
-									<button type="button" class="btn btn-outline-success btn-sm add_new_item" style="font-size: 14px !important;line-height: 14px !important;padding: 7px 8px !important;
-    font-weight: 500 !important;"><i style="margin: 0 !important;" class="fa fa-plus"></i></button>
+									<button
+										type="button"
+										class="btn btn-outline-success btn-sm add_new_item"
+										style="font-size: 14px !important;line-height: 14px !important;padding: 7px 8px !important;
+    font-weight: 500 !important;">
+										<i style="margin: 0 !important;"
+										   class="fa fa-plus"></i>
+									</button>
 
 								</td>
 							</tr>
@@ -494,50 +766,136 @@
 </div>
 
 
-<div id="scripts"></div>
+<div
+	id="scripts"></div>
 
-<div class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
-	<button id="submit" class="save_cancel_btn btn btn-success"><?= lang('save') ?></button>
-	<span id="load" class="btn save_cancel_btn btn-success d-none"><svg id="loading_svg" width="80" height="20"
-																		viewBox="0 0 135 140"
-																		xmlns="http://www.w3.org/2000/svg"
-																		fill="rgb(255, 122, 89)">
-    <rect y="10" width="15" height="120" rx="6">
-        <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
-				 calcMode="linear" repeatCount="indefinite"/>
-        <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite"/>
+<div
+	class="pos_abs_div fixed-bottom text-left pb-2 mt-md-2 mt-2">
+	<button
+		id="submit"
+		class="save_cancel_btn btn btn-success"><?= lang('save') ?></button>
+	<span
+		id="load"
+		class="btn save_cancel_btn btn-success d-none"><svg
+			id="loading_svg"
+			width="80"
+			height="20"
+			viewBox="0 0 135 140"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="rgb(255, 122, 89)">
+    <rect
+		y="10"
+		width="15"
+		height="120"
+		rx="6">
+        <animate
+			attributeName="height"
+			begin="0.5s"
+			dur="1s"
+			values="120;110;100;90;80;70;60;50;40;140;120"
+			calcMode="linear"
+			repeatCount="indefinite"/>
+        <animate
+			attributeName="y"
+			begin="0.5s"
+			dur="1s"
+			values="10;15;20;25;30;35;40;45;50;0;10"
+			calcMode="linear"
+			repeatCount="indefinite"/>
     </rect>
-    <rect x="30" y="10" width="15" height="120" rx="6">
-        <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
-				 calcMode="linear" repeatCount="indefinite"/>
-        <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite"/>
+    <rect
+		x="30"
+		y="10"
+		width="15"
+		height="120"
+		rx="6">
+        <animate
+			attributeName="height"
+			begin="0.25s"
+			dur="1s"
+			values="120;110;100;90;80;70;60;50;40;140;120"
+			calcMode="linear"
+			repeatCount="indefinite"/>
+        <animate
+			attributeName="y"
+			begin="0.25s"
+			dur="1s"
+			values="10;15;20;25;30;35;40;45;50;0;10"
+			calcMode="linear"
+			repeatCount="indefinite"/>
     </rect>
-    <rect x="60" width="15" height="140" rx="6">
-        <animate attributeName="height" begin="0s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
-				 calcMode="linear" repeatCount="indefinite"/>
-        <animate attributeName="y" begin="0s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite"/>
+    <rect
+		x="60"
+		width="15"
+		height="140"
+		rx="6">
+        <animate
+			attributeName="height"
+			begin="0s"
+			dur="1s"
+			values="120;110;100;90;80;70;60;50;40;140;120"
+			calcMode="linear"
+			repeatCount="indefinite"/>
+        <animate
+			attributeName="y"
+			begin="0s"
+			dur="1s"
+			values="10;15;20;25;30;35;40;45;50;0;10"
+			calcMode="linear"
+			repeatCount="indefinite"/>
     </rect>
-    <rect x="90" y="10" width="15" height="120" rx="6">
-        <animate attributeName="height" begin="0.25s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
-				 calcMode="linear" repeatCount="indefinite">
-        <animate attributeName="y" begin="0.25s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite"/>
+    <rect
+		x="90"
+		y="10"
+		width="15"
+		height="120"
+		rx="6">
+        <animate
+			attributeName="height"
+			begin="0.25s"
+			dur="1s"
+			values="120;110;100;90;80;70;60;50;40;140;120"
+			calcMode="linear"
+			repeatCount="indefinite">
+        <animate
+			attributeName="y"
+			begin="0.25s"
+			dur="1s"
+			values="10;15;20;25;30;35;40;45;50;0;10"
+			calcMode="linear"
+			repeatCount="indefinite"/>
     </rect>
-    <rect x="120" y="10" width="15" height="120" rx="6">
-        <animate attributeName="height" begin="0.5s" dur="1s" values="120;110;100;90;80;70;60;50;40;140;120"
-				 calcMode="linear" repeatCount="indefinite"/>
-        <animate attributeName="y" begin="0.5s" dur="1s" values="10;15;20;25;30;35;40;45;50;0;10" calcMode="linear"
-				 repeatCount="indefinite"/>
+    <rect
+		x="120"
+		y="10"
+		width="15"
+		height="120"
+		rx="6">
+        <animate
+			attributeName="height"
+			begin="0.5s"
+			dur="1s"
+			values="120;110;100;90;80;70;60;50;40;140;120"
+			calcMode="linear"
+			repeatCount="indefinite"/>
+        <animate
+			attributeName="y"
+			begin="0.5s"
+			dur="1s"
+			values="10;15;20;25;30;35;40;45;50;0;10"
+			calcMode="linear"
+			repeatCount="indefinite"/>
     </rect>
 </svg></span>
 
-	<button class="dont_save btn btn-primary"><?= lang('cancel') ?></button>
-	<span style="color: #8c8c8c;" class="pl-3"><?= lang('changed_property') ?></span>
+	<button
+		class="dont_save btn btn-primary"><?= lang('cancel') ?></button>
+	<span
+		style="color: #8c8c8c;"
+		class="pl-3"><?= lang('changed_property') ?></span>
 </div>
-<script src="<?= base_url('assets/js/bootstrap/typeahead.js') ?>"></script>
+<script
+	src="<?= base_url('assets/js/bootstrap/typeahead.js') ?>"></script>
 <script>
 
 	// create company

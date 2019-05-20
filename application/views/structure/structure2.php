@@ -1,33 +1,60 @@
-<script src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
-<script src="<?= base_url() ?>assets/js/table.js"></script>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/table.css"/>
-<link rel="stylesheet" href="<?= base_url() ?>assets/css/structure1.css"/>
+<script
+	src="<?= base_url() ?>assets/js/bootstrap_table.js"></script>
+<script
+	src="<?= base_url() ?>assets/js/table.js"></script>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/table.css"/>
+<link
+	rel="stylesheet"
+	href="<?= base_url() ?>assets/css/structure1.css"/>
 <!-- Structure Start -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script
+	src="https://code.highcharts.com/highcharts.js"></script>
 <!--[if lt IE 9]>
-<script src="https://code.highcharts.com/modules/oldie.js"></script>
+<script
+	src="https://code.highcharts.com/modules/oldie.js"></script>
 <![endif]-->
-<script src="https://gojs.net/latest/extensions/Robot.js"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
-<script type="text/javascript" src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
-<script src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
+<script
+	src="https://gojs.net/latest/extensions/Robot.js"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jquery.dataTables.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/dataTables.buttons.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.bootstrap4.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/jszip.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.html5.min.js') ?>"></script>
+<script
+	type="text/javascript"
+	src="<?= base_url('assets/js/dataTables/buttons.colVis.min.js') ?>"></script>
+<script
+	src="//cdn.datatables.net/plug-ins/1.10.19/api/sum().js"></script>
 
 <!-- Structure Start -->
 <style>
 	canvas {
 		background: #fff;
 	}
+
 	.row.bg-secondary {
 		min-height: 194px;
 	}
+
 	.modal {
 		top: 30% !important;
 	}
+
 	#fleet_filter {
 		border: 1px solid;
 		position: absolute;
@@ -37,6 +64,7 @@
 		padding: 10px 15px 10px 30px;
 		border-radius: 5px;
 	}
+
 	.dataTables_filter > label {
 		margin-right: 70%;
 	}
@@ -44,12 +72,14 @@
 	.btn.disabled, .btn:disabled {
 		opacity: 1 !important;
 	}
+
 	.bootstrap-select.disabled, .bootstrap-select > .disabled {
 		cursor: none !important;
 		color: #000 !important;
 		background: #eaedf0 !important;
 	}
-	input::placeholder{
+
+	input::placeholder {
 		font-size: 12px !important;
 	}
 </style>
@@ -77,133 +107,260 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 ?>
 
 
-<script src="<?= base_url('assets/js/go.js') ?>"></script>
-<div class="content m-1">
-	<div class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0">
+<script
+	src="<?= base_url('assets/js/go.js') ?>"></script>
+<div
+	class="content m-1">
+	<div
+		class="jumbotron jumbotron-fluid pb-2 pt-2 mb-0">
 
 
-		<div id="sample" style="position:relative;">
-			<div id="fleet_filter" class="form-group form-check">
-				<input style="margin-top: 4px" type="checkbox" class="form-check-input" id="filter_vehicles">
-				<label class="form-check-label" for="exampleCheck1"><?= lang('only_vehicles') ?></label>
+		<div
+			id="sample"
+			style="position:relative;">
+			<div
+				id="fleet_filter"
+				class="form-group form-check">
+				<input
+					style="margin-top: 4px"
+					type="checkbox"
+					class="form-check-input"
+					id="filter_vehicles">
+				<label
+					class="form-check-label"
+					for="exampleCheck1"><?= lang('only_vehicles') ?></label>
 			</div>
-			<div id="myDiagramDiv" style="background-color: #696969; border: solid 1px black; height: 500px"></div>
+			<div
+				id="myDiagramDiv"
+				style="background-color: #696969; border: solid 1px black; height: 500px"></div>
 			<div>
-				<div id="myInspector"></div>
+				<div
+					id="myInspector"></div>
 			</div>
 			<div>
-				<textarea id="mySavedModel" style="display:none;">
+				<textarea
+					id="mySavedModel"
+					style="display:none;">
 					{"class": "go.TreeModel",
 						"nodeDataArray": <?= $structure ?>
 					}
 			</textarea>
 			</div>
 		</div>
-		<script src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
+		<script
+			src="chrome-extension://gppongmhjkpfnbhagpmjfkannfbllamg/js/inject.js"></script>
 	</div>
-	<span class="selected_information "></span>
+	<span
+		class="selected_information "></span>
 </div>
 
-<div id="add-info" style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
-	<nav class="mt-2">
-		<div class="nav nav-tabs" id="nav-tab" role="tablist">
+<div
+	id="add-info"
+	style="<?= $this->uri->segment(3) == '' ? 'display: none' : '' ?>">
+	<nav
+		class="mt-2">
+		<div
+			class="nav nav-tabs"
+			id="nav-tab"
+			role="tablist">
 			<a class="nav-item nav-link tab_nav "
-			   data-tab="1" id="nav-1-tab"
-			   data-toggle="tab" href="#nav-1"
-			   role="tab" aria-controls="nav-1"
+			   data-tab="1"
+			   id="nav-1-tab"
+			   data-toggle="tab"
+			   href="#nav-1"
+			   role="tab"
+			   aria-controls="nav-1"
 			   aria-selected="true"><?= lang('inspection') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="2" id="nav-2-tab"
-			   data-toggle="tab" href="#nav-2"
-			   role="tab" aria-controls="nav-2"
+			   data-tab="2"
+			   id="nav-2-tab"
+			   data-toggle="tab"
+			   href="#nav-2"
+			   role="tab"
+			   aria-controls="nav-2"
 			   aria-selected="false"><?= lang('fuel_consumption') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="3" id="nav-3-tab"
-			   data-toggle="tab" href="#nav-3"
-			   role="tab" aria-controls="nav-3"
+			   data-tab="3"
+			   id="nav-3-tab"
+			   data-toggle="tab"
+			   href="#nav-3"
+			   role="tab"
+			   aria-controls="nav-3"
 			   aria-selected="false"><?= lang('fine') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="4" id="nav-4-tab"
-			   data-toggle="tab" href="#nav-4"
-			   role="tab" aria-controls="nav-4"
+			   data-tab="4"
+			   id="nav-4-tab"
+			   data-toggle="tab"
+			   href="#nav-4"
+			   role="tab"
+			   aria-controls="nav-4"
 			   aria-selected="false"><?= lang('accident') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="5" id="nav-5-tab"
-			   data-toggle="tab" href="#nav-5"
-			   role="tab" aria-controls="nav-5"
+			   data-tab="5"
+			   id="nav-5-tab"
+			   data-toggle="tab"
+			   href="#nav-5"
+			   role="tab"
+			   aria-controls="nav-5"
 			   aria-selected="false"><?= lang('insurance') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="6" id="nav-6-tab"
-			   data-toggle="tab" href="#nav-6"
-			   role="tab" aria-controls="nav-6"
+			   data-tab="6"
+			   id="nav-6-tab"
+			   data-toggle="tab"
+			   href="#nav-6"
+			   role="tab"
+			   aria-controls="nav-6"
 			   aria-selected="false"><?= lang('spares') ?></a>
 			<a class="nav-item nav-link tab_nav"
-			   data-tab="7" id="nav-7-tab"
-			   data-toggle="tab" href="#nav-7"
-			   role="tab" aria-controls="nav-7"
+			   data-tab="7"
+			   id="nav-7-tab"
+			   data-toggle="tab"
+			   href="#nav-7"
+			   role="tab"
+			   aria-controls="nav-7"
 			   aria-selected="false"><?= lang('repair') ?></a>
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="8" id="nav-8-tab"-->
 			<!--			   data-toggle="tab" href="#nav-8"-->
 			<!--			   role="tab" aria-controls="nav-8"-->
-			<!--			   aria-selected="false">--><? //=lang('wheel')?><!--</a>-->
+			<!--			   aria-selected="false">-->
+			<? //=lang('wheel')?><!--</a>-->
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="9" id="nav-9-tab"-->
 			<!--			   data-toggle="tab" href="#nav-9"-->
 			<!--			   role="tab" aria-controls="nav-9"-->
-			<!--			   aria-selected="false">--><? //=lang('brake')?><!--</a>-->
+			<!--			   aria-selected="false">-->
+			<? //=lang('brake')?><!--</a>-->
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="10" id="nav-10-tab"-->
 			<!--			   data-toggle="tab" href="#nav-10"-->
 			<!--			   role="tab" aria-controls="nav-10"-->
-			<!--			   aria-selected="false">--><? //=lang('grease')?><!--</a>-->
+			<!--			   aria-selected="false">-->
+			<? //=lang('grease')?><!--</a>-->
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="11" id="nav-11-tab"-->
 			<!--			   data-toggle="tab" href="#nav-11"-->
 			<!--			   role="tab" aria-controls="nav-11"-->
-			<!--			   aria-selected="false">--><? //=lang('filter')?><!--</a>-->
+			<!--			   aria-selected="false">-->
+			<? //=lang('filter')?><!--</a>-->
 			<!--			<a class="nav-item nav-link tab_nav"-->
 			<!--			   data-tab="12" id="nav-12-tab"-->
 			<!--			   data-toggle="tab" href="#nav-12"-->
 			<!--			   role="tab" aria-controls="nav-12"-->
-			<!--			   aria-selected="false">--><? //=lang('battery')?><!--</a>-->
+			<!--			   aria-selected="false">-->
+			<? //=lang('battery')?><!--</a>-->
 		</div>
 	</nav>
 
-	<div class="tab-content" id="nav-tabContent" style="position: relative">
-		<div class="tab-pane fade" data-tab="1" id="nav-1" role="tabpanel" aria-labelledby="nav-1-tab"></div>
-		<div class="tab-pane fade" data-tab="2" id="nav-2" role="tabpanel" aria-labelledby="nav-2-tab"></div>
-		<div class="tab-pane fade" data-tab="3" id="nav-3" role="tabpanel" aria-labelledby="nav-3-tab"></div>
-		<div class="tab-pane fade" data-tab="4" id="nav-4" role="tabpanel" aria-labelledby="nav-4-tab"></div>
-		<div class="tab-pane fade" data-tab="5" id="nav-5" role="tabpanel" aria-labelledby="nav-5-tab"></div>
-		<div class="tab-pane fade" data-tab="6" id="nav-6" role="tabpanel" aria-labelledby="nav-6-tab"></div>
-		<div class="tab-pane fade" data-tab="7" id="nav-7" role="tabpanel" aria-labelledby="nav-7-tab"></div>
-		<div class="tab-pane fade" data-tab="8" id="nav-8" role="tabpanel" aria-labelledby="nav-8-tab"></div>
-		<div class="tab-pane fade" data-tab="9" id="nav-9" role="tabpanel" aria-labelledby="nav-9-tab"></div>
-		<div class="tab-pane fade" data-tab="10" id="nav-10" role="tabpanel" aria-labelledby="nav-10-tab"></div>
-		<div class="tab-pane fade" data-tab="11" id="nav-11" role="tabpanel" aria-labelledby="nav-11-tab"></div>
-		<div class="tab-pane fade" data-tab="12" id="nav-12" role="tabpanel" aria-labelledby="nav-12-tab"></div>
+	<div
+		class="tab-content"
+		id="nav-tabContent"
+		style="position: relative">
+		<div
+			class="tab-pane fade"
+			data-tab="1"
+			id="nav-1"
+			role="tabpanel"
+			aria-labelledby="nav-1-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="2"
+			id="nav-2"
+			role="tabpanel"
+			aria-labelledby="nav-2-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="3"
+			id="nav-3"
+			role="tabpanel"
+			aria-labelledby="nav-3-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="4"
+			id="nav-4"
+			role="tabpanel"
+			aria-labelledby="nav-4-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="5"
+			id="nav-5"
+			role="tabpanel"
+			aria-labelledby="nav-5-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="6"
+			id="nav-6"
+			role="tabpanel"
+			aria-labelledby="nav-6-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="7"
+			id="nav-7"
+			role="tabpanel"
+			aria-labelledby="nav-7-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="8"
+			id="nav-8"
+			role="tabpanel"
+			aria-labelledby="nav-8-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="9"
+			id="nav-9"
+			role="tabpanel"
+			aria-labelledby="nav-9-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="10"
+			id="nav-10"
+			role="tabpanel"
+			aria-labelledby="nav-10-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="11"
+			id="nav-11"
+			role="tabpanel"
+			aria-labelledby="nav-11-tab"></div>
+		<div
+			class="tab-pane fade"
+			data-tab="12"
+			id="nav-12"
+			role="tabpanel"
+			aria-labelledby="nav-12-tab"></div>
 		<!--search-->
-		<div id="search_" style="min-height: 35px;position: absolute;top: 9px;left: 66%;display: none">
-			<div style="float: right;">
-				<span class="p-3"><?= lang('from') ?></span>
-				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
-					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
+		<div
+			id="search_"
+			style="min-height: 35px;position: absolute;top: 9px;left: 66%;display: none">
+			<div
+				style="float: right;">
+				<span
+					class="p-3"><?= lang('from') ?></span>
+				<input
+					type="date"
+					value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>"
+					name="from"
+					style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
 
-				<span class="p-3"><?= lang('to') ?></span>
-				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
-					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
+				<span
+					class="p-3"><?= lang('to') ?></span>
+				<input
+					type="date"
+					value="<?= mdate('%Y-%m-%d', now()) ?>"
+					name="to"
+					style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
 
-				<button style="min-width: 94px;
+				<button
+					style="min-width: 94px;
 					font-size: 14px !important;
 					line-height: 14px !important;
 					padding: 10px 24px !important;
 					font-weight: 500 !important;
 					margin-top: -4px;
 					min-height: 37px !important;"
-						type="button"
-						id="search"
-						class="ml-2 save_cancel_btn btn btn-success"><?= lang('see') ?>
+					type="button"
+					id="search"
+					class="ml-2 save_cancel_btn btn btn-success"><?= lang('see') ?>
 				</button>
 			</div>
 		</div>
@@ -214,34 +371,56 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 		<hr class="my-2">
 
-		<div class="container-fluid" style="min-height: 35px;">
+		<div
+			class="container-fluid"
+			style="min-height: 35px;">
 
 
-			<div style="float: right;">
-				<span class="p-3"><?= lang('from') ?></span>
-				<input type="date" value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>" name="from"
-					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
-				<span class="p-3"><?= lang('to') ?></span>
-				<input type="date" value="<?= mdate('%Y-%m-%d', now()) ?>" name="to"
-					   style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
-				<button style="min-width: 94px;font-size: 14px !important;
+			<div
+				style="float: right;">
+				<span
+					class="p-3"><?= lang('from') ?></span>
+				<input
+					type="date"
+					value="<?= date("Y-m-d", strtotime("-1 month", $time)); ?>"
+					name="from"
+					style="border: 1px solid silver;padding: 4px 2px 4px 10px;border-radius: 5px;"/>
+				<span
+					class="p-3"><?= lang('to') ?></span>
+				<input
+					type="date"
+					value="<?= mdate('%Y-%m-%d', now()) ?>"
+					name="to"
+					style="border: 1px solid silver;padding: 4px 2px 4px 10px;;border-radius: 5px;"/>
+				<button
+					style="min-width: 94px;font-size: 14px !important;
     line-height: 14px !important;
     padding: 10px 24px !important;
-    font-weight: 500 !important;margin-top: -4px;min-height: 37px !important;" type="button" id="search"
-						class="ml-2 save_cancel_btn btn btn-success"><?= lang('see') ?>
+    font-weight: 500 !important;margin-top: -4px;min-height: 37px !important;"
+					type="button"
+					id="search"
+					class="ml-2 save_cancel_btn btn btn-success"><?= lang('see') ?>
 				</button>
 			</div>
 		</div>
 
 		<hr class="my-2">
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm-7">
-					<div id="container" style="width:100%; "></div>
+		<div
+			class="container-fluid">
+			<div
+				class="row">
+				<div
+					class="col-sm-7">
+					<div
+						id="container"
+						style="width:100%; "></div>
 				</div>
-				<div class="col-sm-5">
-					<div id="container_2" style="width:100%; "></div>
+				<div
+					class="col-sm-5">
+					<div
+						id="container_2"
+						style="width:100%; "></div>
 				</div>
 			</div>
 		</div><?
@@ -369,7 +548,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					selectionAdorned: false,
 					// a custom function to allow expanding/collapsing on double-click
 					// this uses similar logic to a TreeExpanderButton
-					doubleClick: function(e, node) {
+					doubleClick: function (e, node) {
 						var cmd = myDiagram.commandHandler;
 						if (node.isTreeExpanded) {
 							if (!cmd.canCollapseTree(node)) return;
@@ -397,7 +576,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					}).ofObject(),
 
 					$(go.TextBlock,
-						{font: '9pt Verdana, sans-serif', margin: new go.Margin(0, 2, 0, 2)},
+						{
+							font: '9pt Verdana, sans-serif',
+							margin: new go.Margin(0, 2, 0, 2)
+						},
 						new go.Binding("stroke", "isHighlighted", function (h) {
 							return h ? "#ff7a59" : color;
 						}).ofObject(),
@@ -434,7 +616,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					toSpot: go.Spot.Left
 				},
 				$(go.Shape,
-					{stroke: 'gray', strokeDashArray: [1, 2]}));
+					{
+						stroke: 'gray',
+						strokeDashArray: [1, 2]
+					}));
 		load();
 
 		// support editing the properties of the selected person in HTML
@@ -737,7 +922,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					$.ajax({
 						url: url,
 						type: 'POST',
-						data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+						data: {
+							date_from: date_from,
+							date_to: date_to,
+							table: table,
+							arr: new_arr
+						},
 						async: true,
 						dataType: "json",
 						success: function (data) {
@@ -834,7 +1024,11 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 										$.ajax({
 											url: url,
 											type: 'POST',
-											data: {date: date, table: table, arr: new_arr},
+											data: {
+												date: date,
+												table: table,
+												arr: new_arr
+											},
 											async: true,
 											dataType: "json",
 											success: function (data) {
@@ -1069,7 +1263,12 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					$.ajax({
 						url: url,
 						type: 'POST',
-						data: {date_from: date_from, date_to: date_to, table: table, arr: new_arr},
+						data: {
+							date_from: date_from,
+							date_to: date_to,
+							table: table,
+							arr: new_arr
+						},
 						async: true,
 						dataType: "json",
 						success: function (data) {
@@ -1128,7 +1327,7 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					selectionAdorned: false,
 					// a custom function to allow expanding/collapsing on double-click
 					// this uses similar logic to a TreeExpanderButton
-					doubleClick: function(e, node) {
+					doubleClick: function (e, node) {
 						var cmd = myDiagram.commandHandler;
 						if (node.isTreeExpanded) {
 							if (!cmd.canCollapseTree(node)) return;
@@ -1167,10 +1366,10 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 							return h ? "#ff7a59" : color;
 						}).ofObject()),
 
-				  	$(go.TextBlock,{
-								font: 'bold ,9pt Verdana, sans-serif',
-								margin: new go.Margin(0, 5, 0, 2)
-					  },
+					$(go.TextBlock, {
+							font: 'bold ,9pt Verdana, sans-serif',
+							margin: new go.Margin(0, 5, 0, 2)
+						},
 
 						new go.Binding("text", "title", function (s) {
 							return " " + s;
@@ -1297,7 +1496,11 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 			}
 		});
 
-		$.post(url_1, {arr: new_arr, date_from: date_from, date_to: date_to}).done(function (data) {
+		$.post(url_1, {
+			arr: new_arr,
+			date_from: date_from,
+			date_to: date_to
+		}).done(function (data) {
 			$('.tab-pane').each(function () {
 				if ($(this).data('tab') == dataTab) {
 					$(this).html(data);
@@ -1338,9 +1541,15 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 </script>
 
-<div class="dropdown-menu" style="position:absolute;top: 27px;left: 20px; z-index: 9999">
-	<a id="more_info" class="dropdown-item" target="_blank" href=""><i
-			class="pr-2 fas fa-info-circle"></i><?= lang('details') ?></a>
+<div
+	class="dropdown-menu"
+	style="position:absolute;top: 27px;left: 20px; z-index: 9999">
+	<a id="more_info"
+	   class="dropdown-item"
+	   target="_blank"
+	   href=""><i
+			class="pr-2 fas fa-info-circle"></i><?= lang('details') ?>
+	</a>
 </div>
 
 
@@ -1384,7 +1593,6 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 					robot.mouseUp(loc.x + 10, loc.y + 10, 100, {});
 				});
 
-
 			}, 700);
 
 			<?}?>
@@ -1400,5 +1608,18 @@ $structure_array = array_values(array_unique($structure_array, SORT_REGULAR));
 
 </script>
 
-<input type="hidden" name="selecteds">
-<input type="hidden" name="line_date">
+<input
+	type="hidden"
+	name="selecteds">
+<input
+	type="hidden"
+	name="line_date">
+
+<script>
+	$(document).ready(function () {
+		$('input[type="hidden"]').each(function () {
+			console.log($(this).val())
+		});
+	});
+</script>
+

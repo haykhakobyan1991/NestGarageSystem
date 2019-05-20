@@ -49,12 +49,14 @@
 	href="<?= base_url() ?>assets/css/expenses_history.css"/>
 
 <style>
-	input::placeholder{
+	input::placeholder {
 		font-size: 12px !important;
 	}
+
 	.delete_btn {
 		display: none;
 	}
+
 	#edit_group_modal {
 		display: none;
 	}
@@ -195,8 +197,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 		});
 
 		$(document).ready(function () {
-
-
 
 
 			var url = '<?=base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : $this->load->default_lang()) . '/Fleet_history/getHistoryAll_ax')?>';
@@ -724,7 +724,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			//$('.lg_1').html('<h2 class="text-center" style="opacity: .4;color: gray;margin-top: 40%;" ><?//=lang('select_fleets_from_list')?>//</h2>');
 		});
 
-		/***************************************************************/
 		$(document).on('change', '.select_all_2', function () {
 			if ($('.select_all_2').is(':checked')) {
 				$('.added_lg_2').each(function () {
@@ -1054,7 +1053,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	</div>
 
 	<!--Edit Group Modal end -->
-
 	<!-- Create Group Modal  Start -->
 
 	<div
@@ -1159,12 +1157,8 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 						<div
 							class="col-sm-5 scroll_style"
 							style="border: 5px solid #00000040;max-height: 300px; min-height: 300px; overflow-y: scroll;">
-							<ul class="list-group lg_2 mt-1">
-
-							</ul>
-
+							<ul class="list-group lg_2 mt-1"></ul>
 						</div>
-
 					</div>
 				</div>
 				<div

@@ -259,41 +259,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			   aria-controls="nav-7"
 			   aria-selected="false"><?= lang('repair') ?></a>
 
-			<!--			<a class="nav-item nav-link tab_nav"-->
-			<!--			   data-tab="8" id="nav-8-tab"-->
-			<!--			   data-toggle="tab" href="#nav-8"-->
-			<!--			   role="tab" aria-controls="nav-8"-->
-			<!--			   aria-selected="false">-->
-			<? //= lang('wheel') ?><!--</a>-->
-
-			<!--			<a class="nav-item nav-link tab_nav"-->
-			<!--			   data-tab="9" id="nav-9-tab"-->
-			<!--			   data-toggle="tab" href="#nav-9"-->
-			<!--			   role="tab" aria-controls="nav-9"-->
-			<!--			   aria-selected="false">-->
-			<? //= lang('brake') ?><!--</a>-->
-
-			<!--			<a class="nav-item nav-link tab_nav"-->
-			<!--			   data-tab="10" id="nav-10-tab"-->
-			<!--			   data-toggle="tab" href="#nav-10"-->
-			<!--			   role="tab" aria-controls="nav-10"-->
-			<!--			   aria-selected="false">-->
-			<? //= lang('grease') ?><!--</a>-->
-
-			<!--			<a class="nav-item nav-link tab_nav"-->
-			<!--			   data-tab="11" id="nav-11-tab"-->
-			<!--			   data-toggle="tab" href="#nav-11"-->
-			<!--			   role="tab" aria-controls="nav-11"-->
-			<!--			   aria-selected="false">-->
-			<? //= lang('filter') ?><!--</a>-->
-
-			<!--			<a class="nav-item nav-link tab_nav"-->
-			<!--			   data-tab="12" id="nav-12-tab"-->
-			<!--			   data-toggle="tab" href="#nav-12"-->
-			<!--			   role="tab" aria-controls="nav-12"-->
-			<!--			   aria-selected="false">-->
-			<? //= lang('battery') ?><!--</a>-->
-
 		</div>
 	</nav>
 
@@ -961,11 +926,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 
 		var new_arr = [];
 
-		// myDiagram.addDiagramListener('ObjectSingleClicked', function (e) {
-		// 	myDiagram.clearSelection();
-		// });
-
-
 		myDiagram.addDiagramListener('ObjectSingleClicked', function (e) {
 			var linkDataArray = <?=$from_to?>;
 			$.each(linkDataArray, function (key, value) {
@@ -1291,28 +1251,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 				$('#container path').addClass('line'); //---;
 
 			}
-
-			/*
-            *
-            * Second Chart Start
-            *
-            */
-
-			// Highcharts.setOptions({
-			// 	colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
-			// 		return {
-			// 			radialGradient: {
-			// 				cx: 0.5,
-			// 				cy: 0.3,
-			// 				r: 0.7
-			// 			},
-			// 			stops: [
-			// 				[0, color],
-			// 				[1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-			// 			]
-			// 		};
-			// 	})
-			// });
 
 			function chartCircle(data, title) {
 
@@ -1723,7 +1661,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	$('.reset_struckture').click(function () {
 		myDiagrem.div = null;
 		init();
-	})
+	});
 
 </script>
 
@@ -1733,3 +1671,4 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <input
 	type="hidden"
 	name="line_date">
+

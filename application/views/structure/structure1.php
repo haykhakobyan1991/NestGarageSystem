@@ -44,9 +44,10 @@
 <style>tr {
 		background: rgba(0, 0, 0, .05) !important
 	}
-input::placeholder{
-	font-size: 12px !important;
-}</style>
+
+	input::placeholder {
+		font-size: 12px !important;
+	}</style>
 
 <?
 if ($this->uri->segment('3') == 'fleet_history') {
@@ -162,6 +163,9 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<div
 				id="myDiagramDiv"
 				style="height:400px;"></div>
+			<button
+				class="reset_struckture btn btn-sm btn-outline-secondary mt-1"
+				style="position: absolute;right: 110px;bottom: -55px;"><?= lang('reset'); ?></button>
 			<button
 				name=""
 				data-toggle="modal"
@@ -1714,6 +1718,12 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			<?}?>
 		}
 	});
+
+
+	$('.reset_struckture').click(function () {
+		myDiagrem.div = null;
+		init();
+	})
 
 </script>
 

@@ -2062,6 +2062,7 @@ class Organization extends MX_Controller {
 			  ) AS `brand_model`,
 			  `color`,
 			  `vin_code`,
+			  `fleet_plate_number`,
 			  `engine_power`,
 			   CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `user_name`,
 			   DATE_FORMAT(`fleet`.`registration_date`, '%d-%m-%Y') AS `creation_date`,

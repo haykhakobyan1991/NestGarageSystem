@@ -432,6 +432,7 @@ $lang['GPS_tracking'] = 'GPS- ի հետեւում';
 $lang['geofences'] = 'Գեոզոնաներ';
 $lang['Are_you_sure_to_logout'] = 'Համոզված եք որ ցանկանում եք դուրս գալ համակարգից';
 $lang['must_enter_only_numbers'] = 'պետք է մուտքագրեք միայն թվեր';
+$lang['reset'] = 'վերականգնել';
 
 
 

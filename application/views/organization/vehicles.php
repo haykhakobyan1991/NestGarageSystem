@@ -106,6 +106,7 @@ color: #545b62;">
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('type') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('brand') . ' ' . lang('model') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('color') ?></th>
+							<th style="font-size: 12px !important;font-weight: 500;"><?=lang('license_plate');?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('vin') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('Created_Date') ?></th>
 							<th style="font-size: 12px !important;font-weight: 500;"><?= lang('by_whom') ?></th>
@@ -121,6 +122,7 @@ color: #545b62;">
 								<td><span style="display: none">Spitak</span><span class="p-3 m-2 text-white"
 																				   style="border-radius: 50%; border: 1px solid #000; background: <?= $row['color'] ?>; display: inline-block;"></span>
 								</td>
+								<td><?= $row['fleet_plate_number'] ?></td>
 								<td><?= $row['vin_code'] ?></td>
 								<td><?= $row['creation_date'] ?></td>
 								<td><?= $row['user_name'] ?></td>

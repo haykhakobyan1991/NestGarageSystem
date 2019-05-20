@@ -110,30 +110,56 @@
 	});
 
 
-$('input[name="phone_number"], input[name="owner_contact_number"], input[name="account_number_1"], input[name="account_number_2"], input[name="account_number_3"], input[name="account_number_4"], input[name="contact_number"], input[name="contact_1"], input[name="contact_2"]').keyup(function () {
+$('input[name="phone_number"], input[name="owner_contact_number"], input[name="account_number_1"], input[name="account_number_2"], input[name="account_number_3"], input[name="account_number_4"], input[name="contact_number"], input[name="contact_1"], input[name="contact_2"]')
+	.keyup(function () {
+
 	var val_numeric = $(this).val();
 
+	/* if value.length = 1  And value == + or value numeric */
 	if (val_numeric.length == 1 && val_numeric == "+" || $.isNumeric(val_numeric)) {
+
 		$(this).parent('label').children('.invalid-feedback').css('display', 'none');
+
 	} else {
+
 		$(this).parent('label').children('.invalid-feedback').css('display', 'block');
+
 	}
 
+
+	/* if value.length > 1 first charackter  == + and other charachters are numeric */
 	if (val_numeric.length > 1) {
 
 		first_charackter = val_numeric.slice(0, 1);
 		second_part_of_string = val_numeric.substring(1);
 
 		if (first_charackter == '+' && $.isNumeric(second_part_of_string)) {
+
 			$(this).parent('label').children('.invalid-feedback').css('display', 'none');
+
 		} else {
+
 			$(this).parent('label').children('.invalid-feedback').css('display', 'block');
+
+		}
+
+	}
+
+	/* if value.length > 1 and value are numeric*/
+	if(val_numeric.length > 1){
+
+		if ($.isNumeric(val_numeric)) {
+
+			$(this).parent('label').children('.invalid-feedback').css('display', 'none');
+
 		}
 
 	}
 
 	if (val_numeric == '') {
+
 		$(this).parent('label').children('.invalid-feedback').css('display', 'none')
+
 	}
 
 });

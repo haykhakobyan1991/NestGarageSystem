@@ -678,15 +678,15 @@
 			<table class="vehicle table table-striped table-hover">
 				<thead>
 				<tr>
-					<th scope="col"><?= lang('item_name') ?> *</th>
-					<th scope="col"><?= lang('value') ?> *
+					<th scope="col"><?= lang('item_name') ?></th>
+					<th scope="col"><?= lang('value') ?>
 						<small>(<?= lang('KM\Days\Months') ?>)</small>
 					</th>
-					<th scope="col"><?= lang('explotation') ?> *</th>
-					<th scope="col"><?= lang('per_day') ?> *</th>
+					<th scope="col"><?= lang('explotation') ?></th>
+					<th scope="col"><?= lang('per_day') ?></th>
 					<th scope="col"><?= lang('more_info') ?></th>
-					<th scope="col"><?= lang('day_before') ?> *</th>
-					<th scope="col"><?= lang('start_alarm_day') ?> *</th>
+					<th scope="col"><?= lang('day_before') ?></th>
+					<th scope="col"><?= lang('start_alarm_day') ?></th>
 					<th scope="col"><span class="btn bnt-sm btn-outline-success">
 							<i
 								style="margin: 0 !important;"
@@ -1157,3 +1157,4 @@
 		return false;
 	})
 </script>
+

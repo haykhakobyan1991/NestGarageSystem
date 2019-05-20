@@ -100,7 +100,7 @@
 						<select name="production_date"
 								class="currency form-control form-control-sm selectpicker col-sm-7" data-size="5"
 								data-live-search="true" title="<?= lang('choose') ?>...">
-							<?php for ($i = 1980; $i <= date('Y'); $i++) : ?>
+							<?php for ($i = date('Y'); $i >= 1980; $i--) : ?>
 								<option value="<?= $i ?>"><?= $i ?></option>
 							<?php endfor; ?>
 						</select>

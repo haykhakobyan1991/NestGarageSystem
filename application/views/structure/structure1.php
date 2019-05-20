@@ -1575,6 +1575,7 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	//vehicle inspection
 	var i = 1;
 	$(document).on('click', '.ex_1_add_new_tr', function () {
+
 		i++;
 
 		var fleet = $('input[name="vehicle[1]"]').val();
@@ -1608,7 +1609,6 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 			class="pr-2 fas fa-info-circle"></i><?= lang('details') ?>
 	</a>
 </div>
-
 
 <script>//---;
 	$(window).on('load', function () {
@@ -1667,10 +1667,14 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 	});
 
 
+	/* Reset Struckture Button  Start */
 	$('.reset_struckture').click(function () {
+		// Empty Struckture Div
 		myDiagram.div = null;
+		// init Struckture
 		init();
 	});
+	/* Reset Struckture Button  End */
 
 </script>
 
@@ -1680,4 +1684,5 @@ $time = strtotime(mdate('%Y-%m-%d', now()));
 <input
 	type="hidden"
 	name="line_date">
+
 

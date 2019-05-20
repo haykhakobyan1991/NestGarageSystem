@@ -174,7 +174,6 @@ color: #545b62;">
 										data-id="<?= $row['id'] ?>"><i
 											class="fas fa-trash"></i></span>
 								</td>
-								</td>
 							</tr>
 						<? endforeach; ?>
 						</tbody>
